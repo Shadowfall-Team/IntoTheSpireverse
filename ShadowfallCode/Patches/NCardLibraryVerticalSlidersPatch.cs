@@ -31,24 +31,25 @@ public class NCardLibraryVerticalSlidersPatch
     private static PortraitSearchBox? _portraitSearch;
 
     // ── State ─────────────────────────────────────────────────────────────
-    internal static NCardHolder? _currentHolder;
-    internal static float _currentH        = 100f;
-    internal static float _currentS        = 100f;
-    internal static float _currentV        = 100f;
-    internal static float _currentR        = 100f;
-    internal static float _currentG        = 100f;
-    internal static float _currentB        = 100f;
-    internal static float _currentContrast = 100f;
-    internal static bool  _currentFlipH    = false;
-    internal static string _currentPortraitPath = "";
+    private static NCardHolder? _currentHolder;
+    private static float _currentH        = 100f;
+    private static float _currentS        = 100f;
+    private static float _currentV        = 100f;
+    private static float _currentR        = 100f;
+    private static float _currentG        = 100f;
+    private static float _currentB        = 100f;
+    private static float _currentContrast = 100f;
+    private static bool  _currentFlipH    = false;
+    private static string _currentPortraitPath = "";
 
     // ── Setup ─────────────────────────────────────────────────────────────
 
     [HarmonyPatch("_Ready")]
     [HarmonyPostfix]
+    // ReSharper disable once UnusedParameter.Local
     static void SetupSlidersOnInspector(NCardLibrary __instance)
     {
-        var inspectScreen = NGame.Instance.GetInspectCardScreen();
+        var inspectScreen = NGame.Instance!.GetInspectCardScreen();
 
         _sliderContainer = new PanelContainer();
         _sliderContainer.CustomMinimumSize = new Vector2(400, 400);
@@ -57,7 +58,7 @@ public class NCardLibraryVerticalSlidersPatch
         _sliderContainer.AddThemeStyleboxOverride("panel", new StyleBoxEmpty());
 
         var pos = _sliderContainer.Position;
-        _sliderContainer.Position = new Vector2(pos.X + 80, pos.Y - 150);
+        _sliderContainer.Position = new Vector2(pos.X + 80, pos.Y - 180);
 
         var vbox = new VBoxContainer();
         vbox.AddThemeConstantOverride("separation", 10);
@@ -70,26 +71,26 @@ public class NCardLibraryVerticalSlidersPatch
         // HSV sliders
         _row1 = CreateSliderRow(vbox, sliderScene, "Hue",      val => { _currentH        = (float)val; UpdateCardShader(); });
         _row2 = CreateSliderRow(vbox, sliderScene, "Sat",      val => { _currentS        = (float)val; UpdateCardShader(); });
-        if (_row2.Slider.GetNodeOrNull<Godot.Range>("Slider") is Godot.Range satSlider)
+        if (_row2.Slider.GetNodeOrNull<Godot.Range>("Slider") is { } satSlider)
             satSlider.MaxValue = 200;
         _row3 = CreateSliderRow(vbox, sliderScene, "Lum",      val => { _currentV        = (float)val; UpdateCardShader(); });
-        if (_row3.Slider.GetNodeOrNull<Godot.Range>("Slider") is Godot.Range lumSlider)
+        if (_row3.Slider.GetNodeOrNull<Godot.Range>("Slider") is { } lumSlider)
             lumSlider.MaxValue = 200;
 
         // RGB sliders
         _rowR = CreateSliderRow(vbox, sliderScene, "Red",      val => { _currentR        = (float)val; UpdateCardShader(); });
-        if (_rowR.Slider.GetNodeOrNull<Godot.Range>("Slider") is Godot.Range redSlider)
+        if (_rowR.Slider.GetNodeOrNull<Godot.Range>("Slider") is { } redSlider)
             redSlider.MaxValue = 200;
         _rowG = CreateSliderRow(vbox, sliderScene, "Green",    val => { _currentG        = (float)val; UpdateCardShader(); });
-        if (_rowG.Slider.GetNodeOrNull<Godot.Range>("Slider") is Godot.Range greenSlider)
+        if (_rowG.Slider.GetNodeOrNull<Godot.Range>("Slider") is { } greenSlider)
             greenSlider.MaxValue = 200;
         _rowB = CreateSliderRow(vbox, sliderScene, "Blue",     val => { _currentB        = (float)val; UpdateCardShader(); });
-        if (_rowB.Slider.GetNodeOrNull<Godot.Range>("Slider") is Godot.Range blueSlider)
+        if (_rowB.Slider.GetNodeOrNull<Godot.Range>("Slider") is { } blueSlider)
             blueSlider.MaxValue = 200;
 
         // Contrast slider
         _rowContrast = CreateSliderRow(vbox, sliderScene, "Contrast", val => { _currentContrast = (float)val; UpdateCardShader(); });
-        if (_rowContrast.Slider.GetNodeOrNull<Godot.Range>("Slider") is Godot.Range contrastSlider)
+        if (_rowContrast.Slider.GetNodeOrNull<Godot.Range>("Slider") is { } contrastSlider)
             contrastSlider.MaxValue = 200;
 
         // Flip X toggle
@@ -119,13 +120,13 @@ public class NCardLibraryVerticalSlidersPatch
         AddButton(buttonRow, "Save",  80, OnSaveButtonPressed);
         AddButton(buttonRow, "Clear", 80, OnClearButtonPressed);
 
-        bool isDevMode = Godot.OS.GetCmdlineArgs().Contains("--modder");
+        bool isDevMode = OS.GetCmdlineArgs().Contains("--modder");
         var saveDefaultBtn = AddButton(vbox, "Save Default", 170, OnSaveDefaultButtonPressed);
         saveDefaultBtn.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter;
         saveDefaultBtn.Visible = isDevMode;
     }
 
-    private static Button AddButton(Godot.Node parent, string text, int width, Action onPressed)
+    private static Button AddButton(Node parent, string text, int width, Action onPressed)
     {
         var btn = new Button();
         btn.Text = text;
@@ -146,15 +147,15 @@ public class NCardLibraryVerticalSlidersPatch
         var sliderInstance = (Control)scene.Instantiate();
         row.AddChild(sliderInstance);
 
-        if (sliderInstance.GetNodeOrNull<Godot.Range>("Slider") is Godot.Range internalSlider)
+        if (sliderInstance.GetNodeOrNull<Godot.Range>("Slider") is { } internalSlider)
         {
-            if (sliderInstance.GetNodeOrNull<MegaLabel>("SliderValue") is MegaLabel sliderLabel)
+            if (sliderInstance.GetNodeOrNull<MegaLabel>("SliderValue") is { } sliderLabel)
             {
                 sliderLabel.SetTextAutoSize(internalSlider.Value.ToString("0.0"));
                 internalSlider.ValueChanged += val =>
                 {
                     sliderLabel.SetTextAutoSize(val.ToString("0.0"));
-                    onValueChanged?.Invoke(val);
+                    onValueChanged.Invoke(val);
                 };
             }
             
@@ -180,12 +181,13 @@ public class NCardLibraryVerticalSlidersPatch
 
     [HarmonyPatch("ShowCardDetail")]
     [HarmonyPostfix]
+    // ReSharper disable once UnusedMember.Local
     static void ShowSliders(NCardHolder holder)
     {
         _currentHolder = holder;
 
         if (_sliderContainer == null) return;
-        if (!SaveManager.Instance.Progress.DiscoveredCards.Contains(holder.CardModel.Id)) return;
+        if (!SaveManager.Instance.Progress.DiscoveredCards.Contains(holder.CardModel!.Id)) return;
 
         _sliderContainer.Visible = true;
         var parent = _sliderContainer.GetParent();
@@ -198,7 +200,7 @@ public class NCardLibraryVerticalSlidersPatch
 
     private static void LoadHsvState(NCardHolder holder)
     {
-        string cardId = holder.CardModel.Id.ToString();
+        string cardId = holder.CardModel!.Id.ToString();
 
         var userHsv = CardArtRoller.GetCardData(cardId);
         if (userHsv != null)
@@ -242,20 +244,20 @@ public class NCardLibraryVerticalSlidersPatch
 
     private static void SyncSlidersToState()
     {
-        if (_row1.Slider.GetNodeOrNull<Godot.Range>("Slider")        is Godot.Range s1)   s1.Value   = _currentH;
-        if (_row2.Slider.GetNodeOrNull<Godot.Range>("Slider")        is Godot.Range s2)   s2.Value   = _currentS;
-        if (_row3.Slider.GetNodeOrNull<Godot.Range>("Slider")        is Godot.Range s3)   s3.Value   = _currentV;
-        if (_rowR.Slider.GetNodeOrNull<Godot.Range>("Slider")        is Godot.Range sR)   sR.Value   = _currentR;
-        if (_rowG.Slider.GetNodeOrNull<Godot.Range>("Slider")        is Godot.Range sG)   sG.Value   = _currentG;
-        if (_rowB.Slider.GetNodeOrNull<Godot.Range>("Slider")        is Godot.Range sB)   sB.Value   = _currentB;
-        if (_rowContrast.Slider.GetNodeOrNull<Godot.Range>("Slider") is Godot.Range sCon) sCon.Value = _currentContrast;
+        if (_row1.Slider.GetNodeOrNull<Godot.Range>("Slider")        is { } s1)   s1.Value   = _currentH;
+        if (_row2.Slider.GetNodeOrNull<Godot.Range>("Slider")        is { } s2)   s2.Value   = _currentS;
+        if (_row3.Slider.GetNodeOrNull<Godot.Range>("Slider")        is { } s3)   s3.Value   = _currentV;
+        if (_rowR.Slider.GetNodeOrNull<Godot.Range>("Slider")        is { } sR)   sR.Value   = _currentR;
+        if (_rowG.Slider.GetNodeOrNull<Godot.Range>("Slider")        is { } sG)   sG.Value   = _currentG;
+        if (_rowB.Slider.GetNodeOrNull<Godot.Range>("Slider")        is { } sB)   sB.Value   = _currentB;
+        if (_rowContrast.Slider.GetNodeOrNull<Godot.Range>("Slider") is { } sCon) sCon.Value = _currentContrast;
 
         if (_flipButton != null)
             _flipButton.Text = _currentFlipH ? "Flip X: ON" : "Flip X: OFF";
 
         if (_portraitSearch != null)
             _portraitSearch.Text = !string.IsNullOrEmpty(_currentPortraitPath)
-                ? System.IO.Path.GetFileNameWithoutExtension(_currentPortraitPath)
+                ? Path.GetFileNameWithoutExtension(_currentPortraitPath)
                 : "";
     }
 
@@ -267,7 +269,7 @@ public class NCardLibraryVerticalSlidersPatch
         if (!string.IsNullOrEmpty(_currentPortraitPath) && ResourceLoader.Exists(_currentPortraitPath))
             portrait.Texture = ResourceLoader.Load<Texture2D>(_currentPortraitPath);
         else if (holder != null)
-            portrait.Texture = ResourceLoader.Load<Texture2D>(holder.CardModel.PortraitPath);
+            portrait.Texture = ResourceLoader.Load<Texture2D>(holder.CardModel!.PortraitPath);
     }
 
     // ── Shader update ─────────────────────────────────────────────────────
@@ -315,7 +317,7 @@ public class NCardLibraryVerticalSlidersPatch
     {
         if (_currentHolder == null) return;
 
-        string cardId = _currentHolder.CardModel.Id.ToString();
+        string cardId = _currentHolder.CardModel!.Id.ToString();
         CardArtRoller.SaveHsvForCard(cardId, _currentH, _currentS, _currentV, _currentR, _currentG, _currentB, _currentContrast, _currentFlipH, _currentPortraitPath);
         ReloadCard();
         Log.Info($"[NCardLibraryVerticalSlidersPatch] Saved for card: {cardId}");
@@ -325,7 +327,7 @@ public class NCardLibraryVerticalSlidersPatch
     {
         if (_currentHolder == null) return;
 
-        string cardId = _currentHolder.CardModel.Id.ToString();
+        string cardId = _currentHolder.CardModel!.Id.ToString();
         CardArtRoller.DeleteHsvForCard(cardId);
 
         LoadHsvState(_currentHolder);
@@ -341,7 +343,7 @@ public class NCardLibraryVerticalSlidersPatch
     {
         if (_currentHolder == null) return;
 
-        string cardId = _currentHolder.CardModel.Id.ToString();
+        string cardId = _currentHolder.CardModel!.Id.ToString();
         CardArtRoller.SaveDefaultHsvForCard(cardId, _currentH, _currentS, _currentV, _currentR, _currentG, _currentB, _currentContrast, _currentFlipH, _currentPortraitPath);
         ReloadCard();
         Log.Info($"[NCardLibraryVerticalSlidersPatch] Saved default for card: {cardId}");
@@ -350,7 +352,7 @@ public class NCardLibraryVerticalSlidersPatch
     // ── Helpers ───────────────────────────────────────────────────────────
 
     private static TextureRect? GetInspectedPortrait() =>
-        NGame.Instance.GetInspectCardScreen()
+        NGame.Instance!.GetInspectCardScreen()
             .GetNodeOrNull<NCard>("Card")
             ?.GetNodeOrNull<TextureRect>("%Portrait");
 
