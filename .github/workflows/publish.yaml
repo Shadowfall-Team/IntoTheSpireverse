@@ -1,0 +1,27 @@
+name: Publish
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish
+        run: >
+          dotnet publish Shadowfall.csproj -c Release
+          /p:Sts2DataDir="$STS2_DATA_DIR"
+          /p:GodotPath="$GODOT_PATH"
+          /p:ModsPath="${{ github.workspace }}/output/mods/"
+      - name: Package
+        run: cd output/mods && zip -r ../Shadowfall.zip Shadowfall
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shadowfall
+          path: output/Shadowfall.zip
