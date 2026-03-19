@@ -9,10 +9,9 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using Shadowfall.Orbs;
 using Shadowfall.ShadowfallCode.Cards;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards;
 
-  
-public sealed class Invoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public sealed class Trinvoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
 {
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -22,8 +21,11 @@ public sealed class Invoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Ba
         
         foreach (OrbModel orb in (IEnumerable<OrbModel>) source.Owner.PlayerCombatState!.OrbQueue.Orbs)
         {
-            await OrbCmd.Passive(choiceContext, orb, null);
-            await Cmd.Wait(0.1f);
+            for (int i = 0; i < 3; i++)
+            {
+                await OrbCmd.Passive(choiceContext, orb, null);
+                await Cmd.Wait(0.1f);
+            }
         }
     }
     

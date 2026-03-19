@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Orbs;
 
 namespace Shadowfall.ShadowfallCode.Powers;
 
-public sealed class RodOfRuinPower : PowerModel
+public sealed class RodOfRuinPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
  
