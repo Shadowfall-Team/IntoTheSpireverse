@@ -1,4 +1,11 @@
 {
+
+  "SHADOWFALL-BLEED_POWER.title": "Bleed",
+  "SHADOWFALL-BLEED_POWER.description": "Whenever a card is Exhausted, lose 6 HP, then Bleed decreases by 1.",
+  "SHADOWFALL-BLEED_POWER.smartDescription": "Whenever a card is Exhausted, lose [blue]{Damage}[/blue] HP, then reduce [gold]Bleed[/gold] by 1.",
+  "SHADOWFALL-INSTINCT_POWER.title": "Instinct",
+  "SHADOWFALL-INSTINCT_POWER.description": "Increases the HP loss caused by Bleed.",
+  "SHADOWFALL-INSTINCT_POWER.smartDescription": "Increases the HP loss caused by [gold]Bleed[/gold] by [blue]{Amount}[/blue].",
   "SHADOWFALL-INFECTED_SHOT_POWER.description": "The next time you exhaust a [gold]Void[/gold], the target loses HP.",
   "SHADOWFALL-INFECTED_SHOT_POWER.smartDescription": "The next time you exhaust a [gold]Void[/gold], this target loses {Amount} HP.",
   "SHADOWFALL-INFECTED_SHOT_POWER.title": "InfectedShotPower",
