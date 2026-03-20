@@ -2,5 +2,9 @@
   "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_DEFECT.0-0r.char": "I am angry at the architect",
   "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_DEFECT.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_DEFECT.0-1r.ancient": "You die",
-  "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_DEFECT.0-attack": "BOTH"
+  "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_DEFECT.0-attack": "BOTH",
+  "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_SILENT.0-0r.char": "I am angry at the architect",
+  "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_SILENT.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_SILENT.0-1r.ancient": "You die",
+  "THE_ARCHITECT.talk.SHADOWFALL-SHADOW_SILENT.0-attack": "BOTH"
 }

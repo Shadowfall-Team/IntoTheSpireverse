@@ -12,5 +12,19 @@
   "SHADOWFALL-SHADOW_DEFECT.pronounPossessive": "his/hers/its",
   "SHADOWFALL-SHADOW_DEFECT.pronounSubject": "he/she/it",
   "SHADOWFALL-SHADOW_DEFECT.title": "The ShadowDefect",
-  "SHADOWFALL-SHADOW_DEFECT.titleObject": "The ShadowDefect"
+  "SHADOWFALL-SHADOW_DEFECT.titleObject": "The ShadowDefect",
+  "SHADOWFALL-SHADOW_SILENT.aromaPrinciple": "Lore",
+  "SHADOWFALL-SHADOW_SILENT.banter.alive.endTurnPing": "Co-op hurry up end turn ping message",
+  "SHADOWFALL-SHADOW_SILENT.banter.dead.endTurnPing": "...",
+  "SHADOWFALL-SHADOW_SILENT.cardsModifierDescription": "__ cards will now appear in rewards and shops.",
+  "SHADOWFALL-SHADOW_SILENT.cardsModifierTitle": "__ Cards",
+  "SHADOWFALL-SHADOW_SILENT.description": "Character Selection\nScreen Description",
+  "SHADOWFALL-SHADOW_SILENT.eventDeathPrevention": "Co-op survival line",
+  "SHADOWFALL-SHADOW_SILENT.goldMonologue": "Line spoken when obtaining a large amount of gold",
+  "SHADOWFALL-SHADOW_SILENT.possessiveAdjective": "his/her/its",
+  "SHADOWFALL-SHADOW_SILENT.pronounObject": "him/her/it",
+  "SHADOWFALL-SHADOW_SILENT.pronounPossessive": "his/hers/its",
+  "SHADOWFALL-SHADOW_SILENT.pronounSubject": "he/she/it",
+  "SHADOWFALL-SHADOW_SILENT.title": "The ShadowSilent",
+  "SHADOWFALL-SHADOW_SILENT.titleObject": "The ShadowSilent"
 }
