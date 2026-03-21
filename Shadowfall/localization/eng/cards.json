@@ -1,4 +1,8 @@
 {
+  "SHADOWFALL-CHEAP_SHOT.title": "Cheap Shot",
+  "SHADOWFALL-CHEAP_SHOT.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].\nAdd a [gold]Weight[/gold] to your hand.",
+  "SHADOWFALL-MEASURED_DEFENSE.title": "Measured Defense",
+  "SHADOWFALL-MEASURED_DEFENSE.description": "[gold]Devious[/gold]. Gain {Block:diff()} [gold]Block[/gold].",
   "SHADOWFALL-DEADLY_POISON.title": "Deadly Poison",
   "SHADOWFALL-DEADLY_POISON.description": "Apply {BleedPower:diff()} [gold]Bleed[/gold].",
   "SHADOWFALL-ACCELERANT.title": "Accelerant",
