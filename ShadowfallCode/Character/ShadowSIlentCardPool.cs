@@ -3,9 +3,6 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
-using Adrenaline = Shadowfall.ShadowfallCode.Cards.ShadowSilent.Adrenaline;
-using DeadlyPoison = Shadowfall.ShadowfallCode.Cards.ShadowSilent.DeadlyPoison;
-using Accelerant = Shadowfall.ShadowfallCode.Cards.ShadowSilent.Accelerant;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
@@ -38,10 +35,6 @@ public class ShadowSilentCardPool : CustomCardPoolModel
     {
         return
         [
-            ModelDb.Card<Accelerant>(),
-            ModelDb.Card<Adrenaline>(),
-            ModelDb.Card<DeadlyPoison>(),
-            ModelDb.Card<MassAppeal>(),
             ModelDb.Card<Accuracy>(),
             ModelDb.Card<Acrobatics>(),
             ModelDb.Card<Afterimage>(),
