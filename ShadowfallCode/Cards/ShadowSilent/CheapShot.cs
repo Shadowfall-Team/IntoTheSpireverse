@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class CheapShot() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class CheapShot() : ShadowSilentCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

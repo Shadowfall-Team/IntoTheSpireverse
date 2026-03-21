@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class MeasuredDefense() : ShadowSilentCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class MeasuredDefense() : ShadowSilentCard(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     public override bool GainsBlock => true;
 
