@@ -1,8 +1,6 @@
 ﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
 using BaseLib.Utils;
 using Shadowfall.ShadowfallCode.Character;
-using Shadowfall.ShadowfallCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace Shadowfall.ShadowfallCode.Cards;
@@ -23,4 +21,11 @@ public abstract class ShadowDefectCard(int cost, CardType type, CardRarity rarit
     //Uses card_portraits/card_name.png as image path. These should be smaller images.
     //public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     //public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+}
+
+[Pool(typeof(ShadowSilentCardPool))]
+public abstract class ShadowSilentCard(int cost, CardType type, CardRarity rarity, TargetType target) :
+    CustomCardModel(cost, type, rarity, target)
+{
+
 }

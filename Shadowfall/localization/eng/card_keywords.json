@@ -1,3 +1,10 @@
 {
-  
+  "SHADOWFALL-DEVIOUS.title": "Devious",
+  "SHADOWFALL-DEVIOUS.description": "Discard a card. This card's effects trigger one time for each Cost of the discarded card.",
+  "SHADOWFALL-CUNNING.title": "Cunning",
+  "SHADOWFALL-CUNNING.description": "This effect triggers if it is the leftmost card when played.",
+  "SHADOWFALL-BLEED.title": "Bleed",
+  "SHADOWFALL-BLEED.description": "Whenever a card is Exhausted, Bleeding characters lose 6 HP and Bleed decreases by 1.",
+  "SHADOWFALL-INSTINCT.title": "Instinct",
+  "SHADOWFALL-INSTINCT.description": "Increases the HP loss caused by Bleed."
 }
