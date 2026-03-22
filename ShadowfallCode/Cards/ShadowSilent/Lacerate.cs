@@ -8,25 +8,25 @@ using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Accelerant() : ShadowSilentCard(1, CardType.Power, CardRarity.Rare, TargetType.None)
+public sealed class Lacerate() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<InstinctPower>(3m),
+        new PowerVar<BleedPower>(3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Instinct),
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Bleed),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<InstinctPower>(Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BleedPower>(cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(InstinctPower)].UpgradeValueBy(2m);
+        DynamicVars[nameof(BleedPower)].UpgradeValueBy(1m);
     }
 }

@@ -8,25 +8,25 @@ using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class DeadlyPoison() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class HuntersProwess() : ShadowSilentCard(1, CardType.Power, CardRarity.Rare, TargetType.None)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BleedPower>(3m),
+        new PowerVar<InstinctPower>(3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Bleed),
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Instinct),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<BleedPower>(cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<InstinctPower>(Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(BleedPower)].UpgradeValueBy(1m);
+        DynamicVars[nameof(InstinctPower)].UpgradeValueBy(2m);
     }
 }
