@@ -26,5 +26,19 @@
   "SHADOWFALL-SHADOW_SILENT.pronounPossessive": "his/hers/its",
   "SHADOWFALL-SHADOW_SILENT.pronounSubject": "he/she/it",
   "SHADOWFALL-SHADOW_SILENT.title": "The ShadowSilent",
-  "SHADOWFALL-SHADOW_SILENT.titleObject": "The ShadowSilent"
+  "SHADOWFALL-SHADOW_SILENT.titleObject": "The ShadowSilent",
+  "SHADOWFALL-SHADOW_NECROBINDER.aromaPrinciple": "Lore",
+  "SHADOWFALL-SHADOW_NECROBINDER.banter.alive.endTurnPing": "Co-op hurry up end turn ping message",
+  "SHADOWFALL-SHADOW_NECROBINDER.banter.dead.endTurnPing": "...",
+  "SHADOWFALL-SHADOW_NECROBINDER.cardsModifierDescription": "__ cards will now appear in rewards and shops.",
+  "SHADOWFALL-SHADOW_NECROBINDER.cardsModifierTitle": "__ Cards",
+  "SHADOWFALL-SHADOW_NECROBINDER.description": "Character Selection\nScreen Description",
+  "SHADOWFALL-SHADOW_NECROBINDER.eventDeathPrevention": "Co-op survival line",
+  "SHADOWFALL-SHADOW_NECROBINDER.goldMonologue": "Line spoken when obtaining a large amount of gold",
+  "SHADOWFALL-SHADOW_NECROBINDER.possessiveAdjective": "his/her/its",
+  "SHADOWFALL-SHADOW_NECROBINDER.pronounObject": "him/her/it",
+  "SHADOWFALL-SHADOW_NECROBINDER.pronounPossessive": "his/hers/its",
+  "SHADOWFALL-SHADOW_NECROBINDER.pronounSubject": "he/she/it",
+  "SHADOWFALL-SHADOW_NECROBINDER.title": "The Shadow Necrobinder",
+  "SHADOWFALL-SHADOW_NECROBINDER.titleObject": "The Shadow Necrobinder"
 }
