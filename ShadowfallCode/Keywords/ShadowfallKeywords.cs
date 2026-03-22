@@ -23,6 +23,9 @@ public static class ShadowfallKeywords
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
     public static CardKeyword Instinct;
 
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Linger;
+
     public static bool IsCunningTriggered(CardModel card) =>
         HandPositionTrackingPatch.WasLeftmostInHand.TryGetValue(card, out bool val) && val;
 
@@ -46,5 +49,10 @@ public static class ShadowfallKeywords
 
         for (int i = 0; i < repeats; i++)
             await effect();
+    }
+
+    public static async Task ExecuteLinger(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)
+    {
+        
     }
 }

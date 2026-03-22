@@ -108,5 +108,8 @@
   "SHADOWFALL-INVITATION.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut {Cards:diff()} {Cards:plural:Status or Curse card|Status or Curse cards} from your [gold]Draw[/gold] or [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
   "SHADOWFALL-INVITATION.selectionScreenPrompt": "Choose a card to take into your hand.",
   "SHADOWFALL-STARBURST.title": "Starburst",
-  "SHADOWFALL-STARBURST.description": "{IfUpgraded:show:[gold]Channel[/gold] an [gold]Entropy[/gold].\n|}When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold]."
+  "SHADOWFALL-STARBURST.description": "{IfUpgraded:show:[gold]Channel[/gold] an [gold]Entropy[/gold].\n|}When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold].",
+  
+  "SHADOWFALL-CLENCH_FIST.title": "Clench Fist",
+  "SHADOWFALL-CLENCH_FIST.description": "Apply [blue]{VulnerablePower:diff()}[/blue] [gold]Vulnerable[/gold].\n[gold]Linger[/gold] - Draw a card next turn"
 }

@@ -6,5 +6,8 @@
   "SHADOWFALL-BLEED.title": "Bleed",
   "SHADOWFALL-BLEED.description": "Whenever a card is Exhausted, Bleeding characters lose 6 HP and Bleed decreases by 1.",
   "SHADOWFALL-INSTINCT.title": "Instinct",
-  "SHADOWFALL-INSTINCT.description": "Increases the HP loss caused by Bleed."
+  "SHADOWFALL-INSTINCT.description": "Increases the HP loss caused by Bleed.",
+  "SHADOWFALL-LINGER.description": "If this card is in your hand at the end of your turn, Trigger this effect and Shuffle into your Draw Pile",
+  "SHADOWFALL-LINGER.title": "Linger"
+
 }
