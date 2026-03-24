@@ -53,6 +53,6 @@ public sealed class ClenchFist() : ShadowNecrobinderCard(1, CardType.Skill, Card
     {
         // ModifyCardPlayResultPileTypeAndPosition(this, false, new ResourceInfo{EnergySpent = 0, EnergyValue = 0, StarsSpent = 0, StarValue = 0}, PileType.Draw, CardPilePosition.Random);
         await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, 1m, Owner.Creature, this);
-        // await CardPileCmd.Add(this, PileType.Draw, CardPilePosition.Random);
+        await CardPileCmd.Add(this, PileType.Draw, CardPilePosition.Random);
     }
 }

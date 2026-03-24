@@ -50,9 +50,4 @@ public static class ShadowfallKeywords
         for (int i = 0; i < repeats; i++)
             await effect();
     }
-
-    public static async Task ExecuteLinger(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)
-    {
-        
-    }
 }
