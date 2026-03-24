@@ -35,5 +35,9 @@
   "SHADOWFALL-SONG_OF_SORROW_POWER.title": "Song of Sorrow",
   "STARBURST_POWER.description": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [gold]Shivs[/gold].",
   "STARBURST_POWER.smartDescription": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [blue]{Amount}[/blue] [gold]{Amount:plural:Shiv|Shivs}[/gold].",
-  "STARBURST_POWER.title": "Starburst"
+  "STARBURST_POWER.title": "Starburst",
+
+  "SHADOWFALL-SHARD_POWER.description": "",
+  "SHADOWFALL-SHARD_POWER.smartDescription": "",
+  "SHADOWFALL-SHARD_POWER.title": "Shards"
 }

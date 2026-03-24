@@ -2,6 +2,7 @@
 using BaseLib.Utils;
 using Shadowfall.ShadowfallCode.Character;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using Shadowfall.ShadowfallCode.Character.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards;
 
@@ -25,6 +26,13 @@ public abstract class ShadowDefectCard(int cost, CardType type, CardRarity rarit
 
 [Pool(typeof(ShadowSilentCardPool))]
 public abstract class ShadowSilentCard(int cost, CardType type, CardRarity rarity, TargetType target) :
+    CustomCardModel(cost, type, rarity, target)
+{
+
+}
+
+[Pool(typeof(ShadowRegentCardPool))]
+public abstract class ShadowRegentCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     CustomCardModel(cost, type, rarity, target)
 {
 

@@ -1,0 +1,45 @@
+﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+
+namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
+
+
+public class Claim() : ShadowDefectCard(2,
+    CardType.Attack,
+    CardRarity.Basic,
+    TargetType.Self)
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DamageVar(10, ValueProp.Move),
+        new PowerVar<ShardPower>(2)
+    ];
+    
+    protected override async Task OnPlay(
+        PlayerChoiceContext choiceContext,
+        CardPlay play)
+    {
+        ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this)
+            .Targeting(play.Target)
+            // .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
+        
+        await PowerCmd.Apply<ShardPower>(
+            Owner.Creature,DynamicVars[nameof(ShardPower)].BaseValue, 
+            Owner.Creature, 
+            this);
+    }
+
+    protected override void OnUpgrade()
+    {
+
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars[nameof(ShardPower)].UpgradeValueBy(1);
+    }
+}
