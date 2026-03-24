@@ -35,5 +35,8 @@
   "SHADOWFALL-SONG_OF_SORROW_POWER.title": "Song of Sorrow",
   "STARBURST_POWER.description": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [gold]Shivs[/gold].",
   "STARBURST_POWER.smartDescription": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [blue]{Amount}[/blue] [gold]{Amount:plural:Shiv|Shivs}[/gold].",
-  "STARBURST_POWER.title": "Starburst"
+  "STARBURST_POWER.title": "Starburst",
+  "SHADOWFALL-BLOODTAP_POWER.title": "Bloodtap",
+  "SHADOWFALL-BLOODTAP_POWER.description": "At the start of your turn, apply [gold]Bleed[/gold] to ALL enemies.",
+  "SHADOWFALL-BLOODTAP_POWER.smartDescription": "At the start of your turn, apply [blue]{Amount}[/blue] [gold]Bleed[/gold] to ALL enemies."
 }

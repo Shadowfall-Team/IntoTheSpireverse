@@ -18,9 +18,6 @@ public static class ShadowfallKeywords
     public static CardKeyword Cunning;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
-    public static CardKeyword Bleed;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
     public static CardKeyword Instinct;
 
     public static bool IsCunningTriggered(CardModel card) =>

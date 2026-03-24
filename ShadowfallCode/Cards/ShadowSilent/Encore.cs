@@ -7,27 +7,30 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Plunder() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class Encore() : ShadowSilentCard(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
+        new DamageVar(40m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+    }
 
-        CardModel cardModel;
-        do
-        {
-            cardModel = await CardPileCmd.Draw(choiceContext, Owner);
-        }
-        while (cardModel != null && cardModel.Type == CardType.Skill && CardPile.GetCards(Owner, [PileType.Hand]).Count() < 10);
+    public override Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+    {
+        if (card == this)
+            EnergyCost.AddThisCombat(-1, false);
+
+        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(10m);
     }
 }

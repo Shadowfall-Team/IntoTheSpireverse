@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -23,8 +24,23 @@ public class BleedPower : CustomPowerModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BleedDamageVar(this)];
 
+    private CardModel? _applyingCard;
+
+    public override Task BeforeApplied(Creature target, decimal amount, Creature? applier, CardModel? cardSource)
+    {
+        _applyingCard = cardSource;
+        return Task.CompletedTask;
+    }
+
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
     {
+        if (card == _applyingCard)
+        {
+            _applyingCard = null;
+            return;
+        }
+        _applyingCard = null;
+
         Flash();
         await CreatureCmd.Damage(choiceContext, Owner, ComputeDamage(), ValueProp.Unblockable | ValueProp.Unpowered, null, null);
 

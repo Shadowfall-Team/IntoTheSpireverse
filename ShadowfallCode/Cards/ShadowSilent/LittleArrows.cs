@@ -2,28 +2,30 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Plunder() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class LittleArrows() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.None)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
+        new DamageVar(7m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        int statusCount = PileType.Hand.GetPile(Owner).Cards.Count(c => c.Type == CardType.Status);
 
-        CardModel cardModel;
-        do
+        if (statusCount > 0)
         {
-            cardModel = await CardPileCmd.Draw(choiceContext, Owner);
+            await DamageCmd
+                .Attack(DynamicVars.Damage.BaseValue)
+                .WithHitCount(statusCount)
+                .FromCard(this)
+                .TargetingRandomOpponents(CombatState)
+                .Execute(choiceContext);
         }
-        while (cardModel != null && cardModel.Type == CardType.Skill && CardPile.GetCards(Owner, [PileType.Hand]).Count() < 10);
     }
 
     protected override void OnUpgrade()

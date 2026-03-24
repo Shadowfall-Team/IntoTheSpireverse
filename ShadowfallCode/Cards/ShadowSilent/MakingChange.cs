@@ -3,29 +3,34 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Lacerate() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class MakingChange() : ShadowSilentCard(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BleedPower>(3m),
+        new EnergyVar(5),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<BleedPower>(),
+        HoverTipFactory.FromCard<Weight>(),
+        EnergyHoverTip
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<BleedPower>(cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
+
+        for (int i = 0; i < 2; i++)
+        {
+            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, true);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(BleedPower)].UpgradeValueBy(1m);
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }
