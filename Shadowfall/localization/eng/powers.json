@@ -38,5 +38,11 @@
   "STARBURST_POWER.title": "Starburst",
   "SHADOWFALL-BLOODTAP_POWER.title": "Bloodtap",
   "SHADOWFALL-BLOODTAP_POWER.description": "At the start of your turn, apply [gold]Bleed[/gold] to ALL enemies.",
-  "SHADOWFALL-BLOODTAP_POWER.smartDescription": "At the start of your turn, apply [blue]{Amount}[/blue] [gold]Bleed[/gold] to ALL enemies."
+  "SHADOWFALL-BLOODTAP_POWER.smartDescription": "At the start of your turn, apply [blue]{Amount}[/blue] [gold]Bleed[/gold] to ALL enemies.",
+  "SHADOWFALL-SACRIFICE_POWER.title": "Sacrifice",
+  "SHADOWFALL-SACRIFICE_POWER.description": "Whenever you [gold]Exhaust[/gold] a Status, gain [gold]Vigor[/gold].",
+  "SHADOWFALL-SACRIFICE_POWER.smartDescription": "Whenever you [gold]Exhaust[/gold] a Status, gain [blue]{Amount}[/blue] [gold]Vigor[/gold].",
+  "SHADOWFALL-THROWING_WEIGHT_POWER.title": "Throwing Weight",
+  "SHADOWFALL-THROWING_WEIGHT_POWER.description": "When you discard a [gold]Weight[/gold], deal damage to a random enemy.",
+  "SHADOWFALL-THROWING_WEIGHT_POWER.smartDescription": "When you discard a [gold]Weight[/gold], deal [blue]{Amount}[/blue] damage to a random enemy."
 }

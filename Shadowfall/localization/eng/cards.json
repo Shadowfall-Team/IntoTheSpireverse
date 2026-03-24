@@ -1,4 +1,8 @@
 {
+  "SHADOWFALL-SACRIFICE.title": "Sacrifice",
+  "SHADOWFALL-SACRIFICE.description": "Whenever you [gold]Exhaust[/gold] a Status, gain {SacrificePower:diff()} [gold]Vigor[/gold].",
+  "SHADOWFALL-THROWING_WEIGHT.title": "Throwing Weight",
+  "SHADOWFALL-THROWING_WEIGHT.description": "When you discard a [gold]Weight[/gold], deal {ThrowingWeightPower:diff()} damage to a random enemy.",
   "SHADOWFALL-ATTACK_OF_OPPORTUNITY.title": "Attack of Opportunity",
   "SHADOWFALL-ATTACK_OF_OPPORTUNITY.description": "Deal {Damage:diff()} damage.\nAdd {Wards:diff()} [gold]Wards[/gold] to your hand.",
   "SHADOWFALL-SEEK.title": "Seek",
