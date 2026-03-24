@@ -78,18 +78,29 @@ public static class LingerPatch
                     )
                     .MatchStartForward(new CodeMatch(OpCodes.Call))
                     .RemoveInstruction()
-                    .InsertAndAdvance(CodeInstruction.Call(typeof(CardPileCmd), nameof(CardPileCmd.Add)));
+                    .InsertAndAdvance(CodeInstruction.Call(typeof(CardPileCmd), nameof(CardPileCmd.Add), [typeof(CardModel), typeof(PileType), typeof(CardPilePosition), typeof(AbstractModel), typeof(Boolean)]));
+                    // .RemoveInstruction()
+                    // .InsertAndAdvance(new CodeInstruction(OpCodes.Callvirt))
 
                 var lingerInstructions = EtherealInstructionMatcher.InstructionEnumeration();
 
-                matcher.InsertAndAdvance(lingerInstructions);
+                matcher
+                    .MatchStartBackwards(
+                        new CodeMatch(OpCodes.Ldarg_0),
+                        new CodeMatch(OpCodes.Ldfld),
+                        new CodeMatch(OpCodes.Callvirt),
+                        new CodeMatch(OpCodes.Ldc_I4_2),
+                        new CodeMatch(OpCodes.Callvirt)
+                    )
+                    .RemoveInstructionsInRange(startIndex, endIndex)
+                    .Insert(lingerInstructions);
 
-                // MainFile.Logger.Info("");
-                //
-                // var enumeration = matcher.InstructionEnumeration().ToArray();
-                // for(var i = 0; i < enumeration.Length; i++) {
-                //     MainFile.Logger.Info($"{i} | {enumeration[i]}");
-                // }
+                MainFile.Logger.Info("");
+
+                var enumeration = matcher.InstructionEnumeration().ToArray();
+                for(var i = 0; i < enumeration.Length; i++) {
+                    MainFile.Logger.Info($"{i} | {enumeration[i]}");
+                }
                 return matcher.InstructionEnumeration();
             }
             catch(Exception e){
