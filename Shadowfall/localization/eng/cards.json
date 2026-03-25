@@ -1,4 +1,10 @@
 {
+  "SHADOWFALL-VIPER_FORM.title": "Viper Form",
+  "SHADOWFALL-VIPER_FORM.description": "The first {ViperFormPower:diff()} times you play your leftmost card each turn, gain {energyPrefix:energyIcons(1)} and draw a card.",
+  "SHADOWFALL-TIP_THE_SCALES.title": "Tip the Scales",
+  "SHADOWFALL-TIP_THE_SCALES.description": "[gold]Weights[/gold] are treated as having {TipTheScalesPower:diff()} more cost than they have.\nAdd a [gold]Weight[/gold] to your hand.",
+  "SHADOWFALL-STALK_PREY.title": "Stalk Prey",
+  "SHADOWFALL-STALK_PREY.description": "Every 3rd Skill you play, gain {StalkPreyPower:diff()} [gold]Instinct[/gold].",
   "SHADOWFALL-SACRIFICE.title": "Sacrifice",
   "SHADOWFALL-SACRIFICE.description": "Whenever you [gold]Exhaust[/gold] a Status, gain {SacrificePower:diff()} [gold]Vigor[/gold].",
   "SHADOWFALL-THROWING_WEIGHT.title": "Throwing Weight",

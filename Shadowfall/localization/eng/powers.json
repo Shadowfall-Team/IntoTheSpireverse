@@ -44,5 +44,14 @@
   "SHADOWFALL-SACRIFICE_POWER.smartDescription": "Whenever you [gold]Exhaust[/gold] a Status, gain [blue]{Amount}[/blue] [gold]Vigor[/gold].",
   "SHADOWFALL-THROWING_WEIGHT_POWER.title": "Throwing Weight",
   "SHADOWFALL-THROWING_WEIGHT_POWER.description": "When you discard a [gold]Weight[/gold], deal damage to a random enemy.",
-  "SHADOWFALL-THROWING_WEIGHT_POWER.smartDescription": "When you discard a [gold]Weight[/gold], deal [blue]{Amount}[/blue] damage to a random enemy."
+  "SHADOWFALL-THROWING_WEIGHT_POWER.smartDescription": "When you discard a [gold]Weight[/gold], deal [blue]{Amount}[/blue] damage to a random enemy.",
+  "SHADOWFALL-VIPER_FORM_POWER.title": "Viper Form",
+  "SHADOWFALL-VIPER_FORM_POWER.description": "The first few times you play your leftmost card each turn, gain Energy and draw a card.",
+  "SHADOWFALL-VIPER_FORM_POWER.smartDescription": "The first [blue]{Amount}[/blue] times you play your leftmost card each turn, gain {energyPrefix:energyIcons(1)} and draw a card.",
+  "SHADOWFALL-TIP_THE_SCALES_POWER.title": "Tip the Scales",
+  "SHADOWFALL-TIP_THE_SCALES_POWER.description": "[gold]Weights[/gold] are treated as having more cost than they have.",
+  "SHADOWFALL-TIP_THE_SCALES_POWER.smartDescription": "[gold]Weights[/gold] are treated as having [blue]{Amount}[/blue] more cost than they have.",
+  "SHADOWFALL-STALK_PREY_POWER.title": "Stalk Prey",
+  "SHADOWFALL-STALK_PREY_POWER.description": "Every 3rd Skill you play, gain [gold]Instinct[/gold].",
+  "SHADOWFALL-STALK_PREY_POWER.smartDescription": "Every 3rd Skill you play, gain [blue]{Amount}[/blue] [gold]Instinct[/gold]."
 }

@@ -5,7 +5,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 using Shadowfall.ShadowfallCode.Patches;
+using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Keywords;
 
@@ -39,6 +41,7 @@ public static class ShadowfallKeywords
             return;
 
         int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        repeats += card is Weight ? player.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
         await CardCmd.Discard(context, card);
 
         for (int i = 0; i < repeats; i++)
