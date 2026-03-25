@@ -24,6 +24,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<FutureProofing>(),
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<Charter>(),
+            ModelDb.Card<Shadowfall.ShadowfallCode.Cards.ShadowRegent.CrescentSpear>(),
         };
     }
 }
