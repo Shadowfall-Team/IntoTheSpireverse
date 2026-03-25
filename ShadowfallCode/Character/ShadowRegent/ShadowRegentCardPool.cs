@@ -22,6 +22,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Claim>(),
             ModelDb.Card<StarCharts>(),
             ModelDb.Card<FutureProofing>(),
+            ModelDb.Card<CollisionCourse>(),
+            ModelDb.Card<Charter>(),
         };
     }
 }
