@@ -8,17 +8,16 @@ namespace Shadowfall.ShadowfallCode.CardPiles;
 
 public class CargoCardPile() : CustomPile(CargoPileType)
 {
-    
-    [CustomEnum]
-    public static PileType CargoPileType;
-    
+    [CustomEnum] public static PileType CargoPileType;
+
+    //TODO: make this visible
     public override bool CardShouldBeVisible(CardModel card)
     {
-        throw new NotImplementedException();
+        return false;
     }
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        throw new NotImplementedException();
+        return Vector2.Zero;
     }
 }
