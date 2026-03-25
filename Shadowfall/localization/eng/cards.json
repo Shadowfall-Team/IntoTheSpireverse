@@ -111,5 +111,7 @@
   "SHADOWFALL-STARBURST.description": "{IfUpgraded:show:[gold]Channel[/gold] an [gold]Entropy[/gold].\n|}When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold].",
   
   "SHADOWFALL-CLENCH_FIST.title": "Clench Fist",
-  "SHADOWFALL-CLENCH_FIST.description": "Apply [blue]{VulnerablePower:diff()}[/blue] [gold]Vulnerable[/gold].\n[gold]Linger[/gold] - Draw a card next turn"
+  "SHADOWFALL-CLENCH_FIST.description": "Apply [blue]{VulnerablePower:diff()}[/blue] [gold]Vulnerable[/gold].\n[gold]Linger[/gold] - Draw a card next turn",
+  "SHADOWFALL-HARVEST.title": "Harvest",
+  "SHADOWFALL-HARVEST.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Linger[/gold] - This gains {Increase:diff()} damage, then shuffles into your [gold]Draw Pile[/gold]."
 }
