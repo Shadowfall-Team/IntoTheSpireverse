@@ -31,7 +31,6 @@ public class StarCharts() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-
         DynamicVars.Block.UpgradeValueBy(3m);
     }
 }
