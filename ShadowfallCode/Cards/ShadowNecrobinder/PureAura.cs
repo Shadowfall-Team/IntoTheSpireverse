@@ -1,46 +1,55 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Patches;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
-public sealed class ClenchFist() : ShadowNecrobinderCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyEnemy)
+public sealed class PureAura() : ShadowNecrobinderCard(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
+    private const string _lingerDamageKey = "LingerDamage";
+
+    public override bool GainsBlock => true;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<VulnerablePower>(2),
+        new BlockVar(15m, ValueProp.Move),
+        new DamageVar(_lingerDamageKey, 4m, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move),
     ];
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<VulnerablePower>(),
         HoverTipFactory.FromKeyword(ShadowfallKeywords.Linger)
     ];
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         ShadowfallKeywords.Linger
     ];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
+
     protected override void OnUpgrade()
     {
-        DynamicVars.Vulnerable.UpgradeValueBy(1m);
+        DynamicVars.Block.UpgradeValueBy(5m);
+        DynamicVars[_lingerDamageKey].UpgradeValueBy(2m);
     }
+
     public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
         {
-            await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, 1m, Owner.Creature, this);
+            await CreatureCmd.Damage(choiceContext, CombatState.HittableEnemies,
+                (DamageVar)DynamicVars[_lingerDamageKey], Owner.Creature);
         }
     }
 }

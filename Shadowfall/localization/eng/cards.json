@@ -112,11 +112,27 @@
   
   "SHADOWFALL-BONECAGE.title": "Bonecage",
   "SHADOWFALL-BONECAGE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Linger[/gold] - Gain {LingerBlock:diff()} [gold]Block[/gold], then decrease this card's [gold]Block[/gold] by 1 this combat.",
+  "SHADOWFALL-BONE_VOYAGE.title": "Bone Voyage",
+  "SHADOWFALL-BONE_VOYAGE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nAdd {Cards} [gold]Soul Strikes[/gold] into your [gold]Draw Pile[/gold].\n[gold]Linger[/gold] - Next turn, gain {Energy:energyIcons()}.",
   "SHADOWFALL-CLENCH_FIST.title": "Clench Fist",
   "SHADOWFALL-CLENCH_FIST.description": "Apply [blue]{VulnerablePower:diff()}[/blue] [gold]Vulnerable[/gold].\n[gold]Linger[/gold] - Draw a card next turn",
   "SHADOWFALL-HARVEST.title": "Harvest",
   "SHADOWFALL-HARVEST.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Linger[/gold] - This gains {Increase:diff()} damage, then shuffles into your [gold]Draw Pile[/gold].",
+  "SHADOWFALL-OVERTAKE.title": "Overtake",
+  "SHADOWFALL-OVERTAKE.description": "Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold].\n[gold]Linger[/gold] - Next turn, draw {Cards} cards and gain {Energy:energyIcons()}.",
+  "SHADOWFALL-PATIENCE.title": "Patience",
+  "SHADOWFALL-PATIENCE.description": "Your [gold]Linger[/gold] effects are triggered {Patience:diff()} additional {Patience:plural:time|times}.",
+  "SHADOWFALL-PURE_AURA.title": "Pure Aura",
+  "SHADOWFALL-PURE_AURA.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Linger[/gold] - ALL enemies lose {LingerDamage:diff()} HP.",
+  "SHADOWFALL-REST_IN_PIECES.title": "Rest in Pieces",
+  "SHADOWFALL-REST_IN_PIECES.description": "Deal {Damage} damage {Repeat:diff()} times.\n[gold]Linger[/gold] - This hits 2 additional times this combat.",
+  "SHADOWFALL-WORK_OUT.title": "Work Out",
+  "SHADOWFALL-WORK_OUT.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\n[gold]Linger[/gold] - Gain {Vigor:diff()} [gold]Vigor[/gold].",
 
+  "SHADOWFALL-DEATHGLARE.title": "Deathglare",
+  "SHADOWFALL-DEATHGLARE.description": "Deal {Damage:diff()} damage.\n[gold]Linger[/gold] - Gain {StrengthPower:diff()} [gold]Strength[/gold].",
+  "SHADOWFALL-PALE_GAZE.title": "Pale Gaze",
+  "SHADOWFALL-PALE_GAZE.description": "Add a [gold]{IfUpgraded:show:Deathglare+|Deathglare}[/gold] into your [gold]Draw Pile[/gold].",
   "SHADOWFALL-SOUL_STRIKE.title": "Soul Strike",
   "SHADOWFALL-SOUL_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw {Cards} card."
 }

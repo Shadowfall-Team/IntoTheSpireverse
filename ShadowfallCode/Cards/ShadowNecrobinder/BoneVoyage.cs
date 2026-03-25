@@ -1,4 +1,4 @@
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -10,37 +10,51 @@ using Shadowfall.ShadowfallCode.Patches;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
-public sealed class ClenchFist() : ShadowNecrobinderCard(1, CardType.Skill, CardRarity.Basic, TargetType.AnyEnemy)
+public sealed class BoneVoyage() : ShadowNecrobinderCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<VulnerablePower>(2),
+        new PowerVar<WeakPower>(1m),
+        new CardsVar(2),
+        new EnergyVar(1),
     ];
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<VulnerablePower>(),
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Linger)
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromCard<SoulStrike>(),
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Linger),
     ];
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         ShadowfallKeywords.Linger
     ];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(cardPlay.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
+        var soulStrikes = Enumerable.Range(0, DynamicVars.Cards.IntValue)
+            .Select(_ => CombatState.CreateCard<SoulStrike>(Owner))
+            .ToList();
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(
+            (IEnumerable<CardModel>)soulStrikes, PileType.Draw, true, CardPilePosition.Random));
     }
+
     protected override void OnUpgrade()
     {
-        DynamicVars.Vulnerable.UpgradeValueBy(1m);
+        DynamicVars.Weak.UpgradeValueBy(1m);
     }
+
     public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
         {
-            await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature,
+                this);
         }
     }
 }

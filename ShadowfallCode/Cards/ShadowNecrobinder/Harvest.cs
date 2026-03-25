@@ -66,8 +66,12 @@ public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRa
     
     public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
-        DynamicVars.Damage.BaseValue += DynamicVars[_increaseKey].BaseValue;
-        ExtraDamageFromLinger += DynamicVars[_increaseKey].BaseValue;
-        LingerHelper.PendingLingerRedirect.Add(this);
+        int triggers = LingerHelper.GetTriggerCount(this);
+        for (int i = 0; i < triggers; i++)
+        {
+            DynamicVars.Damage.BaseValue += DynamicVars[_increaseKey].BaseValue;
+            ExtraDamageFromLinger += DynamicVars[_increaseKey].BaseValue;
+            LingerHelper.PendingLingerRedirect.Add(this);
+        }
     }
 }

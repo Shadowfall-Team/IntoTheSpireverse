@@ -3,8 +3,10 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Keywords;
+using Shadowfall.ShadowfallCode.Patches;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
@@ -62,10 +64,22 @@ public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRa
     
     public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, (BlockVar)DynamicVars[_lingerBlockKey], null);
-        DynamicVars.Block.BaseValue -= 1m;
-        DynamicVars[_lingerBlockKey].BaseValue -= 1m;
-        BlockReduction += 1m;
+        int triggers = LingerHelper.GetTriggerCount(this);
+        for (int i = 0; i < triggers; i++)
+        {
+            await CreatureCmd.GainBlock(Owner.Creature, (BlockVar)DynamicVars[_lingerBlockKey], null);
+            DynamicVars.Block.BaseValue -= 1m;
+            DynamicVars[_lingerBlockKey].BaseValue -= 1m;
+            BlockReduction += 1m;
+        }
+    }
+    
+    public override async Task AfterCardChangedPiles(CardModel card, PileType oldPile, AbstractModel? source)
+    {
+        if (card == this && card.Pile?.Type == PileType.Deck)
+        {
+            await PlayerCmd.GainGold(300, Owner);
+        }
     }
     
 }

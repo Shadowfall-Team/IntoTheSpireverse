@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using Shadowfall.ShadowfallCode.Keywords;
+using Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
 
 namespace Shadowfall.ShadowfallCode.Patches;
 
@@ -50,7 +51,16 @@ public class LingerDiscardRedirectPatch
     }
 }
 
+// Another patch on CombatManager's DoTurnEnd could be added to reduce boilerplate in each card class which implements Linger,
+// but it's async and it'd need to be a transpiler, so...
+
 public static class LingerHelper
 {
     internal static readonly HashSet<CardModel> PendingLingerRedirect = new();
+    
+    public static int GetTriggerCount(CardModel card)
+    {
+        var power = card.Owner.Creature.Powers.OfType<PatiencePower>().FirstOrDefault();
+        return 1 + (power?.Amount ?? 0);
+    }
 }
