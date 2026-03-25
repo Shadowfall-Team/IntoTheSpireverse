@@ -110,8 +110,13 @@
   "SHADOWFALL-STARBURST.title": "Starburst",
   "SHADOWFALL-STARBURST.description": "{IfUpgraded:show:[gold]Channel[/gold] an [gold]Entropy[/gold].\n|}When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold].",
   
+  "SHADOWFALL-BONECAGE.title": "Bonecage",
+  "SHADOWFALL-BONECAGE.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Linger[/gold] - Gain {LingerBlock:diff()} [gold]Block[/gold], then decrease this card's [gold]Block[/gold] by 1 this combat.",
   "SHADOWFALL-CLENCH_FIST.title": "Clench Fist",
   "SHADOWFALL-CLENCH_FIST.description": "Apply [blue]{VulnerablePower:diff()}[/blue] [gold]Vulnerable[/gold].\n[gold]Linger[/gold] - Draw a card next turn",
   "SHADOWFALL-HARVEST.title": "Harvest",
-  "SHADOWFALL-HARVEST.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Linger[/gold] - This gains {Increase:diff()} damage, then shuffles into your [gold]Draw Pile[/gold]."
+  "SHADOWFALL-HARVEST.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Linger[/gold] - This gains {Increase:diff()} damage, then shuffles into your [gold]Draw Pile[/gold].",
+
+  "SHADOWFALL-SOUL_STRIKE.title": "Soul Strike",
+  "SHADOWFALL-SOUL_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw {Cards} card."
 }

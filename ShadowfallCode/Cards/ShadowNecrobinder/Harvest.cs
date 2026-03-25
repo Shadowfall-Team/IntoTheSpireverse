@@ -11,6 +11,9 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
 public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
+    
+    // Rarity and the upgrade were not specified in the draft document, so consider them placeholder
+    
     private const string _increaseKey = "Increase";
     private Decimal _extraDamageFromLinger;
 

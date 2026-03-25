@@ -40,6 +40,7 @@ public class LingerDiscardRedirectPatch
         }
 
         // Card should stay in hand (Retain, Runic Pyramid, etc.) — only for discard
+        // Note that Linger cards with Retain jump to the rightmost Hand position after their effect triggers. Possible issue?
         if (newPile.Type == PileType.Discard
             && (card.ShouldRetainThisTurn || !Hook.ShouldFlush(card.Owner.Creature.CombatState, card.Owner)))
         {
