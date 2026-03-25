@@ -74,12 +74,4 @@ public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRa
         }
     }
     
-    public override async Task AfterCardChangedPiles(CardModel card, PileType oldPile, AbstractModel? source)
-    {
-        if (card == this && card.Pile?.Type == PileType.Deck)
-        {
-            await PlayerCmd.GainGold(300, Owner);
-        }
-    }
-    
 }
