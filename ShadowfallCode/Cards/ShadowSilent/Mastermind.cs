@@ -39,5 +39,7 @@ public sealed class Mastermind() : ShadowSilentCard(0, CardType.Skill, CardRarit
         });
     }
 
-    protected override void OnUpgrade() { }
+    protected override void OnUpgrade() {
+        RemoveKeyword(CardKeyword.Exhaust);
+    }
 }
