@@ -1,4 +1,6 @@
 {
+  "SHADOWFALL-SHARE_THE_LOAD.title": "Share the Load",
+  "SHADOWFALL-SHARE_THE_LOAD.description": "Whenever any player [gold]Exhausts[/gold] a card, all players gain {ShareTheLoadPower:diff()} [gold]Block[/gold].",
   "SHADOWFALL-VIPER_FORM.title": "Viper Form",
   "SHADOWFALL-VIPER_FORM.description": "The first {ViperFormPower:diff()} times you play your leftmost card each turn, gain {energyPrefix:energyIcons(1)} and draw a card.",
   "SHADOWFALL-TIP_THE_SCALES.title": "Tip the Scales",

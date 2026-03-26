@@ -53,5 +53,8 @@
   "SHADOWFALL-TIP_THE_SCALES_POWER.smartDescription": "[gold]Weights[/gold] are treated as having [blue]{Amount}[/blue] more cost than they have.",
   "SHADOWFALL-STALK_PREY_POWER.title": "Stalk Prey",
   "SHADOWFALL-STALK_PREY_POWER.description": "Every 3rd Skill you play, gain [gold]Instinct[/gold].",
-  "SHADOWFALL-STALK_PREY_POWER.smartDescription": "Every 3rd Skill you play, gain [blue]{Amount}[/blue] [gold]Instinct[/gold]."
+  "SHADOWFALL-STALK_PREY_POWER.smartDescription": "Every 3rd Skill you play, gain [blue]{Amount}[/blue] [gold]Instinct[/gold].",
+  "SHADOWFALL-SHARE_THE_LOAD_POWER.title": "Share the Load",
+  "SHADOWFALL-SHARE_THE_LOAD_POWER.description": "Whenever any player [gold]Exhausts[/gold] a card, all players gain [gold]Block[/gold].",
+  "SHADOWFALL-SHARE_THE_LOAD_POWER.smartDescription": "Whenever any player [gold]Exhausts[/gold] a card, all players gain [blue]{Amount}[/blue] [gold]Block[/gold]."
 }
