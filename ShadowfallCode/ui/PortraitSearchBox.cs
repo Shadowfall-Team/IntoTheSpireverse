@@ -100,7 +100,9 @@ public class PortraitSearchBox
             foreach (var card in MegaCrit.Sts2.Core.Models.ModelDb.AllCards)
             {
                 if (card != null && card.HasPortrait && !paths.Contains(card.PortraitPath))
+                {
                     paths.Add(card.PortraitPath);
+                }
             }
         }
         catch (Exception ex)
