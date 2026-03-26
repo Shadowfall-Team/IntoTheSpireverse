@@ -17,6 +17,7 @@ namespace Shadowfall.Patches;
 public class NCardLibraryVerticalSlidersPatch
 {
     private const string SliderScenePath = "res://scenes/screens/settings_slider.tscn";
+    private static LineEdit? _defaultOutputFolderField;
 
     // ── UI refs ───────────────────────────────────────────────────────────
     private static PanelContainer? _sliderContainer;
@@ -42,6 +43,9 @@ public class NCardLibraryVerticalSlidersPatch
     private static bool  _currentFlipH    = false;
     private static string _currentPortraitPath = "";
 
+    private static FileDialog? _folderDialog;
+    private static bool _loaded;
+    
     // ── Setup ─────────────────────────────────────────────────────────────
 
     [HarmonyPatch("_Ready")]
@@ -49,6 +53,7 @@ public class NCardLibraryVerticalSlidersPatch
     // ReSharper disable once UnusedParameter.Local
     static void SetupSlidersOnInspector(NCardLibrary __instance)
     {
+        if (_loaded) return;
         var inspectScreen = NGame.Instance!.GetInspectCardScreen();
 
         _sliderContainer = new PanelContainer();
@@ -58,7 +63,7 @@ public class NCardLibraryVerticalSlidersPatch
         _sliderContainer.AddThemeStyleboxOverride("panel", new StyleBoxEmpty());
 
         var pos = _sliderContainer.Position;
-        _sliderContainer.Position = new Vector2(pos.X + 80, pos.Y - 180);
+        _sliderContainer.Position = new Vector2(pos.X + 80, pos.Y - 280);
 
         var vbox = new VBoxContainer();
         vbox.AddThemeConstantOverride("separation", 10);
@@ -108,6 +113,10 @@ public class NCardLibraryVerticalSlidersPatch
 
         inspectScreen.AddChild(_sliderContainer);
         inspectScreen.MoveChild(_sliderContainer, inspectScreen.GetChildCount() - 1);
+
+        _defaultOutputFolderField.PlaceholderText = CardArtRoller.DefaultsOutputDirectory;
+        
+        _loaded = true;
     }
 
     private static void BuildButtonRow(VBoxContainer vbox)
@@ -121,9 +130,55 @@ public class NCardLibraryVerticalSlidersPatch
         AddButton(buttonRow, "Clear", 80, OnClearButtonPressed);
 
         bool isDevMode = OS.GetCmdlineArgs().Contains("--modder");
+
         var saveDefaultBtn = AddButton(vbox, "Save Default", 170, OnSaveDefaultButtonPressed);
         saveDefaultBtn.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter;
         saveDefaultBtn.Visible = isDevMode;
+
+        // Folder field (only visible in devMode)
+        var folderRow = new HBoxContainer();
+        folderRow.AddThemeConstantOverride("separation", 8);
+        folderRow.Alignment = BoxContainer.AlignmentMode.Center;
+        folderRow.Visible = isDevMode;
+        vbox.AddChild(folderRow);
+
+        _defaultOutputFolderField = new LineEdit();
+        _defaultOutputFolderField.CustomMinimumSize = new Vector2(180, 0);
+        _defaultOutputFolderField.PlaceholderText = "SaveDir/defaults";
+        _defaultOutputFolderField.Editable = false;
+        folderRow.AddChild(_defaultOutputFolderField);
+
+        var browseBtn = new Button();
+        browseBtn.Text = "...";
+        browseBtn.CustomMinimumSize = new Vector2(40, 0);
+        browseBtn.Pressed += OnBrowseFolderPressed;
+        folderRow.AddChild(browseBtn);
+    }
+    
+    private static void OnBrowseFolderPressed()
+    {
+        if (_folderDialog == null)
+        {
+            _folderDialog = new FileDialog();
+            _folderDialog.FileMode = FileDialog.FileModeEnum.OpenDir;
+            _folderDialog.Access = FileDialog.AccessEnum.Filesystem;
+            _folderDialog.Title = "Select Default Output Folder";
+            _folderDialog.DirSelected += OnFolderSelected;
+            _sliderContainer!.AddChild(_folderDialog);
+        }
+
+        _folderDialog.PopupCentered(new Vector2I(600, 400));
+    }
+
+    private static void OnFolderSelected(string path)
+    {
+
+        if (_defaultOutputFolderField != null)
+        { 
+            CardArtRoller.DefaultsOutputDirectory = path;
+            _defaultOutputFolderField.Text = path; 
+            CardArtRoller.SaveConfig();
+        }
     }
 
     private static Button AddButton(Node parent, string text, int width, Action onPressed)
