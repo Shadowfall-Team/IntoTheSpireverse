@@ -26,7 +26,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Charter>(),
             ModelDb.Card<Shadowfall.ShadowfallCode.Cards.ShadowRegent.CrescentSpear>(),
             ModelDb.Card<IceBeam>(),
-            ModelDb.Card<GuidingShot>()
+            ModelDb.Card<GuidingShot>(),
+            ModelDb.Card<StowAway>()
         };
     }
 }
