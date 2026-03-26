@@ -24,10 +24,11 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<FutureProofing>(),
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<Charter>(),
-            ModelDb.Card<Shadowfall.ShadowfallCode.Cards.ShadowRegent.CrescentSpear>(),
+            ModelDb.Card<Cards.ShadowRegent.CrescentSpear>(),
             ModelDb.Card<IceBeam>(),
             ModelDb.Card<GuidingShot>(),
-            ModelDb.Card<StowAway>()
+            ModelDb.Card<StowAway>(),
+            ModelDb.Card<Cards.ShadowRegent.SolarStrike>()
         };
     }
 }
