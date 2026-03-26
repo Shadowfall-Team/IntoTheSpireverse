@@ -1,4 +1,7 @@
-{
+{  "SHADOWFALL-BORROWED_NOTES.title": "Borrowed Notes",
+  "SHADOWFALL-BORROWED_NOTES.description": "Add a random {IfUpgraded:show:Upgraded |}Attack and Skill from a different class, and a [gold]Weight[/gold] to your hand.",
+  "SHADOWFALL-WEIGHT_TRAINING.title": "Weight Training",
+  "SHADOWFALL-WEIGHT_TRAINING.description": "When you discard a card, deal {WeightTrainingPower:diff()} damage to a random enemy.",
   "SHADOWFALL-SHARE_THE_LOAD.title": "Share the Load",
   "SHADOWFALL-SHARE_THE_LOAD.description": "Whenever any player [gold]Exhausts[/gold] a card, all players gain {ShareTheLoadPower:diff()} [gold]Block[/gold].",
   "SHADOWFALL-VIPER_FORM.title": "Viper Form",

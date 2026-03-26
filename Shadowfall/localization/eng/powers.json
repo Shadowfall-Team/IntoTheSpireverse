@@ -56,5 +56,8 @@
   "SHADOWFALL-STALK_PREY_POWER.smartDescription": "Every 3rd Skill you play, gain [blue]{Amount}[/blue] [gold]Instinct[/gold].",
   "SHADOWFALL-SHARE_THE_LOAD_POWER.title": "Share the Load",
   "SHADOWFALL-SHARE_THE_LOAD_POWER.description": "Whenever any player [gold]Exhausts[/gold] a card, all players gain [gold]Block[/gold].",
-  "SHADOWFALL-SHARE_THE_LOAD_POWER.smartDescription": "Whenever any player [gold]Exhausts[/gold] a card, all players gain [blue]{Amount}[/blue] [gold]Block[/gold]."
+  "SHADOWFALL-SHARE_THE_LOAD_POWER.smartDescription": "Whenever any player [gold]Exhausts[/gold] a card, all players gain [blue]{Amount}[/blue] [gold]Block[/gold].",
+  "SHADOWFALL-WEIGHT_TRAINING_POWER.title": "Weight Training",
+  "SHADOWFALL-WEIGHT_TRAINING_POWER.description": "When you discard a card, deal damage to a random enemy.",
+  "SHADOWFALL-WEIGHT_TRAINING_POWER.smartDescription": "When you discard a card, deal [blue]{Amount}[/blue] damage to a random enemy."
 }
