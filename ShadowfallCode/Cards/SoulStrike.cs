@@ -1,7 +1,9 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -22,6 +24,14 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
     [
         CardKeyword.Exhaust
     ];
+    
+    public static IEnumerable<SoulStrike> Create(Player owner, int amount, CombatState combatState)
+    {
+        List<SoulStrike> list = new List<SoulStrike>();
+        for (int i = 0; i < amount; i++)
+            list.Add(combatState.CreateCard<SoulStrike>(owner));
+        return list;
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
