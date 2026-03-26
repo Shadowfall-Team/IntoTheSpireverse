@@ -28,7 +28,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<IceBeam>(),
             ModelDb.Card<GuidingShot>(),
             ModelDb.Card<StowAway>(),
-            ModelDb.Card<Cards.ShadowRegent.SolarStrike>()
+            ModelDb.Card<Cards.ShadowRegent.SolarStrike>(),
+            ModelDb.Card<PoweredBeam>()
         };
     }
 }

@@ -39,5 +39,8 @@
 
   "SHADOWFALL-SHARD_POWER.description": "",
   "SHADOWFALL-SHARD_POWER.smartDescription": "",
-  "SHADOWFALL-SHARD_POWER.title": "Shards"
+  "SHADOWFALL-SHARD_POWER.title": "Shards",  
+  "SHADOWFALL-AMMO_POWER.description": "",
+  "SHADOWFALL-AMMO_POWER.smartDescription": "",
+  "SHADOWFALL-AMMO_POWER.title": "AmmoPower"
 }
