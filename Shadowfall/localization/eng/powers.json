@@ -37,6 +37,9 @@
   "STARBURST_POWER.smartDescription": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [blue]{Amount}[/blue] [gold]{Amount:plural:Shiv|Shivs}[/gold].",
   "STARBURST_POWER.title": "Starburst",
 
+  "SHADOWFALL-LAMENT_POWER.description": "Your Strike cards deal an additional [blue]1[/blue] damage.",
+  "SHADOWFALL-LAMENT_POWER.smartDescription": "Your Strike cards deal an additional [blue]{Amount}[/blue] damage.",
+  "SHADOWFALL-LAMENT_POWER.title": "Lament",
   "SHADOWFALL-PATIENCE_POWER.description": "[gold]Linger[/gold] effects are triggered an additional time.",
   "SHADOWFALL-PATIENCE_POWER.smartDescription": "[gold]Linger[/gold] effects are triggered [blue]{Amount}[/blue] additional {Amount:plural:time|times}.",
   "SHADOWFALL-PATIENCE_POWER.title": "Patience"
