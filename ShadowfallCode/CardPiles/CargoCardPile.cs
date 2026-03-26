@@ -2,6 +2,7 @@
 using BaseLib.Patches.Content;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
 namespace Shadowfall.ShadowfallCode.CardPiles;
@@ -20,4 +21,9 @@ public class CargoCardPile() : CustomPile(CargoPileType)
     {
         return Vector2.Zero;
     }
+}
+
+public struct CargoSelectorPrefs
+{
+    public static LocString CargoSelectionPrompt => new LocString("card_selection", "TO_CARGO");
 }
