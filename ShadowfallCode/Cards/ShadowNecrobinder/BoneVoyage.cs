@@ -36,9 +36,7 @@ public sealed class BoneVoyage() : ShadowNecrobinderCard(1, CardType.Skill, Card
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<WeakPower>(cardPlay.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
-        var soulStrikes = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<SoulStrike>(Owner))
-            .ToList();
+        var soulStrikes = SoulStrike.Create(Owner, DynamicVars.Cards.IntValue, CombatState).ToList();
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(
             (IEnumerable<CardModel>)soulStrikes, PileType.Draw, true, CardPilePosition.Random));
     }
