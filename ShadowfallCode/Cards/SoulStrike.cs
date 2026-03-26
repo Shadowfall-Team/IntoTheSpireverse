@@ -19,6 +19,11 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
         new DamageVar(5m, ValueProp.Move),
         new CardsVar(1),
     ];
+    
+    protected override HashSet<CardTag> CanonicalTags
+    {
+        get => new HashSet<CardTag>() { CardTag.Strike };
+    }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
