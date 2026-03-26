@@ -25,6 +25,12 @@ public static class ShadowfallKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Linger;
+    
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Startup;
+    
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Pickup;
 
     public static bool IsCunningTriggered(CardModel card) =>
         HandPositionTrackingPatch.WasLeftmostInHand.TryGetValue(card, out bool val) && val;
