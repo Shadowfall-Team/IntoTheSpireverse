@@ -32,6 +32,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<PoweredBeam>(),
             ModelDb.Card<BeneathMe>(),
             ModelDb.Card<RoyalCloak>(),
+            ModelDb.Card<KnowThyPlace>(),
+            ModelDb.Card<Plot>(),
         };
     }
 }
