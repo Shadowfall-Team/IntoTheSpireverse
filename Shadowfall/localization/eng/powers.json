@@ -42,5 +42,8 @@
   "SHADOWFALL-SHARD_POWER.title": "Shards",  
   "SHADOWFALL-AMMO_POWER.description": "",
   "SHADOWFALL-AMMO_POWER.smartDescription": "",
-  "SHADOWFALL-AMMO_POWER.title": "AmmoPower"
+  "SHADOWFALL-AMMO_POWER.title": "AmmoPower",
+  "SHADOWFALL-ROYAL_CLOAK_POWER.description": "",
+  "SHADOWFALL-ROYAL_CLOAK_POWER.smartDescription": "",
+  "SHADOWFALL-ROYAL_CLOAK_POWER.title": "RoyalCloakPower"
 }

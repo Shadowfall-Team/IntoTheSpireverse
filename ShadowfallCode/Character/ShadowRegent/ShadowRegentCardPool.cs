@@ -31,6 +31,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Cards.ShadowRegent.SolarStrike>(),
             ModelDb.Card<PoweredBeam>(),
             ModelDb.Card<BeneathMe>(),
+            ModelDb.Card<RoyalCloak>(),
         };
     }
 }
