@@ -17,7 +17,8 @@ public sealed class Weight() : CustomCardModel(1, CardType.Status, CardRarity.To
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         CardKeyword.Retain,
-        CardKeyword.Exhaust
+        CardKeyword.Exhaust,
+        CardKeyword.Sly
     ];
 
     public override Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)

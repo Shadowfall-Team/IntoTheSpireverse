@@ -120,7 +120,7 @@
   "SHADOWFALL-MASS_APPEAL.title": "Mass Appeal",
   "SHADOWFALL-MASS_APPEAL.description": "[gold]Devious[/gold]. Deal {Damage:diff()} Damage to ALL Enemies.",
   "SHADOWFALL-WEIGHT.title": "Weight",
-  "SHADOWFALL-WEIGHT.description": "At the end of your turn, increase this card's cost by 1 (up to 3). Exhausts when played or discarded.",
+  "SHADOWFALL-WEIGHT.description": "At the end of your turn, increase this card's cost by 1 (up to 3).",
   "SHADOWFALL-DECAY.description": "[gold]Channel[/gold] 1 [gold]Entropy[/gold].\n[gold]Cycle[/gold].",
   "SHADOWFALL-DECAY.title": "Decay",
   "SHADOWFALL-INVOKE.title": "Invoke",
