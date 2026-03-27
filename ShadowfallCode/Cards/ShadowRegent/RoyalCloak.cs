@@ -20,7 +20,7 @@ public class RoyalCloak() : ShadowRegentCard(2,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<RoyalCloakPower>(Owner.Creature, 1, Owner.Creature, this);
     }
 
