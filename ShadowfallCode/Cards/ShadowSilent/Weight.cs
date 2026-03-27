@@ -33,9 +33,9 @@ public sealed class Weight() : CustomCardModel(1, CardType.Status, CardRarity.To
         return Task.CompletedTask;
     }
 
-    public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
-    {
-        if (card == this)
-            await CardCmd.Exhaust(choiceContext, this);
-    }
+    // public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+    // {
+    //     if (card == this)
+    //         await CardCmd.Exhaust(choiceContext, this);
+    // }
 }
