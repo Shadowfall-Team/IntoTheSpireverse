@@ -2,7 +2,7 @@
 using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
+using Reanimate = Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder.Reanimate;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
