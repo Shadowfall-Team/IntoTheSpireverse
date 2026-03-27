@@ -3,7 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
+using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 using Shadowfall.ShadowfallCode.Relics;
 
 namespace Shadowfall.ShadowfallCode.Character;
@@ -21,14 +21,16 @@ public class ShadowSilent : PlaceholderCharacterModel
     
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<StrikeSilent>(),
-        ModelDb.Card<StrikeSilent>(),
-        ModelDb.Card<StrikeSilent>(),
-        ModelDb.Card<StrikeSilent>(),
-        ModelDb.Card<DefendSilent>(),
-        ModelDb.Card<DefendSilent>(),
-        ModelDb.Card<DefendSilent>(),
-        ModelDb.Card<DefendSilent>(),
+        ModelDb.Card<StrikeShadowSilent>(),
+        ModelDb.Card<StrikeShadowSilent>(),
+        ModelDb.Card<StrikeShadowSilent>(),
+        ModelDb.Card<StrikeShadowSilent>(),
+        ModelDb.Card<DefendShadowSilent>(),
+        ModelDb.Card<DefendShadowSilent>(),
+        ModelDb.Card<DefendShadowSilent>(),
+        ModelDb.Card<DefendShadowSilent>(),
+        ModelDb.Card<CheapShot>(),
+        ModelDb.Card<MeasuredDefense>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
