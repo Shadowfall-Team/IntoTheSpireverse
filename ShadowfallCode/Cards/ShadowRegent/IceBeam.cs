@@ -24,6 +24,8 @@ public class IceBeam() : ShadowRegentCard(1,
     {
         if (CombatState == null) return;
 
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        
         await PowerCmd.Apply<WeakPower>(play.Target, DynamicVars.Weak.BaseValue,
             Owner.Creature, this);
 

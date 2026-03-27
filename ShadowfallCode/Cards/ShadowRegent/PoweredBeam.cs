@@ -22,6 +22,11 @@ public class PoweredBeam() : ShadowRegentCard(1,
         //TODO: What should upgrade?
     }
 
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+    }
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
