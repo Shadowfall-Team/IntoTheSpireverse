@@ -9,6 +9,8 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
 public sealed class ShareTheLoad() : ShadowSilentCard(2, CardType.Power, CardRarity.Rare, TargetType.None)
 {
+    public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<ShareTheLoadPower>(1m),
