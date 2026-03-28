@@ -1,9 +1,13 @@
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Cards;
+using Shadowfall.ShadowfallCode.CardPiles;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
+// Put a Volley and Salvo into Cargo. Give them Retain. Exhaust.
 public class IllicitMunitions() : ShadowRegentCard(1,
     CardType.Skill,
     CardRarity.Uncommon,
@@ -11,13 +15,26 @@ public class IllicitMunitions() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        if (CombatState == null) return;
+
+        var volleyCard = CombatState.CreateCard<Volley>(Owner);
+        volleyCard.AddKeyword(CardKeyword.Retain);
+        
+        var salvoCard = CombatState.CreateCard<Salvo>(Owner);
+        salvoCard.AddKeyword(CardKeyword.Retain);
+
+        await CardPileCmd.Add([volleyCard, salvoCard], CargoCardPile.CargoPileType,
+            source: this);
     }
-    
+
     protected override void OnUpgrade()
     {
+        EnergyCost.UpgradeBy(-1);
     }
 }
