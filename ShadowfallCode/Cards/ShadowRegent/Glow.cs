@@ -30,7 +30,7 @@ public class Glow() : ShadowRegentCard(1,
             this);
         
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars["DrawCardsNextTurnPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()

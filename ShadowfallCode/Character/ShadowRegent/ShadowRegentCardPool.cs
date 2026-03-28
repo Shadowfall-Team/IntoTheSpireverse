@@ -9,14 +9,15 @@ namespace Shadowfall.ShadowfallCode.Character.ShadowRegent;
 // TODO impl
 public class ShadowRegentCardPool : CustomCardPoolModel
 {
-    public override string Title { get; }
+    public override string Title => "shadow_regent";
+    public override string EnergyColorName => "regent";
     public override Color DeckEntryCardColor => new("ffffff");
     public override bool IsColorless => false;
 
     protected override CardModel[] GenerateAllCards()
     {
-        return new CardModel[]
-        {
+        return
+        [
             ModelDb.Card<StrikeRegent>(),
             ModelDb.Card<DefendRegent>(),
             ModelDb.Card<Claim>(),
@@ -56,7 +57,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<FirstOfficer>(),
             ModelDb.Card<Monologue>(),
             ModelDb.Card<ReinforcedBody>(),
-            ModelDb.Card<Banana>(),
-        };
+            ModelDb.Card<Banana>()
+        ];
     }
 }

@@ -5,11 +5,14 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
+using Shadowfall.ShadowfallCode.Relics;
 
 namespace Shadowfall.ShadowfallCode.Character.ShadowRegent;
 
 public class ShadowRegent : PlaceholderCharacterModel
 {
+    public override string PlaceholderID => "regent";
+    public const string CharacterId = "Shadowfall";
     public override Color NameColor => StsColors.orange;
     public override CharacterGender Gender => CharacterGender.Masculine;
     
@@ -35,5 +38,8 @@ public class ShadowRegent : PlaceholderCharacterModel
     ];
     
     // TODO: impl
-    public override IReadOnlyList<RelicModel> StartingRelics { get; }
+    public override IReadOnlyList<RelicModel> StartingRelics =>
+    [
+        ModelDb.Relic<ArmoredPack>()
+    ];
 }
