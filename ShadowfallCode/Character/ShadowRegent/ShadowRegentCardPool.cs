@@ -50,6 +50,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<ShadowCrystal>(),
             ModelDb.Card<Supermassive>(),
             ModelDb.Card<Energize>(),
+            ModelDb.Card<Strongarm>(),
         };
     }
 }
