@@ -39,6 +39,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Cards.ShadowRegent.HiddenCache>(),
             ModelDb.Card<Patter>(),
             ModelDb.Card<FireAway>(),
+            ModelDb.Card<Reload>(),
         };
     }
 }
