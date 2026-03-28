@@ -48,6 +48,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<IllicitMunitions>(),
             ModelDb.Card<KinglyPunch>(),
             ModelDb.Card<ShadowCrystal>(),
+            ModelDb.Card<Supermassive>(),
+            ModelDb.Card<Energize>(),
         };
     }
 }
