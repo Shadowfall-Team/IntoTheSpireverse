@@ -51,5 +51,8 @@
   "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.title": "GainShardsNextTurnPower",
   "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN.description": "",
   "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN.smartDescription": "",
-  "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN.title": "VolleyDamageThisTurn"
+  "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN.title": "VolleyDamageThisTurn",
+  "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.description": "",
+  "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.smartDescription": "",
+  "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.title": "GainAmmoNextTurnPower"
 }
