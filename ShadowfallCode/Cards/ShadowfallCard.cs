@@ -2,7 +2,6 @@
 using BaseLib.Utils;
 using Shadowfall.ShadowfallCode.Character;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using Shadowfall.ShadowfallCode.Character.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards;
 

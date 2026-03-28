@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-namespace Shadowfall.ShadowfallCode.Character.ShadowRegent;
+namespace Shadowfall.ShadowfallCode.Character;
 
 // TODO impl
 public class ShadowRegentCardPool : CustomCardPoolModel

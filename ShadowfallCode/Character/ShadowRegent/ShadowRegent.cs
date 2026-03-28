@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 using Shadowfall.ShadowfallCode.Relics;
 
-namespace Shadowfall.ShadowfallCode.Character.ShadowRegent;
+namespace Shadowfall.ShadowfallCode.Character;
 
 public class ShadowRegent : PlaceholderCharacterModel
 {

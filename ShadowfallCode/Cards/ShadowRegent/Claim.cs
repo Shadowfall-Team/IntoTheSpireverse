@@ -38,7 +38,6 @@ public class Claim() : ShadowRegentCard(2,
 
     protected override void OnUpgrade()
     {
-
         DynamicVars.Damage.UpgradeValueBy(2);
         DynamicVars[nameof(ShardPower)].UpgradeValueBy(1);
     }
