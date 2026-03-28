@@ -13,6 +13,7 @@ public class PoweredBeam() : ShadowRegentCard(1,
     TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<AmmoPower>(1)
@@ -23,9 +24,11 @@ public class PoweredBeam() : ShadowRegentCard(1,
         //TODO: What should upgrade?
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext,
+        CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+            Owner.Character.CastAnimDelay);
     }
 
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
@@ -33,8 +36,9 @@ public class PoweredBeam() : ShadowRegentCard(1,
     {
         if (card == this)
         {
-            await PowerCmd.Apply<ShardPower>(
-                Owner.Creature, DynamicVars[nameof(AmmoPower)].BaseValue,
+            await PowerCmd.Apply<AmmoPower>(
+                Owner.Creature,
+                DynamicVars[nameof(AmmoPower)].BaseValue,
                 Owner.Creature,
                 this);
         }
