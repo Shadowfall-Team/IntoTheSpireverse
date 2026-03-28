@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 
-public class Claim() : ShadowDefectCard(2,
+public class Claim() : ShadowRegentCard(2,
     CardType.Attack,
     CardRarity.Basic,
     TargetType.Self)
