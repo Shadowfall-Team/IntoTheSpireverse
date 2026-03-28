@@ -46,6 +46,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Jettison>(),
             ModelDb.Card<KnowledgeBlast>(),
             ModelDb.Card<IllicitMunitions>(),
+            ModelDb.Card<KinglyPunch>(),
+            ModelDb.Card<ShadowCrystal>(),
         };
     }
 }
