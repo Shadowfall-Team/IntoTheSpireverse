@@ -8,12 +8,12 @@ using Shadowfall.ShadowfallCode.Relics;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowSilent : PlaceholderCharacterModel
+public class ShadowNecrobinder : PlaceholderCharacterModel
 {
-    public override string PlaceholderID => "silent";
+    public override string PlaceholderID => "necrobinder";
     public const string CharacterId = "Shadowfall";
 
-    public static readonly Color Color = StsColors.blue;
+    public static readonly Color Color = StsColors.purple;
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Neutral;
@@ -21,14 +21,14 @@ public class ShadowSilent : PlaceholderCharacterModel
     
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<StrikeSilent>(),
-        ModelDb.Card<StrikeSilent>(),
-        ModelDb.Card<StrikeSilent>(),
-        ModelDb.Card<StrikeSilent>(),
-        ModelDb.Card<DefendSilent>(),
-        ModelDb.Card<DefendSilent>(),
-        ModelDb.Card<DefendSilent>(),
-        ModelDb.Card<DefendSilent>(),
+        ModelDb.Card<StrikeNecrobinder>(),
+        ModelDb.Card<StrikeNecrobinder>(),
+        ModelDb.Card<StrikeNecrobinder>(),
+        ModelDb.Card<StrikeNecrobinder>(),
+        ModelDb.Card<DefendNecrobinder>(),
+        ModelDb.Card<DefendNecrobinder>(),
+        ModelDb.Card<DefendNecrobinder>(),
+        ModelDb.Card<DefendNecrobinder>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
@@ -36,9 +36,9 @@ public class ShadowSilent : PlaceholderCharacterModel
         ModelDb.Relic<ArmoredPack>()
     ];
     
-    public override CardPoolModel CardPool => ModelDb.CardPool<ShadowSilentCardPool>();
-    public override RelicPoolModel RelicPool => ModelDb.RelicPool<ShadowSilentRelicPool>();
-    public override PotionPoolModel PotionPool => ModelDb.PotionPool<ShadowSilentPotionPool>();
+    public override CardPoolModel CardPool => ModelDb.CardPool<ShadowNecrobinderCardPool>();
+    public override RelicPoolModel RelicPool => ModelDb.RelicPool<ShadowNecrobinderRelicPool>();
+    public override PotionPoolModel PotionPool => ModelDb.PotionPool<ShadowNecrobinderPotionPool>();
 
     /*  PlaceholderCharacterModel will utilize placeholder basegame assets for most of your character assets until you
         override all the other methods that define those assets.
