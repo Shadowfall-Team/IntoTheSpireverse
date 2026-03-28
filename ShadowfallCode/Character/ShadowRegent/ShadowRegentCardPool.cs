@@ -36,6 +36,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Plot>(),
             ModelDb.Card<Cards.ShadowRegent.GatherLight>(),
             ModelDb.Card<Cards.ShadowRegent.Glow>(),
+            ModelDb.Card<Cards.ShadowRegent.HiddenCache>(),
         };
     }
 }

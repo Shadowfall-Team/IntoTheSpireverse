@@ -45,5 +45,8 @@
   "SHADOWFALL-AMMO_POWER.title": "AmmoPower",
   "SHADOWFALL-ROYAL_CLOAK_POWER.description": "",
   "SHADOWFALL-ROYAL_CLOAK_POWER.smartDescription": "",
-  "SHADOWFALL-ROYAL_CLOAK_POWER.title": "RoyalCloakPower"
+  "SHADOWFALL-ROYAL_CLOAK_POWER.title": "RoyalCloakPower",
+  "SHADOWFALL-GAIN_STARS_NEXT_TURN_POWER.description": "",
+  "SHADOWFALL-GAIN_STARS_NEXT_TURN_POWER.smartDescription": "",
+  "SHADOWFALL-GAIN_STARS_NEXT_TURN_POWER.title": "GainStarsNextTurnPower"
 }
