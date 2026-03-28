@@ -56,6 +56,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<FirstOfficer>(),
             ModelDb.Card<Monologue>(),
             ModelDb.Card<ReinforcedBody>(),
+            ModelDb.Card<Banana>(),
         };
     }
 }
