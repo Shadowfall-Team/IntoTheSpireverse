@@ -3,9 +3,12 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 using Shadowfall.ShadowfallCode.Patches;
+using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Keywords;
 
@@ -16,9 +19,6 @@ public static class ShadowfallKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Cunning;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
-    public static CardKeyword Bleed;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
     public static CardKeyword Instinct;
@@ -38,6 +38,19 @@ public static class ShadowfallKeywords
     public static bool IsCunningActive(CardModel card) =>
         card.Pile?.Type == PileType.Hand && card.Pile.Cards.Count > 0 && card.Pile.Cards[0] == card;
 
+    public static bool WasAdjacentWhenRemoved(CardModel removedCard, CardModel neighbor) =>
+        HandPositionTrackingPatch.AdjacentCards.TryGetValue(removedCard, out var list) && list.Contains(neighbor);
+
+    public static bool IsCurrentlyAdjacent(CardModel a, CardModel b)
+    {
+        if (a.Pile?.Type != PileType.Hand || a.Pile != b.Pile)
+            return false;
+        var cards = a.Pile.Cards;
+        int i = cards.IndexOf(a);
+        int j = cards.IndexOf(b);
+        return i >= 0 && j >= 0 && System.Math.Abs(i - j) == 1;
+    }
+
     public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)
     {
         CardModel? card = (await CardSelectCmd.FromHandForDiscard(
@@ -51,6 +64,7 @@ public static class ShadowfallKeywords
             return;
 
         int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        repeats += card is Weight ? player.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
         await CardCmd.Discard(context, card);
 
         for (int i = 0; i < repeats; i++)
