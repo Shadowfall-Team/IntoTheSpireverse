@@ -51,6 +51,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Supermassive>(),
             ModelDb.Card<Energize>(),
             ModelDb.Card<Strongarm>(),
+            ModelDb.Card<KinglyKick>(),
+            ModelDb.Card<FillTheTank>(),
         };
     }
 }
