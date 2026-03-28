@@ -23,12 +23,15 @@ public class AmmoPower : CustomPowerModel
         if (side != CombatSide.Enemy)
             return;
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        var volleyDamage = DynamicVars.Damage.BaseValue + Owner.GetPowerAmount<VolleyDamageThisTurn>();
+        
+        await DamageCmd.Attack(volleyDamage)
             .WithHitCount(Amount)
             .TargetingRandomOpponents(CombatState)
             // .WithHitFx("vfx/vfx_attack_slash", null, null)
             .Execute(choiceContext);
         
+        await PowerCmd.Remove<VolleyDamageThisTurn>(Owner);
         await PowerCmd.Remove(this);
     }
 }
