@@ -53,6 +53,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Strongarm>(),
             ModelDb.Card<KinglyKick>(),
             ModelDb.Card<FillTheTank>(),
+            ModelDb.Card<FirstOfficer>(),
         };
     }
 }
