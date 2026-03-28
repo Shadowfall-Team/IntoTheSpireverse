@@ -1,0 +1,39 @@
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
+
+public class Warp() : CustomCardModel(1,
+    CardType.Skill,
+    CardRarity.Token,
+    TargetType.Self)
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<StrengthPower>(1),
+        new EnergyVar(2)
+    ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [CardKeyword.Retain, CardKeyword.Exhaust];
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext,
+        CardPlay cardPlay)
+    {
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
+
+        await PowerCmd.Apply<StrengthPower>(Owner.Creature,
+            DynamicVars.Strength.BaseValue,
+            Owner.Creature,
+            this);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Strength.UpgradeValueBy(1);
+    }
+}

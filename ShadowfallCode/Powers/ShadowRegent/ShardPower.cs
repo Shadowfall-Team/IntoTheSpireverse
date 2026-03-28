@@ -21,7 +21,7 @@ public class ShardPower : CustomPowerModel
         if (Amount >= 6)
         {
             Amount -= 6;
-            var gem = CombatState.CreateCard<Gem>(Owner.Player);
+            var gem = CombatState.CreateCard<Warp>(Owner.Player);
             await CardPileCmd.AddGeneratedCardToCombat(gem, PileType.Hand, true);
         }
     }

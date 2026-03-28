@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -6,8 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-
-public class Gem() : ShadowDefectCard(1,
+public class Gem() : CustomCardModel(1,
     CardType.Attack,
     CardRarity.Token,
     TargetType.RandomEnemy)
@@ -21,7 +21,7 @@ public class Gem() : ShadowDefectCard(1,
         CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .FromCard(this)
