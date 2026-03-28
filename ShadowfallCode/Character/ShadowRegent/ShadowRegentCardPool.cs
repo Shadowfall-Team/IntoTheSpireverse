@@ -34,6 +34,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<RoyalCloak>(),
             ModelDb.Card<KnowThyPlace>(),
             ModelDb.Card<Plot>(),
+            ModelDb.Card<Cards.ShadowRegent.GatherLight>(),
         };
     }
 }

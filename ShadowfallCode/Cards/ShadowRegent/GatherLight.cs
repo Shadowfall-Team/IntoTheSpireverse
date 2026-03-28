@@ -1,6 +1,9 @@
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -9,15 +12,27 @@ public class GatherLight() : ShadowRegentCard(1,
     CardRarity.Common,
     TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [];
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new BlockVar(8, ValueProp.Move),
+        new PowerVar<ShardPower>(2)
+    ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+
+        await PowerCmd.Apply<ShardPower>(
+            Owner.Creature, DynamicVars[nameof(ShardPower)].BaseValue,
+            Owner.Creature,
+            this);
     }
-    
+
     protected override void OnUpgrade()
     {
+        DynamicVars.Block.UpgradeValueBy(1);
+        DynamicVars[nameof(ShardPower)].UpgradeValueBy(1);
     }
 }
