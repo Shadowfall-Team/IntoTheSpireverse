@@ -54,5 +54,8 @@
   "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN.title": "VolleyDamageThisTurn",
   "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.description": "",
   "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.smartDescription": "",
-  "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.title": "GainAmmoNextTurnPower"
+  "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.title": "GainAmmoNextTurnPower",  
+  "SHADOWFALL-CARD_PLAY_TO_CARGO_POWER.description": "",
+  "SHADOWFALL-CARD_PLAY_TO_CARGO_POWER.smartDescription": "",
+  "SHADOWFALL-CARD_PLAY_TO_CARGO_POWER.title": "CardPlayToCargoPower"
 }

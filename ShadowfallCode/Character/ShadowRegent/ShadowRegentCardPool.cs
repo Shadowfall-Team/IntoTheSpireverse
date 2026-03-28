@@ -40,6 +40,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Patter>(),
             ModelDb.Card<FireAway>(),
             ModelDb.Card<Reload>(),
+            ModelDb.Card<Glitterstream>(),
+            ModelDb.Card<SmugglersStrike>(),
         };
     }
 }
