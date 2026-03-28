@@ -3,7 +3,7 @@
 namespace Shadowfall.ShadowfallCode.Character.ShadowRegent;
 
 // TODO impl
-public class ShadowRegentPotionPool : CustomPotionPoolModel
+public class ShadowRegentRelicPool : CustomRelicPoolModel
 {
     
 }
