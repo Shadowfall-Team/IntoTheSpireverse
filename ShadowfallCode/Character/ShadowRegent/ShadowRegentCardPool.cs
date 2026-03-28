@@ -42,6 +42,9 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Reload>(),
             ModelDb.Card<Glitterstream>(),
             ModelDb.Card<SmugglersStrike>(),
+            ModelDb.Card<LunarBlast>(),
+            ModelDb.Card<Jettison>(),
+            ModelDb.Card<KnowledgeBlast>(),
         };
     }
 }
