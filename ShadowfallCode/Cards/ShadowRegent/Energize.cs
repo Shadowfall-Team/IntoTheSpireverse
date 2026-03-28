@@ -9,7 +9,7 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 public class Energize() : ShadowRegentCard(2,
     CardType.Attack,
-    CardRarity.Common,
+    CardRarity.Uncommon,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

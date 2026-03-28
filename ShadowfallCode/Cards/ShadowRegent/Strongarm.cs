@@ -8,7 +8,7 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 public class Strongarm() : ShadowRegentCard(3,
     CardType.Attack,
-    CardRarity.Common,
+    CardRarity.Uncommon,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
