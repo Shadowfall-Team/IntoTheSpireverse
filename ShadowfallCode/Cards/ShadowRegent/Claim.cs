@@ -30,7 +30,8 @@ public class Claim() : ShadowDefectCard(2,
             .Execute(choiceContext);
         
         await PowerCmd.Apply<ShardPower>(
-            Owner.Creature,DynamicVars[nameof(ShardPower)].BaseValue, 
+            Owner.Creature,
+            DynamicVars[nameof(ShardPower)].BaseValue, 
             Owner.Creature, 
             this);
     }
