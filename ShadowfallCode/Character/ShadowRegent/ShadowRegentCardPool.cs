@@ -35,6 +35,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<KnowThyPlace>(),
             ModelDb.Card<Plot>(),
             ModelDb.Card<Cards.ShadowRegent.GatherLight>(),
+            ModelDb.Card<Cards.ShadowRegent.Glow>(),
         };
     }
 }
