@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace Shadowfall.Patches;
@@ -406,10 +407,12 @@ public class NCardLibraryVerticalSlidersPatch
 
     // ── Helpers ───────────────────────────────────────────────────────────
 
-    private static TextureRect? GetInspectedPortrait() =>
-        NGame.Instance!.GetInspectCardScreen()
-            .GetNodeOrNull<NCard>("Card")
-            ?.GetNodeOrNull<TextureRect>("%Portrait");
+    private static TextureRect? GetInspectedPortrait()
+    {
+        var ncard = NGame.Instance!.GetInspectCardScreen().GetNodeOrNull<NCard>("Card");
+        if (ncard.Model.Rarity == CardRarity.Ancient) return ncard.GetNodeOrNull<TextureRect>("%AncientPortrait");
+        return ncard.GetNodeOrNull<TextureRect>("%Portrait");
+    }
 
     private static void ReloadCard()
     {
