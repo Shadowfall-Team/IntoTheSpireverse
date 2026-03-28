@@ -14,7 +14,8 @@ public class Reload() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<GainAmmoNextTurnPower>(1)
+        new PowerVar<GainAmmoNextTurnPower>(1),
+        new PowerVar<DrawCardsNextTurnPower>(1)
     ];
 
     protected override async Task OnPlay(
