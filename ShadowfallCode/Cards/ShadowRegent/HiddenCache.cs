@@ -14,7 +14,7 @@ public class HiddenCache() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<ShardPower>(1),
-        new PowerVar<GainStarsNextTurnPower>(3)
+        new PowerVar<GainShardsNextTurnPower>(3)
     ];
 
     protected override async Task OnPlay(
@@ -30,15 +30,15 @@ public class HiddenCache() : ShadowRegentCard(1,
             Owner.Creature,
             this);
 
-        await PowerCmd.Apply<GainStarsNextTurnPower>(
+        await PowerCmd.Apply<GainShardsNextTurnPower>(
             Owner.Creature,
-            DynamicVars[nameof(GainStarsNextTurnPower)].BaseValue,
+            DynamicVars[nameof(GainShardsNextTurnPower)].BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(GainStarsNextTurnPower)].UpgradeValueBy(1);
+        DynamicVars[nameof(GainShardsNextTurnPower)].UpgradeValueBy(1);
     }
 }

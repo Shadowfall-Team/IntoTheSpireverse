@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
-public class GainStarsNextTurnPower : CustomPowerModel
+public class GainShardsNextTurnPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
 
