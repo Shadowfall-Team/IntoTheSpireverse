@@ -46,7 +46,10 @@
   "SHADOWFALL-ROYAL_CLOAK_POWER.description": "",
   "SHADOWFALL-ROYAL_CLOAK_POWER.smartDescription": "",
   "SHADOWFALL-ROYAL_CLOAK_POWER.title": "RoyalCloakPower",
-  "SHADOWFALL-GAIN_STARS_NEXT_TURN_POWER.description": "",
-  "SHADOWFALL-GAIN_STARS_NEXT_TURN_POWER.smartDescription": "",
-  "SHADOWFALL-GAIN_STARS_NEXT_TURN_POWER.title": "GainStarsNextTurnPower"
+  "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.description": "",
+  "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.smartDescription": "",
+  "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.title": "GainShardsNextTurnPower",
+  "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN.description": "",
+  "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN.smartDescription": "",
+  "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN.title": "VolleyDamageThisTurn"
 }
