@@ -7,7 +7,7 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Patience() : ShadowSilentCard(0, CardType.Skill, CardRarity.Rare, TargetType.None)
+public sealed class CalmNerves() : ShadowSilentCard(0, CardType.Skill, CardRarity.Rare, TargetType.None)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
