@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using Godot;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
 using Shadowfall;
 
@@ -14,10 +15,7 @@ public static class NCardPatch
     {
         if (__instance == null || !__instance.IsNodeReady() || __instance.Model == null)
             return;
-
-        var portrait = __instance.GetNodeOrNull<TextureRect>("%Portrait");
-        if (portrait == null) return;
-
+        
         string cardId = __instance.Model.Id.ToString();
 
         float h = 1f, s = 1f, v = 1f;
@@ -38,7 +36,21 @@ public static class NCardPatch
             flipH    = data.FlipH;
         }
 
-        CardShaderHelper.ApplyToPortrait(portrait, h, s, v, r, g, b, contrast);
-        portrait.FlipH = flipH;
+        if (__instance.Model.Rarity == CardRarity.Ancient)
+        { 
+            var ancientPortrait = __instance.GetNodeOrNull<TextureRect>("%AncientPortrait");
+            CardShaderHelper.ApplyToPortrait(ancientPortrait, h, s, v, r, g, b, contrast);
+            ancientPortrait.FlipH = flipH;
+        }
+        else
+        {
+            var portrait = __instance.GetNodeOrNull<TextureRect>("%Portrait");
+            CardShaderHelper.ApplyToPortrait(portrait, h, s, v, r, g, b, contrast);
+            portrait.FlipH = flipH;
+        }
+
+
+
+
     }
 }

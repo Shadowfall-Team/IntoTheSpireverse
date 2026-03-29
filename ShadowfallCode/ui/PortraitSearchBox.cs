@@ -46,6 +46,8 @@ public class PortraitSearchBox
         _searchBox.AddChild(_searchList);
 
         Log.Info($"[PortraitSearchBox] Loaded {_portraits.Count} portrait paths.");
+        
+        
     }
 
     private void OnSearchTextChanged(string searchText)
@@ -61,10 +63,13 @@ public class PortraitSearchBox
         int count = 0;
         foreach (string path in _portraits)
         {
+            string folder = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(path)) ?? "";
             string name = System.IO.Path.GetFileNameWithoutExtension(path);
-            if (name.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+            string display = string.IsNullOrEmpty(folder) ? name : $"{folder}/{name}";
+            
+            if (display.Contains(searchText, StringComparison.OrdinalIgnoreCase))
             {
-                _searchList.AddItem(name);
+                _searchList.AddItem(display);
                 _searchList.SetItemMetadata(count, path);
                 count++;
                 if (count >= 15) break;
@@ -87,7 +92,11 @@ public class PortraitSearchBox
     private void OnItemSelected(long index)
     {
         string selectedPath = (string)_searchList.GetItemMetadata((int)index);
-        _searchBox.Text = System.IO.Path.GetFileNameWithoutExtension(selectedPath);
+
+        string name = System.IO.Path.GetFileNameWithoutExtension(selectedPath);
+        string folder = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(selectedPath)) ?? "";
+        _searchBox.Text = string.IsNullOrEmpty(folder) ? name : $"{folder}/{name}";
+
         _searchList.Hide();
         PortraitSelected?.Invoke(selectedPath);
     }
@@ -99,8 +108,11 @@ public class PortraitSearchBox
         {
             foreach (var card in MegaCrit.Sts2.Core.Models.ModelDb.AllCards)
             {
-                if (card != null && card.HasPortrait && !paths.Contains(card.PortraitPath))
+                
+                if (!paths.Contains(card.PortraitPath) && string.IsNullOrWhiteSpace(card.PortraitPath) == false && ResourceLoader.Exists(card.PortraitPath))
+                {
                     paths.Add(card.PortraitPath);
+                }
             }
         }
         catch (Exception ex)

@@ -100,6 +100,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Shadowfall\ArtRoller\" />
         <Folder Include="Shadowfall\images\card_portraits\big\"/>
         <Folder Include="Shadowfall\images\powers\big\"/>
         <Folder Include="Shadowfall\images\relics\big\"/>
@@ -108,7 +109,6 @@
     <ItemGroup>
       <Content Include="ShadowfallCode\Patches\ApplySkinPatch.cs.uid" />
       <Content Include="ShadowfallCode\Patches\CardPortraitPatch.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\CardShaderHelper.cs.uid" />
       <Content Include="ShadowfallCode\Patches\CustomOrbCreateSprite.cs.uid" />
       <Content Include="ShadowfallCode\Patches\CustomOrbIcon.cs.uid" />
       <Content Include="ShadowfallCode\Patches\CustomOrbIconPath.cs.uid" />
@@ -116,7 +116,8 @@
       <Content Include="ShadowfallCode\Patches\NCardLibraryVerticalSlidersPatch.cs.uid" />
       <Content Include="ShadowfallCode\Patches\NCardPatch.cs.uid" />
       <Content Include="ShadowfallCode\Patches\OrbModelPatch.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\PortraitSearchBox.cs.uid" />
+      <Content Include="ShadowfallCode\ui\PortraitSearchBox.cs.uid" />
+      <Content Include="ShadowfallCode\utils\CardShaderHelper.cs.uid" />
     </ItemGroup>
 
     <Target Name="CheckDependencyPaths">
