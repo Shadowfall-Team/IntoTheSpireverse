@@ -35,7 +35,7 @@ public sealed class Voodoo() : ShadowNecrobinderCard(0, CardType.Skill, CardRari
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, 2m, Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(Owner.Creature, 1m, Owner.Creature, this);
         await PowerCmd.Apply<VoodooPower>(cardPlay.Target, DynamicVars[_strengthLossKey].BaseValue, Owner.Creature, this);
     }
 

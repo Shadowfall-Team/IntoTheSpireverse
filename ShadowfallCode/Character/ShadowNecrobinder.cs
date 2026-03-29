@@ -4,7 +4,10 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Relics;
+using Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 using Shadowfall.ShadowfallCode.Relics;
+using Shadowfall.ShadowfallCode.Relics.ShadowNecrobinder;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
@@ -16,24 +19,26 @@ public class ShadowNecrobinder : PlaceholderCharacterModel
     public static readonly Color Color = StsColors.purple;
 
     public override Color NameColor => Color;
-    public override CharacterGender Gender => CharacterGender.Neutral;
-    public override int StartingHp => 75;
+    public override CharacterGender Gender => CharacterGender.Feminine;
+    public override int StartingHp => 66;
     
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<StrikeNecrobinder>(),
-        ModelDb.Card<StrikeNecrobinder>(),
-        ModelDb.Card<StrikeNecrobinder>(),
-        ModelDb.Card<StrikeNecrobinder>(),
-        ModelDb.Card<DefendNecrobinder>(),
-        ModelDb.Card<DefendNecrobinder>(),
-        ModelDb.Card<DefendNecrobinder>(),
-        ModelDb.Card<DefendNecrobinder>(),
+        ModelDb.Card<StrikeShadowNecrobinder>(),
+        ModelDb.Card<StrikeShadowNecrobinder>(),
+        ModelDb.Card<StrikeShadowNecrobinder>(),
+        ModelDb.Card<StrikeShadowNecrobinder>(),
+        ModelDb.Card<DefendShadowNecrobinder>(),
+        ModelDb.Card<DefendShadowNecrobinder>(),
+        ModelDb.Card<DefendShadowNecrobinder>(),
+        ModelDb.Card<DefendShadowNecrobinder>(),
+        ModelDb.Card<ClenchFist>(),
+        ModelDb.Card<Servitude>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<ArmoredPack>()
+        ModelDb.Relic<SNecroStarter>()
     ];
     
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowNecrobinderCardPool>();

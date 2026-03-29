@@ -1,9 +1,11 @@
 ﻿using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
@@ -20,14 +22,9 @@ public sealed class Resurrection() : ShadowNecrobinderCard(1, CardType.Skill, Ca
     {
         foreach (Creature creature in CombatState.PlayerCreatures.Where(c => c != null && c.IsAlive).ToList())
         {
-            var discard = PileType.Discard.GetPile(creature.Player).Cards;
-            if (discard.Count == 0) continue;
-
-            CardSelectorPrefs prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-            CardModel card = (await CardSelectCmd.FromSimpleGrid(choiceContext, discard, creature.Player, prefs)).FirstOrDefault();
-            if (card == null) continue;
-
-            await CardPileCmd.Add(card, PileType.Hand);
+            var graveblast = CombatState.CreateCard<Graveblast>(creature.Player);
+            graveblast.SetToFreeThisTurn();
+            await CardPileCmd.AddGeneratedCardToCombat(graveblast, PileType.Hand, true);
         }
     }
 

@@ -24,6 +24,7 @@ public sealed class Spite() : ShadowNecrobinderCard(0, CardType.Skill, CardRarit
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
+        CardKeyword.Exhaust,
         CardKeyword.Retain
     ];
 
