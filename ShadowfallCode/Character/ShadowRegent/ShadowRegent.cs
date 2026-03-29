@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
-using Shadowfall.ShadowfallCode.Relics;
+using Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
@@ -37,9 +37,8 @@ public class ShadowRegent : PlaceholderCharacterModel
         ModelDb.Card<Claim>(),
     ];
     
-    // TODO: impl
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<ArmoredPack>()
+        ModelDb.Relic<ShadowRegentStarter>()
     ];
 }
