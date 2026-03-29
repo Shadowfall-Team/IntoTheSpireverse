@@ -59,6 +59,7 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<Nightmare>(),
             ModelDb.Card<PiercingWail>(),
             ModelDb.Card<Predator>(),
+            ModelDb.Card<Prepared>(),
             ModelDb.Card<Skewer>(),
             ModelDb.Card<StormOfSteel>(),
             ModelDb.Card<TheHunt>(),
