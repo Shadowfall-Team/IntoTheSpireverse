@@ -15,7 +15,7 @@ public class IceBeam() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<WeakPower>(1),
-        new("StrengthLoss", 2)
+        new PowerVar<TemporaryStrengthPower>(2)
     ];
 
     protected override async Task OnPlay(
@@ -29,13 +29,13 @@ public class IceBeam() : ShadowRegentCard(1,
         await PowerCmd.Apply<WeakPower>(play.Target, DynamicVars.Weak.BaseValue,
             Owner.Creature, this);
 
-        await PowerCmd.Apply<CrushUnderPower>(play.Target,
-            DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<TemporaryStrengthPower>(play.Target,
+            DynamicVars[nameof(TemporaryStrengthPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["StrengthLoss"].UpgradeValueBy(1);
+        DynamicVars[nameof(TemporaryStrengthPower)].UpgradeValueBy(1);
     }
 }
 
