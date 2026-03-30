@@ -17,7 +17,8 @@ public sealed class Weight() : CustomCardModel(1, CardType.Status, CardRarity.To
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         CardKeyword.Retain,
-        CardKeyword.Exhaust
+        CardKeyword.Exhaust,
+        CardKeyword.Sly
     ];
 
     public override Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
@@ -32,9 +33,9 @@ public sealed class Weight() : CustomCardModel(1, CardType.Status, CardRarity.To
         return Task.CompletedTask;
     }
 
-    public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
-    {
-        if (card == this)
-            await CardCmd.Exhaust(choiceContext, this);
-    }
+    // public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+    // {
+    //     if (card == this)
+    //         await CardCmd.Exhaust(choiceContext, this);
+    // }
 }

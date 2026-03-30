@@ -16,7 +16,6 @@ namespace Shadowfall.ShadowfallCode.Relics;
   
 public class ArmoredPack : ShadowSilentRelic
 {
-
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

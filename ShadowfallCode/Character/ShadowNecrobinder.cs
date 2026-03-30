@@ -40,7 +40,7 @@ public class ShadowNecrobinder : PlaceholderCharacterModel
     [
         ModelDb.Relic<SNecroStarter>()
     ];
-    
+
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowNecrobinderCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ShadowNecrobinderRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ShadowNecrobinderPotionPool>();
