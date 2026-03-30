@@ -11,7 +11,7 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 public class Claim() : ShadowRegentCard(2,
     CardType.Attack,
     CardRarity.Basic,
-    TargetType.Self)
+    TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
