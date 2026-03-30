@@ -53,6 +53,7 @@ public sealed class BoneVoyage() : ShadowNecrobinderCard(1, CardType.Skill, Card
         {
             await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature,
                 this);
+            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }
 }

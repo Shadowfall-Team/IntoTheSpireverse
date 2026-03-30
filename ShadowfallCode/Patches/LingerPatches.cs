@@ -1,6 +1,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using Shadowfall.ShadowfallCode.Keywords;
@@ -57,10 +58,21 @@ public class LingerDiscardRedirectPatch
 public static class LingerHelper
 {
     internal static readonly HashSet<CardModel> PendingLingerRedirect = new();
-    
+    public static event Func<CardModel, PlayerChoiceContext, Task>? OnLingerTriggered;
     public static int GetTriggerCount(CardModel card)
     {
         var power = card.Owner.Creature.Powers.OfType<PatiencePower>().FirstOrDefault();
         return 1 + (power?.Amount ?? 0);
+    }
+
+    public static async Task NotifyLingerTriggered(CardModel card, PlayerChoiceContext choiceContext)
+    {
+        if (OnLingerTriggered != null)
+        {
+            foreach (var handler in OnLingerTriggered.GetInvocationList().Cast<Func<CardModel, PlayerChoiceContext, Task>>())
+            {
+                await handler(card, choiceContext);
+            }
+        }
     }
 }

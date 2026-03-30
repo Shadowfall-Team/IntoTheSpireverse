@@ -33,6 +33,6 @@ public sealed class Penance() : ShadowNecrobinderCard(-1, CardType.Curse, CardRa
         
         if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return;
         var soulStrikes = SoulStrike.Create(Owner, DynamicVars.Cards.IntValue, combatState);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(soulStrikes, PileType.Draw, true));
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(soulStrikes, PileType.Draw, true, CardPilePosition.Random));
     }
 }

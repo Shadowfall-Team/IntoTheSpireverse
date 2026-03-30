@@ -11,7 +11,7 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
-public sealed class LoseControl() : ShadowNecrobinderCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class LoseControl() : ShadowNecrobinderCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

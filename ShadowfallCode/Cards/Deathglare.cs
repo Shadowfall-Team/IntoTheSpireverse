@@ -19,18 +19,16 @@ public sealed class Deathglare() : CustomCardModel(0, CardType.Attack, CardRarit
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(20m, ValueProp.Move),
-        new PowerVar<StrengthPower>(2),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<StrengthPower>(),
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Linger)
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Linger),
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
-        ShadowfallKeywords.Linger
+        ShadowfallKeywords.Linger,
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -46,7 +44,6 @@ public sealed class Deathglare() : CustomCardModel(0, CardType.Attack, CardRarit
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(5m);
-        DynamicVars.Strength.UpgradeValueBy(1m);
     }
 
     public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
@@ -54,7 +51,9 @@ public sealed class Deathglare() : CustomCardModel(0, CardType.Attack, CardRarit
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
         {
-            await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
+                CreateClone(), PileType.Draw, true, CardPilePosition.Random));
+            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }
 }
