@@ -23,7 +23,7 @@ public class ShadowRegentStarter() : ShadowSilentRelic
     {
         if (room is CombatRoom)
         {
-            await PlayerCmd.GainStars(DynamicVars[nameof(AmmoPower)].BaseValue, Owner);
+            await PowerCmd.Apply<AmmoPower>(Owner.Creature,DynamicVars[nameof(AmmoPower)].BaseValue, Owner.Creature, null);
         }
     }
 }

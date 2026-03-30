@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -15,7 +16,7 @@ public class IceBeam() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<WeakPower>(1),
-        new PowerVar<TemporaryStrengthPower>(2)
+        new("StrengthLoss", 2)
     ];
 
     protected override async Task OnPlay(
@@ -29,17 +30,17 @@ public class IceBeam() : ShadowRegentCard(1,
         await PowerCmd.Apply<WeakPower>(play.Target, DynamicVars.Weak.BaseValue,
             Owner.Creature, this);
 
-        await PowerCmd.Apply<TemporaryStrengthPower>(play.Target,
-            DynamicVars[nameof(TemporaryStrengthPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<IceBeamPower>(play.Target,
+            DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(TemporaryStrengthPower)].UpgradeValueBy(1);
+        DynamicVars["StrengthLoss"].UpgradeValueBy(1);
     }
 }
 
-public class IceBeamPower : TemporaryStrengthPower
+public class IceBeamPower : TemporaryStrengthPower, ICustomPower
 {
     public override AbstractModel OriginModel => ModelDb.Card<IceBeam>();
 
