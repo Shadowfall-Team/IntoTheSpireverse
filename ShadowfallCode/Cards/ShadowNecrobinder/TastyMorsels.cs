@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
-public sealed class TastyMorsels() : ShadowNecrobinderCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class TastyMorsels() : ShadowNecrobinderCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
