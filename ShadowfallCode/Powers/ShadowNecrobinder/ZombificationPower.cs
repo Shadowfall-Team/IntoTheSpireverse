@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
 
-public class ReanimatePower : CustomPowerModel
+public class ZombificationPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

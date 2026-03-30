@@ -2,7 +2,6 @@
 using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using Reanimate = Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder.Reanimate;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
@@ -72,7 +71,7 @@ public class ShadowNecrobinderCardPool : CustomCardPoolModel
 			// ModelDb.Card<Flatten>(),
 			ModelDb.Card<ForbiddenGrimoire>(), // Replace with Necronomicon when CustomReward is done
 			ModelDb.Card<Friendship>(),
-			ModelDb.Card<GlimpseBeyond>(),
+			// ModelDb.Card<GlimpseBeyond>(),
 			// ModelDb.Card<GraveWarden>(),
 			ModelDb.Card<Graveblast>(),
 			// ModelDb.Card<Hang>(),

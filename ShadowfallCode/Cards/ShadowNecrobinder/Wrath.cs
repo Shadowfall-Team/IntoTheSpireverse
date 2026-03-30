@@ -25,6 +25,8 @@ public sealed class Wrath() : ShadowNecrobinderCard(-1, CardType.Curse, CardRari
         CardKeyword.Unplayable,
         ShadowfallKeywords.Startup
     ];
+    
+    public override int MaxUpgradeLevel => 0;
 
     public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
     {
