@@ -22,7 +22,8 @@ void fragment() {
         vec3(0.1140, -0.3216,  0.3114));
 
     vec4 col = texture(TEXTURE, UV);
-    vec4 gradient_color = texture(gradient, UV);
+    vec2 region_uv = (UV - REGION_RECT.xy) * (1.0 / REGION_RECT.zw);
+    vec4 gradient_color = texture(gradient, region_uv);
 
     col.rgb = RGB_to_YIQ * col.rgb;
     float hue = 1.0 - h;
