@@ -12,11 +12,12 @@ public class StarCharts() : ShadowRegentCard(
     CardType.Skill,
     CardRarity.Basic,
     TargetType.None)
-{    
+{
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(3, ValueProp.Move),
     ];
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
@@ -24,8 +25,12 @@ public class StarCharts() : ShadowRegentCard(
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
         if (!Owner.Deck.IsEmpty)
         {
-            var card = Owner.Deck.Cards[0];
-            await CardPileCmd.Add(card, CargoCardPile.CargoPileType);
+            var drawPile = PileType.Draw.GetPile(Owner);
+            var card = drawPile.Cards.FirstOrDefault();
+            if (card != null)
+            {
+                await CardPileCmd.Add(card, CargoCardPile.CargoPileType);
+            }
         }
     }
 
