@@ -304,7 +304,7 @@
   "SHADOWFALL-PURE_AURA.title": "Pure Aura",
   "SHADOWFALL-PURE_AURA.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Linger[/gold] - ALL enemies lose {LingerDamage:diff()} HP.",
   "SHADOWFALL-ZOMBIFICATION.title": "Zombification",
-  "SHADOWFALL-ZOMBIFICATION.description": "At the start of your turn, put a random card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
+  "SHADOWFALL-ZOMBIFICATION.description": "At the start of your turn, put a random playable card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
   "SHADOWFALL-RELIQUARY_REAVER.title": "Reliquary Reaver",
   "SHADOWFALL-RELIQUARY_REAVER.description": "Deal {Damage} damage.\nIf [gold]Fatal[/gold], obtain a random {IfUpgraded:show:rare|uncommon} [gold]Relic[/gold] and remove this card from your [gold]Deck[/gold].",
   "SHADOWFALL-REND_SPIRIT.title": "Rend Spirit",

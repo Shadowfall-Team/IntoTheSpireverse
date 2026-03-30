@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
-public sealed class PaleGaze() : ShadowNecrobinderCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class PaleGaze() : ShadowNecrobinderCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

@@ -16,12 +16,11 @@ public class ZombificationPower : CustomPowerModel
     public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
     {
         if (side != Owner.Side) return;
-
         var cards = PileType.Discard.GetPile(Owner.Player).Cards
+            .Where(c => !c.Keywords.Contains(CardKeyword.Unplayable))
             .ToList()
             .UnstableShuffle(Owner.Player.RunState.Rng.CombatCardSelection)
             .Take(Amount);
-
         Flash();
         foreach (var card in cards)
         {

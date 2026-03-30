@@ -6,18 +6,16 @@ using Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
-public sealed class Zombification() : ShadowNecrobinderCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class Zombification() : ShadowNecrobinderCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Ethereal
-    ];
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<ZombificationPower>(Owner.Creature, 1, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade()
+    {
+        AddKeyword(CardKeyword.Innate);
+    }
 }
