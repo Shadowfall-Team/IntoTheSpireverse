@@ -223,7 +223,7 @@
   "SHADOWFALL-STARBURST.description": "{IfUpgraded:show:[gold]Channel[/gold] an [gold]Entropy[/gold].\n|}When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold].",
 
   "SHADOWFALL-ABRA_CADAVER.title": "Abra Cadaver",
-  "SHADOWFALL-ABRA_CADAVER.description": "Gain 1 [gold]Strength[/gold] this turn for ALL your [purple]Curse[/purple] cards{IfUpgraded:show: plus 2|}.{InCombat:\n(Gain {CalculatedStr} [gold]Strength[/gold])|}",
+  "SHADOWFALL-ABRA_CADAVER.description": "Gain 1 [gold]Strength[/gold] this turn for ALL your [purple]Curse[/purple] cards +2.{InCombat:\n(Gain {CalculatedStr} [gold]Strength[/gold])|}",
   "SHADOWFALL-AVARICE.title": "Avarice",
   "SHADOWFALL-AVARICE.description": "[gold]Pickup[/gold] - Gain {Gold} [gold]Gold[/gold].",
   "SHADOWFALL-AWAY_WITH_YOU.title": "Away With You!",
@@ -262,7 +262,7 @@
   "SHADOWFALL-FINAL_FORM.title": "Final Form",
   "SHADOWFALL-FINAL_FORM.description": "Exhaust 1 card{IfUpgraded:show:| at random}.\nAt the start of your next 5 turns, play a copy of it.",
   "SHADOWFALL-FLICKER_JAB.title": "Flicker Jab",
-  "SHADOWFALL-FLICKER_JAB.description": "Deal {Damage:diff()} damage{CalculatedHits:choose(1):| {CalculatedHits} times}.\nHits an additional time for each Attack already played this turn.",
+  "SHADOWFALL-FLICKER_JAB.description": "Deal {Damage:diff()} damage{IfUpgraded:show: twice|}.\nHits an additional time for each Attack already played this turn.{InCombat:\n(Hits {CalculatedHits:diff() {CalculatedHits:plural:time|times})}|}",
   "SHADOWFALL-GRAVE_GUARD.title": "Grave Guard",
   "SHADOWFALL-GRAVE_GUARD.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd a [gold]Soul Strike[/gold] into your [gold]Draw Pile[/gold].",
   "SHADOWFALL-GRAVEYARD_SMASH.title": "Graveyard Smash",
@@ -347,7 +347,6 @@
   "SHADOWFALL-WRATH.description": "[gold]Startup[/gold] - Gain {StrengthPower} [gold]Strength[/gold].",
   "SHADOWFALL-YOUR_DOOM_IS_NIGH.title": "Your Doom is Nigh",
   "SHADOWFALL-YOUR_DOOM_IS_NIGH.description": "Whenever you draw a [purple]Curse[/purple], a random enemy loses {Damage:diff()} HP.",
-
   "SHADOWFALL-DEATHGLARE.title": "Deathglare",
   "SHADOWFALL-DEATHGLARE.description": "Deal {Damage:diff()} damage.\n[gold]Linger[/gold] - Add a copy of this card into your [gold]Draw Pile[/gold].",
   "SHADOWFALL-PALE_GAZE.title": "Pale Gaze",
