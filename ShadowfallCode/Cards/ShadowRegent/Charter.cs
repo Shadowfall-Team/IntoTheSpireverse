@@ -23,12 +23,9 @@ public class Charter() : ShadowRegentCard(
         CardPlay play)
     {
         if (CombatState == null) return;
-        
-        var mStrike = CombatState.CreateCard<MinionStrike>(Owner);
-        for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
-        {
-            await CardPileCmd.Add(mStrike, CargoCardPile.CargoPileType);
-        }
+
+        await CardPileCmd.AddToCombatAndPreview<MinionStrike>(Owner.Creature,
+            CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, true);
     }
 
     protected override void OnUpgrade()
