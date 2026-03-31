@@ -64,6 +64,8 @@ public static class ShadowfallKeywords
             return;
 
         int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
+            repeats = player.PlayerCombatState.Energy;
         repeats += card is Weight ? player.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
         await CardCmd.Discard(context, card);
 
