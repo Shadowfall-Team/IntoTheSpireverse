@@ -41,7 +41,8 @@ public class CrescentSpear() : ShadowRegentCard(1,
             CardCmd.Upgrade(uStrike);
         }
 
-        await CardPileCmd.Add(uStrike, CargoCardPile.CargoPileType);
+        var cardPileAddResult = await CardPileCmd.Add(uStrike, CargoCardPile.CargoPileType);
+        CardCmd.PreviewCardPileAdd(cardPileAddResult);
     }
 
     protected override void OnUpgrade()

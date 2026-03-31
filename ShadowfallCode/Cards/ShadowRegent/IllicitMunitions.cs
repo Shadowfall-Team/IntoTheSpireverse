@@ -29,8 +29,10 @@ public class IllicitMunitions() : ShadowRegentCard(1,
         var salvoCard = CombatState.CreateCard<Salvo>(Owner);
         salvoCard.AddKeyword(CardKeyword.Retain);
 
-        await CardPileCmd.Add([volleyCard, salvoCard], CargoCardPile.CargoPileType,
+        var results = await CardPileCmd.Add([volleyCard, salvoCard], CargoCardPile.CargoPileType,
             source: this);
+        
+        CardCmd.PreviewCardPileAdd(results);
     }
 
     protected override void OnUpgrade()
