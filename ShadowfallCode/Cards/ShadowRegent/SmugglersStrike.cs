@@ -12,7 +12,8 @@ public class SmugglersStrike() : ShadowRegentCard(0,
     CardRarity.Uncommon,
     TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(5, ValueProp.Move)
     ];
 
@@ -25,11 +26,16 @@ public class SmugglersStrike() : ShadowRegentCard(0,
             .Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        
-        await PowerCmd.Apply<CardPlayToCargoPower>(Owner.Creature, 1, 
-            Owner.Creature, this);
     }
-    
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext context,
+        CardPlay cardPlay)
+    {
+        if (cardPlay.Card == this)
+            await PowerCmd.Apply<CardPlayToCargoPower>(Owner.Creature, 1,
+                Owner.Creature, this);
+    }
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3);
