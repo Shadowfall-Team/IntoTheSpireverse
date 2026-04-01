@@ -24,11 +24,11 @@ public class GuidingShot(): ShadowRegentCard(1,
         if (card == this)
         {
             if (CombatState == null) return;
-            await Cmd.Wait(0.25f);
                 
             var creature = Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
             if (creature != null)
             {
+                await Cmd.Wait(0.25f);
                 await PowerCmd.Apply<VulnerablePower>(creature, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
             }
         }
