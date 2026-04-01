@@ -32,7 +32,7 @@ public class CrescentSpear() : ShadowRegentCard(1,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_starry_impact", null, null)
             .Execute(choiceContext);
 
         var uStrike = CombatState.CreateCard<UltimateStrike>(Owner);

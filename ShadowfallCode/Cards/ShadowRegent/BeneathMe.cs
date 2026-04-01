@@ -40,7 +40,7 @@ public class BeneathMe() : ShadowRegentCard(1,
             .FromCard(this)
             .Targeting(play.Target)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            // .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
             .Execute(choiceContext);
         
         DynamicVars.Repeat.BaseValue += DynamicVars["Increase"].BaseValue;

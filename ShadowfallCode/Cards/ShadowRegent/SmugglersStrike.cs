@@ -24,7 +24,7 @@ public class SmugglersStrike() : ShadowRegentCard(0,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_giant_horizontal_slash", null, null)
             .Execute(choiceContext);
     }
 

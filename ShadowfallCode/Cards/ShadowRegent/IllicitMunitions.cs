@@ -7,7 +7,6 @@ using Shadowfall.ShadowfallCode.CardPiles;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-// Put a Volley and Salvo into Cargo. Give them Retain. Exhaust.
 public class IllicitMunitions() : ShadowRegentCard(1,
     CardType.Skill,
     CardRarity.Uncommon,

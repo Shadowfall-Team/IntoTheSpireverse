@@ -26,7 +26,7 @@ public class Claim() : ShadowRegentCard(2,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(play.Target)
-            // .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         
         await PowerCmd.Apply<ShardPower>(

@@ -34,7 +34,7 @@ public class Jettison() : ShadowRegentCard(1,
                 .WithHitCount(cargoedCards.Count)
                 .FromCard(this)
                 .Targeting(play.Target)
-                // .WithHitFx("vfx/vfx_attack_slash", null, null)
+                .WithHitFx("vfx/vfx_starry_impact", null, "slash_attack.mp3")
                 .Execute(choiceContext);
         }
     }
