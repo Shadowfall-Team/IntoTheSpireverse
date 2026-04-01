@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-//Heal 3(4) HP. Gain 1(2) Dexterity. Add Trip into your hand.
 public class Banana() : ShadowRegentCard(1,
     CardType.Power,
     CardRarity.Uncommon,
@@ -22,6 +21,9 @@ public class Banana() : ShadowRegentCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+            Owner.Character.CastAnimDelay);
+
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
 
         await PowerCmd.Apply<DexterityPower>(Owner.Creature,
@@ -29,11 +31,8 @@ public class Banana() : ShadowRegentCard(1,
             Owner.Creature,
             this);
 
-
-        //TODO: what is trip?
-
-        // var salvoCard = CombatState.CreateCard<Trip>(Owner);
-        // await CardPileCmd.Add(fuelCard, PileType.Hand, source: this);
+        var tripCard = CombatState.CreateCard<Trip>(Owner);
+        await CardPileCmd.Add(tripCard, PileType.Hand, source: this);
     }
 
     protected override void OnUpgrade()

@@ -410,8 +410,10 @@
   "SHADOWFALL-GLOW.title": "Glow",
   "SHADOWFALL-HIDDEN_CACHE.description": "Gain 1 [gold]Shard[/gold].\nNext turn, gain {GainShardsNextTurnPower:diff()} [gold]Shards[/gold].",
   "SHADOWFALL-HIDDEN_CACHE.title": "Hidden Cache",
-"SHADOWFALL-BANANA.description": "Heal {Heal:diff()} HP.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAdd a [gold]Trip[/gold] into your hand.",
+  "SHADOWFALL-BANANA.description": "Heal {Heal:diff()} HP.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAdd a [gold]Trip[/gold] into your hand.",
   "SHADOWFALL-BANANA.title": "Banana",
   "SHADOWFALL-WARP.description": "Gain {Energy:energyIcons()}.\nGain {StrengthPower:diff()} Strength.",
-  "SHADOWFALL-WARP.title": "Warp"
+  "SHADOWFALL-WARP.title": "Warp",
+  "SHADOWFALL-TRIP.description": "Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]{IfUpgraded:show: to ALL enemies|}.",
+  "SHADOWFALL-TRIP.title": "Trip"
 }
