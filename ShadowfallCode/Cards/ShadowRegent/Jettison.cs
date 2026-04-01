@@ -9,9 +9,9 @@ using Shadowfall.ShadowfallCode.CardPiles;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 public class Jettison() : ShadowRegentCard(1,
-    CardType.Skill,
+    CardType.Attack,
     CardRarity.Common,
-    TargetType.Self)
+    TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move)
@@ -25,6 +25,8 @@ public class Jettison() : ShadowRegentCard(1,
             new CardSelectorPrefs(CargoSelectorPrefs.CargoSelectionPrompt, 0, 999999),
             null,
             this)).ToList();
+        
+        await CardPileCmd.Add(cargoedCards, CargoCardPile.CargoPileType);
         
         if (cargoedCards.Count != 0)
         {
