@@ -29,7 +29,7 @@ public class StarCharts() : ShadowRegentCard(
             var card = drawPile.Cards.FirstOrDefault();
             if (card != null)
             {
-                await CardPileCmd.Add(card, CargoCardPile.CargoPileType);
+                await CardPileCmd.Add(card, CargoCardPile.CargoPileType, skipVisuals: true);
                 CardCmd.Preview(card);
             }
         }
