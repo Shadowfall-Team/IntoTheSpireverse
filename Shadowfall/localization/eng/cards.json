@@ -412,6 +412,6 @@
   "SHADOWFALL-HIDDEN_CACHE.title": "Hidden Cache",
 "SHADOWFALL-BANANA.description": "Heal {Heal:diff()} HP.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAdd a [gold]Trip[/gold] into your hand.",
   "SHADOWFALL-BANANA.title": "Banana",
-  "SHADOWFALL-WARP.description": "",
+  "SHADOWFALL-WARP.description": "Gain {Energy:energyIcons()}.\nGain {StrengthPower:diff()} Strength.",
   "SHADOWFALL-WARP.title": "Warp"
 }

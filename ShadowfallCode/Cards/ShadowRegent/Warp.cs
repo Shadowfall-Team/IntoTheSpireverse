@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 [Pool(typeof(TokenCardPool))]
-public class Warp() : CustomCardModel(1,
+public class Warp() : CustomCardModel(0,
     CardType.Skill,
     CardRarity.Token,
     TargetType.Self)
