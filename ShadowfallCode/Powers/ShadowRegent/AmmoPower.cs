@@ -33,6 +33,9 @@ public class AmmoPower : CustomPowerModel
             var target = CombatState.RunState.Rng.CombatTargets.NextItem(validTargets);
             if (target != null)
             {
+                //TODO: maybe play an animation here?
+                // VfxCmd.PlayOnCreatureCenter(attackCommand.Attacker, attackCommand._attackerVfx);
+
                 await CreatureCmd.Damage(choiceContext, target, volleyDamage,
                     ValueProp.Unpowered, Owner);
             }
