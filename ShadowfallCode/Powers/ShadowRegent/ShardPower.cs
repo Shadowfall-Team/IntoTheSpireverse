@@ -22,13 +22,20 @@ public class ShardPower : CustomPowerModel
 
         if (Amount >= 6)
         {
-            Flash();
-            await Cmd.Wait(0.25f);
-
-            var warp = CombatState.CreateCard<Warp>(Owner.Player);
-            await CardPileCmd.AddGeneratedCardToCombat(warp, PileType.Hand, true);
-
-            Amount -= 6;
+            await AddWarpToHand();
         }
+    }
+
+    private async Task AddWarpToHand()
+    {
+        Flash();
+        await Cmd.Wait(0.25f);
+
+        var warp = CombatState.CreateCard<Warp>(Owner.Player);
+        await CardPileCmd.AddGeneratedCardToCombat(warp, PileType.Hand, true);
+
+        Amount -= 6;
+        if(Amount >= 6)
+            await AddWarpToHand();
     }
 }
