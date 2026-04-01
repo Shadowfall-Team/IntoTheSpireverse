@@ -32,9 +32,10 @@ public class StowAway() : ShadowRegentCard(1,
             .Execute(choiceContext);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
 
-        await CardSelectCmd.FromHand(choiceContext, Owner,
+        var fromHandCard = await CardSelectCmd.FromHand(choiceContext, Owner,
             new CardSelectorPrefs(CargoSelectorPrefs.CargoSelectionPrompt, 1), null,
             this);
+        await CardPileCmd.Add(fromHandCard, CargoCardPile.CargoPileType);
     }
 
     protected override void OnUpgrade()
