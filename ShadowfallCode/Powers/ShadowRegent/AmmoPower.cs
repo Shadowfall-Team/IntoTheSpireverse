@@ -21,7 +21,7 @@ public class AmmoPower : CustomPowerModel
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext,
         CombatSide side)
     {
-        if (side != CombatSide.Enemy)
+        if (side == CombatSide.Enemy)
             return;
 
         var volleyDamage = DynamicVars.Damage.BaseValue +
