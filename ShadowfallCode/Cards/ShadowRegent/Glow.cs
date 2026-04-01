@@ -14,6 +14,7 @@ public class Glow() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         
+        new PowerVar<ShardPower>(1),
         new CardsVar(1),
         new PowerVar<DrawCardsNextTurnPower>(1)
     ];

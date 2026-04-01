@@ -406,7 +406,7 @@
   "SHADOWFALL-REINFORCED_BODY.title": "Reinforced Body",
   "SHADOWFALL-GATHER_LIGHT.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {ShardPower:diff()} [gold]Shards[/gold].",
   "SHADOWFALL-GATHER_LIGHT.title": "Gather Light",
-  "SHADOWFALL-GLOW.description": "Gain 1 [gold]Shard[/gold].\nDraw 1 card.\nNext turn, draw 1 card.",
+  "SHADOWFALL-GLOW.description": "Gain {ShardPower:diff()} [gold]Shard[/gold].\nDraw {Cards:diff()} card.\nNext turn, draw {DrawCardsNextTurnPower:diff()} card.",
   "SHADOWFALL-GLOW.title": "Glow",
   "SHADOWFALL-HIDDEN_CACHE.description": "Gain 1 [gold]Shard[/gold].\nNext turn, gain {GainShardsNextTurnPower:diff()} [gold]Shards[/gold].",
   "SHADOWFALL-HIDDEN_CACHE.title": "Hidden Cache",
