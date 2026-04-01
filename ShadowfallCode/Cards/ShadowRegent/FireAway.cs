@@ -7,9 +7,9 @@ using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 public class FireAway() : ShadowRegentCard(1,
-    CardType.Attack,
+    CardType.Skill,
     CardRarity.Common,
-    TargetType.AnyEnemy)
+    TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
