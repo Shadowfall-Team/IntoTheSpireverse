@@ -13,7 +13,8 @@ public class Plot() : ShadowRegentCard(1,
     CardRarity.Common,
     TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new BlockVar(6, ValueProp.Move)
     ];
 
@@ -22,19 +23,20 @@ public class Plot() : ShadowRegentCard(1,
         CardPlay play)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-        
+
         var discardPile = PileType.Discard.GetPile(Owner)
             .Cards.OrderBy(c => c.Rarity)
             .ThenBy(c => c.Id).ToList();
-        
-        var cardModel = (await CardSelectCmd.FromSimpleGrid(choiceContext, discardPile, Owner,
-            new CardSelectorPrefs(SelectionScreenPrompt, 1))).FirstOrDefault();
-        if (cardModel != null)
+        if (discardPile.Count == 0) return;
+
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        var selection = (await CardSelectCmd.FromSimpleGrid(choiceContext, discardPile, Owner, prefs)).FirstOrDefault();
+        if (selection != null)
         {
-            await CardPileCmd.Add(cardModel, CargoCardPile.CargoPileType);
+            await CardPileCmd.Add(selection, CargoCardPile.CargoPileType);
         }
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(3);

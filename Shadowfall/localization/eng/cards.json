@@ -378,6 +378,7 @@
   "SHADOWFALL-ROYAL_CLOAK.description": "At the end of your turn, gain {Block:diff()} [gold]Block[/gold] for each card in your hand.",
   "SHADOWFALL-ROYAL_CLOAK.title": "Royal Cloak",
   "SHADOWFALL-PLOT.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut a card from your [gold]Discard Pile[/gold] into your [gold]Cargo[/gold].",
+  "SHADOWFALL-PLOT.selectionScreenPrompt": "Choose a card to move to your Cargo.",
   "SHADOWFALL-PLOT.title": "Plot",
   "SHADOWFALL-FIRE_AWAY.description": "Load {AmmoPower:diff()} [gold]Ammo[/gold].\nYour Volley deals {VolleyDamageThisTurn:diff()} more damage this turn.",
   "SHADOWFALL-FIRE_AWAY.title": "Fire Away",
