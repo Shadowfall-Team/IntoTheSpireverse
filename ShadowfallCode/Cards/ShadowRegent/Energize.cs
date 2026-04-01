@@ -10,12 +10,12 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 public class Energize() : ShadowRegentCard(2,
     CardType.Attack,
     CardRarity.Uncommon,
-    TargetType.Self)
+    TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(9, ValueProp.Move),
-        new EnergyVar(1)
+        new EnergyVar(2)
     ];
 
     protected override async Task OnPlay(
@@ -31,9 +31,9 @@ public class Energize() : ShadowRegentCard(2,
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }
 
-    public override async Task AfterCardEnteredCombat(CardModel card)
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (card != this && card.EnergyCost.CostsX)
+        if (cardPlay.Card.EnergyCost.CostsX)
         {
             EnergyCost.SetThisTurn(0);
         }

@@ -394,7 +394,7 @@
   "SHADOWFALL-ILLICIT_MUNITIONS.title": "Illicit Munitions",
   "SHADOWFALL-SHADOW_CRYSTAL.description": "Gain {ShardPower:diff()} [gold]Shards[/gold].\nPut this in your [gold]Cargo[/gold].",
   "SHADOWFALL-SHADOW_CRYSTAL.title": "Shadow Crystal",
-  "SHADOWFALL-ENERGIZE.description": "Deal {Damage:diff()} damage.\nGain {Energy:energyIcons():diff()} ({IfUpgraded:show:{Energy:energyIcons()}|Costs 0}).\nCosts 0 if an X cost card was played this turn.",
+  "SHADOWFALL-ENERGIZE.description": "Deal {Damage:diff()} damage.\nGain {Energy:energyIcons()}.\nCosts 0 if an X cost card was played this turn.",
   "SHADOWFALL-ENERGIZE.title": "Energize",
   "SHADOWFALL-STRONGARM.description": "Deal {Damage:diff()} damage.\nIncrease this card's damage by {Increase:diff()} this combat.",
   "SHADOWFALL-STRONGARM.title": "Strongarm",
