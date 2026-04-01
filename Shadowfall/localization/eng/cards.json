@@ -363,7 +363,7 @@
   "SHADOWFALL-CHARTER.title": "Charter",
   "SHADOWFALL-CRESCENT_SPEAR.description": "Deal {Damage:diff()} damage.\nAdd an [gold]{IfUpgraded:show:Ultimate Strike+|Ultimate Strike}[/gold] to your [gold]Cargo[/gold].",
   "SHADOWFALL-CRESCENT_SPEAR.title": "Crescent Spear",
-  "SHADOWFALL-ICE_BEAM.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nEnemy loses {TemporaryStrengthPower:diff()} [gold]Strength[/gold] this turn.",
+  "SHADOWFALL-ICE_BEAM.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nEnemy loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn.",
   "SHADOWFALL-ICE_BEAM.title": "Ice Beam",
   "SHADOWFALL-GUIDING_SHOT.description": "Deal {Damage:diff()} damage.\nWhen you draw this, apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to a random enemy.",
   "SHADOWFALL-GUIDING_SHOT.title": "Guiding Shot",  
