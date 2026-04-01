@@ -15,15 +15,17 @@ public class ShadowRegentStarter() : ShadowSilentRelic
     public override RelicRarity Rarity =>
         RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new PowerVar<AmmoPower>(1)
     ];
-    
+
     public override async Task AfterRoomEntered(AbstractRoom room)
     {
         if (room is CombatRoom)
         {
-            await PowerCmd.Apply<AmmoPower>(Owner.Creature,DynamicVars[nameof(AmmoPower)].BaseValue, Owner.Creature, null);
+            await PowerCmd.Apply<AmmoPower>(Owner.Creature,
+                DynamicVars[nameof(AmmoPower)].BaseValue, Owner.Creature, null);
         }
     }
 }

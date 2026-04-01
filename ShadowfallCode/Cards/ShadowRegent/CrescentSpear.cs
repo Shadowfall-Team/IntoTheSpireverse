@@ -11,7 +11,7 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 public class CrescentSpear() : ShadowRegentCard(1,
     CardType.Attack,
     CardRarity.Common,
-    TargetType.Self)
+    TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
