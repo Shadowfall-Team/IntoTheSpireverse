@@ -25,6 +25,7 @@ public class ReinforcedBody() : ShadowRegentCard(0,
         for (var i = 0; i < ResolveEnergyXValue(); i++)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+            await Cmd.Wait(0.1f);
         }
     }
 
