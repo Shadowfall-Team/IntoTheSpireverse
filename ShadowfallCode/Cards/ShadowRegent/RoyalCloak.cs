@@ -39,8 +39,7 @@ public class RoyalCloakPower : CustomPowerModel
     public override PowerStackType StackType => PowerStackType.Counter;
 
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext,
-        CombatSide side)
+    public override async Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
         if (Owner.Player == null) return;
 
