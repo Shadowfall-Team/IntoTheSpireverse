@@ -25,7 +25,7 @@ public class AmmoPower : CustomPowerModel
             return;
 
         var volleyDamage = DynamicVars.Damage.BaseValue +
-                           Owner.GetPowerAmount<VolleyDamageThisTurn>();
+                           Owner.GetPowerAmount<VolleyDamageThisTurnPower>();
 
         for (var i = 0; i < Amount; i++)
         {
@@ -41,7 +41,7 @@ public class AmmoPower : CustomPowerModel
             }
         }
 
-        await PowerCmd.Remove<VolleyDamageThisTurn>(Owner);
+        await PowerCmd.Remove<VolleyDamageThisTurnPower>(Owner);
         await PowerCmd.Remove(this);
     }
 }

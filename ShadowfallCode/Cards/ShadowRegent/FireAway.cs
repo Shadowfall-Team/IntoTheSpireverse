@@ -14,7 +14,7 @@ public class FireAway() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<AmmoPower>(1),
-        new PowerVar<VolleyDamageThisTurn>(2)
+        new PowerVar<VolleyDamageThisTurnPower>(2)
     ];
 
     protected override async Task OnPlay(
@@ -30,15 +30,15 @@ public class FireAway() : ShadowRegentCard(1,
             Owner.Creature,
             this);
 
-        await PowerCmd.Apply<VolleyDamageThisTurn>(
+        await PowerCmd.Apply<VolleyDamageThisTurnPower>(
             Owner.Creature,
-            DynamicVars[nameof(VolleyDamageThisTurn)].BaseValue,
+            DynamicVars[nameof(VolleyDamageThisTurnPower)].BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(VolleyDamageThisTurn)].UpgradeValueBy(2);
+        DynamicVars[nameof(VolleyDamageThisTurnPower)].UpgradeValueBy(2);
     }
 }
