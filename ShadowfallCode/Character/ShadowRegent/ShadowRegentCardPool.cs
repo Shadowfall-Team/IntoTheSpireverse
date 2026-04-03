@@ -61,7 +61,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<ReinforcedBody>(),
             ModelDb.Card<Banana>(),
             ModelDb.Card<GarbageDay>(),
-            ModelDb.Card<TrialOfKnowledge>()
+            ModelDb.Card<TrialOfKnowledge>(),
+            ModelDb.Card<TrialOfWeaponry>(),
         ];
     }
 }

@@ -114,5 +114,8 @@
   "SHADOWFALL-CARD_PLAY_TO_CARGO_THIS_TURN_POWER.title": "Smuggler's Cargo",  
   "SHADOWFALL-TRIAL_OF_KNOWLEDGE_POWER.description": "The next time you end your turn with 5 cards in your hand, gain Shards.",
   "SHADOWFALL-TRIAL_OF_KNOWLEDGE_POWER.smartDescription": "The next time you end your turn with 5 cards in your hand, gain [blue]{Amount}[/blue] [gold]Shards[/gold].",
-  "SHADOWFALL-TRIAL_OF_KNOWLEDGE_POWER.title": "Trial of Knowledge"
+  "SHADOWFALL-TRIAL_OF_KNOWLEDGE_POWER.title": "Trial of Knowledge",  
+  "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.description": "The next time you play 3 Attacks in one turn, Load Ammo.",
+  "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.smartDescription": "The next time you play 3 Attacks in one turn, Load [blue]{Amount}[/blue] Ammo.\nYou have played {AttacksPlayedThisTurn} attacks.",
+  "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.title": "Trial of Weaponry"
 }
