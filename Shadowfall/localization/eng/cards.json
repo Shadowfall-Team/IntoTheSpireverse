@@ -421,5 +421,7 @@
   "SHADOWFALL-TRIAL_OF_KNOWLEDGE.title": "Trial of Knowledge",
   "SHADOWFALL-TRIAL_OF_KNOWLEDGE.description": "The next time you end your turn with 5 cards in your hand, gain {TrialOfKnowledgePower:diff()} [gold]Shards[/gold].",
   "SHADOWFALL-TRIAL_OF_WEAPONRY.description": "The next time you play 3 Attacks in one turn, Load {AmmoPower:diff()} Ammo.",
-  "SHADOWFALL-TRIAL_OF_WEAPONRY.title": "Trial of Weaponry"
+  "SHADOWFALL-TRIAL_OF_WEAPONRY.title": "Trial of Weaponry",
+  "SHADOWFALL-CONVERGENCE.description": "Retain your Hand this turn.\nNext turn, gain {Energy:energyIcons()} and {GainShardsNextTurnPower:diff()} [gold]{GainShardsNextTurnPower:plural:Shard|Shards}[/gold].",
+  "SHADOWFALL-CONVERGENCE.title": "Convergence"
 }
