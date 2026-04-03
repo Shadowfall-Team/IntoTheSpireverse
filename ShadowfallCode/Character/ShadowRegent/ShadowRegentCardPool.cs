@@ -63,6 +63,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<GarbageDay>(),
             ModelDb.Card<TrialOfKnowledge>(),
             ModelDb.Card<TrialOfWeaponry>(),
+            ModelDb.Card<Cards.ShadowRegent.Convergence>(),
         ];
     }
 }

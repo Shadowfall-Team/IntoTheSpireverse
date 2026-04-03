@@ -102,7 +102,7 @@
   "SHADOWFALL-ROYAL_CLOAK_POWER.title": "Royal Cloak",
   "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.description": "At the start of your next turn, gain additional [gold]Shards[/gold].",
   "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, gain [blue]{Amount}[/blue] [gold]Shards[/gold].",
-  "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.title": "Hidden Cache",
+  "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.title": "Shards Next Turn",
   "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN_POWER.description": "A temporary bonus to your Volley's damage for this turn.",
   "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN_POWER.smartDescription": "Your Volley deals an additional [blue]{Amount}[/blue] damage this turn.",
   "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN_POWER.title": "Firepower",
