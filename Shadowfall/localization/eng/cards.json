@@ -427,5 +427,7 @@
   "SHADOWFALL-RETRIEVE.description": "Draw {Cards:diff()} cards from your [gold]Cargo[/gold].",
   "SHADOWFALL-RETRIEVE.title": "Retrieve",
   "SHADOWFALL-SPACE_PIRATE.description": "Deal {Damage:diff()} damage.\nPut {IfUpgraded:show:an upgraded |}[gold]Flash of Steel[/gold], [gold]Fisticuffs[/gold], or [gold]The Bomb[/gold] into your [gold]Cargo[/gold] at random.",
-  "SHADOWFALL-SPACE_PIRATE.title": "Space Pirate"
+  "SHADOWFALL-SPACE_PIRATE.title": "Space Pirate",  
+  "SHADOWFALL-MIRROR_IMAGE.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you have 7 or more cards in hand, gain {Block:diff()} [gold]Block[/gold] again.",
+  "SHADOWFALL-MIRROR_IMAGE.title": "Mirror Image"
 }
