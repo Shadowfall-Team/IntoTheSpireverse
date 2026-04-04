@@ -437,5 +437,7 @@
   "SHADOWFALL-DEFENSIVE_CANNONADE.description": "Load {AmmoPower:diff()} Ammo. Your Volley grants {Block:diff()} [gold]Block[/gold] per shot this turn.",
   "SHADOWFALL-DEFENSIVE_CANNONADE.title": "Defensive Cannonade",
   "SHADOWFALL-GET_STRONGER.description": "Gain {IfUpgraded:show:X+1|X} [gold]Strength[/gold]. Gain {IfUpgraded:show:X+1|X} [gold]Dexterity[/gold].",
-  "SHADOWFALL-GET_STRONGER.title": "Get Stronger"
+  "SHADOWFALL-GET_STRONGER.title": "Get Stronger",
+  "SHADOWFALL-HOARD.description": "Draw {Cards:diff()} {Cards:plural:card|cards}. Gain {energyPrefix:energyIcons(1)} for each card in your Cargo.",
+  "SHADOWFALL-HOARD.title": "Hoard"
 }
