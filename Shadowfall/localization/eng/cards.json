@@ -380,7 +380,7 @@
   "SHADOWFALL-PLOT.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut a card from your [gold]Discard Pile[/gold] into your [gold]Cargo[/gold].",
   "SHADOWFALL-PLOT.selectionScreenPrompt": "Choose a card to move to your Cargo.",
   "SHADOWFALL-PLOT.title": "Plot",
-  "SHADOWFALL-FIRE_AWAY.description": "Load {AmmoPower:diff()} [gold]Ammo[/gold].\nYour Volley deals {VolleyDamageThisTurn:diff()} more damage this turn.",
+  "SHADOWFALL-FIRE_AWAY.description": "Load {AmmoPower:diff()} [gold]Ammo[/gold].\nYour Volley deals {VolleyDamageThisTurnPower:diff()} more damage this turn.",
   "SHADOWFALL-FIRE_AWAY.title": "Fire Away",
   "SHADOWFALL-RELOAD.description": "Next turn, Load {GainAmmoNextTurnPower:diff()} [gold]Ammo[/gold] and draw {DrawCardsNextTurnPower:diff()} {DrawCardsNextTurnPower:plural:card|cards}.",
   "SHADOWFALL-RELOAD.title": "Reload",

@@ -37,9 +37,6 @@ public class DefensiveCannonade() : ShadowRegentCard(
             DynamicVars.Block.BaseValue,
             Owner.Creature,
             this);
-
-        var tripCard = CombatState.CreateCard<Trip>(Owner);
-        await CardPileCmd.Add(tripCard, PileType.Hand, source: this);
     }
 
     protected override void OnUpgrade()
