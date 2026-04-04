@@ -425,5 +425,7 @@
   "SHADOWFALL-CONVERGENCE.description": "Retain your Hand this turn.\nNext turn, gain {Energy:energyIcons()} and {GainShardsNextTurnPower:diff()} [gold]{GainShardsNextTurnPower:plural:Shard|Shards}[/gold].",
   "SHADOWFALL-CONVERGENCE.title": "Convergence",
   "SHADOWFALL-RETRIEVE.description": "Draw {Cards:diff()} cards from your [gold]Cargo[/gold].",
-  "SHADOWFALL-RETRIEVE.title": "Retrieve"
+  "SHADOWFALL-RETRIEVE.title": "Retrieve",
+  "SHADOWFALL-SPACE_PIRATE.description": "Deal {Damage:diff()} damage.\nPut {IfUpgraded:show:an upgraded |}[gold]Flash of Steel[/gold], [gold]Fisticuffs[/gold], or [gold]The Bomb[/gold] into your [gold]Cargo[/gold] at random.",
+  "SHADOWFALL-SPACE_PIRATE.title": "Space Pirate"
 }

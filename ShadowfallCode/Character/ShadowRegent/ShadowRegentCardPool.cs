@@ -65,6 +65,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<TrialOfWeaponry>(),
             ModelDb.Card<Cards.ShadowRegent.Convergence>(),
             ModelDb.Card<Retrieve>(),
+            ModelDb.Card<SpacePirate>(),
         ];
     }
 }
