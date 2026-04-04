@@ -118,10 +118,13 @@
   "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.description": "The next time you play 3 Attacks in one turn, Load Ammo.",
   "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.smartDescription": "The next time you play 3 Attacks in one turn, Load [blue]{Amount}[/blue] Ammo.\nYou have played {AttacksPlayedThisTurn} attacks.",
   "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.title": "Trial of Weaponry",
-  "SHADOWFALL-TARGETTED_THIS_TURN_POWER.description": "Your Volley targets this foe this turn",
-  "SHADOWFALL-TARGETTED_THIS_TURN_POWER.smartDescription": "Your Volley targets this foe this turn",
-  "SHADOWFALL-TARGETTED_THIS_TURN_POWER.title": "TargettedPower",
+  "SHADOWFALL-TARGETED_THIS_TURN_POWER.description": "Your Volley targets this foe this turn",
+  "SHADOWFALL-TARGETED_THIS_TURN_POWER.smartDescription": "Your Volley targets this foe this turn",
+  "SHADOWFALL-TARGETED_THIS_TURN_POWER.title": "Targeted",
   "SHADOWFALL-SIEGE_POWER.description": "Your Volley applies [gold]Weak[/gold] this turn.",
   "SHADOWFALL-SIEGE_POWER.smartDescription": "Your Volley applies TODO [gold]Weak[/gold] this turn.",
-  "SHADOWFALL-SIEGE_POWER.title": "SiegePower"
+  "SHADOWFALL-SIEGE_POWER.title": "Siege",
+  "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.description": "Your Volley grants Block per shot this turn.",
+  "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.smartDescription": "Your Volley grants {Amount} [blue]Block[/blue] per shot this turn.",
+  "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.title": "Defensive Cannonade"
 }

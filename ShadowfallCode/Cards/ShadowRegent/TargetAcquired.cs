@@ -37,9 +37,9 @@ public class TargetAcquired() : ShadowRegentCard(
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         
-        await PowerCmd.Apply<TargettedThisTurnPower>(
+        await PowerCmd.Apply<TargetedThisTurnPower>(
             play.Target,
-            DynamicVars[nameof(TargettedThisTurnPower)].BaseValue,
+            DynamicVars[nameof(TargetedThisTurnPower)].BaseValue,
             Owner.Creature,
             this);
         
@@ -56,7 +56,7 @@ public class TargetAcquired() : ShadowRegentCard(
     }
 }
 
-public class TargettedThisTurnPower : CustomPowerModel
+public class TargetedThisTurnPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Single;

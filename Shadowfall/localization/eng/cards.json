@@ -433,5 +433,7 @@
   "SHADOWFALL-TARGET_ACQUIRED.description": "Deal {Damage:diff()} damage. Load {AmmoPower:diff()} Ammo. Your Volley targets this foe this turn.",
   "SHADOWFALL-TARGET_ACQUIRED.title": "TargetAcquired",
   "SHADOWFALL-SIEGE.description": "Load {AmmoPower:diff()} Ammo. Your Volley applies 1 [gold]Weak[/gold] this turn.",
-  "SHADOWFALL-SIEGE.title": "Siege"
+  "SHADOWFALL-SIEGE.title": "Siege",
+  "SHADOWFALL-DEFENSIVE_CANNONADE.description": "Load {AmmoPower:diff()} Ammo. Your Volley grants {Block:diff()} [gold]Block[/gold] per shot this turn.",
+  "SHADOWFALL-DEFENSIVE_CANNONADE.title": "DefensiveCannonade"
 }

@@ -69,6 +69,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<MirrorImage>(),
             ModelDb.Card<TargetAcquired>(),
             ModelDb.Card<Terraforming>(),
+            ModelDb.Card<DefensiveCannonade>(),
         ];
     }
 }
