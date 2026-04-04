@@ -68,6 +68,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<SpacePirate>(),
             ModelDb.Card<MirrorImage>(),
             ModelDb.Card<TargetAcquired>(),
+            ModelDb.Card<Terraforming>(),
         ];
     }
 }
