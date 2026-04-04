@@ -70,6 +70,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<TargetAcquired>(),
             ModelDb.Card<Terraforming>(),
             ModelDb.Card<DefensiveCannonade>(),
+            ModelDb.Card<Prophesize>(),
+            ModelDb.Card<GetStronger>(),
         ];
     }
 }

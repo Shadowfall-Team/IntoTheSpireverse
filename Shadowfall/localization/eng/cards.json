@@ -435,5 +435,7 @@
   "SHADOWFALL-SIEGE.description": "Load {AmmoPower:diff()} Ammo. Your Volley applies 1 [gold]Weak[/gold] this turn.",
   "SHADOWFALL-SIEGE.title": "Siege",
   "SHADOWFALL-DEFENSIVE_CANNONADE.description": "Load {AmmoPower:diff()} Ammo. Your Volley grants {Block:diff()} [gold]Block[/gold] per shot this turn.",
-  "SHADOWFALL-DEFENSIVE_CANNONADE.title": "DefensiveCannonade"
+  "SHADOWFALL-DEFENSIVE_CANNONADE.title": "Defensive Cannonade",
+  "SHADOWFALL-GET_STRONGER.description": "Gain {IfUpgraded:show:X+1|X} [gold]Strength[/gold]. Gain {IfUpgraded:show:X+1|X} [gold]Dexterity[/gold].",
+  "SHADOWFALL-GET_STRONGER.title": "Get Stronger"
 }
