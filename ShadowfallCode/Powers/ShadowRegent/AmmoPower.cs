@@ -1,9 +1,11 @@
 ﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -30,21 +32,38 @@ public class AmmoPower : CustomPowerModel
 
         for (var i = 0; i < Amount; i++)
         {
-            var validTargets = CombatState.Enemies.Where(e => e.IsAlive).ToList();
-            var preferredTargets = validTargets.Where(t => t.HasPower<TargettedThisTurnPower>()).ToList();
+            var target = SelectTarget();
 
-            var target = CombatState.RunState.Rng.CombatTargets.NextItem(
-                preferredTargets.Count != 0 ? preferredTargets : validTargets);
-            if (target != null)
+            if (target == null) return;
+            
+            //TODO: maybe play an animation here?
+            // VfxCmd.PlayOnCreatureCenter(attackCommand.Attacker, attackCommand._attackerVfx);
+
+            await CreatureCmd.Damage(choiceContext, target, volleyDamage,
+                ValueProp.Unpowered, Owner);
+
+            if (Owner.HasPower<SiegePower>())
             {
-                //TODO: maybe play an animation here?
-                // VfxCmd.PlayOnCreatureCenter(attackCommand.Attacker, attackCommand._attackerVfx);
-
-                await CreatureCmd.Damage(choiceContext, target, volleyDamage,
-                    ValueProp.Unpowered, Owner);
+                await PowerCmd.Apply<WeakPower>(target, 1, Owner, null);
             }
         }
 
+        await Cleanup();
+    }
+
+    private Creature? SelectTarget()
+    {
+        var validTargets = CombatState.Enemies.Where(e => e.IsAlive).ToList();
+        var preferredTargets = validTargets
+            .Where(t => t.HasPower<TargettedThisTurnPower>()).ToList();
+
+        var target = CombatState.RunState.Rng.CombatTargets.NextItem(
+            preferredTargets.Count != 0 ? preferredTargets : validTargets);
+        return target;
+    }
+
+    private async Task Cleanup()
+    {
         await PowerCmd.Remove<VolleyDamageThisTurnPower>(Owner);
         foreach (var target in
                  CombatState.Enemies.Where(e => e.HasPower<TargettedThisTurnPower>()))
