@@ -46,6 +46,11 @@ public class AmmoPower : CustomPowerModel
             {
                 await PowerCmd.Apply<WeakPower>(target, 1, Owner, null);
             }
+
+            if (Owner.HasPower<DefensiveCannonadePower>())
+            {
+                await CreatureCmd.GainBlock(Owner, Owner.GetPowerAmount<DefensiveCannonadePower>(), ValueProp.Unpowered, null);
+            }
         }
 
         await Cleanup();
@@ -55,7 +60,7 @@ public class AmmoPower : CustomPowerModel
     {
         var validTargets = CombatState.Enemies.Where(e => e.IsAlive).ToList();
         var preferredTargets = validTargets
-            .Where(t => t.HasPower<TargettedThisTurnPower>()).ToList();
+            .Where(t => t.HasPower<TargetedThisTurnPower>()).ToList();
 
         var target = CombatState.RunState.Rng.CombatTargets.NextItem(
             preferredTargets.Count != 0 ? preferredTargets : validTargets);
@@ -65,10 +70,11 @@ public class AmmoPower : CustomPowerModel
     private async Task Cleanup()
     {
         await PowerCmd.Remove<VolleyDamageThisTurnPower>(Owner);
+        await PowerCmd.Remove<DefensiveCannonadePower>(Owner);
         foreach (var target in
-                 CombatState.Enemies.Where(e => e.HasPower<TargettedThisTurnPower>()))
+                 CombatState.Enemies.Where(e => e.HasPower<TargetedThisTurnPower>()))
         {
-            await PowerCmd.Remove<TargettedThisTurnPower>(target);
+            await PowerCmd.Remove<TargetedThisTurnPower>(target);
         }
 
         await PowerCmd.Remove(this);
