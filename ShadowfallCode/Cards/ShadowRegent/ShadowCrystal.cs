@@ -24,6 +24,7 @@ public class ShadowCrystal() : ShadowRegentCard(1,
         await PowerCmd.Apply<ShardPower>(Owner.Creature,
             DynamicVars[nameof(ShardPower)].BaseValue, Owner.Creature, null);
 
+        //TODO: check if the card preview to cargo pile works correctly
         await CardPileCmd.Add(this, CargoCardPile.CargoPileType);
     }
 
