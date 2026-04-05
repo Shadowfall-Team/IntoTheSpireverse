@@ -150,5 +150,8 @@
   "SHADOWFALL-STRENGTH_VOLLEY_POWER.title": "Strengthened Volley",
   "SHADOWFALL-BIG_GUNS_POWER.description": "Every 10 [gold]Energy[/gold] you spend, load Ammo.",
   "SHADOWFALL-BIG_GUNS_POWER.smartDescription": "Every 10 {energyPrefix:energyIcons(1)} you spend, load {Amount:diff()} Ammo.",
-  "SHADOWFALL-BIG_GUNS_POWER.title": "Big Guns"
+  "SHADOWFALL-BIG_GUNS_POWER.title": "Big Guns",
+  "SHADOWFALL-TRIAL_OF_ONE_POWER.description": "The next time you spend 5{energyPrefix:energyIcons(1)} in a single turn, gain [gold]Strength[/gold] and 1 [gold]Intangible[/gold].",
+  "SHADOWFALL-TRIAL_OF_ONE_POWER.smartDescription": "The next time you spend 5{energyPrefix:energyIcons(1)} in a single turn, gain {StrengthPower:diff()} [gold]Strength[/gold] and 1 [gold]Intangible[/gold].\nYou have spent {EnergySpent} energy.",
+  "SHADOWFALL-TRIAL_OF_ONE_POWER.title": "Trial of One"
 }

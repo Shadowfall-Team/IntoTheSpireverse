@@ -99,6 +99,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<SpeedHarvest>(),
             ModelDb.Card<TrialOfSpace>(),
             ModelDb.Card<BigGuns>(),
+            ModelDb.Card<TrialOfOne>(),
         ];
     }
 }
