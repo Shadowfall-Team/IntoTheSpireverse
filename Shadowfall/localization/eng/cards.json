@@ -453,5 +453,7 @@
   "SHADOWFALL-E_M_PULSE.description": "When drawn, enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.",
   "SHADOWFALL-E_M_PULSE.title": "EM Pulse",
   "SHADOWFALL-THE_STARS_ALIGN.description": "Deal {Damage:diff()} damage to ALL enemies {Repeat:diff()} times.",
-  "SHADOWFALL-THE_STARS_ALIGN.title": "The Stars Align"
+  "SHADOWFALL-THE_STARS_ALIGN.title": "The Stars Align",
+  "SHADOWFALL-FIRE_EVERYTHING.description": "Add {AmmoPower:diff()} [gold]Ammo[/gold].",
+  "SHADOWFALL-FIRE_EVERYTHING.title": "Fire Everything!"
 }

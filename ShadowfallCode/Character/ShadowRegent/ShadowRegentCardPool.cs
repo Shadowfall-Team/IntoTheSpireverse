@@ -87,6 +87,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<EMPulse>(),
             ModelDb.Card<HeirloomHammer>(),
             ModelDb.Card<TheStarsAlign>(),
+            ModelDb.Card<FireEverything>(),
         ];
     }
 }
