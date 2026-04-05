@@ -80,6 +80,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Orbit>(),
             ModelDb.Card<SpectrumShift>(),
             ModelDb.Card<TheLostBlade>(),
+            ModelDb.Card<HeavenlyDrill>(),
+            ModelDb.Card<MakeItSo>(),
         ];
     }
 }
