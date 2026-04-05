@@ -76,6 +76,9 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Armada>(),
             ModelDb.Card<TradeRoutes>(),
             ModelDb.Card<CrystalChassis>(),
+            ModelDb.Card<PillarOfCreation>(),
+            ModelDb.Card<Orbit>(),
+            ModelDb.Card<SpectrumShift>(),
         ];
     }
 }
