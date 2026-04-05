@@ -29,7 +29,7 @@ public class Successor() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         var fromHandCard = (await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CargoSelectorPrefs.CargoSelectionPrompt, 1), null,
+            new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 1), null,
             this)).FirstOrDefault();
 
         if (fromHandCard == null) return;

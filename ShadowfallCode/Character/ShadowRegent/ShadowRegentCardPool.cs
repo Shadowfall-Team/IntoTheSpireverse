@@ -90,6 +90,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<FireEverything>(),
             ModelDb.Card<PoweredThrusters>(),
             ModelDb.Card<Successor>(),
+            ModelDb.Card<StashedAway>(),
         ];
     }
 }

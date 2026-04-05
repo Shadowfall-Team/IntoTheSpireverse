@@ -8,39 +8,41 @@ using Shadowfall.ShadowfallCode.CardPiles;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-public class StowAway() : ShadowRegentCard(1,
+//TODO: check if name is fine. similar to stowaway
+public class StashedAway() : ShadowRegentCard(
+    1,
     CardType.Attack,
-    CardRarity.Common,
+    CardRarity.Uncommon,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move),
-        new CardsVar(1)
+        new DamageVar(8, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        if (CombatState == null) return;
-
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(play.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        
+        var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner)
+            .Cards.OrderBy(c => c.Rarity)
+            .ThenBy(c => c.Id).ToList();
+        var prefs = new CardSelectorPrefs(CargoSelectorPrefs.FromCargoSelectionPrompt, 1);
 
-        var fromHandCard = await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 1), null,
-            this);
-        await CardPileCmd.Add(fromHandCard, CargoCardPile.CargoPileType);
+        var selection = (await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, prefs)).FirstOrDefault();
+
+        if (selection == null) return;
+        await CardPileCmd.Add(selection, PileType.Hand);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1);
-        DynamicVars.Cards.UpgradeValueBy(1);
+        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

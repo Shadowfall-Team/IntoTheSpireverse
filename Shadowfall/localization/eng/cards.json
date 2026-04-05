@@ -459,5 +459,7 @@
   "SHADOWFALL-POWERED_THRUSTERS.description": "When drawn, draw {Cards:diff()} cards.",
   "SHADOWFALL-POWERED_THRUSTERS.title": "Powered Thrusters",
   "SHADOWFALL-SUCCESSOR.description": "Add Replay {Repeat:diff()} to a card in your hand and put it into your [gold]Cargo[/gold].",
-  "SHADOWFALL-SUCCESSOR.title": "Successor"
+  "SHADOWFALL-SUCCESSOR.title": "Successor",
+  "SHADOWFALL-STASHED_AWAY.description": "Deal {Damage:diff()} damage. Put a card from your [gold]Cargo[/gold] into your hand.",
+  "SHADOWFALL-STASHED_AWAY.title": "Stashed Away"
 }
