@@ -439,5 +439,7 @@
   "SHADOWFALL-GET_STRONGER.description": "Gain {IfUpgraded:show:X+1|X} [gold]Strength[/gold]. Gain {IfUpgraded:show:X+1|X} [gold]Dexterity[/gold].",
   "SHADOWFALL-GET_STRONGER.title": "Get Stronger",
   "SHADOWFALL-HOARD.description": "Draw {Cards:diff()} {Cards:plural:card|cards}. Gain {energyPrefix:energyIcons(1)} for each card in your Cargo.",
-  "SHADOWFALL-HOARD.title": "Hoard"
+  "SHADOWFALL-HOARD.title": "Hoard",
+  "SHADOWFALL-ARMADA.description": "{IfUpgraded:show:Load 1 [gold]Ammo[/gold].\n|}At the start of your turn, load 1 Ammo.",
+  "SHADOWFALL-ARMADA.title": "Armada"
 }
