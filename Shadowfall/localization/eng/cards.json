@@ -465,5 +465,7 @@
   "SHADOWFALL-POWERED_BARRIER.description": "When you draw this, gain {Block:diff()} [gold]Block[/gold].",
   "SHADOWFALL-POWERED_BARRIER.title": "Powered Barrier",
   "SHADOWFALL-RED_GIANT.description": "After combat, Upgrade a {IfUpgraded:show:|random} card.",
-  "SHADOWFALL-RED_GIANT.title": "Red Giant"
+  "SHADOWFALL-RED_GIANT.title": "Red Giant",
+  "SHADOWFALL-SHIP_MAINTENANCE.description": "Add a [gold]Automation[/gold], [gold]Prowess[/gold] and [gold]Strategem[/gold] to your hand.\nThey are [gold]Ethereal[/gold].",
+  "SHADOWFALL-SHIP_MAINTENANCE.title": "Ship Maintenance"
 }

@@ -93,6 +93,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<StashedAway>(),
             ModelDb.Card<PoweredBarrier>(),
             ModelDb.Card<RedGiant>(),
+            ModelDb.Card<ShipMaintenance>(),
         ];
     }
 }
