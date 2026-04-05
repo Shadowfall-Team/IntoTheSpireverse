@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -54,8 +55,8 @@ public class TrialOfKnowledgePower : CustomPowerModel
         {
             Flash();
 
-            await PowerCmd.Apply<TrialOfKnowledgePower>(Owner,
-                DynamicVars[nameof(TrialOfKnowledgePower)].BaseValue,
+            await PowerCmd.Apply<ShardPower>(Owner,
+                DynamicVars[nameof(ShardPower)].BaseValue,
                 Owner, null);
 
             await PowerCmd.Remove(this);

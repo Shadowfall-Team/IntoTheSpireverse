@@ -141,5 +141,8 @@
   "SHADOWFALL-RED_GIANT_POWER.title": "Red Giant",
   "SHADOWFALL-SPEED_HARVEST_POWER.description": "Whenever you fully Block an Attack, gain Shards.",
   "SHADOWFALL-SPEED_HARVEST_POWER.smartDescription": "Whenever you fully Block an Attack, gain {Amount} [gold]{Amount:plural:Shard|Shards}[/gold].",
-  "SHADOWFALL-SPEED_HARVEST_POWER.title": "Speed Harvest"
+  "SHADOWFALL-SPEED_HARVEST_POWER.title": "Speed Harvest",
+  "SHADOWFALL-TRIAL_OF_SPACE_POWER.description": "The next time you play a total of 15 cards, [gold]Upgrade[/gold] ALL of your cards.",
+  "SHADOWFALL-TRIAL_OF_SPACE_POWER.smartDescription": "The next time you play a total of 15 cards, [gold]Upgrade[/gold] ALL of your cards.\nYou have played {CardsPlayedThisTurn} cards.",
+  "SHADOWFALL-TRIAL_OF_SPACE_POWER.title": "TrialOfSpacePower"
 }
