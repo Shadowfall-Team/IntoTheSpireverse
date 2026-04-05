@@ -126,5 +126,8 @@
   "SHADOWFALL-SIEGE_POWER.title": "Siege",
   "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.description": "Your Volley grants Block per shot this turn.",
   "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.smartDescription": "Your Volley grants {Amount} [blue]Block[/blue] per shot this turn.",
-  "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.title": "Defensive Cannonade"
+  "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.title": "Defensive Cannonade",
+  "SHADOWFALL-ARMADA_POWER.description": "At the start of your turn, load Ammo.",
+  "SHADOWFALL-ARMADA_POWER.smartDescription": "At the start of your turn, load {Amount} Ammo.",
+  "SHADOWFALL-ARMADA_POWER.title": "Armada"
 }

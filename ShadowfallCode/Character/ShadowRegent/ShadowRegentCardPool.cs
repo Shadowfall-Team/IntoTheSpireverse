@@ -73,6 +73,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Prophesize>(),
             ModelDb.Card<GetStronger>(),
             ModelDb.Card<Hoard>(),
+            ModelDb.Card<Armada>(),
         ];
     }
 }
