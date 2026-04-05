@@ -30,6 +30,11 @@ public class AmmoPower : CustomPowerModel
         var volleyDamage = DynamicVars.Damage.BaseValue +
                            Owner.GetPowerAmount<VolleyDamageThisTurnPower>();
 
+        if (Owner.HasPower<StrengthVolleyPower>())
+        {
+            volleyDamage += Owner.GetPowerAmount<StrengthPower>();
+        }
+
         for (var i = 0; i < Amount; i++)
         {
             var target = SelectTarget();

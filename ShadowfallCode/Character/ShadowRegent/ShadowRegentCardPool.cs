@@ -98,6 +98,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Arsenal>(),
             ModelDb.Card<SpeedHarvest>(),
             ModelDb.Card<TrialOfSpace>(),
+            ModelDb.Card<BigGuns>(),
         ];
     }
 }
