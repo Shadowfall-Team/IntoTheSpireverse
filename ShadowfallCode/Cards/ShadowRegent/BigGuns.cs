@@ -55,19 +55,6 @@ public class BigGunsPower : CustomPowerModel
         new IntVar("EnergySpent", 0)
     ];
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext,
-        CombatSide side, CombatState combatState)
-    {
-        if (side != Owner.Side)
-        {
-            return Task.CompletedTask;
-        }
-
-        DynamicVars["EnergySpent"].BaseValue = 0;
-        StopPulsing();
-        return Task.CompletedTask;
-    }
-
     public override async Task AfterEnergySpent(CardModel card, int amount)
     {
         if (card.Owner.Creature == Owner)
@@ -84,7 +71,7 @@ public class BigGunsPower : CustomPowerModel
                 {
                     Flash();
 
-                    await PowerCmd.Apply<BigGunsPower>(Owner,
+                    await PowerCmd.Apply<AmmoPower>(Owner,
                         Amount,
                         Owner,
                         null);
