@@ -461,5 +461,7 @@
   "SHADOWFALL-SUCCESSOR.description": "Add Replay {Repeat:diff()} to a card in your hand and put it into your [gold]Cargo[/gold].",
   "SHADOWFALL-SUCCESSOR.title": "Successor",
   "SHADOWFALL-STASHED_AWAY.description": "Deal {Damage:diff()} damage. Put a card from your [gold]Cargo[/gold] into your hand.",
-  "SHADOWFALL-STASHED_AWAY.title": "Stashed Away"
+  "SHADOWFALL-STASHED_AWAY.title": "Stashed Away",
+  "SHADOWFALL-POWERED_BARRIER.description": "When you draw this, gain {Block:diff()} [gold]Block[/gold].",
+  "SHADOWFALL-POWERED_BARRIER.title": "Powered Barrier"
 }
