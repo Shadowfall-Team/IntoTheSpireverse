@@ -3,25 +3,22 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-public class TheLostBlade() : ShadowRegentCard(
-    1,
+public class AstralStrike() : ShadowRegentCard(
+    2,
     CardType.Attack,
     CardRarity.Rare,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(50, ValueProp.Move)
+        new DamageVar(8, ValueProp.Move),
+        new CardsVar(2),
+        new PowerVar<AmmoPower>(1)
     ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
-
-    protected override bool IsPlayable => PileType.Hand.GetPile(Owner).Cards.Count == 10;
-    
-    protected override bool ShouldGlowGoldInternal => IsPlayable;
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -30,12 +27,21 @@ public class TheLostBlade() : ShadowRegentCard(
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(play.Target)
-            .WithHitFx("vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
+            .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+        
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        
+        await PowerCmd.Apply<AmmoPower>(
+            Owner.Creature,
+            DynamicVars[nameof(AmmoPower)].BaseValue,
+            Owner.Creature,
+            this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(10);
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

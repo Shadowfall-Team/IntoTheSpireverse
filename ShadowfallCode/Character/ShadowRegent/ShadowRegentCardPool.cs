@@ -82,6 +82,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<TheLostBlade>(),
             ModelDb.Card<HeavenlyDrill>(),
             ModelDb.Card<MakeItSo>(),
+            ModelDb.Card<AstralStrike>(),
         ];
     }
 }
