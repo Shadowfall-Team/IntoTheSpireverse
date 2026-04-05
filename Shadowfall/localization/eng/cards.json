@@ -445,5 +445,7 @@
   "SHADOWFALL-TRADE_ROUTES.description": "You draw an additional card from your [gold]Cargo[/gold] each turn.",
   "SHADOWFALL-TRADE_ROUTES.title": "Trade Routes",
   "SHADOWFALL-CRYSTAL_CHASSIS.description": "Your Defends grant {ExtraBlock:diff()} additional [gold]Block[/gold]. Add an [gold]{IfUpgraded:show:Ultimate Defend+|Ultimate Defend}[/gold] into your [gold]Cargo[/gold].",
-  "SHADOWFALL-CRYSTAL_CHASSIS.title": "Crystal Chassis"
+  "SHADOWFALL-CRYSTAL_CHASSIS.title": "Crystal Chassis",
+  "SHADOWFALL-THE_LOST_BLADE.description": "Unplayable unless your hand is full. Deal {Damage:diff()} damage.",
+  "SHADOWFALL-THE_LOST_BLADE.title": "The Lost Blade"
 }
