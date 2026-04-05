@@ -441,5 +441,7 @@
   "SHADOWFALL-HOARD.description": "Draw {Cards:diff()} {Cards:plural:card|cards}. Gain {energyPrefix:energyIcons(1)} for each card in your Cargo.",
   "SHADOWFALL-HOARD.title": "Hoard",
   "SHADOWFALL-ARMADA.description": "{IfUpgraded:show:Load 1 [gold]Ammo[/gold].\n|}At the start of your turn, load 1 Ammo.",
-  "SHADOWFALL-ARMADA.title": "Armada"
+  "SHADOWFALL-ARMADA.title": "Armada",
+  "SHADOWFALL-TRADE_ROUTES.description": "You draw an additional card from your Cargo each turn.",
+  "SHADOWFALL-TRADE_ROUTES.title": "Trade Routes"
 }

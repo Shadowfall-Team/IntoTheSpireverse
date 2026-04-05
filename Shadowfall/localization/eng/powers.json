@@ -129,5 +129,8 @@
   "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.title": "Defensive Cannonade",
   "SHADOWFALL-ARMADA_POWER.description": "At the start of your turn, load Ammo.",
   "SHADOWFALL-ARMADA_POWER.smartDescription": "At the start of your turn, load {Amount} Ammo.",
-  "SHADOWFALL-ARMADA_POWER.title": "Armada"
+  "SHADOWFALL-ARMADA_POWER.title": "Armada",
+  "SHADOWFALL-TRADE_ROUTES_POWER.description": "You draw additional cards from your Cargo each turn.",
+  "SHADOWFALL-TRADE_ROUTES_POWER.smartDescription": "You draw {Amount} additional {Amount:plural:card|cards} from your Cargo each turn.",
+  "SHADOWFALL-TRADE_ROUTES_POWER.title": "Trade Routes"
 }

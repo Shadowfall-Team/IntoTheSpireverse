@@ -74,6 +74,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<GetStronger>(),
             ModelDb.Card<Hoard>(),
             ModelDb.Card<Armada>(),
+            ModelDb.Card<TradeRoutes>(),
         ];
     }
 }
