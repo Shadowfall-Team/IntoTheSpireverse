@@ -85,6 +85,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<AstralStrike>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<EMPulse>(),
+            ModelDb.Card<HeirloomHammer>(),
+            ModelDb.Card<TheStarsAlign>(),
         ];
     }
 }
