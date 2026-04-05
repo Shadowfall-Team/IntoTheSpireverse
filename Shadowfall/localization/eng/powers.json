@@ -138,5 +138,8 @@
   "SHADOWFALL-RED_GIANT_RANDOM_POWER.title": "Red Giant - Random",
   "SHADOWFALL-RED_GIANT_POWER.description": "After combat, Upgrade cards.",
   "SHADOWFALL-RED_GIANT_POWER.smartDescription": "After combat, Upgrade {Amount} {Amount:plural:card|cards}.",
-  "SHADOWFALL-RED_GIANT_POWER.title": "Red Giant"
+  "SHADOWFALL-RED_GIANT_POWER.title": "Red Giant",
+  "SHADOWFALL-SPEED_HARVEST_POWER.description": "Whenever you fully Block an Attack, gain Shards.",
+  "SHADOWFALL-SPEED_HARVEST_POWER.smartDescription": "Whenever you fully Block an Attack, gain {Amount} [gold]{Amount:plural:Shard|Shards}[/gold].",
+  "SHADOWFALL-SPEED_HARVEST_POWER.title": "Speed Harvest"
 }
