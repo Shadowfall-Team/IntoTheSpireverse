@@ -457,5 +457,7 @@
   "SHADOWFALL-FIRE_EVERYTHING.description": "Add {AmmoPower:diff()} [gold]Ammo[/gold].",
   "SHADOWFALL-FIRE_EVERYTHING.title": "Fire Everything!",
   "SHADOWFALL-POWERED_THRUSTERS.description": "When drawn, draw {Cards:diff()} cards.",
-  "SHADOWFALL-POWERED_THRUSTERS.title": "Powered Thrusters"
+  "SHADOWFALL-POWERED_THRUSTERS.title": "Powered Thrusters",
+  "SHADOWFALL-SUCCESSOR.description": "Add Replay {Repeat:diff()} to a card in your hand and put it into your [gold]Cargo[/gold].",
+  "SHADOWFALL-SUCCESSOR.title": "Successor"
 }
