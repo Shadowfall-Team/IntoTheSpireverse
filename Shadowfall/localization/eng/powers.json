@@ -132,5 +132,11 @@
   "SHADOWFALL-ARMADA_POWER.title": "Armada",
   "SHADOWFALL-TRADE_ROUTES_POWER.description": "You draw additional cards from your Cargo each turn.",
   "SHADOWFALL-TRADE_ROUTES_POWER.smartDescription": "You draw {Amount} additional {Amount:plural:card|cards} from your Cargo each turn.",
-  "SHADOWFALL-TRADE_ROUTES_POWER.title": "Trade Routes"
+  "SHADOWFALL-TRADE_ROUTES_POWER.title": "Trade Routes",
+  "SHADOWFALL-RED_GIANT_RANDOM_POWER.description": "After combat, Upgrade random cards.",
+  "SHADOWFALL-RED_GIANT_RANDOM_POWER.smartDescription": "After combat, Upgrade {Amount} random {Amount:plural:card|cards}.",
+  "SHADOWFALL-RED_GIANT_RANDOM_POWER.title": "Red Giant - Random",
+  "SHADOWFALL-RED_GIANT_POWER.description": "After combat, Upgrade cards.",
+  "SHADOWFALL-RED_GIANT_POWER.smartDescription": "After combat, Upgrade {Amount} {Amount:plural:card|cards}.",
+  "SHADOWFALL-RED_GIANT_POWER.title": "Red Giant"
 }
