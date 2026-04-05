@@ -44,19 +44,6 @@ public class TrialOfSpacePower : CustomPowerModel
         new IntVar("CardsPlayedThisTurn", 0)
     ];
 
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext,
-        CombatSide side, CombatState combatState)
-    {
-        if (side != Owner.Side)
-        {
-            return Task.CompletedTask;
-        }
-
-        DynamicVars["CardsPlayedThisTurn"].BaseValue = 0;
-        StopPulsing();
-        return Task.CompletedTask;
-    }
-
     public override async Task AfterCardPlayed(PlayerChoiceContext context,
         CardPlay cardPlay)
     {
