@@ -94,6 +94,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<PoweredBarrier>(),
             ModelDb.Card<RedGiant>(),
             ModelDb.Card<ShipMaintenance>(),
+            ModelDb.Card<EscortMe>(),
         ];
     }
 }

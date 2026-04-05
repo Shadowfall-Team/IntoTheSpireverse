@@ -467,5 +467,7 @@
   "SHADOWFALL-RED_GIANT.description": "After combat, Upgrade a {IfUpgraded:show:|random} card.",
   "SHADOWFALL-RED_GIANT.title": "Red Giant",
   "SHADOWFALL-SHIP_MAINTENANCE.description": "Add a [gold]Automation[/gold], [gold]Prowess[/gold] and [gold]Strategem[/gold] to your hand.\nThey are [gold]Ethereal[/gold].",
-  "SHADOWFALL-SHIP_MAINTENANCE.title": "Ship Maintenance"
+  "SHADOWFALL-SHIP_MAINTENANCE.title": "Ship Maintenance",
+  "SHADOWFALL-ESCORT_ME.description": "Add a [gold]Minion Sacrifice[/gold] to your hand and X{IfUpgraded:show:+1|} more to your Cargo.",
+  "SHADOWFALL-ESCORT_ME.title": "Escort Me"
 }
