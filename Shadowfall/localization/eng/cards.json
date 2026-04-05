@@ -455,5 +455,7 @@
   "SHADOWFALL-THE_STARS_ALIGN.description": "Deal {Damage:diff()} damage to ALL enemies {Repeat:diff()} times.",
   "SHADOWFALL-THE_STARS_ALIGN.title": "The Stars Align",
   "SHADOWFALL-FIRE_EVERYTHING.description": "Add {AmmoPower:diff()} [gold]Ammo[/gold].",
-  "SHADOWFALL-FIRE_EVERYTHING.title": "Fire Everything!"
+  "SHADOWFALL-FIRE_EVERYTHING.title": "Fire Everything!",
+  "SHADOWFALL-POWERED_THRUSTERS.description": "When drawn, draw {Cards:diff()} cards.",
+  "SHADOWFALL-POWERED_THRUSTERS.title": "Powered Thrusters"
 }
