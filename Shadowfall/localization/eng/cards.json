@@ -479,5 +479,9 @@
   "SHADOWFALL-TRIAL_OF_ONE.description": "The next time you spend 5{energyPrefix:energyIcons(1)} in a single turn, gain {StrengthPower:diff()} [gold]Strength[/gold] and 1 [gold]Intangible[/gold].",
   "SHADOWFALL-TRIAL_OF_ONE.title": "Trial of One",
   "SHADOWFALL-CONSTRUCT.description": "At the start of your turn, gain [blue]{GainShardsPower:diff()}[/blue] [gold]Shards[/gold].",
-  "SHADOWFALL-CONSTRUCT.title": "Construct"
+  "SHADOWFALL-CONSTRUCT.title": "Construct",
+  "SHADOWFALL-ASSEMBLY_REQUIRED.description": "Add a [gold]Fragment[/gold] to each player's draw pile.",
+  "SHADOWFALL-ASSEMBLY_REQUIRED.title": "Assembly Required",
+  "SHADOWFALL-FRAGMENT.description": "Everyone gains {ShardPower:diff()} [gold]Shards[/gold]",
+  "SHADOWFALL-FRAGMENT.title": "Fragment"
 }
