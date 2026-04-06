@@ -489,5 +489,7 @@
   "SHADOWFALL-EXALTED_FORM.description": "At the start of your turn, add a 0-cost [gold]Discovery[/gold] to your hand.",
   "SHADOWFALL-EXALTED_FORM.title": "Exalted Form",
   "SHADOWFALL-CONSTELLATION.description": "Gain {Block:diff()} [gold]Block[/gold]. Put a card from your draw pile into your [gold]Cargo[/gold].",
-  "SHADOWFALL-CONSTELLATION.title": "Constellation"
+  "SHADOWFALL-CONSTELLATION.title": "Constellation",
+  "SHADOWFALL-THE_SEALED_THRONE.description": "Deal {CalculatedDamage:diff()} damage. Double this card's damage for each [gold]Warp[/gold] you've played this combat.",
+  "SHADOWFALL-THE_SEALED_THRONE.title": "The Sealed Throne"
 }

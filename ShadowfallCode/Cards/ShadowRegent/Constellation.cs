@@ -11,7 +11,7 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 public class Constellation() : ShadowRegentCard(
     0,
     CardType.Skill,
-    CardRarity.Rare,
+    CardRarity.Ancient,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
