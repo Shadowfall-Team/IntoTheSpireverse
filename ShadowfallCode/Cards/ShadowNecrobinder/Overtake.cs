@@ -53,6 +53,7 @@ public sealed class Overtake() : ShadowNecrobinderCard(0, CardType.Skill, CardRa
         {
             await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars.Cards.BaseValue, Owner.Creature, this);
             await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }
 }

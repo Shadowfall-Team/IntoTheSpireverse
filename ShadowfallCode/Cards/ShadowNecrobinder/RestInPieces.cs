@@ -68,6 +68,7 @@ public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, C
         {
             DynamicVars.Repeat.BaseValue += 2m;
             AdditionalHits += 2m;
+            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }
 }

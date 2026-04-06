@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
-public sealed class AbraCadaver() : ShadowNecrobinderCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class AbraCadaver() : ShadowNecrobinderCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const string _calculatedStrKey = "CalculatedStr";
 

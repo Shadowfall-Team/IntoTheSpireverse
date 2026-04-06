@@ -1,0 +1,8 @@
+﻿{
+  "SHADOWFALL-S_NECRO_SOUL_STRIKE_POTION.title": "Shadow Necrobinder Soul Strike Potion (PLACEHOLDER NAME)",
+  "SHADOWFALL-S_NECRO_SOUL_STRIKE_POTION.description": "Add [blue]{Cards}[/blue] [gold]{Cards:plural:Soul Strike|Soul Strikes}[/gold] into your [gold]Hand[/gold].",
+  "SHADOWFALL-S_NECRO_DEATHGLARE_POTION.title": "Shadow Necrobinder Deathglare Potion (PLACEHOLDER NAME)",
+  "SHADOWFALL-S_NECRO_DEATHGLARE_POTION.description": "Add a [gold]Deathglare[/gold] into your [gold]Draw Pile[/gold].",
+  "SHADOWFALL-S_NECRO_BLOCK_CURSE_POTION.title": "SNecroBlockCursePotion (PLACEHOLDER NAME)",
+  "SHADOWFALL-S_NECRO_BLOCK_CURSE_POTION.description": "Gain [blue]{Block}[/blue] [gold]Block[/gold], plus an additional [blue]5[/blue] [gold]Block[/gold] for each [purple]Curse[/purple] in your [gold]Deck[/gold].\n(Gain [blue]{TotalBlock}[/blue] [gold]Block[/gold])"
+}

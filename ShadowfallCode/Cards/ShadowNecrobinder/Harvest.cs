@@ -72,6 +72,7 @@ public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRa
             DynamicVars.Damage.BaseValue += DynamicVars[_increaseKey].BaseValue;
             ExtraDamageFromLinger += DynamicVars[_increaseKey].BaseValue;
             LingerHelper.PendingLingerRedirect.Add(this);
+            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }
 }

@@ -10,7 +10,7 @@ public sealed class DeadEnd() : ShadowNecrobinderCard(3, CardType.Attack, CardRa
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(36m, ValueProp.Move),
+        new DamageVar(40m, ValueProp.Move),
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>

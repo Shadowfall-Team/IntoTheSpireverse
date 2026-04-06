@@ -50,6 +50,7 @@ public sealed class PureAura() : ShadowNecrobinderCard(3, CardType.Skill, CardRa
         {
             await CreatureCmd.Damage(choiceContext, CombatState.HittableEnemies,
                 (DamageVar)DynamicVars[_lingerDamageKey], Owner.Creature);
+            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }
 }

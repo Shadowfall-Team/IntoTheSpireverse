@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bk4joy1nxm5cq"]
+
+[ext_resource type="Shader" uid="uid://bjadwxrmsihto" path="res://Shadowfall/shaders/hsvWithGradient.gdshader" id="1_esdn5"]
+
+[sub_resource type="Gradient" id="Gradient_unm0i"]
+offsets = PackedFloat32Array(0, 0.55932206)
+colors = PackedColorArray(0.3143162, 0.31431612, 0.3143158, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0uvsl"]
+gradient = SubResource("Gradient_unm0i")
+fill_from = Vector2(0, 0.21978022)
+fill_to = Vector2(0, 0)
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_esdn5")
+shader_parameter/h = 0.1200000057
+shader_parameter/s = 1.5000000712500001
+shader_parameter/v = 1.2
+shader_parameter/gradient = SubResource("GradientTexture2D_0uvsl")

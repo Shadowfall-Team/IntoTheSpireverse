@@ -9,7 +9,7 @@ using Shadowfall.ShadowfallCode.Patches;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
-public sealed class WorkOut() : ShadowNecrobinderCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class WorkOut() : ShadowNecrobinderCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     private const string _vigorKey = "Vigor";
 
@@ -49,6 +49,7 @@ public sealed class WorkOut() : ShadowNecrobinderCard(1, CardType.Skill, CardRar
         for (int i = 0; i < triggers; i++)
         {
             await PowerCmd.Apply<VigorPower>(Owner.Creature, DynamicVars[_vigorKey].BaseValue, Owner.Creature, this);
+            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }
 }

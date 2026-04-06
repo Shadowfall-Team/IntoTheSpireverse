@@ -9,12 +9,10 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
 public sealed class GraveyardSmash() : ShadowNecrobinderCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    public override bool GainsBlock => true;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9m, ValueProp.Move),
-        new BlockVar(9m, ValueProp.Move),
+        new DamageVar(13m, ValueProp.Move),
+        new CardsVar(2),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -25,13 +23,11 @@ public sealed class GraveyardSmash() : ShadowNecrobinderCard(2, CardType.Attack,
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
-
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(4m);
     }
 
     public override Task AfterCardChangedPiles(CardModel card, PileType oldPile, AbstractModel? source)
