@@ -1,7 +1,8 @@
 ﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
@@ -11,12 +12,9 @@ public class GainShardsNextTurnPower : CustomPowerModel
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterSideTurnStart(CombatSide side,
-        CombatState combatState)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext,
+        Player player)
     {
-        if (side != Owner.Side || AmountOnTurnStart == 0)
-            return;
-
         await PowerCmd.Apply<ShardPower>(Owner, Amount, Owner, null);
         await PowerCmd.Remove(this);
     }

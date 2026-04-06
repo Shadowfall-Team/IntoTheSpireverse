@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
@@ -42,11 +43,9 @@ public class ArmadaPower : CustomPowerModel
 
     public override PowerStackType StackType => PowerStackType.Counter;
     
-    public override async Task AfterSideTurnStart(CombatSide side,
-        CombatState combatState)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (side != Owner.Side || AmountOnTurnStart == 0)
-            return;
+        // if (AmountOnTurnStart == 0) return;
 
         await PowerCmd.Apply<AmmoPower>(Owner, Amount, Owner, null);
     }
