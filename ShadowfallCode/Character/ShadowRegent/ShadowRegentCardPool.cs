@@ -102,6 +102,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<TrialOfOne>(),
             ModelDb.Card<Construct>(),
             ModelDb.Card<AssemblyRequired>(),
+            ModelDb.Card<Cards.ShadowRegent.Cascade>(),
         ];
     }
 }

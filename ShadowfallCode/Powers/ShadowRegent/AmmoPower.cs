@@ -28,7 +28,8 @@ public class AmmoPower : CustomPowerModel
             return;
 
         var volleyDamage = DynamicVars.Damage.BaseValue +
-                           Owner.GetPowerAmount<VolleyDamageThisTurnPower>();
+                           Owner.GetPowerAmount<VolleyDamageThisTurnPower>() +
+                           Owner.GetPowerAmount<VolleyDamagePower>();
 
         if (Owner.HasPower<StrengthVolleyPower>())
         {
@@ -46,6 +47,11 @@ public class AmmoPower : CustomPowerModel
 
             await CreatureCmd.Damage(choiceContext, target, volleyDamage,
                 ValueProp.Unpowered, Owner);
+
+            if (Owner.HasPower<CascadePower>())
+            {
+                await PowerCmd.Apply<VolleyDamagePower>(Owner, 1, Owner, null);
+            }
 
             if (Owner.HasPower<SiegePower>())
             {
