@@ -450,7 +450,7 @@
   "SHADOWFALL-CRYSTAL_CHASSIS.title": "Crystal Chassis",
   "SHADOWFALL-THE_LOST_BLADE.description": "Unplayable unless your hand is full. Deal {Damage:diff()} damage.",
   "SHADOWFALL-THE_LOST_BLADE.title": "The Lost Blade",
-  "SHADOWFALL-ASTRAL_STRIKE.description": "Deal {Damage:diff()} damage. Draw {Cards:diff()} cards. Load {AmmoPower:diff()}  gold]Ammo[/gold].",
+  "SHADOWFALL-ASTRAL_STRIKE.description": "Deal {Damage:diff()} damage. Draw {Cards:diff()} cards. Load {AmmoPower:diff()} [gold]Ammo[/gold].",
   "SHADOWFALL-ASTRAL_STRIKE.title": "Astral Strike",
   "SHADOWFALL-E_M_PULSE.description": "When drawn, enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.",
   "SHADOWFALL-E_M_PULSE.title": "EM Pulse",
