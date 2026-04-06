@@ -477,5 +477,7 @@
   "SHADOWFALL-BIG_GUNS.description": "Strength also increases Volley's damage. Every 10{energyPrefix:energyIcons(1)} you spend, load {AmmoPower:diff()} Ammo.",
   "SHADOWFALL-BIG_GUNS.title": "Big Guns",
   "SHADOWFALL-TRIAL_OF_ONE.description": "The next time you spend 5{energyPrefix:energyIcons(1)} in a single turn, gain {StrengthPower:diff()} [gold]Strength[/gold] and 1 [gold]Intangible[/gold].",
-  "SHADOWFALL-TRIAL_OF_ONE.title": "Trial of One"
+  "SHADOWFALL-TRIAL_OF_ONE.title": "Trial of One",
+  "SHADOWFALL-CONSTRUCT.description": "At the start of your turn, gain [blue]{GainShardsPower:diff()}[/blue] [gold]Shards[/gold].",
+  "SHADOWFALL-CONSTRUCT.title": "Construct"
 }

@@ -100,6 +100,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<TrialOfSpace>(),
             ModelDb.Card<BigGuns>(),
             ModelDb.Card<TrialOfOne>(),
+            ModelDb.Card<Construct>(),
         ];
     }
 }
