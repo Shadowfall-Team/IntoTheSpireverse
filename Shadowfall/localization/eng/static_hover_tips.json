@@ -1,3 +1,6 @@
 {
-  
+  "SHADOWFALL_GLORY_DYNAMIC.title": "Glory {Glory}",
+  "SHADOWFALL_GLORY_DYNAMIC.description": "If you have played at least [blue]{Glory}[/blue] cards this turn, trigger an additional effect.",
+  "SHADOWFALL_GLORY_STATIC.title": "Glory",
+  "SHADOWFALL_GLORY_STATIC.description": "If you have played a certain number of cards during your turn, trigger an additional effect."
 }
