@@ -162,5 +162,8 @@
   "SHADOWFALL-CASCADE_POWER.title": "Cascade",
   "SHADOWFALL-VOLLEY_DAMAGE_POWER.description": "Increases your Volley damage.",
   "SHADOWFALL-VOLLEY_DAMAGE_POWER.smartDescription": "Increases your Volley damage by {Amount:diff()}",
-  "SHADOWFALL-VOLLEY_DAMAGE_POWER.title": "Volley Damage"
+  "SHADOWFALL-VOLLEY_DAMAGE_POWER.title": "Volley Damage",
+  "SHADOWFALL-EXALTED_FORM_POWER.description": "At the start of your turn, add a 0-cost Discovery to your hand.",
+  "SHADOWFALL-EXALTED_FORM_POWER.smartDescription": "At the start of your turn, add {Amount:plural:a|{Amount}} 0-cost Discovery to your hand.",
+  "SHADOWFALL-EXALTED_FORM_POWER.title": "Exalted Form"
 }

@@ -485,5 +485,7 @@
   "SHADOWFALL-FRAGMENT.description": "Everyone gains {ShardPower:diff()} [gold]Shards[/gold]",
   "SHADOWFALL-FRAGMENT.title": "Fragment",
   "SHADOWFALL-CASCADE.description": "Every shot from your Volley increases all future Volley damage by 1.",
-  "SHADOWFALL-CASCADE.title": "Cascade"
+  "SHADOWFALL-CASCADE.title": "Cascade",
+  "SHADOWFALL-EXALTED_FORM.description": "At the start of your turn, add a 0-cost [gold]Discovery[/gold] to your hand.",
+  "SHADOWFALL-EXALTED_FORM.title": "Exalted Form"
 }
