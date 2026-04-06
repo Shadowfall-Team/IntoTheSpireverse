@@ -487,5 +487,7 @@
   "SHADOWFALL-CASCADE.description": "Every shot from your Volley increases all future Volley damage by 1.",
   "SHADOWFALL-CASCADE.title": "Cascade",
   "SHADOWFALL-EXALTED_FORM.description": "At the start of your turn, add a 0-cost [gold]Discovery[/gold] to your hand.",
-  "SHADOWFALL-EXALTED_FORM.title": "Exalted Form"
+  "SHADOWFALL-EXALTED_FORM.title": "Exalted Form",
+  "SHADOWFALL-CONSTELLATION.description": "Gain {Block:diff()} [gold]Block[/gold]. Put a card from your draw pile into your [gold]Cargo[/gold].",
+  "SHADOWFALL-CONSTELLATION.title": "Constellation"
 }

@@ -105,6 +105,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Cards.ShadowRegent.Cascade>(),
             ModelDb.Card<MonarchsGaze>(),
             ModelDb.Card<ExaltedForm>(),
+            ModelDb.Card<Constellation>(),
         ];
     }
 }
