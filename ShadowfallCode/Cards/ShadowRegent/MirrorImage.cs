@@ -25,6 +25,7 @@ public class MirrorImage() : ShadowRegentCard(
 
         if (PileType.Hand.GetPile(Owner).Cards.Count >= 7)
         {
+            await Cmd.Wait(0.25f);
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
         }
     }

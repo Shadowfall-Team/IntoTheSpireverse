@@ -61,7 +61,7 @@ public class TrialOfKnowledgePower : CustomPowerModel
             Flash();
 
             await PowerCmd.Apply<ShardPower>(Owner,
-                DynamicVars[nameof(ShardPower)].BaseValue,
+                Amount,
                 Owner, null);
 
             await PowerCmd.Remove(this);

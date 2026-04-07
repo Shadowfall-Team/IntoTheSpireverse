@@ -63,6 +63,6 @@ public class SiegePower : CustomPowerModel
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        Amount--;
+        await PowerCmd.Remove(this);
     }
 }

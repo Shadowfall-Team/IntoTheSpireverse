@@ -44,7 +44,7 @@ public class TargetAcquired() : ShadowRegentCard(
         
         await PowerCmd.Apply<TargetedThisTurnPower>(
             play.Target,
-            DynamicVars[nameof(TargetedThisTurnPower)].BaseValue,
+            1,
             Owner.Creature,
             this);
         

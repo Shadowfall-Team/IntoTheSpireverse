@@ -30,6 +30,7 @@ public class CrystalChassis() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
+        //TODO: currently this uses fastenpower, do you want this to be its own power with its own icon?
         await PowerCmd.Apply<FastenPower>(Owner.Creature,
             DynamicVars["ExtraBlock"].BaseValue,
             Owner.Creature,

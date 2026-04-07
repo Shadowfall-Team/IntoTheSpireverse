@@ -17,7 +17,7 @@ public class CombatManagerStartTurnPatch
         if (!cargoPile.IsEmpty)
         {
             var tradeRoutes = ___player.Creature.GetPower<TradeRoutesPower>()?.Amount ?? 0;
-            var cardModels = cargoPile.Cards.TakeLast(1 + tradeRoutes).ToList();
+            var cardModels = cargoPile.Cards.Take(1 + tradeRoutes).ToList();
             if (cardModels.Count != 0)
             {
                 CardPileCmd.Add(cardModels, PileType.Hand);

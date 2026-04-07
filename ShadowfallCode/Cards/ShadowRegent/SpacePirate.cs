@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.CardPiles;
 using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -55,8 +56,10 @@ public class SpacePirate() : ShadowRegentCard(
                     CardCmd.Upgrade(cardModel);
                 }
 
-                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand,
+                var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(cardModel, CargoCardPile.CargoPileType,
                     true);
+                CardCmd.PreviewCardPileAdd(cardPileAddResult);
+
             }
         }
     }

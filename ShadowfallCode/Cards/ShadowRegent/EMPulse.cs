@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -44,7 +45,7 @@ public class EMPulse() : ShadowRegentCard(
             foreach (var creature in CombatState.HittableEnemies)
             {
                 //TODO: check if should use icebeampower or if piercing wail power is fine enough
-                await PowerCmd.Apply<IceBeamPower>(creature,
+                await PowerCmd.Apply<EMPulsePower>(creature,
                     DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
             }
         }
@@ -54,4 +55,12 @@ public class EMPulse() : ShadowRegentCard(
     {
         DynamicVars["StrengthLoss"].UpgradeValueBy(2);
     }
+}
+
+
+public class EMPulsePower : TemporaryStrengthPower, ICustomPower
+{
+    public override AbstractModel OriginModel => ModelDb.Card<EMPulse>();
+
+    protected override bool IsPositive => false;
 }
