@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
@@ -15,6 +16,9 @@ public class HiddenCache() : ShadowRegentCard(1,
     [
         new PowerVar<ShardPower>(1),
         new PowerVar<GainShardsNextTurnPower>(3)
+    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<ShardPower>(),
     ];
 
     protected override async Task OnPlay(

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -14,6 +15,10 @@ public class ExaltedForm() : ShadowRegentCard(
     CardRarity.Rare,
     TargetType.Self)
 {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromCard<Discovery>(),
+    ];
+    
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
 
     protected override async Task OnPlay(

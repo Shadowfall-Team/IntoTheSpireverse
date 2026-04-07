@@ -4,7 +4,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -20,6 +22,11 @@ public class Siege() : ShadowRegentCard(
         new PowerVar<AmmoPower>(1),
         //TODO: how should siege power scale? does it scale with the amount of weakness it adds, or does it scale with how many weakness stacks to add?
         new PowerVar<SiegePower>(1)
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<AmmoPower>(),
+        HoverTipFactory.FromPower<WeakPower>(),
     ];
 
     protected override async Task OnPlay(

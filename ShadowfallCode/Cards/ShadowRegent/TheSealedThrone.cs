@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -14,6 +15,10 @@ public class TheSealedThrone() : ShadowRegentCard(
     CardRarity.Ancient,
     TargetType.AnyEnemy)
 {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromCard<Warp>(),
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CalculationBaseVar(4),

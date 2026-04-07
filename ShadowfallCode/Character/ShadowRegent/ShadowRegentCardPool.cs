@@ -68,6 +68,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<SpacePirate>(),
             ModelDb.Card<MirrorImage>(),
             ModelDb.Card<TargetAcquired>(),
+            ModelDb.Card<Siege>(),
             ModelDb.Card<Terraforming>(),
             ModelDb.Card<DefensiveCannonade>(),
             ModelDb.Card<Prophesize>(),

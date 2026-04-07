@@ -1,10 +1,12 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.CardPiles;
+using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -21,6 +23,12 @@ public class CrescentSpear() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(6, ValueProp.Move)
+    ];
+    
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo),
+        IsUpgraded ? HoverTipFactory.FromCard<UltimateStrike>(true) : HoverTipFactory.FromCard<UltimateStrike>()
     ];
 
     protected override async Task OnPlay(

@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -12,6 +13,12 @@ public class GetStronger() : ShadowRegentCard(
     TargetType.Self)
 {
     protected override bool HasEnergyCostX => true;
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.FromPower<DexterityPower>(),
+    ];
+
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

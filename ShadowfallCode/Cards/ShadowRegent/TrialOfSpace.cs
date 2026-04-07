@@ -15,7 +15,6 @@ public class TrialOfSpace() : ShadowRegentCard(
     CardRarity.Rare,
     TargetType.Self)
 {
-
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)

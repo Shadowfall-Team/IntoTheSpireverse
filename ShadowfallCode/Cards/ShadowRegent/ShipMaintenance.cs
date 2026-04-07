@@ -1,7 +1,9 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -12,6 +14,12 @@ public class ShipMaintenance() : ShadowRegentCard(
     TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromCard<Automation>(),
+        HoverTipFactory.FromCard<Prowess>(),
+        HoverTipFactory.FromCard<Stratagem>()
+    ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

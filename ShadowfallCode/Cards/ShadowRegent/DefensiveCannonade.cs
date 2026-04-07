@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
@@ -19,6 +20,10 @@ public class DefensiveCannonade() : ShadowRegentCard(
     [
         new PowerVar<AmmoPower>(2),
         new BlockVar(3, ValueProp.Unpowered)
+    ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<AmmoPower>(),
     ];
 
     protected override async Task OnPlay(

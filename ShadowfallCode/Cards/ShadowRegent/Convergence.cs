@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
@@ -17,6 +18,10 @@ public class Convergence() : ShadowRegentCard(
     [
         new EnergyVar(1),
         new PowerVar<GainShardsNextTurnPower>(1)
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<ShardPower>(),
     ];
 
     protected override async Task OnPlay(

@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.CardPiles;
 
@@ -15,6 +16,10 @@ public class EscortMe() : ShadowRegentCard(
     protected override bool HasEnergyCostX => true;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromCard<MinionStrike>()
+    ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

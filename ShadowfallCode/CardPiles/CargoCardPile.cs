@@ -19,7 +19,7 @@ public class CargoCardPile() : CustomPile(CargoPileType)
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        return Vector2.Zero;
+        return new Vector2(250, 250);
     }
 }
 
