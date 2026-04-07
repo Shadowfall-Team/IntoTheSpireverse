@@ -4,7 +4,7 @@
   "SHADOWFALL-STRIKE_TRUE.title": "Strike True",
   "SHADOWFALL-STRIKE_TRUE.description": "Unplayable.\nAdjacent Attacks deal double damage.",
   "SHADOWFALL-SHARP_WIT.title": "Sharp Wit",
-  "SHADOWFALL-SHARP_WIT.description": "Unplayable.\nWhen you discard an adjacent card, add 2 [gold]Shivs[/gold] to your hand.",
+  "SHADOWFALL-SHARP_WIT.description": "When you discard an adjacent card, add 2 [gold]Shivs[/gold] to your hand.",
   "SHADOWFALL-AMBUSH.title": "Ambush",
   "SHADOWFALL-AMBUSH.description": "Deal {Damage:diff()} damage.\nWhenever an adjacent card is discarded, increase this card's damage by {Increase:diff()}.",
   "SHADOWFALL-STRIKE_SHADOW_SILENT.title": "Strike",

@@ -11,6 +11,8 @@ public sealed class DefendShadowSilent() : ShadowSilentCard(1, CardType.Skill, C
 {
     public override bool GainsBlock => true;
 
+    protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Defend };
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(5m, ValueProp.Move),
