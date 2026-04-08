@@ -6,7 +6,6 @@ using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-// TODO impl
 public class ShadowRegentCardPool : CustomCardPoolModel
 {
     public override string Title => "shadow_regent";
