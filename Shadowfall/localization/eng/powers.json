@@ -122,7 +122,7 @@
   "SHADOWFALL-TARGETED_THIS_TURN_POWER.smartDescription": "Your Volley targets this foe this turn",
   "SHADOWFALL-TARGETED_THIS_TURN_POWER.title": "Targeted",
   "SHADOWFALL-SIEGE_POWER.description": "Your Volley applies [gold]Weak[/gold] this turn.",
-  "SHADOWFALL-SIEGE_POWER.smartDescription": "Your Volley applies TODO [gold]Weak[/gold] this turn.",
+  "SHADOWFALL-SIEGE_POWER.smartDescription": "Your Volley applies [gold]Weak[/gold] this turn.",
   "SHADOWFALL-SIEGE_POWER.title": "Siege",
   "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.description": "Your Volley grants [gold]Block[/gold] per shot this turn.",
   "SHADOWFALL-DEFENSIVE_CANNONADE_POWER.smartDescription": "Your Volley grants [blue]{Amount}[/blue] [gold]Block[/gold] per shot this turn.",

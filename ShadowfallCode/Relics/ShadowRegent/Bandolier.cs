@@ -1,24 +1,20 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
-using Shadowfall.ShadowfallCode.Character;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-//TODO needs name
-public class ShadowRegentStarter() : ShadowRegentRelic
+public class Bandolier() : ShadowRegentRelic
 {
     public override RelicRarity Rarity =>
         RelicRarity.Starter;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<AmmoPower>(1)
+        new PowerVar<AmmoPower>(3)
     ];
 
     public override async Task AfterRoomEntered(AbstractRoom room)
@@ -29,12 +25,5 @@ public class ShadowRegentStarter() : ShadowRegentRelic
                 DynamicVars[nameof(AmmoPower)].BaseValue, Owner.Creature, null);
         }
     }
-
-    public override RelicModel? GetUpgradeReplacement()
-    {
-        return ModelDb.Relic<Bandolier>();
-    }
+    
 }
-
-[Pool(typeof(ShadowRegentRelicPool))]
-public abstract class ShadowRegentRelic : CustomRelicModel;
