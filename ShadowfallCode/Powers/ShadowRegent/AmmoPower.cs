@@ -27,17 +27,19 @@ public class AmmoPower : CustomPowerModel
         if (side == CombatSide.Enemy)
             return;
 
-        var volleyDamage = DynamicVars.Damage.BaseValue +
-                           Owner.GetPowerAmount<VolleyDamageThisTurnPower>() +
-                           Owner.GetPowerAmount<VolleyDamagePower>();
-
-        if (Owner.HasPower<StrengthVolleyPower>())
-        {
-            volleyDamage += Owner.GetPowerAmount<StrengthPower>();
-        }
 
         for (var i = 0; i < Amount; i++)
         {
+            //TODO: move this to a calculated var?
+            var volleyDamage = DynamicVars.Damage.BaseValue +
+                               Owner.GetPowerAmount<VolleyDamageThisTurnPower>() +
+                               Owner.GetPowerAmount<VolleyDamagePower>();
+
+            if (Owner.HasPower<StrengthVolleyPower>())
+            {
+                volleyDamage += Owner.GetPowerAmount<StrengthPower>();
+            }
+            
             var target = SelectTarget();
 
             if (target == null) return;

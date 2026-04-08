@@ -30,11 +30,20 @@ public class Constellation() : ShadowRegentCard(
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
 
+        var drawPile = PileType.Draw.GetPile(Owner)
+            .Cards.OrderBy(c => c.Rarity)
+            .ThenBy(c => c.Id).ToList();
+        if (drawPile.Count == 0) return;
+        
         var cardSelectorPrefs =
             new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 1);
-        var results = await CardSelectCmd.FromDeckGeneric(Owner, cardSelectorPrefs);
+        var results =
+            (await CardSelectCmd.FromSimpleGrid(choiceContext, drawPile, Owner,
+                cardSelectorPrefs)).ToList();
 
-        await CardPileCmd.Add(results, CargoCardPile.CargoPileType);
+        //TODO: check all cardpilecmd add/previews if they no longer need to skip visuals after beta is merged into main
+        await CardPileCmd.Add(results, CargoCardPile.CargoPileType, skipVisuals: true);
+        CardCmd.Preview(results);
     }
 
     protected override void OnUpgrade()

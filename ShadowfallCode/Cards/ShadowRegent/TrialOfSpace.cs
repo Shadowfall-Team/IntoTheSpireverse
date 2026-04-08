@@ -23,7 +23,7 @@ public class TrialOfSpace() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<TrialOfSpacePower>(Owner.Creature,
-            DynamicVars.Dexterity.BaseValue,
+            1,
             Owner.Creature,
             this);
     }
@@ -60,6 +60,7 @@ public class TrialOfSpacePower : CustomPowerModel
                 {
                     Flash();
 
+                    //TODO: currently does not work for custom piles, but I'll open a PR in baselib for this, so we don't need to support individual mods
                     if (Owner.Player?.PlayerCombatState?.AllCards == null) return;
                     foreach (var cardModel in Owner.Player.PlayerCombatState.AllCards)
                     {
