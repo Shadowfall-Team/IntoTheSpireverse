@@ -8,9 +8,8 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 using Shadowfall.ShadowfallCode.CardPiles;
 using Shadowfall.ShadowfallCode.Keywords;
-using Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-namespace Shadowfall.ShadowfallCode.Character;
+namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
 //
 public class ShadowMiniRegent : ShadowRegentRelic
