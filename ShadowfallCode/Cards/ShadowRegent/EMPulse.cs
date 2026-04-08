@@ -44,7 +44,6 @@ public class EMPulse() : ShadowRegentCard(
 
             foreach (var creature in CombatState.HittableEnemies)
             {
-                //TODO: check if should use icebeampower or if piercing wail power is fine enough
                 await PowerCmd.Apply<EMPulsePower>(creature,
                     DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
             }

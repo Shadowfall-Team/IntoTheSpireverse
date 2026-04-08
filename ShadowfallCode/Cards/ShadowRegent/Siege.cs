@@ -20,7 +20,6 @@ public class Siege() : ShadowRegentCard(
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<AmmoPower>(1),
-        //TODO: how should siege power scale? does it scale with the amount of weakness it adds, or does it scale with how many weakness stacks to add?
         new PowerVar<SiegePower>(1)
     ];
     

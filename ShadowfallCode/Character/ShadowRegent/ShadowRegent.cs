@@ -19,7 +19,6 @@ public class ShadowRegent : PlaceholderCharacterModel
     
     public override int StartingHp => 75;
     
-    // TODO: impl
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowRegentCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ShadowRegentRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ShadowRegentPotionPool>();
