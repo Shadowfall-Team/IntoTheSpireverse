@@ -13,7 +13,7 @@ public class ShadowRegent : PlaceholderCharacterModel
 {
     public override string PlaceholderID => "regent";
     public const string CharacterId = "Shadowfall";
-    public static readonly Color Color = StsColors.blue;
+    public static readonly Color Color = StsColors.orange;
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
     
