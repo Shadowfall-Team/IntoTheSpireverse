@@ -14,29 +14,25 @@ using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 namespace Shadowfall.ShadowfallCode.Relics;
 
   
-public class ArmoredPack : ShadowSilentRelic
+public class ArmoredPackUpgrade : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
-    public override RelicModel? GetUpgradeReplacement()
-    {
-      return ModelDb.Relic<ArmoredPackUpgrade>();
-    }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<DexterityPower>(1M),
+        new PowerVar<DexterityPower>(3M),
         new CardsVar(1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-      HoverTipFactory.FromCard<Weight>(),
+      HoverTipFactory.FromCard<Weight>(), 
       HoverTipFactory.FromPower<DexterityPower>()
     ];
 
     public override async Task AfterRoomEntered(AbstractRoom room)
   {
-    if (room is not CombatRoom)
+    if (room is not CombatRoom) 
       return;
     Flash();
     await PowerCmd.Apply<DexterityPower>(Owner.Creature, DynamicVars.Dexterity.BaseValue, Owner.Creature, null);

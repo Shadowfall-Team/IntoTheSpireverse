@@ -4,7 +4,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 using Shadowfall.ShadowfallCode.Keywords;
+using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
@@ -19,24 +21,38 @@ public sealed class Mastermind() : ShadowSilentCard(0, CardType.Skill, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await ShadowfallKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
-        {
-            var candidates = PileType.Draw.GetPile(Owner).Cards
-                .Concat(PileType.Discard.GetPile(Owner).Cards)
-                .ToList();
+        //TODO Devious execution that returns repeat count
+        CardModel? card = (await CardSelectCmd.FromHandForDiscard(
+            choiceContext,
+            Owner,
+            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
+            null,
+            this)).FirstOrDefault();
 
-            if (candidates.Count == 0)
-                return;
+        if (card == null)
+            return;
 
-            var selected = (await CardSelectCmd.FromSimpleGrid(
-                choiceContext,
-                candidates,
-                Owner,
-                new CardSelectorPrefs(SelectionScreenPrompt, 1))).FirstOrDefault();
+        int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        if (card.EnergyCost.CostsX && Owner.PlayerCombatState != null)
+            repeats = Owner.PlayerCombatState.Energy;
+        repeats += card is Weight ? Owner.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
+        await CardCmd.Discard(choiceContext, card);
 
-            if (selected != null)
-                await CardCmd.Exhaust(choiceContext, selected);
-        });
+        var candidates = PileType.Draw.GetPile(Owner).Cards
+            .Concat(PileType.Discard.GetPile(Owner).Cards)
+            .ToList();
+
+        if (candidates.Count == 0)
+            return;
+
+        var selected = await CardSelectCmd.FromSimpleGrid(
+            choiceContext,
+            candidates,
+            Owner,
+            new CardSelectorPrefs(SelectionScreenPrompt, repeats));
+        
+        foreach (var exhaustCard in selected)
+            await CardCmd.Exhaust(choiceContext, exhaustCard);
     }
 
     protected override void OnUpgrade() {
