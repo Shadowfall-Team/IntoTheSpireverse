@@ -18,7 +18,8 @@ public class ShipMaintenance() : ShadowRegentCard(
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromCard<Automation>(),
         HoverTipFactory.FromCard<Prowess>(),
-        HoverTipFactory.FromCard<Stratagem>()
+        HoverTipFactory.FromCard<Stratagem>(),
+        HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
     ];
 
     protected override async Task OnPlay(

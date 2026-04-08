@@ -484,7 +484,7 @@
   "SHADOWFALL-CONSTRUCT.title": "Construct",
   "SHADOWFALL-ASSEMBLY_REQUIRED.description": "Add a [gold]Fragment[/gold] to each player's draw pile.",
   "SHADOWFALL-ASSEMBLY_REQUIRED.title": "Assembly Required",
-  "SHADOWFALL-FRAGMENT.description": "Everyone gains {ShardPower:diff()} [gold]Shards[/gold]",
+  "SHADOWFALL-FRAGMENT.description": "Everyone gains {ShardPower:diff()} [gold]Shards[/gold].",
   "SHADOWFALL-FRAGMENT.title": "Fragment",
   "SHADOWFALL-CASCADE.description": "Every shot from your Volley increases all future Volley damage by 1.",
   "SHADOWFALL-CASCADE.title": "Cascade",

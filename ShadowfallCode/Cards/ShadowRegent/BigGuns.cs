@@ -74,7 +74,7 @@ public class BigGunsPower : CustomPowerModel
                     StartPulsing();
                 }
 
-                if (DynamicVars["EnergySpent"].BaseValue % 10 == 0)
+                if (DynamicVars["EnergySpent"].BaseValue > 9)
                 {
                     Flash();
 

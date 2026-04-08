@@ -28,7 +28,7 @@ public class Cascade() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<CascadePower>(Owner.Creature,
-            DynamicVars.Dexterity.BaseValue,
+            1,
             Owner.Creature,
             this);
     }

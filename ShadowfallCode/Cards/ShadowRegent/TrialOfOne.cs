@@ -49,7 +49,12 @@ public class TrialOfOne() : ShadowRegentCard(
 public class TrialOfOnePower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
+    public override PowerStackType StackType => PowerStackType.Counter;
+    
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("EnergySpentThisTurn", 0)
+    ];
     
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext,
         CombatSide side, CombatState combatState)
@@ -59,7 +64,7 @@ public class TrialOfOnePower : CustomPowerModel
             return Task.CompletedTask;
         }
 
-        DynamicVars["EnergySpent"].BaseValue = 0;
+        DynamicVars["EnergySpentThisTurn"].BaseValue = 0;
         StopPulsing();
         return Task.CompletedTask;
     }
@@ -70,13 +75,13 @@ public class TrialOfOnePower : CustomPowerModel
         {
             if (CombatManager.Instance.IsInProgress && amount > 0)
             {
-                DynamicVars["EnergySpent"].BaseValue += amount;
-                if (DynamicVars["EnergySpent"].BaseValue % 4 == 0)
+                DynamicVars["EnergySpentThisTurn"].BaseValue += amount;
+                if (DynamicVars["EnergySpentThisTurn"].BaseValue % 4 == 0)
                 {
                     StartPulsing();
                 }
 
-                if (DynamicVars["EnergySpent"].BaseValue % 5 == 0)
+                if (DynamicVars["EnergySpentThisTurn"].BaseValue > 4)
                 {
                     Flash();
 
