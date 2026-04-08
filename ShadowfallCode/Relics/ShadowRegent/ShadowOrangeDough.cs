@@ -6,9 +6,8 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using Shadowfall.ShadowfallCode.CardPiles;
-using Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-namespace Shadowfall.ShadowfallCode.Character;
+namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
 public class ShadowOrangeDough : ShadowRegentRelic
 {
