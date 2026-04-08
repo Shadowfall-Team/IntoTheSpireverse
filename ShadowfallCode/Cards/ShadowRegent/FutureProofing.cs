@@ -30,7 +30,7 @@ public class FutureProofing() : ShadowRegentCard(1, CardType.Attack, CardRarity.
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .TargetingRandomOpponents(CombatState)
+            .TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_starry_impact")
             .Execute(choiceContext);
 
