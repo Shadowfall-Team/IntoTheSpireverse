@@ -13,7 +13,8 @@ public class ShadowRegent : PlaceholderCharacterModel
 {
     public override string PlaceholderID => "regent";
     public const string CharacterId = "Shadowfall";
-    public override Color NameColor => StsColors.orange;
+    public static readonly Color Color = StsColors.blue;
+    public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
     
     public override int StartingHp => 75;
@@ -39,6 +40,6 @@ public class ShadowRegent : PlaceholderCharacterModel
     
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<ShadowRegentStarter>()
+        ModelDb.Relic<SpareBullet>()
     ];
 }

@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Rooms;
@@ -7,6 +6,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
+//TODO needs name
 public class Bandolier() : ShadowRegentRelic
 {
     public override RelicRarity Rarity =>
