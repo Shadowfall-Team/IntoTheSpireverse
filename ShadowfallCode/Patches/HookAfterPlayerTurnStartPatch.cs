@@ -9,7 +9,7 @@ using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 namespace Shadowfall.ShadowfallCode.Patches;
 
 [HarmonyPatch(typeof(Hook), "AfterPlayerTurnStart", MethodType.Async)]
-public class CombatManagerStartTurnPatch
+public class HookAfterPlayerTurnStartPatch
 {
     static void Postfix(Player ___player)
     {

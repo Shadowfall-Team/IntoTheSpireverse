@@ -17,6 +17,9 @@ public class ShadowRegentRelicPool : CustomRelicPoolModel
             ModelDb.Relic<SpareBullet>(),
             ModelDb.Relic<ShadowFencingManual>(),
             ModelDb.Relic<ShadowGalacticDust>(),
+            ModelDb.Relic<ShadowLunarPastry>(),
+            ModelDb.Relic<ShadowMiniRegent>(),
+            
         ]);
     }
 }

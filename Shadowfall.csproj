@@ -109,7 +109,7 @@
     <ItemGroup>
       <Content Include="ShadowfallCode\Patches\ApplySkinPatch.cs.uid" />
       <Content Include="ShadowfallCode\Patches\CardPortraitPatch.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\CombatManagerStartTurnPatch.cs.uid" />
+      <Content Include="ShadowfallCode\Patches\HookAfterPlayerTurnStartPatch.cs.uid" />
       <Content Include="ShadowfallCode\Patches\CustomOrbCreateSprite.cs.uid" />
       <Content Include="ShadowfallCode\Patches\CustomOrbIcon.cs.uid" />
       <Content Include="ShadowfallCode\Patches\CustomOrbIconPath.cs.uid" />
