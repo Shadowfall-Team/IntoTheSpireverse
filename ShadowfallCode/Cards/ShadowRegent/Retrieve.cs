@@ -43,6 +43,6 @@ public class Retrieve() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Heal.UpgradeValueBy(1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }
