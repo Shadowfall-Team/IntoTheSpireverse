@@ -115,10 +115,11 @@ public partial class NCargoPile : NCombatCardPile
                 scaleOnHover: false);
         if (holder == null) return null;
 
-        holder.MouseFilter = MouseFilterEnum.Pass;
-        holder.Hitbox.MouseFilter = MouseFilterEnum.Pass;
+        
         AddChild(holder);
         MoveChild(holder, 0);
+        holder.MouseFilter = MouseFilterEnum.Pass;
+        holder.Hitbox.MouseFilter = MouseFilterEnum.Pass;
 
         PositionPreviewCard(holder, xOffset, scale);
         cardNode.UpdateVisuals(CargoCardPile.CargoPileType, CardPreviewMode.Normal);
