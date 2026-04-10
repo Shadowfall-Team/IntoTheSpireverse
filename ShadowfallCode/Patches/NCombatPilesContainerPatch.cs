@@ -33,7 +33,7 @@ public static class NCombatPilesContainerPatch
                 "res://images/packed/combat_ui/pile_button_count.png");
 
         cargoPileButton.Name = "%CargoPile";
-        cargoPileButton.Position = new Vector2(35, 725);
+        cargoPileButton.Position = new Vector2(35, 700);
 
         background.Texture = countBg;
 
@@ -85,7 +85,6 @@ public static class NCombatPilesContainerPatch
         return label;
     }
 }
-
 
 [HarmonyPatch(typeof(NCombatUi), "Activate")]
 public static class NCombatUiActivatePatch
