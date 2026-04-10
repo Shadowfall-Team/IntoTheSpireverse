@@ -2,7 +2,8 @@
 using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
-using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using Shadowfall.ShadowfallCode.ui;
 
@@ -56,14 +57,6 @@ public static class NCombatPilesContainerPatch
         __instance.GetNodeOrNull<NCargoPile>("_CargoPile")?.Disable();
     }
 
-    [HarmonyPatch("Initialize")]
-    [HarmonyPostfix]
-    public static void InitializePostfix(NCombatPilesContainer __instance, Player player)
-    {
-        var cargoPile = __instance.GetNodeOrNull<NCargoPile>("_CargoPile");
-        cargoPile?.Initialize(player);
-    }
-
     private static MegaLabel CreateCargoPileLabel()
     {
         var font = PreloadManager.Cache.GetAsset<Font>(megaLabelFont);
@@ -90,5 +83,19 @@ public static class NCombatPilesContainerPatch
         label.MinFontSize = 20;
         label.MaxFontSize = 26;
         return label;
+    }
+}
+
+
+[HarmonyPatch(typeof(NCombatUi), "Activate")]
+public static class NCombatUiActivatePatch
+{
+    [HarmonyPostfix]
+    public static void ActivatePostfix(NCombatUi __instance, CombatState state)
+    {
+        var container = __instance.GetNode<NCombatPilesContainer>("%CombatPileContainer");
+        var cargoPile = container.GetNodeOrNull<NCargoPile>("_CargoPile");
+        var player = LocalContext.GetMe(state);
+        cargoPile?.Initialize(player);
     }
 }
