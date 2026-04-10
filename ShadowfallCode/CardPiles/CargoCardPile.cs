@@ -14,12 +14,12 @@ public class CargoCardPile() : CustomPile(CargoPileType)
     //TODO: make this visible
     public override bool CardShouldBeVisible(CardModel card)
     {
-        return false;
+        return true;
     }
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        return new Vector2(250, 250);
+        return new Vector2(75, 765); // Cargo pile position
     }
 }
 
