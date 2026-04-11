@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-TARGET_ACQUIRED",
+  "hue": 0.55,
+  "saturation": 0.67,
+  "value": 1.04,
+  "red": 0.99,
+  "green": 0.79,
+  "blue": 1.12,
+  "contrast": 1.23,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/hegemony.tres"
+}

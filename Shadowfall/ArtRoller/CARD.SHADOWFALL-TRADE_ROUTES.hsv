@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-TRADE_ROUTES",
+  "hue": 0.6,
+  "saturation": 1.32,
+  "value": 0.86,
+  "red": 1.36,
+  "green": 1.14,
+  "blue": 1.18,
+  "contrast": 1.23,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/pale_blue_dot.tres"
+}
