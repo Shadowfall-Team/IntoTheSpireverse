@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkoucq88v8brr"
-path="res://.godot/imported/cargo_pile_placeholder.png-912fc737cbb1792e6202e7cbf188d3b4.ctex"
+uid="uid://pjc3qjehft1w"
+path="res://.godot/imported/cargo_pile.png-e3fa2bfe441811557afd784e8a5aa3d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/combat_ui/cargo_pile_placeholder.png"
-dest_files=["res://.godot/imported/cargo_pile_placeholder.png-912fc737cbb1792e6202e7cbf188d3b4.ctex"]
+source_file="res://Shadowfall/images/combat_ui/cargo_pile.png"
+dest_files=["res://.godot/imported/cargo_pile.png-e3fa2bfe441811557afd784e8a5aa3d2.ctex"]
 
 [params]
 
