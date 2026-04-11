@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-STAR_CHARTS",
+  "hue": 0.1,
+  "saturation": 0.55,
+  "value": 0.97,
+  "red": 1.46,
+  "green": 1.17,
+  "blue": 0.92,
+  "contrast": 1.1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/venerate.tres"
+}

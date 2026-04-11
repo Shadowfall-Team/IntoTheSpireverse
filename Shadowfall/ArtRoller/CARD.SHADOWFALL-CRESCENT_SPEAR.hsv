@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-CRESCENT_SPEAR",
+  "hue": 0.9,
+  "saturation": 1.25,
+  "value": 0.94,
+  "red": 0.89,
+  "green": 1.17,
+  "blue": 0.92,
+  "contrast": 1.16,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/crescent_spear.tres"
+}

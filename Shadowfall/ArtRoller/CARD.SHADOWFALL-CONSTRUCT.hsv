@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-CONSTRUCT",
+  "hue": 0.09,
+  "saturation": 0.76,
+  "value": 1.12,
+  "red": 1.18,
+  "green": 1.15,
+  "blue": 1.03,
+  "contrast": 1.15,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/furnace.tres"
+}

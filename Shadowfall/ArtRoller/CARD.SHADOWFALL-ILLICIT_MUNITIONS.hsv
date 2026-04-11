@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-ILLICIT_MUNITIONS",
+  "hue": 0.52,
+  "saturation": 0.62,
+  "value": 1.01,
+  "red": 1.21,
+  "green": 1.28,
+  "blue": 0.94,
+  "contrast": 1.04,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/black_hole.tres"
+}

@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.SHADOWFALL-SACRIFICE",
-  "hue": 0.12,
-  "saturation": 0.87,
-  "value": 0.98,
-  "red": 0.83,
-  "green": 1.15,
-  "blue": 1.12,
-  "contrast": 0.94,
+  "hue": 0.28,
+  "saturation": 0.82,
+  "value": 0.97,
+  "red": 0.56,
+  "green": 1.61,
+  "blue": 1.36,
+  "contrast": 1.17,
   "flip_h": true,
   "portrait_path": "res://images/atlases/card_atlas.sprites/silent/blade_of_ink.tres"
 }

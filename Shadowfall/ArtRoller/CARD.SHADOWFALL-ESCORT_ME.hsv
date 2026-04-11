@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-ESCORT_ME",
+  "hue": 0.51,
+  "saturation": 0.63,
+  "value": 0.95,
+  "red": 1.2,
+  "green": 0.87,
+  "blue": 1.35,
+  "contrast": 1.17,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/bundle_of_joy.tres"
+}

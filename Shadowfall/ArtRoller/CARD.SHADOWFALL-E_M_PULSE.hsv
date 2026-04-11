@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-E_M_PULSE",
+  "hue": 0.12,
+  "saturation": 1.49,
+  "value": 1.25,
+  "red": 1.18,
+  "green": 1.03,
+  "blue": 1.02,
+  "contrast": 0.77,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/dying_star.tres"
+}
