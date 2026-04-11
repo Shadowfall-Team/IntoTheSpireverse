@@ -20,7 +20,8 @@ public class FillTheTank() : ShadowRegentCard(1,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo)
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo),
+        HoverTipFactory.FromCard<Fuel>()
     ];
     
     protected override async Task OnPlay(
