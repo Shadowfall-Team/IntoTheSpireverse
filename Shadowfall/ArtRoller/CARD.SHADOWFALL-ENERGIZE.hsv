@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-ENERGIZE",
+  "hue": 0.58,
+  "saturation": 1.29,
+  "value": 1.09,
+  "red": 0.99,
+  "green": 1.12,
+  "blue": 1.16,
+  "contrast": 1.06,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/radiate.tres"
+}

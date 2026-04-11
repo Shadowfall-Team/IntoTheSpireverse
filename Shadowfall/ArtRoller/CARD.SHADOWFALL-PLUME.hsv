@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.SHADOWFALL-PLUME",
-  "hue": 0.61,
-  "saturation": 1.07,
-  "value": 1.02,
-  "red": 0.79,
-  "green": 1.12,
-  "blue": 1.21,
-  "contrast": 1.07,
+  "hue": 0.49,
+  "saturation": 1.06,
+  "value": 1.15,
+  "red": 1.35,
+  "green": 1.06,
+  "blue": 1.06,
+  "contrast": 1.33,
   "flip_h": true,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/monarchs_gaze.tres"
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/haze.tres"
 }
