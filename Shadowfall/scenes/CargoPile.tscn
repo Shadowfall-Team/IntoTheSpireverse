@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://6eg3wyso673l"]
+
+[ext_resource type="Script" uid="uid://b80pialfei6qi" path="res://ShadowfallCode/ui/NCargoPile.cs" id="1_nrwxg"]
+[ext_resource type="Texture2D" uid="uid://pjc3qjehft1w" path="res://Shadowfall/images/combat_ui/cargo_pile.png" id="2_sxrqi"]
+[ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://Shadowfall/images/relics/relic_outline.png" id="3_sxrqi"]
+
+[node name="CargoPile" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 80.0
+pivot_offset = Vector2(40, 40)
+script = ExtResource("1_nrwxg")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(40, 40)
+mouse_filter = 2
+texture = ExtResource("2_sxrqi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CountContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -4.0
+offset_right = 56.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="CountContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_sxrqi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Count_old" type="Label" parent="CountContainer"]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = -26.0
+offset_right = 36.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0.53333336, 0.12156863, 0.1254902, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 26
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControllerIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

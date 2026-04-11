@@ -12,6 +12,8 @@
   "SHADOWFALL-STARTUP.title": "Startup",
   "SHADOWFALL-STARTUP.description": "Effect triggers at the start of each combat if this card is in your [gold]Deck[/gold].",
   "SHADOWFALL-PICKUP.title": "Pickup",
-  "SHADOWFALL-PICKUP.description": "Effect triggers when this card is added to your [gold]Deck[/gold]."
+  "SHADOWFALL-PICKUP.description": "Effect triggers when this card is added to your [gold]Deck[/gold].",
+  "SHADOWFALL-CARGO.title": "Cargo",
+  "SHADOWFALL-CARGO.description": "At the start of your turn, draw 1 card from your [gold]Cargo[/gold]."
 
 }

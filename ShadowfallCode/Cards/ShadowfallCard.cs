@@ -36,3 +36,7 @@ public abstract class ShadowNecrobinderCard(int cost, CardType type, CardRarity 
 {
 
 }
+
+[Pool(typeof(ShadowRegentCardPool))]
+public abstract class ShadowRegentCard(int cost, CardType type, CardRarity rarity, TargetType target) :
+    CustomCardModel(cost, type, rarity, target);

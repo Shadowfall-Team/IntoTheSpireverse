@@ -26,7 +26,7 @@ public partial class MainFile : Node
         Directory.CreateDirectory(CardsDirectory);
         
         CardArtRoller.RegisterAllFromDirectory(CardsDirectory);
-        
+        Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(Assembly.GetExecutingAssembly());
         harmony.PatchAll();
         
         SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(TheLaw));
