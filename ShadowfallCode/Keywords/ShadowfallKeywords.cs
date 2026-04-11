@@ -37,6 +37,9 @@ public static class ShadowfallKeywords
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Pickup;
 
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Cargo;
+
     public static bool IsCunningTriggered(CardModel card) =>
         HandPositionTrackingPatch.WasLeftmostInHand.TryGetValue(card, out bool val) && val;
 
@@ -69,6 +72,8 @@ public static class ShadowfallKeywords
             return;
 
         int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
+            repeats = player.PlayerCombatState.Energy;
         repeats += card is Weight ? player.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
         await CardCmd.Discard(context, card);
 
