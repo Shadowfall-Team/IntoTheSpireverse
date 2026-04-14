@@ -14,7 +14,7 @@ public sealed class SnapStrike() : ShadowSilentCard(1, CardType.Attack, CardRari
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(5m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
