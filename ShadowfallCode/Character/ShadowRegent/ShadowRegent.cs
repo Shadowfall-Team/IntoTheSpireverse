@@ -4,12 +4,13 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Characters;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 using Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowRegent : PlaceholderCharacterModel
+public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "regent";
     public const string CharacterId = "Shadowfall";
@@ -17,6 +18,11 @@ public class ShadowRegent : PlaceholderCharacterModel
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
     
+    public override bool HideFromVanillaCharacterSelect => true;
+    public override bool AllowInVanillaRandomCharacterSelect => true;
+    
+    public CharacterModel BaseCharacterModel => ModelDb.Character<Regent>();
+
     public override int StartingHp => 75;
     
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowRegentCardPool>();
