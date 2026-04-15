@@ -8,11 +8,10 @@ namespace Shadowfall.ShadowfallCode.ui;
 public partial class NCharAltArrow : NGoldArrowButton
 {
     public ICharacterSelectButtonDelegate ClickDelegate;
-    private bool _clicked;
 
-    public CharacterModel OriginalChar;
-    public CharacterModel AltChar;
+    public List<CharacterModel> Characters = new();
 
+    private int _currentAltIndex = -1;
     private Tween? _portraitTween;
     private float _originalY;
 
@@ -26,8 +25,9 @@ public partial class NCharAltArrow : NGoldArrowButton
     {
         if (GetParent() is not NCharacterSelectButton parent) return;
 
-        var character = _clicked ? OriginalChar : AltChar;
-        _clicked = !_clicked;
+        _currentAltIndex = (_currentAltIndex + 1) % Characters.Count;
+        var character = Characters[_currentAltIndex];
+
         parent.Init(character, ClickDelegate);
 
         var portraitContainer = parent.GetNode<Control>("MarginContainer");

@@ -16,8 +16,9 @@ public class NCharacterSelectScreenPatches
     [HarmonyPostfix]
     public static void ReadyPostfix(NCharacterSelectScreen __instance)
     {
-        __instance._ascensionPanel.Position = new Vector2(
-            __instance._ascensionPanel.Position.X,
+        if (!ModelDb.AllCharacters.Any(c => c is IAltCharacter)) return;
+
+        __instance._ascensionPanel.Position = new Vector2(__instance._ascensionPanel.Position.X,
             __instance._ascensionPanel.Position.Y - yOffset);
         __instance._infoPanel.Position = new Vector2(__instance._infoPanel.Position.X,
             __instance._infoPanel.Position.Y - yOffset);
@@ -30,8 +31,7 @@ public class NCharacterSelectButtonPatches
     private const string _altIndicatorTexturePath = "res://" + MainFile.ModId + "/images/charui/tiny_arrow_up.png";
     private const string _scenePath = "res://" + MainFile.ModId + "/scenes/CharAltArrow.tscn";
     private const string _shaderMaterialPath = "res://materials/vfx/hsv.tres";
-    
-    
+
     private static Texture2D indicatorTexture = ResourceLoader.Load<Texture2D>(_altIndicatorTexturePath);
     private static Material hsv = ResourceLoader.Load<Material>(_shaderMaterialPath);
 
@@ -53,9 +53,10 @@ public class NCharacterSelectButtonPatches
         arrowButton.Position = new Vector2(50 - arrowButton.Size.X / 2, -(arrowButton.Size.Y / 2) - 15);
         arrowButton.ClickDelegate = del;
 
-        arrowButton.OriginalChar = character;
-        arrowButton.AltChar = ModelDb.AllCharacters.First(c =>
-            c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character);
+        arrowButton.Characters = ModelDb.AllCharacters
+            .Where(c => c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character)
+            .ToList();
+        arrowButton.Characters.Add(character);
 
         __instance.AddChild(arrowButton);
     }
