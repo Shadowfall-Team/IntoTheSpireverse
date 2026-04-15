@@ -17,7 +17,9 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public static readonly Color Color = StsColors.orange;
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
-    
+
+    public override string? CustomCharacterSelectIconPath => "Shadowfall/images/charui/char_select_char_name.png";
+
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
