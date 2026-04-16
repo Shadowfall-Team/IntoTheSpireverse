@@ -37,6 +37,13 @@
   "SHADOWFALL-SHADOW_ORANGE_DOUGH.flavor": "",
   "SHADOWFALL-SHADOW_ORANGE_DOUGH.title": "ShadowOrangeDough",
 
+  "SHADOWFALL-CORRUPT_BLOOD.title": "Corrupt Blood",
+  "SHADOWFALL-CORRUPT_BLOOD.description": "At the start of each combat, gain [blue]3[/blue] [gold]Resolve[/gold] and [blue]3[/blue] [gold]Regen[/gold].",
+  "SHADOWFALL-CORRUPT_BLOOD.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "SHADOWFALL-CORRUPTER_BLOOD.title": "Corrupter Blood",
+  "SHADOWFALL-CORRUPTER_BLOOD.description": "At the start of each combat, gain [blue]5[/blue] [gold]Resolve[/gold] and [blue]5[/blue] [gold]Regen[/gold].",
+  "SHADOWFALL-CORRUPTER_BLOOD.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+
   "SHADOWFALL-S_NECRO_STARTER.description": "The first time you draw a [purple]Curse[/purple] each combat, [gold]Exhaust[/gold] it to gain {Energy:energyIcons()} and draw [blue]{Cards}[/blue] cards.",
   "SHADOWFALL-S_NECRO_STARTER.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
   "SHADOWFALL-S_NECRO_STARTER.title": "Shadow Necrobinder Starter (PLACEHOLDER NAME)",
