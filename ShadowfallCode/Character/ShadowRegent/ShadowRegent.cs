@@ -14,8 +14,15 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "regent";
     public const string CharacterId = "Shadowfall";
+
     public static readonly Color Color = StsColors.orange;
     public override Color NameColor => Color;
+    public override Color EnergyLabelOutlineColor => new("784000FF");
+    public override Color DialogueColor => new("52371D");
+    public override Color MapDrawingColor => new("935206");
+    public override Color RemoteTargetingLineColor => new("BFA270FF");
+    public override Color RemoteTargetingLineOutline => new("784000FF");
+    
     public override CharacterGender Gender => CharacterGender.Masculine;
 
     public override string? CustomCharacterSelectIconPath => "Shadowfall/images/charui/char_select_char_name.png";
