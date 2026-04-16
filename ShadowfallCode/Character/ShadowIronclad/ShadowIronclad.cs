@@ -3,6 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 using Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 using Shadowfall.ShadowfallCode.Relics;
@@ -10,7 +11,7 @@ using Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowIronclad : PlaceholderCharacterModel
+public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "ironclad";
     public const string CharacterId = "Shadowfall";
@@ -19,6 +20,11 @@ public class ShadowIronclad : PlaceholderCharacterModel
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Masculine;
+    
+    public override bool HideFromVanillaCharacterSelect => true;
+    public override bool AllowInVanillaRandomCharacterSelect => true;
+    
+    public CharacterModel BaseCharacterModel => ModelDb.Character<Ironclad>();
     public override int StartingHp => 80;
     
     public override IEnumerable<CardModel> StartingDeck =>
