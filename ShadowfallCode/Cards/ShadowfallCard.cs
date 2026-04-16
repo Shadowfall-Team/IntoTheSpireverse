@@ -2,6 +2,7 @@
 using BaseLib.Utils;
 using Shadowfall.ShadowfallCode.Character;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards;
 
@@ -21,6 +22,14 @@ public abstract class ShadowDefectCard(int cost, CardType type, CardRarity rarit
     //Uses card_portraits/card_name.png as image path. These should be smaller images.
     //public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     //public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
+}
+
+[Pool(typeof(ShadowIroncladCardPool))]
+public abstract class ShadowIroncladCard(int cost, CardType type, CardRarity rarity, TargetType target) :
+    CustomCardModel(cost, type, rarity, target)
+{
+    protected override bool ShouldGlowGoldInternal =>
+        ShadowfallKeywords.IsGloryTriggered(this);
 }
 
 [Pool(typeof(ShadowSilentCardPool))]
