@@ -152,6 +152,7 @@ public partial class NCargoPile : NCombatCardPile
 
     protected override void OnFocus()
     {
+        NHoverTipSet.Remove(this);
         var tooltip = NHoverTipSet.CreateAndShow(this, _hoverTip);
         tooltip.GlobalPosition = GlobalPosition + new Vector2(0, TooltipOffsetY);
         _bumpTween?.Kill();

@@ -39,7 +39,7 @@ public class ShardPower : CustomPowerModel
         var warp = CombatState.CreateCard<Warp>(Owner.Player);
         await CardPileCmd.AddGeneratedCardToCombat(warp, PileType.Hand, true);
 
-        Amount -= 6;
+        SetAmount(Amount-6);
         if(Amount >= 6)
             await AddWarpToHand();
     }
