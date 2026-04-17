@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using Shadowfall.ShadowfallCode.CardPiles;
+using Shadowfall.ShadowfallCode.Config;
 
 namespace Shadowfall.ShadowfallCode.ui;
 
@@ -86,7 +87,7 @@ public partial class NCargoPile : NCombatCardPile
 
     private void CreateCardPreview()
     {
-        if (_pile.Cards.Count == 0)
+        if (_pile.Cards.Count == 0 || !ShadowfallConfig.ShowCargoCardStack)
             return;
 
         var count = Math.Min(MaxPreviewCards, _pile.Cards.Count);
@@ -111,7 +112,7 @@ public partial class NCargoPile : NCombatCardPile
         if (cardNode == null) return null;
 
         var holder =
-            NPreviewCardHolder.Create(cardNode, showHoverTips: isTop,
+            NPreviewCardHolder.Create(cardNode, showHoverTips: false,
                 scaleOnHover: false);
         if (holder == null) return null;
 

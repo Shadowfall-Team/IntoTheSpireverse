@@ -41,8 +41,7 @@ public class Constellation() : ShadowRegentCard(
             (await CardSelectCmd.FromSimpleGrid(choiceContext, drawPile, Owner,
                 cardSelectorPrefs)).ToList();
 
-        //TODO: check all cardpilecmd add/previews if they no longer need to skip visuals after beta is merged into main
-        await CardPileCmd.Add(results, CargoCardPile.CargoPileType, skipVisuals: true);
+        await CardPileCmd.Add(results, CargoCardPile.CargoPileType);
         CardCmd.Preview(results);
     }
 

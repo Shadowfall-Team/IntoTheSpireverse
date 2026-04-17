@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Relics;
 using Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 using Shadowfall.ShadowfallCode.Relics;
@@ -11,7 +12,7 @@ using Shadowfall.ShadowfallCode.Relics.ShadowNecrobinder;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowNecrobinder : PlaceholderCharacterModel
+public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "necrobinder";
     public const string CharacterId = "Shadowfall";
@@ -20,6 +21,11 @@ public class ShadowNecrobinder : PlaceholderCharacterModel
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Feminine;
+    
+    public override bool HideFromVanillaCharacterSelect => true;
+    public override bool AllowInVanillaRandomCharacterSelect => true;
+    
+    public CharacterModel BaseCharacterModel => ModelDb.Character<Necrobinder>();
     public override int StartingHp => 66;
     
     public override IEnumerable<CardModel> StartingDeck =>
