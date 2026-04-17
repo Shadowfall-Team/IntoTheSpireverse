@@ -11,7 +11,7 @@ public sealed class WeightTraining() : ShadowSilentCard(1, CardType.Power, CardR
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<WeightTrainingPower>(3m),
+        new PowerVar<WeightTrainingPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -21,7 +21,7 @@ public sealed class WeightTraining() : ShadowSilentCard(1, CardType.Power, CardR
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<WeightTrainingPower>(Owner.Creature, DynamicVars[nameof(WeightTrainingPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<WeightTrainingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(WeightTrainingPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

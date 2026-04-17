@@ -14,7 +14,7 @@ public sealed class SurpriseShivs() : ShadowSilentCard(3, CardType.Power, CardRa
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar("Shivs", 2),
-        new PowerVar<AccuracyPower>(2m),
+        new PowerVar<AccuracyPower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -28,7 +28,7 @@ public sealed class SurpriseShivs() : ShadowSilentCard(3, CardType.Power, CardRa
         await ShadowfallKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
         {
             await Shiv.CreateInHand(Owner, DynamicVars["Shivs"].IntValue, CombatState);
-            await PowerCmd.Apply<AccuracyPower>(Owner.Creature, DynamicVars[nameof(AccuracyPower)].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<AccuracyPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(AccuracyPower)].BaseValue, Owner.Creature, this);
         });
     }
 

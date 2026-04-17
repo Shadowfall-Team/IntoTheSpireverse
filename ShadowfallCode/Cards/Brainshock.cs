@@ -36,7 +36,7 @@ public sealed class Brainshock() : ShadowDefectCard(1, CardType.Attack, CardRari
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
             CombatState.CreateCard<Void>(Owner),
             PileType.Discard,
-            true));
+            Owner));
 
         await Cmd.Wait(0.5f);
     }

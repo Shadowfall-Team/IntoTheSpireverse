@@ -32,7 +32,7 @@ public sealed class BladeCyclone() : ShadowSilentCard(1, CardType.Attack, CardRa
                 .Execute(choiceContext);
         }
 
-        CardPileAddResult cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Dazed>(Owner), PileType.Draw, true, CardPilePosition.Random);
+        CardPileAddResult cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Dazed>(Owner), PileType.Draw, Owner, CardPilePosition.Random);
         CardCmd.PreviewCardPileAdd(cardPileAddResult, 1.2f, CardPreviewStyle.HorizontalLayout);
     }
 

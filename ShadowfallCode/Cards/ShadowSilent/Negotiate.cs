@@ -24,7 +24,7 @@ public sealed class Negotiate() : ShadowSilentCard(1, CardType.Power, CardRarity
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await ShadowfallKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
-            PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this));
+            PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this));
     }
 
     protected override void OnUpgrade()

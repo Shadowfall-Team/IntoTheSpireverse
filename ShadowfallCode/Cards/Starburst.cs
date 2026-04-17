@@ -37,6 +37,6 @@ public sealed class Starburst : ShadowDefectCard
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
 		if (base.IsUpgraded)
 			await OrbCmd.Channel<EntropyOrb>(choiceContext, base.Owner);
-		await PowerCmd.Apply<StarburstPower>(base.Owner.Creature, base.DynamicVars.Cards.BaseValue, base.Owner.Creature, this);
+		await PowerCmd.Apply<StarburstPower>(new ThrowingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars.Cards.BaseValue, base.Owner.Creature, this);
 	}
 }

@@ -9,7 +9,9 @@ namespace Shadowfall.ShadowfallCode.Patches;
 [HarmonyPatch(typeof(CardPile), nameof(CardPile.RemoveInternal))]
 public static class HandPositionTrackingPatch
 {
+    // TODO remove extra logic once design is finalized
     internal static readonly Dictionary<CardModel, bool> WasLeftmostInHand = new();
+    internal static readonly Dictionary<CardModel, bool> WasRightmostInHand = new();
     internal static readonly Dictionary<CardModel, List<CardModel>> AdjacentCards = new();
 
     static void Prefix(CardPile __instance, CardModel card)
@@ -19,6 +21,7 @@ public static class HandPositionTrackingPatch
 
         var cards = __instance.Cards;
         WasLeftmostInHand[card] = cards.Count > 0 && cards[0] == card;
+        WasRightmostInHand[card] = cards.Count > 0 && cards[^1] == card;
 
         int idx = cards.IndexOf(card);
         var neighbors = new List<CardModel>(2);
@@ -34,6 +37,7 @@ public static class HandPositionTrackingCleanupPatch
     static void Prefix()
     {
         HandPositionTrackingPatch.WasLeftmostInHand.Clear();
+        HandPositionTrackingPatch.WasRightmostInHand.Clear();
         HandPositionTrackingPatch.AdjacentCards.Clear();
     }
 }

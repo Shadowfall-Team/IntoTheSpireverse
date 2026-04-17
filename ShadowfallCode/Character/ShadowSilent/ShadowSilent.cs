@@ -3,12 +3,13 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 using Shadowfall.ShadowfallCode.Relics;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowSilent : PlaceholderCharacterModel
+public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "silent";
     public const string CharacterId = "Shadowfall";
@@ -17,6 +18,12 @@ public class ShadowSilent : PlaceholderCharacterModel
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Neutral;
+    
+    public override bool HideFromVanillaCharacterSelect => true;
+    public override bool AllowInVanillaRandomCharacterSelect => true;
+    
+    public CharacterModel BaseCharacterModel => ModelDb.Character<Silent>();
+    
     public override int StartingHp => 75;
     
     public override IEnumerable<CardModel> StartingDeck =>

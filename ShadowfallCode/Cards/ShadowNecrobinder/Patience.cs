@@ -25,7 +25,7 @@ public sealed class Patience() : ShadowNecrobinderCard(1, CardType.Power, CardRa
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<PatiencePower>(Owner.Creature, DynamicVars[_patienceKey].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<PatiencePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[_patienceKey].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

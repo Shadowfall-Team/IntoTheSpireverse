@@ -23,7 +23,7 @@ public sealed class VioletVeil() : ShadowNecrobinderCard(1, CardType.Power, Card
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<VioletVeilPower>(Owner.Creature, DynamicVars["VioletVeilPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<VioletVeilPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["VioletVeilPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

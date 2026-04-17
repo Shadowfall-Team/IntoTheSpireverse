@@ -26,7 +26,7 @@ public sealed class SavedByTheBell() : ShadowNecrobinderCard(1, CardType.Skill, 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<IntangiblePower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<IntangiblePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

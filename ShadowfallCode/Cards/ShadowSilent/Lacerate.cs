@@ -11,7 +11,7 @@ public sealed class Lacerate() : ShadowSilentCard(1, CardType.Skill, CardRarity.
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BleedPower>(3m),
+        new PowerVar<BleedPower>(5m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -21,11 +21,11 @@ public sealed class Lacerate() : ShadowSilentCard(1, CardType.Skill, CardRarity.
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<BleedPower>(cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BleedPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(BleedPower)].UpgradeValueBy(1m);
+        DynamicVars[nameof(BleedPower)].UpgradeValueBy(2m);
     }
 }

@@ -7,8 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Relics;
@@ -17,40 +16,40 @@ namespace Shadowfall.ShadowfallCode.Relics;
 public class ArmoredPack : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    public override RelicModel? GetUpgradeReplacement()
+    {
+      return ModelDb.Relic<ArmoredPackUpgrade>();
+    }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<DexterityPower>(1M),
+        new BlockVar(4M, ValueProp.Unpowered),
         new CardsVar(1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
       HoverTipFactory.FromCard<Weight>(),
-      HoverTipFactory.FromPower<DexterityPower>()
+      HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
-    public override async Task AfterRoomEntered(AbstractRoom room)
-  {
-    ArmoredPack armoredPack = this;
-    if (room is not CombatRoom)
-      return;
-    armoredPack.Flash();
-    await PowerCmd.Apply<DexterityPower>(armoredPack.Owner.Creature, armoredPack.DynamicVars.Dexterity.BaseValue, armoredPack.Owner.Creature, null);
-  }
+  	public override async Task BeforeCombatStart()
+    {
+		Flash();
+    await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null); 
+    }
 
   public override async Task BeforeHandDraw(
     Player player,
     PlayerChoiceContext choiceContext,
-    CombatState combatState)
+    ICombatState combatState)
   {
-    ArmoredPack armoredPack = this;
-    if (player != armoredPack.Owner || combatState.RoundNumber != 1)
+    if (player != Owner || combatState.RoundNumber != 1)
       return;
     List<CardModel?> cards = new List<CardModel?>();
-    for (int index = 0; index < armoredPack.DynamicVars.Cards.IntValue; ++index)
-      cards.Add(armoredPack.Owner.Creature.CombatState?.CreateCard<Weight>(armoredPack.Owner));
-    await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>) cards, PileType.Hand, true);
+    for (int index = 0; index < DynamicVars.Cards.IntValue; ++index)
+      cards.Add(Owner.Creature.CombatState?.CreateCard<Weight>(Owner));
+    await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>) cards, PileType.Hand, Owner);
   }
 
 }

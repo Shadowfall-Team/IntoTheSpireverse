@@ -39,7 +39,7 @@ public sealed class Gigabeam() : ShadowDefectCard(2, CardType.Attack, CardRarity
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
             CombatState.CreateCard<Void>(Owner),
             PileType.Draw,
-            true,
+            Owner,
             CardPilePosition.Top));
 
         await Cmd.Wait(0.5f);

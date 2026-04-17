@@ -16,7 +16,7 @@ public sealed class BooBuddies() : ShadowNecrobinderCard(1, CardType.Power, Card
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<BooBuddiesPower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<BooBuddiesPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
