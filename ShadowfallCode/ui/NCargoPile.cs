@@ -111,7 +111,7 @@ public partial class NCargoPile : NCombatCardPile
         if (cardNode == null) return null;
 
         var holder =
-            NPreviewCardHolder.Create(cardNode, showHoverTips: isTop,
+            NPreviewCardHolder.Create(cardNode, showHoverTips: false,
                 scaleOnHover: false);
         if (holder == null) return null;
 
