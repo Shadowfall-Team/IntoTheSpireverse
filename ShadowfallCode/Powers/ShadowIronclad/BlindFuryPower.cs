@@ -68,7 +68,7 @@ public sealed class BlindFuryPower : CustomPowerModel
             hitLimit
                 ? new LocString("relics", "WHISPERING_EARRING.warning")
                 : new LocString("relics", "WHISPERING_EARRING.approval"),
-            Owner, -1.0 ,VfxColor.Purple);
+            Owner ,VfxColor.Purple);
 
         await PowerCmd.ModifyAmount(this, -1, null, null);
     }
