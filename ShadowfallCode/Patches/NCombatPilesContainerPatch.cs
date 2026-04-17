@@ -73,13 +73,13 @@ public static class NCombatPilesContainerPatch
         label.GrowVertical = Control.GrowDirection.Both;
         label.HorizontalAlignment = HorizontalAlignment.Center;
         label.VerticalAlignment = VerticalAlignment.Center;
-        label.AddThemeFontOverride(ThemeConstants.Label.font, font);
-        label.AddThemeColorOverride(ThemeConstants.Label.fontColor,
+        label.AddThemeFontOverride(ThemeConstants.Label.Font, font);
+        label.AddThemeColorOverride(ThemeConstants.Label.FontColor,
             new Color(1f, 0.96f, 0.88f));
-        label.AddThemeColorOverride(ThemeConstants.Label.fontOutlineColor,
+        label.AddThemeColorOverride(ThemeConstants.Label.FontOutlineColor,
             new Color(0.53f, 0.12f, 0.12f));
-        label.AddThemeConstantOverride(ThemeConstants.Label.outlineSize, 12);
-        label.AddThemeConstantOverride(ThemeConstants.Label.fontSize, 26);
+        label.AddThemeConstantOverride(ThemeConstants.Label.OutlineSize, 12);
+        label.AddThemeConstantOverride(ThemeConstants.Label.FontSize, 26);
         label.MinFontSize = 20;
         label.MaxFontSize = 26;
         return label;
