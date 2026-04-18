@@ -28,6 +28,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
         new IntVar("ReplaceCharSelect", 3),
         new IntVar("ReplaceCharCount", 18),
+        new IntVar("ReplaceCharMaxHp", 9),
 
         new MaxHpVar(3)
     ];
