@@ -8,8 +8,10 @@
   "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.title": "Walk Away",
   "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.description": "Gain 3 Max HP.",
 
-  "SHADOWFALL-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt": "Take cards from your alter",
+  "TODO:": "finish the writing here",
+  "SHADOWFALL-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt": "Take {TakeCardsSelect} of {TakeCardsCount} cards from your alter",
   "SHADOWFALL-MIRROR_MIRROR.pages.TOOK_CARDS.description": "You took some cards",
-  "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.description": "You are replaced",
+  "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.selectionScreenPrompt": "Take {ReplaceCharSelect} of {ReplaceCharCount} cards from your alter",
+  "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.description": "You were replaced",
   "SHADOWFALL-MIRROR_MIRROR.pages.GAINED_MAX_HP.description": "You walked away without interacting with the mirror"
 }

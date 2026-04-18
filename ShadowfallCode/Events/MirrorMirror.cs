@@ -1,20 +1,15 @@
 using BaseLib.Abstracts;
-using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Characters;
-using MegaCrit.Sts2.Core.Nodes;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Nodes.TopBar;
 using MegaCrit.Sts2.Core.Runs;
 using Shadowfall.ShadowfallCode.Character;
 
@@ -25,18 +20,20 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 {
     // public override string? CustomBackgroundScenePath => null;
     public override string? CustomInitialPortraitPath => "res://Shadowfall/images/card_portraits/card.png";
-    // public override ActModel[] Acts => [ModelDb.Act<DefaultAct>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(6),
-        new IntVar("CardSelect", 1),
+        new IntVar("TakeCardsSelect", 1),
+        new IntVar("TakeCardsCount", 6),
+
+        new IntVar("ReplaceCharSelect", 3),
+        new IntVar("ReplaceCharCount", 18),
+
         new MaxHpVar(3)
     ];
 
     public override bool IsAllowed(IRunState runState)
     {
-        MainFile.Logger.Info($"MirrorMirror IsAllowed");
         return runState.Players.All(p =>
             p.Character is IAltCharacter ||
             ModelDb.AllCharacters.Any(a => a is IAltCharacter ac && ac.BaseCharacterModel == p.Character));
@@ -50,7 +47,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         }
         else
         {
-            await TakeCards(DynamicVars["CardSelect"].IntValue, DynamicVars.Cards.IntValue);
+            await TakeCards(DynamicVars["TakeCardsSelect"].IntValue, DynamicVars["TakeCardsCount"].IntValue);
         }
 
         SetEventFinished(PageDescription("TOOK_CARDS"));
@@ -64,21 +61,31 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         }
         else
         {
-            await TakeCards(DynamicVars["CardSelect"].IntValue * 3, DynamicVars.Cards.IntValue * 3);
             await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue * 3);
-            //TODO: replace starter relic
+
+            await TakeCards(DynamicVars["ReplaceCharSelect"].IntValue, DynamicVars["ReplaceCharCount"].IntValue,
+                "REPLACED_CHARACTER");
+
+            var relicModels = Owner.Relics.Where(r => r.Rarity == RelicRarity.Starter).ToList();
+            foreach (var relic in relicModels)
+            {
+                await RelicCmd.Remove(relic);
+            }
 
             var characterField = AccessTools.Field(typeof(Player), "<Character>k__BackingField");
             characterField.SetValue(Owner, _mirrorCharacterModel);
 
-            // RefreshTopBarPortrait(_mirrorCharacterModel);
+            for (var index = 0; index < Owner.Character.StartingRelics.Count; index++)
+            {
+                var relicModel = Owner.Character.StartingRelics[index];
+                await RelicCmd.Obtain(relicModel.ToMutable(), Owner, index);
+            }
         }
-
 
         SetEventFinished(PageDescription("REPLACED_CHARACTER"));
     }
 
-    private async Task TakeCards(int cardSelectCount, int cardCreateCount)
+    private async Task TakeCards(int cardSelectCount, int cardCreateCount, string action = "TAKE_CARDS")
     {
         if (Owner == null)
         {
@@ -89,13 +96,15 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         var cardCreationResults = CardFactory.CreateForReward(
                 Owner,
                 cardCreateCount,
-                CardCreationOptions.ForNonCombatWithUniformOdds([_mirrorCharacterModel.CardPool],
-                        cardModel => !Owner.Character.CardPool.AllCards.Contains(cardModel))
-                    .WithFlags(CardCreationFlags.NoRarityModification))
+                CardCreationOptions.ForNonCombatWithDefaultOdds([_mirrorCharacterModel.CardPool],
+                    cardModel => !Owner.Character.CardPool.AllCards.Contains(cardModel))
+                // .WithFlags(CardCreationFlags.NoRarityModification)
+            )
+            // .OrderBy(c => c.Card.Rarity)
             .ToList();
 
         var cardSelectorPrefs =
-            new CardSelectorPrefs(L10NLookup("SHADOWFALL-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt"),
+            new CardSelectorPrefs(L10NLookup($"SHADOWFALL-MIRROR_MIRROR.pages.{action}.selectionScreenPrompt"),
                 cardSelectCount);
 
         var selectedCards =
@@ -106,8 +115,6 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
             CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(cardModel, PileType.Deck));
         }
     }
-
-
 
     private async Task GainMaxHp()
     {
