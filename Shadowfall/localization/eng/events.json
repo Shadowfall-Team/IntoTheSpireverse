@@ -1,0 +1,15 @@
+{
+  "SHADOWFALL-MIRROR_MIRROR.title": "Mirror Mirror",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.description": "Mirror, mirror on the wall, who is the most pain in the ass event of them all?",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.title": "Touch the Surface",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.description": "Choose 1 of 6 cards from the Altered World to add to your deck.",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.title": "Step Through",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.description": "Replace yourself with your altered version. (TODO: -> Triple and gain both other choices.)",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.title": "Walk Away",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.description": "Gain 3 Max HP.",
+
+  "SHADOWFALL-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt": "Take cards from your alter",
+  "SHADOWFALL-MIRROR_MIRROR.pages.TOOK_CARDS.description": "You took some cards",
+  "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.description": "You are replaced",
+  "SHADOWFALL-MIRROR_MIRROR.pages.GAINED_MAX_HP.description": "You walked away without interacting with the mirror"
+}
