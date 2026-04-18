@@ -2,16 +2,14 @@
   "SHADOWFALL-MIRROR_MIRROR.title": "Mirror Mirror",
   "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.description": "Mirror, mirror on the wall, who is the most pain in the ass event of them all?",
   "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.title": "Touch the Surface",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.description": "Choose 1 of 6 cards from the Altered World to add to your deck.",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.description": "Choose [blue]1[/blue] of [blue]6[/blue] cards from the Parallel World to add to your deck.",
   "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.title": "Step Through",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.description": "Replace yourself with your altered version. (TODO: -> Triple and gain both other choices.)",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.description": "Choose [blue]3[/blue] of [blue]18[/blue] cards from the Parallel World to add to your deck. Gain [green]{ReplaceCharMaxHp}[/green] Max HP and replace your character with the one from the Parallel World.",
   "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.title": "Walk Away",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.description": "Gain 3 Max HP.",
-
-  "TODO:": "finish the writing here",
-  "SHADOWFALL-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt": "Take {TakeCardsSelect} of {TakeCardsCount} cards from your alter",
+  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.description": "Gain {MaxHp} Max HP.",
+  "SHADOWFALL-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt": "Take 1 of 6 cards from your parallel self.",
   "SHADOWFALL-MIRROR_MIRROR.pages.TOOK_CARDS.description": "You took some cards",
-  "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.selectionScreenPrompt": "Take {ReplaceCharSelect} of {ReplaceCharCount} cards from your alter",
+  "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.selectionScreenPrompt": "Take 3 of 18 cards from your parallel self.",
   "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.description": "You were replaced",
   "SHADOWFALL-MIRROR_MIRROR.pages.GAINED_MAX_HP.description": "You walked away without interacting with the mirror"
 }
