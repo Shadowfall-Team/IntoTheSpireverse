@@ -18,14 +18,11 @@ public class CargoDrawManager() : CustomSingletonModel(true, false)
          {
              var tradeRoutes = player.Creature.GetPower<TradeRoutesPower>()?.Amount ?? 0;
              var cardModels = cargoPile.Cards.Take(1 + tradeRoutes).ToList();
-             if (cardModels.Count != 0)
+             foreach (var cardModel in cardModels)
              {
-                 foreach (var cardModel in cardModels)
-                 {
-                     await CardPileCmd.Add(cardModel, PileType.Hand);
-                     if (player.Creature.CombatState == null) continue;
-                     await Hook.AfterCardDrawn(player.Creature.CombatState, choiceContext, cardModel, true);
-                 }
+                 await CardPileCmd.Add(cardModel, PileType.Hand);
+                 if (player.Creature.CombatState == null) continue;
+                 await Hook.AfterCardDrawn(player.Creature.CombatState, choiceContext, cardModel, true);
              }
          }
      }
