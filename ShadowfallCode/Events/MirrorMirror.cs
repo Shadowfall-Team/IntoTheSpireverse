@@ -18,8 +18,9 @@ namespace Shadowfall.ShadowfallCode.Events;
 //TODO: test if this works in MP
 public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 {
-    // public override string? CustomBackgroundScenePath => null;
+    //TODO: add custom scene or image portrait for event.
     public override string? CustomInitialPortraitPath => "res://Shadowfall/images/card_portraits/card.png";
+    // public override string? CustomBackgroundScenePath => null;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -98,10 +99,11 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
                 Owner,
                 cardCreateCount,
                 CardCreationOptions.ForNonCombatWithDefaultOdds([_mirrorCharacterModel.CardPool],
-                    cardModel => !Owner.Character.CardPool.AllCards.Contains(cardModel))
-                // .WithFlags(CardCreationFlags.NoRarityModification)
+                    Owner.Character is IAltCharacter
+                        ? cardModel => !Owner.Character.CardPool.AllCards.Contains(cardModel)
+                        : null)
             )
-            // .OrderBy(c => c.Card.Rarity)
+            .OrderByDescending(c => c.Card.Rarity)
             .ToList();
 
         var cardSelectorPrefs =
