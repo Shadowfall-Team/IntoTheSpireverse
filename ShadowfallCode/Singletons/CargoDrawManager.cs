@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using Shadowfall.ShadowfallCode.CardPiles;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -19,7 +20,12 @@ public class CargoDrawManager() : CustomSingletonModel(true, false)
              var cardModels = cargoPile.Cards.Take(1 + tradeRoutes).ToList();
              if (cardModels.Count != 0)
              {
-                 await CardPileCmd.Add(cardModels, PileType.Hand);
+                 foreach (var cardModel in cardModels)
+                 {
+                     await CardPileCmd.Add(cardModel, PileType.Hand);
+                     if (player.Creature.CombatState == null) continue;
+                     await Hook.AfterCardDrawn(player.Creature.CombatState, choiceContext, cardModel, true);
+                 }
              }
          }
      }
