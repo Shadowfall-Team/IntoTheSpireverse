@@ -28,11 +28,9 @@ public class NCharacterSelectScreenPatches
 [HarmonyPatch(typeof(NCharacterSelectButton))]
 public class NCharacterSelectButtonPatches
 {
-    private const string _altIndicatorTexturePath = "res://" + MainFile.ModId + "/images/charui/tiny_arrow_up.png";
     private const string _scenePath = "res://" + MainFile.ModId + "/scenes/CharAltArrow.tscn";
     private const string _shaderMaterialPath = "res://materials/vfx/hsv.tres";
 
-    private static Texture2D indicatorTexture = ResourceLoader.Load<Texture2D>(_altIndicatorTexturePath);
     private static Material hsv = ResourceLoader.Load<Material>(_shaderMaterialPath);
 
     [HarmonyPatch("Init")]
@@ -46,7 +44,6 @@ public class NCharacterSelectButtonPatches
 
         var arrowButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCharAltArrow>();
         var arrowTextureRect = arrowButton.GetNode<TextureRect>("TextureRect");
-        arrowTextureRect.Texture = indicatorTexture;
         arrowTextureRect.Material = hsv.Duplicate() as Material;
 
         //6 + (portrait width/2) - width of arrow

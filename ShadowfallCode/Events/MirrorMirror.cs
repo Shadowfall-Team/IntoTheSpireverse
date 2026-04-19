@@ -19,7 +19,7 @@ namespace Shadowfall.ShadowfallCode.Events;
 public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 {
     //TODO: add custom scene or image portrait for event.
-    public override string? CustomInitialPortraitPath => "res://Shadowfall/images/card_portraits/card.png";
+    public override string CustomInitialPortraitPath => "res://Shadowfall/images/card_portraits/card.png";
     // public override string? CustomBackgroundScenePath => null;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -43,11 +43,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
     private async Task TakeCards()
     {
-        if (Owner == null || _mirrorCharacterModel == null)
-        {
-            MainFile.Logger.Warn("Owner or MirrorChar is null");
-        }
-        else
+        if (Owner != null && _mirrorCharacterModel != null)
         {
             await TakeCards(DynamicVars["TakeCardsSelect"].IntValue, DynamicVars["TakeCardsCount"].IntValue);
         }
@@ -57,11 +53,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
     private async Task ReplaceCharacter()
     {
-        if (Owner == null || _mirrorCharacterModel == null)
-        {
-            MainFile.Logger.Warn("Owner or MirrorChar is null");
-        }
-        else
+        if (Owner != null && _mirrorCharacterModel != null)
         {
             await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue * 3);
 
@@ -89,11 +81,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
     private async Task TakeCards(int cardSelectCount, int cardCreateCount, string action = "TAKE_CARDS")
     {
-        if (Owner == null)
-        {
-            MainFile.Logger.Warn("Owner is null");
-            return;
-        }
+        if (Owner == null || _mirrorCharacterModel == null) return;
 
         var cardCreationResults = CardFactory.CreateForReward(
                 Owner,
