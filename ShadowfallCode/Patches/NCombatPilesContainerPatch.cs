@@ -1,7 +1,4 @@
-using Godot;
 using HarmonyLib;
-using MegaCrit.Sts2.addons.mega_text;
-using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Combat;
