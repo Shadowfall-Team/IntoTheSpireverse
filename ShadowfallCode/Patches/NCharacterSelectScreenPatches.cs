@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Diagnostics;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
@@ -38,6 +39,9 @@ public class NCharacterSelectButtonPatches
     public static void InitPostfix(NCharacterSelectButton __instance,
         CharacterModel character, ICharacterSelectButtonDelegate del)
     {
+        // MainFile.Logger.Info("NCharacterSelectButtonPatches::InitPostfix");
+        // var stacktrace = new StackTrace();
+        // MainFile.Logger.Info(stacktrace.ToString());
         var altCharacterCount = ModelDb.AllCharacters.Count(c =>
             c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character);
         if (altCharacterCount <= 0) return;

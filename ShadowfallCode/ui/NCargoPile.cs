@@ -116,7 +116,7 @@ public partial class NCargoPile : NCombatCardPile
                 scaleOnHover: false);
         if (holder == null) return null;
 
-        
+
         AddChild(holder);
         MoveChild(holder, 0);
         holder.MouseFilter = MouseFilterEnum.Pass;
