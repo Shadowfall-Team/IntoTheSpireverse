@@ -7,18 +7,18 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Character;
-using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HpLossVar(1m),
-        new PowerVar<BloodbondPower>(6m),
+        new DamageVar(10m, ValueProp.Move),
+        new PowerVar<BloodbondPower>(3m),
+        new CardsVar(1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -28,14 +28,21 @@ public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
-        await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this)
+            .Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
         await PowerCmd.Apply<BloodbondPower>(
-            Owner.Creature, DynamicVars.Power<BloodbondPower>().BaseValue,
+            cardPlay.Target, DynamicVars.Power<BloodbondPower>().BaseValue,
             Owner.Creature, this);
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(2m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Power<BloodbondPower>().UpgradeValueBy(2m);
+    }
 }

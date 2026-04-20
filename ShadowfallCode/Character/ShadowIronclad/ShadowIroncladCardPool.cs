@@ -22,34 +22,28 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
     {
         return
         [
+            ModelDb.Card<BodySlam>(),
             ModelDb.Card<Breakthrough>(),
             ModelDb.Card<Headbutt>(),
-            ModelDb.Card<PommelStrike>(),
-            ModelDb.Card<SetupStrike>(),
-            ModelDb.Card<Thunderclap>(),
             ModelDb.Card<Bloodletting>(),
-            ModelDb.Card<ShrugItOff>(),
+            ModelDb.Card<Havoc>(),
             ModelDb.Card<BloodWall>(),
             ModelDb.Card<Spite>(),
             ModelDb.Card<Whirlwind>(),
+            ModelDb.Card<Hemokinesis>(),
             ModelDb.Card<Bludgeon>(),
-            ModelDb.Card<Stomp>(),
-            ModelDb.Card<Rage>(),
+            ModelDb.Card<DemonicShield>(),
             ModelDb.Card<InfernalBlade>(),
             ModelDb.Card<Taunt>(),
-            ModelDb.Card<FlameBarrier>(),
             ModelDb.Card<Inferno>(),
-            ModelDb.Card<Inflame>(),
             ModelDb.Card<Rupture>(),
             ModelDb.Card<StoneArmor>(),
-            ModelDb.Card<Conflagration>(),
             ModelDb.Card<TearAsunder>(),
             ModelDb.Card<Cascade>(),
-            ModelDb.Card<Offering>(),
-            ModelDb.Card<OneTwoPunch>(),
-            ModelDb.Card<Impervious>(),
-            ModelDb.Card<Tank>(),
-            ModelDb.Card<Juggernaut>()
+            ModelDb.Card<PrimalForce>(),
+            ModelDb.Card<Aggression>(),
+            ModelDb.Card<Juggernaut>(),
+            ModelDb.Card<Barricade>(),
         ];
     }
 }

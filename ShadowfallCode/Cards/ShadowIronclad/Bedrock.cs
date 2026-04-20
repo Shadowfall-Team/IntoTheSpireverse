@@ -11,18 +11,26 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Warcraft() : ShadowIroncladCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class Bedrock() : ShadowIroncladCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<WarcraftPower>(1m),
+        new PowerVar<BedrockPower>(1m),
     ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<SlatePower>(),
+    ];
+    
+    public override CardMultiplayerConstraint MultiplayerConstraint
+        => CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<WarcraftPower>(
-            Owner.Creature, DynamicVars.Power<WarcraftPower>().BaseValue,
+        await PowerCmd.Apply<BedrockPower>(
+            Owner.Creature, DynamicVars.Power<BedrockPower>().BaseValue,
             Owner.Creature, this);
     }
 

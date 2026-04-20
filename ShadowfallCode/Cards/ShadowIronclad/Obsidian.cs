@@ -11,20 +11,32 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Warcraft() : ShadowIroncladCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class Obsidian() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<WarcraftPower>(1m),
+        new PowerVar<ObsidianPower>(1m),
+        new PowerVar<SlatePower>(0m),
+    ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<SlatePower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<WarcraftPower>(
-            Owner.Creature, DynamicVars.Power<WarcraftPower>().BaseValue,
+        await PowerCmd.Apply<ObsidianPower>(
+            Owner.Creature, DynamicVars.Power<ObsidianPower>().BaseValue,
             Owner.Creature, this);
+        if (IsUpgraded)
+        {
+            await PowerCmd.Apply<SlatePower>(
+                Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
+                Owner.Creature, this);
+        }
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(1m);
 }
