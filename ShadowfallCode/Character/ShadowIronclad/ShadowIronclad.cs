@@ -33,17 +33,17 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
         ModelDb.Card<StrikeShadowIronclad>(),
         ModelDb.Card<StrikeShadowIronclad>(),
         ModelDb.Card<StrikeShadowIronclad>(),
-        ModelDb.Card<StrikeShadowIronclad>(),
         ModelDb.Card<DefendShadowIronclad>(),
         ModelDb.Card<DefendShadowIronclad>(),
         ModelDb.Card<DefendShadowIronclad>(),
         ModelDb.Card<DefendShadowIronclad>(),
-        ModelDb.Card<MadLad>(),
+        ModelDb.Card<TerraFirma>(),
+        ModelDb.Card<Bore>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<CorruptBlood>()
+        ModelDb.Relic<HeartOfStone>()
     ];
     
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowIroncladCardPool>();
