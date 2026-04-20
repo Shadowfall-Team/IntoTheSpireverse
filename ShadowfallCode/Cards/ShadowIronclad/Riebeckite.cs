@@ -11,20 +11,25 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Warcraft() : ShadowIroncladCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class Riebeckite() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<WarcraftPower>(1m),
+        new PowerVar<RiebeckitePower>(2m),
+    ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<SlatePower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<WarcraftPower>(
-            Owner.Creature, DynamicVars.Power<WarcraftPower>().BaseValue,
+        await PowerCmd.Apply<RiebeckitePower>(
+            Owner.Creature, DynamicVars.Power<RiebeckitePower>().BaseValue,
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => DynamicVars.Power<RiebeckitePower>().UpgradeValueBy(1m);
 }

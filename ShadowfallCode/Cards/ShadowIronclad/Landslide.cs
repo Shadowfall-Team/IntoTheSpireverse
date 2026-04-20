@@ -1,5 +1,4 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,19 +12,21 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
+    private const string StrengthLossKey = "StrengthLoss";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5m, ValueProp.Move),
-        new PowerVar<RetaliationPower>(5m),
-        new PowerVar<VulnerablePower>(1m),
+        new DamageVar(14m, ValueProp.Move),
+        new DynamicVar(StrengthLossKey, 3m),
     ];
+    
+    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<RetaliationPower>(),
-        HoverTipFactory.FromPower<VulnerablePower>(),
+        HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -36,17 +37,15 @@ public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRar
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        await PowerCmd.Apply<RetaliationPower>(
-            Owner.Creature, DynamicVars.Power<RetaliationPower>().BaseValue,
-            Owner.Creature, this);
-        await PowerCmd.Apply<VulnerablePower>(
-            cardPlay.Target, DynamicVars.Vulnerable.BaseValue,
+
+        await PowerCmd.Apply<LandslidePower>(
+            cardPlay.Target, DynamicVars[StrengthLossKey].BaseValue,
             Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(2m);
-        DynamicVars.Power<RetaliationPower>().UpgradeValueBy(2m);
+        DynamicVars[StrengthLossKey].UpgradeValueBy(1m);
     }
 }

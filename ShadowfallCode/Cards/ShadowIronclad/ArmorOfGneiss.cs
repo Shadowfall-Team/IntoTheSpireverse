@@ -7,35 +7,39 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Character;
-using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class ArmorOfGneiss() : ShadowIroncladCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    public override bool GainsBlock => true;
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        CardKeyword.Exhaust,
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HpLossVar(1m),
-        new PowerVar<BloodbondPower>(6m),
+        new BlockVar(10m, ValueProp.Move),
+        new PowerVar<SlatePower>(6m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<BloodbondPower>(),
+        HoverTipFactory.FromPower<SlatePower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
-        await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
-        await PowerCmd.Apply<BloodbondPower>(
-            Owner.Creature, DynamicVars.Power<BloodbondPower>().BaseValue,
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        await PowerCmd.Apply<SlatePower>(
+            Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(2m);
+    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(2m);
 }
