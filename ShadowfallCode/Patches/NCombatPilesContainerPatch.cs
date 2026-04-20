@@ -22,24 +22,20 @@ public static class NCombatPilesContainerPatch
     [HarmonyPostfix]
     public static void ReadyPostfix(NCombatPilesContainer __instance)
     {
-        var cargoPileButton = ResourceLoader.Load<PackedScene>(_scenePath)
-            .Instantiate<NCargoPile>();
-        var parentNode = cargoPileButton.GetNode<Control>("CountContainer");
-        var background =
-            cargoPileButton.GetNode<TextureRect>("CountContainer/Background");
-
-        var countBg =
-            ResourceLoader.Load<Texture2D>(
-                "res://images/packed/combat_ui/pile_button_count.png");
-
+        var cargoPileButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCargoPile>();
         cargoPileButton.Name = "%CargoPile";
         cargoPileButton.Position = new Vector2(35, 700);
-
+        
+        var countLabel = cargoPileButton.GetNode<ShadowfallMegaLabel>("CountContainer/Count");
+        var font = PreloadManager.Cache.GetAsset<Font>(megaLabelFont);
+        countLabel.AddThemeFontOverride(ThemeConstants.Label.Font, font);
+        countLabel.MinFontSize = 20;
+        countLabel.MaxFontSize = 26;
+        
+        var background = cargoPileButton.GetNode<TextureRect>("CountContainer/Background");
+        var countBg = ResourceLoader.Load<Texture2D>("res://images/packed/combat_ui/pile_button_count.png");
         background.Texture = countBg;
 
-        var label = CreateCargoPileLabel();
-
-        parentNode.AddChild(label);
         __instance.AddChild(cargoPileButton);
     }
 
@@ -55,34 +51,6 @@ public static class NCombatPilesContainerPatch
     public static void DisablePostfix(NCombatPilesContainer __instance)
     {
         __instance.GetNodeOrNull<NCargoPile>("_CargoPile")?.Disable();
-    }
-
-    private static MegaLabel CreateCargoPileLabel()
-    {
-        var font = PreloadManager.Cache.GetAsset<Font>(megaLabelFont);
-
-        var label = new MegaLabel();
-        label.Name = "Count";
-        label.LayoutMode = 1;
-        label.AnchorsPreset = 15;
-        label.OffsetLeft = 12;
-        label.OffsetTop = -26;
-        label.OffsetRight = -12;
-        label.OffsetBottom = 26;
-        label.GrowHorizontal = Control.GrowDirection.Both;
-        label.GrowVertical = Control.GrowDirection.Both;
-        label.HorizontalAlignment = HorizontalAlignment.Center;
-        label.VerticalAlignment = VerticalAlignment.Center;
-        label.AddThemeFontOverride(ThemeConstants.Label.Font, font);
-        label.AddThemeColorOverride(ThemeConstants.Label.FontColor,
-            new Color(1f, 0.96f, 0.88f));
-        label.AddThemeColorOverride(ThemeConstants.Label.FontOutlineColor,
-            new Color(0.53f, 0.12f, 0.12f));
-        label.AddThemeConstantOverride(ThemeConstants.Label.OutlineSize, 12);
-        label.AddThemeConstantOverride(ThemeConstants.Label.FontSize, 26);
-        label.MinFontSize = 20;
-        label.MaxFontSize = 26;
-        return label;
     }
 }
 
