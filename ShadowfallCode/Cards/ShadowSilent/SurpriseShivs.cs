@@ -14,7 +14,7 @@ public sealed class SurpriseShivs() : ShadowSilentCard(3, CardType.Power, CardRa
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar("Shivs", 2),
-        new PowerVar<AccuracyPower>(2m),
+        new PowerVar<AccuracyPower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
