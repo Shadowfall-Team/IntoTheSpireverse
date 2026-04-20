@@ -7,25 +7,31 @@ using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class WeightTraining() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+public sealed class ShowOff() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<WeightTrainingPower>(2m),
+        new CardsVar(0),
+        new PowerVar<ShowOffPower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<WeightTrainingPower>(),
+        HoverTipFactory.FromPower<ShowOffPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<WeightTrainingPower>(Owner.Creature, DynamicVars[nameof(WeightTrainingPower)].BaseValue, Owner.Creature, this);
+        if (IsUpgraded)
+        {
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        }
+
+        await PowerCmd.Apply<ShowOffPower>(Owner.Creature, DynamicVars[nameof(ShowOffPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-		DynamicVars["WeightTrainingPower"].UpgradeValueBy(1m);
+        DynamicVars.Cards.UpgradeValueBy(2m);
     }
 }
