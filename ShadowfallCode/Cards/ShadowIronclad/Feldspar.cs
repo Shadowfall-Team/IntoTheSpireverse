@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Character;
 using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
@@ -13,19 +12,17 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class Feldspar() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5m, ValueProp.Move),
-        new PowerVar<RetaliationPower>(5m),
-        new PowerVar<VulnerablePower>(1m),
+        new DamageVar(7m, ValueProp.Move),
+        new PowerVar<SlatePower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<RetaliationPower>(),
-        HoverTipFactory.FromPower<VulnerablePower>(),
+        HoverTipFactory.FromPower<SlatePower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -34,19 +31,12 @@ public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRar
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
-        await PowerCmd.Apply<RetaliationPower>(
-            Owner.Creature, DynamicVars.Power<RetaliationPower>().BaseValue,
-            Owner.Creature, this);
-        await PowerCmd.Apply<VulnerablePower>(
-            cardPlay.Target, DynamicVars.Vulnerable.BaseValue,
+        await PowerCmd.Apply<SlatePower>(
+            Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2m);
-        DynamicVars.Power<RetaliationPower>().UpgradeValueBy(2m);
-    }
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
 }
