@@ -16,27 +16,6 @@ public static class NCombatPilesContainerPatch
 
     private static readonly string megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
 
-    [HarmonyPatch("_Ready")]
-    [HarmonyPostfix]
-    public static void ReadyPostfix(NCombatPilesContainer __instance)
-    {
-        var cargoPileButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCargoPile>();
-        cargoPileButton.Name = "%CargoPile";
-        cargoPileButton.Position = new Vector2(35, 700);
-        
-        var countLabel = cargoPileButton.GetNode<ShadowfallMegaLabel>("CountContainer/Count");
-        var font = PreloadManager.Cache.GetAsset<Font>(megaLabelFont);
-        countLabel.AddThemeFontOverride(ThemeConstants.Label.Font, font);
-        countLabel.MinFontSize = 20;
-        countLabel.MaxFontSize = 26;
-        
-        var background = cargoPileButton.GetNode<TextureRect>("CountContainer/Background");
-        var countBg = ResourceLoader.Load<Texture2D>("res://images/packed/combat_ui/pile_button_count.png");
-        background.Texture = countBg;
-
-        __instance.AddChild(cargoPileButton);
-    }
-
     [HarmonyPatch("Enable")]
     [HarmonyPostfix]
     public static void EnablePostfix(NCombatPilesContainer __instance)

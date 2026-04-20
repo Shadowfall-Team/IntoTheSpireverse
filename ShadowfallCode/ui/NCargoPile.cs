@@ -1,4 +1,7 @@
+using BaseLib.Utils;
 using Godot;
+using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -28,6 +31,27 @@ public partial class NCargoPile : NCombatCardPile
     private const float TooltipOffsetY = -300f;
 
     protected override PileType Pile => CargoCardPile.CargoPileType;
+
+    private static readonly string _scenePath = "res://Shadowfall/scenes/CargoPile.tscn";
+    private static readonly string megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
+
+    public static AddedNode<NCombatPilesContainer, NCargoPile> _ = new(container =>
+    {
+        var cargoPileButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCargoPile>();
+        cargoPileButton.Name = "%CargoPile";
+        cargoPileButton.Position = new Vector2(35, 700);
+
+        var background = cargoPileButton.GetNode<TextureRect>("CountContainer/Background");
+        background.Texture = ResourceLoader.Load<Texture2D>("res://images/packed/combat_ui/pile_button_count.png");
+
+        var countLabel = cargoPileButton.GetNode<ShadowfallMegaLabel>("CountContainer/Count");
+        var font = PreloadManager.Cache.GetAsset<Font>(megaLabelFont);
+        countLabel.AddThemeFontOverride(ThemeConstants.Label.Font, font);
+        countLabel.MinFontSize = 20;
+        countLabel.MaxFontSize = 26;
+
+        return cargoPileButton;
+    });
 
     public override void _Ready()
     {
@@ -119,8 +143,8 @@ public partial class NCargoPile : NCombatCardPile
 
         AddChild(holder);
         MoveChild(holder, 0);
-        holder.MouseFilter = MouseFilterEnum.Pass;
-        holder.Hitbox.MouseFilter = MouseFilterEnum.Pass;
+        holder.MouseFilter = Control.MouseFilterEnum.Pass;
+        holder.Hitbox.MouseFilter = Control.MouseFilterEnum.Pass;
 
         PositionPreviewCard(holder, xOffset, scale);
         cardNode.UpdateVisuals(CargoCardPile.CargoPileType, CardPreviewMode.Normal);
