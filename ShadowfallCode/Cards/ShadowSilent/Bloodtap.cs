@@ -12,20 +12,23 @@ public sealed class Bloodtap() : ShadowSilentCard(1, CardType.Power, CardRarity.
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<BloodtapPower>(1m),
+        new PowerVar<InstinctPower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<BleedPower>(),
+        HoverTipFactory.FromPower<InstinctPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        await PowerCmd.Apply<InstinctPower>(Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
         await PowerCmd.Apply<BloodtapPower>(Owner.Creature, DynamicVars[nameof(BloodtapPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Innate);
+        DynamicVars[nameof(BloodtapPower)].UpgradeValueBy(1m);
     }
 }

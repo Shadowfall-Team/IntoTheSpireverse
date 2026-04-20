@@ -16,7 +16,7 @@ public class BleedPower : CustomPowerModel
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public const int BaseDamage = 6;
+    public const int BaseDamage = 3;
 
     private int ComputeDamage() => BaseDamage + (Owner?.CombatState != null
         ? Owner.CombatState.GetOpponentsOf(Owner).Sum(p => p.GetPowerAmount<InstinctPower>())

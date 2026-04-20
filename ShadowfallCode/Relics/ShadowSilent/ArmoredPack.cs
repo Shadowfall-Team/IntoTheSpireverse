@@ -7,8 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Relics;
@@ -24,23 +23,21 @@ public class ArmoredPack : ShadowSilentRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<DexterityPower>(1M),
+        new BlockVar(4M, ValueProp.Unpowered),
         new CardsVar(1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
       HoverTipFactory.FromCard<Weight>(),
-      HoverTipFactory.FromPower<DexterityPower>()
+      HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
-    public override async Task AfterRoomEntered(AbstractRoom room)
-  {
-    if (room is not CombatRoom)
-      return;
-    Flash();
-    await PowerCmd.Apply<DexterityPower>(Owner.Creature, DynamicVars.Dexterity.BaseValue, Owner.Creature, null);
-  }
+  	public override async Task BeforeCombatStart()
+    {
+		Flash();
+    await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null); 
+    }
 
   public override async Task BeforeHandDraw(
     Player player,

@@ -32,7 +32,6 @@ public class ShadowSilentCardPool : CustomCardPoolModel
     {
         return
         [
-            ModelDb.Card<Accuracy>(),
             ModelDb.Card<Acrobatics>(),
             ModelDb.Card<Afterimage>(),
             ModelDb.Card<Backflip>(),
@@ -48,19 +47,13 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<FanOfKnives>(),
             ModelDb.Card<Flanking>(),
             ModelDb.Card<Footwork>(),
-            ModelDb.Card<HiddenDaggers>(),
-            ModelDb.Card<InfiniteBlades>(),
             ModelDb.Card<LegSweep>(),
             ModelDb.Card<Malaise>(),
-            ModelDb.Card<MementoMori>(),
             ModelDb.Card<Nightmare>(),
-            ModelDb.Card<PiercingWail>(),
             ModelDb.Card<Predator>(),
-            ModelDb.Card<Prepared>(),
             ModelDb.Card<Skewer>(),
             ModelDb.Card<StormOfSteel>(),
             ModelDb.Card<TheHunt>(),
-            ModelDb.Card<ToolsOfTheTrade>(),
             ModelDb.Card<Tracking>()
         ];
     }

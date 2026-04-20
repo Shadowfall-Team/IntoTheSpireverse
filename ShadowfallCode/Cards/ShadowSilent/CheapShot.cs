@@ -12,7 +12,7 @@ public sealed class CheapShot() : ShadowSilentCard(1, CardType.Attack, CardRarit
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(10m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
         new PowerVar<WeakPower>(1m),
     ];
 

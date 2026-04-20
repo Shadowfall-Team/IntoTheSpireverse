@@ -3,29 +3,31 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Lacerate() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class ShankAndFlank() : ShadowSilentCard(1, CardType.Power, CardRarity.Rare, TargetType.None)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BleedPower>(5m),
+        new PowerVar<ShankAndFlankPower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<BleedPower>(),
+        HoverTipFactory.FromCard<Shiv>(),
+        HoverTipFactory.FromCard<Ward>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<BleedPower>(cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<ShankAndFlankPower>(Owner.Creature, DynamicVars[nameof(ShankAndFlankPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(BleedPower)].UpgradeValueBy(2m);
+        AddKeyword(CardKeyword.Innate);
     }
 }

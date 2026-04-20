@@ -19,7 +19,7 @@ public sealed class ViperFormPower : CustomPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner == Owner.Player
-            && ShadowfallKeywords.IsCunningTriggered(cardPlay.Card)
+            && ShadowfallKeywords.WasRightmostWhenPlayed(cardPlay.Card)
             && _triggersThisTurn < Amount)
         {
             _triggersThisTurn++;

@@ -11,7 +11,7 @@ public sealed class ThrowingWeight() : ShadowSilentCard(2, CardType.Power, CardR
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ThrowingWeightPower>(8m),
+        new PowerVar<ThrowingWeightPower>(12m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

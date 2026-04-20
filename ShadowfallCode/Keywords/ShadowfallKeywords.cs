@@ -40,11 +40,11 @@ public static class ShadowfallKeywords
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Cargo;
 
-    public static bool IsCunningTriggered(CardModel card) =>
-        HandPositionTrackingPatch.WasLeftmostInHand.TryGetValue(card, out bool val) && val;
+    public static bool WasRightmostWhenPlayed(CardModel card) =>
+        HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
 
-    public static bool IsCunningActive(CardModel card) =>
-        card.Pile?.Type == PileType.Hand && card.Pile.Cards.Count > 0 && card.Pile.Cards[0] == card;
+    public static bool IsRightmostActive(CardModel card) =>
+        card.Pile?.Type == PileType.Hand && card.Pile.Cards.Count > 0 && card.Pile.Cards[^1] == card;
 
     public static bool WasAdjacentWhenRemoved(CardModel removedCard, CardModel neighbor) =>
         HandPositionTrackingPatch.AdjacentCards.TryGetValue(removedCard, out var list) && list.Contains(neighbor);

@@ -1,52 +1,56 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Flay() : ShadowSilentCard(1, CardType.Attack, CardRarity.Rare, TargetType.None)
+public sealed class Flay() : ShadowSilentCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
-        new PowerVar<BleedPower>(2m),
+        new DamageVar(8m, ValueProp.Move),
+        new EnergyVar(2),
+        new CardsVar(2),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cunning),
+        HoverTipFactory.FromPower<WeakPower>(),
         HoverTipFactory.FromPower<BleedPower>(),
+        EnergyHoverTip
     ];
-
-    protected override bool ShouldGlowGoldInternal => ShadowfallKeywords.IsCunningActive(this);
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd
-            .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .TargetingAllOpponents(CombatState)
-            .Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
 
-        if (ShadowfallKeywords.IsCunningTriggered(this))
+        bool hasWeak = cardPlay.Target.HasPower<WeakPower>();
+        bool hasBled = cardPlay.Target.HasPower<BleedPower>();
+
+        if (hasWeak)
         {
-            foreach (Creature creature in CombatState.HittableEnemies)
-            {
-                await PowerCmd.Apply<BleedPower>(creature, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
-            }
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
+        }
+
+        if (hasBled)
+        {
+            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        }
+
+        if (hasWeak && hasBled)
+        {
+            await CardCmd.Exhaust(choiceContext, this, false, false);
         }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Energy.UpgradeValueBy(1);
+        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }
