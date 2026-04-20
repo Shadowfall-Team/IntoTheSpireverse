@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
@@ -12,11 +12,9 @@ namespace Shadowfall.ShadowfallCode.Patches;
 [HarmonyPatch(typeof(NCombatPilesContainer))]
 public static class NCombatPilesContainerPatch
 {
-    private static readonly string _scenePath =
-        "res://" + MainFile.ModId + "/scenes/CargoPile.tscn";
+    private static readonly string _scenePath = "res://Shadowfall/scenes/CargoPile.tscn";
 
-    private static readonly string megaLabelFont =
-        "res://themes/kreon_bold_glyph_space_one.tres";
+    private static readonly string megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
 
     [HarmonyPatch("_Ready")]
     [HarmonyPostfix]

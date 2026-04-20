@@ -29,7 +29,7 @@ public class NCharacterSelectScreenPatches
 [HarmonyPatch(typeof(NCharacterSelectButton))]
 public class NCharacterSelectButtonPatches
 {
-    private const string _scenePath = "res://" + MainFile.ModId + "/scenes/CharAltArrow.tscn";
+    private const string _scenePath = "res://Shadowfall/scenes/CharAltArrow.tscn";
     private const string _shaderMaterialPath = "res://materials/vfx/hsv.tres";
 
     private static Material hsv = ResourceLoader.Load<Material>(_shaderMaterialPath);
@@ -39,9 +39,6 @@ public class NCharacterSelectButtonPatches
     public static void InitPostfix(NCharacterSelectButton __instance,
         CharacterModel character, ICharacterSelectButtonDelegate del)
     {
-        // MainFile.Logger.Info("NCharacterSelectButtonPatches::InitPostfix");
-        // var stacktrace = new StackTrace();
-        // MainFile.Logger.Info(stacktrace.ToString());
         var altCharacterCount = ModelDb.AllCharacters.Count(c =>
             c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character);
         if (altCharacterCount <= 0) return;
