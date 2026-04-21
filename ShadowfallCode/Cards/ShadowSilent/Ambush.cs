@@ -8,19 +8,19 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Ambush() : ShadowSilentCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class Ambush() : ShadowSilentCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
-        new DynamicVar("Increase", 3m),
+        new DamageVar(4m, ValueProp.Move),
+        new DynamicVar("Increase", 2m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
     }
-    
+
     private decimal ExtraDamageFromPlays { get; set; }
 
     public override Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
@@ -36,6 +36,6 @@ public sealed class Ambush() : ShadowSilentCard(2, CardType.Attack, CardRarity.U
 
     protected override void OnUpgrade()
 	{
-		DynamicVars["Increase"].UpgradeValueBy(2m);
+		DynamicVars["Increase"].UpgradeValueBy(1m);
 	}
 }

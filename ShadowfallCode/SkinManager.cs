@@ -14,7 +14,7 @@ public static class SkinManager
 
     public static void ApplyTextureToVisuals(NCreatureVisuals visuals)
     {
-        var body = visuals.Body;
+        var body = visuals.GetCurrentBody();
         var skeletonData = body.Get("skeleton_data_res").AsGodotObject();
         var skeletonDataPath = ((Resource)skeletonData).ResourcePath;
 

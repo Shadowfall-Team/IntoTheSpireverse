@@ -4,42 +4,49 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Bloodwave() : ShadowSilentCard(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
+public sealed class Bloodwave() : ShadowSilentCard(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BleedPower>(5m),
-        new PowerVar<VulnerablePower>(2m),
+        new DamageVar(5m, ValueProp.Move),
+        new RepeatVar(0),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<BleedPower>(),
-        HoverTipFactory.FromPower<VulnerablePower>(),
-        HoverTipFactory.FromCard<Slimed>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        foreach (Creature creature in CombatState.HittableEnemies)
+        await DamageCmd
+            .Attack(DynamicVars.Damage.BaseValue)
+            .WithHitCount(DynamicVars.Repeat.IntValue+1)
+            .FromCard(this)
+            .TargetingAllOpponents(CombatState)
+            .Execute(choiceContext);
+    }
+
+    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    {
+        if (power is BleedPower
+            && applier == Owner?.Creature
+            && Pile?.Type == PileType.Hand)
         {
-            await PowerCmd.Apply<BleedPower>(creature, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
-            await PowerCmd.Apply<VulnerablePower>(creature, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+            DynamicVars.Repeat.BaseValue += 1m;
         }
 
-        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Slimed>(Owner), PileType.Hand, true);
+        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(BleedPower)].UpgradeValueBy(2m);
+        DynamicVars.Repeat.UpgradeValueBy(1m);
     }
 }

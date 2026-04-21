@@ -17,9 +17,12 @@ public class IllicitMunitions() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo)
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo),
+        HoverTipFactory.FromCard<Volley>(),
+        HoverTipFactory.FromCard<Salvo>()
     ];
 
     protected override async Task OnPlay(
@@ -30,13 +33,13 @@ public class IllicitMunitions() : ShadowRegentCard(1,
 
         var volleyCard = CombatState.CreateCard<Volley>(Owner);
         volleyCard.AddKeyword(CardKeyword.Retain);
-        
+
         var salvoCard = CombatState.CreateCard<Salvo>(Owner);
         salvoCard.AddKeyword(CardKeyword.Retain);
 
         var results = await CardPileCmd.Add([volleyCard, salvoCard], CargoCardPile.CargoPileType,
             source: this);
-        
+
         CardCmd.PreviewCardPileAdd(results);
     }
 

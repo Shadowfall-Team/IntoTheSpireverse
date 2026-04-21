@@ -13,7 +13,7 @@ public sealed class DeepCut() : ShadowSilentCard(1, CardType.Attack, CardRarity.
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(6m, ValueProp.Move),
-        new PowerVar<BleedPower>(1m),
+        new PowerVar<BleedPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
