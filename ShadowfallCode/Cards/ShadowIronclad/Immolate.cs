@@ -15,7 +15,7 @@ public sealed class Immolate() : ShadowIroncladCard(2, CardType.Attack, CardRari
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(21m, ValueProp.Move),
+        new DamageVar(24m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -30,10 +30,10 @@ public sealed class Immolate() : ShadowIroncladCard(2, CardType.Attack, CardRari
             .TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+
         var burn = CombatState.CreateCard<Burn>(Owner);
-        CardCmd.PreviewCardPileAdd(
-            await CardPileCmd.AddGeneratedCardToCombat(burn, PileType.Discard, true));
+        await CardPileCmd.AddGeneratedCardsToCombat([burn], PileType.Hand, true);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(7m);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(8m);
 }

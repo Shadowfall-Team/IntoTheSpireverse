@@ -16,9 +16,9 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5m, ValueProp.Move),
+        new DamageVar(6m, ValueProp.Move),
         new RepeatVar(2),
-        new DynamicVar(RecoilKey, 2m),
+        new DynamicVar(RecoilKey, 1m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

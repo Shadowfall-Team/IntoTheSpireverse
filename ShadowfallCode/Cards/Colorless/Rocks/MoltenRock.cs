@@ -21,7 +21,7 @@ public sealed class MoltenRock() : RockCardBase(1, CardType.Attack, CardRarity.T
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
+        new DamageVar(9m, ValueProp.Move),
         new DynamicVar(IncreaseKey, 3m),
     ];
 

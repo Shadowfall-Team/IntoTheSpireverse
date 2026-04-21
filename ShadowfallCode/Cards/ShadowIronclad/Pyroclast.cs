@@ -10,7 +10,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Eruption() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Pyroclast() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [

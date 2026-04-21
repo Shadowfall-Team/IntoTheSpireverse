@@ -16,7 +16,7 @@ public sealed class VolcanicStrike() : ShadowIroncladCard(2, CardType.Attack, Ca
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(14m, ValueProp.Move),
+        new DamageVar(13m, ValueProp.Move),
     ];
     
     protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };

@@ -15,7 +15,7 @@ public sealed class DigDeep() : ShadowIroncladCard(0, CardType.Skill, CardRarity
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HpLossVar(2m),
-        new CardsVar(3),
+        new CardsVar(2),
     ];
 
     protected override bool IsPlayable => !HasBeenPlayedThisTurn;

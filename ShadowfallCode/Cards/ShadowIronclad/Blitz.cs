@@ -13,7 +13,7 @@ public sealed class Blitz() : ShadowIroncladCard(2, CardType.Attack, CardRarity.
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HpLossVar(1m),
+        new HpLossVar(3m),
         new DamageVar(4m, ValueProp.Move),
         new RepeatVar(4),
     ];
