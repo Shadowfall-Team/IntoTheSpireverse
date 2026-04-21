@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class TemperRetaliationPower : CustomPowerModel
+public sealed class TemperPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

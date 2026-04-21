@@ -4,7 +4,7 @@ using Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public class TemperTemporaryStrengthPower : TemporaryStrengthPower
+public class SuperheatedTemporaryStrengthPower : TemporaryStrengthPower
 {
-    public override AbstractModel OriginModel => ModelDb.Card<Temper>();
+    public override AbstractModel OriginModel => ModelDb.Card<Superheated>();
 }

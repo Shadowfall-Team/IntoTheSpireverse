@@ -33,10 +33,8 @@ public sealed class WildStrike() : ShadowIroncladCard(1, CardType.Attack, CardRa
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-
         var wound = CombatState.CreateCard<Wound>(Owner);
-        CardCmd.PreviewCardPileAdd(
-            await CardPileCmd.AddGeneratedCardsToCombat([wound], PileType.Draw, true, CardPilePosition.Random));
+        await CardPileCmd.AddGeneratedCardsToCombat([wound], PileType.Hand, true);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(5m);
