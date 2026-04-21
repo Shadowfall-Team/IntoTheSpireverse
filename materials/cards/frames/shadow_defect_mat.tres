@@ -1,15 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://brdm0t1874oll"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://brdm0t1874oll"]
 
 [ext_resource type="Shader" uid="uid://bjadwxrmsihto" path="res://Shadowfall/shaders/hsvWithGradient.gdshader" id="1_7elbp"]
-
-[sub_resource type="Gradient" id="Gradient_unm0i"]
-offsets = PackedFloat32Array(0, 0.55932206)
-colors = PackedColorArray(0.3143162, 0.31431612, 0.3143158, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0uvsl"]
-gradient = SubResource("Gradient_unm0i")
-fill_from = Vector2(0, 0.21978022)
-fill_to = Vector2(0, 0)
+[ext_resource type="Texture2D" uid="uid://bu532h5e65p26" path="res://materials/cards/frames/card_darken_gradient.tres" id="2_1x7ti"]
 
 [resource]
 resource_local_to_scene = true
@@ -17,4 +9,4 @@ shader = ExtResource("1_7elbp")
 shader_parameter/h = 0.550000026125
 shader_parameter/s = 0.90000004275
 shader_parameter/v = 1.0
-shader_parameter/gradient = SubResource("GradientTexture2D_0uvsl")
+shader_parameter/gradient = ExtResource("2_1x7ti")
