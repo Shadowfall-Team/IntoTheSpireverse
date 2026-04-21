@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,44 +13,29 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    private const string BloodbondKey = "Bloodbond";
-    private const string ResolveKey = "Resolve";
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(BloodbondKey, 5m),
-        new ShadowfallKeywords.GloryVar(4m),
-        new DynamicVar(ResolveKey, 3m),
         new HpLossVar(1m),
+        new PowerVar<BloodbondPower>(6m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<BloodbondPower>(),
-        ShadowfallKeywords.GloryHoverTipDynamic(DynamicVars[ShadowfallKeywords.GloryVar.defaultName]),
-        HoverTipFactory.FromPower<ResolvePower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
+        await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
         await PowerCmd.Apply<BloodbondPower>(
-            cardPlay.Target, DynamicVars[BloodbondKey].BaseValue,
+            Owner.Creature, DynamicVars.Power<BloodbondPower>().BaseValue,
             Owner.Creature, this);
-
-        if (ShadowfallKeywords.IsGloryTriggered(this))
-        {
-            await PowerCmd.Apply<ResolvePower>(
-                Owner.Creature, DynamicVars[ResolveKey].BaseValue,
-                Owner.Creature, this);
-
-            await CreatureCmd.Damage(choiceContext, Owner.Creature,
-                DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, this);
-        }
     }
 
-    protected override void OnUpgrade() => DynamicVars[BloodbondKey].UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(2m);
 }

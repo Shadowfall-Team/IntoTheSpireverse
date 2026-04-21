@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://rmrfg6p1csk3"]
 
-[ext_resource type="Script" uid="uid://c6q1u4lrn2ch8" path="res://ShadowfallCode/ui/NCharAltArrow.cs" id="1_mqvp8"]
-[ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://Shadowfall/images/relics/relic_outline.png" id="2_deba5"]
+[ext_resource type="Script" uid="uid://qquoooxqnpna" path="res://ShadowfallCode/ui/NCharAltArrow.cs" id="1_mqvp8"]
+[ext_resource type="Texture2D" uid="uid://c7kumcmbdvuji" path="res://Shadowfall/images/charui/tiny_arrow_up.png" id="2_deba5"]
 
 [node name="CharAltArrow" type="Control"]
 custom_minimum_size = Vector2(60, 40)

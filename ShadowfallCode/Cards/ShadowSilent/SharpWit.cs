@@ -1,31 +1,43 @@
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using Shadowfall.ShadowfallCode.Keywords;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class SharpWit() : ShadowSilentCard(-1, CardType.Skill, CardRarity.Common, TargetType.None)
+public sealed class SharpWit() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Unplayable, CardKeyword.Ethereal];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        HoverTipFactory.FromCard<Shiv>(),
+        new CardsVar(2),
+        new PowerVar<DrawCardsNextTurnPower>(2m),
     ];
 
-    public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (card.Owner == Owner && card != this && ShadowfallKeywords.WasAdjacentWhenRemoved(card, this))
+        var discardPile = PileType.Discard.GetPile(Owner).Cards.ToList();
+
+        if (discardPile.Count > 0)
         {
-            await Shiv.CreateInHand(Owner, 2, CombatState);
+            var selected = await CardSelectCmd.FromSimpleGrid(
+                choiceContext,
+                discardPile,
+                Owner,
+                new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue));
+
+            foreach (var card in selected)
+            {
+                await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top, null, false);
+            }
         }
+
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Ethereal);
+        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }

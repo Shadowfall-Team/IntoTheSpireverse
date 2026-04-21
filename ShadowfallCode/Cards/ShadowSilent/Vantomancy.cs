@@ -4,15 +4,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class Vantomancy() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Vantomancy() : ShadowSilentCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust,
-    ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -21,13 +18,13 @@ public sealed class Vantomancy() : ShadowSilentCard(1, CardType.Skill, CardRarit
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<SlipperyPower>(),
+        HoverTipFactory.FromPower<Slippery2Power>(),
         HoverTipFactory.FromCard<Weight>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<SlipperyPower>(Owner.Creature, DynamicVars[nameof(SlipperyPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<Slippery2Power>(Owner.Creature, DynamicVars[nameof(Slippery2Power)].BaseValue, Owner.Creature, this);
 
         for (int i = 0; i < 2; i++)
         {
