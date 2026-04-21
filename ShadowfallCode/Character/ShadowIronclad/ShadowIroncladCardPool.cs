@@ -14,6 +14,7 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
     public override float S => 1f;
     public override float V => 1f;
 
+    public override string CardFrameMaterialPath => "shadow_ironclad";
     public override Color DeckEntryCardColor => new("ffffff");
 
     public override bool IsColorless => false;
