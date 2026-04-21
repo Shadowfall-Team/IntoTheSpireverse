@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using Godot;
+﻿using Godot;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using Shadowfall.ShadowfallCode.Character;
@@ -32,8 +32,6 @@ public class NCharacterSelectButtonPatches
     private const string _scenePath = "res://Shadowfall/scenes/CharAltArrow.tscn";
     private const string _shaderMaterialPath = "res://materials/vfx/hsv.tres";
 
-    private static Material hsv = ResourceLoader.Load<Material>(_shaderMaterialPath);
-
     [HarmonyPatch("Init")]
     [HarmonyPrefix]
     public static void InitPostfix(NCharacterSelectButton __instance,
@@ -45,7 +43,7 @@ public class NCharacterSelectButtonPatches
 
         var arrowButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCharAltArrow>();
         var arrowTextureRect = arrowButton.GetNode<TextureRect>("TextureRect");
-        arrowTextureRect.Material = hsv.Duplicate() as Material;
+        arrowTextureRect.Material = (Material)PreloadManager.Cache.GetMaterial(_shaderMaterialPath).Duplicate();
 
         //6 + (portrait width/2) - width of arrow
         arrowButton.Position = new Vector2(50 - arrowButton.Size.X / 2, -(arrowButton.Size.Y / 2) - 15);
