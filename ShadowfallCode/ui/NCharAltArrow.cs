@@ -36,7 +36,7 @@ public partial class NCharAltArrow : NGoldArrowButton
             BounceUp(portraitContainer, 20.0f, 0.15f);
         }
 
-        if (parent._isSelected)
+        if (parent.IsSelected)
         {
             ClickDelegate.SelectCharacter(parent, character);
         }
