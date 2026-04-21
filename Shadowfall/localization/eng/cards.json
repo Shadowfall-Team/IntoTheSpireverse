@@ -466,7 +466,7 @@
   "SHADOWFALL-SILTSONG.title": "Siltsong",
   "SHADOWFALL-SILTSONG.description": "Draw {Cards:diff()} cards.\nGain {SlatePower:diff()} [gold]Slate[/gold].",
   "SHADOWFALL-SONIC_BOOM.title": "Sonic Boom",
-  "SHADOWFALL-SONIC_BOOM.description": "Deal {Damage:diff()} damage and apply {Weak:diff()} [gold]Weak[/gold] to ALL enemies.",
+  "SHADOWFALL-SONIC_BOOM.description": "Deal {Damage:diff()} damage and apply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.",
   "SHADOWFALL-STRIKE_SHADOW_IRONCLAD.title": "Strike",
   "SHADOWFALL-STRIKE_SHADOW_IRONCLAD.description": "Deal {Damage:diff()} damage.",
   "SHADOWFALL-TECTONIC_SHIFT.title": "Tectonic Shift",

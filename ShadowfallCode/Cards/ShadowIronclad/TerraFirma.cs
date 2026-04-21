@@ -12,7 +12,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class TerraFirma() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class TerraFirma() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
