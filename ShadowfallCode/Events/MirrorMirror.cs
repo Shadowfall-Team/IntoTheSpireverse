@@ -92,6 +92,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
                         : null)
             )
             .OrderByDescending(c => c.Card.Rarity)
+            .ThenBy(c => c.Card.Id)
             .ToList();
 
         var cardSelectorPrefs =
