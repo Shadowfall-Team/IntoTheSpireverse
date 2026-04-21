@@ -11,7 +11,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
     public override string Title => "shadow_regent";
     public override string EnergyColorName => "regent";
     public override Color DeckEntryCardColor => new("E36600");
-    public override string CardFrameMaterialPath => "card_frame_orange";
+    public override string CardFrameMaterialPath => "shadow_regent";
     public override Color EnergyOutlineColor => new("803D0E");
     public override bool IsColorless => false;
 
