@@ -18,6 +18,10 @@ public sealed class TectonicShift() : ShadowIroncladCard(2, CardType.Attack, Car
     [
         new DamageVar(6m, ValueProp.Move),
     ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust,
+    ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [

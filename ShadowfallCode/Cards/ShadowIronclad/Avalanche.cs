@@ -18,8 +18,7 @@ public sealed class Avalanche() : ShadowIroncladCard(1, CardType.Attack, CardRar
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(20m, ValueProp.Move),
-        new CardsVar(3),
+        new DamageVar(20m, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -30,7 +29,6 @@ public sealed class Avalanche() : ShadowIroncladCard(1, CardType.Attack, CardRar
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
-        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, 67676767);
         var selected = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs,
             c => c.IsTransformable, this)).ToList();
@@ -48,6 +46,5 @@ public sealed class Avalanche() : ShadowIroncladCard(1, CardType.Attack, CardRar
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(5m);
-        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }

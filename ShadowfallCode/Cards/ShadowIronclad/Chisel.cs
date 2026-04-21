@@ -1,6 +1,7 @@
 ﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Logging;
@@ -13,14 +14,12 @@ using Shadowfall.ShadowfallCode.Patches;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy), IHandNeighborAware
+public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
-    public CardModel? CapturedLeftNeighbor { get; set; }
-    public CardModel? CapturedRightNeighbor { get; set; }
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(6m, ValueProp.Move),
+        new CardsVar(2),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -34,11 +33,18 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        if (CapturedLeftNeighbor != null) CardCmd.Upgrade(CapturedLeftNeighbor);
-        if (CapturedRightNeighbor != null) CardCmd.Upgrade(CapturedRightNeighbor);
-        CapturedLeftNeighbor = null;
-        CapturedRightNeighbor = null;
+        foreach (var card in PileType.Hand.GetPile(Owner).Cards
+                     .Where(c => c.IsUpgradable)
+                     .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection))
+        {
+            CardCmd.Upgrade(card);
+            CardCmd.Preview(card);
+        }
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Cards.UpgradeValueBy(1m);
+    }
 }

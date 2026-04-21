@@ -15,34 +15,27 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 public sealed class Temper() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     private const string RetaliationAmountKey = "RetaliationAmount";
-    private const string StrengthAmountKey = "StrengthAmount";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(RetaliationAmountKey, 2m),
-        new DynamicVar(StrengthAmountKey, 1m),
+        new DynamicVar(RetaliationAmountKey, 3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<RetaliationPower>(),
-        HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<TemperRetaliationPower>(
+        await PowerCmd.Apply<TemperPower>(
             Owner.Creature, DynamicVars[RetaliationAmountKey].BaseValue,
-            Owner.Creature, this);
-        await PowerCmd.Apply<TemperStrengthPower>(
-            Owner.Creature, DynamicVars[StrengthAmountKey].BaseValue,
             Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars[RetaliationAmountKey].UpgradeValueBy(1m);
-        DynamicVars[StrengthAmountKey].UpgradeValueBy(1m);
     }
 }

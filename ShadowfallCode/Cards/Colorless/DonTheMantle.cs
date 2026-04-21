@@ -19,8 +19,8 @@ public sealed class DonTheMantle() : ShadowIroncladCard(0, CardType.Skill, CardR
     ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new HpLossVar(2m),
-        new BlockVar(11m, ValueProp.Move)
+        new HpLossVar(3m),
+        new BlockVar(9m, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

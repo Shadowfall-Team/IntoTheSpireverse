@@ -11,38 +11,27 @@ namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 public class HeartOfTheMountain : ShadowIroncladRelic
 {
-    private int _hpLost;
-
     public override RelicRarity Rarity => RelicRarity.Starter;
-    public override bool ShowCounter => true;
-    public override int DisplayAmount => _hpLost;
+    public override bool HasUponPickupEffect => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HealVar(20m),
+        new DynamicVar("HealPercent", 15m),
+        new MaxHpVar(15m),
     ];
 
-    public override async Task AfterDamageReceived(
-        PlayerChoiceContext choiceContext,
-        Creature target,
-        DamageResult result,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource)
+    public override async Task AfterObtained()
     {
-        if (target != Owner.Creature) return;
-        if (Owner.Creature.CombatState?.CurrentSide != Owner.Creature.Side) return;
-        if (result.UnblockedDamage <= 0) return;
-        _hpLost = Math.Min(_hpLost + result.UnblockedDamage * 2, (int)DynamicVars.Heal.BaseValue);
-        InvokeDisplayAmountChanged();
+        Flash();
+        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue);
     }
 
-    public override async Task AfterCombatVictory(CombatRoom _)
+    public override async Task AfterCombatVictory(CombatRoom room)
     {
-        if (Owner.Creature.IsDead || _hpLost <= 0) return;
+        if (room.RoomType != RoomType.Elite) return;
+        if (Owner.Creature.IsDead) return;
+
         Flash();
-        await CreatureCmd.Heal(Owner.Creature, (decimal)_hpLost);
-        _hpLost = 0;
-        InvokeDisplayAmountChanged();
+        await CreatureCmd.Heal(Owner.Creature, Owner.Creature.MaxHp * DynamicVars["HealPercent"].BaseValue / 100m);
     }
 }

@@ -1,29 +1,30 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using Shadowfall.ShadowfallCode.Cards.Colorless.Rocks;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.Character;
 using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Pebbleflinger() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class Superheated() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        HoverTipFactory.FromCard<SmallRock>(false),
+        new PowerVar<SuperheatedPower>(1m),
     ];
-
+    
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<PebbleflingerPower>(
-            Owner.Creature, 1m,
+        await PowerCmd.Apply<SuperheatedPower>(
+            Owner.Creature, DynamicVars.Power<SuperheatedPower>().BaseValue,
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => AddKeyword(CardKeyword.Innate);
 }

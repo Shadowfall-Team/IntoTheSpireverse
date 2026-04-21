@@ -11,7 +11,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class CarbonCoating() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class CarbonCoating() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const string CalculatedSlateKey = "CalculatedSlate";
 

@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,27 +13,35 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self), IHandNeighborAware
+public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
-    public CardModel? CapturedLeftNeighbor { get; set; }
-    public CardModel? CapturedRightNeighbor { get; set; }
-
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<SpikedRock>(false),
+        HoverTipFactory.FromKeyword(CardKeyword.Unplayable),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        if (CapturedLeftNeighbor != null)
-            await CardCmd.TransformTo<SpikedRock>(CapturedLeftNeighbor);
-        if (CapturedRightNeighbor != null)
-            await CardCmd.TransformTo<SpikedRock>(CapturedRightNeighbor);
+        var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1)
+        {
+            ShouldGlowGold = c => c.Keywords.Contains(CardKeyword.Unplayable)
+        };
+        var original = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this)).FirstOrDefault();
+        if (original == null) return;
 
-        CapturedLeftNeighbor = null;
-        CapturedRightNeighbor = null;
+        var wasUnplayable = original.Keywords.Contains(CardKeyword.Unplayable);
+
+        var spikedRock = CombatState.CreateCard<SpikedRock>(Owner);
+        await CardCmd.Transform(original, spikedRock);
+
+        if (wasUnplayable)
+        {
+            var bonusRock = CombatState.CreateCard<SpikedRock>(Owner);
+            await CardPileCmd.AddGeneratedCardsToCombat([bonusRock], PileType.Hand, true);
+        }
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
