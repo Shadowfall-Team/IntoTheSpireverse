@@ -9,8 +9,6 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
 public sealed class Encore() : ShadowSilentCard(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(40m, ValueProp.Move),

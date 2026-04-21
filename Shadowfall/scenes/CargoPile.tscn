@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://6eg3wyso673l"]
+[gd_scene load_steps=5 format=3 uid="uid://6eg3wyso673l"]
 
-[ext_resource type="Script" uid="uid://b80pialfei6qi" path="res://ShadowfallCode/ui/NCargoPile.cs" id="1_nrwxg"]
+[ext_resource type="Script" uid="uid://c51k0svar0fog" path="res://ShadowfallCode/ui/NCargoPile.cs" id="1_nrwxg"]
 [ext_resource type="Texture2D" uid="uid://pjc3qjehft1w" path="res://Shadowfall/images/combat_ui/cargo_pile.png" id="2_sxrqi"]
 [ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://Shadowfall/images/relics/relic_outline.png" id="3_sxrqi"]
+[ext_resource type="Script" uid="uid://cy2ls7e2vms5q" path="res://ShadowfallCode/ui/ShadowfallMegaLabel.cs" id="4_x0xmf"]
 
 [node name="CargoPile" type="Control"]
 layout_mode = 3
@@ -59,13 +60,17 @@ texture = ExtResource("3_sxrqi")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Count_old" type="Label" parent="CountContainer"]
-visible = false
-layout_mode = 0
+[node name="Count" type="Label" parent="CountContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = 12.0
 offset_top = -26.0
-offset_right = 36.0
-offset_bottom = 74.0
+offset_right = -12.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
 theme_override_colors/font_outline_color = Color(0.53333336, 0.12156863, 0.1254902, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -76,6 +81,7 @@ theme_override_font_sizes/font_size = 26
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("4_x0xmf")
 
 [node name="ControllerIcon" type="TextureRect" parent="."]
 unique_name_in_owner = true

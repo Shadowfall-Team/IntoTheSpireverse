@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
@@ -13,30 +14,30 @@ public sealed class SanguineScrying() : ShadowSilentCard(1, CardType.Attack, Car
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(9m, ValueProp.Move),
-        new EnergyVar(1),
-        new CardsVar(2),
+        new PowerVar<InstinctPower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<BleedPower>(),
-        EnergyHoverTip
+        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromPower<InstinctPower>(),
     ];
+
+    protected override bool ShouldGlowGoldInternal =>
+        CombatState?.HittableEnemies.Any(e => e.HasPower<WeakPower>()) == true;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
 
-        if (cardPlay.Target.HasPower<BleedPower>())
+        if (cardPlay.Target.HasPower<WeakPower>())
         {
-            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
-            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-            await CardCmd.Exhaust(choiceContext, this, false, false);
+            await PowerCmd.Apply<InstinctPower>(Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
         }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Energy.UpgradeValueBy(1);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

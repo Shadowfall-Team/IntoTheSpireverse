@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Relics;
 using Shadowfall.ShadowfallCode.Relics;
 using Decay = Shadowfall.Cards.Decay;
@@ -12,7 +13,7 @@ using Invoke = Shadowfall.Cards.Invoke;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowDefect : PlaceholderCharacterModel
+public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "defect";
     public const string CharacterId = "Shadowfall";
@@ -21,6 +22,12 @@ public class ShadowDefect : PlaceholderCharacterModel
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Neutral;
+    
+    public override bool HideFromVanillaCharacterSelect => true;
+    public override bool AllowInVanillaRandomCharacterSelect => true;
+    
+    public CharacterModel BaseCharacterModel => ModelDb.Character<Defect>();
+    
     public override int StartingHp => 75;
     
     public override IEnumerable<CardModel> StartingDeck =>
