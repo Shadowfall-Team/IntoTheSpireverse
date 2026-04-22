@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Character;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Titanic() : ShadowIroncladCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class Titanic() : ShadowIroncladCard(3, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

@@ -16,7 +16,7 @@ public class HeartOfTheMountain : ShadowIroncladRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("HealPercent", 15m),
+        new DynamicVar("HealPercent", 20m),
         new MaxHpVar(15m),
     ];
 

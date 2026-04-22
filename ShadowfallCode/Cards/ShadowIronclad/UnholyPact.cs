@@ -13,12 +13,12 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HpLossVar(1m),
-        new PowerVar<BloodbondPower>(6m),
+        new PowerVar<BloodbondPower>(5m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -33,7 +33,7 @@ public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRar
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
         await PowerCmd.Apply<BloodbondPower>(
-            Owner.Creature, DynamicVars.Power<BloodbondPower>().BaseValue,
+            cardPlay.Target, DynamicVars.Power<BloodbondPower>().BaseValue,
             Owner.Creature, this);
     }
 

@@ -23,7 +23,7 @@ public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRari
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BloodbondPower>(3m),
+        new PowerVar<BloodbondPower>(2m),
         new RepeatVar(3),
     ];
 
