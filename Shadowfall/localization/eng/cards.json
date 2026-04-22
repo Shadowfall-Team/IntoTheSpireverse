@@ -390,7 +390,7 @@
   "SHADOWFALL-BLIND_FURY.title": "Blind Fury",
   "SHADOWFALL-BLIND_FURY.description": "End your turn.\nGain {StrengthPower:diff()} Strength.\nNext turn, draw 3 cards, and your turn is played by [red]Vakuu[/red].",
   "SHADOWFALL-BLOOD_LASH.title": "Blood Lash",
-  "SHADOWFALL-BLOOD_LASH.description": "Deal {Damage:diff()} damage.\nApply {BloodbondPower:diff()} [gold]Bloodbond[/gold].\nDraw {Cards:diff()} card.",
+  "SHADOWFALL-BLOOD_LASH.description": "Deal {Damage:diff()} damage.\nApply [gold]Bloodbond[/gold] equal to damage dealt.\nDraw {Cards:diff()} card.",
   "SHADOWFALL-BUM_RUSH.title": "Bum Rush",
   "SHADOWFALL-BUM_RUSH.description": "Deal {Damage:diff()} damage.\nPut 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
   "SHADOWFALL-BUM_RUSH.selectionScreenPrompt": "Choose a card to put on top of your Draw Pile.",

@@ -18,7 +18,7 @@ public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRar
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HpLossVar(1m),
-        new PowerVar<BloodbondPower>(6m),
+        new PowerVar<BloodbondPower>(5m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
