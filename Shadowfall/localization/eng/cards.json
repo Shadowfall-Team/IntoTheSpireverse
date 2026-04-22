@@ -398,7 +398,7 @@
   "SHADOWFALL-CALDERA.selectionScreenPrompt": "Choose up to {Cards:diff()} cards to [gold]Transform[/gold] into [gold]Bomb Rock[/gold].",
   "SHADOWFALL-CALDERA.description": "[gold]Transform[/gold] up to {Cards:diff()} cards in your [gold]Hand[/gold] into [gold]Bomb Rock[/gold].",
   "SHADOWFALL-CARBON_COATING.title": "Carbon Coating",
-  "SHADOWFALL-CARBON_COATING.description": "Gain [gold]Slate[/gold] equal to the number of Attacks played this turn.{InCombat:\n(Gains {CalculatedSlate:diff()})|}",
+  "SHADOWFALL-CARBON_COATING.description": "Gain [gold]Slate[/gold] equal to the number of Attacks played this turn.{InCombat:\n(Gain {CalculatedSlate:diff()} [gold]Slate[/gold])|}",
   "SHADOWFALL-CLAYMAKER.title": "Claymaker",
   "SHADOWFALL-CLAYMAKER.description": "Deal {Damage:diff()} damage twice.\nIf this is played from outside of your [gold]Hand[/gold], add a 0-cost [gold]Shockwave[/gold] to your [gold]Hand[/gold].",
   "SHADOWFALL-DEADLANDS_HEX.title": "Deadlands Hex",

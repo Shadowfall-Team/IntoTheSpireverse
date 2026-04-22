@@ -3,6 +3,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Monsters;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Character;
 using Shadowfall.ShadowfallCode.Patches;
@@ -33,12 +35,25 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
             .Execute(choiceContext);
 
         InciteViolencePatch.IsIncitedAttack = true;
-        await DamageCmd.Attack(DynamicVars[RecoilKey].BaseValue)
-            .FromMonster(cardPlay.Target.Monster)
-            .WithNoAttackerAnim() // Remove this to make enemies visually attack with the retaliatory damage, though it causes visual quirks with Tough Egg, etc
+        var recoilResult = await DamageCmd.Attack(DynamicVars[RecoilKey].BaseValue)
+            .FromMonsterSingleTarget(cardPlay.Target.Monster)
+            .Targeting(Owner.Creature)
+            .WithNoAttackerAnim()
             .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
         InciteViolencePatch.IsIncitedAttack = false;
+
+        foreach (var result in recoilResult.Results)
+        {
+            if (!result.WasFullyBlocked) continue;
+            var imbalanced = cardPlay.Target.Monster.Creature.Powers
+                .OfType<ImbalancedPower>()
+                .FirstOrDefault();
+            if (imbalanced == null) continue;
+            await CreatureCmd.Stun(cardPlay.Target.Monster.Creature);
+            if (cardPlay.Target.Monster is BowlbugRock bowlbug)
+                bowlbug.IsOffBalance = false;
+        }
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2m);
