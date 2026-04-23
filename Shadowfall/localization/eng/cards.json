@@ -523,7 +523,7 @@
   "SHADOWFALL-MADNESS.title": "Madness",
   "SHADOWFALL-MADNESS.description": "Lose {HpLoss:diff()} HP.\nA random card in your [gold]Hand[/gold] costs 0 {energyPrefix:energyIcons(1)} this combat.",
   "SHADOWFALL-MOLTEN_ROCK.title": "Molten Rock",
-  "SHADOWFALL-MOLTEN_ROCK.description": "Deal {Damage:diff()} damage.\nIncrease the damage of ALL your Rock cards by {Increase:diff()} this combat.",
+  "SHADOWFALL-MOLTEN_ROCK.description": "Deal {Damage:diff()} damage.\nIncrease the damage of ALL your Rock cards by {GabbroPower:diff()} this combat.",
   "SHADOWFALL-PALE_GAZE.title": "Pale Gaze",
   "SHADOWFALL-PALE_GAZE.description": "Add a [gold]{IfUpgraded:show:Deathglare+|Deathglare}[/gold] into your [gold]Draw Pile[/gold].",
   "SHADOWFALL-ROLLING_ROCK.title": "Rolling Rock",
