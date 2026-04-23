@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,22 +22,26 @@ public sealed class WomboCombo() : ShadowIroncladCard(3, CardType.Attack, CardRa
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(2)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+
         if (CombatManager.Instance.IsOverOrEnding) return;
-        var attack = PileType.Discard.GetPile(Owner).Cards
-            .Where(c => c.Type == CardType.Attack && !c.Keywords.Contains(CardKeyword.Unplayable))
-            .ToList()
-            .StableShuffle(Owner.RunState.Rng.Shuffle)
-            .FirstOrDefault();
-        if (attack != null)
-        {
-            await CardCmd.AutoPlay(choiceContext, attack, cardPlay.Target);
-        }
+
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        var card = (await CardSelectCmd.FromSimpleGrid(
+            choiceContext,
+            PileType.Discard.GetPile(Owner).Cards,
+            Owner,
+            prefs)).FirstOrDefault();
+
+        if (card == null) return;
+        
+        await CardCmd.AutoPlay(choiceContext, card, null);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);

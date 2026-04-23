@@ -11,7 +11,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Obsidian() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Obsidian() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
