@@ -51,7 +51,7 @@ public class FirstOfficer() : ShadowRegentCard(0,
                     CardCmd.Upgrade(cardModel);
                 }
 
-                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, true);
+                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, Owner);
             }
         }
     }

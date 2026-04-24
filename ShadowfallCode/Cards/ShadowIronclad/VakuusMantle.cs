@@ -27,10 +27,12 @@ public sealed class VakuusMantle() : ShadowIroncladCard(2, CardType.Power, CardR
 
         if (IsUpgraded)
             await PowerCmd.Apply<VakuusMantleUpgradedPower>(
+                new ThrowingPlayerChoiceContext(),
                 Owner.Creature, DynamicVars["VakuusMantlePower"].BaseValue,
                 Owner.Creature, this);
         else
             await PowerCmd.Apply<VakuusMantlePower>(
+                new ThrowingPlayerChoiceContext(),
                 Owner.Creature, DynamicVars["VakuusMantlePower"].BaseValue,
                 Owner.Creature, this);
     }

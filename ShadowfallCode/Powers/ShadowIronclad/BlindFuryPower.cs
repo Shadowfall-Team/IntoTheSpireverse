@@ -27,7 +27,7 @@ public sealed class BlindFuryPower : CustomPowerModel
         HoverTipFactory.FromPower<StrengthPower>()
     ];
 
-    public override async Task BeforePlayPhaseStart(PlayerChoiceContext choiceContext, Player player)
+    public override async Task AfterAutoPrePlayPhaseEnteredLate(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player)
             return;
@@ -59,7 +59,7 @@ public sealed class BlindFuryPower : CustomPowerModel
 
             if (cardsPlayed == 0)
             {
-                await PowerCmd.ModifyAmount(this, -1, null, null);
+                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1, null, null);
                 return;
             }
         }
@@ -70,10 +70,10 @@ public sealed class BlindFuryPower : CustomPowerModel
                 : new LocString("relics", "WHISPERING_EARRING.approval"),
             Owner ,VfxColor.Purple);
 
-        await PowerCmd.ModifyAmount(this, -1, null, null);
+        await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1, null, null);
     }
 
-    private Creature? GetTarget(CardModel card, CombatState combatState)
+    private Creature? GetTarget(CardModel card, ICombatState combatState)
     {
         var rng = Owner.Player.RunState.Rng.CombatTargets;
         return card.TargetType switch

@@ -34,7 +34,7 @@ public sealed class WorkOut() : ShadowNecrobinderCard(1, CardType.Power, CardRar
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
@@ -48,7 +48,7 @@ public sealed class WorkOut() : ShadowNecrobinderCard(1, CardType.Power, CardRar
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
         {
-            await PowerCmd.Apply<VigorPower>(Owner.Creature, DynamicVars[_vigorKey].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[_vigorKey].BaseValue, Owner.Creature, this);
             await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }

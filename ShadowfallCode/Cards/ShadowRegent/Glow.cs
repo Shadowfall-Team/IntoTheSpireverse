@@ -31,12 +31,13 @@ public class Glow() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         
         await PowerCmd.Apply<ShardPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,DynamicVars[nameof(ShardPower)].BaseValue, 
             Owner.Creature, 
             this);
         
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()

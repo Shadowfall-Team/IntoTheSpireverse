@@ -33,7 +33,7 @@ public sealed class EclipseEmbracePower : CustomPowerModel
 			return;
 		}
 		Flash();
-		await PowerCmd.Apply<EnergyNextTurnPower>(base.Owner, base.Amount, base.Owner, null);
-		await PowerCmd.Apply<DrawCardsNextTurnPower>(base.Owner, base.Amount, base.Owner, null);
+		await PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount, base.Owner, null);
+		await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount, base.Owner, null);
 	}
 }

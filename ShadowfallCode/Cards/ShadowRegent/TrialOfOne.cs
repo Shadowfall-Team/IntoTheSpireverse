@@ -34,7 +34,8 @@ public class TrialOfOne() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<TrialOfOnePower>(Owner.Creature,
+        await PowerCmd.Apply<TrialOfOnePower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             DynamicVars.Strength.BaseValue,
             Owner.Creature,
             this);
@@ -57,7 +58,7 @@ public class TrialOfOnePower : CustomPowerModel
     ];
     
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext,
-        CombatSide side, CombatState combatState)
+        CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side)
         {
@@ -85,12 +86,16 @@ public class TrialOfOnePower : CustomPowerModel
                 {
                     Flash();
 
-                    await PowerCmd.Apply<StrengthPower>(Owner,
+                    await PowerCmd.Apply<StrengthPower>(
+                        new ThrowingPlayerChoiceContext(),
+                        Owner,
                         Amount,
                         Owner,
                         null);
                     
-                    await PowerCmd.Apply<IntangiblePower>(Owner,
+                    await PowerCmd.Apply<IntangiblePower>(
+                        new ThrowingPlayerChoiceContext(),
+                        Owner,
                         1,
                         Owner,
                         null);

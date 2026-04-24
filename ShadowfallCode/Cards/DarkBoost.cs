@@ -39,7 +39,7 @@ public sealed class DarkBoost() : ShadowDefectCard(0, CardType.Skill, CardRarity
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
             CombatState.CreateCard<Void>(Owner),
             PileType.Draw,
-            true, CardPilePosition.Top));
+            Owner, CardPilePosition.Top));
 
         await Cmd.Wait(0.5f);
     }

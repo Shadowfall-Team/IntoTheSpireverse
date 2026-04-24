@@ -23,7 +23,8 @@ public class ShadowFencingManual : ShadowRegentRelic
 
         if (Owner.PlayerCombatState is { Energy: > 0 })
         {
-            await PowerCmd.Apply<AmmoPower>(Owner.Creature,
+            await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
                 DynamicVars[nameof(AmmoPower)].BaseValue,
                 Owner.Creature,
                 null);

@@ -25,7 +25,7 @@ public sealed class Penance() : ShadowNecrobinderCard(-1, CardType.Curse, CardRa
         ShadowfallKeywords.Startup
     ];
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         
         // A different hook may be needed if it should be possible to draw a Soul Strike in the opening hand, currently
@@ -33,6 +33,6 @@ public sealed class Penance() : ShadowNecrobinderCard(-1, CardType.Curse, CardRa
         
         if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return;
         var soulStrikes = SoulStrike.Create(Owner, DynamicVars.Cards.IntValue, combatState);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(soulStrikes, PileType.Draw, true, CardPilePosition.Random));
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(soulStrikes, PileType.Draw, Owner, CardPilePosition.Random));
     }
 }

@@ -28,6 +28,7 @@ public sealed class KnifesEdge() : ShadowDefectCard(0, CardType.Skill, CardRarit
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<StrengthPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars.Strength.BaseValue,
             Owner.Creature,
@@ -38,7 +39,7 @@ public sealed class KnifesEdge() : ShadowDefectCard(0, CardType.Skill, CardRarit
             CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
                 CombatState.CreateCard<Void>(Owner),
                 PileType.Discard,
-                true));
+                Owner));
         }
 
         await Cmd.Wait(0.5f);

@@ -31,7 +31,7 @@ public class FillTheTank() : ShadowRegentCard(1,
         if (CombatState != null)
         {
             await CardPileCmd.AddToCombatAndPreview<Fuel>(Owner.Creature,
-                CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, true);
+                CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, Owner);
         }
     }
 

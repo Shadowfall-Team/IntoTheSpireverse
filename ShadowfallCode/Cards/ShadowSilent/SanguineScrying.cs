@@ -32,7 +32,7 @@ public sealed class SanguineScrying() : ShadowSilentCard(1, CardType.Attack, Car
 
         if (cardPlay.Target.HasPower<WeakPower>())
         {
-            await PowerCmd.Apply<InstinctPower>(Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<InstinctPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
         }
     }
 

@@ -23,7 +23,7 @@ public sealed class ShareTheLoad() : ShadowSilentCard(2, CardType.Power, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<ShareTheLoadPower>(Owner.Creature, DynamicVars[nameof(ShareTheLoadPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<ShareTheLoadPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(ShareTheLoadPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

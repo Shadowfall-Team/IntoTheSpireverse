@@ -29,6 +29,7 @@ public sealed class Grapple() : ShadowIroncladCard(1, CardType.Attack, CardRarit
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         var power = await PowerCmd.Apply<GrapplePower>(
+            new ThrowingPlayerChoiceContext(),
             cardPlay.Target, DynamicVars[GrappleDamageKey].BaseValue,
             Owner.Creature, this);
         power.Source = Owner.Creature;

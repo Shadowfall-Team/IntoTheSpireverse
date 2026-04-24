@@ -40,7 +40,7 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
         if (wasUnplayable)
         {
             var bonusRock = CombatState.CreateCard<SpikedRock>(Owner);
-            await CardPileCmd.AddGeneratedCardsToCombat([bonusRock], PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardsToCombat([bonusRock], PileType.Hand, Owner);
         }
     }
 

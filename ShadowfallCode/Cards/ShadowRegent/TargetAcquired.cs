@@ -43,12 +43,14 @@ public class TargetAcquired() : ShadowRegentCard(
             .Execute(choiceContext);
         
         await PowerCmd.Apply<TargetedThisTurnPower>(
+            new ThrowingPlayerChoiceContext(),
             play.Target,
             1,
             Owner.Creature,
             this);
         
         await PowerCmd.Apply<AmmoPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(AmmoPower)].BaseValue,
             Owner.Creature,

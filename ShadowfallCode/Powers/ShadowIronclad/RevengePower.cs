@@ -16,7 +16,7 @@ public sealed class RevengePower : CustomPowerModel
         HoverTipFactory.FromPower<RetaliationPower>(),
     ];
 
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side != CombatSide.Player) return;
         await PowerCmd.Decrement(this);
