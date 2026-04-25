@@ -31,7 +31,7 @@ public sealed class Revenge() : ShadowIroncladCard(0, CardType.Attack, CardRarit
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        await PowerCmd.Apply<RevengePower>(Owner.Creature, 1m, Owner.Creature, this);
+        await PowerCmd.Apply<RevengePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);

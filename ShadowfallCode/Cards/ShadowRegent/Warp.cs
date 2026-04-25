@@ -35,7 +35,8 @@ public class Warp() : CustomCardModel(0,
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature,
+        await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             DynamicVars.Strength.BaseValue,
             Owner.Creature,
             this);

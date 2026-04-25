@@ -22,7 +22,8 @@ public class TrialOfSpace() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<TrialOfSpacePower>(Owner.Creature,
+        await PowerCmd.Apply<TrialOfSpacePower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             1,
             Owner.Creature,
             this);

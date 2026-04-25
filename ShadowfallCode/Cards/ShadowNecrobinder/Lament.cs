@@ -26,8 +26,8 @@ public sealed class Lament() : ShadowNecrobinderCard(0, CardType.Skill, CardRari
         int x = ResolveEnergyXValue();
         if (IsUpgraded)
             x++;
-        await PowerCmd.Apply<LamentPower>(Owner.Creature, x, Owner.Creature, this);
+        await PowerCmd.Apply<LamentPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, x, Owner.Creature, this);
         var soulStrikes = SoulStrike.Create(Owner, x, CombatState).ToList();
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(soulStrikes, PileType.Discard, true));
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(soulStrikes, PileType.Discard, Owner));
     }
 }

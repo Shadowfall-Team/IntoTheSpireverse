@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -31,7 +32,7 @@ public class SneckoReplacement : ShadowSilentRelic
 
 	    if (applier == Owner.Creature && power is BleedPower)
 	    {
-		    await PowerCmd.Apply<VigorPower>(Owner.Creature, DynamicVars[nameof(VigorPower)].BaseValue, Owner.Creature, null);
+		    await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(VigorPower)].BaseValue, Owner.Creature, null);
 	    }
 
 	    await Task.CompletedTask;

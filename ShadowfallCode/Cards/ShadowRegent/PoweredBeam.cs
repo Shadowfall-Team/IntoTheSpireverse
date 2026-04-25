@@ -42,6 +42,7 @@ public class PoweredBeam() : ShadowRegentCard(1,
         if (card == this)
         {
             await PowerCmd.Apply<AmmoPower>(
+                new ThrowingPlayerChoiceContext(),
                 Owner.Creature,
                 DynamicVars[nameof(AmmoPower)].BaseValue,
                 Owner.Creature,

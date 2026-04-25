@@ -37,7 +37,7 @@ public sealed class TimeOut() : ShadowNecrobinderCard(1, CardType.Skill, CardRar
         {
             foreach (var enemy in CombatState.HittableEnemies)
             {
-                await PowerCmd.Apply<TimeOutPower>(enemy, DynamicVars[_strengthLossKey].BaseValue, Owner.Creature, this);
+                await PowerCmd.Apply<TimeOutPower>(new ThrowingPlayerChoiceContext(), enemy, DynamicVars[_strengthLossKey].BaseValue, Owner.Creature, this);
             }
         }
     }

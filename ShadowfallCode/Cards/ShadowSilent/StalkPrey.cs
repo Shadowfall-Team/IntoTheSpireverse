@@ -21,7 +21,7 @@ public sealed class StalkPrey() : ShadowSilentCard(2, CardType.Power, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<StalkPreyPower>(Owner.Creature, DynamicVars[nameof(StalkPreyPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<StalkPreyPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(StalkPreyPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

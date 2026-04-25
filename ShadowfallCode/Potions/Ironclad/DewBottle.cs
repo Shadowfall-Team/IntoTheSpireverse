@@ -32,6 +32,7 @@ public class DewBottle : ShadowfallPotion
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
         await PowerCmd.Apply<SlatePower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, null);
     }

@@ -22,7 +22,7 @@ public sealed class UnrelentingFormPower : CustomPowerModel
 
     public override async Task AfterHandEmptied(PlayerChoiceContext choiceContext, Player player)
     {
-        if (!CombatManager.Instance.IsPlayPhase || player != Owner.Player || _triggeredThisTurn)
+        if (!(player.PlayerCombatState is { Phase: PlayerTurnPhase.Play }) || player != Owner.Player || _triggeredThisTurn)
             return;
 
         _triggeredThisTurn = true;
@@ -34,7 +34,7 @@ public sealed class UnrelentingFormPower : CustomPowerModel
     public override Task BeforeSideTurnStart(
         PlayerChoiceContext choiceContext,
         CombatSide side,
-        CombatState combatState)
+        ICombatState combatState)
     {
         if (side != Owner.Side)
             return Task.CompletedTask;

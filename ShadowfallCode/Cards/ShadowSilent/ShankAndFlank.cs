@@ -23,7 +23,7 @@ public sealed class ShankAndFlank() : ShadowSilentCard(1, CardType.Power, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<ShankAndFlankPower>(Owner.Creature, DynamicVars[nameof(ShankAndFlankPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<ShankAndFlankPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(ShankAndFlankPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

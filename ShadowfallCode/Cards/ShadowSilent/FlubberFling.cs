@@ -30,7 +30,7 @@ public sealed class FlubberFling() : ShadowSilentCard(2, CardType.Attack, CardRa
             .TargetingRandomOpponents(CombatState)
             .Execute(choiceContext);
 
-        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Slimed>(Owner), PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Slimed>(Owner), PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()

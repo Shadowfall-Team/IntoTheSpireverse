@@ -34,7 +34,7 @@ public sealed class SongOfSorrow : ShadowDefectCard
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<SongOfSorrowPower>(base.Owner.Creature, base.DynamicVars.Damage.BaseValue, base.Owner.Creature, this);
+		await PowerCmd.Apply<SongOfSorrowPower>(new ThrowingPlayerChoiceContext(), base.Owner.Creature, base.DynamicVars.Damage.BaseValue, base.Owner.Creature, this);
 	}
 
 	protected override void OnUpgrade()

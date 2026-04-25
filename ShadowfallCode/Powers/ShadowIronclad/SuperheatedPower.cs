@@ -30,6 +30,7 @@ public sealed class SuperheatedPower : CustomPowerModel
     {
         if (target != Owner || result.UnblockedDamage <= 0) return;
         await PowerCmd.Apply<SuperheatedNextTurnStrengthPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner, Amount, Owner, null);
     }
 }

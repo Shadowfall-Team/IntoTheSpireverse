@@ -57,7 +57,7 @@ public class SpacePirate() : ShadowRegentCard(
                 }
 
                 var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(cardModel, CargoCardPile.CargoPileType,
-                    true);
+                    Owner);
                 CardCmd.PreviewCardPileAdd(cardPileAddResult);
 
             }

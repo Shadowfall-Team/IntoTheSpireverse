@@ -23,7 +23,7 @@ public sealed class VakuusMantlePower : CustomPowerModel
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,
-        CombatState combatState)
+        ICombatState combatState)
     {
         if (player != Owner.Player)
             return;
@@ -34,6 +34,6 @@ public sealed class VakuusMantlePower : CustomPowerModel
         for (int i = 0; i < Amount; i++)
             cards.Add(combatState.CreateCard<DonTheMantle>(Owner.Player));
 
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner.Player);
     }
 }

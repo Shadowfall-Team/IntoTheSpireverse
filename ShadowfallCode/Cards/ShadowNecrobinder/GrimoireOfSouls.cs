@@ -32,9 +32,9 @@ public sealed class GrimoireOfSouls() : ShadowNecrobinderCard(2, CardType.Power,
             clumsies.Add(CombatState.CreateCard<Clumsy>(Owner));
 
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(
-            (IEnumerable<CardModel>)clumsies, PileType.Draw, true, CardPilePosition.Random));
+            (IEnumerable<CardModel>)clumsies, PileType.Draw, Owner, CardPilePosition.Random));
 
-        await PowerCmd.Apply<GrimoireOfSoulsPower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<GrimoireOfSoulsPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

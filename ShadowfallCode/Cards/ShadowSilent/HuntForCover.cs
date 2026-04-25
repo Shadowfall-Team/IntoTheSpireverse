@@ -44,7 +44,7 @@ public sealed class HuntForCover() : ShadowSilentCard(1, CardType.Skill, CardRar
                 CardCmd.Upgrade(card);
             }
 
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
         }
 
     }

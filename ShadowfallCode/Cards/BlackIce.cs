@@ -25,7 +25,7 @@ public class BlackIce() : ShadowDefectCard(1, CardType.Power, CardRarity.Uncommo
     {
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
         await OrbCmd.Channel<DarkOrb>(choiceContext, Owner);
-        await PowerCmd.Apply<BlackIcePower>(base.Owner.Creature,DynamicVars[nameof(BlackIcePower)].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<BlackIcePower>(new ThrowingPlayerChoiceContext(), base.Owner.Creature,DynamicVars[nameof(BlackIcePower)].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -20,7 +20,7 @@ public sealed class Madness() : CustomCardModel(0, CardType.Skill, CardRarity.To
         new HpLossVar(1m),
     ];
 
-    public static IEnumerable<Madness> Create(Player owner, int amount, CombatState combatState)
+    public static IEnumerable<Madness> Create(Player owner, int amount, ICombatState combatState)
     {
         List<Madness> list = new List<Madness>();
         for (int i = 0; i < amount; i++)
@@ -28,10 +28,10 @@ public sealed class Madness() : CustomCardModel(0, CardType.Skill, CardRarity.To
         return list;
     }
 
-    public static async Task<IEnumerable<Madness>> CreateInHand(Player owner, int amount, CombatState combatState)
+    public static async Task<IEnumerable<Madness>> CreateInHand(Player owner, int amount, ICombatState combatState)
     {
         IEnumerable<Madness> cards = Create(owner, amount, combatState);
-        await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>)cards, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>)cards, PileType.Hand, owner);
         return cards;
     }
 

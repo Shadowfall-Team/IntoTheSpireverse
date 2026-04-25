@@ -29,7 +29,7 @@ public sealed class StrikeTrue() : ShadowSilentCard(0, CardType.Skill, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<VigorPower>(Owner.Creature, DynamicVars[nameof(VigorPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(VigorPower)].BaseValue, Owner.Creature, this);
     }
 
     public override Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)

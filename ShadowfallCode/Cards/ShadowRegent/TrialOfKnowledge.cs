@@ -32,7 +32,9 @@ public class TrialOfKnowledge() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<TrialOfKnowledgePower>(Owner.Creature,
+        await PowerCmd.Apply<TrialOfKnowledgePower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             DynamicVars[nameof(TrialOfKnowledgePower)].BaseValue,
             Owner.Creature,
             this);
@@ -60,7 +62,9 @@ public class TrialOfKnowledgePower : CustomPowerModel
         {
             Flash();
 
-            await PowerCmd.Apply<ShardPower>(Owner,
+            await PowerCmd.Apply<ShardPower>(
+                new ThrowingPlayerChoiceContext(),
+                Owner,
                 Amount,
                 Owner, null);
 

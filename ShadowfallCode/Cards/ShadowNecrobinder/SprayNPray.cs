@@ -30,7 +30,7 @@ public sealed class SprayNPray() : ShadowNecrobinderCard(1, CardType.Attack, Car
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         var doubt = CombatState.CreateCard<Doubt>(Owner);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(doubt, PileType.Draw, true, CardPilePosition.Random));
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(doubt, PileType.Draw, Owner, CardPilePosition.Random));
     }
 
     protected override void OnUpgrade()

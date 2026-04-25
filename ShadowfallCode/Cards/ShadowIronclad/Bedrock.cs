@@ -30,6 +30,7 @@ public sealed class Bedrock() : ShadowIroncladCard(1, CardType.Power, CardRarity
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<BedrockPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<BedrockPower>().BaseValue,
             Owner.Creature, this);
     }

@@ -35,7 +35,7 @@ public class GuidingShot(): ShadowRegentCard(1,
             if (creature != null)
             {
                 await Cmd.Wait(0.25f);
-                await PowerCmd.Apply<VulnerablePower>(creature, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+                await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
             }
         }
     }

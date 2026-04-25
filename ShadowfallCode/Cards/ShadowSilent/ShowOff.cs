@@ -27,7 +27,7 @@ public sealed class ShowOff() : ShadowSilentCard(1, CardType.Power, CardRarity.U
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         }
 
-        await PowerCmd.Apply<ShowOffPower>(Owner.Creature, DynamicVars[nameof(ShowOffPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<ShowOffPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(ShowOffPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

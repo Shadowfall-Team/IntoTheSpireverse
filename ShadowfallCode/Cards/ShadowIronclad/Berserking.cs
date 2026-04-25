@@ -25,6 +25,7 @@ public sealed class Berserking() : ShadowIroncladCard(0, CardType.Power, CardRar
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var power = await PowerCmd.Apply<BerserkingPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars["BerserkingPower"].BaseValue,
             Owner.Creature, this);
         if (power != null)

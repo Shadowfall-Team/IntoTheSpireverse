@@ -27,7 +27,7 @@ public class SNecroLingerBlock : ShadowNecrobinderRelic
     ];
 
     public override Task BeforeSideTurnStart(
-        PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+        PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return Task.CompletedTask;
         LingerHelper.OnLingerTriggered += OnLingerFired;

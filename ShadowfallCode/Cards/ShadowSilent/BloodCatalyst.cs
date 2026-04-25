@@ -24,15 +24,15 @@ public sealed class BloodCatalyst() : ShadowSilentCard(1, CardType.Skill, CardRa
 
         int bleed = cardPlay.Target.GetPowerAmount<BleedPower>();
         if (bleed > 0)
-            await PowerCmd.Apply<BleedPower>(cardPlay.Target, bleed * multiplier, Owner.Creature, this);
+            await PowerCmd.Apply<BleedPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, bleed * multiplier, Owner.Creature, this);
 
         int weak = cardPlay.Target.GetPowerAmount<WeakPower>();
         if (weak > 0)
-            await PowerCmd.Apply<WeakPower>(cardPlay.Target, weak * multiplier, Owner.Creature, this);
+            await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, weak * multiplier, Owner.Creature, this);
 
         int vulnerable = cardPlay.Target.GetPowerAmount<VulnerablePower>();
         if (vulnerable > 0)
-            await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, vulnerable * multiplier, Owner.Creature, this);
+            await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, vulnerable * multiplier, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() { }

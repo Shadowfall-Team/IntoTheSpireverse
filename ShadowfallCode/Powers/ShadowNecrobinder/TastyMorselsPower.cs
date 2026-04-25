@@ -18,6 +18,6 @@ public class TastyMorselsPower : CustomPowerModel
         if (card.Owner.Creature != Owner) return;
         if (!card.Keywords.Contains(CardKeyword.Ethereal)) return;
         Flash();
-        await PowerCmd.Apply<PlatingPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }

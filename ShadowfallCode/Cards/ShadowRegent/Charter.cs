@@ -32,7 +32,7 @@ public class Charter() : ShadowRegentCard(
         if (CombatState == null) return;
 
         await CardPileCmd.AddToCombatAndPreview<MinionStrike>(Owner.Creature,
-            CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, true);
+            CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, Owner);
     }
 
     protected override void OnUpgrade()

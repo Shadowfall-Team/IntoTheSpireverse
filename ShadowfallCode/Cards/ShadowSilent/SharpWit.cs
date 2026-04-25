@@ -33,7 +33,7 @@ public sealed class SharpWit() : ShadowSilentCard(1, CardType.Skill, CardRarity.
             }
         }
 
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -32,7 +32,7 @@ public sealed class PowerThrough() : ShadowIroncladCard(1, CardType.Skill, CardR
             CombatState.CreateCard<Wound>(Owner),
             CombatState.CreateCard<Wound>(Owner),
         };
-        await CardPileCmd.AddGeneratedCardsToCombat(wounds, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(wounds, PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(5m);

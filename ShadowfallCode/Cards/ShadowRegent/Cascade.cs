@@ -27,7 +27,8 @@ public class Cascade() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<CascadePower>(Owner.Creature,
+        await PowerCmd.Apply<CascadePower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             1,
             Owner.Creature,
             this);

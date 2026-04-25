@@ -36,12 +36,14 @@ public class Siege() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
 
-        await PowerCmd.Apply<AmmoPower>(Owner.Creature,
+        await PowerCmd.Apply<AmmoPower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             DynamicVars[nameof(AmmoPower)].BaseValue,
             Owner.Creature,
             this);
 
-        await PowerCmd.Apply<SiegePower>(Owner.Creature,
+        await PowerCmd.Apply<SiegePower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             DynamicVars[nameof(SiegePower)].BaseValue,
             Owner.Creature,
             this);

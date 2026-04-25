@@ -32,7 +32,7 @@ public sealed class Immolate() : ShadowIroncladCard(2, CardType.Attack, CardRari
             .Execute(choiceContext);
 
         var burn = CombatState.CreateCard<Burn>(Owner);
-        await CardPileCmd.AddGeneratedCardsToCombat([burn], PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat([burn], PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(8m);

@@ -46,6 +46,7 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             await PowerCmd.Apply<StrengthPower>(
+                new ThrowingPlayerChoiceContext(),
                 Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
                 Owner.Creature, this);
         }

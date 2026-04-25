@@ -18,11 +18,12 @@ public sealed class SuperheatedNextTurnStrengthPower : CustomPowerModel
         HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side) return;
         Flash();
         await PowerCmd.Apply<SuperheatedTemporaryStrengthPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner, Amount, Owner, null);
         await PowerCmd.Remove(this);
     }

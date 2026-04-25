@@ -32,7 +32,7 @@ public sealed class ClenchFist() : ShadowNecrobinderCard(1, CardType.Skill, Card
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()
@@ -45,7 +45,7 @@ public sealed class ClenchFist() : ShadowNecrobinderCard(1, CardType.Skill, Card
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
         {
-            await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
             await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }

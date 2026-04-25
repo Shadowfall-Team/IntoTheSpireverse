@@ -21,7 +21,7 @@ public sealed class ViperForm() : ShadowSilentCard(3, CardType.Power, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<ViperFormPower>(Owner.Creature, DynamicVars[nameof(ViperFormPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<ViperFormPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(ViperFormPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -46,7 +46,7 @@ public sealed class Claymaker() : ShadowIroncladCard(2, CardType.Attack, CardRar
         {
             var shockwave = CombatState.CreateCard<Shockwave>(Owner);
             shockwave.SetToFreeThisCombat();
-            await CardPileCmd.AddGeneratedCardsToCombat([shockwave], PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardsToCombat([shockwave], PileType.Hand, Owner);
         }
         _sourcePile = null;
     }

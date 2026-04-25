@@ -35,7 +35,7 @@ public sealed class WhiteHole() : ShadowDefectCard(0, CardType.Skill, CardRarity
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
             CombatState.CreateCard<Void>(Owner),
             PileType.Draw,
-            true,
+            Owner,
             CardPilePosition.Top));
 
         await Cmd.Wait(0.5f);

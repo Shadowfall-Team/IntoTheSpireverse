@@ -30,7 +30,7 @@ public sealed class InfectedShot() : ShadowDefectCard(0, CardType.Attack, CardRa
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        await PowerCmd.Apply<InfectedShotPower>(cardPlay.Target, DynamicVars["PowerAmount"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<InfectedShotPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars["PowerAmount"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

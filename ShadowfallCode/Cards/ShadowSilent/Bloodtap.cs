@@ -23,8 +23,8 @@ public sealed class Bloodtap() : ShadowSilentCard(1, CardType.Power, CardRarity.
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<InstinctPower>(Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<BloodtapPower>(Owner.Creature, DynamicVars[nameof(BloodtapPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<InstinctPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BloodtapPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(BloodtapPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

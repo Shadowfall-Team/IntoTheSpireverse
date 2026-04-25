@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -18,7 +19,7 @@ public class ShardPower : CustomPowerModel
         HoverTipFactory.FromCard<Warp>()
     ];
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount,
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount,
         Creature? applier,
         CardModel? cardSource)
     {
@@ -37,7 +38,7 @@ public class ShardPower : CustomPowerModel
         await Cmd.Wait(0.25f);
 
         var warp = CombatState.CreateCard<Warp>(Owner.Player);
-        await CardPileCmd.AddGeneratedCardToCombat(warp, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(warp, PileType.Hand, Owner.Player);
 
         SetAmount(Amount-6);
         if(Amount >= 6)

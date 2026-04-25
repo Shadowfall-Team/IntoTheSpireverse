@@ -29,7 +29,7 @@ public sealed class ClarionStrike() : ShadowDefectCard(1, CardType.Attack, CardR
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        await PowerCmd.Apply<ClarionStrikePower>(Owner.Creature, 1m, Owner.Creature, this);
+        await PowerCmd.Apply<ClarionStrikePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

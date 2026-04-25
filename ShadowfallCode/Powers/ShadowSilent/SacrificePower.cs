@@ -18,7 +18,7 @@ public sealed class SacrificePower : CustomPowerModel
         if (card.Type == CardType.Status && card.Owner == Owner.Player)
         {
             Flash();
-            await PowerCmd.Apply<VigorPower>(Owner, Amount, Owner, null);
+            await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
         }
     }
 }

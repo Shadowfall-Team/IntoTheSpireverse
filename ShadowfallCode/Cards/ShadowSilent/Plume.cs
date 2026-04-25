@@ -24,14 +24,14 @@ public sealed class Plume() : ShadowSilentCard(0, CardType.Skill, CardRarity.Unc
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<BleedPower>(cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BleedPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
     }
 
     public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
     {
         if (card != this) return;
 
-        await PowerCmd.Apply<InstinctPower>(Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<InstinctPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

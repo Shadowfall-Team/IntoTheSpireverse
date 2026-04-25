@@ -32,12 +32,14 @@ public class Reload() : ShadowRegentCard(1,
             Owner.Character.CastAnimDelay);
         
         await PowerCmd.Apply<GainAmmoNextTurnPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(GainAmmoNextTurnPower)].BaseValue,
             Owner.Creature,
             this);
 
         await PowerCmd.Apply<DrawCardsNextTurnPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue,
             Owner.Creature,

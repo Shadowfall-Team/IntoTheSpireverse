@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -44,7 +45,8 @@ public class ShadowMiniRegent : ShadowRegentRelic
         {
             UsedThisTurn = true;
             Flash();
-            await PowerCmd.Apply<StrengthPower>(Owner.Creature,
+            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
                 DynamicVars.Strength.BaseValue, Owner.Creature, null);
         }
     }

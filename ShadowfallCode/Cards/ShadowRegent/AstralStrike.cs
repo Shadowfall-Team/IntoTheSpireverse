@@ -38,6 +38,7 @@ public class AstralStrike() : ShadowRegentCard(
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         
         await PowerCmd.Apply<AmmoPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(AmmoPower)].BaseValue,
             Owner.Creature,

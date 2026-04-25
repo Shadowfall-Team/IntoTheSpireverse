@@ -35,6 +35,7 @@ public class Claim() : ShadowRegentCard(2,
             .Execute(choiceContext);
         
         await PowerCmd.Apply<ShardPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(ShardPower)].BaseValue, 
             Owner.Creature, 

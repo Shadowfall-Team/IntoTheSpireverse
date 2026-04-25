@@ -31,7 +31,7 @@ public sealed class Doppelganger() : ShadowNecrobinderCard(0, CardType.Skill, Ca
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         int x = ResolveEnergyXValue();
         if (IsUpgraded) x++;
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(Owner.Creature, x, Owner.Creature, this);
-        await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, x, Owner.Creature, this);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, x, Owner.Creature, this);
+        await PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, x, Owner.Creature, this);
     }
 }

@@ -30,6 +30,7 @@ public class GatherLight() : ShadowRegentCard(1,
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
 
         await PowerCmd.Apply<ShardPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars[nameof(ShardPower)].BaseValue,
             Owner.Creature,
             this);

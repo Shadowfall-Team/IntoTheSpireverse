@@ -26,7 +26,7 @@ public sealed class Servitude() : ShadowNecrobinderCard(-1, CardType.Curse, Card
 
     public override int MaxUpgradeLevel => 0;
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return;
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);

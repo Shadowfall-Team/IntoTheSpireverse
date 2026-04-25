@@ -33,7 +33,8 @@ public class Banana() : ShadowRegentCard(1,
 
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
 
-        await PowerCmd.Apply<DexterityPower>(Owner.Creature,
+        await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             DynamicVars.Dexterity.BaseValue,
             Owner.Creature,
             this);

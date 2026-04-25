@@ -28,7 +28,7 @@ public sealed class CalibratedResponse() : ShadowSilentCard(0, CardType.Skill, C
         await ShadowfallKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
-            await PowerCmd.Apply<BlurPower>(Owner.Creature, 1m, Owner.Creature, this);
+            await PowerCmd.Apply<BlurPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m, Owner.Creature, this);
         });
     }
 

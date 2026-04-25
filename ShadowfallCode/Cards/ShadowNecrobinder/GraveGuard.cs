@@ -27,7 +27,7 @@ public sealed class GraveGuard() : ShadowNecrobinderCard(1, CardType.Skill, Card
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         var soulStrike = CombatState.CreateCard<SoulStrike>(Owner);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(soulStrike, PileType.Draw, true, CardPilePosition.Random));
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(soulStrike, PileType.Draw, Owner, CardPilePosition.Random));
     }
 
     protected override void OnUpgrade()

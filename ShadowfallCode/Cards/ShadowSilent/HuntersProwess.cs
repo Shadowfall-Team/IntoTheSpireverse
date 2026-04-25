@@ -22,7 +22,7 @@ public sealed class HuntersProwess() : ShadowSilentCard(1, CardType.Power, CardR
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<InstinctPower>(Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<InstinctPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(InstinctPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

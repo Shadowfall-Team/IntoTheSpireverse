@@ -36,7 +36,8 @@ public class Fragment() : CustomCardModel(0,
         var players = CombatState.Players.Where(p => p.Creature.IsAlive);
         foreach (var player in players)
         {
-            await PowerCmd.Apply<ShardPower>(player.Creature,
+            await PowerCmd.Apply<ShardPower>(
+                new ThrowingPlayerChoiceContext(),player.Creature,
                 DynamicVars[nameof(ShardPower)].BaseValue,
                 Owner.Creature,
                 this);

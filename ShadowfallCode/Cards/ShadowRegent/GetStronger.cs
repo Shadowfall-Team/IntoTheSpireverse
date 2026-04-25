@@ -30,12 +30,14 @@ public class GetStronger() : ShadowRegentCard(
             powerAmount += 1;
         }
 
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature,
+        await PowerCmd.Apply<StrengthPower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             powerAmount,
             Owner.Creature,
             this);
 
-        await PowerCmd.Apply<DexterityPower>(Owner.Creature,
+        await PowerCmd.Apply<DexterityPower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             powerAmount,
             Owner.Creature,
             this);

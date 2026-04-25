@@ -23,7 +23,7 @@ public sealed class Prepare() : ShadowSilentCard(1, CardType.Skill, CardRarity.C
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await ShadowfallKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
-            PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this));
+            PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this));
     }
 
     protected override void OnUpgrade()

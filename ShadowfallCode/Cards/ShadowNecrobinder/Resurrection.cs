@@ -24,7 +24,7 @@ public sealed class Resurrection() : ShadowNecrobinderCard(1, CardType.Skill, Ca
         {
             var graveblast = CombatState.CreateCard<Graveblast>(creature.Player);
             graveblast.SetToFreeThisTurn();
-            await CardPileCmd.AddGeneratedCardToCombat(graveblast, PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardToCombat(graveblast, PileType.Hand, Owner);
         }
     }
 

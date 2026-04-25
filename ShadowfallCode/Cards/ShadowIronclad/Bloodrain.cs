@@ -53,6 +53,7 @@ public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRari
             }
 
             await PowerCmd.Apply<BloodbondPower>(
+                new ThrowingPlayerChoiceContext(),
                 enemy, DynamicVars.Power<BloodbondPower>().BaseValue,
                 Owner.Creature, this);
         }

@@ -28,9 +28,9 @@ public sealed class RendSpirit() : ShadowNecrobinderCard(2, CardType.Attack, Car
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         var soulStrikes = SoulStrike.Create(Owner, 3, CombatState).ToList();
-        var drawResult = await CardPileCmd.AddGeneratedCardToCombat(soulStrikes[0], PileType.Draw, true, CardPilePosition.Random);
-        var discardResult = await CardPileCmd.AddGeneratedCardToCombat(soulStrikes[1], PileType.Discard, true);
-        await CardPileCmd.AddGeneratedCardToCombat(soulStrikes[2], PileType.Hand, true);
+        var drawResult = await CardPileCmd.AddGeneratedCardToCombat(soulStrikes[0], PileType.Draw, Owner, CardPilePosition.Random);
+        var discardResult = await CardPileCmd.AddGeneratedCardToCombat(soulStrikes[1], PileType.Discard, Owner);
+        await CardPileCmd.AddGeneratedCardToCombat(soulStrikes[2], PileType.Hand, Owner);
         CardCmd.PreviewCardPileAdd([drawResult, discardResult]);
     }
 

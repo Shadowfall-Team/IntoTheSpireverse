@@ -32,7 +32,8 @@ public class TrialOfWeaponry() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<TrialOfWeaponryPower>(Owner.Creature,
+        await PowerCmd.Apply<TrialOfWeaponryPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             DynamicVars[nameof(AmmoPower)].BaseValue,
             Owner.Creature,
             this);
@@ -55,7 +56,7 @@ public class TrialOfWeaponryPower : CustomPowerModel
     ];
 
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext,
-        CombatSide side, CombatState combatState)
+        CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side)
         {
@@ -85,7 +86,7 @@ public class TrialOfWeaponryPower : CustomPowerModel
                     if (DynamicVars["AttacksPlayedThisTurn"].BaseValue % 3 == 0)
                     {
                         Flash();
-                        await PowerCmd.Apply<AmmoPower>(Owner, Amount, Owner, null);
+                        await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
                         await PowerCmd.Remove(this);
                     }
                 }

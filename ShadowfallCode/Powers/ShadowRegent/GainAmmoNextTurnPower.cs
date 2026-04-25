@@ -14,7 +14,7 @@ public class GainAmmoNextTurnPower : CustomPowerModel
     
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        await PowerCmd.Apply<AmmoPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
         await PowerCmd.Remove(this);
     }
 }

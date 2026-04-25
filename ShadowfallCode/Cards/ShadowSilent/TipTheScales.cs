@@ -21,8 +21,8 @@ public sealed class TipTheScales() : ShadowSilentCard(1, CardType.Power, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<TipTheScalesPower>(Owner.Creature, DynamicVars[nameof(TipTheScalesPower)].BaseValue, Owner.Creature, this);
-        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, true);
+        await PowerCmd.Apply<TipTheScalesPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(TipTheScalesPower)].BaseValue, Owner.Creature, this);
+        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()

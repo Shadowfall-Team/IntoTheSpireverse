@@ -36,7 +36,7 @@ public sealed class JoltPower : CustomPowerModel
     public override Task BeforeSideTurnStart(
         PlayerChoiceContext choiceContext,
         CombatSide side,
-        CombatState combatState)
+        ICombatState combatState)
     {
         if (side != Owner.Side)
             return Task.CompletedTask;

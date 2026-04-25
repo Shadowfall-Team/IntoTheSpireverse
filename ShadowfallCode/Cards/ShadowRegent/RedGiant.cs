@@ -25,14 +25,16 @@ public class RedGiant() : ShadowRegentCard(
     {
         if (IsUpgraded)
         {
-            await PowerCmd.Apply<RedGiantPower>(Owner.Creature,
+            await PowerCmd.Apply<RedGiantPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
                 1,
                 Owner.Creature,
                 this);
         }
         else
         {
-            await PowerCmd.Apply<RedGiantRandomPower>(Owner.Creature,
+            await PowerCmd.Apply<RedGiantRandomPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
                 1,
                 Owner.Creature,
                 this);

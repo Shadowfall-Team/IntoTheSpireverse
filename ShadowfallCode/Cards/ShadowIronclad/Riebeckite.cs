@@ -27,6 +27,7 @@ public sealed class Riebeckite() : ShadowIroncladCard(1, CardType.Power, CardRar
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<RiebeckitePower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<RiebeckitePower>().BaseValue,
             Owner.Creature, this);
     }

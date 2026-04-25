@@ -20,7 +20,7 @@ public class ShadowOrangeDough : ShadowRegentRelic
     ];
 
     public override async Task AfterSideTurnStart(CombatSide side,
-        CombatState combatState)
+        ICombatState combatState)
     {
         if (side == Owner.Creature.Side)
         {
@@ -34,7 +34,7 @@ public class ShadowOrangeDough : ShadowRegentRelic
                         Owner.RunState.Rng.CombatCardGeneration)
                     .ToList();
                 Flash();
-                var result = await CardPileCmd.AddGeneratedCardsToCombat(list, CargoCardPile.CargoPileType, true);
+                var result = await CardPileCmd.AddGeneratedCardsToCombat(list, CargoCardPile.CargoPileType, Owner);
                 CardCmd.PreviewCardPileAdd(result);
             }
         }

@@ -37,6 +37,7 @@ public sealed class ArmorOfGneiss() : ShadowIroncladCard(2, CardType.Skill, Card
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<SlatePower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, this);
     }

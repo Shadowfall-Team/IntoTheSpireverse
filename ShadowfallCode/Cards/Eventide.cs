@@ -37,7 +37,7 @@ public sealed class Eventide() : ShadowDefectCard(1, CardType.Attack, CardRarity
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
             CombatState.CreateCard<Void>(Owner),
             PileType.Draw,
-            true, CardPilePosition.Top));
+            Owner, CardPilePosition.Top));
 
         await Cmd.Wait(0.5f);
     }

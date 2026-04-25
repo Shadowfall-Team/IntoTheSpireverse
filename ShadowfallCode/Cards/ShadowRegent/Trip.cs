@@ -27,12 +27,16 @@ public class Trip() : CustomCardModel(0,
         if (CombatState == null) return;
         if (IsUpgraded)
         {
-            await PowerCmd.Apply<VulnerablePower>(CombatState.HittableEnemies,
+            await PowerCmd.Apply<VulnerablePower>(
+                new ThrowingPlayerChoiceContext(),
+                CombatState.HittableEnemies,
                 DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
         }
         else
         {
-            await PowerCmd.Apply<VulnerablePower>(play.Target,
+            await PowerCmd.Apply<VulnerablePower>(
+                new ThrowingPlayerChoiceContext(),
+                play.Target,
                 DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
         }
     }

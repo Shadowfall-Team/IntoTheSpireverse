@@ -24,8 +24,8 @@ public sealed class ChokingHazard() : ShadowSilentCard(1, CardType.Skill, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<PiercingWailPower>(cardPlay.Target, DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
-        CardPileAddResult cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Dazed>(Owner), PileType.Draw, true, CardPilePosition.Random);
+        await PowerCmd.Apply<PiercingWailPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
+        CardPileAddResult cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Dazed>(Owner), PileType.Draw, Owner, CardPilePosition.Random);
         CardCmd.PreviewCardPileAdd(cardPileAddResult, 1.2f, CardPreviewStyle.HorizontalLayout);
     }
 

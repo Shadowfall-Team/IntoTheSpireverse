@@ -29,7 +29,7 @@ public sealed class AbraCadaver() : ShadowNecrobinderCard(0, CardType.Skill, Car
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         Decimal amount = ((CalculatedVar)DynamicVars[_calculatedStrKey]).Calculate(null);
-        await PowerCmd.Apply<AbraCadaverPower>(Owner.Creature, amount, Owner.Creature, this);
+        await PowerCmd.Apply<AbraCadaverPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, amount, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

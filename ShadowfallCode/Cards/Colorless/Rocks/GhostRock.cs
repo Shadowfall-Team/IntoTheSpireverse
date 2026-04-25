@@ -40,6 +40,7 @@ public sealed class GhostRock() : RockCardBase(1, CardType.Attack, CardRarity.To
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
         await PowerCmd.Apply<WeakPower>(
+            new ThrowingPlayerChoiceContext(),
             cardPlay.Target, DynamicVars.Weak.BaseValue,
             Owner.Creature, this);
     }

@@ -30,7 +30,7 @@ public sealed class PebbleflingerPower : CustomPowerModel
         {
             Flash();
             var rock = Owner.CombatState.CreateCard<SmallRock>(Owner.Player);
-            await CardPileCmd.AddGeneratedCardsToCombat([rock], PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardsToCombat([rock], PileType.Hand, Owner.Player);
         }
         InvokeDisplayAmountChanged();
     }

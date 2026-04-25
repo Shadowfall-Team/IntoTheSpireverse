@@ -25,7 +25,7 @@ public sealed class MakingChange() : ShadowSilentCard(3, CardType.Skill, CardRar
 
         for (int i = 0; i < 2; i++)
         {
-            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, Owner);
         }
     }
 

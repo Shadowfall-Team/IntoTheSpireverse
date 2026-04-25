@@ -21,7 +21,7 @@ public sealed class Lacerate() : ShadowSilentCard(1, CardType.Skill, CardRarity.
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<BleedPower>(cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BleedPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

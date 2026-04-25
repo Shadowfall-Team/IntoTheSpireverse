@@ -33,7 +33,8 @@ public class Construct() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<GainShardsPower>(Owner.Creature,
+        await PowerCmd.Apply<GainShardsPower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             DynamicVars[nameof(GainShardsPower)].BaseValue,
             Owner.Creature,
             this);
@@ -54,6 +55,6 @@ public class GainShardsPower : CustomPowerModel
     {
         // if (AmountOnTurnStart == 0) return;
 
-        await PowerCmd.Apply<ShardPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<ShardPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }

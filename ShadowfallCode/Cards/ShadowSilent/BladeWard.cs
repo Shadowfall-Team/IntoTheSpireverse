@@ -28,7 +28,7 @@ public sealed class BladeWard() : ShadowSilentCard(2, CardType.Attack, CardRarit
     public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
     {
         if (card == this)
-            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Ward>(Owner), PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Ward>(Owner), PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()

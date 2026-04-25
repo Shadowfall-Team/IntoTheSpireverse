@@ -22,7 +22,7 @@ public sealed class Avarice() : ShadowNecrobinderCard(-1, CardType.Curse, CardRa
         ShadowfallKeywords.Startup
     ];
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return;
         await PlayerCmd.GainGold(DynamicVars[_goldKey].IntValue, Owner);

@@ -43,7 +43,7 @@ public sealed class Subterfuge() : ShadowSilentCard(2, CardType.Skill, CardRarit
             }
         }
 
-        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()

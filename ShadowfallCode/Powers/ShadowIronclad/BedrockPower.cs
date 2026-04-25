@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
@@ -15,7 +16,7 @@ public sealed class BedrockPower : CustomPowerModel
         HoverTipFactory.FromPower<SlatePower>(),
     ];
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side) return;
         Flash();
@@ -23,7 +24,7 @@ public sealed class BedrockPower : CustomPowerModel
                      .Where(c => c != null && c.IsAlive)
                      .ToList())
         {
-            await PowerCmd.Apply<SlatePower>(
+            await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
                 creature, (decimal)Amount, creature, null);
         }
     }

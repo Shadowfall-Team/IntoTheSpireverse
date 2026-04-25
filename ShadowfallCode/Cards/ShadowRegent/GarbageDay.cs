@@ -29,7 +29,7 @@ public class GarbageDay() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         await CardPileCmd.AddToCombatAndPreview<Debris>(Owner.Creature,
-            CargoCardPile.CargoPileType, 4, true);
+            CargoCardPile.CargoPileType, 4, Owner);
 
         var bury = CombatState.CreateCard<Bury>(Owner);
         bury.EnergyCost.SetThisCombat(0);

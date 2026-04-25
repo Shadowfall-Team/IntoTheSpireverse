@@ -32,11 +32,13 @@ public class Convergence() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<RetainHandPower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<RetainHandPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
 
-        await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature,
+        await PowerCmd.Apply<EnergyNextTurnPower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             DynamicVars.Energy.BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<GainShardsNextTurnPower>(Owner.Creature,
+        await PowerCmd.Apply<GainShardsNextTurnPower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             DynamicVars[nameof(GainShardsNextTurnPower)].BaseValue, Owner.Creature, this);
     }
 

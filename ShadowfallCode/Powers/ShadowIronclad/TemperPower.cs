@@ -20,6 +20,6 @@ public sealed class TemperPower : CustomPowerModel
     {
         if (cardPlay.Card.Owner != Owner.Player || cardPlay.Card.Type != CardType.Skill) return;
         Flash();
-        await PowerCmd.Apply<RetaliationPower>(Owner, (decimal)Amount, Owner, null);
+        await PowerCmd.Apply<RetaliationPower>(new ThrowingPlayerChoiceContext(), Owner, (decimal)Amount, Owner, null);
     }
 }

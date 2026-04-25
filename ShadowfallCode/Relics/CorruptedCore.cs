@@ -39,7 +39,7 @@ public class CorruptedCore : ShadowDefectRelic
     public override async Task BeforeSideTurnStart(
         PlayerChoiceContext choiceContext,
         CombatSide side,
-        CombatState combatState)
+        ICombatState combatState)
     {
         var corruptedCore = this;
         if (side != corruptedCore.Owner.Creature.Side || combatState.RoundNumber > 1)
