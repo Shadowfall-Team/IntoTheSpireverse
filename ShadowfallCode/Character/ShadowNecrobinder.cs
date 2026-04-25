@@ -15,7 +15,8 @@ namespace Shadowfall.ShadowfallCode.Character;
 public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "necrobinder";
-    public const string CharacterId = "Shadowfall";
+    // public const string CharacterId = "Shadowfall";
+    public const string CharacterId = "necrobinder"; // temp fix for the energy icon in the character select screen
 
     public static readonly Color Color = StsColors.purple;
 
