@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class RetaliationPower : CustomPowerModel
+public sealed class RetaliationPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
