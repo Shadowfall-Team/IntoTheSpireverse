@@ -31,7 +31,7 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
         CardKeyword.Exhaust
     ];
     
-    public static IEnumerable<SoulStrike> Create(Player owner, int amount, CombatState combatState)
+    public static IEnumerable<SoulStrike> Create(Player owner, int amount, ICombatState combatState)
     {
         List<SoulStrike> list = new List<SoulStrike>();
         for (int i = 0; i < amount; i++)
@@ -39,10 +39,10 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
         return list;
     }
     
-    public static async Task<IEnumerable<SoulStrike>> CreateInHand(Player owner, int amount, CombatState combatState)
+    public static async Task<IEnumerable<SoulStrike>> CreateInHand(Player owner, int amount, ICombatState combatState)
     {
         var soulStrikes = SoulStrike.Create(owner, amount, combatState).ToList();
-        await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>)soulStrikes, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>)soulStrikes, PileType.Hand, owner);
         return soulStrikes;
     }
 

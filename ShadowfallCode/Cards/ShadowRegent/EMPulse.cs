@@ -44,7 +44,8 @@ public class EMPulse() : ShadowRegentCard(
 
             foreach (var creature in CombatState.HittableEnemies)
             {
-                await PowerCmd.Apply<EMPulsePower>(creature,
+                await PowerCmd.Apply<EMPulsePower>(
+                    new ThrowingPlayerChoiceContext(),creature,
                     DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
             }
         }

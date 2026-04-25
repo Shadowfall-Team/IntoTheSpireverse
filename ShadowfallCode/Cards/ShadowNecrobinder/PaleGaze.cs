@@ -29,6 +29,6 @@ public sealed class PaleGaze() : ShadowNecrobinderCard(2, CardType.Power, CardRa
         var deathglare = CombatState.CreateCard<Deathglare>(Owner);
         if (IsUpgraded)
             CardCmd.Upgrade(deathglare);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(deathglare, PileType.Draw, true, CardPilePosition.Random));
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(deathglare, PileType.Draw, Owner, CardPilePosition.Random));
     }
 }

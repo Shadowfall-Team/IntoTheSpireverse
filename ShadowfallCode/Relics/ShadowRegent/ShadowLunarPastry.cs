@@ -24,7 +24,8 @@ public class ShadowLunarPastry : ShadowRegentRelic
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext,
         Player player)
     {
-        await PowerCmd.Apply<ShardPower>(Owner.Creature,
+        await PowerCmd.Apply<ShardPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             DynamicVars[nameof(ShardPower)].BaseValue,
             Owner.Creature,
             null);

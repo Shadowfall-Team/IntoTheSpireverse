@@ -29,13 +29,15 @@ public class Armada() : ShadowRegentCard(
 
         if (IsUpgraded)
         {
-            await PowerCmd.Apply<AmmoPower>(Owner.Creature,
+            await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
                 1,
                 Owner.Creature,
                 this);
         }
 
-        await PowerCmd.Apply<ArmadaPower>(Owner.Creature,
+        await PowerCmd.Apply<ArmadaPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             1,
             Owner.Creature,
             this);
@@ -52,6 +54,6 @@ public class ArmadaPower : CustomPowerModel
     {
         // if (AmountOnTurnStart == 0) return;
 
-        await PowerCmd.Apply<AmmoPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }

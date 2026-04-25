@@ -1,13 +1,10 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
@@ -24,9 +21,9 @@ public sealed class SongOfSorrowPower : CustomPowerModel
 		HoverTipFactory.FromCard<Void>()
 	};
 
-	public override async Task AfterCardGeneratedForCombat(CardModel card, bool addedByPlayer)
+	public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
 	{
-		if (addedByPlayer && card.Owner == base.Owner.Player && card is Void)
+		if (creator == card.Owner && card is Void)
 		{
 			Flash();
 			await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.CombatState.HittableEnemies, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null);

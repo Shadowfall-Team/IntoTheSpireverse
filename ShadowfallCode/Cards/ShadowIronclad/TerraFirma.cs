@@ -31,6 +31,7 @@ public sealed class TerraFirma() : ShadowIroncladCard(1, CardType.Skill, CardRar
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
         await PowerCmd.Apply<SlatePower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, this);
     }

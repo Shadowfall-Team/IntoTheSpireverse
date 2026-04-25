@@ -31,6 +31,7 @@ public sealed class RodOfRuin() : ShadowDefectCard(1, CardType.Skill, CardRarity
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
  
         await PowerCmd.Apply<RodOfRuinPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars["RodOfRuinPower"].BaseValue,
             Owner.Creature,

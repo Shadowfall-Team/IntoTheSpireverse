@@ -21,7 +21,7 @@ public sealed class StalkPreyPower : CustomPowerModel
             if (_skillCount % 3 == 0)
             {
                 Flash();
-                await PowerCmd.Apply<InstinctPower>(Owner, Amount, Owner, null);
+                await PowerCmd.Apply<InstinctPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
             }
         }
     }

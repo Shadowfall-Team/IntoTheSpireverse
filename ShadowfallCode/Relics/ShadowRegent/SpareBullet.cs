@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
@@ -22,7 +23,8 @@ public class SpareBullet() : ShadowRegentRelic
     {
         if (room is CombatRoom)
         {
-            await PowerCmd.Apply<AmmoPower>(Owner.Creature,
+            await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
                 DynamicVars[nameof(AmmoPower)].BaseValue, Owner.Creature, null);
         }
     }

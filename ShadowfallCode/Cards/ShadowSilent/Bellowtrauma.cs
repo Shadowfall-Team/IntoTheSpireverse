@@ -30,10 +30,10 @@ public sealed class Bellowtrauma() : ShadowSilentCard(1, CardType.Skill, CardRar
         foreach (Creature creature in CombatState.HittableEnemies)
         {
             bool wasBleeding = creature.GetPowerAmount<BleedPower>() > 0;
-            await PowerCmd.Apply<BleedPower>(creature, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<BleedPower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
             if (wasBleeding)
             {
-                await PowerCmd.Apply<VulnerablePower>(creature, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+                await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
             }
         }
     }

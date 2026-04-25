@@ -37,8 +37,9 @@ public class EscortMe() : ShadowRegentCard(
             xValue += 1;
         }
         
-        await CardPileCmd.AddToCombatAndPreview<MinionStrike>(Owner.Creature,
-            CargoCardPile.CargoPileType, xValue, true);
+        await CardPileCmd.AddToCombatAndPreview<MinionStrike>(
+            Owner.Creature,
+            CargoCardPile.CargoPileType, xValue, Owner);
         
     }
 }

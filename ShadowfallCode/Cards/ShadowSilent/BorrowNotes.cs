@@ -33,10 +33,10 @@ public sealed class BorrowedNotes() : ShadowSilentCard(1, CardType.Skill, CardRa
                 if (IsUpgraded)
                     CardCmd.Upgrade(card);
 
-                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
             }
         }
 
-        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, Owner);
     }
 }

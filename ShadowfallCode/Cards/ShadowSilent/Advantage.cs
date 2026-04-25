@@ -24,11 +24,11 @@ public sealed class Advantage() : ShadowSilentCard(0, CardType.Skill, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<AdvantageBlockPower>(Owner.Creature, DynamicVars[nameof(AdvantageBlockPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<AdvantageBlockPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(AdvantageBlockPower)].BaseValue, Owner.Creature, this);
 
         for (int i = 0; i < DynamicVars.Cards.IntValue; i++)
         {
-            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Slimed>(Owner), PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Slimed>(Owner), PileType.Hand, Owner);
         }
     }
 

@@ -35,6 +35,7 @@ public sealed class SpikedRock() : RockCardBase(0, CardType.Attack, CardRarity.T
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
         await PowerCmd.Apply<RetaliationPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars[RetaliationKey].BaseValue,
             Owner.Creature, this);
     }

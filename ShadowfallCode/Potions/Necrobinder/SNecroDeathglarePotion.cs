@@ -26,6 +26,6 @@ public class SNecroDeathglarePotion : ShadowfallPotion
     {
         var deathglare = Owner.Creature.CombatState.CreateCard<Deathglare>(Owner);
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
-            deathglare, PileType.Draw, true, CardPilePosition.Random));
+            deathglare, PileType.Draw, Owner, CardPilePosition.Random));
     }
 }

@@ -32,7 +32,7 @@ public sealed class MassAppeal() : ShadowSilentCard(1, CardType.Attack, CardRari
 
         foreach (Creature creature in CombatState.HittableEnemies)
         {
-            await PowerCmd.Apply<WeakPower>(creature, DynamicVars.Weak.BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars.Weak.BaseValue, Owner.Creature, this);
         }
     }
 

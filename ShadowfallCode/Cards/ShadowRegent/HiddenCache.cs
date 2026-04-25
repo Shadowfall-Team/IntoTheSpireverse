@@ -29,12 +29,14 @@ public class HiddenCache() : ShadowRegentCard(1,
             Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<ShardPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(ShardPower)].BaseValue,
             Owner.Creature,
             this);
 
         await PowerCmd.Apply<GainShardsNextTurnPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(GainShardsNextTurnPower)].BaseValue,
             Owner.Creature,

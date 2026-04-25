@@ -38,6 +38,7 @@ public sealed class CarbonCoating() : ShadowIroncladCard(1, CardType.Skill, Card
         if (amount > 0)
         {
             await PowerCmd.Apply<SlatePower>(
+                new ThrowingPlayerChoiceContext(),
                 Owner.Creature, amount,
                 Owner.Creature, this);
         }
