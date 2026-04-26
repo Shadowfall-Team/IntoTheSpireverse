@@ -28,28 +28,18 @@ public sealed class DeepRock() : RockCardBase(2, CardType.Attack, CardRarity.Tok
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        var attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
-    }
 
-    public override async Task AfterDamageGiven(
-        PlayerChoiceContext choiceContext,
-        Creature? dealer,
-        DamageResult result,
-        ValueProp props,
-        Creature target,
-        CardModel? cardSource)
-    {
-        if (dealer == Owner.Creature && cardSource == this && result.UnblockedDamage > 0)
-            await CreatureCmd.GainBlock(
-                Owner.Creature,
-                result.UnblockedDamage,
-                ValueProp.Move,
-                null
-            );
+        await CreatureCmd.GainBlock(
+            Owner.Creature,
+            (decimal)attackCommand.Results.Sum(r => r.TotalDamage + r.OverkillDamage),
+            ValueProp.Move,
+            cardPlay
+        );
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);

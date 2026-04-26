@@ -10,6 +10,9 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Titanic() : ShadowIroncladCard(3, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
+    
+    public override bool CanBeGeneratedInCombat => false;
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new MaxHpVar(3m),

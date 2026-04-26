@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using Shadowfall.ShadowfallCode.Cards.Colorless.Rocks;
 using Shadowfall.ShadowfallCode.Character;
+using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
@@ -22,6 +23,7 @@ public sealed class Caldera() : ShadowIroncladCard(1, CardType.Skill, CardRarity
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<BombRock>(false),
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Linger),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

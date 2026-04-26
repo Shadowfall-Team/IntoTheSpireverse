@@ -515,7 +515,7 @@
   "SHADOWFALL-DEATHGLARE.title": "Deathglare",
   "SHADOWFALL-DEATHGLARE.description": "Deal {Damage:diff()} damage.\n[gold]Linger[/gold] - Add a copy of this card into your [gold]Draw Pile[/gold].",
   "SHADOWFALL-DEEP_ROCK.title": "Deep Rock",
-  "SHADOWFALL-DEEP_ROCK.description": "Deal {Damage:diff()} damage.\nGain [gold]Block[/gold] equal to unblocked damage dealt.",
+  "SHADOWFALL-DEEP_ROCK.description": "Deal {Damage:diff()} damage.\nGain [gold]Block[/gold] equal to damage dealt.",
   "SHADOWFALL-DON_THE_MANTLE.title": "Don The Mantle",
   "SHADOWFALL-DON_THE_MANTLE.description": "Lose {HpLoss:diff()} HP.\nGain {Block:diff()} [gold]Block[/gold].",
   "SHADOWFALL-GHOST_ROCK.title": "Ghost Rock",
