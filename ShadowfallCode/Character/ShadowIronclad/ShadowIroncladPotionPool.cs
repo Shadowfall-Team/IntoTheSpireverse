@@ -9,14 +9,4 @@ public class ShadowIroncladPotionPool : CustomPotionPoolModel
 {
     public override string EnergyColorName => ShadowIronclad.CharacterId;
     public override Color LabOutlineColor => ShadowIronclad.Color;
-    
-    
-    protected override IEnumerable<PotionModel> GenerateAllPotions()
-    {
-        return
-        [
-            ModelDb.Potion<BloodPotion>(),
-        ];
-    }
-    
 }

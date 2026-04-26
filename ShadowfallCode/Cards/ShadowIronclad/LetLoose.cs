@@ -17,7 +17,7 @@ public sealed class LetLoose() : ShadowIroncladCard(1, CardType.Skill, CardRarit
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(7m, ValueProp.Move),
-        new CardsVar(2),
+        new CardsVar(1),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -34,5 +34,9 @@ public sealed class LetLoose() : ShadowIroncladCard(1, CardType.Skill, CardRarit
         await CardPileCmd.Add(selected, PileType.Draw, CardPilePosition.Top);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Block.UpgradeValueBy(2m);
+        DynamicVars.Cards.UpgradeValueBy(1);
+    }
 }

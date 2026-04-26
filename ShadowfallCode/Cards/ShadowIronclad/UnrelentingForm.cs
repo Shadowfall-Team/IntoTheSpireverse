@@ -33,5 +33,6 @@ public sealed class UnrelentingForm() : ShadowIroncladCard(3, CardType.Power, Ca
     protected override void OnUpgrade()
     {
         DynamicVars["UnrelentingFormPower"].UpgradeValueBy(1m);
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

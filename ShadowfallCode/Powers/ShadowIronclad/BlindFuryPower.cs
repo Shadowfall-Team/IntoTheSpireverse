@@ -17,14 +17,15 @@ namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 public sealed class BlindFuryPower : CustomPowerModel
 {
-    private const int DrawCount = 3;
+    private const int EnergyGain = 2;
     private const int MaxCardsToPlay = 13;
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<StrengthPower>()
+        HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.ForEnergy(this)
     ];
 
     public override async Task AfterAutoPrePlayPhaseEnteredLate(PlayerChoiceContext choiceContext, Player player)
@@ -34,7 +35,7 @@ public sealed class BlindFuryPower : CustomPowerModel
 
         Flash();
 
-        await CardPileCmd.Draw(choiceContext, DrawCount, Owner.Player);
+        await PlayerCmd.GainEnergy(EnergyGain, Owner.Player);
 
         bool hitLimit;
         using (CardSelectCmd.PushSelector(new VakuuCardSelector()))

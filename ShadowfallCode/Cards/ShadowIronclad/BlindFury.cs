@@ -14,12 +14,14 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 public sealed class BlindFury() : ShadowIroncladCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<StrengthPower>(3m),
-        new PowerVar<BlindFuryPower>(1m)
+        new PowerVar<StrengthPower>(4m),
+        new PowerVar<BlindFuryPower>(1m),
+        new EnergyVar(2)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<StrengthPower>(),
+        EnergyHoverTip
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

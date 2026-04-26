@@ -121,7 +121,6 @@
 
     <ItemGroup>
         <Folder Include="Shadowfall\ArtRoller\" />
-        <Folder Include="Shadowfall\images\card_portraits\big\"/>
         <Folder Include="Shadowfall\images\powers\big\"/>
         <Folder Include="Shadowfall\images\relics\big\"/>
     </ItemGroup>
