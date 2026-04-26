@@ -33,6 +33,6 @@ public sealed class Quarry() : ShadowIroncladCard(-1, CardType.Skill, CardRarity
                 CardCmd.Upgrade(rocks[i]);
         }
 
-        await CardPileCmd.AddGeneratedCardsToCombat(rocks, PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardsToCombat(rocks, PileType.Hand, Owner);
     }
 }
