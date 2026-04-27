@@ -11,7 +11,7 @@ public sealed class Zombification() : ShadowNecrobinderCard(1, CardType.Power, C
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<ZombificationPower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<ZombificationPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
