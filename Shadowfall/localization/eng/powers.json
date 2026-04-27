@@ -130,6 +130,13 @@
   "SHADOWFALL-REVENGE_POWER.title": "Revenge",
   "SHADOWFALL-REVENGE_POWER.description": "Your [gold]Retaliation[/gold] will not be removed for [blue]1[/blue] {Amount:plural:turn|turns}.",
   "SHADOWFALL-REVENGE_POWER.smartDescription": "Your [gold]Retaliation[/gold] will not be removed for [blue]{Amount}[/blue] {Amount:plural:turn|turns}.",
+  "SHADOWFALL-NECRONOMICON_POWER.title": "Necronomicon",
+  "SHADOWFALL-NECRONOMICON_POWER.description": "At the end of combat, [gold]Transform[/gold] and [gold]Upgrade[/gold] a card.",
+  "SHADOWFALL-NECRONOMICON_POWER.smartDescription": "At the end of combat, [gold]Transform[/gold] and [gold]Upgrade[/gold] [blue]{Amount}[/blue] {Amount:plural:card|cards}.",
+
+  "SHADOWFALL-RESOLVE_POWER.title": "Resolve",
+  "SHADOWFALL-RESOLVE_POWER.description": "When you would lose HP during your turn, lose that much [gold]Resolve[/gold] instead. This still counts as losing HP.",
+  "SHADOWFALL-RESOLVE_POWER.smartDescription": "Prevents the next [blue]{Amount}[/blue] HP loss during your turn. Still triggers effects that activate on HP loss.",
   "SHADOWFALL-SEETHING_POWER.description": "Add a copy of [gold]{Card}[/gold] into your [gold]Hand[/gold] next turn.",
   "SHADOWFALL-SEETHING_POWER.smartDescription": "Add {Amount:plural:a|[blue]{}[/blue]} {Amount:plural:copy|copies} of [gold]{Card}[/gold] into your [gold]Hand[/gold] next turn.",
   "SHADOWFALL-SEETHING_POWER.title": "Seething",
