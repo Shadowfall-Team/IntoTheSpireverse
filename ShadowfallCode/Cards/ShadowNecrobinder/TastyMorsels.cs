@@ -25,8 +25,8 @@ public sealed class TastyMorsels() : ShadowNecrobinderCard(1, CardType.Power, Ca
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<PlatingPower>(Owner.Creature, DynamicVars["PlatingPower"].BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<TastyMorselsPower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["PlatingPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<TastyMorselsPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -22,7 +22,7 @@ public sealed class Sacrifice() : ShadowSilentCard(1, CardType.Power, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<SacrificePower>(Owner.Creature, DynamicVars[nameof(SacrificePower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<SacrificePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(SacrificePower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

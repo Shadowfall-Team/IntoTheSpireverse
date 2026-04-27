@@ -44,7 +44,7 @@ public sealed class Process() : ShadowDefectCard(1, CardType.Skill, CardRarity.R
 		for (int i = 0; i < cost; i++)
 		{
 			CardModel voidCard = base.CombatState.CreateCard<Void>(base.Owner);
-			CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(voidCard, PileType.Discard, addedByPlayer: true));
+			CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(voidCard, PileType.Discard, Owner));
 		}
 	}
 

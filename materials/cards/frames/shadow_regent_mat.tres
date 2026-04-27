@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bk4joy1nxm5cq"]
+
+[ext_resource type="Shader" uid="uid://bjadwxrmsihto" path="res://Shadowfall/shaders/hsvWithGradient.gdshader" id="1_esdn5"]
+[ext_resource type="Texture2D" uid="uid://bu532h5e65p26" path="res://materials/cards/frames/card_darken_gradient.tres" id="2_jw6ab"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_esdn5")
+shader_parameter/h = 0.1200000057
+shader_parameter/s = 1.50000007125
+shader_parameter/v = 1.2
+shader_parameter/gradient = ExtResource("2_jw6ab")

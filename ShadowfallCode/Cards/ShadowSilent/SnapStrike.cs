@@ -14,7 +14,7 @@ public sealed class SnapStrike() : ShadowSilentCard(1, CardType.Attack, CardRari
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(5m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -27,7 +27,7 @@ public sealed class SnapStrike() : ShadowSilentCard(1, CardType.Attack, CardRari
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
         await Shiv.CreateInHand(Owner, 2, CombatState);
-        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()

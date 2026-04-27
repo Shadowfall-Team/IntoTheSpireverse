@@ -32,7 +32,7 @@ public sealed class Manifest() : ShadowNecrobinderCard(2, CardType.Skill, CardRa
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Decay>(Owner), PileType.Hand, true);
+        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Decay>(Owner), PileType.Hand, Owner);
         await Cmd.Wait(0.5f); // Parity with Collision Course
     }
 

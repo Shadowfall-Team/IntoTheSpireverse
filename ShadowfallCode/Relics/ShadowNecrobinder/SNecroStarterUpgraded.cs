@@ -39,7 +39,7 @@ public class SNecroStarterUpgraded : ShadowNecrobinderRelic
     }
 
     public override Task BeforeSideTurnStart(
-        PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+        PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Creature.Side) return Task.CompletedTask;
         UsedThisTurn = false;

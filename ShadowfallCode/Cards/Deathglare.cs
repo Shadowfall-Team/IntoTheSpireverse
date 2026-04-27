@@ -52,7 +52,7 @@ public sealed class Deathglare() : CustomCardModel(0, CardType.Attack, CardRarit
         for (int i = 0; i < triggers; i++)
         {
             CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
-                CreateClone(), PileType.Draw, true, CardPilePosition.Random));
+                CreateClone(), PileType.Draw, Owner, CardPilePosition.Random));
             await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }

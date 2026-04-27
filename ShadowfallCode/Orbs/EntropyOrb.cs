@@ -41,7 +41,7 @@ public class EntropyOrb : PlaceholderOrbModel
 
     public override async Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext playerChoiceContext)
     {
-        await PowerCmd.Apply<StrengthPower>(target: this.Owner.Creature, amount: EvokeVal, applier: this.Owner.Creature, cardSource: null);
+        await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), target: this.Owner.Creature, amount: EvokeVal, applier: this.Owner.Creature, cardSource: null);
         return [this.Owner.Creature];
     }
 }
