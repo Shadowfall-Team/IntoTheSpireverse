@@ -6,12 +6,14 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 public sealed class RetaliationPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
+
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override async Task AfterDamageReceived(
@@ -25,6 +27,21 @@ public sealed class RetaliationPower : ShadowPowerModel
         if (target != Owner || dealer == null || !props.IsPoweredAttack())
             return;
         await CreatureCmd.Damage(choiceContext, dealer, (decimal)Amount, ValueProp.Unpowered, Owner, (CardModel?)null);
+    }
+
+    public override decimal ModifyDamageAdditive(
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource)
+    {
+        if (target != Owner || !props.IsPoweredAttack()) return 0m;
+
+        var relic = Owner.Player?.Relics.OfType<SIroncladRetaliationRelic>().FirstOrDefault();
+        if (relic == null) return 0m;
+        
+        return -relic.DynamicVars["DamageReduction"].BaseValue;
     }
 
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)

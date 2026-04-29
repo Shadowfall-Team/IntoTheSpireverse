@@ -49,7 +49,7 @@ public sealed class BlastFromThePast() : ShadowNecrobinderCard(0, CardType.Skill
 
         foreach (var card in selected)
         {
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
         }
     }
 

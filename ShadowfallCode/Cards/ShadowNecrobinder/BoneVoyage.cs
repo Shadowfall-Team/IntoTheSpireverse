@@ -35,10 +35,10 @@ public sealed class BoneVoyage() : ShadowNecrobinderCard(1, CardType.Skill, Card
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<WeakPower>(cardPlay.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
         var soulStrikes = SoulStrike.Create(Owner, DynamicVars.Cards.IntValue, CombatState).ToList();
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(
-            (IEnumerable<CardModel>)soulStrikes, PileType.Draw, true, CardPilePosition.Random));
+            (IEnumerable<CardModel>)soulStrikes, PileType.Draw, Owner, CardPilePosition.Random));
     }
 
     protected override void OnUpgrade()
@@ -51,7 +51,8 @@ public sealed class BoneVoyage() : ShadowNecrobinderCard(1, CardType.Skill, Card
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
         {
-            await PowerCmd.Apply<EnergyNextTurnPower>(Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature,
+            await PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature,
                 this);
             await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }

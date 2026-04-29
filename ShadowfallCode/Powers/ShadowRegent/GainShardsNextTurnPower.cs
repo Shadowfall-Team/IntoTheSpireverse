@@ -15,7 +15,7 @@ public class GainShardsNextTurnPower : CustomPowerModel
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext,
         Player player)
     {
-        await PowerCmd.Apply<ShardPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<ShardPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
         await PowerCmd.Remove(this);
     }
 }

@@ -29,7 +29,8 @@ public class FireEverything() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<AmmoPower>(Owner.Creature,
+        await PowerCmd.Apply<AmmoPower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             DynamicVars[nameof(AmmoPower)].BaseValue,
             Owner.Creature,
             this);

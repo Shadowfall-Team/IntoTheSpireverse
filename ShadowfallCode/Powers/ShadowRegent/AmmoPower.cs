@@ -52,12 +52,12 @@ public class AmmoPower : CustomPowerModel
 
             if (Owner.HasPower<CascadePower>())
             {
-                await PowerCmd.Apply<VolleyDamagePower>(Owner, 1, Owner, null);
+                await PowerCmd.Apply<VolleyDamagePower>(new ThrowingPlayerChoiceContext(), Owner, 1, Owner, null);
             }
 
             if (Owner.HasPower<SiegePower>())
             {
-                await PowerCmd.Apply<WeakPower>(target, 1, Owner, null);
+                await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, 1, Owner, null);
             }
 
             if (Owner.HasPower<DefensiveCannonadePower>())

@@ -16,7 +16,7 @@ public sealed class Reanimate() : ShadowNecrobinderCard(2, CardType.Power, CardR
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<ReanimatePower>(Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<ReanimatePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

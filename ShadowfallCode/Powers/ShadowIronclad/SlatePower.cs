@@ -20,7 +20,7 @@ public sealed class SlatePower : ShadowPowerModel
     public override PowerStackType StackType => PowerStackType.Counter;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new BlockVar(BlockKey, 5m, ValueProp.Move),
+        new BlockVar(BlockKey, 4m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [

@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -26,9 +27,9 @@ public sealed class Pride() : ShadowNecrobinderCard(-1, CardType.Curse, CardRari
         ShadowfallKeywords.Startup
     ];
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return;
-        await PowerCmd.Apply<DexterityPower>(Owner.Creature, DynamicVars.Dexterity.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Dexterity.BaseValue, Owner.Creature, this);
     }
 }

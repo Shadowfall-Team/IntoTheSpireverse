@@ -28,7 +28,8 @@ public class ExaltedForm() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
         
-        await PowerCmd.Apply<ExaltedFormPower>(Owner.Creature,
+        await PowerCmd.Apply<ExaltedFormPower>(
+            new ThrowingPlayerChoiceContext(),Owner.Creature,
             1,
             Owner.Creature,
             this);

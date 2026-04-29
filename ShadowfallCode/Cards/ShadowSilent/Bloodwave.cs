@@ -33,7 +33,7 @@ public sealed class Bloodwave() : ShadowSilentCard(2, CardType.Attack, CardRarit
             .Execute(choiceContext);
     }
 
-    public override Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, Decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (power is BleedPower
             && applier == Owner?.Creature

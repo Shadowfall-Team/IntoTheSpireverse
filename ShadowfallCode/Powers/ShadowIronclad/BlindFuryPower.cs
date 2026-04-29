@@ -17,24 +17,25 @@ namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 public sealed class BlindFuryPower : CustomPowerModel
 {
-    private const int DrawCount = 3;
+    private const int EnergyGain = 2;
     private const int MaxCardsToPlay = 13;
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<StrengthPower>()
+        HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.ForEnergy(this)
     ];
 
-    public override async Task BeforePlayPhaseStart(PlayerChoiceContext choiceContext, Player player)
+    public override async Task AfterAutoPrePlayPhaseEnteredLate(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player)
             return;
 
         Flash();
 
-        await CardPileCmd.Draw(choiceContext, DrawCount, Owner.Player);
+        await PlayerCmd.GainEnergy(EnergyGain, Owner.Player);
 
         bool hitLimit;
         using (CardSelectCmd.PushSelector(new VakuuCardSelector()))
@@ -59,7 +60,7 @@ public sealed class BlindFuryPower : CustomPowerModel
 
             if (cardsPlayed == 0)
             {
-                await PowerCmd.ModifyAmount(this, -1, null, null);
+                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1, null, null);
                 return;
             }
         }
@@ -70,10 +71,10 @@ public sealed class BlindFuryPower : CustomPowerModel
                 : new LocString("relics", "WHISPERING_EARRING.approval"),
             Owner ,VfxColor.Purple);
 
-        await PowerCmd.ModifyAmount(this, -1, null, null);
+        await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1, null, null);
     }
 
-    private Creature? GetTarget(CardModel card, CombatState combatState)
+    private Creature? GetTarget(CardModel card, ICombatState combatState)
     {
         var rng = Owner.Player.RunState.Rng.CombatTargets;
         return card.TargetType switch

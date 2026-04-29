@@ -42,14 +42,14 @@ public class ArmoredPack : ShadowSilentRelic
   public override async Task BeforeHandDraw(
     Player player,
     PlayerChoiceContext choiceContext,
-    CombatState combatState)
+    ICombatState combatState)
   {
     if (player != Owner || combatState.RoundNumber != 1)
       return;
     List<CardModel?> cards = new List<CardModel?>();
     for (int index = 0; index < DynamicVars.Cards.IntValue; ++index)
       cards.Add(Owner.Creature.CombatState?.CreateCard<Weight>(Owner));
-    await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>) cards, PileType.Hand, true);
+    await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>) cards, PileType.Hand, Owner);
   }
 
 }

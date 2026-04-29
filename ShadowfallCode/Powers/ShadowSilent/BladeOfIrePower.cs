@@ -17,6 +17,6 @@ public class BladeOfIrePower : CustomPowerModel
             return;
 
         Flash();
-        await PowerCmd.Apply<BladeOfIreStrengthPower>(Owner, Amount, Owner, null);
+        await PowerCmd.Apply<BladeOfIreStrengthPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }

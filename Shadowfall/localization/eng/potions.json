@@ -1,6 +1,11 @@
 ﻿{
+  "SHADOWFALL-BLOODBOND_POTION.title": "Bloodbond Potion",
+  "SHADOWFALL-BLOODBOND_POTION.description": "Apply [blue]{BloodbondPower}[/blue] [gold]Bloodbond[/gold] to ALL enemies.",
   "SHADOWFALL-DEW_BOTTLE.title": "Dew Bottle",
   "SHADOWFALL-DEW_BOTTLE.description": "Gain [blue]{SlatePower}[/blue] [gold]Slate[/gold].",
+  "SHADOWFALL-GABBRO_POTION.title": "Gabbro Potion",
+  "SHADOWFALL-GABBRO_POTION.description": "Rocks deal [blue]{GabbroPower}[/blue] additional damage this combat. Add [gold]Primal Force[/gold] into your [gold]Hand[/gold].",
+  
   "SHADOWFALL-S_NECRO_SOUL_STRIKE_POTION.title": "Shadow Necrobinder Soul Strike Potion (PLACEHOLDER NAME)",
   "SHADOWFALL-S_NECRO_SOUL_STRIKE_POTION.description": "Add [blue]{Cards}[/blue] [gold]{Cards:plural:Soul Strike|Soul Strikes}[/gold] into your [gold]Hand[/gold].",
   "SHADOWFALL-S_NECRO_DEATHGLARE_POTION.title": "Shadow Necrobinder Deathglare Potion (PLACEHOLDER NAME)",

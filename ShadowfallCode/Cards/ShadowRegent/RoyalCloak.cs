@@ -23,7 +23,7 @@ public class RoyalCloak() : ShadowRegentCard(2,
         CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<RoyalCloakPower>(Owner.Creature, DynamicVars.Block.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<RoyalCloakPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Block.BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

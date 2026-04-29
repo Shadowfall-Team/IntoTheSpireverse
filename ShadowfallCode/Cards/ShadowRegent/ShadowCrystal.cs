@@ -28,7 +28,8 @@ public class ShadowCrystal() : ShadowRegentCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<ShardPower>(Owner.Creature,
+        await PowerCmd.Apply<ShardPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             DynamicVars[nameof(ShardPower)].BaseValue, Owner.Creature, null);
 
         //TODO: check if the card preview to cargo pile works correctly

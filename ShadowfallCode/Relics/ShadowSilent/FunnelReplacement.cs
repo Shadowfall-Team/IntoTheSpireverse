@@ -28,7 +28,7 @@ public class FunnelReplacement : ShadowSilentRelic
         HoverTipFactory.FromPower<BleedPower>(),
     ];
     
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, CombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
     {
       if (side != Owner.Creature.Side || combatState.RoundNumber > 1) 
       { 
@@ -43,7 +43,7 @@ public class FunnelReplacement : ShadowSilentRelic
       await Cmd.CustomScaledWait(0.2f, 0.4f);
       foreach (Creature hittableEnemy2 in Owner.Creature.CombatState.HittableEnemies) 
       { 
-          await PowerCmd.Apply<BleedPower>(hittableEnemy2, base.DynamicVars["BleedPower"].IntValue, Owner.Creature, null);
+          await PowerCmd.Apply<BleedPower>(new ThrowingPlayerChoiceContext(), hittableEnemy2, base.DynamicVars["BleedPower"].IntValue, Owner.Creature, null);
       }
 	}
 

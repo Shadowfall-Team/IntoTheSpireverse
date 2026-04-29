@@ -22,7 +22,9 @@ public class TradeRoutes() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await PowerCmd.Apply<TradeRoutesPower>(Owner.Creature,
+        await PowerCmd.Apply<TradeRoutesPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             1,
             Owner.Creature,
             this);

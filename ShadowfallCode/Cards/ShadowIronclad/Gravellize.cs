@@ -11,7 +11,6 @@ using Shadowfall.ShadowfallCode.Interfaces;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
-
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
@@ -19,6 +18,10 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
     [
         HoverTipFactory.FromCard<SpikedRock>(false),
         HoverTipFactory.FromKeyword(CardKeyword.Unplayable),
+    ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust,
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -40,9 +43,9 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
         if (wasUnplayable)
         {
             var bonusRock = CombatState.CreateCard<SpikedRock>(Owner);
-            await CardPileCmd.AddGeneratedCardsToCombat([bonusRock], PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardsToCombat([bonusRock], PileType.Hand, Owner);
         }
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
 }

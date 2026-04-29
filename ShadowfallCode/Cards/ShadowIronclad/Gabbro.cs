@@ -21,6 +21,7 @@ public sealed class Gabbro() : ShadowIroncladCard(1, CardType.Power, CardRarity.
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<GabbroPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<GabbroPower>().BaseValue,
             Owner.Creature, this);
     }

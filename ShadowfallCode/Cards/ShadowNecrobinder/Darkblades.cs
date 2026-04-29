@@ -35,7 +35,7 @@ public sealed class Darkblades() : ShadowNecrobinderCard(1, CardType.Skill, Card
         {
             var soulStrikes = SoulStrike.Create(creature.Player, DynamicVars.Cards.IntValue, CombatState).ToList();
             var combat = await CardPileCmd.AddGeneratedCardsToCombat(
-                (IEnumerable<CardModel>)soulStrikes, PileType.Draw, true, CardPilePosition.Random);
+                (IEnumerable<CardModel>)soulStrikes, PileType.Draw, Owner, CardPilePosition.Random);
             if (LocalContext.IsMe(creature))
                 CardCmd.PreviewCardPileAdd(combat);
         }

@@ -13,7 +13,7 @@ public class ShankAndFlankPower : CustomPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {
         if (side != Owner.Side) return;
 
@@ -21,7 +21,7 @@ public class ShankAndFlankPower : CustomPowerModel
         for (int i = 0; i < Amount; i++)
         {
             await Shiv.CreateInHand(Owner.Player, 1, CombatState);
-            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Ward>(Owner.Player), PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Ward>(Owner.Player), PileType.Hand, Owner.Player);
         }
     }
 }

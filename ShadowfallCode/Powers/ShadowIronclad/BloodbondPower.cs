@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
@@ -16,6 +17,7 @@ public class BloodbondPower : ShadowPowerModel
     
     // Make this instanced a la GrapplePower to have this not be affected by other players
     // But then it doesn't stack and looks all weird
+
 
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
@@ -32,5 +34,9 @@ public class BloodbondPower : ShadowPowerModel
         Flash();
         await CreatureCmd.Damage(choiceContext, Owner, Amount,
             ValueProp.Unblockable | ValueProp.Unpowered, target, null);
+
+        var relic = target.Player?.Relics.OfType<SIroncladBloodbondHealRelic>().FirstOrDefault();
+        if (relic != null)
+            await relic.TryHeal();
     }
 }

@@ -36,11 +36,13 @@ public class SpeedHarvest() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<DexterityPower>(Owner.Creature,
+        await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
             DynamicVars.Dexterity.BaseValue,
             Owner.Creature,
             this);
-        await PowerCmd.Apply<SpeedHarvestPower>(Owner.Creature,
+        await PowerCmd.Apply<SpeedHarvestPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
             1,
             Owner.Creature,
             this);
@@ -65,7 +67,8 @@ public class SpeedHarvestPower : CustomPowerModel
         {
             if (result.UnblockedDamage < 1)
             {
-                await PowerCmd.Apply<ShardPower>(Owner,
+                await PowerCmd.Apply<ShardPower>(
+                    new ThrowingPlayerChoiceContext(),Owner,
                     Amount,
                     Owner,
                     null);

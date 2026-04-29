@@ -30,7 +30,6 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             ModelDb.Card<Havoc>(),
             ModelDb.Card<BloodWall>(),
             ModelDb.Card<Spite>(),
-            ModelDb.Card<Whirlwind>(),
             ModelDb.Card<Hemokinesis>(),
             ModelDb.Card<Bludgeon>(),
             ModelDb.Card<DemonicShield>(),
@@ -42,7 +41,6 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             ModelDb.Card<PrimalForce>(),
             ModelDb.Card<Aggression>(),
             ModelDb.Card<Juggernaut>(),
-            ModelDb.Card<Barricade>(),
         ];
     }
 }

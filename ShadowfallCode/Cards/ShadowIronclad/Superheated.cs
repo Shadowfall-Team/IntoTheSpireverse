@@ -22,6 +22,7 @@ public sealed class Superheated() : ShadowIroncladCard(1, CardType.Power, CardRa
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<SuperheatedPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<SuperheatedPower>().BaseValue,
             Owner.Creature, this);
     }

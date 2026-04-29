@@ -25,7 +25,7 @@ public sealed class CmbrPower : CustomPowerModel
         HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
     };
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player != base.Owner.Player)
         {
@@ -39,6 +39,6 @@ public sealed class CmbrPower : CustomPowerModel
             cards.Add(card);
         }
         Flash();
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, player);
     }
 }

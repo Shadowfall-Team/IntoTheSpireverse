@@ -25,7 +25,7 @@ public sealed class AttackOfOpportunity() : ShadowSilentCard(2, CardType.Attack,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
 
         for (int i = 0; i < DynamicVars["Wards"].IntValue; i++)
-            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Ward>(Owner), PileType.Hand, true);
+            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Ward>(Owner), PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()

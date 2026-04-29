@@ -32,12 +32,14 @@ public class FireAway() : ShadowRegentCard(1,
             Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<AmmoPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(AmmoPower)].BaseValue,
             Owner.Creature,
             this);
 
         await PowerCmd.Apply<VolleyDamageThisTurnPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(VolleyDamageThisTurnPower)].BaseValue,
             Owner.Creature,

@@ -29,6 +29,7 @@ public sealed class Siltsong() : ShadowIroncladCard(1, CardType.Skill, CardRarit
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         await PowerCmd.Apply<SlatePower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, this);
     }

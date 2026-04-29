@@ -28,9 +28,9 @@ public sealed class BladeOfIre() : ShadowSilentCard(1, CardType.Power, CardRarit
     {
         if (IsUpgraded)
         {
-            await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
         }
-        await PowerCmd.Apply<BladeOfIrePower>(Owner.Creature, DynamicVars[nameof(BladeOfIrePower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BladeOfIrePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(BladeOfIrePower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

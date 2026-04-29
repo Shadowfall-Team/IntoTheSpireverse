@@ -69,7 +69,7 @@ public sealed class TheLaw : ShadowDefectCard
 		for (int i = 0; i < ClawCount; i++)
 		{
 			CardModel claw = base.CombatState.CreateCard<Claw>(base.Owner);
-			await CardPileCmd.AddGeneratedCardToCombat(claw, PileType.Hand, addedByPlayer: true);
+			await CardPileCmd.AddGeneratedCardToCombat(claw, PileType.Hand, Owner);
 			generated.Add(claw);
 		}
 

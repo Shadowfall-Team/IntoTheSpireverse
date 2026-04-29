@@ -25,6 +25,7 @@ public sealed class UnrelentingForm() : ShadowIroncladCard(3, CardType.Power, Ca
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<UnrelentingFormPower>(
+            new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars["UnrelentingFormPower"].BaseValue,
             Owner.Creature, this);
     }
@@ -32,5 +33,6 @@ public sealed class UnrelentingForm() : ShadowIroncladCard(3, CardType.Power, Ca
     protected override void OnUpgrade()
     {
         DynamicVars["UnrelentingFormPower"].UpgradeValueBy(1m);
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

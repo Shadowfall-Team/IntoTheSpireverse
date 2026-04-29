@@ -23,8 +23,8 @@ public sealed class VulpineForm() : ShadowSilentCard(5, CardType.Power, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<StrengthPower>(Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<DexterityPower>(Owner.Creature, DynamicVars[nameof(DexterityPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(DexterityPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
