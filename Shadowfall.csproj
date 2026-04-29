@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1" InitialTargets="CheckDependencyPaths">
+    <Import Project=".\Sts2PathDiscovery.props"/>
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>true</ImplicitUsings>
@@ -8,54 +9,6 @@
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
         <LangVersion>Latest</LangVersion>
-    </PropertyGroup>
-
-    <!-- OS Detection -->
-    <PropertyGroup>
-        <IsWindows>true</IsWindows>
-        <IsLinux>false</IsLinux>
-        <IsOSX>false</IsOSX>
-        <IsWindows Condition="$([MSBuild]::IsOSPlatform('Windows'))">true</IsWindows>
-        <IsLinux Condition="$([MSBuild]::IsOSPlatform('Linux'))">true</IsLinux>
-        <IsOSX Condition="$([MSBuild]::IsOSPlatform('OSX'))">true</IsOSX>
-    </PropertyGroup>
-
-    <!-- // NOTE: Megadot is version 4.5.1, and the game won't load your .pck if the Godot version used is newer. -->
-
-    <!-- Windows -->
-    <PropertyGroup Condition="'$(IsWindows)' == 'true'">
-        <AutoSteamPath>$(registry:HKEY_CURRENT_USER\Software\Valve\Steam@SteamPath)\steamapps</AutoSteamPath>
-        <SteamLibraryPath Condition="Exists('$(AutoSteamPath)/common/Slay the Spire 2')">$(AutoSteamPath)</SteamLibraryPath>
-        <GodotPath Condition="'$(GodotPath)' == ''">C:/megadot/MegaDot_v4.5.1-stable_mono_win64.exe</GodotPath>
-        <!-- If on Windows and Slay the Spire 2 is not installed in your default steam library, adjust the following.-->
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">C:/Program Files (x86)/Steam/steamapps</SteamLibraryPath>
-
-        <!-- The below should not need to be changed. -->
-        <Sts2Path>$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath>$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir>$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <!-- Linux -->
-    <PropertyGroup Condition="'$(IsLinux)' == 'true'">
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">$(HOME)/.local/share/Steam/steamapps</SteamLibraryPath>
-        <GodotPath Condition="'$(GodotPath)' == ''">$(SteamLibraryPath)/common/Godot Engine/godot.x11.opt.tools.64</GodotPath>
-
-        <!-- The below should not need to be changed. -->
-        <Sts2Path>$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath>$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir>$(Sts2Path)/data_sts2_linuxbsd_x86_64</Sts2DataDir>
-    </PropertyGroup>
-
-    <!-- macOS -->
-    <PropertyGroup Condition="'$(IsOSX)' == 'true'">
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">$(HOME)/Library/Application Support/Steam/steamapps</SteamLibraryPath>
-        <GodotPath Condition="'$(GodotPath)' == ''">$(HOME)/Applications/Godot_mono.app/Contents/MacOS/Godot</GodotPath>
-
-        <!-- The below should not need to be changed. -->
-        <Sts2Path>$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath>$(Sts2Path)/SlayTheSpire2.app/Contents/MacOS/mods/</ModsPath>
-        <Sts2DataDir>$(Sts2Path)/SlayTheSpire2.app/Contents/Resources/data_sts2_macos_x86_64</Sts2DataDir>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -78,6 +31,7 @@
     <PropertyGroup>
         <PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
     </PropertyGroup>
+
     <ItemGroup>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._localPlayer"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
@@ -95,8 +49,8 @@
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
         <AdditionalFiles Include="Shadowfall/localization/**/*.json"/>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
@@ -105,7 +59,7 @@
         <Compile Remove="materials/**"/>
         <Compile Remove="shaders/**"/>
         <Compile Remove="images/**"/>
-        <Compile Remove="**/*.uid"/>
+        <!-- <Compile Remove="**/*.uid"/> -->
         <EmbeddedResource Remove="Shadowfall/**"/>
         <EmbeddedResource Remove="materials/**"/>
         <EmbeddedResource Remove="shaders/**"/>
@@ -113,31 +67,32 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
         <None Include=".gitignore"/>
         <None Include="Shadowfall.json"/>
         <None Include="project.godot"/>
         <None Include="Shadowfall/**"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Shadowfall\ArtRoller\" />
-        <Folder Include="Shadowfall\images\powers\big\"/>
-        <Folder Include="Shadowfall\images\relics\big\"/>
-    </ItemGroup>
+    <!-- <ItemGroup> -->
+    <!--     <Folder Include="Shadowfall\ArtRoller\" /> -->
+    <!--     <Folder Include="Shadowfall\images\powers\big\"/> -->
+    <!--     <Folder Include="Shadowfall\images\relics\big\"/> -->
+    <!-- </ItemGroup> -->
 
-    <ItemGroup>
-      <Content Include="ShadowfallCode\Patches\ApplySkinPatch.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\CardPortraitPatch.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\CustomOrbCreateSprite.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\CustomOrbIcon.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\CustomOrbIconPath.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\CustomOrbSpritePath.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\NCardLibraryVerticalSlidersPatch.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\NCardPatch.cs.uid" />
-      <Content Include="ShadowfallCode\Patches\OrbModelPatch.cs.uid" />
-      <Content Include="ShadowfallCode\ui\PortraitSearchBox.cs.uid" />
-      <Content Include="ShadowfallCode\utils\CardShaderHelper.cs.uid" />
-    </ItemGroup>
+    <!-- <ItemGroup> -->
+    <!--     <Content Include="ShadowfallCode\Patches\ApplySkinPatch.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\Patches\CardPortraitPatch.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\Patches\CustomOrbCreateSprite.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\Patches\CustomOrbIcon.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\Patches\CustomOrbIconPath.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\Patches\CustomOrbSpritePath.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\Patches\NCardLibraryVerticalSlidersPatch.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\Patches\NCardPatch.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\Patches\OrbModelPatch.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\ui\PortraitSearchBox.cs.uid" /> -->
+    <!--     <Content Include="ShadowfallCode\utils\CardShaderHelper.cs.uid" /> -->
+    <!-- </ItemGroup> -->
 
     <Target Name="CheckDependencyPaths">
         <Error
@@ -167,6 +122,6 @@
     </Target>
 
     <Target Name="GodotPublishSkipped" AfterTargets="Publish" Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')">
-        <Message Text="Skipping Godot .pck export because GodotPath is not configured." Importance="high"/>
+        <Message Text="Skipping Godot .pck export: set GodotPath in local.props — see local.props.template." Importance="high"/>
     </Target>
 </Project>
