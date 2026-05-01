@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+/*
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -35,3 +36,4 @@ public sealed class DonTheMantle() : ShadowIroncladCard(0, CardType.Skill, CardR
         DynamicVars.Block.UpgradeValueBy(3m);
     }
 }
+*/
