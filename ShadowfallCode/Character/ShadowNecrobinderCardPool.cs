@@ -44,7 +44,6 @@ public class ShadowNecrobinderCardPool : CustomCardPoolModel
 			ModelDb.Card<Fear>(),
 			ModelDb.Card<ForbiddenGrimoire>(), // Replace with Necronomicon when CustomReward is done
 			ModelDb.Card<Friendship>(),
-			ModelDb.Card<GlimpseBeyond>(),
 			ModelDb.Card<Graveblast>(),
 			ModelDb.Card<Lethality>(),
 			ModelDb.Card<PullFromBelow>(),
