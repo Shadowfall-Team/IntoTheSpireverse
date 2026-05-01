@@ -50,15 +50,6 @@ public sealed class SlatePower : CustomPowerModel
         Flash();
         decimal blockAmount = DynamicVars[BlockKey].BaseValue + GetRiebeckiteBonus();
         await CreatureCmd.GainBlock(Owner, blockAmount, ValueProp.Unpowered, null);
-        
-        var ashes = Owner.Player?.Relics.OfType<PyroclasticAshes>().FirstOrDefault();
-        if (ashes != null)
-        {
-            ashes.Flash();
-            var damage = ashes.DynamicVars.Damage;
-            await CreatureCmd.Damage(choiceContext, Owner.CombatState.HittableEnemies,
-                damage.BaseValue, damage.Props, Owner, null);
-        }
 
         if (!IsObsidianActive())
             await PowerCmd.Decrement(this);
