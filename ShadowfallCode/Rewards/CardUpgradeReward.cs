@@ -1,7 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
@@ -12,28 +10,37 @@ using Shadowfall.ShadowfallCode.Patches;
 
 namespace Shadowfall.ShadowfallCode.Rewards;
 
-//TODO: Not sure if extra is needed for multiplayer. Plz playtest
 public sealed class CardUpgradeReward(Player player) : CustomReward(player)
 {
     //TODO: add icon
     private static string RewardIcon => ImageHelper.GetImagePath("ui/reward_screen/reward_icon_card_removal.png");
     protected override string IconPath => RewardIcon;
     public static IEnumerable<string> AssetPaths => new List<string>([RewardIcon]);
+    public override LocString Description => new("gameplay_ui", "COMBAT_REWARD_CARD_UPGRADE");
 
     [CustomEnum] public static RewardType CardUpgrade;
     protected override RewardType RewardType => CardUpgrade;
 
     public override int RewardsSetIndex => 8;
-
     public override bool IsPopulated => true;
-    public override LocString Description => new("gameplay_ui", "COMBAT_REWARD_CARD_UPGRADE");
 
-    // This stores the type by default, gets handled by base game
-    // public override SerializableReward ToSerializable()
+    public required int Amount;
+
+    public override SerializableReward ToSerializable()
+    {
+        return new SerializableReward()
+        {
+            RewardType = CardUpgrade,
+            GoldAmount = Amount // Hijacking the base values for now
+        };
+    }
 
     public CardUpgradeReward CreateFromSerializable(SerializableReward save, Player player)
     {
-        return new CardUpgradeReward(player);
+        return new CardUpgradeReward(player)
+        {
+            Amount = save.GoldAmount
+        };
     }
 
     public override SerializableCustomReward<CustomReward> SerializeMethod => CreateFromSerializable;
