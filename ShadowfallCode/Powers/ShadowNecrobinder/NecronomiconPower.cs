@@ -1,7 +1,7 @@
 using BaseLib.Abstracts;
-using BaseLib.Common.Rewards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Rooms;
+using Shadowfall.ShadowfallCode.Rewards;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
 
