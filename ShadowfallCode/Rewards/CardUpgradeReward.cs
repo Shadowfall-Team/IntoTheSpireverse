@@ -53,7 +53,7 @@ public sealed class CardUpgradeReward(Player player) : CustomReward(player)
     protected override async Task<bool> OnSelect()
     {
         MainFile.Logger.Debug("Obtained selected card upgrade from reward");
-        return await RunManager.Instance.RewardSynchronizer.DoLocalCardUpgrade(1);
+        return await RunManager.Instance.RewardSynchronizer.DoLocalCardUpgrade(Amount);
     }
 
     public override void MarkContentAsSeen() { }

@@ -26,22 +26,9 @@ public sealed class RandomCardUpgradeReward(Player player) : CustomReward(player
     public override int RewardsSetIndex => 8;
     public override bool IsPopulated => true;
 
-    public required int Amount;
-
-    public override SerializableReward ToSerializable()
-    {
-        return new SerializableReward() {
-            RewardType = RandomCardUpgrade,
-            GoldAmount = Amount
-        };
-    }
-
     public RandomCardUpgradeReward CreateFromSerializable(SerializableReward save, Player player)
     {
-        return new RandomCardUpgradeReward(player)
-        {
-            Amount = save.GoldAmount
-        };
+        return new RandomCardUpgradeReward(player);
     }
 
     public override SerializableCustomReward<CustomReward> SerializeMethod => CreateFromSerializable;

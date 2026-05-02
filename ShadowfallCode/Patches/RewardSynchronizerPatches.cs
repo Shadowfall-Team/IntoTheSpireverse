@@ -90,8 +90,8 @@ public static class RewardSynchronizerPatches
     {
         CardSelectorPrefs prefs = new CardSelectorPrefs(
                 CardSelectorPrefs.UpgradeSelectionPrompt,
-                amount
-            )
+                1,
+                amount)
         {
             Cancelable = true,
             RequireManualConfirmation = true

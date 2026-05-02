@@ -50,10 +50,10 @@ public class RedGiantPower : CustomPowerModel
     public override Task AfterCombatEnd(CombatRoom room)
     {
         if (Owner.Player == null) return Task.CompletedTask;
-        for (var i = 0; i < Amount; i++)
-        {
-            room.AddExtraReward(Owner.Player, new CardUpgradeReward(Owner.Player));
-        }
+        // put them in one reward to reduce information overload?
+        room.AddExtraReward(Owner.Player, new CardUpgradeReward(Owner.Player) {
+            Amount = Amount
+            });
 
         return Task.CompletedTask;
     }
@@ -64,13 +64,15 @@ public class RedGiantRandomPower : CustomPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterCombatEnd(CombatRoom room)
+    public override Task AfterCombatEnd(CombatRoom room)
     {
-        if (Owner.Player == null) return;
-
-        for (var i = 0; i < Amount; i++)
+        if (Owner.Player == null) return Task.CompletedTask;
+        // random should be individual maybe?
+        // in-case you only want to upgade a certain amount of cards?
+        for (int i = 0; i < Amount; i++)
         {
             room.AddExtraReward(Owner.Player, new RandomCardUpgradeReward(Owner.Player));
         }
+        return Task.CompletedTask;
     }
 }
