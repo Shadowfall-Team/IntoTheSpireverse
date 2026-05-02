@@ -16,7 +16,16 @@ public sealed class CardUpgradeReward(Player player) : CustomReward(player)
     private static string RewardIcon => ImageHelper.GetImagePath("ui/reward_screen/reward_icon_card_removal.png");
     protected override string IconPath => RewardIcon;
     public static IEnumerable<string> AssetPaths => new List<string>([RewardIcon]);
-    public override LocString Description => new("gameplay_ui", "COMBAT_REWARD_CARD_UPGRADE");
+
+    public override LocString Description
+    {
+        get
+        {
+            LocString locString = new("gameplay_ui", "COMBAT_REWARD_CARD_UPGRADE");
+            locString.Add("cards", Amount);
+            return locString;
+        }
+    }
 
     [CustomEnum] public static RewardType CardUpgrade;
     protected override RewardType RewardType => CardUpgrade;
