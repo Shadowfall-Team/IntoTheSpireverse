@@ -16,15 +16,13 @@ public class StarCharts() : ShadowRegentCard(
     0,
     CardType.Skill,
     CardRarity.Basic,
-    TargetType.None)
-//TODO: readd this code once it is handled within baselib    
-//, ICustomTranscendenceTarget
+    TargetType.None), ITranscendenceCard
 {
-    // public CardModel GetTranscendenceTransformedCard()
-    // {
-        // return ModelDb.Card<Constellation>();
-    // }
-    
+    public CardModel GetTranscendenceTransformedCard()
+    {
+        return ModelDb.Card<Constellation>();
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(3, ValueProp.Move),
@@ -55,5 +53,4 @@ public class StarCharts() : ShadowRegentCard(
     {
         DynamicVars.Block.UpgradeValueBy(3m);
     }
-
 }
