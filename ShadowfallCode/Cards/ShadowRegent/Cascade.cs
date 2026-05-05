@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -16,9 +17,9 @@ public class Cascade() : ShadowRegentCard(
     CardRarity.Rare,
     TargetType.Self)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AmmoPower>(),
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+        LoadAmmoHoverTip.FromForge()
+    ;
     
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

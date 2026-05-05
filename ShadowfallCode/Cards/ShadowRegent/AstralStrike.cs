@@ -1,10 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Commands;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -18,12 +20,12 @@ public class AstralStrike() : ShadowRegentCard(
     [
         new DamageVar(8, ValueProp.Move),
         new CardsVar(2),
-        new PowerVar<AmmoPower>(1)
+        new IntVar("LoadAmmo", 1)
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AmmoPower>(),
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+        LoadAmmoHoverTip.FromForge()
+    ;
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -36,13 +38,8 @@ public class AstralStrike() : ShadowRegentCard(
             .Execute(choiceContext);
         
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-        
-        await PowerCmd.Apply<AmmoPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-            DynamicVars[nameof(AmmoPower)].BaseValue,
-            Owner.Creature,
-            this);
+
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
     }
 
     protected override void OnUpgrade()
