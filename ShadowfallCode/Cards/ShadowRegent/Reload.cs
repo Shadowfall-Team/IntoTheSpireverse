@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -20,9 +21,9 @@ public class Reload() : ShadowRegentCard(1,
     ];
 
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AmmoPower>(),
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+        LoadAmmoHoverTip.FromForge()
+    ;
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

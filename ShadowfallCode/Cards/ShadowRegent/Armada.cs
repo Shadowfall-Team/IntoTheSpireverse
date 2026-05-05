@@ -6,7 +6,9 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using Shadowfall.ShadowfallCode.Commands;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -16,9 +18,9 @@ public class Armada() : ShadowRegentCard(
     CardRarity.Uncommon,
     TargetType.Self)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AmmoPower>(),
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+        LoadAmmoHoverTip.FromForge()
+    ;
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -29,11 +31,7 @@ public class Armada() : ShadowRegentCard(
 
         if (IsUpgraded)
         {
-            await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-                1,
-                Owner.Creature,
-                this);
+            await LoadAmmoCmd.LoadAmmo(1, Owner, this);
         }
 
         await PowerCmd.Apply<ArmadaPower>(new ThrowingPlayerChoiceContext(),
@@ -54,6 +52,6 @@ public class ArmadaPower : CustomPowerModel
     {
         // if (AmountOnTurnStart == 0) return;
 
-        await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
+        await LoadAmmoCmd.LoadAmmo(Amount, Owner.Player, this);
     }
 }
