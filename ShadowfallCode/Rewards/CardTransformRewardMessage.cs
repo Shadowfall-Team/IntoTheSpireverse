@@ -1,10 +1,6 @@
 using BaseLib.Abstracts;
-using BaseLib.Patches.Content;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Logging;
-using MegaCrit.Sts2.Core.Multiplayer.Game;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 using MegaCrit.Sts2.Core.Runs;
 using Shadowfall.ShadowfallCode.Patches;
@@ -14,37 +10,18 @@ namespace Shadowfall.ShadowfallCode.Rewards;
 /// <summary>
 /// Message for transforming a card from a new reward type
 /// </summary>
-public sealed class CardTransformRewardMessage : CustomRewardMessage
+public sealed class CardTransformRewardMessage : ICustomTargetedMessage
 {
-    internal void HandleCardTransformedMessage(CardTransformRewardMessage message, ulong senderId)
+    public void HandleMessage()
     {
-        MainFile.Logger.Debug($"Handling message {message}");
         var rs = RunManager.Instance.RewardSynchronizer;
-        if (CombatManager.Instance.IsInProgress)
-        {
-            rs.BufferCustomRewardMessage(message, senderId);
-            MainFile.Logger.Debug($"Buffered card transform message for {rs.PlayerCollection()?.GetPlayer(senderId)}");
-            return;
-        }
 
-        Player? player = rs.PlayerCollection()?.GetPlayer(senderId);
-        if (player == rs.LocalPlayerRef())
+        Player? player = rs._playerCollection.GetPlayer(SenderId);
+        if (player == rs.LocalPlayer)
         {
             throw new InvalidOperationException("CardTransformRewardMessage should not be sent to the player transforming the card");
         }
-        TaskHelper.RunSafely(rs.DoCardTransform(player, message.Amount, message.Upgrade));
-    }
-
-    public override void Dispose(RunLocationTargetedMessageBuffer messageBuffer)
-    {
-        MainFile.Logger.Debug($"Unregistering handler for {GetType()}");
-        messageBuffer.UnregisterMessageHandler<CardTransformRewardMessage>(HandleCardTransformedMessage);
-    }
-
-    public override void Initialize(RunLocationTargetedMessageBuffer messageBuffer)
-    {
-        MainFile.Logger.Debug($"Registering handler for {GetType()}");
-        messageBuffer.RegisterMessageHandler<CardTransformRewardMessage>(HandleCardTransformedMessage);
+        TaskHelper.RunSafely(rs.DoCardTransform(player, Amount, Upgrade));
     }
 
     /// <summary>
@@ -55,21 +32,27 @@ public sealed class CardTransformRewardMessage : CustomRewardMessage
     /// The amount of cards to select from
     /// </summary>
     public required int Amount;
+    public required ulong SenderId; // remove this with next baselib update
 
-    public override LogLevel LogLevel => LogLevel.Debug;
+    public bool IsRewardMessage => true;
 
-    public override void Deserialize(PacketReader reader)
+    public RunLocation Location { get; set; }
+
+    public bool ShouldBroadcast => true;
+
+    public void Deserialize(PacketReader reader)
     {
         Location = reader.Read<RunLocation>();
         Amount = reader.ReadInt();
         Upgrade = reader.ReadBool();
+        SenderId = reader.ReadULong();
     }
 
-    /// <inheritdoc/>
-    public override void Serialize(PacketWriter writer)
+    public void Serialize(PacketWriter writer)
     {
         writer.Write(Location);
         writer.WriteInt(Amount);
         writer.WriteBool(Upgrade);
+        writer.WriteULong(SenderId);
     }
 }

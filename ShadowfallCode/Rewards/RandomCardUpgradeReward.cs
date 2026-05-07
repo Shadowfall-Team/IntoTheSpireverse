@@ -26,12 +26,12 @@ public sealed class RandomCardUpgradeReward(Player player) : CustomReward(player
     public override int RewardsSetIndex => 8;
     public override bool IsPopulated => true;
 
-    public RandomCardUpgradeReward CreateFromSerializable(SerializableReward save, Player player)
+    public static RandomCardUpgradeReward CreateFromSerializable(SerializableReward save, Player player)
     {
         return new RandomCardUpgradeReward(player);
     }
 
-    public override SerializableCustomReward<CustomReward> SerializeMethod => CreateFromSerializable;
+    public override CreateRewardFromSave<CustomReward> DeserializeMethod => CreateFromSerializable;
 
     public override Task Populate()
     {

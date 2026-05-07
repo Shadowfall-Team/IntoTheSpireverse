@@ -78,7 +78,7 @@ public sealed class CardTransformReward(Player player) : CustomReward(player)
     /// <param name="save">The <see cref="SerializableReward"/> that was created and saved from
     /// <see cref="ToSerializable"/></param>
     /// <param name="player">The <see cref="Player"/> the reward belongs to</param>
-    public CardTransformReward CreateFromSerializable(SerializableReward save, Player player)
+    public static CardTransformReward CreateFromSerializable(SerializableReward save, Player player)
     {
         return new CardTransformReward(player) {
             // hijacking the gold amounts as a temp hack before worrying about extending the serialized values
@@ -87,7 +87,7 @@ public sealed class CardTransformReward(Player player) : CustomReward(player)
         };
     }
 
-    public override SerializableCustomReward<CustomReward> SerializeMethod => CreateFromSerializable;
+    public override CreateRewardFromSave<CustomReward> DeserializeMethod => CreateFromSerializable;
 
     public override void MarkContentAsSeen() { }
 

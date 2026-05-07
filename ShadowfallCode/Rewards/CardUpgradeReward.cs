@@ -44,7 +44,7 @@ public sealed class CardUpgradeReward(Player player) : CustomReward(player)
         };
     }
 
-    public CardUpgradeReward CreateFromSerializable(SerializableReward save, Player player)
+    public static CardUpgradeReward CreateFromSerializable(SerializableReward save, Player player)
     {
         return new CardUpgradeReward(player)
         {
@@ -52,7 +52,7 @@ public sealed class CardUpgradeReward(Player player) : CustomReward(player)
         };
     }
 
-    public override SerializableCustomReward<CustomReward> SerializeMethod => CreateFromSerializable;
+    public override CreateRewardFromSave<CustomReward> DeserializeMethod => CreateFromSerializable;
 
     public override Task Populate()
     {
