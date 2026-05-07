@@ -58,7 +58,6 @@
         <Compile Remove="materials/**"/>
         <Compile Remove="shaders/**"/>
         <Compile Remove="images/**"/>
-        <!-- <Compile Remove="**/*.uid"/> -->
         <EmbeddedResource Remove="Shadowfall/**"/>
         <EmbeddedResource Remove="materials/**"/>
         <EmbeddedResource Remove="shaders/**"/>
@@ -72,26 +71,6 @@
         <None Include="project.godot"/>
         <None Include="Shadowfall/**"/>
     </ItemGroup>
-
-    <!-- <ItemGroup> -->
-    <!--     <Folder Include="Shadowfall\ArtRoller\" /> -->
-    <!--     <Folder Include="Shadowfall\images\powers\big\"/> -->
-    <!--     <Folder Include="Shadowfall\images\relics\big\"/> -->
-    <!-- </ItemGroup> -->
-
-    <!-- <ItemGroup> -->
-    <!--     <Content Include="ShadowfallCode\Patches\ApplySkinPatch.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\Patches\CardPortraitPatch.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\Patches\CustomOrbCreateSprite.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\Patches\CustomOrbIcon.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\Patches\CustomOrbIconPath.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\Patches\CustomOrbSpritePath.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\Patches\NCardLibraryVerticalSlidersPatch.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\Patches\NCardPatch.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\Patches\OrbModelPatch.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\ui\PortraitSearchBox.cs.uid" /> -->
-    <!--     <Content Include="ShadowfallCode\utils\CardShaderHelper.cs.uid" /> -->
-    <!-- </ItemGroup> -->
 
     <Target Name="CheckDependencyPaths">
         <Error
