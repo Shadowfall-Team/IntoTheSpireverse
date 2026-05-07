@@ -24,6 +24,20 @@ public sealed class CardTransformRewardMessage : ICustomTargetedMessage
         TaskHelper.RunSafely(rs.DoCardTransform(player, Amount, Upgrade));
     }
 
+    // Pre-emptive method signiature for next update
+    public void HandleMessage(ulong senderId)
+    {
+        var rs = RunManager.Instance.RewardSynchronizer;
+
+        Player? player = rs._playerCollection.GetPlayer(senderId);
+        if (player == rs.LocalPlayer)
+        {
+            throw new InvalidOperationException("CardTransformRewardMessage should not be sent to the player transforming the card");
+        }
+        TaskHelper.RunSafely(rs.DoCardTransform(player, Amount, Upgrade));
+    }
+
+
     /// <summary>
     /// Whether to upgrade the card as well as transforming
     /// </summary>
