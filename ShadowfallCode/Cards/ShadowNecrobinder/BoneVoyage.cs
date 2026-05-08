@@ -46,7 +46,7 @@ public sealed class BoneVoyage() : ShadowNecrobinderCard(1, CardType.Skill, Card
         DynamicVars.Weak.UpgradeValueBy(1m);
     }
 
-    public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
