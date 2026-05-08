@@ -21,6 +21,8 @@ public sealed class Hubris() : ShadowNecrobinderCard(-1, CardType.Curse, CardRar
         CardKeyword.Unplayable,
         ShadowfallKeywords.Startup
     ];
+    
+    public override int MaxUpgradeLevel => 0;
 
     public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
     {

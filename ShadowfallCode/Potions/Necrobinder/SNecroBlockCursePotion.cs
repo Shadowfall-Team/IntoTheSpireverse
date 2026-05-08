@@ -25,6 +25,8 @@ public class SNecroBlockCursePotion : ShadowfallPotion
         new BlockVar(5m, ValueProp.Unpowered),
         new DynamicVar("TotalBlock", 5m),
     ];
+    
+    // TODO make it so when you are not in possession of the potion it still shows the correct values
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
