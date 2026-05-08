@@ -34,7 +34,7 @@ public sealed class ReliquaryReaver() : ShadowNecrobinderCard(2, CardType.Attack
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        if (!shouldTriggerFatal || !attackCommand.Results.Any(r => r.WasTargetKilled))
+        if (!shouldTriggerFatal || !attackCommand.Results.Any(r => r.Any(dr => dr.WasTargetKilled)))
             return;
 
         var targetRarity = IsUpgraded ? RelicRarity.Rare : RelicRarity.Uncommon;
