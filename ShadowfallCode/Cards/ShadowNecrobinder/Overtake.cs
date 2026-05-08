@@ -46,7 +46,7 @@ public sealed class Overtake() : ShadowNecrobinderCard(0, CardType.Skill, CardRa
         DynamicVars.Cards.UpgradeValueBy(1m);
     }
 
-    public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)

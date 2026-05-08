@@ -40,7 +40,7 @@ public sealed class ClenchFist() : ShadowNecrobinderCard(1, CardType.Skill, Card
         DynamicVars.Vulnerable.UpgradeValueBy(1m);
     }
     
-    public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
