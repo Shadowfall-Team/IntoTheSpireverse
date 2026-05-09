@@ -46,7 +46,7 @@ public sealed class Deathglare() : CustomCardModel(0, CardType.Attack, CardRarit
         DynamicVars.Damage.UpgradeValueBy(5m);
     }
 
-    public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)

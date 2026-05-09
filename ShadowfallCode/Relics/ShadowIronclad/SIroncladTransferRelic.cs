@@ -40,7 +40,7 @@ public class SIroncladTransferRelic : ShadowIroncladRelic
         {
             var existingPower = recipient.GetPowerById(debuff.Id);
 
-            if (existingPower != null && !existingPower.IsInstanced)
+            if (existingPower != null && existingPower.InstanceType == PowerInstanceType.None) // Todo check this is the same
             {
                 DoHackyThingsForSpecificPowers(existingPower);
                 await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(),
