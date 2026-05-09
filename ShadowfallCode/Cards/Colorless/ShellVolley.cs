@@ -25,7 +25,6 @@ public class AmmoVolley() : CustomCardModel(1,
     [
         new DamageVar(10, ValueProp.Move),
         new RepeatVar(0),
-        
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -50,45 +49,50 @@ public class AmmoVolley() : CustomCardModel(1,
             // .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null)
             */
 
-            for (int i = 0; i < DynamicVars.Repeat.IntValue; i++)
+        for (int i = 0; i < DynamicVars.Repeat.IntValue; i++)
+        {
+            //TODO: move this to a calculated var?
+            var volleyDamage = DynamicVars.Damage.BaseValue +
+                               Owner.Creature.GetPowerAmount<VolleyDamageThisTurnPower>() +
+                               Owner.Creature.GetPowerAmount<VolleyDamagePower>();
+
+            // if (Owner.HasPower<StrengthVolleyPower>())
+            // {
+            //     volleyDamage += Owner.Creature.GetPowerAmount<StrengthPower>();
+            // }
+
+            var target = SelectTarget();
+
+            if (target == null) return;
+
+            //TODO: maybe play an animation here?
+            // VfxCmd.PlayOnCreatureCenter(attackCommand.Attacker, attackCommand._attackerVfx);
+
+            await CreatureCmd.Damage(choiceContext, target, volleyDamage,
+                ValueProp.Move, Owner.Creature);
+
+            if (Owner.HasPower<CascadePower>())
             {
-                //TODO: move this to a calculated var?
-                var volleyDamage = DynamicVars.Damage.BaseValue +
-                                   Owner.Creature.GetPowerAmount<VolleyDamageThisTurnPower>() +
-                                   Owner.Creature.GetPowerAmount<VolleyDamagePower>();
-
-                // if (Owner.HasPower<StrengthVolleyPower>())
-                // {
-                //     volleyDamage += Owner.Creature.GetPowerAmount<StrengthPower>();
-                // }
-            
-                var target = SelectTarget();
-
-                if (target == null) return;
-            
-                //TODO: maybe play an animation here?
-                // VfxCmd.PlayOnCreatureCenter(attackCommand.Attacker, attackCommand._attackerVfx);
-
-                await CreatureCmd.Damage(choiceContext, target, volleyDamage,
-                    ValueProp.Move, Owner.Creature);
-
-                if (Owner.HasPower<CascadePower>())
-                {
-                    await PowerCmd.Apply<VolleyDamagePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, null);
-                }
-
-                if (Owner.HasPower<SiegePower>())
-                {
-                    await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, 1, Owner.Creature, null);
-                }
-
-                if (Owner.HasPower<DefensiveCannonadePower>())
-                {
-                    await CreatureCmd.GainBlock(Owner.Creature, Owner.Creature.GetPowerAmount<DefensiveCannonadePower>(), ValueProp.Move, null);
-                }
+                await PowerCmd.Apply<VolleyDamagePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
+                    Owner.Creature, null);
             }
+
+            if (Owner.HasPower<SiegePower>())
+            {
+                await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, 1, Owner.Creature, null);
+            }
+
+            if (Owner.HasPower<DefensiveCannonadePower>())
+            {
+                await CreatureCmd.GainBlock(Owner.Creature, Owner.Creature.GetPowerAmount<DefensiveCannonadePower>(),
+                    ValueProp.Move, null);
+            }
+
+            if (i < DynamicVars.Repeat.IntValue - 1)
+                await Cmd.Wait(0.25f);
+        }
     }
-    
+
     private Creature? SelectTarget()
     {
         var validTargets = CombatState.Enemies.Where(e => e.IsAlive).ToList();
