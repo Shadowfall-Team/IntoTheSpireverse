@@ -35,13 +35,15 @@ public static class LoadAmmoCmd
                 await CardPileCmd.AddGeneratedCardToCombat(sovereignBlade, PileType.Hand, player);
                 blades.Add(sovereignBlade);
             }
+
             IncreaseVolleyRepeats(amount, player);
             // await Hook.AfterForge(player.Creature.CombatState, amount, player, source);
             enumerable = blades;
         }
+
         return enumerable;
     }
-    
+
     private static void IncreaseVolleyRepeats(decimal amount, Player player)
     {
         var list = GetVolleys(player, true).ToList();
@@ -51,6 +53,7 @@ public static class LoadAmmoCmd
             sovereignBlade.AfterForged();
             // ForgeCmd.PlayCombatRoomForgeVfx(player, sovereignBlade);
         }
+
         PreviewSovereignBlade(list);
     }
 
@@ -62,11 +65,13 @@ public static class LoadAmmoCmd
             {
                 return false;
             }
+
             if (!includeExhausted)
             {
                 var pile = c.Pile;
                 return pile == null || pile.Type != PileType.Exhaust;
             }
+
             return true;
         }).OfType<AmmoVolley>().ToList();
     }
@@ -77,17 +82,20 @@ public static class LoadAmmoCmd
         {
             return;
         }
+
         if (!LocalContext.IsMine(blades.First()))
         {
             return;
         }
+
         var list = blades.Where(c => c.Pile is { Type: PileType.Hand }).ToList();
-        var list2 = blades.Where(c => c.Pile is not { Type: PileType.Hand }).ToList();
         foreach (var sovereignBlade in list)
         {
             var ncardSmithVfx = NCardSmithVfx.Create(NCombatRoom.Instance.Ui.Hand.GetCard(sovereignBlade), false);
             NRun.Instance?.GlobalUi.AboveTopBarVfxContainer.AddChildSafely(ncardSmithVfx);
         }
+
+        var list2 = blades.Where(c => c.Pile is { Type: not PileType.Hand and not PileType.Exhaust }).ToList();
         if (list2.Count != 0)
         {
             var ncardSmithVfx2 = NCardSmithVfx.Create(list2, false);
