@@ -27,7 +27,7 @@ public sealed class Reaper() : ShadowIroncladCard(2, CardType.Attack, CardRarity
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        int totalUnblocked = attack.Results.Sum(r => r.UnblockedDamage);
+        int totalUnblocked = attack.Results.Sum(r => r.Sum(dr => dr.UnblockedDamage));
         if (totalUnblocked > 0)
             await CreatureCmd.Heal(Owner.Creature, (decimal)totalUnblocked);
     }

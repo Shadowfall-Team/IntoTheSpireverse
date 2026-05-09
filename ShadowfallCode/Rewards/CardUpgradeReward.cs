@@ -24,11 +24,8 @@ public class CardUpgradeReward(Player player) : Reward(player)
     public override bool IsPopulated => true;
 
     public override LocString Description => new("gameplay_ui", "COMBAT_REWARD_CARD_UPGRADE");
-    
-    public override Task Populate()
-    {
-        return Task.CompletedTask;
-    }
+
+    public override void Populate() { }
 
     protected override async Task<bool> OnSelect()
     {

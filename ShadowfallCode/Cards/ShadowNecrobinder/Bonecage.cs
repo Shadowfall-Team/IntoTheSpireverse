@@ -62,7 +62,7 @@ public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRa
         DynamicVars[_lingerBlockKey].BaseValue -= BlockReduction;
     }
     
-    public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)

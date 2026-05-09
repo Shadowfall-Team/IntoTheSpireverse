@@ -15,7 +15,7 @@ public class FinalFormPower : CustomPowerModel
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    public override bool IsInstanced => true;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     protected override object InitInternalData() => new Data();
 

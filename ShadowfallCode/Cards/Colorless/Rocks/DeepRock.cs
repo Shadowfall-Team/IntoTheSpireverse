@@ -1,11 +1,9 @@
 ﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -18,11 +16,11 @@ public sealed class DeepRock() : RockCardBase(2, CardType.Attack, CardRarity.Tok
     [
         new DamageVar(14m, ValueProp.Move),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.Static(StaticHoverTip.Block),
     ];
-    
+
     public override bool GainsBlock => true;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -36,7 +34,8 @@ public sealed class DeepRock() : RockCardBase(2, CardType.Attack, CardRarity.Tok
 
         await CreatureCmd.GainBlock(
             Owner.Creature,
-            (decimal)attackCommand.Results.Sum(r => r.TotalDamage + r.OverkillDamage),
+            // attackCommand.Results got changed from IEnumerable<DamageResult> to IEnumerable<List<DamageResult>> ?
+            attackCommand.Results.Sum(r => r.Sum(dr => dr.TotalDamage + dr.OverkillDamage)),
             ValueProp.Move,
             cardPlay
         );

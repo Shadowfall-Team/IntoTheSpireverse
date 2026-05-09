@@ -42,7 +42,7 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        var totalDamage = damageResponse.Results.Sum(r => r.TotalDamage);
+        var totalDamage = damageResponse.Results.Sum(r => r.Sum(dr => dr.TotalDamage));
 
         if (totalDamage > 0)
         {
