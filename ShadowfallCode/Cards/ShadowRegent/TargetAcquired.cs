@@ -31,7 +31,7 @@ public class TargetAcquired() : ShadowRegentCard(
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => 
-        LoadAmmoHoverTip.FromForge();
+        LoadAmmoHoverTip.FromLoadAmmo();
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,

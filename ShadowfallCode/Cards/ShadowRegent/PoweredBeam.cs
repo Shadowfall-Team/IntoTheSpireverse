@@ -23,7 +23,7 @@ public class PoweredBeam() : ShadowRegentCard(1,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        LoadAmmoHoverTip.FromForge();
+        LoadAmmoHoverTip.FromLoadAmmo();
 
     protected override void OnUpgrade()
     {
