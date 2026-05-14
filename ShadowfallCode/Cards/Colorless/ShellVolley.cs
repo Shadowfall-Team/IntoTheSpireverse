@@ -1,10 +1,12 @@
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
@@ -39,70 +41,22 @@ public class AmmoVolley() : CustomCardModel(1,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
     {
-        /*
-         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        //TODO: move this to a calculated var
+        var volleyDamage = DynamicVars.Damage.BaseValue +
+                           Owner.Creature.GetPowerAmount<VolleyDamageThisTurnPower>() +
+                           Owner.Creature.GetPowerAmount<VolleyDamagePower>();
+
+        await DamageCmd.Attack(volleyDamage)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .FromCard(this)
             .TargetingRandomOpponents(CombatState)
             .WithAttackerAnim("Cast", Owner.Character.AttackAnimDelay, null)
             .Execute(choiceContext);
-            // .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null)
-            */
+        // .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null)
 
-        for (int i = 0; i < DynamicVars.Repeat.IntValue; i++)
-        {
-            //TODO: move this to a calculated var?
-            var volleyDamage = DynamicVars.Damage.BaseValue +
-                               Owner.Creature.GetPowerAmount<VolleyDamageThisTurnPower>() +
-                               Owner.Creature.GetPowerAmount<VolleyDamagePower>();
-
-            // if (Owner.HasPower<StrengthVolleyPower>())
-            // {
-            //     volleyDamage += Owner.Creature.GetPowerAmount<StrengthPower>();
-            // }
-
-            var target = SelectTarget();
-
-            if (target == null) return;
-
-            //TODO: maybe play an animation here?
-            // VfxCmd.PlayOnCreatureCenter(attackCommand.Attacker, attackCommand._attackerVfx);
-
-            await CreatureCmd.Damage(choiceContext, target, volleyDamage,
-                ValueProp.Move, Owner.Creature);
-
-            if (Owner.HasPower<CascadePower>())
-            {
-                await PowerCmd.Apply<VolleyDamagePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
-                    Owner.Creature, null);
-            }
-
-            if (Owner.HasPower<SiegePower>())
-            {
-                await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, 1, Owner.Creature, null);
-            }
-
-            if (Owner.HasPower<DefensiveCannonadePower>())
-            {
-                await CreatureCmd.GainBlock(Owner.Creature, Owner.Creature.GetPowerAmount<DefensiveCannonadePower>(),
-                    ValueProp.Move, null);
-            }
-
-            if (i < DynamicVars.Repeat.IntValue - 1)
-                await Cmd.Wait(0.25f);
-        }
+        await Cleanup();
     }
 
-    private Creature? SelectTarget()
-    {
-        var validTargets = CombatState.Enemies.Where(e => e.IsAlive).ToList();
-        var preferredTargets = validTargets
-            .Where(t => t.HasPower<TargetedThisTurnPower>()).ToList();
-
-        var target = CombatState.RunState.Rng.CombatTargets.NextItem(
-            preferredTargets.Count != 0 ? preferredTargets : validTargets);
-        return target;
-    }
 
     private async Task Cleanup()
     {
@@ -113,8 +67,6 @@ public class AmmoVolley() : CustomCardModel(1,
         {
             await PowerCmd.Remove<TargetedThisTurnPower>(target);
         }
-
-        // await PowerCmd.Remove(Owner.Creature);
     }
 
     protected override void OnUpgrade()
