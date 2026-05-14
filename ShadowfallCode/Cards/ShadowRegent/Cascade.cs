@@ -18,7 +18,7 @@ public class Cascade() : ShadowRegentCard(
     TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => 
-        LoadAmmoHoverTip.FromForge()
+        LoadAmmoHoverTip.FromLoadAmmo()
     ;
     
     protected override async Task OnPlay(

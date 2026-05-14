@@ -24,10 +24,9 @@ public class Siege() : ShadowRegentCard(
         new IntVar("LoadAmmo", 1),
         new PowerVar<SiegePower>(1)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
-        LoadAmmoHoverTip.FromForge().Append(HoverTipFactory.FromPower<WeakPower>())
-    ;
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        LoadAmmoHoverTip.FromLoadAmmo().Append(HoverTipFactory.FromPower<WeakPower>());
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -39,11 +38,10 @@ public class Siege() : ShadowRegentCard(
         await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
 
         await PowerCmd.Apply<SiegePower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
+            new ThrowingPlayerChoiceContext(), Owner.Creature,
             DynamicVars[nameof(SiegePower)].BaseValue,
             Owner.Creature,
             this);
-
     }
 
     protected override void OnUpgrade()
@@ -51,7 +49,6 @@ public class Siege() : ShadowRegentCard(
         //TODO: what goes here?
     }
 }
-
 
 public class SiegePower : CustomPowerModel
 {

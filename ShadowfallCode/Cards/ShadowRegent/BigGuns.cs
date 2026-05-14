@@ -25,9 +25,7 @@ public class BigGuns() : ShadowRegentCard(
         new IntVar("LoadAmmo", 2)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => LoadAmmoHoverTip.FromForge().Append(
-        HoverTipFactory.FromPower<StrengthPower>()
-    );
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => LoadAmmoHoverTip.FromLoadAmmo();
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
