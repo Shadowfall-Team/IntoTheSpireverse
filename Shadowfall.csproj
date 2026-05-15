@@ -29,7 +29,7 @@
     </ItemGroup>
 
     <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
-        <PackageReference Include="Book.StS2.RefLib" Version="0.105.0-beta" PrivateAssets="all"/>
+        <PackageReference Include="Book.StS2.RefLib" Version="*-*" PrivateAssets="all"/>
     </ItemGroup>
 
     <PropertyGroup>
