@@ -1,16 +1,12 @@
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
@@ -25,7 +21,12 @@ public class AmmoVolley() : CustomCardModel(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(10, ValueProp.Move),
+        new CalculationBaseVar(10),
+        new ExtraDamageVar(1),
+        new CalculatedDamageVar(ValueProp.Move)
+            .WithMultiplier(static (card, _) =>
+                card.Owner.Creature.GetPowerAmount<VolleyDamageThisTurnPower>() +
+                card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
         new RepeatVar(0),
     ];
 
@@ -41,12 +42,7 @@ public class AmmoVolley() : CustomCardModel(1,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
     {
-        //TODO: move this to a calculated var
-        var volleyDamage = DynamicVars.Damage.BaseValue +
-                           Owner.Creature.GetPowerAmount<VolleyDamageThisTurnPower>() +
-                           Owner.Creature.GetPowerAmount<VolleyDamagePower>();
-
-        var command = DamageCmd.Attack(volleyDamage)
+        var command = DamageCmd.Attack(DynamicVars.CalculatedDamage)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .FromCard(this)
             .WithAttackerAnim("Cast", Owner.Character.AttackAnimDelay)
@@ -129,7 +125,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
     public void AddDamage(decimal amount)
     {
-        DynamicVars.Damage.BaseValue += amount;
-        CurrentDamage = DynamicVars.Damage.BaseValue;
+        DynamicVars.CalculationBase.BaseValue += amount;
+        CurrentDamage = DynamicVars.CalculationBase.BaseValue;
     }
 }
