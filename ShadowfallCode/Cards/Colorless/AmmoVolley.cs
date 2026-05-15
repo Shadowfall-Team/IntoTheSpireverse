@@ -46,13 +46,22 @@ public class AmmoVolley() : CustomCardModel(1,
                            Owner.Creature.GetPowerAmount<VolleyDamageThisTurnPower>() +
                            Owner.Creature.GetPowerAmount<VolleyDamagePower>();
 
-        await DamageCmd.Attack(volleyDamage)
+        var command = DamageCmd.Attack(volleyDamage)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .FromCard(this)
-            .TargetingRandomOpponents(CombatState)
-            .WithAttackerAnim("Cast", Owner.Character.AttackAnimDelay, null)
-            .Execute(choiceContext);
-        // .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null)
+            .WithAttackerAnim("Cast", Owner.Character.AttackAnimDelay)
+            .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null);
+
+        if (Owner.HasPower<BigGunsPower>())
+        {
+            command.TargetingAllOpponents(CombatState);
+        }
+        else
+        {
+            command.TargetingRandomOpponents(CombatState);
+        }
+
+        await command.Execute(choiceContext);
 
         await Cleanup();
     }
