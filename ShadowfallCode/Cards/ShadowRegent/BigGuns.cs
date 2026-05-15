@@ -22,7 +22,7 @@ public class BigGuns() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 2)
+        new IntVar("BigGuns", 2),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => LoadAmmoHoverTip.FromLoadAmmo();
@@ -34,22 +34,16 @@ public class BigGuns() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<StrengthVolleyPower>(new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-            DynamicVars["LoadAmmo"].BaseValue,
-            Owner.Creature,
-            this);
-
         await PowerCmd.Apply<BigGunsPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars["LoadAmmo"].BaseValue,
+            DynamicVars["BigGuns"].BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LoadAmmo"].UpgradeValueBy(1);
+        DynamicVars["BigGuns"].UpgradeValueBy(1);
     }
 }
 
@@ -87,10 +81,4 @@ public class BigGunsPower : CustomPowerModel
             }
         }
     }
-}
-
-public class StrengthVolleyPower : CustomPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
 }
