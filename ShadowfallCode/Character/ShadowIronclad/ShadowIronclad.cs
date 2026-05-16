@@ -5,8 +5,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
 using Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
-using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
-using Shadowfall.ShadowfallCode.Relics;
+using Shadowfall.ShadowfallCode.Extensions;
 using Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Character;
@@ -54,8 +53,12 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
         override all the other methods that define those assets.
         These are just some of the simplest assets, given some placeholders to differentiate your character with.
         You don't have to, but you're suggested to rename these images. */
-    // public override string CustomIconTexturePath => "character_icon_char_name.png".CharacterUiPath();
-    // public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
+    public override string CustomIconTexturePath => "character_icon_ironclad.png".GranitecladPath();
+    public override string CustomCharacterSelectIconPath => "char_select_ironclad.png".GranitecladPath();
+    public override string CustomArmPointingTexturePath => "multiplayer_hand_ironclad_point.png".GranitecladPath();
+    public override string CustomArmRockTexturePath => "multiplayer_hand_ironclad_rock.png".GranitecladPath();
+    public override string CustomArmPaperTexturePath => "multiplayer_hand_ironclad_paper.png".GranitecladPath();
+    public override string CustomArmScissorsTexturePath => "multiplayer_hand_ironclad_scissors.png".GranitecladPath();
     // public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
     // public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
 }

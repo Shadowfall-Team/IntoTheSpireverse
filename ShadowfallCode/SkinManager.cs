@@ -1,38 +1,52 @@
 ﻿using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using Shadowfall.ShadowfallCode.Character;
 
 namespace Shadowfall.ShadowfallCode;
 
 public static class SkinManager
 {
-    private const string SkeletonPath = "res://animations/characters/defect/defect_skel_data.tres";
-    private const string ReplacementTexturePath = "res://skins/shadowdefect.png";
+    private static readonly Dictionary<System.Type, string> Skins = new()
+    {
+        [typeof(ShadowIronclad)] = "res://Shadowfall/images/characters/shadowironclad/ironclad_granite.png",
+    };
 
-    private static string? _originalTexturePath;
-    private static Texture2D? _originalTexture;
+    private static readonly Dictionary<string, string> _originalTexturePaths = new();
 
     public static void ApplyTextureToVisuals(NCreatureVisuals visuals)
     {
+        if (visuals.GetParent() is not NCreature nCreature)
+            return;
+
+        var character = nCreature.Entity?.Player?.Character;
+        if (character == null)
+            return;
+
+        ApplyTextureToVisuals(visuals, character.GetType());
+    }
+
+    public static void ApplyTextureToVisuals(NCreatureVisuals visuals, System.Type characterType)
+    {
+        if (!Skins.TryGetValue(characterType, out var ReplacementTexturePath))
+            return;
+
         var body = visuals.GetCurrentBody();
         var skeletonData = body.Get("skeleton_data_res").AsGodotObject();
         var skeletonDataPath = ((Resource)skeletonData).ResourcePath;
-
-        if (skeletonDataPath != SkeletonPath)
-            return;
 
         var atlasRes = skeletonData.Get("atlas_res").AsGodotObject();
         var textures = atlasRes.Get("textures").AsGodotArray();
         var textureResource = (Texture2D)textures[0].AsGodotObject();
         var currentTexturePath = textureResource.ResourcePath;
 
-        if (_originalTexturePath == null)
+        if (!_originalTexturePaths.TryGetValue(skeletonDataPath, out var originalTexturePath))
         {
             if (string.IsNullOrEmpty(currentTexturePath))
                 return;
 
-            _originalTexturePath = currentTexturePath;
-            _originalTexture = (Texture2D)textureResource.Duplicate();
+            originalTexturePath = currentTexturePath;
+            _originalTexturePaths[skeletonDataPath] = originalTexturePath;
         }
 
         var texture = ResourceLoader.Load<Texture2D>(ReplacementTexturePath);
@@ -40,10 +54,10 @@ public static class SkinManager
             return;
 
         var textureCopy = (Texture2D)texture.Duplicate();
-        textureCopy.TakeOverPath(_originalTexturePath);
+        textureCopy.TakeOverPath(originalTexturePath);
 
         var freshSkeletonData = ResourceLoader.Load(
-            SkeletonPath,
+            skeletonDataPath,
             cacheMode: ResourceLoader.CacheMode.IgnoreDeep
         );
 
