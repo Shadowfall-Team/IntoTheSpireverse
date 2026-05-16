@@ -107,8 +107,6 @@ public partial class NCargoPile : NCombatCardPile
         }
         else if (_currentCount == 0 && Visible)
         {
-            // AnimOut();
-            // Disable();
             RemoveCardPreview();
         }
     }
@@ -148,6 +146,7 @@ public partial class NCargoPile : NCombatCardPile
         AddChild(holder);
         MoveChild(holder, 0);
         holder.MouseFilter = Control.MouseFilterEnum.Pass;
+        holder.FocusMode = Control.FocusModeEnum.None;
         holder.Hitbox.MouseFilter = Control.MouseFilterEnum.Pass;
 
         PositionPreviewCard(holder, xOffset, scale);
@@ -183,7 +182,8 @@ public partial class NCargoPile : NCombatCardPile
     {
         NHoverTipSet.Remove(this);
         var tooltip = NHoverTipSet.CreateAndShow(this, _hoverTip);
-        tooltip.GlobalPosition = GlobalPosition + new Vector2(0, TooltipOffsetY);
+        var yOffset = _previewHolders.Count > 0 ? TooltipOffsetY : -220f;
+        tooltip.GlobalPosition = GlobalPosition + new Vector2(0, yOffset);
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.TweenProperty(_icon, "scale", new Vector2(1.25f, 1.25f), 0.05);
@@ -208,13 +208,6 @@ public partial class NCargoPile : NCombatCardPile
             var targetPos = GlobalPosition + new Vector2(xOffset, PreviewYOffset);
             _previewTween.TweenProperty(_previewHolders[i], "global_position", targetPos, 0.1);
         }
-    }
-
-    protected override void OnPress()
-    {
-        MainFile.Logger.Info("pressed");
-        NHoverTipSet.Remove(this);
-        base.OnPress();
     }
 
     public override void AnimIn()
