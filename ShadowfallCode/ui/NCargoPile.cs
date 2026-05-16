@@ -25,10 +25,13 @@ public partial class NCargoPile : NCombatCardPile
     private const float PreviewYOffset = -15f;
     private const float PreviewXOffset = 140f;
     private const float PreviewSpacingX = -35f;
+    private const float PreviewHoverShiftX = 25f;
+
+    private Tween? _previewTween;
 
     private const float HideOffsetX = -150f;
 
-    private const float TooltipOffsetY = -300f;
+    private const float TooltipOffsetY = -350f;
 
     protected override PileType Pile => CargoCardPile.CargoPileType;
 
@@ -183,6 +186,26 @@ public partial class NCargoPile : NCombatCardPile
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.TweenProperty(_icon, "scale", new Vector2(1.25f, 1.25f), 0.05);
+        TweenPreviewCards(PreviewHoverShiftX);
+    }
+
+    protected override void OnUnfocus()
+    {
+        base.OnUnfocus();
+        TweenPreviewCards(0f);
+    }
+
+    private void TweenPreviewCards(float targetShiftX)
+    {
+        _previewTween?.Kill();
+        _previewTween = CreateTween();
+        _previewTween.SetParallel();
+        for (var i = 0; i < _previewHolders.Count; i++)
+        {
+            var xOffset = PreviewXOffset + i * PreviewSpacingX + targetShiftX;
+            var targetPos = GlobalPosition + new Vector2(xOffset, PreviewYOffset);
+            _previewTween.TweenProperty(_previewHolders[i], "global_position", targetPos, 0.1);
+        }
     }
 
     public override void AnimIn()
