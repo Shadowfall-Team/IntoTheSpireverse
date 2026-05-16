@@ -677,6 +677,6 @@
   "SHADOWFALL-THE_SEALED_THRONE.description": "Deal {CalculatedDamage:diff()} damage. Double this card's damage for each [gold]Warp[/gold] you've played this combat.",
   "SHADOWFALL-THE_SEALED_THRONE.title": "The Sealed Throne",
 
-  "SHADOWFALL-AMMO_VOLLEY.description": "deal {Damage:diff()} damage to a random enemy.{Repeat:cond:>1?\nRepeat {Repeat:diff()} times.|}",
+  "SHADOWFALL-AMMO_VOLLEY.description": "deal {CalculatedDamage:diff()} damage to a random enemy.{Repeat:cond:>1?\nRepeat {Repeat:diff()} times.|}",
   "SHADOWFALL-AMMO_VOLLEY.title": "Ammo Volley"
 }
