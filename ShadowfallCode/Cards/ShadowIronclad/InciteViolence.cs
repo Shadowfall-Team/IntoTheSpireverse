@@ -43,16 +43,19 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
             .Execute(choiceContext);
         InciteViolencePatch.IsIncitedAttack = false;
 
-        foreach (var result in recoilResult.Results)
+        foreach (var resultList in recoilResult.Results)
         {
-            if (!result.WasFullyBlocked) continue;
-            var imbalanced = cardPlay.Target.Monster.Creature.Powers
-                .OfType<ImbalancedPower>()
-                .FirstOrDefault();
-            if (imbalanced == null) continue;
-            await CreatureCmd.Stun(cardPlay.Target.Monster.Creature);
-            if (cardPlay.Target.Monster is BowlbugRock bowlbug)
-                bowlbug.IsOffBalance = false;
+            foreach (var result in resultList)
+            {
+                if (!result.WasFullyBlocked) continue;
+                var imbalanced = cardPlay.Target.Monster.Creature.Powers
+                    .OfType<ImbalancedPower>()
+                    .FirstOrDefault();
+                if (imbalanced == null) continue;
+                await CreatureCmd.Stun(cardPlay.Target.Monster.Creature);
+                if (cardPlay.Target.Monster is BowlbugRock bowlbug)
+                    bowlbug.IsOffBalance = false;
+            }
         }
     }
 

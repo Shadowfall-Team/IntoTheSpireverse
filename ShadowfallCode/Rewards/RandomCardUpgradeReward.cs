@@ -1,5 +1,4 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
@@ -26,11 +25,8 @@ public class RandomCardUpgradeReward(Player player)  : Reward(player)
     public override bool IsPopulated => true;
 
     public override LocString Description => new("gameplay_ui", "COMBAT_REWARD_RANDOM_CARD_UPGRADE");
-    
-    public override Task Populate()
-    {
-        return Task.CompletedTask;
-    }
+
+    public override void Populate() { }
 
     protected override async Task<bool> OnSelect()
     {
@@ -38,7 +34,7 @@ public class RandomCardUpgradeReward(Player player)  : Reward(player)
             .Where(c => c.IsUpgradable).ToList()
             .StableShuffle(Player.RunState.Rng.Niche)
             .Take(1).FirstOrDefault();
-        
+
         if (cardsToUpgrade != null)
         {
             CardCmd.Upgrade(cardsToUpgrade);
