@@ -107,7 +107,8 @@ public partial class NCargoPile : NCombatCardPile
         }
         else if (_currentCount == 0 && Visible)
         {
-            Disable();
+            // AnimOut();
+            // Disable();
             RemoveCardPreview();
         }
     }
@@ -197,6 +198,7 @@ public partial class NCargoPile : NCombatCardPile
 
     private void TweenPreviewCards(float targetShiftX)
     {
+        if (_previewHolders.Count == 0) return;
         _previewTween?.Kill();
         _previewTween = CreateTween();
         _previewTween.SetParallel();
@@ -206,6 +208,13 @@ public partial class NCargoPile : NCombatCardPile
             var targetPos = GlobalPosition + new Vector2(xOffset, PreviewYOffset);
             _previewTween.TweenProperty(_previewHolders[i], "global_position", targetPos, 0.1);
         }
+    }
+
+    protected override void OnPress()
+    {
+        MainFile.Logger.Info("pressed");
+        NHoverTipSet.Remove(this);
+        base.OnPress();
     }
 
     public override void AnimIn()
