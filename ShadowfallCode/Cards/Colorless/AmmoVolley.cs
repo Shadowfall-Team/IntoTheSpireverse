@@ -21,7 +21,7 @@ public class AmmoVolley() : CustomCardModel(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CalculationBaseVar(10),
+        new CalculationBaseVar(8),
         new ExtraDamageVar(1),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier(static (card, _) =>
@@ -31,7 +31,11 @@ public class AmmoVolley() : CustomCardModel(1,
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [CardKeyword.Ethereal, CardKeyword.Exhaust];
+    [
+        // CardKeyword.Retain,
+        CardKeyword.Ethereal,
+        CardKeyword.Exhaust
+    ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
