@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Orbs;
 using Shadowfall.ShadowfallCode.Powers;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public class BlackIce() : ShadowDefectCard(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
 {

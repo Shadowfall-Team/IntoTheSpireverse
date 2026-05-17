@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Cards;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Process() : ShadowDefectCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {

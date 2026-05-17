@@ -1,12 +1,10 @@
 ﻿using BaseLib.Abstracts;
-using Shadowfall.ShadowfallCode.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
-using MegaCrit.Sts2.Core.Models.Relics;
 using Shadowfall.ShadowfallCode.Relics;
 using Decay = Shadowfall.ShadowfallCode.Cards.ShadowDefect.Decay;
 using Invoke = Shadowfall.ShadowfallCode.Cards.ShadowDefect.Invoke;
@@ -46,7 +44,7 @@ public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        (RelicModel) ModelDb.Relic<CorruptedCore>()
+        ModelDb.Relic<CorruptedCore>()
     ];
     
     public override int BaseOrbSlotCount => 3;

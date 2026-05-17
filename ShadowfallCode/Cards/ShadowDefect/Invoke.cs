@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using Shadowfall.Orbs;
 using Shadowfall.ShadowfallCode.Cards;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
   
 public sealed class Invoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)

@@ -12,7 +12,7 @@ using Shadowfall.ShadowfallCode.Cards;
 using Shadowfall.ShadowfallCode.Powers;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class SongOfSorrow : ShadowDefectCard
 {

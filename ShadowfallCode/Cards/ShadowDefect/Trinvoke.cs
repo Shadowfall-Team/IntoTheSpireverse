@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using Shadowfall.Orbs;
 using Shadowfall.ShadowfallCode.Cards;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Trinvoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
 {

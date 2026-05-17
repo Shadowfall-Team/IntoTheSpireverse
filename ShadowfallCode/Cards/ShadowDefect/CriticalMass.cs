@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Cards;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class CriticalMass() : ShadowDefectCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {

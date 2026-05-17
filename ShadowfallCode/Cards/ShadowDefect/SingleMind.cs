@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public class SingleMind() : ShadowDefectCard(1, CardType.Skill, CardRarity.Rare, TargetType.None)
 {

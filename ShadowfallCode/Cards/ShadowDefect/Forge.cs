@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using System.Linq;
 using Shadowfall.ShadowfallCode.Cards;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Forge() : ShadowDefectCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {

@@ -11,7 +11,7 @@ using Shadowfall.Orbs;
 using Shadowfall.ShadowfallCode.Cards;
 using Shadowfall.ShadowfallCode.Powers;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Starburst : ShadowDefectCard
 {

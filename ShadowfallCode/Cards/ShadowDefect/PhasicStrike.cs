@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using System.Linq;
 using Shadowfall.ShadowfallCode.Cards;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class PhasicStrike() : ShadowDefectCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {

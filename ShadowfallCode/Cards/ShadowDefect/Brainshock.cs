@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Cards;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Brainshock() : ShadowDefectCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {

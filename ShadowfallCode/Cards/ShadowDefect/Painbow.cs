@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models.Orbs;
 using Shadowfall.Orbs;
 using Shadowfall.ShadowfallCode.Cards;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Painbow() : ShadowDefectCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {

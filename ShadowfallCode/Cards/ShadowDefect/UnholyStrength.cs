@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Shadowfall.ShadowfallCode.Commands;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class UnholyStrength() : ShadowDefectCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {

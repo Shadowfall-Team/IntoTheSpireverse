@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using Shadowfall.ShadowfallCode.Cards;
 using Shadowfall.ShadowfallCode.Powers;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class CosmicForm : ShadowDefectCard
 {

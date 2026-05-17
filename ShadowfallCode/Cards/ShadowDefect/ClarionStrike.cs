@@ -10,7 +10,7 @@ using Shadowfall.ShadowfallCode.Cards;
 using Shadowfall.ShadowfallCode.Commands;
 using Shadowfall.ShadowfallCode.Powers;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class ClarionStrike() : ShadowDefectCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {

@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Cards;
 using Shadowfall.ShadowfallCode.Commands;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Peer() : ShadowDefectCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {

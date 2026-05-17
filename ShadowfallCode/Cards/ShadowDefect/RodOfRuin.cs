@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Powers;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class RodOfRuin() : ShadowDefectCard(1, CardType.Skill, CardRarity.Basic, TargetType.None)
 {

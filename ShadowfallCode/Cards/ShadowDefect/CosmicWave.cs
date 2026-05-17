@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.Orbs;
 using Shadowfall.ShadowfallCode.Cards;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
   
 public sealed class CosmicWave() : ShadowDefectCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)

@@ -10,7 +10,7 @@ using Shadowfall.Orbs;
 using Shadowfall.ShadowfallCode.Cards;
 using Shadowfall.ShadowfallCode.Commands;
 
-namespace Shadowfall.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Decay() : ShadowDefectCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {

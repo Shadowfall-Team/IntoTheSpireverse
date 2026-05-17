@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using Shadowfall.ShadowfallCode.Cards;
 using Shadowfall.ShadowfallCode.Powers;
 
-namespace Shadowfall.ShadowfallCode.Cards;
+namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class Powercycle : ShadowDefectCard
 {
