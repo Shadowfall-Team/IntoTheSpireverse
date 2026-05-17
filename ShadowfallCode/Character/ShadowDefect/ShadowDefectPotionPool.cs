@@ -1,7 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
 
-namespace Shadowfall.ShadowfallCode.Character;
+namespace Shadowfall.ShadowfallCode.Character.ShadowDefect;
 
 public class ShadowDefectPotionPool : CustomPotionPoolModel
 {

@@ -2,7 +2,7 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Godot;
-using Shadowfall.ShadowfallCode.Character;
+using Shadowfall.ShadowfallCode.Character.ShadowDefect;
 using Shadowfall.ShadowfallCode.Extensions;
 
 namespace Shadowfall.ShadowfallCode.Relics;

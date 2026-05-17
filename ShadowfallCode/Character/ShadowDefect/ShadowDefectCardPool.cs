@@ -3,7 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
-namespace Shadowfall.ShadowfallCode.Character;
+namespace Shadowfall.ShadowfallCode.Character.ShadowDefect;
 
 public class ShadowDefectCardPool : CustomCardPoolModel
 {

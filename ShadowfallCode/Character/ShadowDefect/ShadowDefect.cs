@@ -6,10 +6,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 using Shadowfall.ShadowfallCode.Relics;
-using Decay = Shadowfall.ShadowfallCode.Cards.ShadowDefect.Decay;
-using Invoke = Shadowfall.ShadowfallCode.Cards.ShadowDefect.Invoke;
 
-namespace Shadowfall.ShadowfallCode.Character;
+namespace Shadowfall.ShadowfallCode.Character.ShadowDefect;
 
 public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter
 {
@@ -38,8 +36,6 @@ public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter
         ModelDb.Card<DefendDefect>(),
         ModelDb.Card<DefendDefect>(),
         ModelDb.Card<DefendDefect>(),
-        ModelDb.Card<Invoke>(),
-        ModelDb.Card<Decay>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>

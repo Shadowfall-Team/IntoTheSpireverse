@@ -2,6 +2,7 @@
 using BaseLib.Utils;
 using Shadowfall.ShadowfallCode.Character;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using Shadowfall.ShadowfallCode.Character.ShadowDefect;
 using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards;
