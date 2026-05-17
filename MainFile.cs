@@ -4,7 +4,7 @@ using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Saves.Runs;
-using Shadowfall.ShadowfallCode.Cards;
+using Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 using Shadowfall.ShadowfallCode.Config;
 
 namespace Shadowfall;

@@ -8,8 +8,8 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Relics;
 using Shadowfall.ShadowfallCode.Relics;
-using Decay = Shadowfall.Cards.Decay;
-using Invoke = Shadowfall.Cards.Invoke;
+using Decay = Shadowfall.ShadowfallCode.Cards.ShadowDefect.Decay;
+using Invoke = Shadowfall.ShadowfallCode.Cards.ShadowDefect.Invoke;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
