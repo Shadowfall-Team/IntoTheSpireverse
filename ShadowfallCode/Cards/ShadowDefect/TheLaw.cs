@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,11 +6,10 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Saves.Runs;
-using Shadowfall.ShadowfallCode.Cards;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
-public sealed class TheLaw : ShadowDefectCard
+public sealed class TheLaw() : ShadowDefectCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
 	private const string _increaseKey = "Increase";
 	private int _clawCount = 1;
@@ -27,7 +23,7 @@ public sealed class TheLaw : ShadowDefectCard
 		{
 			AssertMutable();
 			_clawCount = value;
-			base.DynamicVars.Cards.BaseValue = _clawCount;
+			DynamicVars.Cards.BaseValue = _clawCount;
 		}
 	}
 	
@@ -35,40 +31,35 @@ public sealed class TheLaw : ShadowDefectCard
 	[SavedProperty]
 	public int ExtraCount
 	{
-		get => this._extraCount;
+		get => _extraCount;
 		set
 		{
-			this.AssertMutable();
-			this._extraCount = value;
+			AssertMutable();
+			_extraCount = value;
 		}
 	}
 	
-	public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+	public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-	protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-	{
+	protected override IEnumerable<DynamicVar> CanonicalVars =>
+	[
 		new CardsVar(ClawCount),
-		(DynamicVar) new IntVar("Increase", 1M)
-	};
+		new IntVar("Increase", 1)
+	];
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
-		HoverTipFactory.FromCard<Claw>(this.IsUpgraded)
-	};
-
-	public TheLaw()
-		: base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
-	{
-	}
+	protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+	[
+		HoverTipFactory.FromCard<Claw>(IsUpgraded)
+	];
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+		await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
 		List<CardModel> generated = new List<CardModel>();
 		for (int i = 0; i < ClawCount; i++)
 		{
-			CardModel claw = base.CombatState.CreateCard<Claw>(base.Owner);
+			CardModel claw = CombatState!.CreateCard<Claw>(Owner);
 			await CardPileCmd.AddGeneratedCardToCombat(claw, PileType.Hand, Owner);
 			generated.Add(claw);
 		}
@@ -79,7 +70,7 @@ public sealed class TheLaw : ShadowDefectCard
 			CardCmd.Upgrade(card);
 
 		BuffFromPlay();
-		if (!(this.DeckVersion is TheLaw deckVersion))
+		if (DeckVersion is not TheLaw deckVersion)
 			return;
 		deckVersion.BuffFromPlay();
 	}

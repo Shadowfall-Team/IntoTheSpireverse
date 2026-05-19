@@ -1,5 +1,4 @@
 {
-
   "SHADOWFALL-BLEED_POWER.title": "Bleed",
   "SHADOWFALL-BLEED_POWER.description": "Whenever a card is Exhausted, lose 6 HP, then Bleed decreases by 1.",
   "SHADOWFALL-BLEED_POWER.smartDescription": "Whenever a card is Exhausted, lose [blue]{Damage}[/blue] HP, then reduce [gold]Bleed[/gold] by 1.",
@@ -169,7 +168,6 @@
   "SHADOWFALL-YOUR_DOOM_IS_NIGH_POWER.description": "Whenever you draw a [purple]Curse[/purple], a random enemy loses [blue]13[/blue] HP.",
   "SHADOWFALL-YOUR_DOOM_IS_NIGH_POWER.smartDescription": "Whenever you draw a [purple]Curse[/purple], a random enemy loses [blue]{Amount}[/blue] HP.",
   "SHADOWFALL-YOUR_DOOM_IS_NIGH_POWER.title": "Your Doom is Nigh",
-
   "SHADOWFALL-SHARD_POWER.description": "When you have [blue]6[/blue] [gold]Shards[/gold], consume them and create a [gold]Warp[/gold] in your [gold]Hand[/gold].",
   "SHADOWFALL-SHARD_POWER.smartDescription": "When you have [blue]6[/blue] [gold]Shards[/gold], consume them and create a [gold]Warp[/gold] in your [gold]Hand[/gold].",
   "SHADOWFALL-SHARD_POWER.title": "Shards",
@@ -190,10 +188,10 @@
   "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.title": "Reloading",
   "SHADOWFALL-CARD_PLAY_TO_CARGO_THIS_TURN_POWER.description": "Put the next card you play this turn into your [gold]Cargo[/gold].",
   "SHADOWFALL-CARD_PLAY_TO_CARGO_THIS_TURN_POWER.smartDescription": "Put the next card you play this turn into your [gold]Cargo[/gold].",
-  "SHADOWFALL-CARD_PLAY_TO_CARGO_THIS_TURN_POWER.title": "Smuggler's Cargo",  
+  "SHADOWFALL-CARD_PLAY_TO_CARGO_THIS_TURN_POWER.title": "Smuggler's Cargo",
   "SHADOWFALL-TRIAL_OF_KNOWLEDGE_POWER.description": "The next time you end your turn with 5 cards in your [gold]Hand[/gold], gain [gold]Shards[/gold].",
   "SHADOWFALL-TRIAL_OF_KNOWLEDGE_POWER.smartDescription": "The next time you end your turn with 5 cards in your hand, gain [blue]{Amount}[/blue] [gold]Shards[/gold].",
-  "SHADOWFALL-TRIAL_OF_KNOWLEDGE_POWER.title": "Trial of Knowledge",  
+  "SHADOWFALL-TRIAL_OF_KNOWLEDGE_POWER.title": "Trial of Knowledge",
   "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.description": "The next time you play 3 Attacks in one turn, Load [gold]Ammo[/gold].",
   "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.smartDescription": "The next time you play 3 Attacks in one turn, Load [blue]{Amount}[/blue] Ammo.\nYou have played {AttacksPlayedThisTurn} attacks.",
   "SHADOWFALL-TRIAL_OF_WEAPONRY_POWER.title": "Trial of Weaponry",
@@ -244,5 +242,8 @@
   "SHADOWFALL-VOLLEY_DAMAGE_POWER.title": "Volley Damage",
   "SHADOWFALL-EXALTED_FORM_POWER.description": "At the start of your turn, add a 0-cost [gold]Discovery[/gold] to your [gold]Hand[/gold].",
   "SHADOWFALL-EXALTED_FORM_POWER.smartDescription": "At the start of your turn, add {Amount:plural:a|{Amount}} 0-cost Discovery to your hand.",
-  "SHADOWFALL-EXALTED_FORM_POWER.title": "Exalted Form"
+  "SHADOWFALL-EXALTED_FORM_POWER.title": "Exalted Form",
+  "SHADOWFALL-GLITCH_POWER.title": "Glitched",
+  "SHADOWFALL-GLITCH_POWER.description": "Whenever a card is Exhausted, lose 8 HP, then reduce [gold]Gltiched[/gold] by 1.",
+  "SHADOWFALL-GLITCH_POWER.smartDescription": "Whenever a card is Exhausted, lose [blue]{Damage}[/blue] HP, then reduce [gold]Gltiched[/gold] by 1."
 }

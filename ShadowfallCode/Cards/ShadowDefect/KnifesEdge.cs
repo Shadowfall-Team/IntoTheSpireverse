@@ -1,32 +1,30 @@
-using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps;
-using Shadowfall.ShadowfallCode.Cards;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowDefect;
 
 public sealed class KnifesEdge() : ShadowDefectCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
-        new PowerVar<StrengthPower>(2M),
-    };
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<StrengthPower>(2)
+    ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Void>()
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
+
+        
         await PowerCmd.Apply<StrengthPower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature,
@@ -47,6 +45,6 @@ public sealed class KnifesEdge() : ShadowDefectCard(0, CardType.Skill, CardRarit
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Strength.UpgradeValueBy(1M);
+        DynamicVars.Strength.UpgradeValueBy(1);
     }
 }
