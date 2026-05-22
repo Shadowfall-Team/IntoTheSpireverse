@@ -1,6 +1,7 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.Keywords;
@@ -27,7 +28,7 @@ public sealed class Penance() : ShadowNecrobinderCard(-1, CardType.Curse, CardRa
     
     public override int MaxUpgradeLevel => 0;
 
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         
         // A different hook may be needed if it should be possible to draw a Soul Strike in the opening hand, currently
