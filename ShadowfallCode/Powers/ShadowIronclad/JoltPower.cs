@@ -33,10 +33,7 @@ public sealed class JoltPower : CustomPowerModel
         await CardPileCmd.Draw(choiceContext, Amount, Owner.Player);
     }
 
-    public override Task BeforeSideTurnStart(
-        PlayerChoiceContext choiceContext,
-        CombatSide side,
-        ICombatState combatState)
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side)
             return Task.CompletedTask;

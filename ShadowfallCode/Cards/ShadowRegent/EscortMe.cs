@@ -29,7 +29,7 @@ public class EscortMe() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         var tripCard = CombatState.CreateCard<MinionStrike>(Owner);
-        await CardPileCmd.Add(tripCard, PileType.Hand, source: this);
+        await CardPileCmd.Add(tripCard, PileType.Hand, clonedBy: this);
         
         var xValue = ResolveEnergyXValue();
         if (IsUpgraded)

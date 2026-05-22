@@ -40,7 +40,7 @@ public class Banana() : ShadowRegentCard(1,
             this);
 
         var tripCard = CombatState.CreateCard<Trip>(Owner);
-        await CardPileCmd.Add(tripCard, PileType.Hand, source: this);
+        await CardPileCmd.Add(tripCard, PileType.Hand, clonedBy: this);
     }
 
     protected override void OnUpgrade()
