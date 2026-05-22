@@ -27,7 +27,7 @@ public sealed class HeavyHanded() : ShadowSilentCard(3, CardType.Attack, CardRar
         return Task.CompletedTask;
     }
 
-    public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel source)
+    public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? source)
     {
         if (oldPileType == PileType.Hand || card.Pile?.Type == PileType.Hand)
             RecalculateCost();

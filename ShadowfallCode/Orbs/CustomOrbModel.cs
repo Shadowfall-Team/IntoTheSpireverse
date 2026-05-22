@@ -50,7 +50,7 @@ public abstract class CustomOrbModel : OrbModel
     /// <summary>
     /// Creates the sprite node using the sprite path.
     /// </summary>
-    public Node2D CreateSprite()
+    public new Node2D CreateSprite()
     {
         Node2D sprite = PreloadManager.Cache.GetScene(this.SpritePath).Instantiate<Node2D>();
         new MegaCrit.Sts2.Core.Bindings.MegaSpine.MegaSprite((Variant)(GodotObject)sprite.GetNode((NodePath)"SpineSkeleton"))
