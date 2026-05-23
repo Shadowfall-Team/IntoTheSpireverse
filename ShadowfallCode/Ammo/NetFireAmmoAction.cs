@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 
-namespace Shadowfall.ShadowfallCode.ammo;
+namespace Shadowfall.ShadowfallCode.Ammo;
 
 public struct NetFireAmmoAction : INetAction, IPacketSerializable
 {

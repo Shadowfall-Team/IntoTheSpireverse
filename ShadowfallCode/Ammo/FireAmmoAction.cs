@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-namespace Shadowfall.ShadowfallCode.ammo;
+namespace Shadowfall.ShadowfallCode.Ammo;
 
 public class FireAmmoAction : GameAction
 {

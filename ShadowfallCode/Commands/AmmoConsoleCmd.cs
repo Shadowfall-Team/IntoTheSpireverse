@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Runs;
-using Shadowfall.ShadowfallCode.ammo;
+using Shadowfall.ShadowfallCode.Ammo;
 
 namespace Shadowfall.ShadowfallCode.Commands;
 

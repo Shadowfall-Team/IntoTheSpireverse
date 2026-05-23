@@ -2,7 +2,7 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 
-namespace Shadowfall.ShadowfallCode.ammo;
+namespace Shadowfall.ShadowfallCode.Ammo;
 
 public static class AmmoResource
 {

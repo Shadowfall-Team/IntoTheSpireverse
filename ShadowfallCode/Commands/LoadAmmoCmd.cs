@@ -1,7 +1,7 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
-using Shadowfall.ShadowfallCode.ammo;
+using Shadowfall.ShadowfallCode.Ammo;
 
 namespace Shadowfall.ShadowfallCode.Commands;
 

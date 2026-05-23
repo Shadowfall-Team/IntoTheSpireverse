@@ -1,7 +1,7 @@
 using MegaCrit.Sts2.Core.Entities.Players;
 using Shadowfall.ShadowfallCode.Cards.Colorless;
 
-namespace Shadowfall.ShadowfallCode.ammo;
+namespace Shadowfall.ShadowfallCode.Ammo;
 
 public class AmmoState
 {
