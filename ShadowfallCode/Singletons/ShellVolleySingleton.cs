@@ -1,11 +1,12 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
-using Shadowfall.ShadowfallCode.Cards.Colorless;
+using Shadowfall.ShadowfallCode.ammo;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
@@ -13,28 +14,40 @@ namespace Shadowfall.ShadowfallCode.Singletons;
 
 public class ShellVolleySingleton() : CustomSingletonModel(true, false)
 {
-    public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer,
-        DamageResult result, ValueProp props,
-        Creature target, CardModel? cardSource)
+    public override Task BeforeCombatStart()
     {
-        if (cardSource == ModelDb.Card<AmmoVolley>() && dealer != null)
+        AmmoResource.OnAmmoFired += OnAmmoFired;
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCombatEnd(CombatRoom room)
+    {
+        AmmoResource.OnAmmoFired -= OnAmmoFired;
+        return Task.CompletedTask;
+    }
+
+    private async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    {
+        var creature = player.Creature;
+
+        if (creature.HasPower<CascadePower>())
         {
-            if (dealer.HasPower<CascadePower>())
-            {
-                await PowerCmd.Apply<VolleyDamagePower>(new ThrowingPlayerChoiceContext(), dealer, 1,
-                    dealer, null);
-            }
+            await PowerCmd.Apply<VolleyDamagePower>(new ThrowingPlayerChoiceContext(), creature, 1,
+                creature, null);
+        }
 
-            if (dealer.HasPower<SiegePower>())
+        if (creature.HasPower<SiegePower>())
+        {
+            foreach (var target in targets.Where(t => t.IsAlive))
             {
-                await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, 1, dealer, null);
+                await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, 1, creature, null);
             }
+        }
 
-            if (dealer.HasPower<DefensiveCannonadePower>())
-            {
-                await CreatureCmd.GainBlock(dealer, dealer.GetPowerAmount<DefensiveCannonadePower>(),
-                    ValueProp.Move, null);
-            }
+        if (creature.HasPower<DefensiveCannonadePower>())
+        {
+            await CreatureCmd.GainBlock(creature, creature.GetPowerAmount<DefensiveCannonadePower>(),
+                ValueProp.Move, null);
         }
     }
 }
