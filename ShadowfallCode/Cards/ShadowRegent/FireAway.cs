@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.Commands;
-using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 using Shadowfall.ShadowfallCode.utils;
 
@@ -18,13 +17,12 @@ public class FireAway() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("LoadAmmo", 1),
-        new PowerVar<VolleyDamageThisTurnPower>(2)
+        new PowerVar<NextVolleyDamageThisTurnPower>(6)
     ];
-    
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
-        LoadAmmoHoverTip.FromLoadAmmo()
-    ;
+
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        LoadAmmoHoverTip.FromLoadAmmo();
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -32,20 +30,18 @@ public class FireAway() : ShadowRegentCard(1,
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
-
         await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
 
-        //TODO: migrate volleydamagethisturnpower
-        await PowerCmd.Apply<VolleyDamageThisTurnPower>(
+        await PowerCmd.Apply<NextVolleyDamageThisTurnPower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars[nameof(VolleyDamageThisTurnPower)].BaseValue,
+            DynamicVars[nameof(NextVolleyDamageThisTurnPower)].BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(VolleyDamageThisTurnPower)].UpgradeValueBy(2);
+        DynamicVars[nameof(NextVolleyDamageThisTurnPower)].UpgradeValueBy(4);
     }
 }

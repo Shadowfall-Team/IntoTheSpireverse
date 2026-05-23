@@ -1,3 +1,4 @@
+/*
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -48,3 +49,4 @@ public class AstralStrike() : ShadowRegentCard(
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 }
+*/

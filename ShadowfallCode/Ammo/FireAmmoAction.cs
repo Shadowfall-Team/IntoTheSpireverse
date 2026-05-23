@@ -1,5 +1,4 @@
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
@@ -42,7 +41,7 @@ public class FireAmmoAction : GameAction
         // Calculate damage from phantom card
         var ammoState = AmmoResource.GetOrCreateState(_player);
         var phantomCard = ammoState.PhantomCard;
-        var damage = phantomCard.DynamicVars.CalculatedDamage;
+        var damage = AmmoResource.CalculateShotDamage(_player);
 
         // Build attack command
         var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();

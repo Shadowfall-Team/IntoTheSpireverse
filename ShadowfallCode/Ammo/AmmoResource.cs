@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Ammo;
 
@@ -22,6 +23,7 @@ public static class AmmoResource
             state = new AmmoState(player);
             State[combatState] = state;
         }
+
         return state;
     }
 
@@ -55,5 +57,23 @@ public static class AmmoResource
     public static void InvokeOnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         OnAmmoFired?.Invoke(player, targets);
+
+        foreach (var model in player.Creature.CombatState.IterateHookListeners().ToList())
+        {
+            if (model is IAmmoFiredListener listener)
+            {
+                listener.OnAmmoFired(player, targets);
+            }
+        }
+    }
+
+    public static decimal CalculateShotDamage(Player player)
+    {
+        var phantomCard = GetOrCreateState(player).PhantomCard;
+        var baseDamage = phantomCard.DynamicVars.CalculationBase.BaseValue;
+        var extraDamage = phantomCard.DynamicVars.ExtraDamage.BaseValue;
+        var multiplier = player.Creature.GetPowerAmount<NextVolleyDamageThisTurnPower>()
+                         + player.Creature.GetPowerAmount<VolleyDamagePower>();
+        return baseDamage + extraDamage * multiplier;
     }
 }

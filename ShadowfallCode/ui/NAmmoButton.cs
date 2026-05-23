@@ -1,12 +1,11 @@
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Actions;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
-using Shadowfall.ShadowfallCode.ammo;
+using Shadowfall.ShadowfallCode.Ammo;
 
 namespace Shadowfall.ShadowfallCode.ui;
 
@@ -118,14 +117,15 @@ public partial class NAmmoButton : Node2D
         _hitbox = new Button
         {
             Name = "FireButton",
-            Size = new Vector2(80, 113),  // 9 (ammo top) + 80 (ammo) + 24 (fire overlap into ammo = 77-9=68... just total: 77+36=113)
+            Size = new Vector2(80,
+                113), // 9 (ammo top) + 80 (ammo) + 24 (fire overlap into ammo = 77-9=68... just total: 77+36=113)
             Position = new Vector2(-40, 9),
         };
-        _hitbox.AddThemeStyleboxOverride("normal",   new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("hover",    new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("pressed",  new StyleBoxEmpty());
+        _hitbox.AddThemeStyleboxOverride("normal", new StyleBoxEmpty());
+        _hitbox.AddThemeStyleboxOverride("hover", new StyleBoxEmpty());
+        _hitbox.AddThemeStyleboxOverride("pressed", new StyleBoxEmpty());
         _hitbox.AddThemeStyleboxOverride("disabled", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("focus",    new StyleBoxEmpty());
+        _hitbox.AddThemeStyleboxOverride("focus", new StyleBoxEmpty());
         _hitbox.Pressed += OnButtonPressed;
         _hitbox.MouseEntered += UpdateFireRectColor;
         _hitbox.MouseExited += UpdateFireRectColor;
@@ -247,10 +247,7 @@ public partial class NAmmoButton : Node2D
         var ammo = AmmoResource.GetAmmo(_player);
         _ammoCountLabel.Text = ammo.ToString();
 
-        var phantomCard = AmmoResource.GetOrCreateState(_player).PhantomCard;
-        var damageVar = phantomCard.DynamicVars.CalculatedDamage;
-        damageVar.UpdateCardPreview(phantomCard, CardPreviewMode.Normal, null, runGlobalHooks: true);
-        var damage = (int)damageVar.PreviewValue;
+        var damage = (int)AmmoResource.CalculateShotDamage(_player);
         _damageLabel.Text = $"dmg:{damage}";
 
         var canFire = CanFire;
@@ -262,11 +259,11 @@ public partial class NAmmoButton : Node2D
     private void UpdateFireRectColor()
     {
         if (!_hitbox.Disabled && _hitbox.IsHovered())
-            _fireRect.Color = new Color(0.6f, 0.2f, 0.2f, 0.9f);  // hover
+            _fireRect.Color = new Color(0.6f, 0.2f, 0.2f, 0.9f); // hover
         else if (_hitbox.Disabled)
-            _fireRect.Color = new Color(0.3f, 0.3f, 0.3f, 0.6f);  // disabled
+            _fireRect.Color = new Color(0.3f, 0.3f, 0.3f, 0.6f); // disabled
         else
-            _fireRect.Color = new Color(0.8f, 0.3f, 0.2f, 1f);    // normal
+            _fireRect.Color = new Color(0.8f, 0.3f, 0.2f, 1f); // normal
     }
 
     // -------------------------------------------------------------------------
