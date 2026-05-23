@@ -52,7 +52,7 @@ public static class AmmoResource
             AmmoChanged?.Invoke(player.PlayerCombatState, old, state.Ammo);
     }
 
-    public static void FireOnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public static void InvokeOnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         OnAmmoFired?.Invoke(player, targets);
     }

@@ -1,13 +1,10 @@
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.ammo;
 
@@ -31,6 +28,7 @@ public class FireAmmoAction : GameAction
             Cancel();
             return;
         }
+
         if (_player.PlayerCombatState.Energy < 1)
         {
             Cancel();
@@ -46,13 +44,8 @@ public class FireAmmoAction : GameAction
         var phantomCard = ammoState.PhantomCard;
         var damage = phantomCard.DynamicVars.CalculatedDamage;
 
-        // Determine targets
-        var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();
-        IReadOnlyList<Creature> targets = hasBigGuns
-            ? _player.Creature.CombatState.Enemies.Where(e => e.IsAlive).ToList()
-            : _player.Creature.CombatState.Enemies.Where(e => e.IsAlive).Take(1).ToList();
-
         // Build attack command
+        var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();
         var command = DamageCmd.Attack(damage)
             .WithHitCount(1)
             .FromCard(phantomCard)
@@ -68,10 +61,15 @@ public class FireAmmoAction : GameAction
             command.TargetingRandomOpponents(_player.Creature.CombatState);
         }
 
-        await command.Execute(new ThrowingPlayerChoiceContext());
+        var executedCommand = await command.Execute(new ThrowingPlayerChoiceContext());
 
-        // Fire event for ShellVolleySingleton and other subscribers
-        AmmoResource.FireOnAmmoFired(_player, targets);
+        var targets = executedCommand.Results
+            .SelectMany(r => r)
+            .Select(r => r.Receiver)
+            .Distinct()
+            .ToList();
+
+        AmmoResource.InvokeOnAmmoFired(_player, targets);
     }
 
     public override INetAction ToNetAction()
