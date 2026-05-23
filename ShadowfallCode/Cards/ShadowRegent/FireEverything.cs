@@ -4,11 +4,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.Commands;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
+//TODO: make Your Shots cost no energy this turn.
 public class FireEverything() : ShadowRegentCard(
     3,
     CardType.Skill,

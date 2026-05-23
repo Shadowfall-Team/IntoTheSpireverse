@@ -8,6 +8,7 @@ using Shadowfall.ShadowfallCode.Commands;
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
 //TODO needs name
+//TODO refactor: The first Shot you fire each combat costs no energy.
 public class SpareBullet() : ShadowRegentRelic
 {
     public override RelicRarity Rarity =>
