@@ -26,6 +26,7 @@ public partial class NAmmoButton : Node2D
     private Button _hitbox = null!;
     private ColorRect _fireRect = null!;
     private Label _fireLabel = null!;
+    private Label _energyCostLabel = null!;
 
     // TODO: replace with real nodes from scene
     // private TextureRect _damageIcon = null!;
@@ -162,7 +163,7 @@ public partial class NAmmoButton : Node2D
         _fireLabel = new Label
         {
             Name = "FireLabel",
-            Text = "1e  FIRE",
+            Text = "FIRE",
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
             Size = new Vector2(80, 36),
@@ -171,6 +172,21 @@ public partial class NAmmoButton : Node2D
         };
         _fireRect.AddChild(_fireLabel);
         _hitbox.AddChild(_fireRect);
+
+        // Energy cost node — to the left of the fire rect, eventually becomes energy orb
+        _energyCostLabel = new Label
+        {
+            Name = "EnergyCost",
+            Text = "1",
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            Size = new Vector2(28, 28),
+            Position = new Vector2(-32, 72),
+            MouseFilter = Control.MouseFilterEnum.Ignore,
+        };
+        var energyBg = new StyleBoxFlat { BgColor = new Color(0.15f, 0.15f, 0.5f, 0.9f), CornerRadiusTopLeft = 14, CornerRadiusTopRight = 14, CornerRadiusBottomLeft = 14, CornerRadiusBottomRight = 14 };
+        _energyCostLabel.AddThemeStyleboxOverride("normal", energyBg);
+        _hitbox.AddChild(_energyCostLabel);
     }
 
     public override void _EnterTree()
@@ -235,7 +251,7 @@ public partial class NAmmoButton : Node2D
         && !_isFiring
         && _player.PlayerCombatState != null
         && AmmoResource.GetAmmo(_player) > 0
-        && _player.PlayerCombatState.Energy >= 1
+        && _player.PlayerCombatState.Energy >= AmmoResource.GetShotEnergyCost(_player)
         && IsPlayerTurn
         && !CombatManager.Instance.IsOverOrEnding;
 
@@ -249,6 +265,8 @@ public partial class NAmmoButton : Node2D
 
         var damage = (int)AmmoResource.CalculateShotDamage(_player);
         _damageLabel.Text = $"dmg:{damage}";
+
+        _energyCostLabel.Text = AmmoResource.GetShotEnergyCost(_player).ToString();
 
         var canFire = CanFire;
         _shipNode.Modulate = canFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f, 1f);

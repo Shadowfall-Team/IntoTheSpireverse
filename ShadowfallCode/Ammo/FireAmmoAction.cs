@@ -28,7 +28,7 @@ public class FireAmmoAction : GameAction
             return;
         }
 
-        if (_player.PlayerCombatState.Energy < 1)
+        if (_player.PlayerCombatState.Energy < AmmoResource.GetShotEnergyCost(_player))
         {
             Cancel();
             return;
@@ -36,7 +36,7 @@ public class FireAmmoAction : GameAction
 
         // Spend resources
         AmmoResource.LoseAmmo(1, _player);
-        await PlayerCmd.LoseEnergy(1, _player);
+        await PlayerCmd.LoseEnergy(AmmoResource.GetShotEnergyCost(_player), _player);
 
         // Calculate damage from phantom card
         var ammoState = AmmoResource.GetOrCreateState(_player);

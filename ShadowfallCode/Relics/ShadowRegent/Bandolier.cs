@@ -8,23 +8,21 @@ using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-//TODO needs name
 public class Bandolier() : ShadowRegentRelic
 {
-    public override RelicRarity Rarity =>
-        RelicRarity.Starter;
+    public override RelicRarity Rarity => RelicRarity.Starter;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 3)
+        new IntVar("FreeShots", 3)
     ];
 
     public override async Task AfterRoomEntered(AbstractRoom room)
     {
-        if (room is CombatRoom)
-        {
-            await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
-        }
+        if (room is not CombatRoom) return;
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["FreeShots"].BaseValue, Owner, this);
+        await PowerCmd.Apply<FreeShotPower>(
+            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            3, Owner.Creature, null);
     }
-    
 }

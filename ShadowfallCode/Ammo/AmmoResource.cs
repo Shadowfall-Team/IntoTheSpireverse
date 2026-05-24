@@ -67,6 +67,17 @@ public static class AmmoResource
         }
     }
 
+    public static int GetShotEnergyCost(Player player)
+    {
+        var cost = 1;
+        foreach (var model in player.Creature.CombatState.IterateHookListeners())
+        {
+            if (model is IModifiesShotCost modifier)
+                cost = Math.Min(cost, modifier.ModifyShotCost());
+        }
+        return cost;
+    }
+
     public static decimal CalculateShotDamage(Player player)
     {
         var phantomCard = GetOrCreateState(player).PhantomCard;

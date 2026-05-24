@@ -1,34 +1,22 @@
-﻿using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-//TODO needs name
-//TODO refactor: The first Shot you fire each combat costs no energy.
 public class SpareBullet() : ShadowRegentRelic
 {
-    public override RelicRarity Rarity =>
-        RelicRarity.Starter;
+    public override RelicRarity Rarity => RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new IntVar("LoadAmmo", 1)
-    ];
-
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
-        ICombatState combatState)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (side == Owner.Creature.Side)
-        {
-            if (combatState.RoundNumber <= 1)
-            {
-                await LoadAmmoCmd.LoadAmmo(1, Owner, this);
-            }
-        }
+        if (player.Creature.CombatState.RoundNumber != 1) return;
+        await PowerCmd.Apply<FreeShotPower>(
+            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            1, Owner.Creature, null);
     }
 
     public override RelicModel? GetUpgradeReplacement()
