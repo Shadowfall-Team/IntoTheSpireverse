@@ -181,7 +181,8 @@ public partial class NAmmoButton : Node2D
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
             Size = new Vector2(28, 28),
-            Position = new Vector2(-32, 72),
+            Position = new Vector2(-18, 72),
+            ZIndex = 2,
             MouseFilter = Control.MouseFilterEnum.Ignore,
         };
         var energyBg = new StyleBoxFlat { BgColor = new Color(0.15f, 0.15f, 0.5f, 0.9f), CornerRadiusTopLeft = 14, CornerRadiusTopRight = 14, CornerRadiusBottomLeft = 14, CornerRadiusBottomRight = 14 };
