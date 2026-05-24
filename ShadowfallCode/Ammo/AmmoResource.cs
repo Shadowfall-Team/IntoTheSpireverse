@@ -10,11 +10,12 @@ namespace Shadowfall.ShadowfallCode.Ammo;
 
 public static class AmmoResource
 {
-    public static readonly SpireField<PlayerCombatState, AmmoState?> State = new(() => null);
+    private static readonly SpireField<PlayerCombatState, AmmoState?> State = new(() => null);
 
     //(state, oldAmmo, newAmmo)
     public static event Action<PlayerCombatState, int, int>? AmmoChanged;
 
+    //TODO: Exposed for muzzle flash on ship for later 
     public static event Action<Player, IReadOnlyList<Creature>>? OnAmmoFired;
 
     public static AmmoState GetOrCreateState(Player player)
