@@ -1,6 +1,9 @@
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Ammo;
@@ -86,5 +89,23 @@ public static class AmmoResource
         var multiplier = player.Creature.GetPowerAmount<NextVolleyDamageThisTurnPower>()
                          + player.Creature.GetPowerAmount<VolleyDamagePower>();
         return baseDamage + extraDamage * multiplier;
+    }
+
+    public static decimal CalculateShotDamagePreview(Player player, Creature? target = null)
+    {
+        var phantomCard = GetOrCreateState(player).PhantomCard;
+        var raw = CalculateShotDamage(player);
+
+        return Hook.ModifyDamage(
+            player.RunState,
+            player.Creature.CombatState,
+            target,
+            player.Creature,
+            raw,
+            ValueProp.Move,
+            phantomCard,
+            ModifyDamageHookType.All,
+            CardPreviewMode.Normal,
+            out _);
     }
 }

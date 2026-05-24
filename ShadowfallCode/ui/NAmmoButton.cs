@@ -264,7 +264,7 @@ public partial class NAmmoButton : Node2D
         var ammo = AmmoResource.GetAmmo(_player);
         _ammoCountLabel.Text = ammo.ToString();
 
-        var damage = (int)AmmoResource.CalculateShotDamage(_player);
+        var damage = AmmoResource.CalculateShotDamagePreview(_player);
         _damageLabel.Text = $"dmg:{damage}";
 
         _energyCostLabel.Text = AmmoResource.GetShotEnergyCost(_player).ToString();
