@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowRegent;

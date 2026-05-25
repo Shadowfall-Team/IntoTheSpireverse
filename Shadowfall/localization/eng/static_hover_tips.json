@@ -4,5 +4,7 @@
   "SHADOWFALL_GLORY_STATIC.title": "Glory",
   "SHADOWFALL_GLORY_STATIC.description": "If you have played a certain number of cards during your turn, trigger an additional effect.",
   "CARGO_PILE.title": "Cargo Pile",
-  "CARGO_PILE.description": "At the start of each turn,\nan extra card is drawn from here.\n\nClick to view the cards in your Cargo pile (in order)."
+  "CARGO_PILE.description": "At the start of each turn,\nan extra card is drawn from here.\n\nClick to view the cards in your Cargo pile (in order).",
+  "SHADOWFALL-LOAD_AMMO.title": "Ammo & Shot",
+  "SHADOWFALL-LOAD_AMMO.description": "Loading [gold]Ammo[/gold] increases your ammo stockpile. Ammo may be spent on [gold]Shots[/gold]."
 }

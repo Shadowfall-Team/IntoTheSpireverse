@@ -1,32 +1,22 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Rooms;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-//TODO needs name
 public class SpareBullet() : ShadowRegentRelic
 {
-    public override RelicRarity Rarity =>
-        RelicRarity.Starter;
+    public override RelicRarity Rarity => RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<AmmoPower>(1)
-    ];
-
-    public override async Task AfterRoomEntered(AbstractRoom room)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (room is CombatRoom)
-        {
-            await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-                DynamicVars[nameof(AmmoPower)].BaseValue, Owner.Creature, null);
-        }
+        if (player.Creature.CombatState.RoundNumber != 1) return;
+        await PowerCmd.Apply<FreeShotPower>(
+            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            1, Owner.Creature, null);
     }
 
     public override RelicModel? GetUpgradeReplacement()

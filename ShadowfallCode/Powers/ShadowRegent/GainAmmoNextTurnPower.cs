@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using Shadowfall.ShadowfallCode.Commands;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
@@ -14,7 +15,7 @@ public class GainAmmoNextTurnPower : CustomPowerModel
     
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        await PowerCmd.Apply<AmmoPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
+        await LoadAmmoCmd.LoadAmmo(Amount, Owner.Player, this);
         await PowerCmd.Remove(this);
     }
 }

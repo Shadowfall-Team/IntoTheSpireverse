@@ -3,48 +3,33 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-
-public class Claim() : ShadowRegentCard(2,
-    CardType.Attack,
+public class Claim() : ShadowRegentCard(1,
+    CardType.Skill,
     CardRarity.Basic,
-    TargetType.AnyEnemy)
+    TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(10, ValueProp.Move),
-        new PowerVar<ShardPower>(2)
+        new IntVar("LoadAmmo", 1)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardPower>()
-    ];
-    
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => LoadAmmoHoverTip.FromLoadAmmo();
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(play.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
-        
-        await PowerCmd.Apply<ShardPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-            DynamicVars[nameof(ShardPower)].BaseValue, 
-            Owner.Creature, 
-            this);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
-        DynamicVars[nameof(ShardPower)].UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
     }
 }
