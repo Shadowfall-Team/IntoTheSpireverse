@@ -182,9 +182,9 @@
   "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.description": "At the start of your next turn, gain additional [gold]Shards[/gold].",
   "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, gain [blue]{Amount}[/blue] [gold]Shards[/gold].",
   "SHADOWFALL-GAIN_SHARDS_NEXT_TURN_POWER.title": "Shards Next Turn",
-  "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN_POWER.description": "A temporary bonus to your Volley's damage for this turn.",
-  "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN_POWER.smartDescription": "Your Volley deals an additional [blue]{Amount}[/blue] damage this turn.",
-  "SHADOWFALL-VOLLEY_DAMAGE_THIS_TURN_POWER.title": "Firepower",
+  "SHADOWFALL-NEXT_VOLLEY_DAMAGE_THIS_TURN_POWER.description": "A temporary bonus to your Volley's damage for this turn.",
+  "SHADOWFALL-NEXT_VOLLEY_DAMAGE_THIS_TURN_POWER.smartDescription": "Your Volley deals an additional [blue]{Amount}[/blue] damage this turn.",
+  "SHADOWFALL-NEXT_VOLLEY_DAMAGE_THIS_TURN_POWER.title": "Firepower",
   "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.description": "At the start of your next turn, load additional [gold]Ammo[/gold].",
   "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.smartDescription": "At the start of your next turn, load [blue]{Amount}[/blue] [gold]Ammo[/gold].",
   "SHADOWFALL-GAIN_AMMO_NEXT_TURN_POWER.title": "Reloading",
@@ -244,5 +244,14 @@
   "SHADOWFALL-VOLLEY_DAMAGE_POWER.title": "Volley Damage",
   "SHADOWFALL-EXALTED_FORM_POWER.description": "At the start of your turn, add a 0-cost [gold]Discovery[/gold] to your [gold]Hand[/gold].",
   "SHADOWFALL-EXALTED_FORM_POWER.smartDescription": "At the start of your turn, add {Amount:plural:a|{Amount}} 0-cost Discovery to your hand.",
-  "SHADOWFALL-EXALTED_FORM_POWER.title": "Exalted Form"
+  "SHADOWFALL-EXALTED_FORM_POWER.title": "Exalted Form",
+  "SHADOWFALL-ROUSING_SPEECH_POWER.description": "Whenever you play a card or fire a Shot this turn, gain 1 [gold]Strength[/gold] this turn.",
+  "SHADOWFALL-ROUSING_SPEECH_POWER.smartDescription": "Whenever you play a card or fire a Shot this turn, gain 1 [gold]Strength[/gold] this turn.",
+  "SHADOWFALL-ROUSING_SPEECH_POWER.title": "Rousing Speech",
+  "SHADOWFALL-FREE_SHOT_POWER.description": "Your next Shots are free.",
+  "SHADOWFALL-FREE_SHOT_POWER.smartDescription": "Your next {Amount:plural:[gold]Shot[/gold] is|{Amount} [gold]Shots[/gold] are} free.",
+  "SHADOWFALL-FREE_SHOT_POWER.title": "FreeShotPower",
+  "SHADOWFALL-FIRE_EVERYTHING_POWER.description": "Your [gold]Shots[/gold] cost no energy this turn.",
+  "SHADOWFALL-FIRE_EVERYTHING_POWER.smartDescription": "Your [gold]Shots[/gold] cost no energy this turn.",
+  "SHADOWFALL-FIRE_EVERYTHING_POWER.title": "Fire Everything"
 }

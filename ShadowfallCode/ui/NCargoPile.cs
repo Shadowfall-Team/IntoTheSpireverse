@@ -25,10 +25,13 @@ public partial class NCargoPile : NCombatCardPile
     private const float PreviewYOffset = -15f;
     private const float PreviewXOffset = 140f;
     private const float PreviewSpacingX = -35f;
+    private const float PreviewHoverShiftX = 25f;
+
+    private Tween? _previewTween;
 
     private const float HideOffsetX = -150f;
 
-    private const float TooltipOffsetY = -300f;
+    private const float TooltipOffsetY = -350f;
 
     protected override PileType Pile => CargoCardPile.CargoPileType;
 
@@ -104,7 +107,6 @@ public partial class NCargoPile : NCombatCardPile
         }
         else if (_currentCount == 0 && Visible)
         {
-            Disable();
             RemoveCardPreview();
         }
     }
@@ -136,7 +138,7 @@ public partial class NCargoPile : NCombatCardPile
         if (cardNode == null) return null;
 
         var holder =
-            NPreviewCardHolder.Create(cardNode, showHoverTips: false,
+            NPreviewCardHolder.Create(cardNode, showHoverTips: isTop,
                 scaleOnHover: false);
         if (holder == null) return null;
 
@@ -144,6 +146,7 @@ public partial class NCargoPile : NCombatCardPile
         AddChild(holder);
         MoveChild(holder, 0);
         holder.MouseFilter = Control.MouseFilterEnum.Pass;
+        holder.FocusMode = Control.FocusModeEnum.None;
         holder.Hitbox.MouseFilter = Control.MouseFilterEnum.Pass;
 
         PositionPreviewCard(holder, xOffset, scale);
@@ -179,10 +182,32 @@ public partial class NCargoPile : NCombatCardPile
     {
         NHoverTipSet.Remove(this);
         var tooltip = NHoverTipSet.CreateAndShow(this, _hoverTip);
-        tooltip.GlobalPosition = GlobalPosition + new Vector2(0, TooltipOffsetY);
+        var yOffset = _previewHolders.Count > 0 ? TooltipOffsetY : -220f;
+        tooltip.GlobalPosition = GlobalPosition + new Vector2(0, yOffset);
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.TweenProperty(_icon, "scale", new Vector2(1.25f, 1.25f), 0.05);
+        TweenPreviewCards(PreviewHoverShiftX);
+    }
+
+    protected override void OnUnfocus()
+    {
+        base.OnUnfocus();
+        TweenPreviewCards(0f);
+    }
+
+    private void TweenPreviewCards(float targetShiftX)
+    {
+        if (_previewHolders.Count == 0) return;
+        _previewTween?.Kill();
+        _previewTween = CreateTween();
+        _previewTween.SetParallel();
+        for (var i = 0; i < _previewHolders.Count; i++)
+        {
+            var xOffset = PreviewXOffset + i * PreviewSpacingX + targetShiftX;
+            var targetPos = GlobalPosition + new Vector2(xOffset, PreviewYOffset);
+            _previewTween.TweenProperty(_previewHolders[i], "global_position", targetPos, 0.1);
+        }
     }
 
     public override void AnimIn()

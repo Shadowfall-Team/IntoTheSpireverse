@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
+namespace Shadowfall.ShadowfallCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
 public class Warp() : CustomCardModel(0,
