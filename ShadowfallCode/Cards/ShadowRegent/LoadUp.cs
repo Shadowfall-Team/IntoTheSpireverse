@@ -35,7 +35,8 @@ public class LoadUp() : ShadowRegentCard(
         if (!drawPile.IsEmpty)
         {
             var cards = drawPile.Cards.Take(DynamicVars.Cards.IntValue);
-            await CardPileCmd.Add(cards, CargoCardPile.CargoPileType);
+            var cardPileAddResult = await CardPileCmd.Add(cards, CargoCardPile.CargoPileType);
+            CardCmd.PreviewCardPileAdd(cardPileAddResult);
         }
     }
 
