@@ -3,6 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
+using Supermassive = Shadowfall.ShadowfallCode.Cards.ShadowRegent.Supermassive;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
@@ -85,7 +86,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             // ModelDb.Card<AstralStrike>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<EMPulse>(),
-            // ModelDb.Card<HeirloomHammer>(),
             ModelDb.Card<Smuggle>(),
             ModelDb.Card<TheStarsAlign>(),
             ModelDb.Card<FireEverything>(),

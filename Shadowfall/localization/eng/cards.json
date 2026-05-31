@@ -681,5 +681,7 @@
   "SHADOWFALL-SMUGGLE.description": "Choose up to {Cards:diff()} cards in your hand to put into your [gold]Cargo[/gold].",
   "SHADOWFALL-SMUGGLE.title": "Smuggle",
   "SHADOWFALL-AMMO_VOLLEY.description": "deal {CalculatedDamage:diff()} damage to a random enemy.",
-  "SHADOWFALL-AMMO_VOLLEY.title": "Shot"
+  "SHADOWFALL-AMMO_VOLLEY.title": "Shot",
+  "SHADOWFALL-SUPERMASSIVE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each card you created this combat.",
+  "SHADOWFALL-SUPERMASSIVE.title": "Supermassive"
 }
