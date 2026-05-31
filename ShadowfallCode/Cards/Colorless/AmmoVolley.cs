@@ -18,11 +18,11 @@ public class AmmoVolley() : CustomCardModel(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CalculationBaseVar(12),
+        new CalculationBaseVar(14),
         new ExtraDamageVar(1),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier(static (card, _) =>
-                card.Owner.Creature.GetPowerAmount<NextVolleyDamageThisTurnPower>() +
+                card.Owner.Creature.GetPowerAmount<NextVolleyDamagePower>() +
                 card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
         new RepeatVar(0),
     ];

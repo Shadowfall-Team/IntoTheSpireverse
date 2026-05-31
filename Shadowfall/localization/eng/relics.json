@@ -15,7 +15,7 @@
   "SHADOWFALL-SNECKO_REPLACEMENT.title": "SNECKO REPLACEMENT",
   "SHADOWFALL-SNECKO_REPLACEMENT.description": "Whenever you apply [gold]Bleed[/gold], gain [blue]{VigorPower}[/blue] [gold]Vigor[/gold].",
   
-  "SHADOWFALL-SPARE_BULLET.description": "The first [gold]Shot[/gold] you fire each combat costs no energy.",
+  "SHADOWFALL-SPARE_BULLET.description": "At the start of the first 3 turns of combat, gain 2 [gold]Shards[/gold].",
   "SHADOWFALL-SPARE_BULLET.flavor": "",
   "SHADOWFALL-SPARE_BULLET.title": "Spare Bullet",
   "SHADOWFALL-BANDOLIER.description": "The first {FreeShots} [gold]Shots[/gold] you fire each combat costs no energy.",

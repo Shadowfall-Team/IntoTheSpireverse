@@ -10,8 +10,8 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-//TODO: check if name is fine. similar to stowaway
-public class StashedAway() : ShadowRegentCard(
+//TODO: check if it counts as having been drawn
+public class Misdirection() : ShadowRegentCard(
     1,
     CardType.Attack,
     CardRarity.Uncommon,

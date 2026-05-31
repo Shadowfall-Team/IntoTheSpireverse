@@ -87,7 +87,7 @@ public static class AmmoResource
         var phantomCard = GetOrCreateState(player).PhantomCard;
         var baseDamage = phantomCard.DynamicVars.CalculationBase.BaseValue;
         var extraDamage = phantomCard.DynamicVars.ExtraDamage.BaseValue;
-        var multiplier = player.Creature.GetPowerAmount<NextVolleyDamageThisTurnPower>()
+        var multiplier = player.Creature.GetPowerAmount<NextVolleyDamagePower>()
                          + player.Creature.GetPowerAmount<VolleyDamagePower>();
         return baseDamage + extraDamage * multiplier;
     }
