@@ -14,6 +14,7 @@ public class Banana() : ShadowRegentCard(1,
     CardRarity.Uncommon,
     TargetType.Self)
 {
+    public override bool CanBeGeneratedInCombat => false;
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HealVar(3),
