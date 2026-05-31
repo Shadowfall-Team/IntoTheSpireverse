@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -10,7 +11,6 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-//TODO: check if it counts as having been drawn
 public class Misdirection() : ShadowRegentCard(
     1,
     CardType.Attack,
@@ -45,6 +45,7 @@ public class Misdirection() : ShadowRegentCard(
 
         if (selection == null) return;
         await CardPileCmd.Add(selection, PileType.Hand);
+        await Hook.AfterCardDrawn(CombatState, choiceContext, selection, false);
     }
 
     protected override void OnUpgrade()
