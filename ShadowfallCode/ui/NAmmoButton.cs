@@ -1,12 +1,16 @@
 using Godot;
+using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Actions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
@@ -16,10 +20,10 @@ using Shadowfall.ShadowfallCode.CardPiles;
 
 namespace Shadowfall.ShadowfallCode.ui;
 
-public partial class NAmmoButton : Node2D
+public partial class NAmmoButton : NButton
 {
-    // TODO: uncomment when .tscn is ready
-    // private static readonly string _scenePath = "res://Shadowfall/scenes/AmmoButton.tscn";
+    private static readonly string _scenePath = "res://Shadowfall/scenes/CaptainsShip.tscn";
+    private static readonly string _megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
 
     private Player _player = null!;
     private bool _initialized;
@@ -28,19 +32,11 @@ public partial class NAmmoButton : Node2D
     private CardPile? _pile;
 
     // Child nodes
-    private Node2D _shipNode = null!;
-    private Label _damageLabel = null!;
-    private Label _ammoCountLabel = null!;
-    private Button _hitbox = null!;
-    private ColorRect _fireRect = null!;
-    private Label _fireLabel = null!;
-    private Label _energyCostLabel = null!;
-
-    // TODO: replace with real nodes from scene
-    // private TextureRect _damageIcon = null!;
-    // private Control _buttonBody = null!;
-    // private TextureRect _energyOrb = null!;
-    // private ShadowfallMegaLabel _energyCostLabel = null!;
+    private Control _shipContainer = null!;
+    private ShadowfallMegaLabel _damageLabel = null!;
+    private ShadowfallMegaLabel _ammoCountLabel = null!;
+    private ShadowfallMegaLabel _fireLabel = null!;
+    private ShadowfallMegaLabel _energyCostLabel = null!;
 
     private Tween? _fadeTween;
 
@@ -49,136 +45,55 @@ public partial class NAmmoButton : Node2D
     private const float BobAmplitude = 3f;
     private const float BobFrequency = 2f;
 
-    public static NAmmoButton Create() => new();
+    protected override string? ClickedSfx => "event:/sfx/ui/clicks/ui_click";
+    protected override string? HoveredSfx => "event:/sfx/ui/clicks/ui_hover";
+
+    public static NAmmoButton Create()
+    {
+        var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
+        var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("ShipContainer/DamageIndicator/DamageLabel"), font, minSize: 20,
+            maxSize: 28);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count"), font, minSize: 26,
+            maxSize: 26);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/FireButton/FireButtonLabel"),
+            font, minSize: 20, maxSize: 20);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/EnergyIndicator/EnergyLabel"),
+            font, minSize: 14, maxSize: 24);
+        return button;
+    }
+
+    private static void ApplyFont(MegaLabel label, Font font, int minSize, int maxSize)
+    {
+        label.AddThemeFontOverride(ThemeConstants.Label.Font, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
+    }
 
     public override void _Ready()
     {
-        // TODO: replace this entire method body with GetNode lookups once .tscn exists:
-        // _shipNode        = GetNode<Node2D>("%Ship");
-        // _damageIcon      = GetNode<TextureRect>("%DamageIcon");
-        // _damageLabel     = GetNode<ShadowfallMegaLabel>("%DamageLabel");
-        // _buttonBody      = GetNode<Control>("%ButtonBody");
-        // _ammoCountLabel  = GetNode<ShadowfallMegaLabel>("%AmmoCount");
-        // _hitbox          = GetNode<Button>("%Hitbox");
-        // _energyOrb       = GetNode<TextureRect>("%EnergyOrb");
-        // _energyCostLabel = GetNode<ShadowfallMegaLabel>("%EnergyCost");
-        // _fireLabel       = GetNode<ShadowfallMegaLabel>("%FireLabel");
-        // _hitbox.Pressed += OnButtonPressed;
+        _shipContainer = GetNode<Control>("ShipContainer");
+        _damageLabel = GetNode<ShadowfallMegaLabel>("ShipContainer/DamageIndicator/DamageLabel");
+        _ammoCountLabel = GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count");
+        _fireLabel = GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/FireButton/FireButtonLabel");
+        _energyCostLabel =
+            GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/EnergyIndicator/EnergyLabel");
 
-        BuildPlaceholderUi();
+        ConnectSignals();
 
         Modulate = new Color(1, 1, 1, 0);
         Visible = false;
     }
 
-    private void BuildPlaceholderUi()
-    {
-        _shipNode = new Node2D { Name = "Ship" };
-        AddChild(_shipNode);
-
-        var shipRect = new ColorRect
-        {
-            Name = "ShipRect",
-            Color = new Color(0.25f, 0.35f, 0.55f, 0.9f),
-            Size = new Vector2(80, 50),
-            Position = new Vector2(-40, -46),
-        };
-        _shipNode.AddChild(shipRect);
-
-        _damageLabel = new Label
-        {
-            Name = "DamageLabel",
-            Text = "0",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Size = new Vector2(80, 24),
-            Position = new Vector2(-40, -76),
-        };
-        var damageBg = new StyleBoxFlat { BgColor = new Color(0.3f, 0.3f, 0.3f, 0.8f) };
-        _damageLabel.AddThemeStyleboxOverride("normal", damageBg);
-        _shipNode.AddChild(_damageLabel);
-
-        _hitbox = new Button
-        {
-            Name = "FireButton",
-            Size = new Vector2(80, 113),
-            Position = new Vector2(-40, 9),
-        };
-        _hitbox.AddThemeStyleboxOverride("normal", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("hover", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("pressed", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("disabled", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("focus", new StyleBoxEmpty());
-        _hitbox.Pressed += OnButtonPressed;
-        _hitbox.MouseEntered += OnHitboxMouseEntered;
-        _hitbox.MouseExited += OnHitboxMouseExited;
-        _hitbox.ButtonDown += () => _fireRect.Color = new Color(0.4f, 0.1f, 0.1f, 1f);
-        _hitbox.ButtonUp += UpdateFireRectColor;
-        AddChild(_hitbox);
-
-        _ammoCountLabel = new Label
-        {
-            Name = "AmmoCount",
-            Text = "0",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Size = new Vector2(80, 80),
-            Position = new Vector2(0, 0),
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-        var ammoBg = new StyleBoxFlat { BgColor = new Color(0.3f, 0.3f, 0.3f, 0.8f) };
-        _ammoCountLabel.AddThemeStyleboxOverride("normal", ammoBg);
-        _hitbox.AddChild(_ammoCountLabel);
-
-        _fireRect = new ColorRect
-        {
-            Name = "FireRect",
-            Size = new Vector2(80, 36),
-            Position = new Vector2(0, 68),
-            ZIndex = 1,
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-
-        _fireLabel = new Label
-        {
-            Name = "FireLabel",
-            Text = "FIRE",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Size = new Vector2(80, 36),
-            Position = new Vector2(0, 0),
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-        _fireRect.AddChild(_fireLabel);
-        _hitbox.AddChild(_fireRect);
-
-        _energyCostLabel = new Label
-        {
-            Name = "EnergyCost",
-            Text = "1",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Size = new Vector2(28, 28),
-            Position = new Vector2(-18, 72),
-            ZIndex = 2,
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-        var energyBg = new StyleBoxFlat
-        {
-            BgColor = new Color(0.15f, 0.15f, 0.5f, 0.9f),
-            CornerRadiusTopLeft = 14, CornerRadiusTopRight = 14,
-            CornerRadiusBottomLeft = 14, CornerRadiusBottomRight = 14,
-        };
-        _energyCostLabel.AddThemeStyleboxOverride("normal", energyBg);
-        _hitbox.AddChild(_energyCostLabel);
-    }
-
     public override void _EnterTree()
     {
+        base._EnterTree();
         CombatManager.Instance.StateTracker.CombatStateChanged += OnCombatStateChanged;
     }
 
     public override void _ExitTree()
     {
+        base._ExitTree();
         if (_pile != null)
             _pile.ContentsChanged -= OnPileContentsChanged;
         CombatManager.Instance.StateTracker.CombatStateChanged -= OnCombatStateChanged;
@@ -201,7 +116,60 @@ public partial class NAmmoButton : Node2D
     {
         if (!_initialized) return;
         _bobTime += (float)delta * BobFrequency;
-        _shipNode.Position = new Vector2(0f, Mathf.Sin(_bobTime) * BobAmplitude);
+        _shipContainer.Position = new Vector2(
+            _shipContainer.Position.X,
+            Mathf.Sin(_bobTime) * BobAmplitude);
+    }
+
+    // -------------------------------------------------------------------------
+    // NButton overrides
+    // -------------------------------------------------------------------------
+
+    protected override void OnFocus()
+    {
+        base.OnFocus(); // plays HoveredSfx
+        UpdateFireLabel();
+        var top = TopCard;
+        if (top == null) return;
+        NHoverTipSet.CreateAndShow(this,
+                new[] { HoverTipFactory.FromCard(top) }.Concat(top.HoverTips))
+            ?.SetAlignment(this, HoverTipAlignment.Left);
+    }
+
+    protected override void OnUnfocus()
+    {
+        UpdateFireLabel();
+        NHoverTipSet.Remove(this);
+    }
+
+    protected override void OnPress()
+    {
+        base.OnPress(); // plays ClickedSfx
+        UpdateFireLabel();
+    }
+
+    protected override void OnRelease()
+    {
+        if (!CanFire) return;
+
+        _isFiring = true;
+        UpdateState();
+
+        var action = new PlayAmmoCardAction(_player);
+        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(action);
+        WaitForActionComplete(action);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        UpdateFireLabel();
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        UpdateFireLabel();
     }
 
     // -------------------------------------------------------------------------
@@ -217,24 +185,6 @@ public partial class NAmmoButton : Node2D
         }
 
         UpdateState();
-    }
-
-    private void OnHitboxMouseEntered()
-    {
-        UpdateFireRectColor();
-        if (TopCard == null) return;
-
-        NHoverTipSet.CreateAndShow(
-            _hitbox,
-            new[] { HoverTipFactory.FromCard(TopCard) }.Concat(TopCard.HoverTips),
-            HoverTipAlignment.Right
-        );
-    }
-
-    private void OnHitboxMouseExited()
-    {
-        UpdateFireRectColor();
-        NHoverTipSet.Remove(_hitbox);
     }
 
     private void OnCombatStateChanged(CombatState state) => UpdateState();
@@ -272,7 +222,7 @@ public partial class NAmmoButton : Node2D
         var top = TopCard;
         if (top != null)
         {
-            _damageLabel.Text = $"dmg:{(int)Hook.ModifyDamage(
+            _damageLabel.Text = $"{(int)Hook.ModifyDamage(
                 _player.RunState,
                 _player.Creature.CombatState,
                 null,
@@ -287,42 +237,28 @@ public partial class NAmmoButton : Node2D
         }
         else
         {
-            _damageLabel.Text = "dmg:0";
+            _damageLabel.Text = "0";
             _energyCostLabel.Text = "1";
         }
 
-        var canFire = CanFire;
-        _shipNode.Modulate = canFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f, 1f);
-        _hitbox.Disabled = !canFire;
-        UpdateFireRectColor();
+        _shipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f, 1f);
+        SetEnabled(CanFire);
+        UpdateFireLabel();
     }
 
-    private void UpdateFireRectColor()
+    private void UpdateFireLabel()
     {
-        if (!_hitbox.Disabled && _hitbox.IsHovered())
-            _fireRect.Color = new Color(0.6f, 0.2f, 0.2f, 0.9f);
-        else if (_hitbox.Disabled)
-            _fireRect.Color = new Color(0.3f, 0.3f, 0.3f, 0.6f);
+        if (!_isEnabled)
+            _fireLabel.Modulate = StsColors.gray;
+        else if (IsFocused)
+            _fireLabel.Modulate = StsColors.red;
         else
-            _fireRect.Color = new Color(0.8f, 0.3f, 0.2f, 1f);
+            _fireLabel.Modulate = StsColors.cream;
     }
 
     // -------------------------------------------------------------------------
-    // Input
+    // Async fire wait
     // -------------------------------------------------------------------------
-
-    private void OnButtonPressed()
-    {
-        if (!CanFire) return;
-
-        _isFiring = true;
-        UpdateState();
-
-        var action = new PlayAmmoCardAction(_player);
-        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(action);
-
-        WaitForActionComplete(action);
-    }
 
     private async void WaitForActionComplete(PlayAmmoCardAction action)
     {

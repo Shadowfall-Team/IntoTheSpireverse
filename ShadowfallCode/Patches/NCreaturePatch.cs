@@ -17,10 +17,10 @@ public static class NCreaturePatch
 
         var ammoButton = NAmmoButton.Create();
         ammoButton.Name = "AmmoButton";
+        __instance.AddChild(ammoButton);
         ammoButton.Position = new Vector2(
-            __instance.Hitbox.Size.X * 0.5f + 55f,
+            __instance.Hitbox.Size.X * 0.5f + 10f,
             -400f
         );
-        __instance.AddChild(ammoButton);
     }
 }
