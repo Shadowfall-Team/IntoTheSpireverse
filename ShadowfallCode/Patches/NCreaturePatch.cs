@@ -13,9 +13,7 @@ public static class NCreaturePatch
     public static void Postfix(NCreature __instance)
     {
         if (!__instance.Entity.IsPlayer) return;
-
-        var player = __instance.Entity.Player!;
-        if (!LocalContext.IsMe(player)) return;
+        if (!LocalContext.IsMe(__instance.Entity.Player!)) return;
 
         var ammoButton = NAmmoButton.Create();
         ammoButton.Name = "AmmoButton";
@@ -23,7 +21,6 @@ public static class NCreaturePatch
             __instance.Hitbox.Size.X * 0.5f + 55f,
             -400f
         );
-        ammoButton.SetPlayer(player);
         __instance.AddChild(ammoButton);
     }
 }

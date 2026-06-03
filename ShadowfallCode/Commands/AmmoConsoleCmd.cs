@@ -10,7 +10,7 @@ namespace Shadowfall.ShadowfallCode.Commands;
 /// <summary>
 /// Usage:
 ///   ammo load [amount]   — gain ammo (default 1)
-///   ammo fire            — enqueue FireAmmoAction for the issuing player
+///   ammo fire            — enqueue PlayAmmoCardAction for the issuing player
 ///   ammo status          — print current ammo count
 /// </summary>
 public class AmmoConsoleCmd : AbstractConsoleCmd
@@ -49,9 +49,8 @@ public class AmmoConsoleCmd : AbstractConsoleCmd
                 return new CmdResult(success: false, "Amount must be a positive integer.");
         }
 
-        AmmoResource.GainAmmo(amount, player);
-        var total = AmmoResource.GetAmmo(player);
-        return new CmdResult(success: true, $"Loaded {amount} ammo. Total: {total}.");
+        _ = AmmoResource.GainAmmo(amount, player);
+        return new CmdResult(success: true, $"Loaded {amount} ammo.");
     }
 
     private static CmdResult HandleFire(Player player)
@@ -66,8 +65,8 @@ public class AmmoConsoleCmd : AbstractConsoleCmd
         if (!CombatManager.Instance.IsInProgress)
             return new CmdResult(success: false, "Combat is not in progress.");
 
-        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(new FireAmmoAction(player));
-        return new CmdResult(success: true, $"FireAmmoAction enqueued. Ammo before: {ammo}.");
+        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(new PlayAmmoCardAction(player));
+        return new CmdResult(success: true, $"PlayAmmoCardAction enqueued. Ammo before: {ammo}.");
     }
 
     private static CmdResult HandleStatus(Player player)
