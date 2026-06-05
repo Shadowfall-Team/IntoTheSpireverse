@@ -31,7 +31,7 @@ public partial class NCargoPile : NCombatCardPile
 
     private const float HideOffsetX = -150f;
 
-    private const float TooltipOffsetY = -350f;
+    private const float TooltipOffsetY = -355f;
 
     protected override PileType Pile => CargoCardPile.CargoPileType;
 
@@ -60,9 +60,6 @@ public partial class NCargoPile : NCombatCardPile
     {
         ConnectSignals();
         _emptyPileMessage = new LocString("combat_messages", "OPEN_EMPTY_CARGO");
-
-        _hoverTip = new HoverTip(new LocString("static_hover_tips", "CARGO_PILE.title"),
-            new LocString("static_hover_tips", "CARGO_PILE.description"));
 
         Visible = false;
         SetAnimInOutPositions();
@@ -181,9 +178,15 @@ public partial class NCargoPile : NCombatCardPile
     protected override void OnFocus()
     {
         NHoverTipSet.Remove(this);
-        var tooltip = NHoverTipSet.CreateAndShow(this, _hoverTip);
-        var yOffset = _previewHolders.Count > 0 ? TooltipOffsetY : -220f;
-        tooltip.GlobalPosition = GlobalPosition + new Vector2(0, yOffset);
+        var hoverTip = new HoverTip(
+            new LocString("static_hover_tips", "CARGO_PILE.title"),
+            new LocString("static_hover_tips", "CARGO_PILE.description"));
+        var tooltip = NHoverTipSet.CreateAndShow(this, hoverTip);
+        if (tooltip != null)
+        {
+            var yOffset = _previewHolders.Count > 0 ? TooltipOffsetY : -220f;
+            tooltip.GlobalPosition = GlobalPosition + new Vector2(0, yOffset);
+        }
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.TweenProperty(_icon, "scale", new Vector2(1.25f, 1.25f), 0.05);
