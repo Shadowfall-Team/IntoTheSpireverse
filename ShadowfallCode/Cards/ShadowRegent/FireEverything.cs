@@ -7,7 +7,8 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using Shadowfall.ShadowfallCode.Ammo;
+using MegaCrit.Sts2.Core.Models;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 using Shadowfall.ShadowfallCode.Commands;
 using Shadowfall.ShadowfallCode.utils;
 
@@ -47,12 +48,21 @@ public class FireEverything() : ShadowRegentCard(
     }
 }
 
-public class FireEverythingPower : CustomPowerModel, IModifiesShotCost
+public class FireEverythingPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.None;
 
-    public int ModifyShotCost() => 0;
+    public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
+    {
+        if (card is AmmoVolley)
+        {
+            modifiedCost = 0;
+            return true;
+        }
+        modifiedCost = originalCost;
+        return false;
+    }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)

@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-public class Retrieve() : ShadowRegentCard(
+public class LoadUp() : ShadowRegentCard(
     0,
     CardType.Skill,
     CardRarity.Uncommon,
@@ -18,8 +18,9 @@ public class Retrieve() : ShadowRegentCard(
     [
         new CardsVar(2)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo)
     ];
 
@@ -30,14 +31,12 @@ public class Retrieve() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner);
-        if (!cargoPile.IsEmpty)
+        var drawPile = PileType.Draw.GetPile(Owner);
+        if (!drawPile.IsEmpty)
         {
-            var cards = cargoPile.Cards.Take((int)DynamicVars.Cards.BaseValue).ToList();
-            if (cards.Count != 0)
-            {
-                await CardPileCmd.Add(cards, PileType.Hand);
-            }
+            var cards = drawPile.Cards.Take(DynamicVars.Cards.IntValue);
+            var cardPileAddResult = await CardPileCmd.Add(cards, CargoCardPile.CargoPileType);
+            CardCmd.PreviewCardPileAdd(cardPileAddResult);
         }
     }
 

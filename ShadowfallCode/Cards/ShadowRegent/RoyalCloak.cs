@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 public class RoyalCloak() : ShadowRegentCard(2,
-    CardType.Skill,
+    CardType.Power,
     CardRarity.Uncommon,
     TargetType.Self)
 {

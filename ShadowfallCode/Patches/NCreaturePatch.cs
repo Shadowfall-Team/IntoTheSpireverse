@@ -13,17 +13,14 @@ public static class NCreaturePatch
     public static void Postfix(NCreature __instance)
     {
         if (!__instance.Entity.IsPlayer) return;
-
-        var player = __instance.Entity.Player!;
-        if (!LocalContext.IsMe(player)) return;
+        if (!LocalContext.IsMe(__instance.Entity.Player!)) return;
 
         var ammoButton = NAmmoButton.Create();
         ammoButton.Name = "AmmoButton";
+        __instance.AddChild(ammoButton);
         ammoButton.Position = new Vector2(
-            __instance.Hitbox.Size.X * 0.5f + 55f,
+            __instance.Hitbox.Size.X * 0.5f + 10f,
             -400f
         );
-        ammoButton.SetPlayer(player);
-        __instance.AddChild(ammoButton);
     }
 }

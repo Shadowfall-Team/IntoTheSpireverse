@@ -3,6 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
+using Supermassive = Shadowfall.ShadowfallCode.Cards.ShadowRegent.Supermassive;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
@@ -63,7 +64,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<TrialOfKnowledge>(),
             ModelDb.Card<TrialOfWeaponry>(),
             ModelDb.Card<Cards.ShadowRegent.Convergence>(),
-            ModelDb.Card<Retrieve>(),
+            ModelDb.Card<LoadUp>(),
             ModelDb.Card<SpacePirate>(),
             ModelDb.Card<MirrorImage>(),
             ModelDb.Card<TargetAcquired>(),
@@ -85,12 +86,12 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             // ModelDb.Card<AstralStrike>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<EMPulse>(),
-            ModelDb.Card<HeirloomHammer>(),
+            ModelDb.Card<Smuggle>(),
             ModelDb.Card<TheStarsAlign>(),
             ModelDb.Card<FireEverything>(),
             ModelDb.Card<PoweredThrusters>(),
             ModelDb.Card<Successor>(),
-            ModelDb.Card<StashedAway>(),
+            ModelDb.Card<Misdirection>(),
             ModelDb.Card<PoweredBarrier>(),
             ModelDb.Card<RedGiant>(),
             ModelDb.Card<ShipMaintenance>(),

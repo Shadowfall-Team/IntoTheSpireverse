@@ -12,7 +12,8 @@ public class KnowledgeBlast() : ShadowRegentCard(2,
     TargetType.AllEnemies)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(16, ValueProp.Move)
+        new DamageVar(8, ValueProp.Move),
+        new RepeatVar(2)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
@@ -26,12 +27,13 @@ public class KnowledgeBlast() : ShadowRegentCard(2,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .TargetingAllOpponents(CombatState)
+            .WithHitCount(DynamicVars.Repeat.IntValue)
             .WithHitFx("vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
             .Execute(choiceContext);
     }
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4);
+        DynamicVars.Damage.UpgradeValueBy(2);
     }
 }

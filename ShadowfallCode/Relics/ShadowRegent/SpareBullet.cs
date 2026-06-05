@@ -13,13 +13,13 @@ public class SpareBullet() : ShadowRegentRelic
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player.Creature.CombatState.RoundNumber != 1) return;
-        await PowerCmd.Apply<FreeShotPower>(
+        if (player.Creature.CombatState.RoundNumber > 3) return;
+        await PowerCmd.Apply<ShardPower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,
-            1, Owner.Creature, null);
+            2, Owner.Creature, null);
     }
 
-    public override RelicModel? GetUpgradeReplacement()
+    public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<Bandolier>();
     }

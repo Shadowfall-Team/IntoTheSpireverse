@@ -5,12 +5,9 @@ using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 
 namespace Shadowfall.ShadowfallCode.Ammo;
 
-public struct NetFireAmmoAction : INetAction, IPacketSerializable
+public struct NetPlayAmmoCardAction : INetAction, IPacketSerializable
 {
-    public GameAction ToGameAction(Player player)
-    {
-        return new FireAmmoAction(player);
-    }
+    public GameAction ToGameAction(Player player) => new PlayAmmoCardAction(player);
 
     public void Serialize(PacketWriter writer)
     {
@@ -21,8 +18,5 @@ public struct NetFireAmmoAction : INetAction, IPacketSerializable
     {
     }
 
-    public override string ToString()
-    {
-        return nameof(NetFireAmmoAction);
-    }
+    public override string ToString() => nameof(NetPlayAmmoCardAction);
 }
