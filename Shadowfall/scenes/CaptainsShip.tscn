@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbtqxgu7bq2i7"]
+[gd_scene load_steps=9 format=3 uid="uid://dbtqxgu7bq2i7"]
 
 [ext_resource type="Script" uid="uid://b84u20tfwjkmq" path="res://ShadowfallCode/ui/NAmmoButton.cs" id="1_dh6nf"]
 [ext_resource type="Script" uid="uid://cdwygcc8hduxl" path="res://ShadowfallCode/ui/ShadowfallMegaLabel.cs" id="1_ruvg3"]
 [ext_resource type="Texture2D" uid="uid://q433vd7by7gy" path="res://Shadowfall/images/relics/big/relic.png" id="2_nfjci"]
 [ext_resource type="Texture2D" uid="uid://51osq8vorvg8" path="res://Shadowfall/images/combat_ui/ammo_pile.png" id="3_7vte5"]
-[ext_resource type="Texture2D" uid="uid://4lxm0uwib2wp" path="res://Shadowfall/images/charui/tiny_arrow_up.png" id="3_kjnck"]
+[ext_resource type="Texture2D" uid="uid://c11p22ce8jcy2" path="res://Shadowfall/images/combat_ui/intent_attack_3.png" id="3_8knwp"]
+[ext_resource type="Script" uid="uid://pidfu6oar7a8" path="res://ShadowfallCode/ui/ShadowfallMegaRichTextLabel.cs" id="4_anfaq"]
 [ext_resource type="Texture2D" uid="uid://5ris3fd14de4" path="res://Shadowfall/images/combat_ui/ammo_button.png" id="4_dc20g"]
 [ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://Shadowfall/images/relics/relic_outline.png" id="7_8knwp"]
 
@@ -41,47 +42,43 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="DamageIndicator" type="Control" parent="ShipContainer"]
+layout_mode = 1
 anchors_preset = 0
-offset_left = 18.0
-offset_top = -37.0
-offset_right = 98.0
-offset_bottom = -13.0
+offset_left = 8.0
+offset_top = -53.0
+offset_right = 71.99996
+offset_bottom = 11.0
 mouse_filter = 2
 
 [node name="DamageIcon" type="TextureRect" parent="ShipContainer/DamageIndicator"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 10.0
-offset_bottom = 37.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 64.0
+offset_bottom = 64.0
 mouse_filter = 2
-texture = ExtResource("3_kjnck")
+texture = ExtResource("3_8knwp")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="DamageLabel" type="Label" parent="ShipContainer/DamageIndicator"]
+[node name="DamageLabel" type="RichTextLabel" parent="ShipContainer/DamageIndicator"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -20.0
-offset_bottom = -8.0
+offset_left = 2.0
+offset_top = 40.0
+offset_right = 3.8146973e-05
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
-theme_override_colors/font_outline_color = Color(0.53333336, 0.12156863, 0.1254902, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
+theme_override_colors/default_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/outline_size = 12
-theme_override_constants/shadow_outline_size = 12
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
 text = "14"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("1_ruvg3")
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("4_anfaq")
 
 [node name="AmmoContainer" type="Control" parent="."]
 anchors_preset = 0
@@ -148,10 +145,12 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 12
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 32
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_ruvg3")
+theme_override_font_sizes/font_size = 32
 
 [node name="ControllerIcon" type="TextureRect" parent="AmmoContainer/AmmoPile"]
 unique_name_in_owner = true
@@ -208,7 +207,7 @@ theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 12
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 20
 text = "FIRE!"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -219,7 +218,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1882353)
 theme_override_constants/line_spacing = -4
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 20
 
 [node name="EnergyIndicator" type="Control" parent="AmmoContainer/FireButtonContainer"]
 layout_mode = 1

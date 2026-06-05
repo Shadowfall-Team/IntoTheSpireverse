@@ -33,7 +33,7 @@ public partial class NAmmoButton : NButton
 
     // Child nodes
     private Control _shipContainer = null!;
-    private ShadowfallMegaLabel _damageLabel = null!;
+    private ShadowfallMegaRichTextLabel _damageLabel = null!;
     private ShadowfallMegaLabel _ammoCountLabel = null!;
     private ShadowfallMegaLabel _fireLabel = null!;
     private ShadowfallMegaLabel _energyCostLabel = null!;
@@ -52,10 +52,11 @@ public partial class NAmmoButton : NButton
     {
         var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
         var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("ShipContainer/DamageIndicator/DamageLabel"), font, minSize: 20,
+        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("ShipContainer/DamageIndicator/DamageLabel"), font,
+            minSize: 22,
             maxSize: 28);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count"), font, minSize: 26,
-            maxSize: 26);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count"), font, minSize: 32,
+            maxSize: 32);
         ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/FireButton/FireButtonLabel"),
             font, minSize: 20, maxSize: 20);
         ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/EnergyIndicator/EnergyLabel"),
@@ -70,10 +71,17 @@ public partial class NAmmoButton : NButton
         label.MaxFontSize = maxSize;
     }
 
+    private static void ApplyFont(MegaRichTextLabel label, Font font, int minSize, int maxSize)
+    {
+        label.AddThemeFontOverride(ThemeConstants.RichTextLabel.NormalFont, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
+    }
+
     public override void _Ready()
     {
         _shipContainer = GetNode<Control>("ShipContainer");
-        _damageLabel = GetNode<ShadowfallMegaLabel>("ShipContainer/DamageIndicator/DamageLabel");
+        _damageLabel = GetNode<ShadowfallMegaRichTextLabel>("ShipContainer/DamageIndicator/DamageLabel");
         _ammoCountLabel = GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count");
         _fireLabel = GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/FireButton/FireButtonLabel");
         _energyCostLabel =
