@@ -37,12 +37,13 @@ public partial class NAmmoButton : NButton
     private ShadowfallMegaLabel _ammoCountLabel = null!;
     private ShadowfallMegaLabel _fireLabel = null!;
     private ShadowfallMegaLabel _energyCostLabel = null!;
+    private TextureRect _energyIcon = null!;
 
     private Tween? _fadeTween;
 
     // Bob state
     private float _bobTime;
-    private const float BobAmplitude = 3f;
+    private const float BobAmplitude = 5f;
     private const float BobFrequency = 2f;
 
     protected override string? ClickedSfx => "event:/sfx/ui/clicks/ui_click";
@@ -52,15 +53,15 @@ public partial class NAmmoButton : NButton
     {
         var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
         var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
-        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("ShipContainer/DamageIndicator/DamageLabel"), font,
+        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel"), font,
             minSize: 22,
             maxSize: 28);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count"), font, minSize: 32,
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%Count"), font, minSize: 32,
             maxSize: 32);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/FireButton/FireButtonLabel"),
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%FireButtonLabel"),
             font, minSize: 20, maxSize: 20);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/EnergyIndicator/EnergyLabel"),
-            font, minSize: 14, maxSize: 24);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%EnergyLabel"),
+            font, minSize: 21, maxSize: 24);
         return button;
     }
 
@@ -81,11 +82,11 @@ public partial class NAmmoButton : NButton
     public override void _Ready()
     {
         _shipContainer = GetNode<Control>("ShipContainer");
-        _damageLabel = GetNode<ShadowfallMegaRichTextLabel>("ShipContainer/DamageIndicator/DamageLabel");
-        _ammoCountLabel = GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count");
-        _fireLabel = GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/FireButton/FireButtonLabel");
-        _energyCostLabel =
-            GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/EnergyIndicator/EnergyLabel");
+        _damageLabel = GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel");
+        _ammoCountLabel = GetNode<ShadowfallMegaLabel>("%Count");
+        _fireLabel = GetNode<ShadowfallMegaLabel>("%FireButtonLabel");
+        _energyCostLabel = GetNode<ShadowfallMegaLabel>("%EnergyLabel");
+        _energyIcon = GetNode<TextureRect>("%EnergyIcon");
 
         ConnectSignals();
 
@@ -112,6 +113,8 @@ public partial class NAmmoButton : NButton
         _player = player;
         _pile = AmmoCardPile.AmmoPileType.GetPile(player);
         _pile.ContentsChanged += OnPileContentsChanged;
+        _energyIcon.Texture = PreloadManager.Cache.GetAsset<Texture2D>(
+            EnergyIconHelper.GetPath(_player.Character.CardPool));
         _initialized = true;
         UpdateState();
     }
