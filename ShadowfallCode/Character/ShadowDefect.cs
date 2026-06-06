@@ -7,13 +7,14 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Relics;
+using Shadowfall.ShadowfallCode.Config;
 using Shadowfall.ShadowfallCode.Relics;
 using Decay = Shadowfall.Cards.Decay;
 using Invoke = Shadowfall.Cards.Invoke;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter
+public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IShadowfallDebug
 {
     public override string PlaceholderID => "defect";
     public const string CharacterId = "Shadowfall";

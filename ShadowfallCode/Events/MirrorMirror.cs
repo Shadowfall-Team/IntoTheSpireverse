@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
 using Shadowfall.ShadowfallCode.Character;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Events;
 
@@ -37,7 +38,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
     {
         return runState.Players.All(p =>
             p.Character is IAltCharacter ||
-            ModelDb.AllCharacters.Any(a => a is IAltCharacter ac && ac.BaseCharacterModel == p.Character));
+            ModelDb.AllCharacters.Any(a => AltCharacterUtil.IsAvailableAltCharacter(a) && a is IAltCharacter ac && ac.BaseCharacterModel == p.Character));
     }
 
     private async Task TakeCards()
@@ -123,7 +124,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         _mirrorCharacterModel = Owner.Character is IAltCharacter ownerAltCharacter
             ? ownerAltCharacter.BaseCharacterModel
             : Owner.RunState.Rng.CombatCardSelection.NextItem(ModelDb.AllCharacters
-                .Where(c => c is IAltCharacter ac && ac.BaseCharacterModel == Owner.Character));
+                .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter ac && ac.BaseCharacterModel == Owner.Character));
         return
         [
             Option(TakeCards),
