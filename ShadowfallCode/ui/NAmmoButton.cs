@@ -17,6 +17,7 @@ using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Ammo;
 using Shadowfall.ShadowfallCode.CardPiles;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 
 namespace Shadowfall.ShadowfallCode.ui;
 
@@ -38,6 +39,7 @@ public partial class NAmmoButton : NButton
     private ShadowfallMegaLabel _fireLabel = null!;
     private ShadowfallMegaLabel _energyCostLabel = null!;
     private TextureRect _energyIcon = null!;
+    private TextureRect _damageIcon = null!;
 
     private Tween? _fadeTween;
 
@@ -79,6 +81,19 @@ public partial class NAmmoButton : NButton
         label.MaxFontSize = maxSize;
     }
 
+    private static Texture2D GetAttackIntentTexture(int damage)
+    {
+        var tier = damage switch
+        {
+            < 5 => "1",
+            < 10 => "2",
+            < 20 => "3",
+            < 40 => "4",
+            _ => "5"
+        };
+        return PreloadManager.Cache.GetAsset<Texture2D>(ImageHelper.GetImagePath($"packed/intents/attack/intent_attack_{tier}.png"));
+    }
+
     public override void _Ready()
     {
         _shipContainer = GetNode<Control>("ShipContainer");
@@ -87,6 +102,7 @@ public partial class NAmmoButton : NButton
         _fireLabel = GetNode<ShadowfallMegaLabel>("%FireButtonLabel");
         _energyCostLabel = GetNode<ShadowfallMegaLabel>("%EnergyLabel");
         _energyIcon = GetNode<TextureRect>("%EnergyIcon");
+        _damageIcon = GetNode<TextureRect>("%DamageIcon");
 
         ConnectSignals();
 
@@ -230,29 +246,23 @@ public partial class NAmmoButton : NButton
 
         _ammoCountLabel.Text = _pile!.Cards.Count.ToString();
 
-        var top = TopCard;
-        if (top != null)
-        {
-            _damageLabel.Text = $"{(int)Hook.ModifyDamage(
-                _player.RunState,
-                _player.Creature.CombatState,
-                null,
-                _player.Creature,
-                top.DynamicVars.CalculatedDamage.BaseValue,
-                ValueProp.Move,
-                top,
-                ModifyDamageHookType.All,
-                CardPreviewMode.Normal,
-                out _)}";
-            _energyCostLabel.Text = ((int)top.EnergyCost.GetWithModifiers(CostModifiers.All)).ToString();
-        }
-        else
-        {
-            _damageLabel.Text = "0";
-            _energyCostLabel.Text = "1";
-        }
+        var card = TopCard ?? ModelDb.Card<AmmoVolley>();
+        var damage = (int)Hook.ModifyDamage(
+            _player.RunState,
+            _player.Creature.CombatState,
+            null,
+            _player.Creature,
+            card.DynamicVars.CalculatedDamage.BaseValue,
+            ValueProp.Move,
+            card,
+            ModifyDamageHookType.All,
+            CardPreviewMode.Normal,
+            out _);
+        _damageLabel.Text = $"{damage}";
+        _damageIcon.Texture = GetAttackIntentTexture(damage);
+        _energyCostLabel.Text = card.EnergyCost.GetWithModifiers(CostModifiers.All).ToString();
 
-        _shipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f, 1f);
+        _shipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f);
         SetEnabled(CanFire);
         UpdateFireLabel();
     }
