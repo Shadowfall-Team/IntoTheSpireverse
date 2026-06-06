@@ -17,6 +17,7 @@ using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Ammo;
 using Shadowfall.ShadowfallCode.CardPiles;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 
 namespace Shadowfall.ShadowfallCode.ui;
 
@@ -33,16 +34,18 @@ public partial class NAmmoButton : NButton
 
     // Child nodes
     private Control _shipContainer = null!;
-    private ShadowfallMegaLabel _damageLabel = null!;
+    private ShadowfallMegaRichTextLabel _damageLabel = null!;
     private ShadowfallMegaLabel _ammoCountLabel = null!;
     private ShadowfallMegaLabel _fireLabel = null!;
     private ShadowfallMegaLabel _energyCostLabel = null!;
+    private TextureRect _energyIcon = null!;
+    private TextureRect _damageIcon = null!;
 
     private Tween? _fadeTween;
 
     // Bob state
     private float _bobTime;
-    private const float BobAmplitude = 3f;
+    private const float BobAmplitude = 5f;
     private const float BobFrequency = 2f;
 
     protected override string? ClickedSfx => "event:/sfx/ui/clicks/ui_click";
@@ -52,14 +55,15 @@ public partial class NAmmoButton : NButton
     {
         var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
         var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("ShipContainer/DamageIndicator/DamageLabel"), font, minSize: 20,
+        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel"), font,
+            minSize: 22,
             maxSize: 28);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count"), font, minSize: 26,
-            maxSize: 26);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/FireButton/FireButtonLabel"),
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%Count"), font, minSize: 32,
+            maxSize: 32);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%FireButtonLabel"),
             font, minSize: 20, maxSize: 20);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/EnergyIndicator/EnergyLabel"),
-            font, minSize: 14, maxSize: 24);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%EnergyLabel"),
+            font, minSize: 21, maxSize: 24);
         return button;
     }
 
@@ -70,14 +74,35 @@ public partial class NAmmoButton : NButton
         label.MaxFontSize = maxSize;
     }
 
+    private static void ApplyFont(MegaRichTextLabel label, Font font, int minSize, int maxSize)
+    {
+        label.AddThemeFontOverride(ThemeConstants.RichTextLabel.NormalFont, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
+    }
+
+    private static Texture2D GetAttackIntentTexture(int damage)
+    {
+        var tier = damage switch
+        {
+            < 5 => "1",
+            < 10 => "2",
+            < 20 => "3",
+            < 40 => "4",
+            _ => "5"
+        };
+        return PreloadManager.Cache.GetAsset<Texture2D>(ImageHelper.GetImagePath($"packed/intents/attack/intent_attack_{tier}.png"));
+    }
+
     public override void _Ready()
     {
         _shipContainer = GetNode<Control>("ShipContainer");
-        _damageLabel = GetNode<ShadowfallMegaLabel>("ShipContainer/DamageIndicator/DamageLabel");
-        _ammoCountLabel = GetNode<ShadowfallMegaLabel>("AmmoContainer/AmmoPile/CountContainer/Count");
-        _fireLabel = GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/FireButton/FireButtonLabel");
-        _energyCostLabel =
-            GetNode<ShadowfallMegaLabel>("AmmoContainer/FireButtonContainer/EnergyIndicator/EnergyLabel");
+        _damageLabel = GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel");
+        _ammoCountLabel = GetNode<ShadowfallMegaLabel>("%Count");
+        _fireLabel = GetNode<ShadowfallMegaLabel>("%FireButtonLabel");
+        _energyCostLabel = GetNode<ShadowfallMegaLabel>("%EnergyLabel");
+        _energyIcon = GetNode<TextureRect>("%EnergyIcon");
+        _damageIcon = GetNode<TextureRect>("%DamageIcon");
 
         ConnectSignals();
 
@@ -104,6 +129,8 @@ public partial class NAmmoButton : NButton
         _player = player;
         _pile = AmmoCardPile.AmmoPileType.GetPile(player);
         _pile.ContentsChanged += OnPileContentsChanged;
+        _energyIcon.Texture = PreloadManager.Cache.GetAsset<Texture2D>(
+            EnergyIconHelper.GetPath(_player.Character.CardPool));
         _initialized = true;
         UpdateState();
     }
@@ -219,29 +246,23 @@ public partial class NAmmoButton : NButton
 
         _ammoCountLabel.Text = _pile!.Cards.Count.ToString();
 
-        var top = TopCard;
-        if (top != null)
-        {
-            _damageLabel.Text = $"{(int)Hook.ModifyDamage(
-                _player.RunState,
-                _player.Creature.CombatState,
-                null,
-                _player.Creature,
-                top.DynamicVars.CalculatedDamage.BaseValue,
-                ValueProp.Move,
-                top,
-                ModifyDamageHookType.All,
-                CardPreviewMode.Normal,
-                out _)}";
-            _energyCostLabel.Text = ((int)top.EnergyCost.GetWithModifiers(CostModifiers.All)).ToString();
-        }
-        else
-        {
-            _damageLabel.Text = "0";
-            _energyCostLabel.Text = "1";
-        }
+        var card = TopCard ?? ModelDb.Card<AmmoVolley>();
+        var damage = (int)Hook.ModifyDamage(
+            _player.RunState,
+            _player.Creature.CombatState,
+            null,
+            _player.Creature,
+            card.DynamicVars.CalculatedDamage.BaseValue,
+            ValueProp.Move,
+            card,
+            ModifyDamageHookType.All,
+            CardPreviewMode.Normal,
+            out _);
+        _damageLabel.Text = $"{damage}";
+        _damageIcon.Texture = GetAttackIntentTexture(damage);
+        _energyCostLabel.Text = card.EnergyCost.GetWithModifiers(CostModifiers.All).ToString();
 
-        _shipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f, 1f);
+        _shipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f);
         SetEnabled(CanFire);
         UpdateFireLabel();
     }
