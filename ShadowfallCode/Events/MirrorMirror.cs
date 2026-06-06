@@ -18,9 +18,8 @@ namespace Shadowfall.ShadowfallCode.Events;
 //TODO: test if this works in MP
 public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 {
-    //TODO: add custom scene or image portrait for event.
-    public override string CustomInitialPortraitPath => "res://Shadowfall/images/card_portraits/card.png";
-    // public override string? CustomBackgroundScenePath => null;
+    public override string CustomInitialPortraitPath => "res://Shadowfall/images/events/mirror_mirror.png";
+    public override string CustomVfxPath =>"res://scenes/vfx/events/doors_of_light_and_dark_vfx.tscn";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
