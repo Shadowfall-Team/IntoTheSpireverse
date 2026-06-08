@@ -10,6 +10,7 @@ public static class SkinManager
     private static readonly Dictionary<System.Type, string> Skins = new()
     {
         [typeof(ShadowIronclad)] = "res://Shadowfall/images/characters/shadowironclad/ironclad_granite.png",
+        [typeof(ShadowRegent)] = "res://Shadowfall/images/characters/shadowregent/regent_shadow.png",
     };
 
     private static readonly Dictionary<string, string> _originalTexturePaths = new();
