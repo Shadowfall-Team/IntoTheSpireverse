@@ -1,12 +1,18 @@
 using BaseLib.Abstracts;
 using BaseLib.Cards;
 using BaseLib.Utils;
+using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Ammo;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -37,6 +43,23 @@ public class AmmoVolley() : CustomCardModel(1,
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        var hasBigGuns = Owner.Creature.HasPower<BigGunsPower>();
+
+        Creature? pickedTarget = null;
+        if (!hasBigGuns)
+        {
+            var hittableEnemies = CombatState?.HittableEnemies.ToList();
+            if (hittableEnemies?.Count > 0)
+            {
+                pickedTarget = Owner.RunState.Rng.CombatTargets.NextItem(hittableEnemies);
+            }
+        }
+
+        if (!hasBigGuns && pickedTarget == null)
+            return;
+
+        await CreateMissile(pickedTarget);
+
         var baseDamage = DynamicVars.CalculationBase.BaseValue;
         var extraDamage = DynamicVars.ExtraDamage.BaseValue;
         var multiplier = Owner.Creature.GetPowerAmount<NextVolleyDamagePower>()
@@ -44,19 +67,20 @@ public class AmmoVolley() : CustomCardModel(1,
         var damage = baseDamage + extraDamage * multiplier;
 
         var command = DamageCmd.Attack(damage)
-            .WithHitCount(1)
-            .FromCard(this)
-            .WithAttackerAnim("Cast", Owner.Character.AttackAnimDelay)
-            .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null);
+                .WithHitCount(1)
+                .FromCard(this)
+                .WithAttackerAnim("Cast", Owner.Character.AttackAnimDelay)
+                .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
+            // .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null)
+            ;
 
-        // Use TargetingAllOpponents when BigGunsPower is active
-        if (Owner.Creature.HasPower<BigGunsPower>())
+        if (hasBigGuns)
         {
             command.TargetingAllOpponents(Owner.Creature.CombatState);
         }
         else
         {
-            command.TargetingRandomOpponents(Owner.Creature.CombatState);
+            command.Targeting(pickedTarget!);
         }
 
         var executedCommand = await command.Execute(choiceContext);
@@ -68,6 +92,27 @@ public class AmmoVolley() : CustomCardModel(1,
             .ToList();
 
         AmmoResource.InvokeOnAmmoFired(Owner, targets);
+    }
+
+    private async Task CreateMissile(Creature? pickedTarget)
+    {
+        var combatRoom = NCombatRoom.Instance;
+        if (combatRoom != null)
+        {
+            var missileTarget = pickedTarget != null
+                ? combatRoom.GetCreatureNode(pickedTarget)?.GetBottomOfHitbox()
+                : VfxCmd.GetSideCenterFloor(CombatSide.Enemy, CombatState);
+
+            if (missileTarget is { } pos)
+            {
+                var missile = NLargeMagicMissileVfx.Create(pos, new Color("c01020"));
+                if (missile != null)
+                {
+                    combatRoom.CombatVfxContainer.AddChildSafely(missile);
+                    await Cmd.Wait(missile.WaitTime);
+                }
+            }
+        }
     }
 
     protected override void OnUpgrade()
