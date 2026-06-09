@@ -1,13 +1,18 @@
+using BaseLib.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using Shadowfall.ShadowfallCode.Character;
+using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Powers.ShadowSilent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-public sealed class TipTheScales() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.None)
+[Pool(typeof(ShadowSilentCardPool))]
+public sealed class TipTheScales() : ShadowSilentCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -16,17 +21,20 @@ public sealed class TipTheScales() : ShadowSilentCard(1, CardType.Power, CardRar
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Weight>(),
+        HoverTipFactory.FromKeyword(CardKeyword.Sly),
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Devious),
+        HoverTipFactory.FromCard<Ward>(false),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<TipTheScalesPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(TipTheScalesPower)].BaseValue, Owner.Creature, this);
-        await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, Owner);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
+        await PowerCmd.Apply<TipTheScalesPower>(
+            choiceContext, Owner.Creature,
+            DynamicVars.Power<TipTheScalesPower>().BaseValue,
+            Owner.Creature, this);
     }
 
-    protected override void OnUpgrade()
-    {
+    protected override void OnUpgrade() =>
         EnergyCost.UpgradeBy(-1);
-    }
 }

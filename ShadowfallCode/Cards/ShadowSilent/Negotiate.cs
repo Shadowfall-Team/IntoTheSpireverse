@@ -14,6 +14,11 @@ public sealed class Negotiate() : ShadowSilentCard(1, CardType.Power, CardRarity
     [
         new PowerVar<StrengthPower>(1m),
     ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        ShadowfallKeywords.Devious,
+    ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
