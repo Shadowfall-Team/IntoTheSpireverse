@@ -1,9 +1,16 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using MegaCrit.Sts2.Core.Models;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
+using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -15,12 +22,11 @@ public class FireEverything() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<AmmoPower>(4)
+        new IntVar("LoadAmmo", 3)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AmmoPower>(),
-    ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        LoadAmmoHoverTip.FromLoadAmmo();
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -29,15 +35,42 @@ public class FireEverything() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<AmmoPower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
-            DynamicVars[nameof(AmmoPower)].BaseValue,
-            Owner.Creature,
-            this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+
+        await PowerCmd.Apply<FireEverythingPower>(
+            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(AmmoPower)].UpgradeValueBy(1);
+        DynamicVars["LoadAmmo"].UpgradeValueBy(1);
+    }
+}
+
+public class FireEverythingPower : CustomPowerModel
+{
+    public override PowerType Type => PowerType.Buff;
+    public override PowerStackType StackType => PowerStackType.None;
+
+    public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
+    {
+        if (card is AmmoVolley)
+        {
+            modifiedCost = 0;
+            return true;
+        }
+        modifiedCost = originalCost;
+        return false;
+    }
+
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
+    {
+        if (side == Owner.Side)
+        {
+            Flash();
+            await PowerCmd.Remove(this);
+        }
     }
 }

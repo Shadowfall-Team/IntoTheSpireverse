@@ -1,13 +1,16 @@
-﻿using BaseLib.Abstracts;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.Ammo;
+using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -19,14 +22,14 @@ public class Siege() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<AmmoPower>(1),
-        new PowerVar<SiegePower>(1)
+        new IntVar("LoadAmmo", 1),
+        new PowerVar<SiegePower>(2),
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AmmoPower>(),
-        HoverTipFactory.FromPower<WeakPower>(),
-    ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        LoadAmmoHoverTip.FromLoadAmmo()
+            .Append(HoverTipFactory.FromPower<WeakPower>())
+            .Append(HoverTipFactory.FromPower<VulnerablePower>());
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -35,35 +38,38 @@ public class Siege() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-
-        await PowerCmd.Apply<AmmoPower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
-            DynamicVars[nameof(AmmoPower)].BaseValue,
-            Owner.Creature,
-            this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
 
         await PowerCmd.Apply<SiegePower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
+            new ThrowingPlayerChoiceContext(), Owner.Creature,
             DynamicVars[nameof(SiegePower)].BaseValue,
             Owner.Creature,
             this);
-
     }
 
     protected override void OnUpgrade()
     {
-        //TODO: what goes here?
+        DynamicVars[nameof(SiegePower)].UpgradeValueBy(1);
     }
 }
 
-
-public class SiegePower : CustomPowerModel
+public class SiegePower : CustomPowerModel, IAmmoFiredListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    // public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
+        if (player.Creature != Owner) return;
+
+        Flash();
+        foreach (var target in targets.Where(t => t.IsAlive))
+        {
+            await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), target, Amount, Owner, null);
+            await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), target, Amount, Owner, null);
+        }
+
         await PowerCmd.Remove(this);
     }
 }

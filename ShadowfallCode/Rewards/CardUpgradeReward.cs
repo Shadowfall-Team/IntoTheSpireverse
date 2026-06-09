@@ -54,10 +54,7 @@ public sealed class CardUpgradeReward(Player player) : CustomReward(player)
 
     public override CreateRewardFromSave<CustomReward> DeserializeMethod => CreateFromSerializable;
 
-    public override Task Populate()
-    {
-        return Task.CompletedTask;
-    }
+    public override void Populate() { }
 
     protected override async Task<bool> OnSelect()
     {

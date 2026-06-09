@@ -42,4 +42,14 @@ public static class StringExtensions
     {
         return Path.Join(MainFile.ModId, "images", "charui", path);
     }
+
+    public static string GranitecladPath(this string path)
+    {
+        return Path.Join(MainFile.ModId, "images", "characters", "shadowironclad", path);
+    }
+
+    public static string ShadowRegentPath(this string path)
+    {
+        return Path.Join(MainFile.ModId, "images", "characters", "shadowregent", path);
+    }
 }

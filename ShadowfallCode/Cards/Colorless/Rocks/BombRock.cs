@@ -40,7 +40,7 @@ public sealed class BombRock() : RockCardBase(3, CardType.Attack, CardRarity.Tok
             .Execute(choiceContext);
     }
 
-    public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)

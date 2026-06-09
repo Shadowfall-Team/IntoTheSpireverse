@@ -28,7 +28,7 @@ public class FunnelReplacement : ShadowSilentRelic
         HoverTipFactory.FromPower<BleedPower>(),
     ];
     
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, ICombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
       if (side != Owner.Creature.Side || combatState.RoundNumber > 1) 
       { 

@@ -1,28 +1,32 @@
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 public class Reload() : ShadowRegentCard(1,
     CardType.Skill,
-    CardRarity.Common,
+    CardRarity.Uncommon,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<GainAmmoNextTurnPower>(1),
-        new PowerVar<DrawCardsNextTurnPower>(1)
+        new IntVar("LoadAmmo", 1),
+        new CalculationBaseVar(0m),
+        new CalculationExtraVar(1m),
+        new CalculatedVar("AttacksPlayed").WithMultiplier((card, _) =>
+            CombatManager.Instance.History.CardPlaysFinished.Count(cardPlayEntry =>
+                cardPlayEntry.HappenedThisTurn(card.CombatState) &&
+                cardPlayEntry.CardPlay.Card.Type == CardType.Attack && cardPlayEntry.CardPlay.Card.Owner == card.Owner))
     ];
 
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AmmoPower>(),
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        LoadAmmoHoverTip.FromLoadAmmo();
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -30,24 +34,13 @@ public class Reload() : ShadowRegentCard(1,
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
-        
-        await PowerCmd.Apply<GainAmmoNextTurnPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-            DynamicVars[nameof(GainAmmoNextTurnPower)].BaseValue,
-            Owner.Creature,
-            this);
 
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-            DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue,
-            Owner.Creature,
-            this);
+        var ammoToLoad = (int)DynamicVars["LoadAmmo"].BaseValue + ((CalculatedVar)DynamicVars["AttacksPlayed"]).Calculate(play.Target);
+        await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(DrawCardsNextTurnPower)].UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
     }
 }

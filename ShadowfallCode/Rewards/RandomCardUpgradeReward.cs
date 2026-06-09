@@ -1,4 +1,4 @@
-﻿using BaseLib.Abstracts;
+using BaseLib.Abstracts;
 using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -33,10 +33,7 @@ public sealed class RandomCardUpgradeReward(Player player) : CustomReward(player
 
     public override CreateRewardFromSave<CustomReward> DeserializeMethod => CreateFromSerializable;
 
-    public override Task Populate()
-    {
-        return Task.CompletedTask;
-    }
+    public override void Populate() { }
 
     // This seems fine as far as I can tell?
     protected override async Task<bool> OnSelect()

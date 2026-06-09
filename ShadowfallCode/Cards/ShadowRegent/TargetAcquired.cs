@@ -1,4 +1,4 @@
-﻿using BaseLib.Abstracts;
+using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,7 +7,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Commands;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -20,7 +22,7 @@ public class TargetAcquired() : ShadowRegentCard(
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(1M, ValueProp.Move),
-        new PowerVar<AmmoPower>(1)
+        new IntVar("LoadAmmo", 1)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -28,9 +30,8 @@ public class TargetAcquired() : ShadowRegentCard(
         CardKeyword.Retain
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<AmmoPower>(),
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+        LoadAmmoHoverTip.FromLoadAmmo();
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -48,13 +49,8 @@ public class TargetAcquired() : ShadowRegentCard(
             1,
             Owner.Creature,
             this);
-        
-        await PowerCmd.Apply<AmmoPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-            DynamicVars[nameof(AmmoPower)].BaseValue,
-            Owner.Creature,
-            this);
+
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
     }
 
     protected override void OnUpgrade()
