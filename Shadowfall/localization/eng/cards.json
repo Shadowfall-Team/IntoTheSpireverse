@@ -481,7 +481,7 @@
   "SHADOWFALL-TEMPER.title": "Temper",
   "SHADOWFALL-TEMPER.description": "Whenever you play a Skill, gain {RetaliationAmount:diff()} [gold]Retaliation[/gold] this turn.",
   "SHADOWFALL-TERRA_FIRMA.title": "Terra Firma",
-  "SHADOWFALL-TERRA_FIRMA.description": "Lose {HpLoss:diff()} HP.\nGain {SlatePower:diff()} [gold]Slate[/gold].",
+  "SHADOWFALL-TERRA_FIRMA.description": "Gain {SlatePower:diff()} [gold]Slate[/gold].",
   "SHADOWFALL-TITANIC.title": "Titanic",
   "SHADOWFALL-TITANIC.description": "Raise your Max HP by {MaxHp:diff()}.",
   "SHADOWFALL-VAMPIRIC_STRIKE.title": "Vampiric Strike",
