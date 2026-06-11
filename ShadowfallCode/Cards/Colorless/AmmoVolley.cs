@@ -105,11 +105,10 @@ public class AmmoVolley() : CustomCardModel(1,
 
             if (missileTarget is { } pos)
             {
-                var missile = NLargeMagicMissileVfx.Create(pos, new Color("c01020"));
+                var missile = NSmallMagicMissileVfx.Create(pos, new Color("c01020"));
                 if (missile != null)
                 {
                     combatRoom.CombatVfxContainer.AddChildSafely(missile);
-                    await Cmd.Wait(missile.WaitTime);
                 }
             }
         }
