@@ -3,29 +3,36 @@ using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using Shadowfall.ShadowfallCode.Character;
 using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Superheated() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class ClaySoldier() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
-    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SuperheatedPower>(1m),
+        new PowerVar<SlatePower>(1m),
     ];
-    
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [
+            HoverTipFactory.FromPower<ClaySoldierPower>(),
+            HoverTipFactory.FromPower<StrengthPower>(),
+        ];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<SuperheatedPower>(
+        (await PowerCmd.Apply<ClaySoldierPower>(
             new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars.Power<SuperheatedPower>().BaseValue,
-            Owner.Creature, this);
+            Owner.Creature, 1m,
+            Owner.Creature, this))?.SetSlate(DynamicVars.Power<SlatePower>().BaseValue);
     }
 
-    protected override void OnUpgrade() => AddKeyword(CardKeyword.Innate);
+    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(1m);
 }

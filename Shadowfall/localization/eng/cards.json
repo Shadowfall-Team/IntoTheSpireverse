@@ -1,4 +1,4 @@
-{ 
+{
   "SHADOWFALL-CAREFUL_PLANNING.title": "Careful Planning",
   "SHADOWFALL-CAREFUL_PLANNING.description": "Gain {Block:diff()} [gold]Block[/gold].\nWhen discarded, [gold]Enchant[/gold] all cards in hand that gain [gold]Block[/gold] with [purple]{Enchantment}[/purple] [blue]{Nimble:diff()}[/blue].",
   "SHADOWFALL-STRIKE_TRUE.title": "Strike True",
@@ -474,8 +474,8 @@
   "SHADOWFALL-SONIC_BOOM.description": "Deal {Damage:diff()} damage and apply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.",
   "SHADOWFALL-STRIKE_SHADOW_IRONCLAD.title": "Strike",
   "SHADOWFALL-STRIKE_SHADOW_IRONCLAD.description": "Deal {Damage:diff()} damage.",
-  "SHADOWFALL-SUPERHEATED.title": "Superheated",
-  "SHADOWFALL-SUPERHEATED.description": "Whenever you lose HP, gain 1 temporary [gold]Strength[/gold] at the start of your next turn.",
+  "SHADOWFALL-CLAY_SOLDIER.title": "Clay Soldier",
+  "SHADOWFALL-CLAY_SOLDIER.description": "The first time you lose HP each turn, gain 2 temporary [gold]Strength[/gold] and {SlatePower:diff()} [gold]Slate[/gold] at the start of your next turn.",
   "SHADOWFALL-TECTONIC_SHIFT.title": "Tectonic Shift",
   "SHADOWFALL-TECTONIC_SHIFT.description": "Deal {Damage:diff()} damage.\n[gold]Transform[/gold] all cards in your [gold]Hand[/gold] into [gold]{IfUpgraded:show:Small Rock+|Small Rock}[/gold].",
   "SHADOWFALL-TEMPER.title": "Temper",
