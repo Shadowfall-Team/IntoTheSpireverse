@@ -116,6 +116,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
     protected override void OnUpgrade()
     {
+        DynamicVars.Damage.UpgradeValueBy(6);
     }
 
     public override TargetType TargetType => TargetType.RandomEnemy;

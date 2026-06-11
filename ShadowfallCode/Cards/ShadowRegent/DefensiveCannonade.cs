@@ -49,7 +49,6 @@ public class DefensiveCannonade() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        // DynamicVars["LoadAmmo"].UpgradeValueBy(1);
         DynamicVars.Block.UpgradeValueBy(2);
     }
 }

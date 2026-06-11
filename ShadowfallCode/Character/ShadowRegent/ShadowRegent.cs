@@ -50,7 +50,7 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
         ModelDb.Card<DefendRegent>(),
         ModelDb.Card<DefendRegent>(),
         ModelDb.Card<StarCharts>(),
-        ModelDb.Card<Claim>(),
+        ModelDb.Card<Load>(),
     ];
     
     public override IReadOnlyList<RelicModel> StartingRelics =>
