@@ -78,7 +78,6 @@ public class DefensiveCannonadePower : CustomPowerModel, IHasSecondAmount, IAmmo
         if (player.Creature != Owner) return;
 
         Flash();
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move, null);
 
         ShotsRemaining--;
         if (ShotsRemaining <= 0)

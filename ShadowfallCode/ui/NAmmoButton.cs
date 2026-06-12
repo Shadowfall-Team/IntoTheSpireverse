@@ -169,8 +169,11 @@ public partial class NAmmoButton : NButton
         _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
         var top = TopCard;
         if (top == null) return;
+        
+        //TODO: tooltips for cards are not affected by combat state (eg. powers). So the block will be wrong with dex.
+        //  Fix this at some point or wait till megacrit does
         NHoverTipSet.CreateAndShow(this,
-                new[] { HoverTipFactory.FromCard(top) }.Concat(top.HoverTips))
+                [HoverTipFactory.FromCard(top), .. top.HoverTips])
             ?.SetAlignment(this, HoverTipAlignment.Left);
     }
 
@@ -264,7 +267,8 @@ public partial class NAmmoButton : NButton
     {
         get
         {
-            if (!_initialized || _player.PlayerCombatState == null)
+            if (!_initialized || _player.PlayerCombatState == null ||
+                _player.Creature.CombatState?.CurrentSide != CombatSide.Player)
                 return false;
             var top = TopCard;
             if (top == null) return false;
