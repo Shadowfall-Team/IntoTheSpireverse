@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -13,6 +14,7 @@ public class Banana() : ShadowRegentCard(1,
     CardRarity.Uncommon,
     TargetType.Self)
 {
+    public override bool CanBeGeneratedInCombat => false;
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HealVar(3),
@@ -40,7 +42,7 @@ public class Banana() : ShadowRegentCard(1,
             this);
 
         var tripCard = CombatState.CreateCard<Trip>(Owner);
-        await CardPileCmd.Add(tripCard, PileType.Hand, source: this);
+        await CardPileCmd.Add(tripCard, PileType.Hand, clonedBy: this);
     }
 
     protected override void OnUpgrade()

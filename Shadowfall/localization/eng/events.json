@@ -1,15 +1,15 @@
 {
-  "SHADOWFALL-MIRROR_MIRROR.title": "Mirror Mirror",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.description": "Mirror, mirror on the wall, who is the most pain in the ass event of them all?",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.title": "Touch the Surface",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.description": "Choose [blue]1[/blue] of [blue]6[/blue] cards from the Parallel World to add to your deck.",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.title": "Step Through",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.description": "Choose [blue]3[/blue] of [blue]18[/blue] cards from the Parallel World to add to your deck. Gain [green]{ReplaceCharMaxHp}[/green] Max HP and replace your character with the one from the Parallel World.",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.title": "Walk Away",
-  "SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.description": "Gain [green]{MaxHp}[/green] Max HP.",
-  "SHADOWFALL-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt": "Take 1 of 6 cards from your parallel self.",
-  "SHADOWFALL-MIRROR_MIRROR.pages.TOOK_CARDS.description": "You took some cards",
-  "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.selectionScreenPrompt": "Take 3 of 18 cards from your parallel self.",
-  "SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.description": "You were replaced",
-  "SHADOWFALL-MIRROR_MIRROR.pages.GAINED_MAX_HP.description": "You walked away without interacting with the mirror"
+"SHADOWFALL-MIRROR_MIRROR.title": "Glimpse to Another World",
+"SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.description": "You find yourself before two [green]mirrors[/green]. In [red]one[/red], you see yourself exactly as you imagine yourself to be. The [blue]other[/blue], a familiar, yet different, version of you.",
+"SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.title": "Observe the Alternate",
+"SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.description": "Choose [blue]1[/blue] of [blue]6[/blue] cards from the Parallel World to add to your deck.",
+"SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.title": "Touch the Glass",
+"SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.description": "Choose [blue]3[/blue] of [blue]18[/blue] cards from the Parallel World to add to your deck. Gain [green]{ReplaceCharMaxHp}[/green] Max HP and replace your character with the one from a Parallel World.",
+"SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.title": "Admire Yourself",
+"SHADOWFALL-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.description": "Gain [green]{MaxHp}[/green] Max HP.",
+"SHADOWFALL-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt": "Take 1 of 6 cards from your parallel self.",
+"SHADOWFALL-MIRROR_MIRROR.pages.TOOK_CARDS.description": "You look upon [blue]glass[/blue], and for a moment [green]glimpse[/green] a life you could have had. You feel as if it is reaching out to you, but you turn away. But not before a few [blue]memories[/blue] lock in your mind.",
+"SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.selectionScreenPrompt": "Take 3 of 18 cards from your parallel self.",
+"SHADOWFALL-MIRROR_MIRROR.pages.REPLACED_CHARACTER.description": "You touch the glass, and your mind is filled with memories of another life. In an instant, the reflection matches who you thought yourself to be. Yet, it feels suddenly unfamiliar now... is this who you always have been?",
+"SHADOWFALL-MIRROR_MIRROR.pages.GAINED_MAX_HP.description": "You move closer to your reflection. Look at yourself, you [red]handsome devil[/red]. There will be time to admire yourself later. The [yellow]Spire[/yellow] awaits."
 }

@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards;
+using Shadowfall.ShadowfallCode.Config;
 
 namespace Shadowfall.Patches;
 
@@ -54,6 +55,7 @@ public class NCardLibraryVerticalSlidersPatch
     // ReSharper disable once UnusedParameter.Local
     static void SetupSlidersOnInspector(NCardLibrary __instance)
     {
+        if (!ShadowfallConfig.ShowWipContent) return;
         if (_loaded) return;
         var inspectScreen = NGame.Instance!.GetInspectCardScreen();
 

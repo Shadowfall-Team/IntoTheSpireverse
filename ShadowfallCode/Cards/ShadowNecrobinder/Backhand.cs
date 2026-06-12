@@ -55,6 +55,7 @@ public sealed class Backhand() : ShadowNecrobinderCard(0, CardType.Attack, CardR
 
     private async Task TryMoveToHand()
     {
+        if (Pile?.Type == PileType.Deck) return; // don't add the deck copy to the hand?
         if (Pile?.Type == PileType.Hand) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }

@@ -55,7 +55,7 @@ public class ExaltedFormPower : CustomPowerModel
         {
             var discovery = CombatState.CreateCard<Discovery>(Owner.Player);
             discovery.SetToFreeThisCombat();
-            await CardPileCmd.Add(discovery, PileType.Hand, source: this);
+            await CardPileCmd.Add(discovery, PileType.Hand, clonedBy: this);
         }
     }
 }

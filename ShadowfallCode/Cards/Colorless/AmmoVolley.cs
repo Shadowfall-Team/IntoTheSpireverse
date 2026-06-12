@@ -1,0 +1,123 @@
+using BaseLib.Abstracts;
+using BaseLib.Cards;
+using BaseLib.Utils;
+using Godot;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Ammo;
+using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+
+namespace Shadowfall.ShadowfallCode.Cards.Colorless;
+
+[Pool(typeof(TokenCardPool))]
+public class AmmoVolley() : CustomCardModel(1,
+    CardType.Attack,
+    CardRarity.Token,
+    TargetType.RandomEnemy)
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new CalculationBaseVar(14),
+        new ExtraDamageVar(1),
+        new CalculatedDamageVar(ValueProp.Move)
+            .WithMultiplier(static (card, _) =>
+                card.Owner.Creature.GetPowerAmount<NextVolleyDamagePower>() +
+                card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
+        new RepeatVar(0),
+    ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BaseLibKeywords.Purge];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [];
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        var hasBigGuns = Owner.Creature.HasPower<BigGunsPower>();
+
+        Creature? pickedTarget = null;
+        if (!hasBigGuns)
+        {
+            var hittableEnemies = CombatState?.HittableEnemies.ToList();
+            if (hittableEnemies?.Count > 0)
+            {
+                pickedTarget = Owner.RunState.Rng.CombatTargets.NextItem(hittableEnemies);
+            }
+        }
+
+        if (!hasBigGuns && pickedTarget == null)
+            return;
+
+        await CreateMissile(pickedTarget);
+
+        var baseDamage = DynamicVars.CalculationBase.BaseValue;
+        var extraDamage = DynamicVars.ExtraDamage.BaseValue;
+        var multiplier = Owner.Creature.GetPowerAmount<NextVolleyDamagePower>()
+                         + Owner.Creature.GetPowerAmount<VolleyDamagePower>();
+        var damage = baseDamage + extraDamage * multiplier;
+
+        var command = DamageCmd.Attack(damage)
+                .WithHitCount(1)
+                .FromCard(this)
+                .WithAttackerAnim("Cast", Owner.Character.AttackAnimDelay)
+                .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
+            // .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null)
+            ;
+
+        if (hasBigGuns)
+        {
+            command.TargetingAllOpponents(Owner.Creature.CombatState);
+        }
+        else
+        {
+            command.Targeting(pickedTarget!);
+        }
+
+        var executedCommand = await command.Execute(choiceContext);
+
+        var targets = executedCommand.Results
+            .SelectMany(r => r)
+            .Select(r => r.Receiver)
+            .Distinct()
+            .ToList();
+
+        AmmoResource.InvokeOnAmmoFired(Owner, targets);
+    }
+
+    private async Task CreateMissile(Creature? pickedTarget)
+    {
+        var combatRoom = NCombatRoom.Instance;
+        if (combatRoom != null)
+        {
+            var missileTarget = pickedTarget != null
+                ? combatRoom.GetCreatureNode(pickedTarget)?.GetBottomOfHitbox()
+                : VfxCmd.GetSideCenterFloor(CombatSide.Enemy, CombatState);
+
+            if (missileTarget is { } pos)
+            {
+                var missile = NLargeMagicMissileVfx.Create(pos, new Color("c01020"));
+                if (missile != null)
+                {
+                    combatRoom.CombatVfxContainer.AddChildSafely(missile);
+                    await Cmd.Wait(missile.WaitTime);
+                }
+            }
+        }
+    }
+
+    protected override void OnUpgrade()
+    {
+    }
+
+    public override TargetType TargetType => TargetType.RandomEnemy;
+}

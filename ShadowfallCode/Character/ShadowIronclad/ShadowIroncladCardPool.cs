@@ -38,6 +38,8 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             ModelDb.Card<Inferno>(),
             ModelDb.Card<StoneArmor>(),
             ModelDb.Card<Cascade>(),
+            ModelDb.Card<NotYet>(),
+            ModelDb.Card<CrimsonMantle>(),
             ModelDb.Card<PrimalForce>(),
             ModelDb.Card<Aggression>(),
             ModelDb.Card<Juggernaut>(),

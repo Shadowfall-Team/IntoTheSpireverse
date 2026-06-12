@@ -7,12 +7,13 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Models.Relics;
 using Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
+using Shadowfall.ShadowfallCode.Config;
 using Shadowfall.ShadowfallCode.Relics;
 using Shadowfall.ShadowfallCode.Relics.ShadowNecrobinder;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter
+public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter, IShadowfallDebug
 {
     public override string PlaceholderID => "necrobinder";
     // public const string CharacterId = "Shadowfall";

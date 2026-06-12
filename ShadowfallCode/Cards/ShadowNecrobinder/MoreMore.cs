@@ -14,6 +14,8 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
 
 public sealed class MoreMore() : ShadowNecrobinderCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
+    
+    public override bool CanBeGeneratedInCombat => false;
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         ShadowfallKeywords.Pickup

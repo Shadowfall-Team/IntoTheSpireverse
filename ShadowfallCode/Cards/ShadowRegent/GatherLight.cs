@@ -15,7 +15,7 @@ public class GatherLight() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(8, ValueProp.Move),
+        new BlockVar(7, ValueProp.Move),
         new PowerVar<ShardPower>(2)
     ];
     
@@ -38,7 +38,7 @@ public class GatherLight() : ShadowRegentCard(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(1);
-        DynamicVars[nameof(ShardPower)].UpgradeValueBy(1);
+        DynamicVars.Block.UpgradeValueBy(3);
+        // DynamicVars[nameof(ShardPower)].UpgradeValueBy(1);
     }
 }

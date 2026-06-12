@@ -9,19 +9,26 @@ permissions:
   contents: write
 jobs:
   publish:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+      - name: Install MegaDot
+        run: |
+          curl -L -o megadot.zip "https://megadot.megacrit.com/4.5.1-m.11/megadot-4.5.1-m.11-linux-x86_64-editor-csharp.zip"
+          unzip -q megadot.zip -d megadot
+          chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
+          echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
       - name: Publish
-        run: >
-          dotnet publish Shadowfall.csproj -c Release
-          /p:Sts2DataDir="$STS2_DATA_DIR"
-          /p:GodotPath="$GODOT_PATH"
+        run: |
+          mkdir -p "${{ github.workspace }}/output/mods"
+          dotnet publish Shadowfall.csproj -c Release \
+          /p:GodotPath="$GODOT_PATH" \
           /p:ModsPath="${{ github.workspace }}/output/mods/"
-      - name: Package
-        run: cd output/mods && zip -r ../Shadowfall.zip Shadowfall
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: Shadowfall
-          path: output/Shadowfall.zip
+          path: output/mods
