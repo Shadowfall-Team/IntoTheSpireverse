@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,7 +14,7 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 public sealed class UnrelentingForm() : ShadowIroncladCard(3, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<UnrelentingFormPower>(1m),
+        new DynamicVar("CardDraw", 2m),
         new EnergyVar(1)
     ];
 
@@ -24,15 +25,13 @@ public sealed class UnrelentingForm() : ShadowIroncladCard(3, CardType.Power, Ca
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<UnrelentingFormPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars["UnrelentingFormPower"].BaseValue,
-            Owner.Creature, this);
+        (await PowerCmd.Apply<UnrelentingFormPower>(choiceContext,
+            Owner.Creature, 1, Owner.Creature, this)
+        )?.AddVars(DynamicVars["CardDraw"].BaseValue, DynamicVars.Energy.BaseValue);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["UnrelentingFormPower"].UpgradeValueBy(1m);
         DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

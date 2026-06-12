@@ -28,28 +28,28 @@ public sealed class ClaySoldierPower : CustomPowerModel, IHasSecondAmount
         return new Data();
     }
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-    ];
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<StrengthPower>(2m),
+        new PowerVar<StrengthPower>(0m),
         new PowerVar<SlatePower>(0m),
     ];
 
-    public override int DisplayAmount => DynamicVars.Strength.IntValue * Amount;
+    public override int DisplayAmount => DynamicVars.Strength.IntValue;
     public string GetSecondAmount()
     {
         return DynamicVars.Power<SlatePower>().IntValue.ToString();
     }
 
-    public void AddSlate(decimal slate)
+    public void AddVars(decimal slate, decimal strength)
     {
         AssertMutable();
         DynamicVars.Power<SlatePower>().BaseValue += slate;
         this.InvokeSecondAmountChanged();
+        DynamicVars.Strength.BaseValue += strength;
+        InvokeDisplayAmountChanged();
     }
+
+
 
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext,
         Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)

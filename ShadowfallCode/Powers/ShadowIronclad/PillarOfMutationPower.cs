@@ -19,17 +19,20 @@ public class PillarOfMutationPower : CustomPowerModel, IHasSecondAmount
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(0m, ValueProp.Unpowered),
-        new PowerVar<VigorPower>(1m),
+        new PowerVar<VigorPower>(0m),
     ];
 
     // just in case someone modifies dynamic vars lol
-    public override int DisplayAmount => DynamicVars.Power<VigorPower>().IntValue * Amount;
+    public override int DisplayAmount => DynamicVars.Power<VigorPower>().IntValue;
+    public string GetSecondAmount() => DynamicVars.Block.BaseValue.ToString();
 
-    public void AddBlock(decimal block)
+    public void AddVars(decimal block, decimal vigor)
     {
         AssertMutable();
         DynamicVars.Block.BaseValue += block;
         this.InvokeSecondAmountChanged();
+        DynamicVars.Power<VigorPower>().BaseValue += vigor;
+        InvokeDisplayAmountChanged();
     }
 
     public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
@@ -45,8 +48,4 @@ public class PillarOfMutationPower : CustomPowerModel, IHasSecondAmount
         }
     }
 
-    public string GetSecondAmount()
-    {
-        return DynamicVars.Block.BaseValue.ToString();
-    }
 }
