@@ -31,7 +31,7 @@ public sealed class ClaySoldier() : ShadowIroncladCard(1, CardType.Power, CardRa
         (await PowerCmd.Apply<ClaySoldierPower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature, 1m,
-            Owner.Creature, this))?.SetSlate(DynamicVars.Power<SlatePower>().BaseValue);
+            Owner.Creature, this))?.AddSlate(DynamicVars.Power<SlatePower>().BaseValue);
     }
 
     protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(1m);

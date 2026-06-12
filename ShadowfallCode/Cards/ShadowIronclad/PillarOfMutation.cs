@@ -23,7 +23,7 @@ public sealed class PillarOfMutation() : ShadowIroncladCard(1, CardType.Power, C
         (await PowerCmd.Apply<PillarOfMutationPower>(
             choiceContext,
             Owner.Creature, DynamicVars.Power<PillarOfMutationPower>().BaseValue, Owner.Creature, this)
-        )?.SetBlock(DynamicVars.Block.BaseValue);
+        )?.AddBlock(DynamicVars.Block.BaseValue);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(1m);

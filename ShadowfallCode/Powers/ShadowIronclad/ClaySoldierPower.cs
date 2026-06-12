@@ -1,5 +1,6 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -12,16 +13,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class ClaySoldierPower : CustomPowerModel
+public sealed class ClaySoldierPower : CustomPowerModel, IHasSecondAmount
 {
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
-
     private class Data
     {
-        public bool activatedThisTurn;
+        public bool activatedThisTurn; // technically "last turn" by the time its used
     }
+
+    public override PowerType Type => PowerType.Buff;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     protected override object? InitInternalData()
     {
@@ -30,37 +30,46 @@ public sealed class ClaySoldierPower : CustomPowerModel
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<StrengthPower>()
     ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new PowerVar<StrengthPower>(2m),
-            new PowerVar<SlatePower>(0m)
-        ];
+    [
+        new PowerVar<StrengthPower>(2m),
+        new PowerVar<SlatePower>(0m),
+    ];
 
-    public void SetSlate(decimal slate)
+    public override int DisplayAmount => DynamicVars.Strength.IntValue * Amount;
+    public string GetSecondAmount()
     {
-        AssertMutable();
-        DynamicVars.Power<SlatePower>().BaseValue = slate;
+        return DynamicVars.Power<SlatePower>().IntValue.ToString();
     }
 
-    public override async Task AfterDamageReceived(
-        PlayerChoiceContext choiceContext,
-        Creature target,
-        DamageResult result,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource)
+    public void AddSlate(decimal slate)
+    {
+        AssertMutable();
+        DynamicVars.Power<SlatePower>().BaseValue += slate;
+        this.InvokeSecondAmountChanged();
+    }
+
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext,
+        Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
         if (target != Owner || GetInternalData<Data>().activatedThisTurn || result.UnblockedDamage <= 0) return;
         GetInternalData<Data>().activatedThisTurn = true;
-        await PowerCmd.Apply<ClaySoldierNextTurnStrengthPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner, DynamicVars.Strength.BaseValue, Owner, null);
-        await PowerCmd.Apply<SlateNextTurnPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner, DynamicVars.Power<SlatePower>().BaseValue, Owner, null
-        );
+        // set to flash/indicate as ready? do powers ever do that?
     }
+
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        if (GetInternalData<Data>().activatedThisTurn)
+        {
+            await PowerCmd.Apply<ClaySoldierTemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
+                Owner, DynamicVars.Strength.BaseValue * Amount, Owner, null);
+
+            await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
+                Owner, DynamicVars.Power<SlatePower>().BaseValue, Owner, null);
+        }
+        GetInternalData<Data>().activatedThisTurn = false;
+    }
+
 }
