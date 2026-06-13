@@ -1,7 +1,7 @@
 using BaseLib.Abstracts;
+using BaseLib.Common.Rewards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Rooms;
-using Shadowfall.ShadowfallCode.Rewards;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
 
@@ -12,7 +12,10 @@ public class NecronomiconPower : CustomPowerModel
 
     public override Task AfterCombatEnd(CombatRoom room)
     {
-        room.AddExtraReward(Owner.Player, new CardTransformReward(Owner.Player) {Amount = Amount, Upgrade = true});
+        if (Owner.Player != null)
+        {
+            room.AddExtraReward(Owner.Player, new CardTransformReward(Owner.Player) {Amount = Amount, Upgrade = true});
+        }
         return Task.CompletedTask;
     }
 }
