@@ -109,7 +109,7 @@ public class AmmoVolley() : CustomCardModel(1,
             .Distinct()
             .ToList();
 
-        AmmoResource.InvokeOnAmmoFired(Owner, targets);
+        await AmmoResource.InvokeOnAmmoFired(Owner, targets);
     }
 
     private async Task CreateMissile(Creature? pickedTarget)

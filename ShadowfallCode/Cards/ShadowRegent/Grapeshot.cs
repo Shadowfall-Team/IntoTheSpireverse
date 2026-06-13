@@ -46,7 +46,7 @@ public class GrapeshotPower : CustomPowerModel, IAmmoFiredListener
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         if (player.Creature != Owner) return;
         Flash();

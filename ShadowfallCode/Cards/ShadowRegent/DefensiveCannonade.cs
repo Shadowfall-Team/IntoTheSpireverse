@@ -73,7 +73,7 @@ public class DefensiveCannonadePower : CustomPowerModel, IHasSecondAmount, IAmmo
 
     public string GetSecondAmount() => _shotsRemaining.ToString();
 
-    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         if (player.Creature != Owner) return;
 
