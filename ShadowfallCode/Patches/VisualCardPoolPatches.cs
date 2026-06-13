@@ -24,21 +24,25 @@ public static class VisualCardPoolPatches
         CharacterModel? owningCharModel = __instance.Owner?.Character;
         if (owningCharModel == null) { return; }
 
-        if (owningCharModel is IAltCharacter ||
-            ModelDb.AllCharacters.Any(a => a is IAltCharacter ac && ac.BaseCharacterModel == owningCharModel))
-        {
-            // yoinked from Arquebus (ty)
-            CharacterModel? _mirrorCharacterModel = owningCharModel is IAltCharacter ownerAltCharacter
-                ? ownerAltCharacter.BaseCharacterModel
-                : __instance.Owner?.RunState.Rng.CombatCardSelection.NextItem(ModelDb.AllCharacters
-                        .Where(c => c is IAltCharacter ac && ac.BaseCharacterModel == owningCharModel));
+        // ref params can't be captured in lambdas
+        var currentPool = __result;
 
-            // if the card pool is the mirror character's one, swap the pool to the active character's pool
-            // Potentially look into storing which character the card was obtained from, and only changing it based on that character
-            if (__result == _mirrorCharacterModel?.CardPool)
+        if (owningCharModel is IAltCharacter ownerAltCharacter)
+        {
+            // Alt character: if the card is displaying the base character's pool, swap to ours
+            if (currentPool == ownerAltCharacter.BaseCharacterModel.CardPool)
             {
                 __result = owningCharModel.CardPool;
             }
+        }
+        else if (ModelDb.AllCharacters.Any(c =>
+                     c is IAltCharacter ac &&
+                     ac.BaseCharacterModel == owningCharModel &&
+                     currentPool == c.CardPool))
+        {
+            // Base character: if the card is displaying any alt character's pool (e.g. cards
+            // gained via MirrorMirror), swap to the owner's pool instead.
+            __result = owningCharModel.CardPool;
         }
     }
 }
