@@ -253,6 +253,19 @@ public partial class NAmmoButton : NButton
     private int AvailableAmmoCount =>
         (_pile?.Cards.Count ?? 0) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
 
+    private int AvailableEnergy
+    {
+        get
+        {
+            if (_player.PlayerCombatState == null) return 0;
+            var top = TopCard;
+            if (top == null) return _player.PlayerCombatState.Energy;
+            var pendingCost = _playQueue.Count(a => a.State == GameActionState.WaitingForExecution)
+                              * top.EnergyCost.GetWithModifiers(CostModifiers.All);
+            return _player.PlayerCombatState.Energy - pendingCost;
+        }
+    }
+
     private bool IsPlayerTurn =>
         NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play;
 
@@ -266,7 +279,7 @@ public partial class NAmmoButton : NButton
             var top = TopCard;
             if (top == null) return false;
             if (AvailableAmmoCount <= 0) return false;
-            return _player.PlayerCombatState.Energy >= top.EnergyCost.GetWithModifiers(CostModifiers.All)
+            return AvailableEnergy >= top.EnergyCost.GetWithModifiers(CostModifiers.All)
                    && IsPlayerTurn
                    && !CombatManager.Instance.IsOverOrEnding;
         }
