@@ -1,4 +1,5 @@
 using Godot;
+using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
@@ -25,6 +26,10 @@ namespace Shadowfall.ShadowfallCode.ui;
 public partial class NAmmoButton : NButton
 {
     private static readonly string _scenePath = "res://Shadowfall/scenes/CaptainsShip.tscn";
+
+    private static readonly AccessTools.FieldRef<CardModel, CardUpgradePreviewType> _upgradePreviewTypeRef =
+        AccessTools.FieldRefAccess<CardModel, CardUpgradePreviewType>("_upgradePreviewType");
+
     private static readonly string _megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
 
     private Player _player = null!;
@@ -143,10 +148,6 @@ public partial class NAmmoButton : NButton
         UpdateState();
     }
 
-    // -------------------------------------------------------------------------
-    // Process (bob)
-    // -------------------------------------------------------------------------
-
     public override void _Process(double delta)
     {
         if (!_initialized) return;
@@ -156,9 +157,6 @@ public partial class NAmmoButton : NButton
             Mathf.Sin(_bobTime) * BobAmplitude);
     }
 
-    // -------------------------------------------------------------------------
-    // NButton overrides
-    // -------------------------------------------------------------------------
 
     protected override void OnFocus()
     {
@@ -169,12 +167,15 @@ public partial class NAmmoButton : NButton
         _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
         var top = TopCard;
         if (top == null) return;
-        
-        //TODO: tooltips for cards are not affected by combat state (eg. powers). So the block will be wrong with dex.
-        //  Fix this at some point or wait till megacrit does
+
+        //I've opted to go with the fieldref pattern here as I don't think it wise to publicize this generally.
+        //This is an issue with how UpdateDynamicVarPreview only updates dynamicvars if the card is in hand or in play (CardUpgradePreviewType.Combat).
+        //The best solution would be to transpile the CardModel.UpdateDynamicVarPreview method, but this workaround is a lot less work and is only slightly more disgusting. 
+        _upgradePreviewTypeRef(top) = CardUpgradePreviewType.Combat;
         NHoverTipSet.CreateAndShow(this,
                 [HoverTipFactory.FromCard(top), .. top.HoverTips])
             ?.SetAlignment(this, HoverTipAlignment.Left);
+        _upgradePreviewTypeRef(top) = CardUpgradePreviewType.None;
     }
 
     protected override void OnUnfocus()
@@ -225,10 +226,6 @@ public partial class NAmmoButton : NButton
         UpdateFireLabel();
     }
 
-    // -------------------------------------------------------------------------
-    // Event handlers
-    // -------------------------------------------------------------------------
-
     private void OnPileContentsChanged()
     {
         if (!_hasEverHadAmmo && _pile!.Cards.Count > 0)
@@ -250,10 +247,6 @@ public partial class NAmmoButton : NButton
         _playQueue.Add(ammoAction);
         UpdateState();
     }
-
-    // -------------------------------------------------------------------------
-    // State
-    // -------------------------------------------------------------------------
 
     private CardModel? TopCard => _pile?.Cards.FirstOrDefault();
 
@@ -317,9 +310,6 @@ public partial class NAmmoButton : NButton
             _fireLabel.Modulate = StsColors.cream;
     }
 
-    // -------------------------------------------------------------------------
-    // Async fire wait
-    // -------------------------------------------------------------------------
 
     private async void WaitForActionComplete(PlayAmmoCardAction action)
     {
@@ -331,10 +321,6 @@ public partial class NAmmoButton : NButton
         _playQueue.Remove(action);
         UpdateState();
     }
-
-    // -------------------------------------------------------------------------
-    // Animation
-    // -------------------------------------------------------------------------
 
     private void AnimIn()
     {
