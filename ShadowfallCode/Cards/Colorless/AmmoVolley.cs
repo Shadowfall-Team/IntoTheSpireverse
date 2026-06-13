@@ -127,6 +127,7 @@ public class AmmoVolley() : CustomCardModel(1,
                 if (missile != null)
                 {
                     combatRoom.CombatVfxContainer.AddChildSafely(missile);
+                    await Cmd.Wait(missile.WaitTime);
                 }
             }
         }
