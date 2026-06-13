@@ -57,7 +57,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<KinglyKick>(),
             ModelDb.Card<FillTheTank>(),
             ModelDb.Card<FirstOfficer>(),
-            ModelDb.Card<RousingSpeech>(),
+            ModelDb.Card<Monologue>(),
             ModelDb.Card<ReinforcedBody>(),
             ModelDb.Card<Banana>(),
             ModelDb.Card<GarbageDay>(),

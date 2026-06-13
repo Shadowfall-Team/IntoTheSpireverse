@@ -676,8 +676,6 @@
   "SHADOWFALL-CONSTELLATION.title": "Constellation",
   "SHADOWFALL-THE_SEALED_THRONE.description": "Deal {CalculatedDamage:diff()} damage. Double this card's damage for each [gold]Warp[/gold] you've played this combat.",
   "SHADOWFALL-THE_SEALED_THRONE.title": "The Sealed Throne",
-  "SHADOWFALL-ROUSING_SPEECH.description": "Whenever you play a card or fire a [gold]Shot[/gold] this turn, gain 1 Strength this turn.",
-  "SHADOWFALL-ROUSING_SPEECH.title": "Rousing Speech",
   "SHADOWFALL-SMUGGLE.description": "Choose up to {Cards:diff()} cards in your hand to put into your [gold]Cargo[/gold].",
   "SHADOWFALL-SMUGGLE.title": "Smuggle",
   "SHADOWFALL-AMMO_VOLLEY.description": "deal {CalculatedDamage:diff()} damage to a random enemy.{GainsBlock:cond:\nGain {ShotBlock:diff()} [gold]Block[/gold].|}",
