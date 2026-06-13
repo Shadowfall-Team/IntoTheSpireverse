@@ -39,7 +39,7 @@ public class AssemblyRequired() : ShadowRegentCard(
         foreach (var player in players)
         {
             var tripCard = CombatState.CreateCard<Fragment>(player);
-            await CardPileCmd.Add(tripCard, PileType.Draw, CardPilePosition.Random, this);
+            await CardPileCmd.AddGeneratedCardToCombat(tripCard, PileType.Draw, Owner);
         }
     }
 
