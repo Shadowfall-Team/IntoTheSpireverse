@@ -594,7 +594,7 @@
   "SHADOWFALL-GLOW.title": "Glow",
   "SHADOWFALL-HIDDEN_CACHE.description": "Gain 1 [gold]Shard[/gold].\nNext turn, gain {GainShardsNextTurnPower:diff()} [gold]Shards[/gold].",
   "SHADOWFALL-HIDDEN_CACHE.title": "Hidden Cache",
-  "SHADOWFALL-BANANA.description": "Heal {Heal:diff()} HP.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAdd a [gold]Trip[/gold] into your hand.",
+  "SHADOWFALL-BANANA.description": "Heal {Heal:diff()} HP.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAdd a [gold]Trip[/gold] to your [gold]Cargo[/gold].",
   "SHADOWFALL-BANANA.title": "Banana",
   "SHADOWFALL-WARP.description": "Gain {Energy:energyIcons()}.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
   "SHADOWFALL-WARP.title": "Warp",
