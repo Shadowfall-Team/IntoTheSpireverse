@@ -28,16 +28,9 @@ public sealed class AncestralEcho() : ShadowIroncladCard(1, CardType.Skill, Card
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+
         IReadOnlyList<CardModel> cards = PileType.Draw.GetPile(Owner).Cards;
-		CardModel? cardModel = null;
-		if (Owner.PlayerCombatState?.TurnNumber == 1)
-		{
-			cardModel = cards.FirstOrDefault((CardModel c) => !c.Keywords.Contains(CardKeyword.Innate));
-		}
-		if (cardModel == null)
-		{
-			cardModel = cards.FirstOrDefault();
-		}
+		CardModel? cardModel = cards.FirstOrDefault();
 		if (cardModel != null)
 		{
 			cardModel.BaseReplayCount += DynamicVars[_replayKey].IntValue;

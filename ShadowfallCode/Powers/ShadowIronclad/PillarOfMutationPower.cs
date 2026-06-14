@@ -22,7 +22,7 @@ public class PillarOfMutationPower : CustomPowerModel, IHasSecondAmount
         new PowerVar<VigorPower>(0m),
     ];
 
-    // just in case someone modifies dynamic vars lol
+    // use the var instead of amount, just in case someone modifies dynamic vars
     public override int DisplayAmount => DynamicVars.Power<VigorPower>().IntValue;
     public string GetSecondAmount() => DynamicVars.Block.BaseValue.ToString();
 
@@ -41,11 +41,8 @@ public class PillarOfMutationPower : CustomPowerModel, IHasSecondAmount
         {
             Flash();
             await CreatureCmd.GainBlock(Owner, DynamicVars.Block, null, fast: true);
-            await PowerCmd.Apply<VigorPower>(
-                new ThrowingPlayerChoiceContext(),
-                Owner, DynamicVars.Power<VigorPower>().BaseValue * Amount, Owner, null
-            );
+            await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(),
+                Owner, DynamicVars.Power<VigorPower>().BaseValue, Owner, null);
         }
     }
-
 }

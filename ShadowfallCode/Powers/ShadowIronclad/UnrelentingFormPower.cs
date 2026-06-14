@@ -13,44 +13,40 @@ namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 public sealed class UnrelentingFormPower : CustomPowerModel, IHasSecondAmount
 {
-    private static readonly bool _allAtOnce = true;
+    // MAYBE: Investigate the rare circumstance where this activates, and then more stacks are added
+    // Its probably fine to leave as is, since its the "First" time, and things like lethality don't refresh
     private class Data
     {
-        public int timesTriggeredThisTurn;
+        public bool hasTriggeredThisTurn;
     }
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    protected override object? InitInternalData()
-    {
-        return new Data();
-    }
+    protected override object? InitInternalData() { return new Data(); }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("CardDraw", 0m),
+        new CardsVar(0),
         new EnergyVar(0),
     ];
 
-    public override int DisplayAmount => _allAtOnce ? DynamicVars.Energy.IntValue : Amount;
+    public override int DisplayAmount => DynamicVars.Energy.IntValue;
     public string GetSecondAmount()
     {
-        return _allAtOnce ? DynamicVars["CardDraw"].BaseValue.ToString() : "";
+        return DynamicVars.Cards.BaseValue.ToString();
     }
 
     public void AddVars(decimal cardDraw, decimal energy)
     {
         AssertMutable();
-        DynamicVars["CardDraw"].BaseValue += cardDraw;
+        DynamicVars.Cards.BaseValue += cardDraw;
         this.InvokeSecondAmountChanged();
         DynamicVars.Energy.BaseValue += energy;
         InvokeDisplayAmountChanged();
     }
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.ForEnergy(this)
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.ForEnergy(this)];
 
     public override async Task AfterHandEmptied(PlayerChoiceContext choiceContext, Player player)
     {
@@ -58,13 +54,13 @@ public sealed class UnrelentingFormPower : CustomPowerModel, IHasSecondAmount
             return;
 
         var data = GetInternalData<Data>();
-        if (data.timesTriggeredThisTurn > Amount || (_allAtOnce && data.timesTriggeredThisTurn > 0))
+        if (data.hasTriggeredThisTurn)
             return;
 
-        GetInternalData<Data>().timesTriggeredThisTurn++;
+        data.hasTriggeredThisTurn = true;
         Flash();
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner.Player);
-        await CardPileCmd.Draw(choiceContext, DynamicVars["CardDraw"].BaseValue, Owner.Player);
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner.Player);
     }
 
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
@@ -72,7 +68,7 @@ public sealed class UnrelentingFormPower : CustomPowerModel, IHasSecondAmount
         if (side != Owner.Side)
             return Task.CompletedTask;
 
-        GetInternalData<Data>().timesTriggeredThisTurn = 0;
+        GetInternalData<Data>().hasTriggeredThisTurn = false;
         return Task.CompletedTask;
     }
 }
