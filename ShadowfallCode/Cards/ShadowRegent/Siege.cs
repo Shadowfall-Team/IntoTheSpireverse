@@ -59,7 +59,7 @@ public class SiegePower : CustomPowerModel, IAmmoFiredListener
     public override PowerStackType StackType => PowerStackType.Counter;
     // public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         if (player.Creature != Owner) return;
 

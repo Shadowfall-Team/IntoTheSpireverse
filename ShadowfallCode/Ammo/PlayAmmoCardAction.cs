@@ -41,7 +41,7 @@ public class PlayAmmoCardAction : GameAction
             return;
         }
 
-        await PlayerCmd.LoseEnergy(cost, _player);
+        await topCard.SpendResources();
         await CardCmd.AutoPlay(new ThrowingPlayerChoiceContext(), topCard, null);
     }
 

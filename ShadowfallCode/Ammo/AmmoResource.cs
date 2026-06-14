@@ -26,14 +26,14 @@ public static class AmmoResource
         }
     }
 
-    public static void InvokeOnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public static async Task InvokeOnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         OnAmmoFired?.Invoke(player, targets);
 
         foreach (var model in player.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IAmmoFiredListener listener)
-                listener.OnAmmoFired(player, targets);
+                await listener.OnAmmoFired(player, targets);
         }
     }
 }

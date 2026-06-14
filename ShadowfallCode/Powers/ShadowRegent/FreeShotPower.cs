@@ -26,7 +26,7 @@ public class FreeShotPower : CustomPowerModel, IAmmoFiredListener
         return false;
     }
 
-    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         if (player.Creature != Owner) return;
         Flash();

@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-public class Claim() : ShadowRegentCard(1,
+public class Load() : ShadowRegentCard(1,
     CardType.Skill,
     CardRarity.Basic,
     TargetType.Self)

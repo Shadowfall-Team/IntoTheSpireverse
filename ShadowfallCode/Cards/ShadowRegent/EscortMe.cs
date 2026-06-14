@@ -28,9 +28,6 @@ public class EscortMe() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        var tripCard = CombatState.CreateCard<MinionStrike>(Owner);
-        await CardPileCmd.Add(tripCard, PileType.Hand, clonedBy: this);
-        
         var xValue = ResolveEnergyXValue();
         if (IsUpgraded)
         {
@@ -40,6 +37,9 @@ public class EscortMe() : ShadowRegentCard(
         await CardPileCmd.AddToCombatAndPreview<MinionStrike>(
             Owner.Creature,
             CargoCardPile.CargoPileType, xValue, Owner);
+        await CardPileCmd.AddToCombatAndPreview<MinionStrike>(
+            Owner.Creature,
+            PileType.Hand, xValue, Owner);
         
     }
 }
