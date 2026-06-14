@@ -49,8 +49,6 @@ public sealed class ClaySoldierPower : CustomPowerModel, IHasSecondAmount
         InvokeDisplayAmountChanged();
     }
 
-
-
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext,
         Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
@@ -71,5 +69,4 @@ public sealed class ClaySoldierPower : CustomPowerModel, IHasSecondAmount
         }
         GetInternalData<Data>().activatedThisTurn = false;
     }
-
 }
