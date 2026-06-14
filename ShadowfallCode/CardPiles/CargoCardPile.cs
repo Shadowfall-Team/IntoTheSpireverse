@@ -11,7 +11,6 @@ public class CargoCardPile() : CustomPile(CargoPileType)
 {
     [CustomEnum] public static PileType CargoPileType;
 
-    //TODO: make this visible
     public override bool CardShouldBeVisible(CardModel card)
     {
         return true;
@@ -25,7 +24,6 @@ public class CargoCardPile() : CustomPile(CargoPileType)
 
 public struct CargoSelectorPrefs
 {
-    //TODO: add localizations
     public static LocString ToCargoSelectionPrompt => new LocString("card_selection", "TO_CARGO");
     public static LocString FromCargoSelectionPrompt => new LocString("card_selection", "FROM_CARGO");
 }

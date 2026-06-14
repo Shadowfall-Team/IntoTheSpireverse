@@ -9,7 +9,6 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-//TODO if functionality is fine. changed slightly from the design doc
 public class Successor() : ShadowRegentCard(
     0,
     CardType.Skill,

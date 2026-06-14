@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-//TODO: Check what the upgrade is here
+//TODO: check if this works with ammo & cargo piles
 public class TrialOfSpace() : ShadowRegentCard(
     1,
     CardType.Power,
@@ -31,6 +31,7 @@ public class TrialOfSpace() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
+        EnergyCost.UpgradeBy(-1);
     }
 }
 

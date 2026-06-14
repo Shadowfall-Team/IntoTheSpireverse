@@ -49,7 +49,6 @@ public class DefensiveCannonade() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        // DynamicVars["LoadAmmo"].UpgradeValueBy(1);
         DynamicVars.Block.UpgradeValueBy(2);
     }
 }
@@ -74,12 +73,11 @@ public class DefensiveCannonadePower : CustomPowerModel, IHasSecondAmount, IAmmo
 
     public string GetSecondAmount() => _shotsRemaining.ToString();
 
-    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         if (player.Creature != Owner) return;
 
         Flash();
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move, null);
 
         ShotsRemaining--;
         if (ShotsRemaining <= 0)

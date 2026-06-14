@@ -49,7 +49,7 @@ public class CrescentSpear() : ShadowRegentCard(1,
             CardCmd.Upgrade(uStrike);
         }
 
-        var cardPileAddResult = await CardPileCmd.Add(uStrike, CargoCardPile.CargoPileType);
+        var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(uStrike, CargoCardPile.CargoPileType, Owner);
         CardCmd.PreviewCardPileAdd(cardPileAddResult);
     }
 

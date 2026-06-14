@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-public class LoadUp() : ShadowRegentCard(
+public class Contraband() : ShadowRegentCard(
     0,
     CardType.Skill,
     CardRarity.Uncommon,

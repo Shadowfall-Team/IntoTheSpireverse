@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Cards;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
@@ -10,6 +11,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
@@ -34,12 +36,22 @@ public class AmmoVolley() : CustomCardModel(1,
             .WithMultiplier(static (card, _) =>
                 card.Owner.Creature.GetPowerAmount<NextVolleyDamagePower>() +
                 card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
-        new RepeatVar(0),
+        .. MakeCalculatedBlock("ShotBlock", 0, (model, _) => GetOwnerBlockadeAmount(model))
     ];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [BaseLibKeywords.Purge];
+    public override bool GainsBlock => GetOwnerBlockadeAmount(this) > 0;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [];
+    private static decimal GetOwnerBlockadeAmount(CardModel cardModel)
+    {
+        if (!cardModel.IsMutable || cardModel.Pile == null)
+        {
+            return 0;
+        }
+
+        return cardModel.Owner.Creature.GetPowerInstances<DefensiveCannonadePower>().Sum(p => p.Amount);
+    }
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [BaseLibKeywords.Purge];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -59,6 +71,12 @@ public class AmmoVolley() : CustomCardModel(1,
             return;
 
         await CreateMissile(pickedTarget);
+
+        if (GainsBlock)
+        {
+            await CreatureCmd.GainBlock(Owner.Creature,
+                ((CalculatedVar)DynamicVars["ShotBlock"]).Calculate(Owner.Creature), ValueProp.Move, cardPlay);
+        }
 
         var baseDamage = DynamicVars.CalculationBase.BaseValue;
         var extraDamage = DynamicVars.ExtraDamage.BaseValue;
@@ -91,7 +109,7 @@ public class AmmoVolley() : CustomCardModel(1,
             .Distinct()
             .ToList();
 
-        AmmoResource.InvokeOnAmmoFired(Owner, targets);
+        await AmmoResource.InvokeOnAmmoFired(Owner, targets);
     }
 
     private async Task CreateMissile(Creature? pickedTarget)
@@ -105,7 +123,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
             if (missileTarget is { } pos)
             {
-                var missile = NLargeMagicMissileVfx.Create(pos, new Color("c01020"));
+                var missile = NSmallMagicMissileVfx.Create(pos, new Color("c01020"));
                 if (missile != null)
                 {
                     combatRoom.CombatVfxContainer.AddChildSafely(missile);
@@ -117,6 +135,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
     protected override void OnUpgrade()
     {
+        DynamicVars.Damage.UpgradeValueBy(6);
     }
 
     public override TargetType TargetType => TargetType.RandomEnemy;

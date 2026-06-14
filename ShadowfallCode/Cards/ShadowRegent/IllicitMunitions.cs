@@ -37,8 +37,8 @@ public class IllicitMunitions() : ShadowRegentCard(1,
         var salvoCard = CombatState.CreateCard<Salvo>(Owner);
         salvoCard.AddKeyword(CardKeyword.Retain);
 
-        var results = await CardPileCmd.Add([volleyCard, salvoCard], CargoCardPile.CargoPileType,
-            clonedBy: this);
+        var results = await CardPileCmd.AddGeneratedCardsToCombat([volleyCard, salvoCard], CargoCardPile.CargoPileType,
+            Owner);
 
         CardCmd.PreviewCardPileAdd(results);
     }

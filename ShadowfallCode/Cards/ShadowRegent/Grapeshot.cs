@@ -12,8 +12,7 @@ using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-//TODO: has a name conflict with a vanilla card.
-public class Cascade() : ShadowRegentCard(
+public class Grapeshot() : ShadowRegentCard(
     2,
     CardType.Power,
     CardRarity.Rare,
@@ -29,7 +28,7 @@ public class Cascade() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<CascadePower>(
+        await PowerCmd.Apply<GrapeshotPower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,
             1,
             Owner.Creature,
@@ -42,12 +41,12 @@ public class Cascade() : ShadowRegentCard(
     }
 }
 
-public class CascadePower : CustomPowerModel, IAmmoFiredListener
+public class GrapeshotPower : CustomPowerModel, IAmmoFiredListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
     {
         if (player.Creature != Owner) return;
         Flash();
