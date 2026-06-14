@@ -63,21 +63,30 @@ public partial class NAmmoButton : NButton
     {
         var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
         var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
-        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel"), font);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%Count"), font);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%FireButtonLabel"), font);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%EnergyLabel"), font);
+        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel"), font,
+            minSize: 22,
+            maxSize: 28);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%Count"), font, minSize: 32,
+            maxSize: 32);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%FireButtonLabel"),
+            font, minSize: 20, maxSize: 20);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%EnergyLabel"),
+            font, minSize: 21, maxSize: 24);
         return button;
     }
 
-    private static void ApplyFont(MegaLabel label, Font font)
+    private static void ApplyFont(MegaLabel label, Font font, int minSize, int maxSize)
     {
         label.AddThemeFontOverride(ThemeConstants.Label.Font, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
     }
 
-    private static void ApplyFont(MegaRichTextLabel label, Font font)
+    private static void ApplyFont(MegaRichTextLabel label, Font font, int minSize, int maxSize)
     {
         label.AddThemeFontOverride(ThemeConstants.RichTextLabel.NormalFont, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
     }
 
     private static Texture2D GetAttackIntentTexture(int damage)
