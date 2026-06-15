@@ -13,6 +13,8 @@ public class CaptainsHat : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
     
+    
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("Rounds", 1),
