@@ -51,7 +51,7 @@ public class Strongarm() : ShadowRegentCard(3,
     }
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(30);
+        DynamicVars.Damage.UpgradeValueBy(4);
         DynamicVars["Increase"].UpgradeValueBy(6);
     }
 }
