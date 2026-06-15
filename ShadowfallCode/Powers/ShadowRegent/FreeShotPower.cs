@@ -1,6 +1,5 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -26,7 +25,7 @@ public class FreeShotPower : CustomPowerModel, IAmmoFiredListener
         return false;
     }
 
-    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IEnumerable<List<DamageResult>> results)
     {
         if (player.Creature != Owner) return;
         Flash();

@@ -668,7 +668,7 @@
   "SHADOWFALL-ASSEMBLY_REQUIRED.title": "Assembly Required",
   "SHADOWFALL-FRAGMENT.description": "Everyone gains {ShardPower:diff()} [gold]Shards[/gold].",
   "SHADOWFALL-FRAGMENT.title": "Fragment",
-  "SHADOWFALL-GRAPESHOT.description": "Every [gold]Shot[/gold] you fire increases all your future [gold]Shots[/gold] damage by 1.",
+  "SHADOWFALL-GRAPESHOT.description": "When you fire a [gold]Shot[/gold], fire another that deals half damage.",
   "SHADOWFALL-GRAPESHOT.title": "Grapeshot",
   "SHADOWFALL-EXALTED_FORM.description": "At the start of your turn, add a 0-cost [gold]Discovery[/gold] to your [gold]Hand[/gold].",
   "SHADOWFALL-EXALTED_FORM.title": "Exalted Form",
