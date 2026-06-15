@@ -636,7 +636,7 @@
   "SHADOWFALL-ASTRAL_STRIKE.title": "Astral Strike",
   "SHADOWFALL-E_M_PULSE.description": "When drawn, enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.",
   "SHADOWFALL-E_M_PULSE.title": "EM Pulse",
-  "SHADOWFALL-THE_STARS_ALIGN.description": "Deal {Damage:diff()} damage to ALL enemies {Repeat:diff()} times.",
+  "SHADOWFALL-THE_STARS_ALIGN.description": "Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.",
   "SHADOWFALL-THE_STARS_ALIGN.title": "The Stars Align",
   "SHADOWFALL-FIRE_EVERYTHING.description": "Add {LoadAmmo:diff()} [gold]Ammo[/gold]. Your [gold]Shots[/gold] cost no energy this turn.",
   "SHADOWFALL-FIRE_EVERYTHING.title": "Fire Everything!",
@@ -678,7 +678,7 @@
   "SHADOWFALL-THE_SEALED_THRONE.title": "The Sealed Throne",
   "SHADOWFALL-SMUGGLE.description": "Choose up to {Cards:diff()} cards in your hand to put into your [gold]Cargo[/gold].",
   "SHADOWFALL-SMUGGLE.title": "Smuggle",
-  "SHADOWFALL-AMMO_VOLLEY.description": "deal {CalculatedDamage:diff()} damage to a random enemy.{GainsBlock:cond:\nGain {ShotBlock:diff()} [gold]Block[/gold].|}",
+  "SHADOWFALL-AMMO_VOLLEY.description": "Deal {CalculatedDamage:diff()} damage to a random enemy.{GainsBlock:cond:\nGain {ShotBlock:diff()} [gold]Block[/gold].|}",
   "SHADOWFALL-AMMO_VOLLEY.title": "Shot",
   "SHADOWFALL-SUPERMASSIVE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each card you created this combat.",
   "SHADOWFALL-SUPERMASSIVE.title": "Supermassive"
