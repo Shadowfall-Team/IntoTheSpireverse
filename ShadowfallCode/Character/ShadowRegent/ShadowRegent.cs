@@ -14,7 +14,7 @@ namespace Shadowfall.ShadowfallCode.Character;
 public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "regent";
-    public const string CharacterId = "Shadowfall";
+    public const string CharacterId = "regent";
 
     public static readonly Color Color = StsColors.orange;
     public override Color NameColor => Color;
@@ -55,6 +55,6 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<SpareBullet>()
+        ModelDb.Relic<CaptainsHat>()
     ];
 }

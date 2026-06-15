@@ -9,18 +9,13 @@ using Shadowfall.ShadowfallCode.Cards.Colorless;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-public class Bandolier : ShadowRegentRelic
+public class AdmiralsHat : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Warp>()
-    ];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new IntVar("FreeShots", 3)
     ];
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

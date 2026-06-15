@@ -596,7 +596,7 @@
   "SHADOWFALL-HIDDEN_CACHE.title": "Hidden Cache",
   "SHADOWFALL-BANANA.description": "Heal {Heal:diff()} HP.\nGain {DexterityPower:diff()} [gold]Dexterity[/gold].\nAdd a [gold]Trip[/gold] to your [gold]Cargo[/gold].",
   "SHADOWFALL-BANANA.title": "Banana",
-  "SHADOWFALL-WARP.description": "Gain {Energy:energyIcons()}.\nGain {StrengthPower:diff()} [gold]Strength[/gold].",
+  "SHADOWFALL-WARP.description": "Gain {Energy:energyIcons()}.{StrengthPower:cond:>0?\nGain {StrengthPower:diff()} [gold]Strength[/gold].|}",
   "SHADOWFALL-WARP.title": "Warp",
   "SHADOWFALL-TRIP.description": "Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]{IfUpgraded:show: to ALL enemies|}.",
   "SHADOWFALL-TRIP.title": "Trip",  
