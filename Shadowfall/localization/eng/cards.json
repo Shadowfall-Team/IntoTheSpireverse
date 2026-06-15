@@ -614,7 +614,7 @@
   "SHADOWFALL-SPACE_PIRATE.title": "Space Pirate",  
   "SHADOWFALL-MIRROR_IMAGE.description": "Gain {Block:diff()} [gold]Block[/gold].\nIf you have 7 or more cards in hand, gain {Block:diff()} [gold]Block[/gold] again.",
   "SHADOWFALL-MIRROR_IMAGE.title": "Mirror Image",
-  "SHADOWFALL-TARGET_ACQUIRED.description": "Deal {Damage:diff()} damage.\nLoad {LoadAmmo:diff()} [gold]Ammo[/gold].\nYour Volley targets the enemy this turn.",
+  "SHADOWFALL-TARGET_ACQUIRED.description": "Deal {Damage:diff()} damage.\nLoad {LoadAmmo:diff()} [gold]Ammo[/gold].\nYour [gold]Shots[/gold] targets the enemy this turn.",
   "SHADOWFALL-TARGET_ACQUIRED.title": "Target Acquired",
   "SHADOWFALL-SIEGE.description": "Load {LoadAmmo:diff()} [gold]Ammo[/gold].\nYour next [gold]Shot[/gold] applies {SiegePower:diff()} [gold]Weak[/gold] and {SiegePower:diff()} [gold]Vulnerable[/gold].",
   "SHADOWFALL-SIEGE.title": "Siege",
