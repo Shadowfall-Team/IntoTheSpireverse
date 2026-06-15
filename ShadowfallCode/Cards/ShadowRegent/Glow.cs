@@ -42,6 +42,6 @@ public class Glow() : ShadowRegentCard(1,
     
     protected override void OnUpgrade()
     {
-        //TODO: upgrade not specified in the design doc
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }
