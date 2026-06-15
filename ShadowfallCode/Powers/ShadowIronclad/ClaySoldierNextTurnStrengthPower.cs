@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class SuperheatedNextTurnStrengthPower : CustomPowerModel
+public sealed class ClaySoldierNextTurnStrengthPower : CustomPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -23,7 +23,7 @@ public sealed class SuperheatedNextTurnStrengthPower : CustomPowerModel
     {
         if (side != Owner.Side) return;
         Flash();
-        await PowerCmd.Apply<SuperheatedTemporaryStrengthPower>(
+        await PowerCmd.Apply<ClaySoldierTemporaryStrengthPower>(
             new ThrowingPlayerChoiceContext(),
             Owner, Amount, Owner, null);
         await PowerCmd.Remove(this);

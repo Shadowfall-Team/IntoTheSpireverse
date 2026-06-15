@@ -1,29 +1,31 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 public class HeartOfTheMountain : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
-    public override bool HasUponPickupEffect => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("HealPercent", 20m),
-        new MaxHpVar(15m),
+        new HealVar(18m),
+        new MaxHpVar(2m),
+        new PowerVar<StrengthPower>(3m)
     ];
 
-    public override async Task AfterObtained()
+    public override async Task AfterRoomEntered(AbstractRoom room)
     {
-        Flash();
-        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue);
+        if (room.RoomType == RoomType.Boss || room.RoomType == RoomType.Elite)
+        {
+            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(),
+                Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, null
+            );
+        }
     }
 
     public override async Task AfterCombatVictory(CombatRoom room)
@@ -32,6 +34,7 @@ public class HeartOfTheMountain : ShadowIroncladRelic
         if (Owner.Creature.IsDead) return;
 
         Flash();
-        await CreatureCmd.Heal(Owner.Creature, Owner.Creature.MaxHp * DynamicVars["HealPercent"].BaseValue / 100m);
+        await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
+        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue);
     }
 }
