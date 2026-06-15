@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -312,12 +313,13 @@ public partial class NAmmoButton : NButton
         _ammoCountLabel.Text = AvailableAmmoCount.ToString();
 
         var card = TopCard ?? ModelDb.Card<AmmoVolley>();
+        var preHookDamage = card.DynamicVars.CalculatedDamage.Calculate(null);
         var damage = (int)Hook.ModifyDamage(
             _player.RunState,
             _player.Creature.CombatState,
             null,
             _player.Creature,
-            card.DynamicVars.CalculatedDamage.BaseValue,
+            preHookDamage,
             ValueProp.Move,
             card,
             ModifyDamageHookType.All,
