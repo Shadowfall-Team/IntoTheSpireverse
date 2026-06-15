@@ -6,8 +6,8 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Ammo;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -46,10 +46,32 @@ public class GrapeshotPower : CustomPowerModel, IAmmoFiredListener
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IEnumerable<List<DamageResult>> results)
     {
         if (player.Creature != Owner) return;
         Flash();
-        await PowerCmd.Apply<VolleyDamagePower>(new ThrowingPlayerChoiceContext(), Owner, 1, Owner, null);
+
+        var resultsList = results.ToList();
+        for (var i = 0; i < Amount; i++)
+        {
+            foreach (List<DamageResult> result in resultsList)
+            {
+                IReadOnlyList<Creature>? hitTargets;
+                if (Owner.HasPower<BigGunsPower>())
+                {
+                    hitTargets = CombatState.HittableEnemies;
+                    await ShotHelper.CreateMissile(CombatState, null);
+                }
+                else
+                {
+                    hitTargets =
+                        [Owner.Player.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies.ToList())];
+                    await ShotHelper.CreateMissile(CombatState, hitTargets[0]);
+                }
+
+                await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), hitTargets,
+                    result.Max(d => d.TotalDamage) / 2M, ValueProp.Unpowered, Owner);
+            }
+        }
     }
 }

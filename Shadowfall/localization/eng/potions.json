@@ -11,5 +11,12 @@
   "SHADOWFALL-S_NECRO_DEATHGLARE_POTION.title": "Shadow Necrobinder Deathglare Potion (PLACEHOLDER NAME)",
   "SHADOWFALL-S_NECRO_DEATHGLARE_POTION.description": "Add a [gold]Deathglare[/gold] into your [gold]Draw Pile[/gold].",
   "SHADOWFALL-S_NECRO_BLOCK_CURSE_POTION.title": "SNecroBlockCursePotion (PLACEHOLDER NAME)",
-  "SHADOWFALL-S_NECRO_BLOCK_CURSE_POTION.description": "Gain [blue]{Block}[/blue] [gold]Block[/gold], plus an additional [blue]5[/blue] [gold]Block[/gold] for each [purple]Curse[/purple] in your [gold]Deck[/gold].\n(Gain [blue]{TotalBlock}[/blue] [gold]Block[/gold])"
+  "SHADOWFALL-S_NECRO_BLOCK_CURSE_POTION.description": "Gain [blue]{Block}[/blue] [gold]Block[/gold], plus an additional [blue]5[/blue] [gold]Block[/gold] for each [purple]Curse[/purple] in your [gold]Deck[/gold].\n(Gain [blue]{TotalBlock}[/blue] [gold]Block[/gold])",
+  
+  "SHADOWFALL-SPACE_DUST_POTION.description": "Choose 1 of 3 random cards to put into your [gold]Cargo[/gold]. Its free until played.",
+  "SHADOWFALL-SPACE_DUST_POTION.title": "Space Dust",
+  "SHADOWFALL-LIQUID_DILITHIUM_POTION.description": "Gain {ShardPower} [gold]Shards[/gold].",
+  "SHADOWFALL-LIQUID_DILITHIUM_POTION.title": "Liquid Dilithium",
+  "SHADOWFALL-ILLICIT_MUNITION_POTION.description": "Load {LoadAmmo} [gold]Ammo[/gold]. Your next [gold]Shot[/gold] applies {SiegePower} [gold]Weak[/gold], {SiegePower} [gold]Vulnerable[/gold], grants {Block} more [gold]Block[/gold], and deals {NextVolleyDamagePower} more damage.",
+  "SHADOWFALL-ILLICIT_MUNITION_POTION.title": "Illicit Munition"
 }

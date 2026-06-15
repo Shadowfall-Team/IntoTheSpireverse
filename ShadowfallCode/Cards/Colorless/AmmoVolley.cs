@@ -70,7 +70,7 @@ public class AmmoVolley() : CustomCardModel(1,
         if (!hasBigGuns && pickedTarget == null)
             return;
 
-        await CreateMissile(pickedTarget);
+        await ShotHelper.CreateMissile(CombatState, pickedTarget);
 
         if (GainsBlock)
         {
@@ -103,34 +103,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
         var executedCommand = await command.Execute(choiceContext);
 
-        var targets = executedCommand.Results
-            .SelectMany(r => r)
-            .Select(r => r.Receiver)
-            .Distinct()
-            .ToList();
-
-        await AmmoResource.InvokeOnAmmoFired(Owner, targets);
-    }
-
-    private async Task CreateMissile(Creature? pickedTarget)
-    {
-        var combatRoom = NCombatRoom.Instance;
-        if (combatRoom != null)
-        {
-            var missileTarget = pickedTarget != null
-                ? combatRoom.GetCreatureNode(pickedTarget)?.GetBottomOfHitbox()
-                : VfxCmd.GetSideCenterFloor(CombatSide.Enemy, CombatState);
-
-            if (missileTarget is { } pos)
-            {
-                var missile = NSmallMagicMissileVfx.Create(pos, new Color("c01020"));
-                if (missile != null)
-                {
-                    combatRoom.CombatVfxContainer.AddChildSafely(missile);
-                    await Cmd.Wait(missile.WaitTime);
-                }
-            }
-        }
+        await AmmoResource.InvokeOnAmmoFired(Owner, executedCommand.Results);
     }
 
     protected override void OnUpgrade()

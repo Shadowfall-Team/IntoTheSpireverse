@@ -13,7 +13,7 @@ public class NextVolleyDamagePower : CustomPowerModel, IAmmoFiredListener
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public async Task OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IEnumerable<List<DamageResult>> results)
     {
         if (player.Creature != Owner) return;
         Flash();

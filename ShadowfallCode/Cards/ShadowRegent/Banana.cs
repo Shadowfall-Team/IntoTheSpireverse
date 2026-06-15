@@ -4,8 +4,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Shadowfall.ShadowfallCode.CardPiles;
 using Shadowfall.ShadowfallCode.Cards.Colorless;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -15,13 +15,15 @@ public class Banana() : ShadowRegentCard(1,
     TargetType.Self)
 {
     public override bool CanBeGeneratedInCombat => false;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HealVar(3),
         new PowerVar<DexterityPower>(1)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Trip>(),
         HoverTipFactory.FromPower<DexterityPower>(),
     ];
@@ -42,7 +44,8 @@ public class Banana() : ShadowRegentCard(1,
             this);
 
         var tripCard = CombatState.CreateCard<Trip>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(tripCard, PileType.Hand, Owner);
+        var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(tripCard, CargoCardPile.CargoPileType, Owner);
+        CardCmd.PreviewCardPileAdd(cardAdd);
     }
 
     protected override void OnUpgrade()

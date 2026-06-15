@@ -18,7 +18,7 @@
   "SHADOWFALL-SPARE_BULLET.description": "At the start of the first 3 turns of combat, gain 2 [gold]Shards[/gold].",
   "SHADOWFALL-SPARE_BULLET.flavor": "",
   "SHADOWFALL-SPARE_BULLET.title": "Spare Bullet",
-  "SHADOWFALL-BANDOLIER.description": "The first {FreeShots} [gold]Shots[/gold] you fire each combat costs no energy.",
+  "SHADOWFALL-BANDOLIER.description": "At the start of combat, add a [gold]Warp[/gold] into your hand.",
   "SHADOWFALL-BANDOLIER.flavor": "",
   "SHADOWFALL-BANDOLIER.title": "Bandolier",
   "SHADOWFALL-SHADOW_FENCING_MANUAL.description": "If you end your turn with unspent energy, gain {LoadAmmo} [gold]Ammo[/gold].",

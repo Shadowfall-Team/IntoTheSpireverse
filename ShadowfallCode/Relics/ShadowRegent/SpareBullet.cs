@@ -7,7 +7,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-public class SpareBullet() : ShadowRegentRelic
+public class SpareBullet : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 

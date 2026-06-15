@@ -35,10 +35,9 @@ public partial class NAmmoButton : NButton
     private Player _player = null!;
     private bool _initialized;
     private bool _hasEverHadAmmo;
-    private readonly List<PlayAmmoCardAction> _playQueue = new();
+    private readonly List<PlayAmmoCardAction> _playQueue = [];
     private CardPile? _pile;
 
-    // Child nodes
     private Control _shipContainer = null!;
     private ShadowfallMegaRichTextLabel _damageLabel = null!;
     private ShadowfallMegaLabel _ammoCountLabel = null!;
@@ -51,7 +50,6 @@ public partial class NAmmoButton : NButton
     private Tween? _fadeTween;
     private Tween? _bumpTween;
 
-    // Bob state
     private float _bobTime;
     private const float BobAmplitude = 5f;
     private const float BobFrequency = 2f;
@@ -59,40 +57,41 @@ public partial class NAmmoButton : NButton
     protected override string? ClickedSfx => "event:/sfx/ui/clicks/ui_click";
     protected override string? HoveredSfx => "event:/sfx/ui/clicks/ui_hover";
 
-    public static NAmmoButton Create()
-    {
-        var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
-        var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
-        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel"), font);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%Count"), font);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%FireButtonLabel"), font);
-        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%EnergyLabel"), font);
-        return button;
-    }
+    private CardModel? TopCard => _pile?.Cards.ToList().FirstOrDefault();
 
-    private static void ApplyFont(MegaLabel label, Font font)
-    {
-        label.AddThemeFontOverride(ThemeConstants.Label.Font, font);
-    }
+    private int AvailableAmmoCount =>
+        (_pile?.Cards.Count ?? 0) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
 
-    private static void ApplyFont(MegaRichTextLabel label, Font font)
+    private bool CanFire
     {
-        label.AddThemeFontOverride(ThemeConstants.RichTextLabel.NormalFont, font);
-    }
-
-    private static Texture2D GetAttackIntentTexture(int damage)
-    {
-        var tier = damage switch
+        get
         {
-            < 5 => "1",
-            < 10 => "2",
-            < 20 => "3",
-            < 40 => "4",
-            _ => "5"
-        };
-        return PreloadManager.Cache.GetAsset<Texture2D>(
-            ImageHelper.GetImagePath($"packed/intents/attack/intent_attack_{tier}.png"));
+            if (!_initialized || _player.PlayerCombatState == null ||
+                _player.Creature.CombatState?.CurrentSide != CombatSide.Player)
+                return false;
+            var top = TopCard;
+            if (top == null) return false;
+            if (AvailableAmmoCount <= 0) return false;
+            return AvailableEnergy >= top.EnergyCost.GetWithModifiers(CostModifiers.All)
+                   && NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play
+                   && !CombatManager.Instance.IsOverOrEnding;
+        }
     }
+
+    private int AvailableEnergy
+    {
+        get
+        {
+            if (_player.PlayerCombatState == null) return 0;
+            var top = TopCard;
+            if (top == null) return _player.PlayerCombatState.Energy;
+            var pendingCost = _playQueue.Count(a => a.State == GameActionState.WaitingForExecution)
+                              * top.EnergyCost.GetWithModifiers(CostModifiers.All);
+            return _player.PlayerCombatState.Energy - pendingCost;
+        }
+    }
+
+    #region Godot Lifecycle
 
     public override void _Ready()
     {
@@ -128,6 +127,35 @@ public partial class NAmmoButton : NButton
         _playQueue.Clear();
     }
 
+    public override void _Process(double delta)
+    {
+        if (!_initialized) return;
+        _bobTime += (float)delta * BobFrequency;
+        _shipContainer.Position = new Vector2(
+            _shipContainer.Position.X,
+            Mathf.Sin(_bobTime) * BobAmplitude);
+    }
+
+    #endregion
+
+    #region Initialization
+
+    public static NAmmoButton Create()
+    {
+        var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
+        var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
+        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel"), font,
+            minSize: 22,
+            maxSize: 28);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%Count"), font, minSize: 32,
+            maxSize: 32);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%FireButtonLabel"),
+            font, minSize: 20, maxSize: 20);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%EnergyLabel"),
+            font, minSize: 21, maxSize: 24);
+        return button;
+    }
+
     public void Initialize(Player player)
     {
         _player = player;
@@ -139,15 +167,23 @@ public partial class NAmmoButton : NButton
         UpdateState();
     }
 
-    public override void _Process(double delta)
+    private static void ApplyFont(MegaLabel label, Font font, int minSize, int maxSize)
     {
-        if (!_initialized) return;
-        _bobTime += (float)delta * BobFrequency;
-        _shipContainer.Position = new Vector2(
-            _shipContainer.Position.X,
-            Mathf.Sin(_bobTime) * BobAmplitude);
+        label.AddThemeFontOverride(ThemeConstants.Label.Font, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
     }
 
+    private static void ApplyFont(MegaRichTextLabel label, Font font, int minSize, int maxSize)
+    {
+        label.AddThemeFontOverride(ThemeConstants.RichTextLabel.NormalFont, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
+    }
+
+    #endregion
+
+    #region Button Overrides
 
     protected override void OnFocus()
     {
@@ -217,6 +253,21 @@ public partial class NAmmoButton : NButton
         UpdateFireLabel();
     }
 
+    private async void WaitForActionComplete(PlayAmmoCardAction action)
+    {
+        while (action.State != GameActionState.Finished && action.State != GameActionState.Canceled)
+        {
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        }
+
+        _playQueue.Remove(action);
+        UpdateState();
+    }
+
+    #endregion
+
+    #region Event Handlers
+
     private void OnPileContentsChanged()
     {
         if (!_hasEverHadAmmo && _pile!.Cards.Count > 0)
@@ -239,42 +290,19 @@ public partial class NAmmoButton : NButton
         UpdateState();
     }
 
-    private CardModel? TopCard => _pile?.Cards.FirstOrDefault();
-
-    private int AvailableAmmoCount =>
-        (_pile?.Cards.Count ?? 0) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
-
-    private int AvailableEnergy
+    private void AnimIn()
     {
-        get
-        {
-            if (_player.PlayerCombatState == null) return 0;
-            var top = TopCard;
-            if (top == null) return _player.PlayerCombatState.Energy;
-            var pendingCost = _playQueue.Count(a => a.State == GameActionState.WaitingForExecution)
-                              * top.EnergyCost.GetWithModifiers(CostModifiers.All);
-            return _player.PlayerCombatState.Energy - pendingCost;
-        }
+        Visible = true;
+        _fadeTween?.Kill();
+        _fadeTween = CreateTween();
+        _fadeTween.TweenProperty(this, "modulate:a", 1f, 0.3f)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Sine);
     }
 
-    private bool IsPlayerTurn =>
-        NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play;
+    #endregion
 
-    private bool CanFire
-    {
-        get
-        {
-            if (!_initialized || _player.PlayerCombatState == null ||
-                _player.Creature.CombatState?.CurrentSide != CombatSide.Player)
-                return false;
-            var top = TopCard;
-            if (top == null) return false;
-            if (AvailableAmmoCount <= 0) return false;
-            return AvailableEnergy >= top.EnergyCost.GetWithModifiers(CostModifiers.All)
-                   && IsPlayerTurn
-                   && !CombatManager.Instance.IsOverOrEnding;
-        }
-    }
+    #region State Updates
 
     private void UpdateState()
     {
@@ -314,25 +342,19 @@ public partial class NAmmoButton : NButton
             _fireLabel.Modulate = StsColors.cream;
     }
 
-
-    private async void WaitForActionComplete(PlayAmmoCardAction action)
+    private static Texture2D GetAttackIntentTexture(int damage)
     {
-        while (action.State != GameActionState.Finished && action.State != GameActionState.Canceled)
+        var tier = damage switch
         {
-            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        }
-
-        _playQueue.Remove(action);
-        UpdateState();
+            < 5 => "1",
+            < 10 => "2",
+            < 20 => "3",
+            < 40 => "4",
+            _ => "5"
+        };
+        return PreloadManager.Cache.GetAsset<Texture2D>(
+            ImageHelper.GetImagePath($"packed/intents/attack/intent_attack_{tier}.png"));
     }
 
-    private void AnimIn()
-    {
-        Visible = true;
-        _fadeTween?.Kill();
-        _fadeTween = CreateTween();
-        _fadeTween.TweenProperty(this, "modulate:a", 1f, 0.3f)
-            .SetEase(Tween.EaseType.Out)
-            .SetTrans(Tween.TransitionType.Sine);
-    }
+    #endregion
 }
