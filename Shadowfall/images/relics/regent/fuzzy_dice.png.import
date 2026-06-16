@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://basmhp5c8fces"
-path="res://.godot/imported/fuzzydice.png-3ddcf8ba87eb06c162e36a0b99402550.ctex"
+uid="uid://b5wh465wks4ch"
+path="res://.godot/imported/fuzzy_dice.png-477a59abe71bc7df8fc9052acda637bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/regent/big/fuzzydice.png"
-dest_files=["res://.godot/imported/fuzzydice.png-3ddcf8ba87eb06c162e36a0b99402550.ctex"]
+source_file="res://Shadowfall/images/relics/regent/fuzzy_dice.png"
+dest_files=["res://.godot/imported/fuzzy_dice.png-477a59abe71bc7df8fc9052acda637bc.ctex"]
 
 [params]
 

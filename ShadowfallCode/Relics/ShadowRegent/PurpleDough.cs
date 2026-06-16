@@ -10,7 +10,7 @@ using Shadowfall.ShadowfallCode.CardPiles;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-public class ShadowOrangeDough : ShadowRegentRelic
+public class PurpleDough : ShadowRegentRelic
 {
     public override RelicRarity Rarity =>
         RelicRarity.Rare;

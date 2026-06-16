@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx3s1ahbcmq82"
-path="res://.godot/imported/fuzzydice_outline.png-854ef2b8824036fe0393eee40463d427.ctex"
+uid="uid://bgno1ia4cl717"
+path="res://.godot/imported/ship_in_a_bottle_outline.png-7776d5997db9b141a7ee2a0eadde623c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/regent/fuzzydice_outline.png"
-dest_files=["res://.godot/imported/fuzzydice_outline.png-854ef2b8824036fe0393eee40463d427.ctex"]
+source_file="res://Shadowfall/images/relics/regent/ship_in_a_bottle_outline.png"
+dest_files=["res://.godot/imported/ship_in_a_bottle_outline.png-7776d5997db9b141a7ee2a0eadde623c.ctex"]
 
 [params]
 

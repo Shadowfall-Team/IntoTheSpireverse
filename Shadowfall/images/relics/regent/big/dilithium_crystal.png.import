@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3b0bk2hwn76t"
-path="res://.godot/imported/dilithiumcrystal_outline.png-a3b00daba20902fc85ce8753e77f4ff5.ctex"
+uid="uid://b7r6wpv6d13w5"
+path="res://.godot/imported/dilithium_crystal.png-dbab3e9c99ef96ad2d71737e8b2c782f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/regent/dilithiumcrystal_outline.png"
-dest_files=["res://.godot/imported/dilithiumcrystal_outline.png-a3b00daba20902fc85ce8753e77f4ff5.ctex"]
+source_file="res://Shadowfall/images/relics/regent/big/dilithium_crystal.png"
+dest_files=["res://.godot/imported/dilithium_crystal.png-dbab3e9c99ef96ad2d71737e8b2c782f.ctex"]
 
 [params]
 

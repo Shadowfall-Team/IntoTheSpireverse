@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccf0dtixx5tnc"
-path="res://.godot/imported/dilithiumcrystal.png-c11001b1e6ee941f8e0c9a394990ad44.ctex"
+uid="uid://basmhp5c8fces"
+path="res://.godot/imported/fuzzy_dice.png-cc9ff1a00792e5c0f25ed87c946c0342.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/regent/dilithiumcrystal.png"
-dest_files=["res://.godot/imported/dilithiumcrystal.png-c11001b1e6ee941f8e0c9a394990ad44.ctex"]
+source_file="res://Shadowfall/images/relics/regent/big/fuzzy_dice.png"
+dest_files=["res://.godot/imported/fuzzy_dice.png-cc9ff1a00792e5c0f25ed87c946c0342.ctex"]
 
 [params]
 

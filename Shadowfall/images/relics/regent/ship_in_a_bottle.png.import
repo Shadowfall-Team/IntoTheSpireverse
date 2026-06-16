@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgno1ia4cl717"
-path="res://.godot/imported/shipinabottle_outline.png-91223fd58d3989bdf4be4ee4f5f13fb1.ctex"
+uid="uid://csddn35swah4m"
+path="res://.godot/imported/ship_in_a_bottle.png-f8162e4a6c71488141a878f137bb6244.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/regent/shipinabottle_outline.png"
-dest_files=["res://.godot/imported/shipinabottle_outline.png-91223fd58d3989bdf4be4ee4f5f13fb1.ctex"]
+source_file="res://Shadowfall/images/relics/regent/ship_in_a_bottle.png"
+dest_files=["res://.godot/imported/ship_in_a_bottle.png-f8162e4a6c71488141a878f137bb6244.ctex"]
 
 [params]
 

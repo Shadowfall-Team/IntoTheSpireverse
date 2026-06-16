@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmdcviuomwurp"
-path="res://.godot/imported/purpledough_outline.png-a9b3beeef004077cee5ca41869a9b80b.ctex"
+uid="uid://cgjs1c6adfckh"
+path="res://.godot/imported/purple_dough.png-ae8584ebb85744c1f9b237e63658397b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/regent/purpledough_outline.png"
-dest_files=["res://.godot/imported/purpledough_outline.png-a9b3beeef004077cee5ca41869a9b80b.ctex"]
+source_file="res://Shadowfall/images/relics/regent/purple_dough.png"
+dest_files=["res://.godot/imported/purple_dough.png-ae8584ebb85744c1f9b237e63658397b.ctex"]
 
 [params]
 

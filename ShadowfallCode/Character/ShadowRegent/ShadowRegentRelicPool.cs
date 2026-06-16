@@ -17,14 +17,14 @@ public class ShadowRegentRelicPool : CustomRelicPoolModel
             //starter
             ModelDb.Relic<CaptainsHat>(),
             //common
-            ModelDb.Relic<ShadowFencingManual>(),
+            ModelDb.Relic<FuzzyDice>(),
             //uncommon
             ModelDb.Relic<CommBadge>(),
-            ModelDb.Relic<ShadowGalacticDust>(),
+            ModelDb.Relic<DilithiumCrystal>(),
             //rare
-            ModelDb.Relic<ShadowLunarPastry>(),
-            ModelDb.Relic<ShadowMiniRegent>(),
-            ModelDb.Relic<ShadowOrangeDough>(),
+            ModelDb.Relic<ShipInABottle>(),
+            ModelDb.Relic<Bobblehead>(),
+            ModelDb.Relic<PurpleDough>(),
             //shop
             ModelDb.Relic<HulaFigure>(),
         ]);

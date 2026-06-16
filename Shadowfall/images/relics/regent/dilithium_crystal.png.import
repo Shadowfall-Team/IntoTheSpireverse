@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhof43imdja43"
-path="res://.godot/imported/shipinabottle.png-10026711c9fefd46ace38cc0c4b47205.ctex"
+uid="uid://ccf0dtixx5tnc"
+path="res://.godot/imported/dilithium_crystal.png-66d5511b1966fb4f130bba1989020480.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/regent/big/shipinabottle.png"
-dest_files=["res://.godot/imported/shipinabottle.png-10026711c9fefd46ace38cc0c4b47205.ctex"]
+source_file="res://Shadowfall/images/relics/regent/dilithium_crystal.png"
+dest_files=["res://.godot/imported/dilithium_crystal.png-66d5511b1966fb4f130bba1989020480.ctex"]
 
 [params]
 
