@@ -1,7 +1,9 @@
 ﻿using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using Shadowfall.ShadowfallCode.Character;
 using Shadowfall.ShadowfallCode.ui;
@@ -56,5 +58,21 @@ public class NCharacterSelectButtonPatches
         arrowButton.Characters.Add(character);
 
         __instance.AddChild(arrowButton);
+    }
+}
+
+[HarmonyPatch(typeof(NButton),"_Input")]
+public static class NButtonPatches
+{
+    [HarmonyPostfix]
+    public static void InputPostfix(NButton __instance, InputEvent inputEvent)
+    {
+        if (__instance.GetType() != typeof(NCharacterSelectButton) || !__instance.IsVisibleInTree()) return;
+        
+        if (!inputEvent.IsActionReleased(MegaInput.up)) return;
+        if (/*!__instance.IsFocused && */!((NCharacterSelectButton)__instance).IsSelected) return;
+
+        var arrow = ((NCharacterSelectButton)__instance).GetChildren().OfType<NCharAltArrow>().FirstOrDefault();
+        arrow?.DoPress();
     }
 }

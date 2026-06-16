@@ -23,7 +23,14 @@ public partial class NCharAltArrow : NGoldArrowButton
 
     protected override void OnPress()
     {
-        if (GetParent() is not NCharacterSelectButton parent) return;
+        if (DoPress()) return;
+
+        base.OnPress();
+    }
+
+    public bool DoPress()
+    {
+        if (GetParent() is not NCharacterSelectButton parent) return true;
 
         _currentAltIndex = (_currentAltIndex + 1) % Characters.Count;
         var character = Characters[_currentAltIndex];
@@ -41,7 +48,7 @@ public partial class NCharAltArrow : NGoldArrowButton
             ClickDelegate.SelectCharacter(parent, character);
         }
 
-        base.OnPress();
+        return false;
     }
 
     private void BounceUp(Control node, float amount = 20.0f, float duration = 0.3f)
