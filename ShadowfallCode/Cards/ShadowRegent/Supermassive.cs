@@ -14,6 +14,8 @@ public class Supermassive() : ShadowRegentCard(
     CardRarity.Rare,
     TargetType.AnyEnemy)
 {
+    public override string? CustomPortraitPath => "res://images/atlases/card_atlas.sprites/regent/supermassive.tres";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CalculationBaseVar(5M),

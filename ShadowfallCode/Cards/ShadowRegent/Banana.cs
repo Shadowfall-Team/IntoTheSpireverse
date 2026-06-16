@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -6,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Shadowfall.ShadowfallCode.CardPiles;
 using Shadowfall.ShadowfallCode.Cards.Colorless;
+using Shadowfall.ShadowfallCode.Extensions;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -14,6 +16,8 @@ public class Banana() : ShadowRegentCard(1,
     CardRarity.Uncommon,
     TargetType.Self)
 {
+    public override string CustomPortraitPath => $"res://Shadowfall/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+
     public override bool CanBeGeneratedInCombat => false;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
