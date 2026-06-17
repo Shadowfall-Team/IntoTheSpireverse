@@ -675,7 +675,7 @@
   "SHADOWFALL-CONSTELLATION.description": "Gain {Block:diff()} [gold]Block[/gold]. Put a card from your [gold]Draw Pile[/gold] into your [gold]Cargo[/gold].",
   "SHADOWFALL-CONSTELLATION.title": "Constellation",
   "SHADOWFALL-THE_SEALED_THRONE.description": "Deal {CalculatedDamage:diff()} damage. Double this card's damage for each [gold]Warp[/gold] you've played this combat.",
-  "SHADOWFALL-THE_SEALED_THRONE.title": "The Sealed Throne",
+  "SHADOWFALL-THE_SEALED_THRONE.title": "Overdrive",
   "SHADOWFALL-SMUGGLE.description": "Choose up to {Cards:diff()} cards in your hand to put into your [gold]Cargo[/gold].",
   "SHADOWFALL-SMUGGLE.title": "Smuggle",
   "SHADOWFALL-AMMO_VOLLEY.description": "Deal {CalculatedDamage:diff()} damage to a random enemy.{GainsBlock:cond:\nGain {ShotBlock:diff()} [gold]Block[/gold].|}",
