@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using Shadowfall.ShadowfallCode.ui;
 
-namespace Shadowfall.ShadowfallCode.Patches;
+namespace Shadowfall.ShadowfallCode.Patches.CombatPiles;
 
 [HarmonyPatch(typeof(NCombatPilesContainer))]
 public static class NCombatPilesContainerPatch

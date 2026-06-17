@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using Shadowfall.ShadowfallCode.ui;
 
-namespace Shadowfall.ShadowfallCode.Patches;
+namespace Shadowfall.ShadowfallCode.Patches.CombatPiles;
 
 [HarmonyPatch(typeof(NCreature), "_Ready")]
 public static class NCreaturePatch
