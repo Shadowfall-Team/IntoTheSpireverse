@@ -81,6 +81,7 @@ text = "14"
 scroll_active = false
 autowrap_mode = 0
 script = ExtResource("4_anfaq")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
 
 [node name="AmmoContainer" type="Control" parent="."]
 anchors_preset = 0
@@ -253,17 +254,66 @@ vertical_alignment = 1
 script = ExtResource("1_ruvg3")
 theme_override_font_sizes/font_size = 21
 
-[node name="ControllerIcon" type="TextureRect" parent="."]
+[node name="ControllerIcons" type="Node" parent="."]
+
+[node name="ControllerIcon" type="TextureRect" parent="ControllerIcons"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 90.0
-offset_right = 92.0
-offset_bottom = 136.0
+offset_left = -501.0
+offset_top = -146.0
+offset_right = -461.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_8knwp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AddSymbol" type="Label" parent="ControllerIcons"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 182.0
+offset_right = -1051.0
+offset_bottom = -438.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 20
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ruvg3")
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 20
+
+[node name="ControllerIcon2" type="TextureRect" parent="ControllerIcons"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -549.0
+offset_top = -146.0
+offset_right = -509.0
+offset_bottom = -106.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_8knwp")
