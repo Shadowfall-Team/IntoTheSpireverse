@@ -22,9 +22,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="ShipIcon" type="TextureRect" parent="ShipContainer"]
 layout_mode = 1
@@ -32,7 +35,6 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -10.0
-offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -86,6 +88,8 @@ offset_top = 82.0
 offset_right = 80.0
 offset_bottom = 187.0
 mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="AmmoPile" type="Control" parent="AmmoContainer"]
 layout_mode = 1
@@ -152,14 +156,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_ruvg3")
 theme_override_font_sizes/font_size = 32
-
-[node name="ControllerIcon" type="TextureRect" parent="AmmoContainer/AmmoPile"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 20.0
-offset_right = 40.0
-offset_bottom = 20.0
-mouse_filter = 2
 
 [node name="FireButtonContainer" type="Control" parent="AmmoContainer"]
 layout_mode = 1
@@ -256,3 +252,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_ruvg3")
 theme_override_font_sizes/font_size = 21
+
+[node name="ControllerIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 90.0
+offset_right = 92.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_8knwp")
+expand_mode = 1
+stretch_mode = 5
