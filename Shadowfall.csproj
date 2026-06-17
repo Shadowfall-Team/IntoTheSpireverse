@@ -47,6 +47,9 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._infoPanel"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NCardPileScreen._bottomLabel"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnPressHandler"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnReleaseHandler"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
     </ItemGroup>
 
     <ItemGroup>

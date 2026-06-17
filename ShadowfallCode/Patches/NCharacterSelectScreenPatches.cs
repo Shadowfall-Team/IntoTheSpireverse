@@ -1,9 +1,7 @@
 ﻿using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Assets;
-using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using Shadowfall.ShadowfallCode.Character;
 using Shadowfall.ShadowfallCode.ui;
@@ -41,7 +39,8 @@ public class NCharacterSelectButtonPatches
         CharacterModel character, ICharacterSelectButtonDelegate del)
     {
         var altCharacterCount = ModelDb.AllCharacters.Count(c =>
-            AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character);
+            AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
+            altCharacter.BaseCharacterModel == character);
         if (altCharacterCount <= 0) return;
 
         var arrowButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCharAltArrow>();
@@ -53,26 +52,11 @@ public class NCharacterSelectButtonPatches
         arrowButton.ClickDelegate = del;
 
         arrowButton.Characters = ModelDb.AllCharacters
-            .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character)
+            .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
+                        altCharacter.BaseCharacterModel == character)
             .ToList();
         arrowButton.Characters.Add(character);
 
         __instance.AddChild(arrowButton);
-    }
-}
-
-[HarmonyPatch(typeof(NButton),"_Input")]
-public static class NButtonPatches
-{
-    [HarmonyPostfix]
-    public static void InputPostfix(NButton __instance, InputEvent inputEvent)
-    {
-        if (__instance.GetType() != typeof(NCharacterSelectButton) || !__instance.IsVisibleInTree()) return;
-        
-        if (!inputEvent.IsActionReleased(MegaInput.up)) return;
-        if (/*!__instance.IsFocused && */!((NCharacterSelectButton)__instance).IsSelected) return;
-
-        var arrow = ((NCharacterSelectButton)__instance).GetChildren().OfType<NCharAltArrow>().FirstOrDefault();
-        arrow?.DoPress();
     }
 }
