@@ -44,6 +44,6 @@ public class TheSealedThrone() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars.Damage.UpgradeValueBy(4);
     }
 }
