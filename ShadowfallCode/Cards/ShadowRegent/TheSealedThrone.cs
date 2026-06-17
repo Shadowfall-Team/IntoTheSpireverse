@@ -11,7 +11,7 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 //TODO: check if this needs to be renamed
 public class TheSealedThrone() : ShadowRegentCard(
-    2,
+    1,
     CardType.Attack,
     CardRarity.Ancient,
     TargetType.AnyEnemy)
