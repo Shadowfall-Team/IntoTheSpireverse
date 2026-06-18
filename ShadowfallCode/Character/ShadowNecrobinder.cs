@@ -41,7 +41,7 @@ public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter, IShad
         ModelDb.Card<DefendShadowNecrobinder>(),
         ModelDb.Card<DefendShadowNecrobinder>(),
         ModelDb.Card<ClenchFist>(),
-        ModelDb.Card<Servitude>(),
+        //ModelDb.Card<Servitude>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
