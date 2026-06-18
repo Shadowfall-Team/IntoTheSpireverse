@@ -254,34 +254,34 @@ vertical_alignment = 1
 script = ExtResource("1_ruvg3")
 theme_override_font_sizes/font_size = 21
 
-[node name="ControllerIcons" type="Node" parent="."]
-
-[node name="ControllerIcon" type="TextureRect" parent="ControllerIcons"]
+[node name="ControllerIcon" type="TextureRect" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -501.0
-offset_top = -146.0
-offset_right = -461.0
-offset_bottom = -106.0
+offset_left = 30.0
+offset_top = 88.0
+offset_right = 70.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_8knwp")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AddSymbol" type="Label" parent="ControllerIcons"]
+[node name="AddSymbol" type="Label" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 43.0
+offset_left = 66.0
 offset_top = 182.0
-offset_right = -1051.0
-offset_bottom = -438.0
+offset_right = -11.9999695
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
@@ -303,17 +303,18 @@ theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 12
 theme_override_font_sizes/font_size = 20
 
-[node name="ControllerIcon2" type="TextureRect" parent="ControllerIcons"]
+[node name="ControllerIcon2" type="TextureRect" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -549.0
-offset_top = -146.0
-offset_right = -509.0
-offset_bottom = -106.0
+offset_left = -18.0
+offset_top = 88.0
+offset_right = 22.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_8knwp")
