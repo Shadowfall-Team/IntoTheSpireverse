@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using Shadowfall.ShadowfallCode.ui;
@@ -16,6 +17,14 @@ public static class NHotkeyManagerPatches
 {
     private static bool _comboConsumedLeftTrigger;
     private static bool _comboConsumedRightTrigger;
+
+    private static readonly Action<NClickableControl> OnPressHandler =
+        AccessTools.MethodDelegate<Action<NClickableControl>>(
+            AccessTools.Method(typeof(NClickableControl), "OnPressHandler"));
+
+    private static readonly Action<NClickableControl> OnReleaseHandler =
+        AccessTools.MethodDelegate<Action<NClickableControl>>(
+            AccessTools.Method(typeof(NClickableControl), "OnReleaseHandler"));
 
     [HarmonyPrefix]
     public static bool UnhandledInputPrefix(InputEvent inputEvent)
@@ -43,8 +52,8 @@ public static class NHotkeyManagerPatches
 
             if (cargoPile != null && cargoPile.IsVisibleInTree())
             {
-                cargoPile.OnPressHandler();
-                cargoPile.OnReleaseHandler();
+                OnPressHandler(cargoPile);
+                OnReleaseHandler(cargoPile);
             }
 
             return false;
@@ -60,8 +69,8 @@ public static class NHotkeyManagerPatches
                 ?.GetNodeOrNull<NAmmoButton>("AmmoButton");
             if (ammoButton != null && ammoButton.IsVisibleInTree())
             {
-                ammoButton.OnPressHandler();
-                ammoButton.OnReleaseHandler();
+                OnPressHandler(ammoButton);
+                OnReleaseHandler(ammoButton);
             }
 
             return false;
