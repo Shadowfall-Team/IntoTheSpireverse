@@ -156,7 +156,7 @@ public partial class NAmmoButton : NButton
         _playQueue.Clear();
     }
 
-    private void OnControllerChanged() => _comboIcons?.Refresh();
+    private void OnControllerChanged() => _comboIcons?.Refresh(_isEnabled);
 
     public override void _Process(double delta)
     {
@@ -277,12 +277,14 @@ public partial class NAmmoButton : NButton
     protected override void OnEnable()
     {
         base.OnEnable();
+        _comboIcons?.Refresh(true);
         UpdateFireLabel();
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
+        _comboIcons?.Refresh(false);
         UpdateFireLabel();
     }
 

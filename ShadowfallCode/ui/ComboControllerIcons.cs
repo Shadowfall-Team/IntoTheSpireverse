@@ -21,13 +21,13 @@ public class ComboControllerIcons
         _actionB = actionB;
     }
 
-    public void Refresh()
+    public void Refresh(bool enabled = true)
     {
         var cm = NControllerManager.Instance;
         var im = NInputManager.Instance;
         if (cm == null || im == null) return;
 
-        var show = cm.IsUsingController;
+        var show = cm.IsUsingController && enabled;
         _iconA.Visible = show;
         _iconB.Visible = show;
         _separator?.Visible = show;
