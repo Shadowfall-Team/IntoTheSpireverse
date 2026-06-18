@@ -9,7 +9,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-public class ShadowFencingManual : ShadowRegentRelic
+public class FuzzyDice : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Common;
 

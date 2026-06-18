@@ -39,7 +39,8 @@ public class NCharacterSelectButtonPatches
         CharacterModel character, ICharacterSelectButtonDelegate del)
     {
         var altCharacterCount = ModelDb.AllCharacters.Count(c =>
-            AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character);
+            AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
+            altCharacter.BaseCharacterModel == character);
         if (altCharacterCount <= 0) return;
 
         var arrowButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCharAltArrow>();
@@ -51,7 +52,8 @@ public class NCharacterSelectButtonPatches
         arrowButton.ClickDelegate = del;
 
         arrowButton.Characters = ModelDb.AllCharacters
-            .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character)
+            .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
+                        altCharacter.BaseCharacterModel == character)
             .ToList();
         arrowButton.Characters.Add(character);
 

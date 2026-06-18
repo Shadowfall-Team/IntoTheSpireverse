@@ -10,7 +10,7 @@ using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-public class ShadowGalacticDust : ShadowRegentRelic
+public class DilithiumCrystal : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 

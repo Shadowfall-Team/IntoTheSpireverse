@@ -103,7 +103,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<TrialOfOne>(),
             ModelDb.Card<Construct>(),
             ModelDb.Card<AssemblyRequired>(),
-            ModelDb.Card<Cards.ShadowRegent.Grapeshot>(),
+            ModelDb.Card<Grapeshot>(),
             ModelDb.Card<MonarchsGaze>(),
             ModelDb.Card<ExaltedForm>(),
             ModelDb.Card<Constellation>(),

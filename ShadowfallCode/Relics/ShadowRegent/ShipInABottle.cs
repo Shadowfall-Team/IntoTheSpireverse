@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
-public class ShadowLunarPastry : ShadowRegentRelic
+public class ShipInABottle : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
 

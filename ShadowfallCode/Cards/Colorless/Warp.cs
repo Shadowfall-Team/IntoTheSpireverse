@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.Colorless;
 
@@ -17,15 +18,30 @@ public class Warp() : CustomCardModel(0,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<StrengthPower>(1),
-        new EnergyVar(2)
-    ];
+        
+            // [
+                // new PowerVar<StrengthPower>(
+                    // 0),
+                // new EnergyVar(3)
+            // ]
+            // :
+            [
+                new PowerVar<StrengthPower>(1),
+                new EnergyVar(2)
+            ];
+
+    public override void AfterCreated()
+    {
+        if (!Owner.Relics.OfType<HulaFigure>().Any()) return;
+        DynamicVars.Strength.BaseValue -= 1;
+        DynamicVars.Energy.BaseValue += 1;
+    }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [CardKeyword.Retain, CardKeyword.Exhaust];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<StrengthPower>(),
     ];
 

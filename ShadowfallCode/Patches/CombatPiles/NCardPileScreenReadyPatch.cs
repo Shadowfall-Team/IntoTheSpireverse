@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.Screens;
 using Shadowfall.ShadowfallCode.CardPiles;
 
-namespace Shadowfall.ShadowfallCode.Patches;
+namespace Shadowfall.ShadowfallCode.Patches.CombatPiles;
 
 [HarmonyPatch(typeof(NCardPileScreen), "_Ready")]
 public static class NCardPileScreenReadyPatch

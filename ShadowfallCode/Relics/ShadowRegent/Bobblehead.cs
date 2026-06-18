@@ -13,7 +13,7 @@ using Shadowfall.ShadowfallCode.Keywords;
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
 //
-public class ShadowMiniRegent : ShadowRegentRelic
+public class Bobblehead : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
 

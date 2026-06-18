@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -17,6 +18,8 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.ControllerInput;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using Shadowfall.ShadowfallCode.Ammo;
 using Shadowfall.ShadowfallCode.CardPiles;
 using Shadowfall.ShadowfallCode.Cards.Colorless;
@@ -46,6 +49,7 @@ public partial class NAmmoButton : NButton
     private TextureRect _energyIcon = null!;
     private TextureRect _damageIcon = null!;
     private Control _fireButtonBackground = null!;
+    private ComboControllerIcons _comboIcons = null!;
 
     private Tween? _fadeTween;
     private Tween? _bumpTween;
@@ -103,8 +107,15 @@ public partial class NAmmoButton : NButton
         _energyIcon = GetNode<TextureRect>("%EnergyIcon");
         _damageIcon = GetNode<TextureRect>("%DamageIcon");
         _fireButtonBackground = GetNode<Control>("%FireButtonBackground");
+        _comboIcons = new ComboControllerIcons(
+            GetNode<TextureRect>("%ControllerIcon2"), // LT
+            GetNode<TextureRect>("%ControllerIcon"), // A
+            MegaInput.viewDrawPile,
+            MegaInput.select,
+            GetNode<ShadowfallMegaLabel>("%AddSymbol"));
 
         ConnectSignals();
+        _comboIcons.Refresh();
 
         Modulate = new Color(1, 1, 1, 0);
         Visible = false;
@@ -115,6 +126,15 @@ public partial class NAmmoButton : NButton
         base._EnterTree();
         CombatManager.Instance.StateTracker.CombatStateChanged += OnCombatStateChanged;
         RunManager.Instance.ActionQueueSet.ActionEnqueued += OnActionEnqueued;
+        if (NControllerManager.Instance != null)
+        {
+            NControllerManager.Instance.ControllerDetected += OnControllerChanged;
+            NControllerManager.Instance.MouseDetected += OnControllerChanged;
+            NControllerManager.Instance.ControllerTypeChanged += OnControllerChanged;
+        }
+
+        if (NInputManager.Instance != null)
+            NInputManager.Instance.InputRebound += OnControllerChanged;
     }
 
     public override void _ExitTree()
@@ -124,8 +144,19 @@ public partial class NAmmoButton : NButton
             _pile.ContentsChanged -= OnPileContentsChanged;
         CombatManager.Instance.StateTracker.CombatStateChanged -= OnCombatStateChanged;
         RunManager.Instance.ActionQueueSet.ActionEnqueued -= OnActionEnqueued;
+        if (NControllerManager.Instance != null)
+        {
+            NControllerManager.Instance.ControllerDetected -= OnControllerChanged;
+            NControllerManager.Instance.MouseDetected -= OnControllerChanged;
+            NControllerManager.Instance.ControllerTypeChanged -= OnControllerChanged;
+        }
+
+        if (NInputManager.Instance != null)
+            NInputManager.Instance.InputRebound -= OnControllerChanged;
         _playQueue.Clear();
     }
+
+    private void OnControllerChanged() => _comboIcons?.Refresh();
 
     public override void _Process(double delta)
     {
@@ -153,6 +184,8 @@ public partial class NAmmoButton : NButton
             font, minSize: 20, maxSize: 20);
         ApplyFont(button.GetNode<ShadowfallMegaLabel>("%EnergyLabel"),
             font, minSize: 21, maxSize: 24);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%AddSymbol"),
+            font, minSize: 20, maxSize: 20);
         return button;
     }
 
@@ -312,12 +345,13 @@ public partial class NAmmoButton : NButton
         _ammoCountLabel.Text = AvailableAmmoCount.ToString();
 
         var card = TopCard ?? ModelDb.Card<AmmoVolley>();
+        var preHookDamage = card.DynamicVars.CalculatedDamage.Calculate(null);
         var damage = (int)Hook.ModifyDamage(
             _player.RunState,
             _player.Creature.CombatState,
             null,
             _player.Creature,
-            card.DynamicVars.CalculatedDamage.BaseValue,
+            preHookDamage,
             ValueProp.Move,
             card,
             ModifyDamageHookType.All,
