@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+/*
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -36,3 +37,4 @@ public sealed class Pride() : ShadowNecrobinderCard(-1, CardType.Curse, CardRari
         await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Dexterity.BaseValue, Owner.Creature, this);
     }
 }
+*/
