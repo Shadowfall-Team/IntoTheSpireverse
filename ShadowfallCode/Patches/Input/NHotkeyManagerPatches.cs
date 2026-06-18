@@ -18,6 +18,7 @@ public static class NHotkeyManagerPatches
     private static bool _comboConsumedLeftTrigger;
     private static bool _comboConsumedRightTrigger;
 
+    //TODO: these are currently being assigned using accesstools due to a bug in reflib. move these back to publicizer once the bug in reflib is resolved.
     private static readonly Action<NClickableControl> OnPressHandler =
         AccessTools.MethodDelegate<Action<NClickableControl>>(
             AccessTools.Method(typeof(NClickableControl), "OnPressHandler"));
