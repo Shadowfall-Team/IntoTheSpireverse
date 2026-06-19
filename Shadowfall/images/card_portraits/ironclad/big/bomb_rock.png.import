@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dd6m28g81kqo7"
-path="res://.godot/imported/SHADOW_IRONCLAD_bomb_rock.png-fa77df758f3d0101f14a052d18744063.ctex"
+path="res://.godot/imported/bomb_rock.png-4cd08bd1f164914afe27445566f9b063.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/card_portraits/ironclad/big/SHADOW_IRONCLAD_bomb_rock.png"
-dest_files=["res://.godot/imported/SHADOW_IRONCLAD_bomb_rock.png-fa77df758f3d0101f14a052d18744063.ctex"]
+source_file="res://Shadowfall/images/card_portraits/ironclad/big/bomb_rock.png"
+dest_files=["res://.godot/imported/bomb_rock.png-4cd08bd1f164914afe27445566f9b063.ctex"]
 
 [params]
 

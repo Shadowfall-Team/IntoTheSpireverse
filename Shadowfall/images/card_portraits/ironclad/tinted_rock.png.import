@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8r08eyp280p6"
-path="res://.godot/imported/SHADOW_IRONCLAD_wild_strike.png-022925697e357e9d36b8e068c36958fe.ctex"
+uid="uid://4bpormj2uh4"
+path="res://.godot/imported/tinted_rock.png-ba5fd83d5b54dae3b0cb09fd461d2353.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/card_portraits/ironclad/big/SHADOW_IRONCLAD_wild_strike.png"
-dest_files=["res://.godot/imported/SHADOW_IRONCLAD_wild_strike.png-022925697e357e9d36b8e068c36958fe.ctex"]
+source_file="res://Shadowfall/images/card_portraits/ironclad/tinted_rock.png"
+dest_files=["res://.godot/imported/tinted_rock.png-ba5fd83d5b54dae3b0cb09fd461d2353.ctex"]
 
 [params]
 
