@@ -559,7 +559,7 @@
   "SHADOWFALL-POWERED_BEAM.title": "Powered Beam", 
   "SHADOWFALL-BENEATH_ME.description": "Deal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.\nIncrease this card's hits by 1 this combat.",
   "SHADOWFALL-BENEATH_ME.title": "Beneath Me",
-  "SHADOWFALL-ROYAL_CLOAK.description": "At the end of your turn, gain {Block:diff()} [gold]Block[/gold] for each card in your hand.",
+  "SHADOWFALL-ROYAL_CLOAK.description": "At the end of your turn, gain {RoyalCloakPower:diff()} [gold]Block[/gold] for each card in your hand.",
   "SHADOWFALL-ROYAL_CLOAK.title": "Royal Cloak",
   "SHADOWFALL-PLOT.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut a card from your [gold]Discard Pile[/gold] into your [gold]Cargo[/gold].",
   "SHADOWFALL-PLOT.selectionScreenPrompt": "Choose a card to move to your Cargo.",
