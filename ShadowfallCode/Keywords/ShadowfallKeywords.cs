@@ -39,7 +39,7 @@ public static class ShadowfallKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Cargo;
-
+    
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
 

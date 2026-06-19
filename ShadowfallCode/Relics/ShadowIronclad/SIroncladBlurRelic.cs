@@ -34,6 +34,7 @@ public class IronCestus : ShadowIroncladRelic
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<BlurPower>(),
+        HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
     private bool IsActivating
