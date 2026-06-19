@@ -17,6 +17,8 @@ public class MirrorImage() : ShadowRegentCard(
         new BlockVar(4, ValueProp.Move)
     ];
 
+    protected override bool ShouldGlowGoldInternal => PileType.Hand.GetPile(Owner).Cards.Count >= 7;
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)

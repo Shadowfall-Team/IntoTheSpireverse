@@ -48,7 +48,5 @@ public class RoyalCloakPower : ShadowPowerModel
         await CreatureCmd.GainBlock(Owner,
             PileType.Hand.GetPile(Owner.Player).Cards.Count, ValueProp.Unpowered,
             null);
-        
-        await PowerCmd.Remove(this);
     }
 }
