@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
@@ -21,7 +22,8 @@ public class SolarStrike() : ShadowRegentCard(1,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardsPower>()
+        HoverTipFactory.FromPower<ShardsPower>(),
+        HoverTipFactory.FromCard<Warp>()
     ];
     
     protected override async Task OnPlay(

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.CardPiles;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 using Shadowfall.ShadowfallCode.Keywords;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
@@ -21,7 +22,8 @@ public class ShadowCrystal() : ShadowRegentCard(1,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo)
+        HoverTipFactory.FromCard<Warp>(),
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo),
     ];
 
     protected override async Task OnPlay(

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
@@ -25,6 +26,8 @@ public class TrialOfKnowledge() : ShadowRegentCard(
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),
+        HoverTipFactory.FromCard<Warp>()
+        
     ];
 
     protected override async Task OnPlay(
