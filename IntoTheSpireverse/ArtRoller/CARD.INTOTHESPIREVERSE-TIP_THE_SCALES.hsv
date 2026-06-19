@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-TIP_THE_SCALES",
+  "hue": 0.3,
+  "saturation": 1.29,
+  "value": 1.18,
+  "red": 1.13,
+  "green": 1.24,
+  "blue": 0.97,
+  "contrast": 1.16,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/master_planner.tres"
+}

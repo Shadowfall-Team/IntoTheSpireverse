@@ -1,0 +1,115 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project=".\Sts2PathDiscovery.props"/>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>true</ImplicitUsings>
+        <Nullable>enable</Nullable> <!--Makes code analysis regarding null values stricter.-->
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
+        <PathMap>$(AppOutputBase)=.\</PathMap>
+        <LangVersion>preview</LangVersion>
+        <DefaultItemExcludes>packages/**</DefaultItemExcludes>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- Diasble architecture mismatch warning; mods are ideally built for all platforms (MSIL)
+             while your local StS2 version will be for your specific platform. -->
+        <NoWarn>$(NoWarn);MSB3270</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
+        <Reference Include="0Harmony">
+            <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="sts2">
+            <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
+        <PackageReference Include="Book.StS2.RefLib" Version="*-*" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
+    </PropertyGroup>
+
+    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._localPlayer"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._bumpTween"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._ascensionPanel"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._infoPanel"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NCardPileScreen._bottomLabel"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnPressHandler"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnReleaseHandler"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All"/>
+        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
+        <AdditionalFiles Include="IntoTheSpireverse/localization/**/*.json"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="IntoTheSpireverse/**"/>
+        <Compile Remove="materials/**"/>
+        <Compile Remove="shaders/**"/>
+        <Compile Remove="images/**"/>
+        <EmbeddedResource Remove="IntoTheSpireverse/**"/>
+        <EmbeddedResource Remove="materials/**"/>
+        <EmbeddedResource Remove="shaders/**"/>
+        <EmbeddedResource Remove="images/**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
+        <None Include=".gitignore"/>
+        <None Include="IntoTheSpireverse.json"/>
+        <None Include="project.godot"/>
+        <None Include="IntoTheSpireverse/**"/>
+    </ItemGroup>
+
+    <Target Name="CheckSts2DataDirForCopy" BeforeTargets="CopyToModsFolderOnBuild"
+            Condition="!Exists('$(Sts2DataDir)') And !Exists('$(ModsPath)')">
+        <Error Text="Cannot copy build output to mods folder: neither '$(Sts2DataDir)' nor '$(ModsPath)' exists. Install STS2 locally or pass /p:ModsPath=... in CI."/>
+    </Target>
+
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
+        <Message Text="Copying .dll .pdb and .json to mods folder." Importance="high" />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+        <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+    </Target>
+
+    <Target Name="CopyQuickPck" AfterTargets="PackPck" Condition="Exists('$(PckPackerOutputPath)') And '$(PckPackerSkipped)' != 'true'">
+        <Message Text="Copying quick .pck to mods folder." Importance="high"/>
+        <Copy SourceFiles="$(PckPackerOutputPath)"
+              DestinationFolder="$(ModsPath)/$(MSBuildProjectName)" />
+    </Target>
+
+    <Target Name="NeedGodotForPublish" BeforeTargets="Publish">
+        <Error Text=" Godot path must be set up before publishing; Godot not found at path '$(GodotPath)'. Check Directory.Build.props file."
+               Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')"/>
+    </Target>
+
+    <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+        <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModsPath)$(MSBuildProjectName)/$(MSBuildProjectName).pck&quot;"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+              ContinueOnError="WarnAndContinue"/>
+    </Target>
+</Project>

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-DEEP_CUT",
+  "hue": 0.53,
+  "saturation": 0.84,
+  "value": 0.96,
+  "red": 0.83,
+  "green": 1.14,
+  "blue": 1.7,
+  "contrast": 1.48,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/poisoned_stab.tres"
+}

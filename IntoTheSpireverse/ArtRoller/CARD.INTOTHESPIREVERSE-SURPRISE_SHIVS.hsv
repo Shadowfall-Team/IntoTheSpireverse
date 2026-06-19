@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SURPRISE_SHIVS",
+  "hue": 0.2,
+  "saturation": 0.56,
+  "value": 0.85,
+  "red": 1.15,
+  "green": 1.28,
+  "blue": 1.25,
+  "contrast": 1.28,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/knife_trap.tres"
+}

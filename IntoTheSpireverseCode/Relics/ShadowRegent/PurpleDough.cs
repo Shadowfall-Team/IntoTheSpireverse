@@ -1,0 +1,42 @@
+﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Factories;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.CardPools;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
+
+public class PurpleDough : ShadowRegentRelic
+{
+    public override RelicRarity Rarity =>
+        RelicRarity.Rare;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new CardsVar(3)
+    ];
+
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        if (side == Owner.Creature.Side)
+        {
+            if (combatState.RoundNumber <= 1)
+            {
+                Flash();
+                var list = CardFactory.GetDistinctForCombat(Owner,
+                        ModelDb.CardPool<ColorlessCardPool>().GetUnlockedCards(
+                            Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint),
+                        DynamicVars.Cards.IntValue,
+                        Owner.RunState.Rng.CombatCardGeneration)
+                    .ToList();
+                Flash();
+                var result = await CardPileCmd.AddGeneratedCardsToCombat(list, CargoCardPile.CargoPileType, Owner);
+                CardCmd.PreviewCardPileAdd(result);
+            }
+        }
+    }
+}

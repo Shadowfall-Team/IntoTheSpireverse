@@ -24,11 +24,11 @@ jobs:
       - name: Publish
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
-          dotnet publish Shadowfall.csproj -c Release \
+          dotnet publish IntoTheSpireverse.csproj -c Release \
           /p:GodotPath="$GODOT_PATH" \
           /p:ModsPath="${{ github.workspace }}/output/mods/"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Shadowfall
+          name: IntoTheSpireverse
           path: output/mods

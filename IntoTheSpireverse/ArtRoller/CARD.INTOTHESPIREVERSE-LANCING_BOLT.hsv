@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-LANCING_BOLT",
+  "hue": 0.51,
+  "saturation": 0.58,
+  "value": 1,
+  "red": 1.07,
+  "green": 1.27,
+  "blue": 1.38,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/compile_driver.tres"
+}

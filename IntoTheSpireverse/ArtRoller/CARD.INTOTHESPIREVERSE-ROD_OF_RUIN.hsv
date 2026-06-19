@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ROD_OF_RUIN",
+  "hue": 0.22,
+  "saturation": 1,
+  "value": 1,
+  "red": 0.96,
+  "green": 0.74,
+  "blue": 1.1,
+  "contrast": 1.26,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/lightning_rod.tres"
+}

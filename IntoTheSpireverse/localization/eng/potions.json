@@ -1,0 +1,22 @@
+﻿{
+  "INTOTHESPIREVERSE-BLOODBOND_POTION.title": "Devil's Wine",
+  "INTOTHESPIREVERSE-BLOODBOND_POTION.description": "Apply [blue]{BloodbondPower}[/blue] [gold]Bloodbond[/gold] to ALL enemies.",
+  "INTOTHESPIREVERSE-DEW_BOTTLE.title": "Dew Bottle",
+  "INTOTHESPIREVERSE-DEW_BOTTLE.description": "Gain [blue]{SlatePower}[/blue] [gold]Slate[/gold].",
+  "INTOTHESPIREVERSE-GABBRO_POTION.title": "Stoneshaper Elixir",
+  "INTOTHESPIREVERSE-GABBRO_POTION.description": "Rocks deal [blue]{GabbroPower}[/blue] additional damage this combat. Add [gold]Primal Force[/gold] into your [gold]Hand[/gold].",
+  
+  "INTOTHESPIREVERSE-S_NECRO_SOUL_STRIKE_POTION.title": "Shadow Necrobinder Soul Strike Potion (PLACEHOLDER NAME)",
+  "INTOTHESPIREVERSE-S_NECRO_SOUL_STRIKE_POTION.description": "Add [blue]{Cards}[/blue] [gold]{Cards:plural:Soul Strike|Soul Strikes}[/gold] into your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-S_NECRO_DEATHGLARE_POTION.title": "Shadow Necrobinder Deathglare Potion (PLACEHOLDER NAME)",
+  "INTOTHESPIREVERSE-S_NECRO_DEATHGLARE_POTION.description": "Add a [gold]Deathglare[/gold] into your [gold]Draw Pile[/gold].",
+  "INTOTHESPIREVERSE-S_NECRO_BLOCK_CURSE_POTION.title": "SNecroBlockCursePotion (PLACEHOLDER NAME)",
+  "INTOTHESPIREVERSE-S_NECRO_BLOCK_CURSE_POTION.description": "Gain [blue]{Block}[/blue] [gold]Block[/gold], plus an additional [blue]5[/blue] [gold]Block[/gold] for each [purple]Curse[/purple] in your [gold]Deck[/gold].\n(Gain [blue]{TotalBlock}[/blue] [gold]Block[/gold])",
+  
+  "INTOTHESPIREVERSE-SPACE_DUST_POTION.description": "Choose 1 of 3 random cards to put into your [gold]Cargo[/gold]. Its free until played.",
+  "INTOTHESPIREVERSE-SPACE_DUST_POTION.title": "Space Dust",
+  "INTOTHESPIREVERSE-LIQUID_DILITHIUM_POTION.description": "Gain {ShardsPower} [gold]Shards[/gold].",
+  "INTOTHESPIREVERSE-LIQUID_DILITHIUM_POTION.title": "Liquid Dilithium",
+  "INTOTHESPIREVERSE-ILLICIT_MUNITION_POTION.description": "Load {LoadAmmo} [gold]Ammo[/gold]. Your next [gold]Shot[/gold] applies {SiegePower} [gold]Weak[/gold], {SiegePower} [gold]Vulnerable[/gold], grants {Block} more [gold]Block[/gold], and deals {FirepowerPower} more damage.",
+  "INTOTHESPIREVERSE-ILLICIT_MUNITION_POTION.title": "Illicit Munition"
+}

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-VULPINE_FORM",
+  "hue": 0.6,
+  "saturation": 1.16,
+  "value": 1.1,
+  "red": 1.19,
+  "green": 1.12,
+  "blue": 1.06,
+  "contrast": 1.21,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/wraith_form.tres"
+}

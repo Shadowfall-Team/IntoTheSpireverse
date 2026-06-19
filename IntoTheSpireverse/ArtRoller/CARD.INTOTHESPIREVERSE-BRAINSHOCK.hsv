@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BRAINSHOCK",
+  "hue": 0.9,
+  "saturation": 0.89,
+  "value": 1.18,
+  "red": 0.9,
+  "green": 0.94,
+  "blue": 1.08,
+  "contrast": 1.16,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/focused_strike.tres"
+}

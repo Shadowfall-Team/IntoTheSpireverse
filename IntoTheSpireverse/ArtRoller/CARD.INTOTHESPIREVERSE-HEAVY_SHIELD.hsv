@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-HEAVY_SHIELD",
+  "hue": 0.21,
+  "saturation": 0.91,
+  "value": 1.2,
+  "red": 0.74,
+  "green": 0.92,
+  "blue": 0.93,
+  "contrast": 1.25,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/deflect.tres"
+}

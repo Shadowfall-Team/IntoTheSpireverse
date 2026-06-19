@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BORROWED_NOTES",
+  "hue": 0.21,
+  "saturation": 0.88,
+  "value": 1.12,
+  "red": 0.88,
+  "green": 1.22,
+  "blue": 1.09,
+  "contrast": 1.3,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/expertise.tres"
+}

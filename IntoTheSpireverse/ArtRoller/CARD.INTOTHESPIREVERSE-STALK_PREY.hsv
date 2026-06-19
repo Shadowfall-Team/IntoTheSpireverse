@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-STALK_PREY",
+  "hue": 0.48,
+  "saturation": 0.57,
+  "value": 0.84,
+  "red": 0.84,
+  "green": 1.1,
+  "blue": 1.66,
+  "contrast": 1.18,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/follow_through.tres"
+}

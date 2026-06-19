@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SHARE_THE_LOAD",
+  "hue": 0.59,
+  "saturation": 0.7,
+  "value": 1.26,
+  "red": 0.85,
+  "green": 1.09,
+  "blue": 1.33,
+  "contrast": 1.1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/shadowmeld.tres"
+}

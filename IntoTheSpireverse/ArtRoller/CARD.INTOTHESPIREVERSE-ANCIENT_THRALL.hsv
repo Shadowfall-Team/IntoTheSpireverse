@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ANCIENT_THRALL",
+  "hue": 0.12,
+  "saturation": 1.3,
+  "value": 1.03,
+  "red": 1.04,
+  "green": 1.13,
+  "blue": 1.11,
+  "contrast": 1.18,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/conflagration.tres"
+}
