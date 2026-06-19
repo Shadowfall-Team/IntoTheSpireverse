@@ -11,7 +11,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
-public class SIroncladShopRelic : ShadowIroncladRelic
+public class CrimsonAmulet : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djx60m2w65o3v"
-path="res://.godot/imported/petrock.png-8917f65447947cc89268f73b70c59283.ctex"
+uid="uid://cv37do5s7sio6"
+path="res://.godot/imported/heart_of_the_mountain.png-0ca3f37d2fb8dee7d42a696423eb110b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/petrock.png"
-dest_files=["res://.godot/imported/petrock.png-8917f65447947cc89268f73b70c59283.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/big/heart_of_the_mountain.png"
+dest_files=["res://.godot/imported/heart_of_the_mountain.png-0ca3f37d2fb8dee7d42a696423eb110b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccrkxc6f8yexq"
-path="res://.godot/imported/bellows.png-21ec06ce3f1904569c391dc59e7cf3c5.ctex"
+uid="uid://dw43gd5nvb15x"
+path="res://.godot/imported/mud_idol.png-b42419119bd7aebbc377405b223c4195.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/bellows.png"
-dest_files=["res://.godot/imported/bellows.png-21ec06ce3f1904569c391dc59e7cf3c5.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/big/mud_idol.png"
+dest_files=["res://.godot/imported/mud_idol.png-b42419119bd7aebbc377405b223c4195.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccrkxc6f8yexq"
-path="res://.godot/imported/bellows.png-21ec06ce3f1904569c391dc59e7cf3c5.ctex"
+uid="uid://duyp86s1al2dj"
+path="res://.godot/imported/toy_cactus.png-39de3a139ac57db5288e562a36d153bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/bellows.png"
-dest_files=["res://.godot/imported/bellows.png-21ec06ce3f1904569c391dc59e7cf3c5.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/big/toy_cactus.png"
+dest_files=["res://.godot/imported/toy_cactus.png-39de3a139ac57db5288e562a36d153bd.ctex"]
 
 [params]
 

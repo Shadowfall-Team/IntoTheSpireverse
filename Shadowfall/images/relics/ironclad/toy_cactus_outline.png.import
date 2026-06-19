@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddnrp7jkcb5ia"
-path="res://.godot/imported/spikedgauntlet_outliney.png-ecfb156333007f7eed95d66befc05837.ctex"
+uid="uid://nd348e3eyb70"
+path="res://.godot/imported/toy_cactus_outline.png-18187fe79209a3bd62165f04cbbbf35b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/spikedgauntlet_outliney.png"
-dest_files=["res://.godot/imported/spikedgauntlet_outliney.png-ecfb156333007f7eed95d66befc05837.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/toy_cactus_outline.png"
+dest_files=["res://.godot/imported/toy_cactus_outline.png-18187fe79209a3bd62165f04cbbbf35b.ctex"]
 
 [params]
 

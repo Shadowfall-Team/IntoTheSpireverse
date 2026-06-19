@@ -35,7 +35,7 @@ public class BloodbondPower : ShadowPowerModel
         await CreatureCmd.Damage(choiceContext, Owner, Amount,
             ValueProp.Unblockable | ValueProp.Unpowered, target, null);
 
-        var relic = target.Player?.Relics.OfType<SIroncladBloodbondHealRelic>().FirstOrDefault();
+        var relic = target.Player?.Relics.OfType<Buckler>().FirstOrDefault();
         if (relic != null)
             await relic.TryHeal();
     }

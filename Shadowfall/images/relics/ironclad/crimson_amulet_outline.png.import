@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xefg4r4uabyw"
-path="res://.godot/imported/spikedgauntlet.png-68e3ca0a360502085e08e1b6d6362379.ctex"
+uid="uid://citunxb6jvuxc"
+path="res://.godot/imported/crimson_amulet_outline.png-22fb99c3b16eb477a7a62b0e281b15a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/spikedgauntlet.png"
-dest_files=["res://.godot/imported/spikedgauntlet.png-68e3ca0a360502085e08e1b6d6362379.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/crimson_amulet_outline.png"
+dest_files=["res://.godot/imported/crimson_amulet_outline.png-22fb99c3b16eb477a7a62b0e281b15a0.ctex"]
 
 [params]
 

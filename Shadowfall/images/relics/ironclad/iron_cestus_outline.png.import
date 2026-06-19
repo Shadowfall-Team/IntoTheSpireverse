@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdyj6quur3ihn"
-path="res://.godot/imported/heartofstone.png-f6184be4784ce322d9381c150b4fc0d6.ctex"
+uid="uid://bfx0fgf6iv2o8"
+path="res://.godot/imported/iron_cestus_outline.png-09d3ab92683c162fc202eb97d10c1087.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/heartofstone.png"
-dest_files=["res://.godot/imported/heartofstone.png-f6184be4784ce322d9381c150b4fc0d6.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/iron_cestus_outline.png"
+dest_files=["res://.godot/imported/iron_cestus_outline.png-09d3ab92683c162fc202eb97d10c1087.ctex"]
 
 [params]
 

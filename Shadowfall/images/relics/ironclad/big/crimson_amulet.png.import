@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h5h8fmygf3hf"
-path="res://.godot/imported/heartofthemountain.png-579feba1c3674049aa2fc56f58714c01.ctex"
+uid="uid://b4hf74nynd5jp"
+path="res://.godot/imported/crimson_amulet.png-14b4c9bc0911cf5d909a2ea3b2d235b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/heartofthemountain.png"
-dest_files=["res://.godot/imported/heartofthemountain.png-579feba1c3674049aa2fc56f58714c01.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/big/crimson_amulet.png"
+dest_files=["res://.godot/imported/crimson_amulet.png-14b4c9bc0911cf5d909a2ea3b2d235b6.ctex"]
 
 [params]
 

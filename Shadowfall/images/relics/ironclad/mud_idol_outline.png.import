@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dj0cahu814q26"
-path="res://.godot/imported/toycactus.png-acdf12dfc4cad530d75d2f0edf13b278.ctex"
+uid="uid://ci6upkwotf1vi"
+path="res://.godot/imported/mud_idol_outline.png-53e40618d4b23a56af56a3944fe10e9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/toycactus.png"
-dest_files=["res://.godot/imported/toycactus.png-acdf12dfc4cad530d75d2f0edf13b278.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/mud_idol_outline.png"
+dest_files=["res://.godot/imported/mud_idol_outline.png-53e40618d4b23a56af56a3944fe10e9c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cajwyqli5x8yc"
-path="res://.godot/imported/crimsonamulet.png-8ab6dd6ba53c0b6f8c63450c46724b07.ctex"
+uid="uid://cxnp33c348xl3"
+path="res://.godot/imported/iron_cestus.png-bc122d3c62d9326dc62078011c17f544.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/crimsonamulet.png"
-dest_files=["res://.godot/imported/crimsonamulet.png-8ab6dd6ba53c0b6f8c63450c46724b07.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/iron_cestus.png"
+dest_files=["res://.godot/imported/iron_cestus.png-bc122d3c62d9326dc62078011c17f544.ctex"]
 
 [params]
 

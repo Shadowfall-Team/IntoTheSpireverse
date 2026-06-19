@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw0jj33kw0604"
-path="res://.godot/imported/spikedgauntlet.png-5a1b2ab9e223cef1379ef6c07520d786.ctex"
+uid="uid://1go0dot42nac"
+path="res://.godot/imported/mud_idol.png-90511ef884486a939e99920f437bd28b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/spikedgauntlet.png"
-dest_files=["res://.godot/imported/spikedgauntlet.png-5a1b2ab9e223cef1379ef6c07520d786.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/mud_idol.png"
+dest_files=["res://.godot/imported/mud_idol.png-90511ef884486a939e99920f437bd28b.ctex"]
 
 [params]
 
