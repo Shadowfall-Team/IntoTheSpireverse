@@ -59,7 +59,9 @@ public class AmmoVolley() : CustomCardModel(1,
             var hittableEnemies = CombatState?.HittableEnemies.ToList();
             if (hittableEnemies?.Count > 0)
             {
-                pickedTarget = Owner.RunState.Rng.CombatTargets.NextItem(hittableEnemies);
+                var preferredTargets = hittableEnemies.Where(e => e.HasPower<TargetedPower>()).ToList();
+                var targetPool = preferredTargets.Count > 0 ? preferredTargets : hittableEnemies;
+                pickedTarget = Owner.RunState.Rng.CombatTargets.NextItem(targetPool);
             }
         }
 

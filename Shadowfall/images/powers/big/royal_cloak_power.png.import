@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbaujfmmddwf"
-path="res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"
+uid="uid://brik4i5fv6li1"
+path="res://.godot/imported/royal_cloak_power.png-73c32542e3f0ed7e2ddf3ed2e8dce4a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/unrelenting_form_power.png"
-dest_files=["res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"]
+source_file="res://Shadowfall/images/powers/big/royal_cloak_power.png"
+dest_files=["res://.godot/imported/royal_cloak_power.png-73c32542e3f0ed7e2ddf3ed2e8dce4a0.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://burh7yo0m5ds6"
-path="res://.godot/imported/temper.png-7d6a3a46cc00b640aa951754cfe7ad14.ctex"
+path="res://.godot/imported/temper_power.png-84d2f6adaf6b6dc62b136d200f2d5685.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/big/temper.png"
-dest_files=["res://.godot/imported/temper.png-7d6a3a46cc00b640aa951754cfe7ad14.ctex"]
+source_file="res://Shadowfall/images/powers/big/temper_power.png"
+dest_files=["res://.godot/imported/temper_power.png-84d2f6adaf6b6dc62b136d200f2d5685.ctex"]
 
 [params]
 

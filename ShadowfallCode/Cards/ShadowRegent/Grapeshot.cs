@@ -65,8 +65,11 @@ public class GrapeshotPower : ShadowPowerModel, IAmmoFiredListener
                 }
                 else
                 {
+                    var hittableEnemies = CombatState.HittableEnemies.ToList();
+                    var preferredTargets = hittableEnemies.Where(e => e.HasPower<TargetedPower>()).ToList();
+                    var targetPool = preferredTargets.Count > 0 ? preferredTargets : hittableEnemies;
                     hitTargets =
-                        [Owner.Player.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies.ToList())];
+                        [Owner.Player.RunState.Rng.CombatTargets.NextItem(targetPool)];
                     await ShotHelper.CreateMissile(CombatState, hitTargets[0]);
                 }
 

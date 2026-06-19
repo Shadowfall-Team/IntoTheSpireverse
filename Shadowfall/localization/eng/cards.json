@@ -572,7 +572,7 @@
   "SHADOWFALL-SMUGGLERS_STRIKE.title": "Smuggler's Strike",
   "SHADOWFALL-JETTISON.description": "Put any number of cards from your hand into your [gold]Cargo[/gold].\nDeal {Damage:diff()} damage for each.",
   "SHADOWFALL-JETTISON.title": "Jettison",
-  "SHADOWFALL-KNOWLEDGE_BLAST.description": "Deal {Damage:diff()} damage to ALL enemies.",
+  "SHADOWFALL-KNOWLEDGE_BLAST.description": "Deal {Damage:diff()} damage to ALL enemies twice.",
   "SHADOWFALL-KNOWLEDGE_BLAST.title": "Knowledge Blast",
   "SHADOWFALL-ILLICIT_MUNITIONS.description": "Put a [gold]Volley[/gold] and [gold]Salvo[/gold] into your [gold]Cargo[/gold].\nGive them [gold]Retain[/gold].",
   "SHADOWFALL-ILLICIT_MUNITIONS.title": "Illicit Munitions",

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbaujfmmddwf"
-path="res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"
+uid="uid://dmj2cvsov1dsu"
+path="res://.godot/imported/fire_everything_power.png-17593badd471cf2b2993a3d0057dc0bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/unrelenting_form_power.png"
-dest_files=["res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"]
+source_file="res://Shadowfall/images/powers/fire_everything_power.png"
+dest_files=["res://.godot/imported/fire_everything_power.png-17593badd471cf2b2993a3d0057dc0bd.ctex"]
 
 [params]
 

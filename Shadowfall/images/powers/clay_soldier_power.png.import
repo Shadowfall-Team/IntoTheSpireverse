@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dccacnog0ykwa"
-path="res://.godot/imported/clay_soldier.png-bd1dafa05f4736929e10cbfa67df3dda.ctex"
+path="res://.godot/imported/clay_soldier_power.png-071ad9e5630df575c3ce2db1b2ccd00a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/clay_soldier.png"
-dest_files=["res://.godot/imported/clay_soldier.png-bd1dafa05f4736929e10cbfa67df3dda.ctex"]
+source_file="res://Shadowfall/images/powers/clay_soldier_power.png"
+dest_files=["res://.godot/imported/clay_soldier_power.png-071ad9e5630df575c3ce2db1b2ccd00a.ctex"]
 
 [params]
 
