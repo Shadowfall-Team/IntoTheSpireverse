@@ -6,6 +6,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.Cards.Colorless;
+using Shadowfall.ShadowfallCode.Keywords;
+using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
@@ -15,9 +17,12 @@ public class AdmiralsHat : ShadowRegentRelic
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+        
+        HoverTipFactory.FromPower<ShardsPower>(),
         HoverTipFactory.FromCard<Warp>()
     ];
-
+    
+    
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature.CombatState.RoundNumber > 1) return;
