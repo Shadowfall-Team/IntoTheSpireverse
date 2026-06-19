@@ -33,6 +33,6 @@ public partial class MainFile : Node
 
         ModConfigRegistry.Register(ModId, new ShadowfallConfig());
 
-        SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(TheLaw));
+        // SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(TheLaw));
     }
 }

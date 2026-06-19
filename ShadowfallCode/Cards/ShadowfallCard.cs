@@ -22,7 +22,7 @@ public abstract class ShadowfallCard(int cost, CardType type, CardRarity rarity,
     }
 }
 
-[Pool(typeof(ShadowDefectCardPool))]
+// [Pool(typeof(ShadowDefectCardPool))]
 public abstract class ShadowDefectCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     ShadowfallCard(cost, type, rarity, target, "defect");
 
@@ -30,11 +30,11 @@ public abstract class ShadowDefectCard(int cost, CardType type, CardRarity rarit
 public abstract class ShadowIroncladCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     ShadowfallCard(cost, type, rarity, target, "ironclad");
 
-[Pool(typeof(ShadowSilentCardPool))]
+// [Pool(typeof(ShadowSilentCardPool))]
 public abstract class ShadowSilentCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     ShadowfallCard(cost, type, rarity, target, "silent");
 
-[Pool(typeof(ShadowNecrobinderCardPool))]
+// [Pool(typeof(ShadowNecrobinderCardPool))]
 public abstract class ShadowNecrobinderCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     ShadowfallCard(cost, type, rarity, target, "necrobinder");
 

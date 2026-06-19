@@ -7,7 +7,7 @@ using Shadowfall.ShadowfallCode.Extensions;
 
 namespace Shadowfall.ShadowfallCode.Potions;
 
-[Pool(typeof(ShadowDefectPotionPool))]
+// [Pool(typeof(ShadowDefectPotionPool))]
 public abstract class ShadowfallPotion : CustomPotionModel
 {
     public override string? CustomPackedImagePath
