@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpf3qqy56usxl"
-path="res://.godot/imported/SHADOW_IRONCLAD_deep_rock.png-81e7ddd5b0461a3d5a38ac82f5326cf2.ctex"
+uid="uid://bul5rxai00uih"
+path="res://.godot/imported/ghost_rock.png-60053e99f8a14802a5b8d860dcf74d03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/card_portraits/ironclad/big/SHADOW_IRONCLAD_deep_rock.png"
-dest_files=["res://.godot/imported/SHADOW_IRONCLAD_deep_rock.png-81e7ddd5b0461a3d5a38ac82f5326cf2.ctex"]
+source_file="res://Shadowfall/images/card_portraits/ironclad/big/ghost_rock.png"
+dest_files=["res://.godot/imported/ghost_rock.png-60053e99f8a14802a5b8d860dcf74d03.ctex"]
 
 [params]
 

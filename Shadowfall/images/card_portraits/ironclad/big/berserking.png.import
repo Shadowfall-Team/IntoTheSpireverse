@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy43w120ed0pr"
-path="res://.godot/imported/SHADOW_IRONCLAD_Immolate.png-de8bcfeeafd59d4f77341a71b8e7b256.ctex"
+uid="uid://bhqv4h0f2sutr"
+path="res://.godot/imported/berserking.png-c6f3b6d88a8ea11ad212ad7cbf333c46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/card_portraits/ironclad/SHADOW_IRONCLAD_Immolate.png"
-dest_files=["res://.godot/imported/SHADOW_IRONCLAD_Immolate.png-de8bcfeeafd59d4f77341a71b8e7b256.ctex"]
+source_file="res://Shadowfall/images/card_portraits/ironclad/big/berserking.png"
+dest_files=["res://.godot/imported/berserking.png-c6f3b6d88a8ea11ad212ad7cbf333c46.ctex"]
 
 [params]
 
