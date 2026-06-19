@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
-public class SIroncladTransferRelic : ShadowIroncladRelic
+public class Bellows : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
 

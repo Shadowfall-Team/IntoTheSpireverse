@@ -29,7 +29,7 @@ public static class AttackCommandPatches
     private static IReadOnlyList<Creature> SelectTarget(ICombatState combatState)
     {
         var validTargets = combatState.Enemies.Where(e => e.IsAlive).ToList();
-        var prefTargets = validTargets.Where(t => t.HasPower<TargetedThisTurnPower>()).ToList();
+        var prefTargets = validTargets.Where(t => t.HasPower<TargetedPower>()).ToList();
         return prefTargets.Count != 0 ? prefTargets : validTargets;
     }
 }

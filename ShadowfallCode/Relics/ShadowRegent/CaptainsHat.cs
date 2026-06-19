@@ -18,15 +18,15 @@ public class CaptainsHat : ShadowRegentRelic
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("Rounds", 3),
-        new PowerVar<ShardPower>(2)
+        new PowerVar<ShardsPower>(2)
     ];
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature.CombatState.RoundNumber > DynamicVars["Rounds"].IntValue) return;
-        await PowerCmd.Apply<ShardPower>(
+        await PowerCmd.Apply<ShardsPower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,
-            DynamicVars.Power<ShardPower>().BaseValue, Owner.Creature, null);
+            DynamicVars.Power<ShardsPower>().BaseValue, Owner.Creature, null);
     }
 
     public override RelicModel GetUpgradeReplacement()

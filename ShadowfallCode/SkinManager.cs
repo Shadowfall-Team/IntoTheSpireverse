@@ -9,19 +9,22 @@ namespace Shadowfall.ShadowfallCode;
 
 public static class SkinManager
 {
-    private readonly record struct SkinSet(string? Combat, string? RestSite, string? Merchant);
+    private readonly record struct SkinSet(string? Combat, string? RestSite, string? Merchant,
+        string? CharacterSelectBg);
 
     private static readonly Dictionary<System.Type, SkinSet> Skins = new()
     {
         [typeof(ShadowIronclad)] = new SkinSet(
             Combat: "res://Shadowfall/images/characters/shadowironclad/ironclad_granite.png",
             RestSite: "res://Shadowfall/images/characters/shadowironclad/restsite_ironclad.png",
-            Merchant: "res://Shadowfall/images/characters/shadowironclad/ironclad_shop.png"
+            Merchant: "res://Shadowfall/images/characters/shadowironclad/ironclad_shop.png",
+            CharacterSelectBg: "res://Shadowfall/images/characters/shadowironclad/characterselect_granite.png"
         ),
         [typeof(ShadowRegent)] = new SkinSet(
             Combat: "res://Shadowfall/images/characters/shadowregent/regent_shadow.png",
             RestSite: "res://Shadowfall/images/characters/shadowregent/restsite_regent.png",
-            Merchant: "res://Shadowfall/images/characters/shadowregent/regent_shop.png"
+            Merchant: "res://Shadowfall/images/characters/shadowregent/regent_shop.png",
+            CharacterSelectBg: "res://Shadowfall/images/characters/shadowregent/characterselect_regent.png"
         ),
     };
 
@@ -69,6 +72,33 @@ public static class SkinManager
             SwapSpineTexture(spineNode, new MegaSprite(spineNode), skinSet.Merchant);
 
         character.PlayAnimation("relaxed_loop", loop: true);
+    }
+
+    public static void ApplyCharacterSelectBgSkin(Node bgContainer, System.Type characterType)
+    {
+        if (!Skins.TryGetValue(characterType, out var skinSet) || skinSet.CharacterSelectBg == null)
+            return;
+
+        var spineNode = FindSpineSprite(bgContainer);
+        if (spineNode == null)
+            return;
+
+        SwapSpineTexture(spineNode, new MegaSprite(spineNode), skinSet.CharacterSelectBg);
+    }
+
+    private static Node2D? FindSpineSprite(Node node)
+    {
+        foreach (var child in node.GetChildren())
+        {
+            if (child is Node2D node2D && node2D.GetClass() == "SpineSprite")
+                return node2D;
+
+            var nested = FindSpineSprite(child);
+            if (nested != null)
+                return nested;
+        }
+
+        return null;
     }
 
     private static IEnumerable<Node2D> GetSpineSpriteChildren(Node node)

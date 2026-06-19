@@ -38,7 +38,7 @@ public sealed class RetaliationPower : ShadowPowerModel
     {
         if (target != Owner || !props.IsPoweredAttack()) return 0m;
 
-        var relic = Owner.Player?.Relics.OfType<SIroncladRetaliationRelic>().FirstOrDefault();
+        var relic = Owner.Player?.Relics.OfType<ToyCactus>().FirstOrDefault();
         if (relic == null) return 0m;
         
         return -relic.DynamicVars["DamageReduction"].BaseValue;

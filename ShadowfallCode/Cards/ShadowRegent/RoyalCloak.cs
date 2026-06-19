@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Powers;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -33,7 +34,7 @@ public class RoyalCloak() : ShadowRegentCard(2,
     }
 }
 
-public class RoyalCloakPower : CustomPowerModel
+public class RoyalCloakPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
 

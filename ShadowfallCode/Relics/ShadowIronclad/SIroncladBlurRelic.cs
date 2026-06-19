@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
-public class SIroncladBlurRelic : ShadowIroncladRelic
+public class IronCestus : ShadowIroncladRelic
 {
     private bool _isActivating;
     private int _attacksPlayedThisTurn;

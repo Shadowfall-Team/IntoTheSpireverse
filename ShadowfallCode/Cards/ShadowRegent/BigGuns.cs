@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 using Shadowfall.ShadowfallCode.utils;
 
@@ -47,7 +48,7 @@ public class BigGuns() : ShadowRegentCard(
     }
 }
 
-public class BigGunsPower : CustomPowerModel, IHasSecondAmount
+public class BigGunsPower : ShadowPowerModel, IHasSecondAmount
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

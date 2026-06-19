@@ -4,7 +4,7 @@ using Shadowfall.ShadowfallCode.Enchantments;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
-public class SIroncladTransformRelic : ShadowIroncladRelic
+public class MudIdol : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 

@@ -13,20 +13,20 @@ public class ShipInABottle : ShadowRegentRelic
     public override RelicRarity Rarity => RelicRarity.Rare;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new PowerVar<ShardPower>(1)
+        new PowerVar<ShardsPower>(1)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<ShardPower>()
+        HoverTipFactory.FromPower<ShardsPower>()
     ];
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext,
         Player player)
     {
-        await PowerCmd.Apply<ShardPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars[nameof(ShardPower)].BaseValue,
+            DynamicVars[nameof(ShardsPower)].BaseValue,
             Owner.Creature,
             null);
     }

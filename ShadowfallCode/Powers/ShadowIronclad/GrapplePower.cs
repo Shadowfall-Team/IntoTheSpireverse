@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class GrapplePower : CustomPowerModel
+public sealed class GrapplePower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;

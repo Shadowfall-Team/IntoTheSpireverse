@@ -1,5 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Cards;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,13 +22,15 @@ public class AmmoVolley() : CustomCardModel(1,
     CardRarity.Token,
     TargetType.RandomEnemy)
 {
+    public override string CustomPortraitPath => $"res://Shadowfall/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CalculationBaseVar(14),
         new ExtraDamageVar(1),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier(static (card, _) =>
-                card.Owner.Creature.GetPowerAmount<NextVolleyDamagePower>() +
+                card.Owner.Creature.GetPowerAmount<FirepowerPower>() +
                 card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
         .. MakeCalculatedBlock("ShotBlock", 0, (model, _) => GetOwnerBlockadeAmount(model))
     ];
@@ -73,7 +76,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
         var baseDamage = DynamicVars.CalculationBase.BaseValue;
         var extraDamage = DynamicVars.ExtraDamage.BaseValue;
-        var multiplier = Owner.Creature.GetPowerAmount<NextVolleyDamagePower>()
+        var multiplier = Owner.Creature.GetPowerAmount<FirepowerPower>()
                          + Owner.Creature.GetPowerAmount<VolleyDamagePower>();
         var damage = baseDamage + extraDamage * multiplier;
 

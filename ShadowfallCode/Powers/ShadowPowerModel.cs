@@ -13,7 +13,15 @@ public abstract class ShadowPowerModel : CustomPowerModel
         get
         {
             var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
-            return ResourceLoader.Exists(path) ? path : "power.png".PowerImagePath();
+            if (ResourceLoader.Exists(path))
+            {
+                return path;
+            }
+            else
+            {
+                MainFile.Logger.Warn($"Couldn't find packed icon at {path}");
+                return "power.png".PowerImagePath();
+            }
         }
     }
 
