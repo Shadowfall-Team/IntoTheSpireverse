@@ -39,6 +39,6 @@ public class PoweredBarrier() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        //TODO: how does this upgrade?
+        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

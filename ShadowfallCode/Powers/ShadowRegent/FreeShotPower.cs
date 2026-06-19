@@ -3,18 +3,29 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Models;
 using Shadowfall.ShadowfallCode.Ammo;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
-public class FreeShotPower : CustomPowerModel, IModifiesShotCost, IAmmoFiredListener
+public class FreeShotPower : CustomPowerModel, IAmmoFiredListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public int ModifyShotCost() => 0;
+    public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
+    {
+        if (card is AmmoVolley)
+        {
+            modifiedCost = 0;
+            return true;
+        }
+        modifiedCost = originalCost;
+        return false;
+    }
 
-    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public async Task OnAmmoFired(Player player, IEnumerable<List<DamageResult>> results)
     {
         if (player.Creature != Owner) return;
         Flash();

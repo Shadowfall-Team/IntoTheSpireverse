@@ -15,7 +15,7 @@ public class HeartOfStone : ShadowIroncladRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("HealPercent", 15m),
+        new HealVar(18m),
         new MaxHpVar(2m),
     ];
 
@@ -27,7 +27,7 @@ public class HeartOfStone : ShadowIroncladRelic
         if (Owner.Creature.IsDead) return;
 
         Flash();
-        await CreatureCmd.Heal(Owner.Creature, Owner.Creature.MaxHp * DynamicVars["HealPercent"].BaseValue / 100m);
+        await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
         await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue);
     }
 }

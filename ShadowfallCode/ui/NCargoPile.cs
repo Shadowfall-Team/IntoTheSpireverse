@@ -2,6 +2,8 @@ using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.ControllerInput;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -19,6 +21,7 @@ namespace Shadowfall.ShadowfallCode.ui;
 public partial class NCargoPile : NCombatCardPile
 {
     private List<NPreviewCardHolder> _previewHolders = [];
+    private ComboControllerIcons _comboIcons = null!;
     private const int MaxPreviewCards = 3;
     private const float PreviewDefaultScale = 0.6f;
     private const float PreviewScaleDecrement = 0.15f;
@@ -31,7 +34,7 @@ public partial class NCargoPile : NCombatCardPile
 
     private const float HideOffsetX = -150f;
 
-    private const float TooltipOffsetY = -350f;
+    private const float TooltipOffsetY = -355f;
 
     protected override PileType Pile => CargoCardPile.CargoPileType;
 
@@ -53,6 +56,11 @@ public partial class NCargoPile : NCombatCardPile
         countLabel.MinFontSize = 20;
         countLabel.MaxFontSize = 26;
 
+        var addSymbol = cargoPileButton.GetNode<ShadowfallMegaLabel>("%AddSymbol");
+        addSymbol.AddThemeFontOverride(ThemeConstants.Label.Font, font);
+        addSymbol.MinFontSize = 20;
+        addSymbol.MaxFontSize = 20;
+
         return cargoPileButton;
     });
 
@@ -60,14 +68,48 @@ public partial class NCargoPile : NCombatCardPile
     {
         ConnectSignals();
         _emptyPileMessage = new LocString("combat_messages", "OPEN_EMPTY_CARGO");
-
-        _hoverTip = new HoverTip(new LocString("static_hover_tips", "CARGO_PILE.title"),
-            new LocString("static_hover_tips", "CARGO_PILE.description"));
+        _comboIcons = new ComboControllerIcons(
+            GetNode<TextureRect>("%ControllerIcon2"), // LT
+            GetNode<TextureRect>("%ControllerIcon"), // RT
+            MegaInput.viewDrawPile,
+            MegaInput.viewDiscardPile,
+            GetNode<ShadowfallMegaLabel>("%AddSymbol"));
 
         Visible = false;
         SetAnimInOutPositions();
         Disable();
+        _comboIcons.Refresh();
     }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        if (NControllerManager.Instance != null)
+        {
+            NControllerManager.Instance.ControllerDetected += OnControllerChanged;
+            NControllerManager.Instance.MouseDetected += OnControllerChanged;
+            NControllerManager.Instance.ControllerTypeChanged += OnControllerChanged;
+        }
+
+        if (NInputManager.Instance != null)
+            NInputManager.Instance.InputRebound += OnControllerChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        if (NControllerManager.Instance != null)
+        {
+            NControllerManager.Instance.ControllerDetected -= OnControllerChanged;
+            NControllerManager.Instance.MouseDetected -= OnControllerChanged;
+            NControllerManager.Instance.ControllerTypeChanged -= OnControllerChanged;
+        }
+
+        if (NInputManager.Instance != null)
+            NInputManager.Instance.InputRebound -= OnControllerChanged;
+    }
+
+    private void OnControllerChanged() => _comboIcons?.Refresh();
 
     protected override void SetAnimInOutPositions()
     {
@@ -181,9 +223,16 @@ public partial class NCargoPile : NCombatCardPile
     protected override void OnFocus()
     {
         NHoverTipSet.Remove(this);
-        var tooltip = NHoverTipSet.CreateAndShow(this, _hoverTip);
-        var yOffset = _previewHolders.Count > 0 ? TooltipOffsetY : -220f;
-        tooltip.GlobalPosition = GlobalPosition + new Vector2(0, yOffset);
+        var hoverTip = new HoverTip(
+            new LocString("static_hover_tips", "CARGO_PILE.title"),
+            new LocString("static_hover_tips", "CARGO_PILE.description"));
+        var tooltip = NHoverTipSet.CreateAndShow(this, hoverTip);
+        if (tooltip != null)
+        {
+            var yOffset = _previewHolders.Count > 0 ? TooltipOffsetY : -220f;
+            tooltip.GlobalPosition = GlobalPosition + new Vector2(0, yOffset);
+        }
+
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.TweenProperty(_icon, "scale", new Vector2(1.25f, 1.25f), 0.05);

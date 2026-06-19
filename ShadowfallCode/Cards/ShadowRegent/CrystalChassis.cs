@@ -43,8 +43,7 @@ public class CrystalChassis() : ShadowRegentCard(
             CardCmd.Upgrade(ultimateDefend);
         }
 
-        //TODO: check if the card preview to cargo pile works correctly
-        var result = await CardPileCmd.Add(ultimateDefend, CargoCardPile.CargoPileType, clonedBy: this);
+        var result = await CardPileCmd.AddGeneratedCardToCombat(ultimateDefend, CargoCardPile.CargoPileType, Owner);
         CardCmd.PreviewCardPileAdd(result);
     }
 

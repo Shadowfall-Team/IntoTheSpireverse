@@ -10,11 +10,11 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 public class RedGiant() : ShadowRegentCard(
     1,
-    //TODO: check if this should indeed be a power
     CardType.Power,
     CardRarity.Rare,
     TargetType.Self)
 {
+    public override bool CanBeGeneratedInCombat => false;
     //TODO: Not sure if extra is needed for multiplayer. Plz playtest
     public override CardMultiplayerConstraint MultiplayerConstraint =>
         CardMultiplayerConstraint.SingleplayerOnly;

@@ -38,8 +38,7 @@ public class ShipMaintenance() : ShadowRegentCard(
             var stratagem = CombatState.CreateCard<Stratagem>(Owner);
             stratagem.AddKeyword(CardKeyword.Ethereal);
 
-            await CardPileCmd.Add([automation, prowess, stratagem], PileType.Hand,
-                clonedBy: this);
+            await CardPileCmd.AddGeneratedCardsToCombat([automation, prowess, stratagem], PileType.Hand, Owner);
         }
     }
 

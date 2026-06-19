@@ -5,11 +5,12 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
 using Shadowfall.ShadowfallCode.Cards.ShadowSilent;
+using Shadowfall.ShadowfallCode.Config;
 using Shadowfall.ShadowfallCode.Relics;
 
 namespace Shadowfall.ShadowfallCode.Character;
 
-public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter
+public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IShadowfallDebug
 {
     public override string PlaceholderID => "silent";
     public const string CharacterId = "Shadowfall";

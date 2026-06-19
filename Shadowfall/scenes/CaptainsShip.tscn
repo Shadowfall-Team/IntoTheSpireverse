@@ -1,0 +1,322 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbtqxgu7bq2i7"]
+
+[ext_resource type="Script" uid="uid://b84u20tfwjkmq" path="res://ShadowfallCode/ui/NAmmoButton.cs" id="1_dh6nf"]
+[ext_resource type="Script" uid="uid://cdwygcc8hduxl" path="res://ShadowfallCode/ui/ShadowfallMegaLabel.cs" id="1_ruvg3"]
+[ext_resource type="Texture2D" uid="uid://q433vd7by7gy" path="res://Shadowfall/images/relics/big/relic.png" id="2_nfjci"]
+[ext_resource type="Texture2D" uid="uid://51osq8vorvg8" path="res://Shadowfall/images/combat_ui/ammo_pile.png" id="3_7vte5"]
+[ext_resource type="Script" uid="uid://pidfu6oar7a8" path="res://ShadowfallCode/ui/ShadowfallMegaRichTextLabel.cs" id="4_anfaq"]
+[ext_resource type="Texture2D" uid="uid://5ris3fd14de4" path="res://Shadowfall/images/combat_ui/ammo_button.png" id="4_dc20g"]
+[ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://Shadowfall/images/relics/relic_outline.png" id="7_8knwp"]
+
+[node name="CaptainsShip" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 90.0
+offset_bottom = 180.0
+script = ExtResource("1_dh6nf")
+metadata/_edit_vertical_guides_ = [40.0]
+metadata/_edit_horizontal_guides_ = [160.0]
+
+[node name="ShipContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="ShipIcon" type="TextureRect" parent="ShipContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_nfjci")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="DamageIndicator" type="Control" parent="ShipContainer"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 8.0
+offset_top = -64.0
+offset_right = 71.99996
+mouse_filter = 2
+
+[node name="DamageIcon" type="TextureRect" parent="ShipContainer/DamageIndicator"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+texture = ExtResource("7_8knwp")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="DamageLabel" type="RichTextLabel" parent="ShipContainer/DamageIndicator"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 40.0
+offset_right = 3.8146973e-05
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "14"
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("4_anfaq")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
+
+[node name="AmmoContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 82.0
+offset_right = 80.0
+offset_bottom = 187.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="AmmoPile" type="Control" parent="AmmoContainer"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 80.0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="AmmoContainer/AmmoPile"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_7vte5")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CountContainer" type="Control" parent="AmmoContainer/AmmoPile"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Count" type="Label" parent="AmmoContainer/AmmoPile/CountContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 0.9647059, 0.8862745, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -8.0
+offset_right = -20.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0.53333336, 0.12156863, 0.1254902, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ruvg3")
+theme_override_font_sizes/font_size = 32
+
+[node name="FireButtonContainer" type="Control" parent="AmmoContainer"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -17.0
+offset_top = 66.0
+offset_right = 97.0
+offset_bottom = 110.000015
+mouse_filter = 2
+
+[node name="FireButtonBackground" type="TextureRect" parent="AmmoContainer/FireButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(57, 22)
+mouse_filter = 2
+texture = ExtResource("4_dc20g")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="FireButtonLabel" type="Label" parent="AmmoContainer/FireButtonContainer/FireButtonBackground"]
+unique_name_in_owner = true
+modulate = Color(1, 0.9647059, 0.8862745, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1882353)
+theme_override_colors/font_outline_color = Color(0.07450981, 0.12156863, 0.18039216, 1)
+theme_override_constants/line_spacing = -4
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 20
+text = "FIRE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ruvg3")
+theme_override_colors/font_outline_color = Color(0.07450981, 0.12156863, 0.18039216, 1)
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1882353)
+theme_override_constants/line_spacing = -4
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="EnergyIcon" type="TextureRect" parent="AmmoContainer/FireButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -21.000008
+offset_right = 21.0
+offset_bottom = 20.999992
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_8knwp")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="EnergyLabel" type="Label" parent="AmmoContainer/FireButtonContainer/EnergyIcon"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -10.0
+offset_right = 4.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0.53333336, 0.12156863, 0.1254902, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 21
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ruvg3")
+theme_override_font_sizes/font_size = 21
+
+[node name="ControllerIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 88.0
+offset_right = 70.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_8knwp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AddSymbol" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 66.0
+offset_top = 182.0
+offset_right = -11.9999695
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 20
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ruvg3")
+theme_override_colors/font_color = Color(1, 0.9647059, 0.8862745, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 12
+theme_override_font_sizes/font_size = 20
+
+[node name="ControllerIcon2" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = 88.0
+offset_right = 22.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_8knwp")
+expand_mode = 1
+stretch_mode = 5

@@ -44,7 +44,6 @@ public class Convergence() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        //TODO: check if this upgrade is fine.
         DynamicVars[nameof(GainShardsNextTurnPower)].UpgradeValueBy(1);
     }
 }

@@ -41,13 +41,15 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._hoverTip"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._bumpTween"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._ascensionPanel"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._infoPanel"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NCardPileScreen._bottomLabel"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnPressHandler"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnReleaseHandler"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
     </ItemGroup>
 
     <ItemGroup>

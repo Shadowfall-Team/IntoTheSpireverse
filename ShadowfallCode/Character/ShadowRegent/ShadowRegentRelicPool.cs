@@ -15,18 +15,18 @@ public class ShadowRegentRelicPool : CustomRelicPoolModel
     {
         return new List<RelicModel>([
             //starter
-            ModelDb.Relic<SpareBullet>(),
+            ModelDb.Relic<CaptainsHat>(),
             //common
-            ModelDb.Relic<ShadowFencingManual>(),
+            ModelDb.Relic<FuzzyDice>(),
             //uncommon
-            ModelDb.Relic<Regalite>(),
-            ModelDb.Relic<ShadowGalacticDust>(),
+            ModelDb.Relic<CommBadge>(),
+            ModelDb.Relic<DilithiumCrystal>(),
             //rare
-            ModelDb.Relic<ShadowLunarPastry>(),
-            ModelDb.Relic<ShadowMiniRegent>(),
-            ModelDb.Relic<ShadowOrangeDough>(),
+            ModelDb.Relic<ShipInABottle>(),
+            ModelDb.Relic<Bobblehead>(),
+            ModelDb.Relic<PurpleDough>(),
             //shop
-            ModelDb.Relic<VitruvianMinion>(),
+            ModelDb.Relic<HulaFigure>(),
         ]);
     }
 }

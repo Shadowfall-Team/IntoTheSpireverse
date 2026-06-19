@@ -47,10 +47,16 @@ public class BigGuns() : ShadowRegentCard(
     }
 }
 
-public class BigGunsPower : CustomPowerModel
+public class BigGunsPower : CustomPowerModel, IHasSecondAmount
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    
+    public string GetSecondAmount()
+    {
+        return (DynamicVars["EnergySpent"].BaseValue % 10).ToString();
+    }
+
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -64,6 +70,7 @@ public class BigGunsPower : CustomPowerModel
             if (CombatManager.Instance.IsInProgress && amount > 0)
             {
                 DynamicVars["EnergySpent"].BaseValue += amount;
+                InvokeDisplayAmountChanged();
                 if (DynamicVars["EnergySpent"].BaseValue % 9 == 0)
                 {
                     StartPulsing();
@@ -81,4 +88,5 @@ public class BigGunsPower : CustomPowerModel
             }
         }
     }
+
 }

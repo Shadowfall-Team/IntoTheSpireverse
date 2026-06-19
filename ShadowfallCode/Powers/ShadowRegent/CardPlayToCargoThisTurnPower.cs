@@ -18,11 +18,11 @@ public class CardPlayToCargoThisTurnPower : CustomPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext context,
         CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature == Owner)
+        if (cardPlay.Card.Owner.Creature == Owner && cardPlay.ResultPile == PileType.Discard)
         {
             await CardPileCmd.Add(cardPlay.Card, CargoCardPile.CargoPileType);
-            await PowerCmd.Remove(this);
         }
+        await PowerCmd.Remove(this);
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)

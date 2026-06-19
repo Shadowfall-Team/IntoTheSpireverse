@@ -7,12 +7,11 @@ namespace Shadowfall.ShadowfallCode.Commands;
 
 public static class LoadAmmoCmd
 {
-    public static Task LoadAmmo(decimal amount, Player player, AbstractModel? source)
+    public static async Task LoadAmmo(decimal amount, Player player, AbstractModel? source)
     {
         if (CombatManager.Instance.IsOverOrEnding)
-            return Task.CompletedTask;
+            return;
 
-        AmmoResource.GainAmmo((int)amount, player);
-        return Task.CompletedTask;
+        await AmmoResource.GainAmmo((int)amount, player);
     }
 }

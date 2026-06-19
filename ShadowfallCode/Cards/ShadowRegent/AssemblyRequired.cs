@@ -20,8 +20,9 @@ public class AssemblyRequired() : ShadowRegentCard(
     [
         CardKeyword.Exhaust
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Fragment>(),
         HoverTipFactory.FromPower<ShardPower>(),
     ];
@@ -39,12 +40,13 @@ public class AssemblyRequired() : ShadowRegentCard(
         foreach (var player in players)
         {
             var tripCard = CombatState.CreateCard<Fragment>(player);
-            await CardPileCmd.Add(tripCard, PileType.Draw, CardPilePosition.Random, this);
+            await CardPileCmd.AddGeneratedCardToCombat(tripCard, PileType.Draw, Owner);
         }
-    }
 
-    protected override void OnUpgrade()
-    {
-        //TODO: what should the upgrade be?
+        if (IsUpgraded)
+        {
+            var extraTrip = CombatState.CreateCard<Fragment>(Owner);
+            await CardPileCmd.AddGeneratedCardToCombat(extraTrip, PileType.Draw, Owner);
+        }
     }
 }

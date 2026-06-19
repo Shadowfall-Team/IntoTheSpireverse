@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
+using Shadowfall.ShadowfallCode.Extensions;
 using Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Character;
@@ -13,7 +14,7 @@ namespace Shadowfall.ShadowfallCode.Character;
 public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "regent";
-    public const string CharacterId = "Shadowfall";
+    public const string CharacterId = "regent";
 
     public static readonly Color Color = StsColors.orange;
     public override Color NameColor => Color;
@@ -25,7 +26,7 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     
     public override CharacterGender Gender => CharacterGender.Masculine;
 
-    public override string? CustomCharacterSelectIconPath => "Shadowfall/images/charui/char_select_char_name.png";
+    // public override string? CustomCharacterSelectIconPath => "Shadowfall/images/charui/char_select_char_name.png";
 
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
@@ -49,11 +50,11 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
         ModelDb.Card<DefendRegent>(),
         ModelDb.Card<DefendRegent>(),
         ModelDb.Card<StarCharts>(),
-        ModelDb.Card<Claim>(),
+        ModelDb.Card<Load>(),
     ];
     
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<SpareBullet>()
+        ModelDb.Relic<CaptainsHat>()
     ];
 }

@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -24,7 +25,7 @@ public class DefensiveCannonade() : ShadowRegentCard(
     [
         new IntVar("LoadAmmo", 2),
         new IntVar("Shots", 2),
-        new BlockVar(6, ValueProp.Unpowered),
+        new BlockVar(6, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -49,7 +50,7 @@ public class DefensiveCannonade() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LoadAmmo"].UpgradeValueBy(1);
+        DynamicVars.Block.UpgradeValueBy(2);
     }
 }
 
@@ -59,26 +60,28 @@ public class DefensiveCannonadePower : CustomPowerModel, IHasSecondAmount, IAmmo
     public override PowerStackType StackType => PowerStackType.Counter;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    private int _shotsRemaining;
-
     public int ShotsRemaining
     {
-        get => _shotsRemaining;
+        get => DynamicVars["ShotsRemaining"].IntValue;
         set
         {
-            _shotsRemaining = value;
+            DynamicVars["ShotsRemaining"].BaseValue = value;
             InvokeDisplayAmountChanged();
         }
     }
 
-    public string GetSecondAmount() => _shotsRemaining.ToString();
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("ShotsRemaining", 2)
+    ];
 
-    public async void OnAmmoFired(Player player, IReadOnlyList<Creature> targets)
+    public string GetSecondAmount() => ShotsRemaining.ToString();
+
+    public async Task OnAmmoFired(Player player, IEnumerable<List<DamageResult>> results)
     {
         if (player.Creature != Owner) return;
 
         Flash();
-        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move, null);
 
         ShotsRemaining--;
         if (ShotsRemaining <= 0)

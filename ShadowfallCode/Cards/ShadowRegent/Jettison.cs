@@ -12,7 +12,7 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
 public class Jettison() : ShadowRegentCard(1,
     CardType.Attack,
-    CardRarity.Common,
+    CardRarity.Rare,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [

@@ -38,7 +38,6 @@ public class PoweredThrusters() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        //TODO: check what the upgrade should be
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

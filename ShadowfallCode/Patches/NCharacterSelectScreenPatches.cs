@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using Shadowfall.ShadowfallCode.Character;
 using Shadowfall.ShadowfallCode.ui;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Patches;
 
@@ -17,7 +18,7 @@ public class NCharacterSelectScreenPatches
     [HarmonyPostfix]
     public static void ReadyPostfix(NCharacterSelectScreen __instance)
     {
-        if (!ModelDb.AllCharacters.Any(c => c is IAltCharacter)) return;
+        if (!ModelDb.AllCharacters.Any(AltCharacterUtil.IsAvailableAltCharacter)) return;
 
         __instance._ascensionPanel.Position = new Vector2(__instance._ascensionPanel.Position.X,
             __instance._ascensionPanel.Position.Y - yOffset);
@@ -38,7 +39,8 @@ public class NCharacterSelectButtonPatches
         CharacterModel character, ICharacterSelectButtonDelegate del)
     {
         var altCharacterCount = ModelDb.AllCharacters.Count(c =>
-            c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character);
+            AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
+            altCharacter.BaseCharacterModel == character);
         if (altCharacterCount <= 0) return;
 
         var arrowButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCharAltArrow>();
@@ -50,7 +52,8 @@ public class NCharacterSelectButtonPatches
         arrowButton.ClickDelegate = del;
 
         arrowButton.Characters = ModelDb.AllCharacters
-            .Where(c => c is IAltCharacter altCharacter && altCharacter.BaseCharacterModel == character)
+            .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
+                        altCharacter.BaseCharacterModel == character)
             .ToList();
         arrowButton.Characters.Add(character);
 

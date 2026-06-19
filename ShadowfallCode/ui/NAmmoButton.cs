@@ -1,235 +1,311 @@
 using Godot;
+using HarmonyLib;
+using MegaCrit.Sts2.addons.mega_text;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Actions;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
+using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.ControllerInput;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using Shadowfall.ShadowfallCode.Ammo;
+using Shadowfall.ShadowfallCode.CardPiles;
+using Shadowfall.ShadowfallCode.Cards.Colorless;
 
 namespace Shadowfall.ShadowfallCode.ui;
 
-public partial class NAmmoButton : Node2D
+public partial class NAmmoButton : NButton
 {
-    // TODO: uncomment when .tscn is ready
-    // private static readonly string _scenePath = "res://Shadowfall/scenes/AmmoButton.tscn";
+    private static readonly string _scenePath = "res://Shadowfall/scenes/CaptainsShip.tscn";
+
+    private static readonly AccessTools.FieldRef<CardModel, CardUpgradePreviewType> _upgradePreviewTypeRef =
+        AccessTools.FieldRefAccess<CardModel, CardUpgradePreviewType>("_upgradePreviewType");
+
+    private static readonly string _megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
 
     private Player _player = null!;
     private bool _initialized;
     private bool _hasEverHadAmmo;
-    private bool _isFiring;
+    private readonly List<PlayAmmoCardAction> _playQueue = [];
+    private CardPile? _pile;
 
-    // Child nodes
-    private Node2D _shipNode = null!;
-    private Label _damageLabel = null!;
-    private Label _ammoCountLabel = null!;
-    private Button _hitbox = null!;
-    private ColorRect _fireRect = null!;
-    private Label _fireLabel = null!;
-    private Label _energyCostLabel = null!;
-
-    // TODO: replace with real nodes from scene
-    // private TextureRect _damageIcon = null!;
-    // private Control _buttonBody = null!;
-    // private TextureRect _energyOrb = null!;
-    // private ShadowfallMegaLabel _energyCostLabel = null!;
+    private Control _shipContainer = null!;
+    private ShadowfallMegaRichTextLabel _damageLabel = null!;
+    private ShadowfallMegaLabel _ammoCountLabel = null!;
+    private ShadowfallMegaLabel _fireLabel = null!;
+    private ShadowfallMegaLabel _energyCostLabel = null!;
+    private TextureRect _energyIcon = null!;
+    private TextureRect _damageIcon = null!;
+    private Control _fireButtonBackground = null!;
+    private ComboControllerIcons _comboIcons = null!;
 
     private Tween? _fadeTween;
+    private Tween? _bumpTween;
 
-    // Bob state
     private float _bobTime;
-    private const float BobAmplitude = 3f;
+    private const float BobAmplitude = 5f;
     private const float BobFrequency = 2f;
 
-    // TODO: replace with scene instantiation
-    // public static NAmmoButton Create()
-    // {
-    //     return ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
-    // }
+    protected override string? ClickedSfx => "event:/sfx/ui/clicks/ui_click";
+    protected override string? HoveredSfx => "event:/sfx/ui/clicks/ui_hover";
 
-    public static NAmmoButton Create() => new();
+    private CardModel? TopCard => _pile?.Cards.ToList().FirstOrDefault();
 
-    /// <summary>
-    /// Called by NCreaturePatch. Stores the player so Initialize can run once _Ready fires.
-    /// </summary>
-    public void SetPlayer(Player player)
+    private int AvailableAmmoCount =>
+        (_pile?.Cards.Count ?? 0) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
+
+    private bool CanFire
     {
-        _pendingPlayer = player;
+        get
+        {
+            if (!_initialized || _player.PlayerCombatState == null ||
+                _player.Creature.CombatState?.CurrentSide != CombatSide.Player)
+                return false;
+            var top = TopCard;
+            if (top == null) return false;
+            if (AvailableAmmoCount <= 0) return false;
+            return AvailableEnergy >= top.EnergyCost.GetWithModifiers(CostModifiers.All)
+                   && NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play
+                   && !CombatManager.Instance.IsOverOrEnding;
+        }
     }
 
-    private Player? _pendingPlayer;
+    private int AvailableEnergy
+    {
+        get
+        {
+            if (_player.PlayerCombatState == null) return 0;
+            var top = TopCard;
+            if (top == null) return _player.PlayerCombatState.Energy;
+            var pendingCost = _playQueue.Count(a => a.State == GameActionState.WaitingForExecution)
+                              * top.EnergyCost.GetWithModifiers(CostModifiers.All);
+            return _player.PlayerCombatState.Energy - pendingCost;
+        }
+    }
+
+    #region Godot Lifecycle
 
     public override void _Ready()
     {
-        // TODO: replace this entire method body with GetNode lookups once .tscn exists:
-        // _shipNode        = GetNode<Node2D>("%Ship");
-        // _damageIcon      = GetNode<TextureRect>("%DamageIcon");
-        // _damageLabel     = GetNode<ShadowfallMegaLabel>("%DamageLabel");
-        // _buttonBody      = GetNode<Control>("%ButtonBody");
-        // _ammoCountLabel  = GetNode<ShadowfallMegaLabel>("%AmmoCount");
-        // _hitbox          = GetNode<Button>("%Hitbox");
-        // _energyOrb       = GetNode<TextureRect>("%EnergyOrb");
-        // _energyCostLabel = GetNode<ShadowfallMegaLabel>("%EnergyCost");
-        // _fireLabel       = GetNode<ShadowfallMegaLabel>("%FireLabel");
-        // _hitbox.Pressed += OnButtonPressed;
+        _shipContainer = GetNode<Control>("ShipContainer");
+        _damageLabel = GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel");
+        _ammoCountLabel = GetNode<ShadowfallMegaLabel>("%Count");
+        _fireLabel = GetNode<ShadowfallMegaLabel>("%FireButtonLabel");
+        _energyCostLabel = GetNode<ShadowfallMegaLabel>("%EnergyLabel");
+        _energyIcon = GetNode<TextureRect>("%EnergyIcon");
+        _damageIcon = GetNode<TextureRect>("%DamageIcon");
+        _fireButtonBackground = GetNode<Control>("%FireButtonBackground");
+        _comboIcons = new ComboControllerIcons(
+            GetNode<TextureRect>("%ControllerIcon2"), // LT
+            GetNode<TextureRect>("%ControllerIcon"), // A
+            MegaInput.viewDrawPile,
+            MegaInput.select,
+            GetNode<ShadowfallMegaLabel>("%AddSymbol"));
 
-        BuildPlaceholderUi();
+        ConnectSignals();
+        _comboIcons.Refresh();
 
         Modulate = new Color(1, 1, 1, 0);
         Visible = false;
-
-        if (_pendingPlayer != null)
-            Initialize(_pendingPlayer);
-    }
-
-    /// <summary>
-    /// Temporary code-built UI for testing. Remove entirely when .tscn is wired up.
-    /// </summary>
-    private void BuildPlaceholderUi()
-    {
-        // Ship node — bobs in _Process. Contains ship rect + damage label + hitbox.
-        _shipNode = new Node2D { Name = "Ship" };
-        AddChild(_shipNode);
-
-        // Ship placeholder rectangle
-        var shipRect = new ColorRect
-        {
-            Name = "ShipRect",
-            Color = new Color(0.25f, 0.35f, 0.55f, 0.9f),
-            Size = new Vector2(80, 50),
-            Position = new Vector2(-40, -46),
-        };
-        _shipNode.AddChild(shipRect);
-
-        // Damage label — above the ship, bobs with it
-        _damageLabel = new Label
-        {
-            Name = "DamageLabel",
-            Text = "0",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Size = new Vector2(80, 24),
-            Position = new Vector2(-40, -76),
-        };
-        var damageBg = new StyleBoxFlat { BgColor = new Color(0.3f, 0.3f, 0.3f, 0.8f) };
-        _damageLabel.AddThemeStyleboxOverride("normal", damageBg);
-        _shipNode.AddChild(_damageLabel);
-
-        // Parent hitbox — covers ammo square + fire button area, handles all input
-        _hitbox = new Button
-        {
-            Name = "FireButton",
-            Size = new Vector2(80,
-                113), // 9 (ammo top) + 80 (ammo) + 24 (fire overlap into ammo = 77-9=68... just total: 77+36=113)
-            Position = new Vector2(-40, 9),
-        };
-        _hitbox.AddThemeStyleboxOverride("normal", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("hover", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("pressed", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("disabled", new StyleBoxEmpty());
-        _hitbox.AddThemeStyleboxOverride("focus", new StyleBoxEmpty());
-        _hitbox.Pressed += OnButtonPressed;
-        _hitbox.MouseEntered += UpdateFireRectColor;
-        _hitbox.MouseExited += UpdateFireRectColor;
-        _hitbox.ButtonDown += () => _fireRect.Color = new Color(0.4f, 0.1f, 0.1f, 1f);
-        _hitbox.ButtonUp += UpdateFireRectColor;
-        AddChild(_hitbox);
-
-        // Ammo count — inside hitbox, offset back to original root-relative position
-        _ammoCountLabel = new Label
-        {
-            Name = "AmmoCount",
-            Text = "0",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Size = new Vector2(80, 80),
-            Position = new Vector2(0, 0),
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-        var ammoBg = new StyleBoxFlat { BgColor = new Color(0.3f, 0.3f, 0.3f, 0.8f) };
-        _ammoCountLabel.AddThemeStyleboxOverride("normal", ammoBg);
-        _hitbox.AddChild(_ammoCountLabel);
-
-        // Fire visual rect — higher z-index, fire label is its child
-        _fireRect = new ColorRect
-        {
-            Name = "FireRect",
-            Size = new Vector2(80, 36),
-            Position = new Vector2(0, 68),
-            ZIndex = 1,
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-
-        // Fire label — child of fire rect, position relative to rect
-        _fireLabel = new Label
-        {
-            Name = "FireLabel",
-            Text = "FIRE",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Size = new Vector2(80, 36),
-            Position = new Vector2(0, 0),
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-        _fireRect.AddChild(_fireLabel);
-        _hitbox.AddChild(_fireRect);
-
-        // Energy cost node — to the left of the fire rect, eventually becomes energy orb
-        _energyCostLabel = new Label
-        {
-            Name = "EnergyCost",
-            Text = "1",
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            Size = new Vector2(28, 28),
-            Position = new Vector2(-18, 72),
-            ZIndex = 2,
-            MouseFilter = Control.MouseFilterEnum.Ignore,
-        };
-        var energyBg = new StyleBoxFlat { BgColor = new Color(0.15f, 0.15f, 0.5f, 0.9f), CornerRadiusTopLeft = 14, CornerRadiusTopRight = 14, CornerRadiusBottomLeft = 14, CornerRadiusBottomRight = 14 };
-        _energyCostLabel.AddThemeStyleboxOverride("normal", energyBg);
-        _hitbox.AddChild(_energyCostLabel);
     }
 
     public override void _EnterTree()
     {
-        AmmoResource.AmmoChanged += OnAmmoChanged;
+        base._EnterTree();
         CombatManager.Instance.StateTracker.CombatStateChanged += OnCombatStateChanged;
+        RunManager.Instance.ActionQueueSet.ActionEnqueued += OnActionEnqueued;
+        if (NControllerManager.Instance != null)
+        {
+            NControllerManager.Instance.ControllerDetected += OnControllerChanged;
+            NControllerManager.Instance.MouseDetected += OnControllerChanged;
+            NControllerManager.Instance.ControllerTypeChanged += OnControllerChanged;
+        }
+
+        if (NInputManager.Instance != null)
+            NInputManager.Instance.InputRebound += OnControllerChanged;
     }
 
     public override void _ExitTree()
     {
-        AmmoResource.AmmoChanged -= OnAmmoChanged;
+        base._ExitTree();
+        if (_pile != null)
+            _pile.ContentsChanged -= OnPileContentsChanged;
         CombatManager.Instance.StateTracker.CombatStateChanged -= OnCombatStateChanged;
+        RunManager.Instance.ActionQueueSet.ActionEnqueued -= OnActionEnqueued;
+        if (NControllerManager.Instance != null)
+        {
+            NControllerManager.Instance.ControllerDetected -= OnControllerChanged;
+            NControllerManager.Instance.MouseDetected -= OnControllerChanged;
+            NControllerManager.Instance.ControllerTypeChanged -= OnControllerChanged;
+        }
+
+        if (NInputManager.Instance != null)
+            NInputManager.Instance.InputRebound -= OnControllerChanged;
+        _playQueue.Clear();
     }
 
-    /// <summary>Called by NCreaturePatch after the node is added to the tree.</summary>
-    public void Initialize(Player player)
-    {
-        _player = player;
-        _initialized = true;
-        UpdateState();
-    }
-
-    // -------------------------------------------------------------------------
-    // Process (bob)
-    // -------------------------------------------------------------------------
+    private void OnControllerChanged() => _comboIcons?.Refresh(_isEnabled);
 
     public override void _Process(double delta)
     {
         if (!_initialized) return;
         _bobTime += (float)delta * BobFrequency;
-        _shipNode.Position = new Vector2(0f, Mathf.Sin(_bobTime) * BobAmplitude);
+        _shipContainer.Position = new Vector2(
+            _shipContainer.Position.X,
+            Mathf.Sin(_bobTime) * BobAmplitude);
     }
 
-    // -------------------------------------------------------------------------
-    // Event handlers
-    // -------------------------------------------------------------------------
+    #endregion
 
-    private void OnAmmoChanged(PlayerCombatState state, int oldVal, int newVal)
+    #region Initialization
+
+    public static NAmmoButton Create()
     {
-        if (!_initialized || state != _player.PlayerCombatState) return;
+        var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
+        var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
+        ApplyFont(button.GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel"), font,
+            minSize: 22,
+            maxSize: 28);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%Count"), font, minSize: 32,
+            maxSize: 32);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%FireButtonLabel"),
+            font, minSize: 20, maxSize: 20);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%EnergyLabel"),
+            font, minSize: 21, maxSize: 24);
+        ApplyFont(button.GetNode<ShadowfallMegaLabel>("%AddSymbol"),
+            font, minSize: 20, maxSize: 20);
+        return button;
+    }
 
-        if (!_hasEverHadAmmo && newVal > 0)
+    public void Initialize(Player player)
+    {
+        _player = player;
+        _pile = AmmoCardPile.AmmoPileType.GetPile(player);
+        _pile.ContentsChanged += OnPileContentsChanged;
+        _energyIcon.Texture = PreloadManager.Cache.GetAsset<Texture2D>(
+            EnergyIconHelper.GetPath(_player.Character.CardPool));
+        _initialized = true;
+        UpdateState();
+    }
+
+    private static void ApplyFont(MegaLabel label, Font font, int minSize, int maxSize)
+    {
+        label.AddThemeFontOverride(ThemeConstants.Label.Font, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
+    }
+
+    private static void ApplyFont(MegaRichTextLabel label, Font font, int minSize, int maxSize)
+    {
+        label.AddThemeFontOverride(ThemeConstants.RichTextLabel.NormalFont, font);
+        label.MinFontSize = minSize;
+        label.MaxFontSize = maxSize;
+    }
+
+    #endregion
+
+    #region Button Overrides
+
+    protected override void OnFocus()
+    {
+        base.OnFocus(); // plays HoveredSfx
+        UpdateFireLabel();
+        _bumpTween?.Kill();
+        _bumpTween = CreateTween();
+        _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
+        var top = TopCard;
+        if (top == null) return;
+
+        //I've opted to go with the fieldref pattern here as I don't think it wise to publicize this generally.
+        //This is an issue with how UpdateDynamicVarPreview only updates dynamicvars if the card is in hand or in play (CardUpgradePreviewType.Combat).
+        //The best solution would be to transpile the CardModel.UpdateDynamicVarPreview method, but this workaround is a lot less work and is only slightly more disgusting. 
+        _upgradePreviewTypeRef(top) = CardUpgradePreviewType.Combat;
+        NHoverTipSet.CreateAndShow(this,
+                [HoverTipFactory.FromCard(top), .. top.HoverTips])
+            ?.SetAlignment(this, HoverTipAlignment.Left);
+        _upgradePreviewTypeRef(top) = CardUpgradePreviewType.None;
+    }
+
+    protected override void OnUnfocus()
+    {
+        UpdateFireLabel();
+        NHoverTipSet.Remove(this);
+        _bumpTween?.Kill();
+        _bumpTween = CreateTween();
+        _bumpTween.SetParallel();
+        _bumpTween.TweenProperty(_fireButtonBackground, "scale", Vector2.One, 0.05);
+        _bumpTween.TweenProperty(_fireButtonBackground, "modulate", Colors.White, 0.05);
+    }
+
+    protected override void OnPress()
+    {
+        base.OnPress(); // plays ClickedSfx
+        UpdateFireLabel();
+        _bumpTween?.Kill();
+        _bumpTween = CreateTween();
+        _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(0.9f, 0.9f), 0.05);
+        _bumpTween.TweenProperty(_fireButtonBackground, "modulate", StsColors.red, 0.05);
+    }
+
+    protected override void OnRelease()
+    {
+        if (!CanFire) return;
+
+        _bumpTween?.Kill();
+        _bumpTween = CreateTween();
+        _bumpTween.SetParallel();
+        _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
+        _bumpTween.TweenProperty(_fireButtonBackground, "modulate", Colors.White, 0.05);
+
+        var action = new PlayAmmoCardAction(_player);
+        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(action);
+        WaitForActionComplete(action);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        _comboIcons?.Refresh(true);
+        UpdateFireLabel();
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        _comboIcons?.Refresh(false);
+        UpdateFireLabel();
+    }
+
+    private async void WaitForActionComplete(PlayAmmoCardAction action)
+    {
+        while (action.State != GameActionState.Finished && action.State != GameActionState.Canceled)
+        {
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        }
+
+        _playQueue.Remove(action);
+        UpdateState();
+    }
+
+    #endregion
+
+    #region Event Handlers
+
+    private void OnPileContentsChanged()
+    {
+        if (!_hasEverHadAmmo && _pile!.Cards.Count > 0)
         {
             _hasEverHadAmmo = true;
             AnimIn();
@@ -240,82 +316,14 @@ public partial class NAmmoButton : Node2D
 
     private void OnCombatStateChanged(CombatState state) => UpdateState();
 
-    // -------------------------------------------------------------------------
-    // State
-    // -------------------------------------------------------------------------
-
-    private bool IsPlayerTurn =>
-        NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play;
-
-    private bool CanFire =>
-        _initialized
-        && !_isFiring
-        && _player.PlayerCombatState != null
-        && AmmoResource.GetAmmo(_player) > 0
-        && _player.PlayerCombatState.Energy >= AmmoResource.GetShotEnergyCost(_player)
-        && IsPlayerTurn
-        && !CombatManager.Instance.IsOverOrEnding;
-
-    private void UpdateState()
+    private void OnActionEnqueued(GameAction action)
     {
         if (!_initialized) return;
-        if (_player.PlayerCombatState == null) return;
-
-        var ammo = AmmoResource.GetAmmo(_player);
-        _ammoCountLabel.Text = ammo.ToString();
-
-        var damage = AmmoResource.CalculateShotDamagePreview(_player);
-        _damageLabel.Text = $"dmg:{damage}";
-
-        _energyCostLabel.Text = AmmoResource.GetShotEnergyCost(_player).ToString();
-
-        var canFire = CanFire;
-        _shipNode.Modulate = canFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f, 1f);
-        _hitbox.Disabled = !canFire;
-        UpdateFireRectColor();
-    }
-
-    private void UpdateFireRectColor()
-    {
-        if (!_hitbox.Disabled && _hitbox.IsHovered())
-            _fireRect.Color = new Color(0.6f, 0.2f, 0.2f, 0.9f); // hover
-        else if (_hitbox.Disabled)
-            _fireRect.Color = new Color(0.3f, 0.3f, 0.3f, 0.6f); // disabled
-        else
-            _fireRect.Color = new Color(0.8f, 0.3f, 0.2f, 1f); // normal
-    }
-
-    // -------------------------------------------------------------------------
-    // Input
-    // -------------------------------------------------------------------------
-
-    private void OnButtonPressed()
-    {
-        if (!CanFire) return;
-
-        _isFiring = true;
-        UpdateState();
-
-        var action = new FireAmmoAction(_player);
-        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(action);
-
-        WaitForActionComplete(action);
-    }
-
-    private async void WaitForActionComplete(FireAmmoAction action)
-    {
-        while (action.State != GameActionState.Finished && action.State != GameActionState.Canceled)
-        {
-            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        }
-
-        _isFiring = false;
+        if (action is not PlayAmmoCardAction ammoAction) return;
+        if (ammoAction.OwnerId != _player.NetId) return;
+        _playQueue.Add(ammoAction);
         UpdateState();
     }
-
-    // -------------------------------------------------------------------------
-    // Animation
-    // -------------------------------------------------------------------------
 
     private void AnimIn()
     {
@@ -326,4 +334,63 @@ public partial class NAmmoButton : Node2D
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Sine);
     }
+
+    #endregion
+
+    #region State Updates
+
+    private void UpdateState()
+    {
+        if (!_initialized) return;
+        if (_player.PlayerCombatState == null) return;
+
+        _ammoCountLabel.Text = AvailableAmmoCount.ToString();
+
+        var card = TopCard ?? ModelDb.Card<AmmoVolley>();
+        var preHookDamage = card.DynamicVars.CalculatedDamage.Calculate(null);
+        var damage = (int)Hook.ModifyDamage(
+            _player.RunState,
+            _player.Creature.CombatState,
+            null,
+            _player.Creature,
+            preHookDamage,
+            ValueProp.Move,
+            card,
+            ModifyDamageHookType.All,
+            CardPreviewMode.Normal,
+            out _);
+        _damageLabel.Text = $"{damage}";
+        _damageIcon.Texture = GetAttackIntentTexture(damage);
+        _energyCostLabel.Text = card.EnergyCost.GetWithModifiers(CostModifiers.All).ToString();
+
+        _shipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f);
+        SetEnabled(CanFire);
+        UpdateFireLabel();
+    }
+
+    private void UpdateFireLabel()
+    {
+        if (!_isEnabled)
+            _fireLabel.Modulate = StsColors.gray;
+        else if (IsFocused)
+            _fireLabel.Modulate = StsColors.red;
+        else
+            _fireLabel.Modulate = StsColors.cream;
+    }
+
+    private static Texture2D GetAttackIntentTexture(int damage)
+    {
+        var tier = damage switch
+        {
+            < 5 => "1",
+            < 10 => "2",
+            < 20 => "3",
+            < 40 => "4",
+            _ => "5"
+        };
+        return PreloadManager.Cache.GetAsset<Texture2D>(
+            ImageHelper.GetImagePath($"packed/intents/attack/intent_attack_{tier}.png"));
+    }
+
+    #endregion
 }

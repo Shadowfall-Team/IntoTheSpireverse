@@ -1,11 +1,13 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Shadowfall.ShadowfallCode.CardPiles;
 using Shadowfall.ShadowfallCode.Cards.Colorless;
-using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.Extensions;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -14,13 +16,18 @@ public class Banana() : ShadowRegentCard(1,
     CardRarity.Uncommon,
     TargetType.Self)
 {
+    public override string CustomPortraitPath => $"res://Shadowfall/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+
+    public override bool CanBeGeneratedInCombat => false;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HealVar(3),
         new PowerVar<DexterityPower>(1)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Trip>(),
         HoverTipFactory.FromPower<DexterityPower>(),
     ];
@@ -41,7 +48,8 @@ public class Banana() : ShadowRegentCard(1,
             this);
 
         var tripCard = CombatState.CreateCard<Trip>(Owner);
-        await CardPileCmd.Add(tripCard, PileType.Hand, clonedBy: this);
+        var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(tripCard, CargoCardPile.CargoPileType, Owner);
+        CardCmd.PreviewCardPileAdd(cardAdd);
     }
 
     protected override void OnUpgrade()

@@ -14,11 +14,13 @@ public class GarbageDay() : ShadowRegentCard(
     CardRarity.Rare,
     TargetType.Self)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo),
         HoverTipFactory.FromCard<Debris>(),
         HoverTipFactory.FromCard<Bury>()
     ];
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
@@ -33,12 +35,12 @@ public class GarbageDay() : ShadowRegentCard(
 
         var bury = CombatState.CreateCard<Bury>(Owner);
         bury.EnergyCost.SetThisCombat(0);
-        var cardPileAddResult = await CardPileCmd.Add(bury, CargoCardPile.CargoPileType);
-        CardCmd.PreviewCardPileAdd(cardPileAddResult);
-    }
+        if (IsUpgraded)
+        {
+            CardCmd.Upgrade(bury);
+        }
 
-    protected override void OnUpgrade()
-    {
-        //TODO What is the upgrade?
+        var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(bury, CargoCardPile.CargoPileType, Owner);
+        CardCmd.PreviewCardPileAdd(cardPileAddResult);
     }
 }
