@@ -40,15 +40,15 @@ public sealed class BombRock() : RockCardBase(3, CardType.Attack, CardRarity.Tok
             .Execute(choiceContext);
     }
 
-    // protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
-    // {
-    //     int triggers = LingerHelper.GetTriggerCount(this);
-    //     for (int i = 0; i < triggers; i++)
-    //     {
-    //         EnergyCost.AddThisCombat(-1);
-    //         await LingerHelper.NotifyLingerTriggered(this, choiceContext);
-    //     }
-    // }
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    {
+        int triggers = LingerHelper.GetTriggerCount(this);
+        for (int i = 0; i < triggers; i++)
+        {
+            EnergyCost.AddThisCombat(-1);
+            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
+        }
+    }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(8m);
 }
