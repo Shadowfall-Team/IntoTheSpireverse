@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbtqxgu7bq2i7"]
+[gd_scene load_steps=9 format=3 uid="uid://dbtqxgu7bq2i7"]
 
 [ext_resource type="Script" uid="uid://b84u20tfwjkmq" path="res://ShadowfallCode/ui/NAmmoButton.cs" id="1_dh6nf"]
 [ext_resource type="Script" uid="uid://cdwygcc8hduxl" path="res://ShadowfallCode/ui/ShadowfallMegaLabel.cs" id="1_ruvg3"]
+[ext_resource type="Material" uid="uid://cnm3o6q6r6nbc" path="res://Shadowfall/materials/hologram_material.tres" id="2_anfaq"]
 [ext_resource type="Texture2D" uid="uid://dla5jkt2ao6b7" path="res://Shadowfall/images/combat_ui/captainship.png" id="2_nfjci"]
 [ext_resource type="Texture2D" uid="uid://51osq8vorvg8" path="res://Shadowfall/images/combat_ui/ammo_pile.png" id="3_7vte5"]
 [ext_resource type="Script" uid="uid://pidfu6oar7a8" path="res://ShadowfallCode/ui/ShadowfallMegaRichTextLabel.cs" id="4_anfaq"]
@@ -30,6 +31,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="ShipIcon" type="TextureRect" parent="ShipContainer"]
+material = ExtResource("2_anfaq")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
