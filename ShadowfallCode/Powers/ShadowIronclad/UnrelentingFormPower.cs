@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class UnrelentingFormPower : CustomPowerModel, IHasSecondAmount
+public sealed class UnrelentingFormPower : ShadowPowerModel, IHasSecondAmount
 {
     // MAYBE: Investigate the rare circumstance where this activates, and then more stacks are added
     // Its probably fine to leave as is, since its the "First" time, and things like lethality don't refresh

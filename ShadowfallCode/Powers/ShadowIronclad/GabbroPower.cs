@@ -7,7 +7,7 @@ using Shadowfall.ShadowfallCode.CardTags;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class GabbroPower : CustomPowerModel
+public sealed class GabbroPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

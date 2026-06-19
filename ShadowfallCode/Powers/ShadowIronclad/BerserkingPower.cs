@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class BerserkingPower : CustomPowerModel
+public sealed class BerserkingPower : ShadowPowerModel
 {
     private const string SelfDamageKey = "SelfDamage";
 

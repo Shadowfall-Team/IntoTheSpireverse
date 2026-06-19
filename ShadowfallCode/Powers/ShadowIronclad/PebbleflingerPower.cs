@@ -8,7 +8,7 @@ using Shadowfall.ShadowfallCode.Cards.Colorless.Rocks;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class PebbleflingerPower : CustomPowerModel
+public sealed class PebbleflingerPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
