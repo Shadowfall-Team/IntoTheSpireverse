@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbaujfmmddwf"
-path="res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"
+uid="uid://dgh80mx4xrh86"
+path="res://.godot/imported/pillar_of_mutation_power.png-0c2568b59283ef893008d8d65c4c4386.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/unrelenting_form_power.png"
-dest_files=["res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"]
+source_file="res://Shadowfall/images/powers/pillar_of_mutation_power.png"
+dest_files=["res://.godot/imported/pillar_of_mutation_power.png-0c2568b59283ef893008d8d65c4c4386.ctex"]
 
 [params]
 

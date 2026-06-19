@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://koror5d0h1kx"
-path="res://.godot/imported/berserking.png-859e0c22cbb1d6a465cb862fb27100f9.ctex"
+path="res://.godot/imported/berserking_power.png-3f084b744ecca9025ec6176400be0201.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/berserking.png"
-dest_files=["res://.godot/imported/berserking.png-859e0c22cbb1d6a465cb862fb27100f9.ctex"]
+source_file="res://Shadowfall/images/powers/berserking_power.png"
+dest_files=["res://.godot/imported/berserking_power.png-3f084b744ecca9025ec6176400be0201.ctex"]
 
 [params]
 

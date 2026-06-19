@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dddtvsi6bfus6"
-path="res://.godot/imported/revenge.png-af119fba533e6c325a895dc6f45df401.ctex"
+path="res://.godot/imported/revenge_power.png-2d5b871ce30480c67a3874731900d2f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/big/revenge.png"
-dest_files=["res://.godot/imported/revenge.png-af119fba533e6c325a895dc6f45df401.ctex"]
+source_file="res://Shadowfall/images/powers/big/revenge_power.png"
+dest_files=["res://.godot/imported/revenge_power.png-2d5b871ce30480c67a3874731900d2f0.ctex"]
 
 [params]
 

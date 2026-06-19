@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbaujfmmddwf"
-path="res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"
+uid="uid://cu0igdx7tuq2d"
+path="res://.godot/imported/grapple_power.png-e98e4f727f88d204cef096316597e30d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/unrelenting_form_power.png"
-dest_files=["res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"]
+source_file="res://Shadowfall/images/powers/big/grapple_power.png"
+dest_files=["res://.godot/imported/grapple_power.png-e98e4f727f88d204cef096316597e30d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbaujfmmddwf"
-path="res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"
+uid="uid://ck1cmkwva5klh"
+path="res://.godot/imported/defensive_cannonade_power.png-77de3621c7a12a9187ee0905383c47d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/unrelenting_form_power.png"
-dest_files=["res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"]
+source_file="res://Shadowfall/images/powers/defensive_cannonade_power.png"
+dest_files=["res://.godot/imported/defensive_cannonade_power.png-77de3621c7a12a9187ee0905383c47d7.ctex"]
 
 [params]
 

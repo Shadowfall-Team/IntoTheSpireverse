@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbaujfmmddwf"
-path="res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"
+uid="uid://cdsp0s0wlp701"
+path="res://.godot/imported/siege_power.png-b38791a53dc43d48451d7e784d04454e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/unrelenting_form_power.png"
-dest_files=["res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"]
+source_file="res://Shadowfall/images/powers/siege_power.png"
+dest_files=["res://.godot/imported/siege_power.png-b38791a53dc43d48451d7e784d04454e.ctex"]
 
 [params]
 

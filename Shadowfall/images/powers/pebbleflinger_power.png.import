@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dk3mlm3t4ktju"
-path="res://.godot/imported/pebbleflinger.png-643dd8a0809f7affd2817f7ae717ab51.ctex"
+path="res://.godot/imported/pebbleflinger_power.png-5be0e572b5aaf81a6cff324322d3480d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/pebbleflinger.png"
-dest_files=["res://.godot/imported/pebbleflinger.png-643dd8a0809f7affd2817f7ae717ab51.ctex"]
+source_file="res://Shadowfall/images/powers/pebbleflinger_power.png"
+dest_files=["res://.godot/imported/pebbleflinger_power.png-5be0e572b5aaf81a6cff324322d3480d.ctex"]
 
 [params]
 
