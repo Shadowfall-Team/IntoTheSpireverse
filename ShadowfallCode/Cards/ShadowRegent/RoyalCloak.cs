@@ -17,7 +17,7 @@ public class RoyalCloak() : ShadowRegentCard(2,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new BlockVar(1, ValueProp.Unpowered)
+        new PowerVar<RoyalCloakPower>(1)
     ];
 
     protected override async Task OnPlay(
@@ -25,7 +25,7 @@ public class RoyalCloak() : ShadowRegentCard(2,
         CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<RoyalCloakPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Block.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<RoyalCloakPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(RoyalCloakPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
