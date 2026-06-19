@@ -22,17 +22,22 @@ public sealed class Grapple() : ShadowIroncladCard(1, CardType.Attack, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        // ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            // .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+
+        if (cardPlay.Target?.IsDead == true || cardPlay.Target == null)
+            return;
+
+
         var power = await PowerCmd.Apply<GrapplePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             cardPlay.Target, DynamicVars[GrappleDamageKey].BaseValue,
             Owner.Creature, this);
-        power.Source = Owner.Creature;
+        power?.Source = Owner.Creature;
     }
 
     protected override void OnUpgrade()
