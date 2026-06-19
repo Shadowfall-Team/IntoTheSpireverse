@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy1goxwu3e0hj"
-path="res://.godot/imported/shot.png-c0fe9d3d048b245d91a40f2ac2c4d2ce.ctex"
+uid="uid://cr5pfcyvlds3w"
+path="res://.godot/imported/ammo_volley.png-02bf5ae1a99bd4a914df9d7bc69bb6ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/card_portraits/regent/shot.png"
-dest_files=["res://.godot/imported/shot.png-c0fe9d3d048b245d91a40f2ac2c4d2ce.ctex"]
+source_file="res://Shadowfall/images/card_portraits/regent/ammo_volley.png"
+dest_files=["res://.godot/imported/ammo_volley.png-02bf5ae1a99bd4a914df9d7bc69bb6ee.ctex"]
 
 [params]
 
