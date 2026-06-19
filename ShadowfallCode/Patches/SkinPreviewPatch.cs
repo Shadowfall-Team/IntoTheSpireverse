@@ -65,5 +65,18 @@ public static class SkinPreviewPatch
         _previewCharModel = (!charSelectButton.IsLocked && !charSelectButton.IsRandom)
             ? characterModel : null;
         RefreshPreview();
+
+        if (charSelectButton.IsLocked || charSelectButton.IsRandom)
+            return;
+
+        try
+        {
+            var bgContainer = __instance.GetNode("AnimatedBg");
+            SkinManager.ApplyCharacterSelectBgSkin(bgContainer, characterModel.GetType());
+        }
+        catch (Exception e)
+        {
+            MainFile.Logger.Error($"Failed to apply character select bg skin: {e}");
+        }
     }
 }
