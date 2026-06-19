@@ -24,7 +24,7 @@ public class AssemblyRequired() : ShadowRegentCard(
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Fragment>(),
-        HoverTipFactory.FromPower<ShardPower>(),
+        HoverTipFactory.FromPower<ShardsPower>(),
     ];
 
     protected override async Task OnPlay(

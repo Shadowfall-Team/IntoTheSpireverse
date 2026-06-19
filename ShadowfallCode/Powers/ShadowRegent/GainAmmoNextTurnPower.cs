@@ -7,7 +7,7 @@ using Shadowfall.ShadowfallCode.Commands;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
-public class GainAmmoNextTurnPower : CustomPowerModel
+public class GainAmmoNextTurnPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
 
