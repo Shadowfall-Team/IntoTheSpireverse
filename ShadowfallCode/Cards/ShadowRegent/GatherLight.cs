@@ -16,11 +16,11 @@ public class GatherLight() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(7, ValueProp.Move),
-        new PowerVar<ShardPower>(2)
+        new PowerVar<ShardsPower>(2)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardPower>(),
+        HoverTipFactory.FromPower<ShardsPower>(),
     ];
 
     protected override async Task OnPlay(
@@ -29,9 +29,9 @@ public class GatherLight() : ShadowRegentCard(1,
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
 
-        await PowerCmd.Apply<ShardPower>(
+        await PowerCmd.Apply<ShardsPower>(
             new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars[nameof(ShardPower)].BaseValue,
+            Owner.Creature, DynamicVars[nameof(ShardsPower)].BaseValue,
             Owner.Creature,
             this);
     }
@@ -39,6 +39,6 @@ public class GatherLight() : ShadowRegentCard(1,
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(3);
-        // DynamicVars[nameof(ShardPower)].UpgradeValueBy(1);
+        // DynamicVars[nameof(ShardsPower)].UpgradeValueBy(1);
     }
 }

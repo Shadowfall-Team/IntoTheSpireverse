@@ -18,11 +18,11 @@ public class Fragment() : CustomCardModel(0,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ShardPower>(3)
+        new PowerVar<ShardsPower>(3)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardPower>()
+        HoverTipFactory.FromPower<ShardsPower>()
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext,
@@ -36,9 +36,9 @@ public class Fragment() : CustomCardModel(0,
         var players = CombatState.Players.Where(p => p.Creature.IsAlive);
         foreach (var player in players)
         {
-            await PowerCmd.Apply<ShardPower>(
+            await PowerCmd.Apply<ShardsPower>(
                 new ThrowingPlayerChoiceContext(),player.Creature,
-                DynamicVars[nameof(ShardPower)].BaseValue,
+                DynamicVars[nameof(ShardsPower)].BaseValue,
                 Owner.Creature,
                 this);
         }
@@ -47,6 +47,6 @@ public class Fragment() : CustomCardModel(0,
     protected override void OnUpgrade()
     {
         //TODO: check what the upgrade to fragment should be
-        DynamicVars[nameof(ShardPower)].UpgradeValueBy(1);
+        DynamicVars[nameof(ShardsPower)].UpgradeValueBy(1);
     }
 }

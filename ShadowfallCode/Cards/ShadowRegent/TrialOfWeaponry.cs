@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -46,7 +47,7 @@ public class TrialOfWeaponry() : ShadowRegentCard(
     }
 }
 
-public class TrialOfWeaponryPower : CustomPowerModel
+public class TrialOfWeaponryPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

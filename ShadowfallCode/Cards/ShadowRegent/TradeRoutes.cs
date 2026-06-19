@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using Shadowfall.ShadowfallCode.Keywords;
+using Shadowfall.ShadowfallCode.Powers;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -37,7 +38,7 @@ public class TradeRoutes() : ShadowRegentCard(
     }
 }
 
-public class TradeRoutesPower : CustomPowerModel
+public class TradeRoutesPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

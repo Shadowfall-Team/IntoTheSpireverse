@@ -14,11 +14,11 @@ public class HiddenCache() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ShardPower>(1),
-        new PowerVar<GainShardsNextTurnPower>(3)
+        new PowerVar<ShardsPower>(1),
+        new PowerVar<ShardsNextTurnPower>(3)
     ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardPower>(),
+        HoverTipFactory.FromPower<ShardsPower>(),
     ];
 
     protected override async Task OnPlay(
@@ -28,23 +28,23 @@ public class HiddenCache() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<ShardPower>(
+        await PowerCmd.Apply<ShardsPower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars[nameof(ShardPower)].BaseValue,
+            DynamicVars[nameof(ShardsPower)].BaseValue,
             Owner.Creature,
             this);
 
-        await PowerCmd.Apply<GainShardsNextTurnPower>(
+        await PowerCmd.Apply<ShardsNextTurnPower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars[nameof(GainShardsNextTurnPower)].BaseValue,
+            DynamicVars[nameof(ShardsNextTurnPower)].BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(GainShardsNextTurnPower)].UpgradeValueBy(1);
+        DynamicVars[nameof(ShardsNextTurnPower)].UpgradeValueBy(1);
     }
 }

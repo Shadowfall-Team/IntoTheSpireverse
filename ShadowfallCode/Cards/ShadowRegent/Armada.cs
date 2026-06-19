@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -39,7 +40,7 @@ public class Armada() : ShadowRegentCard(
     }
 }
 
-public class ArmadaPower : CustomPowerModel
+public class ArmadaPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
 

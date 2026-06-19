@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Ammo;
 using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -54,7 +55,7 @@ public class DefensiveCannonade() : ShadowRegentCard(
     }
 }
 
-public class DefensiveCannonadePower : CustomPowerModel, IHasSecondAmount, IAmmoFiredListener
+public class DefensiveCannonadePower : ShadowPowerModel, IHasSecondAmount, IAmmoFiredListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

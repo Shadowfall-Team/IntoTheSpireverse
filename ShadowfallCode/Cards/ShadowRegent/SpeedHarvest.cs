@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -25,7 +26,7 @@ public class SpeedHarvest() : ShadowRegentCard(
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardPower>(),
+        HoverTipFactory.FromPower<ShardsPower>(),
         HoverTipFactory.FromPower<DexterityPower>(),
     ];
 
@@ -54,7 +55,7 @@ public class SpeedHarvest() : ShadowRegentCard(
     }
 }
 
-public class SpeedHarvestPower : CustomPowerModel
+public class SpeedHarvestPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -67,7 +68,7 @@ public class SpeedHarvestPower : CustomPowerModel
         {
             if (result.UnblockedDamage < 1)
             {
-                await PowerCmd.Apply<ShardPower>(
+                await PowerCmd.Apply<ShardsPower>(
                     new ThrowingPlayerChoiceContext(),Owner,
                     Amount,
                     Owner,
