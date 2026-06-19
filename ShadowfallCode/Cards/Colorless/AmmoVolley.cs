@@ -21,6 +21,8 @@ public class AmmoVolley() : CustomCardModel(1,
     CardRarity.Token,
     TargetType.RandomEnemy)
 {
+    public override string CustomPortraitPath => $"res://Shadowfall/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CalculationBaseVar(14),
