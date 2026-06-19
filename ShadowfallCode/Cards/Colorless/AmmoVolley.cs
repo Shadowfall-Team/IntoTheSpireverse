@@ -92,11 +92,11 @@ public class AmmoVolley() : CustomCardModel(1,
 
         if (hasBigGuns)
         {
-            command.TargetingAllOpponents(Owner.Creature.CombatState);
+            command = command.TargetingAllOpponents(Owner.Creature.CombatState);
         }
         else
         {
-            command.Targeting(pickedTarget!);
+            command = command.Targeting(pickedTarget!);
         }
 
         var executedCommand = await command.Execute(choiceContext);
