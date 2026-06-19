@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public class SlateNextTurnPower : CustomPowerModel
+public class SlateNextTurnPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
 

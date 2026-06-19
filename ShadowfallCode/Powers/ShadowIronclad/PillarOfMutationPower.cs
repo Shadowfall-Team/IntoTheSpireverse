@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public class PillarOfMutationPower : CustomPowerModel, IHasSecondAmount
+public class PillarOfMutationPower : ShadowPowerModel, IHasSecondAmount
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
