@@ -27,12 +27,16 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        
+        bool shouldTriggerFatal = cardPlay.Target.Powers.All( p => p.ShouldOwnerDeathTriggerFatal());
+        var attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+        if (shouldTriggerFatal || attackCommand.Results.SelectMany( r =>  r).Any( r => r.WasTargetKilled))
+            return;
 
         InciteViolencePatch.IsIncitedAttack = true;
         var recoilResult = await DamageCmd.Attack(DynamicVars[RecoilKey].BaseValue)
