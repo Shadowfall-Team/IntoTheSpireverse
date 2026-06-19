@@ -15,7 +15,7 @@
   "SHADOWFALL-SNECKO_REPLACEMENT.title": "SNECKO REPLACEMENT",
   "SHADOWFALL-SNECKO_REPLACEMENT.description": "Whenever you apply [gold]Bleed[/gold], gain [blue]{VigorPower}[/blue] [gold]Vigor[/gold].",
   
-  "SHADOWFALL-CAPTAINS_HAT.description": "At the start of the first [blue]{Rounds}[/blue] turns of combat, gain [blue]{ShardPower}[/blue] [gold]Shards[/gold].",
+  "SHADOWFALL-CAPTAINS_HAT.description": "At the start of the first [blue]{Rounds}[/blue] turns of combat, gain [blue]{ShardsPower}[/blue] [gold]Shards[/gold].",
   "SHADOWFALL-CAPTAINS_HAT.flavor": "",
   "SHADOWFALL-CAPTAINS_HAT.title": "Captain's Hat",
   "SHADOWFALL-ADMIRALS_HAT.description": "At the start of combat, add a [gold]Warp[/gold] into your hand.",
@@ -27,7 +27,7 @@
   "SHADOWFALL-DILITHIUM_CRYSTAL.description": "When you play Warp, gain [blue]{Block}[/blue] [gold]Block[/gold].",
   "SHADOWFALL-DILITHIUM_CRYSTAL.flavor": "",
   "SHADOWFALL-DILITHIUM_CRYSTAL.title": "Dilithium Crystal",
-  "SHADOWFALL-SHIP_IN_A_BOTTLE.description": "At the start of each turn, gain [blue]{ShardPower}[/blue] [gold]Shard[/gold].",
+  "SHADOWFALL-SHIP_IN_A_BOTTLE.description": "At the start of each turn, gain [blue]{ShardsPower}[/blue] [gold]Shard[/gold].",
   "SHADOWFALL-SHIP_IN_A_BOTTLE.flavor": "",
   "SHADOWFALL-SHIP_IN_A_BOTTLE.title": "Ship in a Bottle",
   "SHADOWFALL-BOBBLEHEAD.description": "The first time each turn that you put a card into your [gold]Cargo[/gold], gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold].",

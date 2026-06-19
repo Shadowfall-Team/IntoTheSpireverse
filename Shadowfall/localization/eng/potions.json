@@ -15,7 +15,7 @@
   
   "SHADOWFALL-SPACE_DUST_POTION.description": "Choose 1 of 3 random cards to put into your [gold]Cargo[/gold]. Its free until played.",
   "SHADOWFALL-SPACE_DUST_POTION.title": "Space Dust",
-  "SHADOWFALL-LIQUID_DILITHIUM_POTION.description": "Gain {ShardPower} [gold]Shards[/gold].",
+  "SHADOWFALL-LIQUID_DILITHIUM_POTION.description": "Gain {ShardsPower} [gold]Shards[/gold].",
   "SHADOWFALL-LIQUID_DILITHIUM_POTION.title": "Liquid Dilithium",
   "SHADOWFALL-ILLICIT_MUNITION_POTION.description": "Load {LoadAmmo} [gold]Ammo[/gold]. Your next [gold]Shot[/gold] applies {SiegePower} [gold]Weak[/gold], {SiegePower} [gold]Vulnerable[/gold], grants {Block} more [gold]Block[/gold], and deals {FirepowerPower} more damage.",
   "SHADOWFALL-ILLICIT_MUNITION_POTION.title": "Illicit Munition"
