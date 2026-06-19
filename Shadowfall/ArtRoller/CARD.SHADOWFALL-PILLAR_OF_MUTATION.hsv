@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-PILLAR_OF_MUTATION",
+  "hue": 0.59,
+  "saturation": 0.76,
+  "value": 1.03,
+  "red": 1.2,
+  "green": 0.99,
+  "blue": 0.81,
+  "contrast": 1.22,
+  "flip_h": false,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/pillar_of_creation.tres"
+}

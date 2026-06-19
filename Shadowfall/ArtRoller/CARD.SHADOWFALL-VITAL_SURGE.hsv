@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-VITAL_SURGE",
+  "hue": 0.06,
+  "saturation": 0.95,
+  "value": 1.18,
+  "red": 1.2,
+  "green": 1.19,
+  "blue": 0.78,
+  "contrast": 0.94,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/anticipate.tres"
+}
