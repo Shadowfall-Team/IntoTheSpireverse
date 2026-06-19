@@ -17,6 +17,8 @@ public class Warp() : CustomCardModel(0,
     CardRarity.Token,
     TargetType.Self)
 {
+    public override string CustomPortraitPath => $"res://Shadowfall/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         
             // [
