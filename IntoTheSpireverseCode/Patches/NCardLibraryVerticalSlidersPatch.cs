@@ -237,24 +237,24 @@ public class NCardLibraryVerticalSlidersPatch
 
     // ── Show card ─────────────────────────────────────────────────────────
 
-    [HarmonyPatch("ShowCardDetail")]
-    [HarmonyPostfix]
-    // ReSharper disable once UnusedMember.Local
-    static void ShowSliders(NCardHolder holder)
-    {
-        _currentHolder = holder;
-
-        if (_sliderContainer == null) return;
-        if (!SaveManager.Instance.Progress.DiscoveredCards.Contains(holder.CardModel!.Id)) return;
-
-        _sliderContainer.Visible = true;
-        var parent = _sliderContainer.GetParent();
-        parent.MoveChild(_sliderContainer, parent.GetChildCount() - 1);
-
-        LoadHsvState(holder);
-        SyncSlidersToState();
-        RefreshPortraitTexture(holder);
-    }
+    // [HarmonyPatch("ShowCardDetail")]
+    // [HarmonyPostfix]
+    // // ReSharper disable once UnusedMember.Local
+    // static void ShowSliders(NCardHolder holder)
+    // {
+    //     _currentHolder = holder;
+    //
+    //     if (_sliderContainer == null) return;
+    //     if (!SaveManager.Instance.Progress.DiscoveredCards.Contains(holder.CardModel!.Id)) return;
+    //
+    //     _sliderContainer.Visible = true;
+    //     var parent = _sliderContainer.GetParent();
+    //     parent.MoveChild(_sliderContainer, parent.GetChildCount() - 1);
+    //
+    //     LoadHsvState(holder);
+    //     SyncSlidersToState();
+    //     RefreshPortraitTexture(holder);
+    // }
 
     private static void LoadHsvState(NCardHolder holder)
     {
