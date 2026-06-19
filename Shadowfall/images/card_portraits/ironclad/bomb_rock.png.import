@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfwmbisr005cq"
-path="res://.godot/imported/SHADOW_IRONCLAD_reaper.png-c8b1a939d8c582254911e09f8499e109.ctex"
+uid="uid://bgms27g3fgefh"
+path="res://.godot/imported/bomb_rock.png-b592b8faa5ca8b140d4cb4e8a23a921c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/card_portraits/ironclad/big/SHADOW_IRONCLAD_reaper.png"
-dest_files=["res://.godot/imported/SHADOW_IRONCLAD_reaper.png-c8b1a939d8c582254911e09f8499e109.ctex"]
+source_file="res://Shadowfall/images/card_portraits/ironclad/bomb_rock.png"
+dest_files=["res://.godot/imported/bomb_rock.png-b592b8faa5ca8b140d4cb4e8a23a921c.ctex"]
 
 [params]
 

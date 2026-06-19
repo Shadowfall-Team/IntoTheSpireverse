@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dptjvo2fvk4x6"
-path="res://.godot/imported/SHADOW_IRONCLAD_ghost_rock.png-0da0571eea3e73ca4a147cb2e61b3655.ctex"
+uid="uid://ff5svohqa0kr"
+path="res://.godot/imported/berserking.png-53366deb291b1395499762c87e875476.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/card_portraits/ironclad/SHADOW_IRONCLAD_ghost_rock.png"
-dest_files=["res://.godot/imported/SHADOW_IRONCLAD_ghost_rock.png-0da0571eea3e73ca4a147cb2e61b3655.ctex"]
+source_file="res://Shadowfall/images/card_portraits/ironclad/berserking.png"
+dest_files=["res://.godot/imported/berserking.png-53366deb291b1395499762c87e875476.ctex"]
 
 [params]
 

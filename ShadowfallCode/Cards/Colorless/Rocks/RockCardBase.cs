@@ -6,7 +6,7 @@ using Shadowfall.ShadowfallCode.Interfaces;
 namespace Shadowfall.ShadowfallCode.Cards.Colorless.Rocks;
 
 public abstract class RockCardBase(int cost, CardType type, CardRarity rarity, TargetType targetType)
-    : CustomCardModel(cost, type, rarity, targetType), IRockCard
+    : ShadowfallCard(cost, type, rarity, targetType, "ironclad"), IRockCard
 {
     private decimal _extraDamageFromRockPlays;
 
