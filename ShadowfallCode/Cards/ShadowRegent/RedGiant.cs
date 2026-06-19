@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Rooms;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.Rewards;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -42,7 +43,7 @@ public class RedGiant() : ShadowRegentCard(
     }
 }
 
-public class RedGiantPower : CustomPowerModel
+public class RedGiantPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -59,7 +60,7 @@ public class RedGiantPower : CustomPowerModel
     }
 }
 
-public class RedGiantRandomPower : CustomPowerModel
+public class RedGiantRandomPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

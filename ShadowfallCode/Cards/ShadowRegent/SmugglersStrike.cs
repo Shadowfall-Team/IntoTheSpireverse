@@ -38,7 +38,7 @@ public class SmugglersStrike() : ShadowRegentCard(0,
         CardPlay cardPlay)
     {
         if (cardPlay.Card == this)
-            await PowerCmd.Apply<CardPlayToCargoThisTurnPower>(
+            await PowerCmd.Apply<SmugglersCargoPower>(
                 new ThrowingPlayerChoiceContext(),Owner.Creature, 1,
                 Owner.Creature, this);
     }

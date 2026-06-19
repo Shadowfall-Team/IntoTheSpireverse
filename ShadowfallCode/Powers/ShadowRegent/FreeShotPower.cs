@@ -9,7 +9,7 @@ using Shadowfall.ShadowfallCode.Cards.Colorless;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
-public class FreeShotPower : CustomPowerModel, IAmmoFiredListener
+public class FreeShotPower : ShadowPowerModel, IAmmoFiredListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

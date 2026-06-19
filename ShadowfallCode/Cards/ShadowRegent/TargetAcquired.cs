@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Commands;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 using Shadowfall.ShadowfallCode.utils;
 
@@ -43,7 +44,7 @@ public class TargetAcquired() : ShadowRegentCard(
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         
-        await PowerCmd.Apply<TargetedThisTurnPower>(
+        await PowerCmd.Apply<TargetedPower>(
             new ThrowingPlayerChoiceContext(),
             play.Target,
             1,
@@ -59,7 +60,7 @@ public class TargetAcquired() : ShadowRegentCard(
     }
 }
 
-public class TargetedThisTurnPower : CustomPowerModel
+public class TargetedPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Single;

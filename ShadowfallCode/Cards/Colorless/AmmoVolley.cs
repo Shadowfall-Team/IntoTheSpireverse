@@ -27,7 +27,7 @@ public class AmmoVolley() : CustomCardModel(1,
         new ExtraDamageVar(1),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier(static (card, _) =>
-                card.Owner.Creature.GetPowerAmount<NextVolleyDamagePower>() +
+                card.Owner.Creature.GetPowerAmount<FirepowerPower>() +
                 card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
         .. MakeCalculatedBlock("ShotBlock", 0, (model, _) => GetOwnerBlockadeAmount(model))
     ];
@@ -73,7 +73,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
         var baseDamage = DynamicVars.CalculationBase.BaseValue;
         var extraDamage = DynamicVars.ExtraDamage.BaseValue;
-        var multiplier = Owner.Creature.GetPowerAmount<NextVolleyDamagePower>()
+        var multiplier = Owner.Creature.GetPowerAmount<FirepowerPower>()
                          + Owner.Creature.GetPowerAmount<VolleyDamagePower>();
         var damage = baseDamage + extraDamage * multiplier;
 

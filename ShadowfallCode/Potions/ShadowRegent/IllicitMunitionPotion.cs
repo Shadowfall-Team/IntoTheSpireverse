@@ -26,7 +26,7 @@ public class IllicitMunitionPotion : ShadowRegentPotion
         new IntVar("Shots", 1),
         new PowerVar<SiegePower>(2),
         new BlockVar(6, ValueProp.Unpowered),
-        new PowerVar<NextVolleyDamagePower>(6)
+        new PowerVar<FirepowerPower>(6)
     ];
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
