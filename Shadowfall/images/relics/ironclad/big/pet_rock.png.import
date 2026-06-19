@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmtr5ki411j0c"
-path="res://.godot/imported/heartofstone_outline.png-fd1101d6620c8d560523d1da1fa6a70f.ctex"
+uid="uid://dmpoq0x61dk4q"
+path="res://.godot/imported/pet_rock.png-c155db2d8de046bc5c493de9f0d584ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/heartofstone_outline.png"
-dest_files=["res://.godot/imported/heartofstone_outline.png-fd1101d6620c8d560523d1da1fa6a70f.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/big/pet_rock.png"
+dest_files=["res://.godot/imported/pet_rock.png-c155db2d8de046bc5c493de9f0d584ff.ctex"]
 
 [params]
 

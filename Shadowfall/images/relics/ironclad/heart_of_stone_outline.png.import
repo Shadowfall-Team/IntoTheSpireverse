@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx8yrbr5vjq2s"
-path="res://.godot/imported/mudidol.png-84471672d4aabc8d8ab156c64204c04e.ctex"
+uid="uid://dmtr5ki411j0c"
+path="res://.godot/imported/heart_of_stone_outline.png-acebc3bbaa2a02a3b83a83b2171bdc9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/mudidol.png"
-dest_files=["res://.godot/imported/mudidol.png-84471672d4aabc8d8ab156c64204c04e.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/heart_of_stone_outline.png"
+dest_files=["res://.godot/imported/heart_of_stone_outline.png-acebc3bbaa2a02a3b83a83b2171bdc9c.ctex"]
 
 [params]
 

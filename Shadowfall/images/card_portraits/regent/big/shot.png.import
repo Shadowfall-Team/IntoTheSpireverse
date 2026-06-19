@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdf2hla1vr6ma"
-path="res://.godot/imported/petrock_outline.png-d7ca68fa689ddc9bdffb514caf25452b.ctex"
+uid="uid://bufm8sf7rydu2"
+path="res://.godot/imported/shot.png-89f28e7e5b74eb2db03fd89110fdc142.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/petrock_outline.png"
-dest_files=["res://.godot/imported/petrock_outline.png-d7ca68fa689ddc9bdffb514caf25452b.ctex"]
+source_file="res://Shadowfall/images/card_portraits/regent/big/shot.png"
+dest_files=["res://.godot/imported/shot.png-89f28e7e5b74eb2db03fd89110fdc142.ctex"]
 
 [params]
 

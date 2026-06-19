@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn6fgeyegrhku"
-path="res://.godot/imported/petrock.png-a995f7776628d6e2071a38ef52b1b8df.ctex"
+uid="uid://clt6yil0n0er0"
+path="res://.godot/imported/toy_cactus.png-3a88994248ff68248020874f27700130.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/petrock.png"
-dest_files=["res://.godot/imported/petrock.png-a995f7776628d6e2071a38ef52b1b8df.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/toy_cactus.png"
+dest_files=["res://.godot/imported/toy_cactus.png-3a88994248ff68248020874f27700130.ctex"]
 
 [params]
 

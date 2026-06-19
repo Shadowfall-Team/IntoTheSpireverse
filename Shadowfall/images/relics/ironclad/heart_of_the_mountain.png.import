@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pvgx8opyau2y"
-path="res://.godot/imported/mudidol_outliney.png-f4f4b7a2a127b743fe90b72c32f5bb7b.ctex"
+uid="uid://cwgjk3xpaghj7"
+path="res://.godot/imported/heart_of_the_mountain.png-423d50b68be3a173ecb08663789da8a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/mudidol_outliney.png"
-dest_files=["res://.godot/imported/mudidol_outliney.png-f4f4b7a2a127b743fe90b72c32f5bb7b.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/heart_of_the_mountain.png"
+dest_files=["res://.godot/imported/heart_of_the_mountain.png-423d50b68be3a173ecb08663789da8a8.ctex"]
 
 [params]
 

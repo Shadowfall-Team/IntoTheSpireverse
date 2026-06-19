@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccrkxc6f8yexq"
-path="res://.godot/imported/bellows.png-21ec06ce3f1904569c391dc59e7cf3c5.ctex"
+uid="uid://bkxjawi34wg2u"
+path="res://.godot/imported/heart_of_stone.png-f51178bc95241e0bdec7ff1b98b8e6e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/bellows.png"
-dest_files=["res://.godot/imported/bellows.png-21ec06ce3f1904569c391dc59e7cf3c5.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/heart_of_stone.png"
+dest_files=["res://.godot/imported/heart_of_stone.png-f51178bc95241e0bdec7ff1b98b8e6e4.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1dm6b4wvabs1"
-path="res://.godot/imported/crimsonamulet_outline.png-b77cffc31f87751154c002c88092a3ae.ctex"
+uid="uid://cxa6k61coc4o0"
+path="res://.godot/imported/warp.png-71396aaf656372886bfec0d36fd19ca0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/crimsonamulet_outline.png"
-dest_files=["res://.godot/imported/crimsonamulet_outline.png-b77cffc31f87751154c002c88092a3ae.ctex"]
+source_file="res://Shadowfall/images/card_portraits/regent/big/warp.png"
+dest_files=["res://.godot/imported/warp.png-71396aaf656372886bfec0d36fd19ca0.ctex"]
 
 [params]
 

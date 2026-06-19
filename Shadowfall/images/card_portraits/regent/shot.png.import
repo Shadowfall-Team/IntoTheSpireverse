@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkxjawi34wg2u"
-path="res://.godot/imported/heartofstone.png-6c54273e312dcf2a95e9d5a1dbd36288.ctex"
+uid="uid://cy1goxwu3e0hj"
+path="res://.godot/imported/shot.png-c0fe9d3d048b245d91a40f2ac2c4d2ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/heartofstone.png"
-dest_files=["res://.godot/imported/heartofstone.png-6c54273e312dcf2a95e9d5a1dbd36288.ctex"]
+source_file="res://Shadowfall/images/card_portraits/regent/shot.png"
+dest_files=["res://.godot/imported/shot.png-c0fe9d3d048b245d91a40f2ac2c4d2ce.ctex"]
 
 [params]
 

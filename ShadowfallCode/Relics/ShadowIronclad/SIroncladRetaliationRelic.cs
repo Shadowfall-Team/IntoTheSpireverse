@@ -5,7 +5,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
-public class SIroncladRetaliationRelic : ShadowIroncladRelic
+public class ToyCactus : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
     

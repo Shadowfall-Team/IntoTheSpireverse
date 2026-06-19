@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7alqelwk2hc5"
-path="res://.godot/imported/heartofthemountain.png-e4fa29f1732bb5be6f2efb1180dad03d.ctex"
+uid="uid://ccvqlvqmbm511"
+path="res://.godot/imported/heart_of_stone.png-1ddc64aeba40e5e8cb26a7be1aa152e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/heartofthemountain.png"
-dest_files=["res://.godot/imported/heartofthemountain.png-e4fa29f1732bb5be6f2efb1180dad03d.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/big/heart_of_stone.png"
+dest_files=["res://.godot/imported/heart_of_stone.png-1ddc64aeba40e5e8cb26a7be1aa152e7.ctex"]
 
 [params]
 

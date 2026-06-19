@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf8x4048xc8hg"
-path="res://.godot/imported/toycactus_outline.png-3fdec83af428fdf3648e07242b0789d6.ctex"
+uid="uid://bjgt21qma076t"
+path="res://.godot/imported/heart_of_the_mountain_outline.png-3f797b13b6d7312ab9cd58ffabda20e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/toycactus_outline.png"
-dest_files=["res://.godot/imported/toycactus_outline.png-3fdec83af428fdf3648e07242b0789d6.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/heart_of_the_mountain_outline.png"
+dest_files=["res://.godot/imported/heart_of_the_mountain_outline.png-3f797b13b6d7312ab9cd58ffabda20e6.ctex"]
 
 [params]
 

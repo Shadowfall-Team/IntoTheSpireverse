@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccrkxc6f8yexq"
-path="res://.godot/imported/bellows.png-21ec06ce3f1904569c391dc59e7cf3c5.ctex"
+uid="uid://bvyxnd4bba4tn"
+path="res://.godot/imported/iron_cestus.png-2403d4438ab64182d07f4de1adf24eee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/relics/ironclad/big/bellows.png"
-dest_files=["res://.godot/imported/bellows.png-21ec06ce3f1904569c391dc59e7cf3c5.ctex"]
+source_file="res://Shadowfall/images/relics/ironclad/big/iron_cestus.png"
+dest_files=["res://.godot/imported/iron_cestus.png-2403d4438ab64182d07f4de1adf24eee.ctex"]
 
 [params]
 
