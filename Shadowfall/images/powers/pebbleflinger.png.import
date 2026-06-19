@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhfl3ewlknynt"
-path="res://.godot/imported/bloodbondpotion.png-cc29a905f36bad515a454cacafec16db.ctex"
+uid="uid://dk3mlm3t4ktju"
+path="res://.godot/imported/pebbleflinger.png-643dd8a0809f7affd2817f7ae717ab51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/potions/bloodbondpotion.png"
-dest_files=["res://.godot/imported/bloodbondpotion.png-cc29a905f36bad515a454cacafec16db.ctex"]
+source_file="res://Shadowfall/images/powers/pebbleflinger.png"
+dest_files=["res://.godot/imported/pebbleflinger.png-643dd8a0809f7affd2817f7ae717ab51.ctex"]
 
 [params]
 

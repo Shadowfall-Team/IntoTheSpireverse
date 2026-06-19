@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcldsli4w0twr"
-path="res://.godot/imported/gabbropotion.png-bd876320c50591a78ea981769334c294.ctex"
+uid="uid://bbretncpddsjn"
+path="res://.godot/imported/shards_each_turn.png-202a29666ae3967681f5f398c5dbd52d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/potions/gabbropotion.png"
-dest_files=["res://.godot/imported/gabbropotion.png-bd876320c50591a78ea981769334c294.ctex"]
+source_file="res://Shadowfall/images/powers/big/shards_each_turn.png"
+dest_files=["res://.godot/imported/shards_each_turn.png-202a29666ae3967681f5f398c5dbd52d.ctex"]
 
 [params]
 

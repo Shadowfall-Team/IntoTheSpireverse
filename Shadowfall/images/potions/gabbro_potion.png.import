@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0mbhrpd3me8r"
-path="res://.godot/imported/dewbottle.png-95e4fef29ab03ffbd3f80322947d704b.ctex"
+uid="uid://yh4j65jhxofi"
+path="res://.godot/imported/gabbro_potion.png-25f5f620c4e1f97347fb18666ac29a3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/potions/dewbottle.png"
-dest_files=["res://.godot/imported/dewbottle.png-95e4fef29ab03ffbd3f80322947d704b.ctex"]
+source_file="res://Shadowfall/images/potions/gabbro_potion.png"
+dest_files=["res://.godot/imported/gabbro_potion.png-25f5f620c4e1f97347fb18666ac29a3e.ctex"]
 
 [params]
 

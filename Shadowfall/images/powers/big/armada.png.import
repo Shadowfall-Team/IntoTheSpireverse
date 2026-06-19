@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://decbl62v8uiu6"
-path="res://.godot/imported/spacedust.png-9a56bec77cc09425e655121716481db5.ctex"
+uid="uid://ci7p214gfwnom"
+path="res://.godot/imported/armada.png-184f5f072764a98aa568ed6311bbad12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/potions/spacedust.png"
-dest_files=["res://.godot/imported/spacedust.png-9a56bec77cc09425e655121716481db5.ctex"]
+source_file="res://Shadowfall/images/powers/big/armada.png"
+dest_files=["res://.godot/imported/armada.png-184f5f072764a98aa568ed6311bbad12.ctex"]
 
 [params]
 

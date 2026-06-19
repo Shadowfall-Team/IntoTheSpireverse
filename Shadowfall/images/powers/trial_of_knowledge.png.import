@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpcqgxbyxrq56"
-path="res://.godot/imported/illicitmunitions.png-0b74453a11b2b33b35e6d20ad6016033.ctex"
+uid="uid://bgvj7y84cqom2"
+path="res://.godot/imported/trial_of_knowledge.png-4b9bfab1afd60705d091fe3458b8d3b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/potions/illicitmunitions.png"
-dest_files=["res://.godot/imported/illicitmunitions.png-0b74453a11b2b33b35e6d20ad6016033.ctex"]
+source_file="res://Shadowfall/images/powers/trial_of_knowledge.png"
+dest_files=["res://.godot/imported/trial_of_knowledge.png-4b9bfab1afd60705d091fe3458b8d3b0.ctex"]
 
 [params]
 
