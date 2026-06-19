@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.SHADOWFALL-BLOOD_LASH",
+  "hue": 0.07,
+  "saturation": 1.2,
+  "value": 1.25,
+  "red": 1.18,
+  "green": 1.12,
+  "blue": 1.18,
+  "contrast": 1.2,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/slice.tres"
+}
