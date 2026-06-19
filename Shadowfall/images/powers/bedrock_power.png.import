@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbaujfmmddwf"
-path="res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"
+uid="uid://fhlftbupwijd"
+path="res://.godot/imported/bedrock_power.png-0198677e4c6bdafb25e2570d4447c3d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/powers/unrelenting_form_power.png"
-dest_files=["res://.godot/imported/unrelenting_form_power.png-21d675629e3dbeb0f1f88d931fc52ffa.ctex"]
+source_file="res://Shadowfall/images/powers/bedrock_power.png"
+dest_files=["res://.godot/imported/bedrock_power.png-0198677e4c6bdafb25e2570d4447c3d8.ctex"]
 
 [params]
 

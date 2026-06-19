@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Combat;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -16,16 +15,12 @@ public sealed class GrapplePower : ShadowPowerModel
 
     public Creature? Source { get; set; }
 
-    public override async Task AfterBlockGained(
-        Creature creature,
-        decimal amount,
-        ValueProp props,
-        CardModel? cardSource)
+    public override async Task AfterBlockGained(Creature creature, decimal amount, ValueProp props, CardModel? cardSource)
     {
         if (amount <= 0m || creature != Source) return;
         Flash();
         await CreatureCmd.Damage(
-            new ThrowingPlayerChoiceContext(), Owner, (decimal)Amount,
+            new BlockingPlayerChoiceContext(), Owner, (decimal)Amount,
             ValueProp.Unpowered, Source, null);
     }
 
