@@ -10,7 +10,7 @@ using Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public class BloodbondPower : CustomPowerModel
+public class BloodbondPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;

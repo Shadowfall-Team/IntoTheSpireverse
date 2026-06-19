@@ -5,7 +5,7 @@ using Shadowfall.ShadowfallCode.Extensions;
 
 namespace Shadowfall.ShadowfallCode.Powers;
 
-public abstract class ShadowDefecPower : CustomPowerModel
+public abstract class ShadowPowerModel : CustomPowerModel
 {
     //Loads from Shadowfall/images/powers/your_power.png
     public override string CustomPackedIconPath

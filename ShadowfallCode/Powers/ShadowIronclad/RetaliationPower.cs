@@ -10,7 +10,7 @@ using Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class RetaliationPower : CustomPowerModel
+public sealed class RetaliationPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
 

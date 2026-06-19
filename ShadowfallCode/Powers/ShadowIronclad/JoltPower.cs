@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class JoltPower : CustomPowerModel
+public sealed class JoltPower : ShadowPowerModel
 {
     private bool _triggeredThisTurn;
 

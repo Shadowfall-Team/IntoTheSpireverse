@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class WarcraftPower : CustomPowerModel
+public sealed class WarcraftPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
