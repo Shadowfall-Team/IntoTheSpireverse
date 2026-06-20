@@ -642,7 +642,7 @@
   "SHADOWFALL-FIRE_EVERYTHING.title": "Fire Everything!",
   "SHADOWFALL-POWERED_THRUSTERS.description": "When drawn, draw {Cards:diff()} cards.",
   "SHADOWFALL-POWERED_THRUSTERS.title": "Powered Thrusters",
-  "SHADOWFALL-SUCCESSOR.description": "Add Replay {Repeat:diff()} to a card in your [gold]Hand[/gold] and put it into your [gold]Cargo[/gold].",
+  "SHADOWFALL-SUCCESSOR.description": "Add [gold]Replay[/gold] {Repeat:diff()} to a card in your [gold]Hand[/gold] and put it into your [gold]Cargo[/gold].",
   "SHADOWFALL-SUCCESSOR.title": "Successor",
   "SHADOWFALL-MISDIRECTION.description": "Deal {Damage:diff()} damage.\nPut a card from your [gold]Cargo[/gold] into your [gold]Hand[/gold]. It counts as having been drawn.",
   "SHADOWFALL-MISDIRECTION.title": "Misdirection",
