@@ -564,7 +564,7 @@
   "SHADOWFALL-PLOT.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut a card from your [gold]Discard Pile[/gold] into your [gold]Cargo[/gold].",
   "SHADOWFALL-PLOT.selectionScreenPrompt": "Choose a card to move to your Cargo.",
   "SHADOWFALL-PLOT.title": "Plot",
-  "SHADOWFALL-FIRE_AWAY.description": "Load {LoadAmmo:diff()} [gold]Ammo[/gold].\nYour next [gold]Shot[/gold] fired this turn deals {FirepowerPower:diff()} more damage.",
+  "SHADOWFALL-FIRE_AWAY.description": "Load {LoadAmmo:diff()} [gold]Ammo[/gold].\nYour next [gold]Shot[/gold] fired deals {FirepowerPower:diff()} more damage.",
   "SHADOWFALL-FIRE_AWAY.title": "Fire Away",
   "SHADOWFALL-RELOAD.description": "Load {LoadAmmo:diff()} [gold]Ammo[/gold].\nLoad another for each attack played this turn.",
   "SHADOWFALL-RELOAD.title": "Reload",
