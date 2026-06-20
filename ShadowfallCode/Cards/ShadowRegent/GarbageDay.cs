@@ -18,7 +18,7 @@ public class GarbageDay() : ShadowRegentCard(
     [
         HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo),
         HoverTipFactory.FromCard<Debris>(),
-        HoverTipFactory.FromCard<Bury>()
+        HoverTipFactory.FromCard<Bury>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(
@@ -43,4 +43,5 @@ public class GarbageDay() : ShadowRegentCard(
         var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(bury, CargoCardPile.CargoPileType, Owner);
         CardCmd.PreviewCardPileAdd(cardPileAddResult);
     }
+    
 }
