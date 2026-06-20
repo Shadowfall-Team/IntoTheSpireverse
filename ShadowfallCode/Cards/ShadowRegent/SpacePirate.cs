@@ -25,9 +25,9 @@ public class SpacePirate() : ShadowRegentCard(
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo),
-        HoverTipFactory.FromCard<FlashOfSteel>(),
-        HoverTipFactory.FromCard<Fisticuffs>(),
-        HoverTipFactory.FromCard<TheBomb>()
+        HoverTipFactory.FromCard<FlashOfSteel>(IsUpgraded),
+        HoverTipFactory.FromCard<Fisticuffs>(IsUpgraded),
+        HoverTipFactory.FromCard<TheBomb>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(
