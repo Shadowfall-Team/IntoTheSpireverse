@@ -652,7 +652,7 @@
   "SHADOWFALL-RED_GIANT.title": "Red Giant",
   "SHADOWFALL-SHIP_MAINTENANCE.description": "Add a [gold]Automation[/gold], [gold]Prowess[/gold] and [gold]Stratagem[/gold] to your [gold]Hand[/gold].\nThey are [gold]Ethereal[/gold].",
   "SHADOWFALL-SHIP_MAINTENANCE.title": "Ship Maintenance",
-  "SHADOWFALL-ESCORT_ME.description": "Add X{IfUpgraded:show:+1|} [gold]Minion Sacrifice[/gold] to your [gold]Hand[/gold] and [gold]Cargo[/gold].",
+  "SHADOWFALL-ESCORT_ME.description": "Add X{IfUpgraded:show:+1|} [gold]Minion Strike[/gold] to your [gold]Hand[/gold] and [gold]Cargo[/gold].",
   "SHADOWFALL-ESCORT_ME.title": "Escort Me",
   "SHADOWFALL-SPEED_HARVEST.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nWhenever you fully Block an Attack, gain 1 [gold]Shard[/gold].",
   "SHADOWFALL-SPEED_HARVEST.title": "Speed Harvest",
