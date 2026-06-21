@@ -53,7 +53,7 @@ public class TrialOfKnowledgePower : ShadowPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (Owner.Player == null) return;
         if (side == CombatSide.Enemy)
