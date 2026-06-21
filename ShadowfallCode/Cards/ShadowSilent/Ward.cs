@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
-[Pool(typeof(StatusCardPool))]
+[Pool(typeof(TokenCardPool))]
 public sealed class Ward() : CustomCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
     public override bool GainsBlock => true;

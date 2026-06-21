@@ -9,11 +9,14 @@
   "SHADOWFALL-INSTINCT.description": "Increases the HP loss caused by Bleed.",
   "SHADOWFALL-LINGER.title": "Linger",
   "SHADOWFALL-LINGER.description": "If this card is in your hand at the end of your turn, Trigger this effect.",
+  "SHADOWFALL-MUDDLE.title": "Muddle",
+  "SHADOWFALL-MUDDLE.description": "Randomize a card's cost between [blue]0[/blue] and [blue]3[/blue] this turn.",
+  "SHADOWFALL-OVERFLOW.title": "Overflow",
+  "SHADOWFALL-OVERFLOW.description": "This effect triggers if you have more than [blue]5[/blue] cards in your [gold]Hand[/gold] at the time the card is played.",
   "SHADOWFALL-STARTUP.title": "Startup",
   "SHADOWFALL-STARTUP.description": "Effect triggers at the start of each combat if this card is in your [gold]Deck[/gold].",
   "SHADOWFALL-PICKUP.title": "Pickup",
   "SHADOWFALL-PICKUP.description": "Effect triggers when this card is added to your [gold]Deck[/gold].",
   "SHADOWFALL-CARGO.title": "Cargo",
   "SHADOWFALL-CARGO.description": "At the start of your turn, draw 1 card from your [gold]Cargo[/gold]."
-
 }

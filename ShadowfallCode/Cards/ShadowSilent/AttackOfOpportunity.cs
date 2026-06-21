@@ -1,36 +1,45 @@
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using Shadowfall.ShadowfallCode.Character;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowSilent;
 
+[Pool(typeof(ShadowSilentCardPool))]
 public sealed class AttackOfOpportunity() : ShadowSilentCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(12m, ValueProp.Move),
-        new CardsVar("Wards", 2),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Ward>(),
+        HoverTipFactory.FromCard<Ward>(false),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        for (int i = 0; i < DynamicVars["Wards"].IntValue; i++)
-            await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Ward>(Owner), PileType.Hand, Owner);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this)
+            .Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
+
+        var wards = new[]
+        {
+            CombatState.CreateCard<Ward>(Owner),
+            CombatState.CreateCard<Ward>(Owner),
+        };
+        await CardPileCmd.AddGeneratedCardsToCombat(wards, PileType.Hand, Owner);
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(1m);
-        DynamicVars["Wards"].UpgradeValueBy(1m);
-    }
+    protected override void OnUpgrade() =>
+        DynamicVars.Damage.UpgradeValueBy(4m);
 }
