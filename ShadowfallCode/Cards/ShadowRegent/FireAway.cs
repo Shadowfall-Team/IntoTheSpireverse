@@ -17,7 +17,7 @@ public class FireAway() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("LoadAmmo", 1),
-        new PowerVar<NextVolleyDamagePower>(6)
+        new PowerVar<FirepowerPower>(6)
     ];
 
 
@@ -32,16 +32,16 @@ public class FireAway() : ShadowRegentCard(1,
             Owner.Character.CastAnimDelay);
         await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
 
-        await PowerCmd.Apply<NextVolleyDamagePower>(
+        await PowerCmd.Apply<FirepowerPower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars[nameof(NextVolleyDamagePower)].BaseValue,
+            DynamicVars[nameof(FirepowerPower)].BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(NextVolleyDamagePower)].UpgradeValueBy(4);
+        DynamicVars[nameof(FirepowerPower)].UpgradeValueBy(4);
     }
 }

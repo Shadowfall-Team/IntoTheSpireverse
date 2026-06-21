@@ -8,6 +8,6 @@ public static class AltCharacterUtil
 {
     public static bool IsAvailableAltCharacter(CharacterModel c)
     {
-        return c is IAltCharacter && (c is not IShadowfallDebug || ShadowfallConfig.ShowWipContent);
+        return c is IAltCharacter && (c is not IShadowfallDebug);
     }
 }

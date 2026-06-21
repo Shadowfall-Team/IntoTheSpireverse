@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
-public class SIroncladBlurRelic : ShadowIroncladRelic
+public class IronCestus : ShadowIroncladRelic
 {
     private bool _isActivating;
     private int _attacksPlayedThisTurn;
@@ -34,6 +34,7 @@ public class SIroncladBlurRelic : ShadowIroncladRelic
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<BlurPower>(),
+        HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
     private bool IsActivating

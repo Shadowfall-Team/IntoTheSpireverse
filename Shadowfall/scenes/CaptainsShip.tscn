@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b84u20tfwjkmq" path="res://ShadowfallCode/ui/NAmmoButton.cs" id="1_dh6nf"]
 [ext_resource type="Script" uid="uid://cdwygcc8hduxl" path="res://ShadowfallCode/ui/ShadowfallMegaLabel.cs" id="1_ruvg3"]
-[ext_resource type="Texture2D" uid="uid://q433vd7by7gy" path="res://Shadowfall/images/relics/big/relic.png" id="2_nfjci"]
+[ext_resource type="Texture2D" uid="uid://dla5jkt2ao6b7" path="res://Shadowfall/images/combat_ui/captainship.png" id="2_nfjci"]
 [ext_resource type="Texture2D" uid="uid://51osq8vorvg8" path="res://Shadowfall/images/combat_ui/ammo_pile.png" id="3_7vte5"]
 [ext_resource type="Script" uid="uid://pidfu6oar7a8" path="res://ShadowfallCode/ui/ShadowfallMegaRichTextLabel.cs" id="4_anfaq"]
 [ext_resource type="Texture2D" uid="uid://5ris3fd14de4" path="res://Shadowfall/images/combat_ui/ammo_button.png" id="4_dc20g"]
@@ -34,7 +34,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -10.0
+offset_left = -79.0
+offset_right = 69.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

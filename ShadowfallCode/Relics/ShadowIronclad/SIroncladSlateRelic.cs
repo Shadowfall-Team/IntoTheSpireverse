@@ -9,7 +9,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
-public class SIroncladSlateRelic : ShadowIroncladRelic
+public class PetRock : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Common;
 
@@ -21,6 +21,7 @@ public class SIroncladSlateRelic : ShadowIroncladRelic
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),
+        HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
     public override async Task AfterRoomEntered(AbstractRoom room)

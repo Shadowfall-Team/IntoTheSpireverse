@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,6 +18,8 @@ public class Warp() : CustomCardModel(0,
     CardRarity.Token,
     TargetType.Self)
 {
+    public override string CustomPortraitPath => $"res://Shadowfall/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         
             // [

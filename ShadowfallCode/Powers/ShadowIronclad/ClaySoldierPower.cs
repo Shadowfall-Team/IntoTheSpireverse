@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class ClaySoldierPower : CustomPowerModel, IHasSecondAmount
+public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
 {
     private class Data
     {

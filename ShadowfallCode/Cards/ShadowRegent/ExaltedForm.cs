@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
+using Shadowfall.ShadowfallCode.Powers;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -41,7 +42,7 @@ public class ExaltedForm() : ShadowRegentCard(
     }
 }
 
-public class ExaltedFormPower : CustomPowerModel
+public class ExaltedFormPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

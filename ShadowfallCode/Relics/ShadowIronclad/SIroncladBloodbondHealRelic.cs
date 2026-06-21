@@ -7,7 +7,7 @@ using Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
-public class SIroncladBloodbondHealRelic : ShadowIroncladRelic
+public class Buckler : ShadowIroncladRelic
 {
     private bool _activatedThisCombat;
 

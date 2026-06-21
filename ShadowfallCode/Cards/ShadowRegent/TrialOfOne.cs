@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using Shadowfall.ShadowfallCode.Powers;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
@@ -48,7 +49,7 @@ public class TrialOfOne() : ShadowRegentCard(
     }
 }
 
-public class TrialOfOnePower : CustomPowerModel
+public class TrialOfOnePower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

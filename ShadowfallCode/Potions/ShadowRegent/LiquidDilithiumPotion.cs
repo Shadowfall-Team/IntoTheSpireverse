@@ -18,17 +18,17 @@ public class LiquidDilithiumPotion : ShadowRegentPotion
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ShardPower>(9)
+        new PowerVar<ShardsPower>(9)
     ];
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<ShardPower>(),
+        HoverTipFactory.FromPower<ShardsPower>(),
     ];
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
-        await PowerCmd.Apply<ShardPower>(choiceContext, target, DynamicVars.Power<ShardPower>().BaseValue,
+        await PowerCmd.Apply<ShardsPower>(choiceContext, target, DynamicVars.Power<ShardsPower>().BaseValue,
             Owner.Creature, null);
     }
 }

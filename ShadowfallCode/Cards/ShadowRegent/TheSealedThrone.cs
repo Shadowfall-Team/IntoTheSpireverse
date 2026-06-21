@@ -44,6 +44,6 @@ public class TheSealedThrone() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4);
+        DynamicVars.ExtraDamage.UpgradeValueBy(4);
     }
 }

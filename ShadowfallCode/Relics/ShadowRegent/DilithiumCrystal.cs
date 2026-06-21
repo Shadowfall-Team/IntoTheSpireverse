@@ -18,10 +18,11 @@ public class DilithiumCrystal : ShadowRegentRelic
     [
         new BlockVar(5, ValueProp.Unpowered)
     ];
-
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Warp>()
+        HoverTipFactory.FromCard<Warp>(),
+        HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context,

@@ -59,6 +59,8 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     public override string CustomArmRockTexturePath => "multiplayer_hand_ironclad_rock.png".GranitecladPath();
     public override string CustomArmPaperTexturePath => "multiplayer_hand_ironclad_paper.png".GranitecladPath();
     public override string CustomArmScissorsTexturePath => "multiplayer_hand_ironclad_scissors.png".GranitecladPath();
+    public override string CustomMapMarkerPath => "map_marker_ironclad.png".GranitecladPath();
+
     // public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
     // public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
 }

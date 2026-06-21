@@ -57,4 +57,13 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     [
         ModelDb.Relic<CaptainsHat>()
     ];
+
+    public override string CustomIconTexturePath => "character_icon_regent.png".ShadowRegentPath();
+    public override string CustomCharacterSelectIconPath => "char_select_regent.png".ShadowRegentPath();
+    public override string CustomArmPointingTexturePath => "multiplayer_hand_regent_point.png".ShadowRegentPath();
+    public override string CustomArmRockTexturePath => "multiplayer_hand_regent_rock.png".ShadowRegentPath();
+    public override string CustomArmPaperTexturePath => "multiplayer_hand_regent_paper.png".ShadowRegentPath();
+    public override string CustomArmScissorsTexturePath => "multiplayer_hand_regent_scissors.png".ShadowRegentPath();
+    public override string CustomMapMarkerPath => "map_marker_regent.png".ShadowRegentPath();
+
 }

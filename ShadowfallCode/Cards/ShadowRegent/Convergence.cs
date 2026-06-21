@@ -17,11 +17,11 @@ public class Convergence() : ShadowRegentCard(
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new EnergyVar(1),
-        new PowerVar<GainShardsNextTurnPower>(1)
+        new PowerVar<ShardsNextTurnPower>(1)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardPower>(),
+        HoverTipFactory.FromPower<ShardsPower>(),
         HoverTipFactory.FromKeyword(CardKeyword.Retain),
     ];
 
@@ -37,13 +37,13 @@ public class Convergence() : ShadowRegentCard(
         await PowerCmd.Apply<EnergyNextTurnPower>(
             new ThrowingPlayerChoiceContext(),Owner.Creature,
             DynamicVars.Energy.BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<GainShardsNextTurnPower>(
+        await PowerCmd.Apply<ShardsNextTurnPower>(
             new ThrowingPlayerChoiceContext(),Owner.Creature,
-            DynamicVars[nameof(GainShardsNextTurnPower)].BaseValue, Owner.Creature, this);
+            DynamicVars[nameof(ShardsNextTurnPower)].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(GainShardsNextTurnPower)].UpgradeValueBy(1);
+        DynamicVars[nameof(ShardsNextTurnPower)].UpgradeValueBy(1);
     }
 }

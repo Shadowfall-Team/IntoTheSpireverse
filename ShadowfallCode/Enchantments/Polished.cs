@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace Shadowfall.ShadowfallCode.Enchantments;
 
-public sealed class Polished : CustomEnchantmentModel
+public sealed class Polished : ShadowfallEnchantments
 {
     public override bool CanEnchantCardType(CardType cardType) => cardType == CardType.Attack;
 

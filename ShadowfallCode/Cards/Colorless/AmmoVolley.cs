@@ -2,19 +2,13 @@ using BaseLib.Abstracts;
 using BaseLib.Cards;
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using Godot;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Ammo;
 using Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -28,13 +22,15 @@ public class AmmoVolley() : CustomCardModel(1,
     CardRarity.Token,
     TargetType.RandomEnemy)
 {
+    public override string CustomPortraitPath => $"res://Shadowfall/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CalculationBaseVar(14),
         new ExtraDamageVar(1),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier(static (card, _) =>
-                card.Owner.Creature.GetPowerAmount<NextVolleyDamagePower>() +
+                card.Owner.Creature.GetPowerAmount<FirepowerPower>() +
                 card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
         .. MakeCalculatedBlock("ShotBlock", 0, (model, _) => GetOwnerBlockadeAmount(model))
     ];
@@ -63,7 +59,9 @@ public class AmmoVolley() : CustomCardModel(1,
             var hittableEnemies = CombatState?.HittableEnemies.ToList();
             if (hittableEnemies?.Count > 0)
             {
-                pickedTarget = Owner.RunState.Rng.CombatTargets.NextItem(hittableEnemies);
+                var preferredTargets = hittableEnemies.Where(e => e.HasPower<TargetedPower>()).ToList();
+                var targetPool = preferredTargets.Count > 0 ? preferredTargets : hittableEnemies;
+                pickedTarget = Owner.RunState.Rng.CombatTargets.NextItem(targetPool);
             }
         }
 
@@ -80,7 +78,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
         var baseDamage = DynamicVars.CalculationBase.BaseValue;
         var extraDamage = DynamicVars.ExtraDamage.BaseValue;
-        var multiplier = Owner.Creature.GetPowerAmount<NextVolleyDamagePower>()
+        var multiplier = Owner.Creature.GetPowerAmount<FirepowerPower>()
                          + Owner.Creature.GetPowerAmount<VolleyDamagePower>();
         var damage = baseDamage + extraDamage * multiplier;
 
@@ -94,11 +92,11 @@ public class AmmoVolley() : CustomCardModel(1,
 
         if (hasBigGuns)
         {
-            command.TargetingAllOpponents(Owner.Creature.CombatState);
+            command = command.TargetingAllOpponents(Owner.Creature.CombatState);
         }
         else
         {
-            command.Targeting(pickedTarget!);
+            command = command.Targeting(pickedTarget!);
         }
 
         var executedCommand = await command.Execute(choiceContext);
@@ -108,7 +106,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(6);
+        DynamicVars.ExtraDamage.UpgradeValueBy(6);
     }
 
     public override TargetType TargetType => TargetType.RandomEnemy;

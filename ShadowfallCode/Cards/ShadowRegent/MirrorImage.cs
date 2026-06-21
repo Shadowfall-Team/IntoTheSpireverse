@@ -14,8 +14,11 @@ public class MirrorImage() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(4, ValueProp.Move)
+        new BlockVar(4, ValueProp.Move),
+        new IntVar("BlockThreshold", 7)
     ];
+
+    protected override bool ShouldGlowGoldInternal => PileType.Hand.GetPile(Owner).Cards.Count >= DynamicVars["BlockThreshold"].IntValue;
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -23,7 +26,7 @@ public class MirrorImage() : ShadowRegentCard(
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
 
-        if (PileType.Hand.GetPile(Owner).Cards.Count >= 7)
+        if (PileType.Hand.GetPile(Owner).Cards.Count + 1 >= DynamicVars["BlockThreshold"].IntValue)
         {
             await Cmd.Wait(0.25f);
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);

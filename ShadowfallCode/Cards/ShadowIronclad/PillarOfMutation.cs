@@ -12,6 +12,8 @@ namespace Shadowfall.ShadowfallCode.Cards.ShadowIronclad;
 
 public sealed class PillarOfMutation() : ShadowIroncladCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
+    public override bool GainsBlock => false;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(3m, ValueProp.Unpowered),

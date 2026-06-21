@@ -10,7 +10,7 @@ using Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public class BloodbondPower : CustomPowerModel
+public class BloodbondPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -35,7 +35,7 @@ public class BloodbondPower : CustomPowerModel
         await CreatureCmd.Damage(choiceContext, Owner, Amount,
             ValueProp.Unblockable | ValueProp.Unpowered, target, null);
 
-        var relic = target.Player?.Relics.OfType<SIroncladBloodbondHealRelic>().FirstOrDefault();
+        var relic = target.Player?.Relics.OfType<Buckler>().FirstOrDefault();
         if (relic != null)
             await relic.TryHeal();
     }

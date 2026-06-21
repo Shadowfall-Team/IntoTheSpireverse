@@ -30,7 +30,7 @@ public class RockTransformPatches
 
             if (!__instance.Tags.Contains(ShadowfallCardTags.Rock)) return;
 
-            var relic = __instance.Owner?.Relics.OfType<SIroncladTransformRelic>().FirstOrDefault();
+            var relic = __instance.Owner?.Relics.OfType<MudIdol>().FirstOrDefault();
             if (relic == null) return;
 
             relic.Flash();

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -23,7 +24,7 @@ public class TrialOfKnowledge() : ShadowRegentCard(
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardPower>(),
+        HoverTipFactory.FromPower<ShardsPower>(),
     ];
 
     protected override async Task OnPlay(
@@ -47,7 +48,7 @@ public class TrialOfKnowledge() : ShadowRegentCard(
     }
 }
 
-public class TrialOfKnowledgePower : CustomPowerModel
+public class TrialOfKnowledgePower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -62,7 +63,7 @@ public class TrialOfKnowledgePower : CustomPowerModel
         {
             Flash();
 
-            await PowerCmd.Apply<ShardPower>(
+            await PowerCmd.Apply<ShardsPower>(
                 new ThrowingPlayerChoiceContext(),
                 Owner,
                 Amount,

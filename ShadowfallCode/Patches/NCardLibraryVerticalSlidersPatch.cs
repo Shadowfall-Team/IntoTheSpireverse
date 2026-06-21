@@ -55,7 +55,7 @@ public class NCardLibraryVerticalSlidersPatch
     // ReSharper disable once UnusedParameter.Local
     static void SetupSlidersOnInspector(NCardLibrary __instance)
     {
-        if (!ShadowfallConfig.ShowWipContent) return;
+       // if (!ShadowfallConfig.ShowWipContent) return;
         if (_loaded) return;
         var inspectScreen = NGame.Instance!.GetInspectCardScreen();
 

@@ -12,7 +12,7 @@ using Shadowfall.ShadowfallCode.Relics.ShadowIronclad;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class SlatePower : CustomPowerModel
+public sealed class SlatePower : ShadowPowerModel
 {
     private const string BlockKey = "Block";
 

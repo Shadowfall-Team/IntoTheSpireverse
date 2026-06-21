@@ -47,7 +47,7 @@ public static class ShadowfallKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Cargo;
-
+    
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
 
@@ -88,8 +88,7 @@ public static class ShadowfallKeywords
         for (int i = 0; i < repeats; i++)
             await effect();
     }
-    
-    
+
     public static bool IsGloryTriggered(CardModel card)
     {
         var gloryVar = card.DynamicVars.GetValueOrDefault(GloryVar.defaultName);
@@ -245,4 +244,5 @@ public static class ShadowfallKeywords
         // Exclude the card itself, matching Follow Through's approach
         return hand.Cards.Count(c => c != card) >= 5;
     }
+
 }

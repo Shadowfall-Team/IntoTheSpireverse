@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace Shadowfall.ShadowfallCode.Powers.ShadowIronclad;
 
-public sealed class BlindFuryPower : CustomPowerModel
+public sealed class BlindFuryPower : ShadowPowerModel
 {
     private const int EnergyGain = 2;
     private const int MaxCardsToPlay = 13;

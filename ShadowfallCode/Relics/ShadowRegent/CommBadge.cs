@@ -2,9 +2,11 @@
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using Shadowfall.ShadowfallCode.Commands;
 using Shadowfall.ShadowfallCode.Powers.ShadowRegent;
+using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 
@@ -17,6 +19,9 @@ public class CommBadge : ShadowRegentRelic
         new IntVar("LoadAmmo", 1),
         new PowerVar<VolleyDamagePower>(2),
     ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        LoadAmmoHoverTip.FromLoadAmmo();
     
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
 using Shadowfall.ShadowfallCode.Ammo;
+using Shadowfall.ShadowfallCode.Powers;
 using Shadowfall.ShadowfallCode.utils;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
@@ -41,7 +42,7 @@ public class Grapeshot() : ShadowRegentCard(
     }
 }
 
-public class GrapeshotPower : CustomPowerModel, IAmmoFiredListener
+public class GrapeshotPower : ShadowPowerModel, IAmmoFiredListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -64,8 +65,11 @@ public class GrapeshotPower : CustomPowerModel, IAmmoFiredListener
                 }
                 else
                 {
+                    var hittableEnemies = CombatState.HittableEnemies.ToList();
+                    var preferredTargets = hittableEnemies.Where(e => e.HasPower<TargetedPower>()).ToList();
+                    var targetPool = preferredTargets.Count > 0 ? preferredTargets : hittableEnemies;
                     hitTargets =
-                        [Owner.Player.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies.ToList())];
+                        [Owner.Player.RunState.Rng.CombatTargets.NextItem(targetPool)];
                     await ShotHelper.CreateMissile(CombatState, hitTargets[0]);
                 }
 
