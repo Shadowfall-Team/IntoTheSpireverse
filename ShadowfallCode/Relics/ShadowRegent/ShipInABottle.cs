@@ -26,6 +26,7 @@ public class ShipInABottle : ShadowRegentRelic
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext,
         Player player)
     {
+        if (player != Owner) return;
         await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(ShardsPower)].BaseValue,

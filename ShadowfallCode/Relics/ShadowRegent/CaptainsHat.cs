@@ -14,25 +14,24 @@ namespace Shadowfall.ShadowfallCode.Relics.ShadowRegent;
 public class CaptainsHat : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        
         HoverTipFactory.FromPower<ShardsPower>(),
         HoverTipFactory.FromCard<Warp>()
     ];
-    
-    
+
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("Rounds", 3),
         new PowerVar<ShardsPower>(2)
     ];
-    
-    
+
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player.Creature.CombatState.RoundNumber > DynamicVars["Rounds"].IntValue) return;
+        if (player != Owner || player.Creature.CombatState.RoundNumber > DynamicVars["Rounds"].IntValue) return;
         await PowerCmd.Apply<ShardsPower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,
             DynamicVars.Power<ShardsPower>().BaseValue, Owner.Creature, null);

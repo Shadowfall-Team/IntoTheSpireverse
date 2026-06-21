@@ -50,7 +50,7 @@ public class ExaltedFormPower : ShadowPowerModel
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext,
         Player player)
     {
-        if (Owner.Player == null) return;
+        if (Owner.Player == null || player != Owner.Player) return;
 
         for (var i = 0; i < Amount; i++)
         {
