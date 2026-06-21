@@ -1,6 +1,6 @@
 ﻿{
 
-  "SHADOWFALL_MUDDLE_PROMPT": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to [gold]Muddle[/gold]."
+  "SHADOWFALL_MUDDLE_PROMPT": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to [gold]Muddle[/gold].",
   "SHADOWFALL-TO_CARGO": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to move to your [gold]Cargo[/gold].",
   "SHADOWFALL-FROM_CARGO": "Choose {Amount:plural:a card|[blue]{}[/blue] cards} to move from your [gold]Cargo[/gold]."
 
