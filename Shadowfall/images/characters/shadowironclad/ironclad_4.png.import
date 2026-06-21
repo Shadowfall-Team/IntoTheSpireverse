@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba4eg7ftktnrw"
-path="res://.godot/imported/characterselect_granite.png-279b5ad18a20a41a5356e1aef0067322.ctex"
+uid="uid://370e5d8iyr0d"
+path="res://.godot/imported/ironclad_4.png-642d2e726af2b6a81f64ca7033f3ded4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/characters/shadowironclad/characterselect_granite.png"
-dest_files=["res://.godot/imported/characterselect_granite.png-279b5ad18a20a41a5356e1aef0067322.ctex"]
+source_file="res://Shadowfall/images/characters/shadowironclad/ironclad_4.png"
+dest_files=["res://.godot/imported/ironclad_4.png-642d2e726af2b6a81f64ca7033f3ded4.ctex"]
 
 [params]
 
