@@ -25,6 +25,7 @@ public class AdmiralsHat : ShadowRegentRelic
     
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
+        if (player != Owner) return;
         if (player.Creature.CombatState.RoundNumber > 1) return;
 
         var warp = player.Creature.CombatState.CreateCard<Warp>(player);
