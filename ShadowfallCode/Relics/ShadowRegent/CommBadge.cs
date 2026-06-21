@@ -19,14 +19,13 @@ public class CommBadge : ShadowRegentRelic
         new IntVar("LoadAmmo", 1),
         new PowerVar<VolleyDamagePower>(2),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         LoadAmmoHoverTip.FromLoadAmmo();
-    
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player.Creature.CombatState.RoundNumber > 1) return;
+        if (player != Owner || player.Creature.CombatState.RoundNumber > 1) return;
 
         await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
 

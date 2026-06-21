@@ -54,8 +54,7 @@ public class ShardsEachTurnPower : ShadowPowerModel
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        // if (AmountOnTurnStart == 0) return;
-
+        if (player != Owner.Player) return;
         await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }
