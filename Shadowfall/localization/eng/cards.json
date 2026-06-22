@@ -479,7 +479,7 @@
   "SHADOWFALL-TECTONIC_SHIFT.title": "Tectonic Shift",
   "SHADOWFALL-TECTONIC_SHIFT.description": "Deal {Damage:diff()} damage.\n[gold]Transform[/gold] all cards in your [gold]Hand[/gold] into [gold]{IfUpgraded:show:Small Rock+|Small Rock}[/gold].",
   "SHADOWFALL-TEMPER.title": "Temper",
-  "SHADOWFALL-TEMPER.description": "Whenever you play a Skill, gain {RetaliationAmount:diff()} [gold]Retaliation[/gold] this turn.",
+  "SHADOWFALL-TEMPER.description": "Whenever you play a Skill, gain {RetaliationAmount:diff()} [gold]Retaliation[/gold].",
   "SHADOWFALL-TERRA_FIRMA.title": "Terra Firma",
   "SHADOWFALL-TERRA_FIRMA.description": "Gain {SlatePower:diff()} [gold]Slate[/gold].",
   "SHADOWFALL-TITANIC.title": "Titanic",
