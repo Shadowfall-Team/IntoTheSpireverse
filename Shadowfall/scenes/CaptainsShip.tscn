@@ -1,13 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbtqxgu7bq2i7"]
+[gd_scene load_steps=9 format=3 uid="uid://dbtqxgu7bq2i7"]
 
-[ext_resource type="Script" uid="uid://bdcnn51yt4ufe" path="res://ShadowfallCode/ui/NAmmoButton.cs" id="1_dh6nf"]
+[ext_resource type="Script" uid="uid://b84u20tfwjkmq" path="res://ShadowfallCode/ui/NAmmoButton.cs" id="1_dh6nf"]
 [ext_resource type="Script" uid="uid://cdwygcc8hduxl" path="res://ShadowfallCode/ui/ShadowfallMegaLabel.cs" id="1_ruvg3"]
 [ext_resource type="Material" uid="uid://cnm3o6q6r6nbc" path="res://Shadowfall/materials/hologram_material.tres" id="2_anfaq"]
 [ext_resource type="Texture2D" uid="uid://dla5jkt2ao6b7" path="res://Shadowfall/images/combat_ui/captainship.png" id="2_nfjci"]
 [ext_resource type="Texture2D" uid="uid://51osq8vorvg8" path="res://Shadowfall/images/combat_ui/ammo_pile.png" id="3_7vte5"]
-[ext_resource type="Script" uid="uid://biqlww7qn7auo" path="res://ShadowfallCode/ui/ShadowfallMegaRichTextLabel.cs" id="4_anfaq"]
+[ext_resource type="Script" uid="uid://pidfu6oar7a8" path="res://ShadowfallCode/ui/ShadowfallMegaRichTextLabel.cs" id="4_anfaq"]
 [ext_resource type="Texture2D" uid="uid://5ris3fd14de4" path="res://Shadowfall/images/combat_ui/ammo_button.png" id="4_dc20g"]
-[ext_resource type="Script" uid="uid://cnqjfcki4ohmk" path="res://Shadowfall/scenes/ship_icon.gd" id="4_n08fl"]
 [ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://Shadowfall/images/relics/relic_outline.png" id="7_8knwp"]
 
 [node name="CaptainsShip" type="Control"]
@@ -47,7 +46,6 @@ mouse_filter = 2
 texture = ExtResource("2_nfjci")
 expand_mode = 2
 stretch_mode = 5
-script = ExtResource("4_n08fl")
 
 [node name="DamageIndicator" type="Control" parent="ShipContainer"]
 layout_mode = 1
