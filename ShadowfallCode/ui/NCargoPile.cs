@@ -261,6 +261,11 @@ public partial class NCargoPile : NCombatCardPile
 
     public override void AnimIn()
     {
+        if (_localPlayer?.Creature.CombatState?.Encounter?.FullyCenterPlayers ?? false)
+        {
+            _showPosition += new Vector2(0, -100f);
+        }
+
         base.AnimIn();
         Visible = true;
     }

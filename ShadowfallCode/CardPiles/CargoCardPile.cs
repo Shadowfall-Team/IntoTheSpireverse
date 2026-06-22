@@ -24,6 +24,6 @@ public class CargoCardPile() : CustomPile(CargoPileType)
 
 public struct CargoSelectorPrefs
 {
-    public static LocString ToCargoSelectionPrompt => new LocString("card_selection", "TO_CARGO");
-    public static LocString FromCargoSelectionPrompt => new LocString("card_selection", "FROM_CARGO");
+    public static LocString ToCargoSelectionPrompt => new LocString("card_selection", "SHADOWFALL-TO_CARGO");
+    public static LocString FromCargoSelectionPrompt => new LocString("card_selection", "SHADOWFALL-FROM_CARGO");
 }

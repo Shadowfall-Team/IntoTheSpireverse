@@ -9,11 +9,7 @@ using Shadowfall.ShadowfallCode.Keywords;
 
 namespace Shadowfall.ShadowfallCode.Cards.ShadowRegent;
 
-public class Successor() : ShadowRegentCard(
-    0,
-    CardType.Skill,
-    CardRarity.Rare,
-    TargetType.Self)
+public class Successor() : ShadowRegentCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -21,9 +17,10 @@ public class Successor() : ShadowRegentCard(
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo)
+        HoverTipFactory.FromKeyword(ShadowfallKeywords.Cargo),
+        HoverTipFactory.Static(StaticHoverTip.ReplayStatic)
     ];
 
     protected override async Task OnPlay(

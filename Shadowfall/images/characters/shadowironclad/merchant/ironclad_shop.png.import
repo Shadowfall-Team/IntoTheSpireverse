@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rd3qkg7fsatd"
-path="res://.godot/imported/ironclad_shop.png-2f5916eca70fc5b43880bc43612a9f06.ctex"
+uid="uid://b63lyr65vf41g"
+path="res://.godot/imported/ironclad_shop.png-fd1934252ecb31948619d57127a67334.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadowfall/images/characters/shadowironclad/ironclad_shop.png"
-dest_files=["res://.godot/imported/ironclad_shop.png-2f5916eca70fc5b43880bc43612a9f06.ctex"]
+source_file="res://Shadowfall/images/characters/shadowironclad/merchant/ironclad_shop.png"
+dest_files=["res://.godot/imported/ironclad_shop.png-fd1934252ecb31948619d57127a67334.ctex"]
 
 [params]
 

@@ -26,8 +26,14 @@ public sealed class BattleShout() : ShadowIroncladCard(1, CardType.Skill, CardRa
 
         foreach (var card in attacks)
         {
-            if (card.DynamicVars.Damage != null)
-                card.DynamicVars.Damage.BaseValue += DynamicVars[IncreaseKey].BaseValue;
+            if (card.DynamicVars.TryGetValue("Damage", out var damage))
+            {
+                damage.BaseValue += DynamicVars[IncreaseKey].BaseValue;
+            }
+            else if (card.DynamicVars.TryGetValue("CalculationBase", out var calculationBase))
+            {
+                calculationBase.BaseValue += DynamicVars[IncreaseKey].BaseValue;
+            }
         }
     }
 

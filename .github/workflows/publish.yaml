@@ -21,6 +21,15 @@ jobs:
           unzip -q megadot.zip -d megadot
           chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
           echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Install spine-godot extension
+        run: |
+          curl -fL --retry 3 -o spine-godot.zip \
+            "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-4.2-4.5.1-stable.zip"
+          unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+      - name: Import Godot resources
+        run: |
+          "$GODOT_PATH" --headless --import || true
+          "$GODOT_PATH" --headless --import
       - name: Publish
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"

@@ -42,6 +42,7 @@ public partial class NAmmoButton : NButton
     private CardPile? _pile;
 
     private Control _shipContainer = null!;
+    private ShaderMaterial? _hologramMaterial;
     private ShadowfallMegaRichTextLabel _damageLabel = null!;
     private ShadowfallMegaLabel _ammoCountLabel = null!;
     private ShadowfallMegaLabel _fireLabel = null!;
@@ -100,6 +101,7 @@ public partial class NAmmoButton : NButton
     public override void _Ready()
     {
         _shipContainer = GetNode<Control>("ShipContainer");
+        _hologramMaterial = GetNode<TextureRect>("ShipContainer/ShipIcon").Material as ShaderMaterial;
         _damageLabel = GetNode<ShadowfallMegaRichTextLabel>("%DamageLabel");
         _ammoCountLabel = GetNode<ShadowfallMegaLabel>("%Count");
         _fireLabel = GetNode<ShadowfallMegaLabel>("%FireButtonLabel");
@@ -162,9 +164,13 @@ public partial class NAmmoButton : NButton
     {
         if (!_initialized) return;
         _bobTime += (float)delta * BobFrequency;
+        var bobY = Mathf.Sin(_bobTime) * BobAmplitude;
         _shipContainer.Position = new Vector2(
             _shipContainer.Position.X,
-            Mathf.Sin(_bobTime) * BobAmplitude);
+            bobY);
+        var containerHeight = _shipContainer.Size.Y;
+        if (containerHeight > 0f)
+            _hologramMaterial?.SetShaderParameter("uvOffsetY", bobY / containerHeight);
     }
 
     #endregion

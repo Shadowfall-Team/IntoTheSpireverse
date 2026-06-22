@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" uid="uid://b64aobp5wi2hq" path="res://src/Core/Nodes/RestSite/NRestSiteCharacter.cs" id="1_rqbgi"]
+[ext_resource type="SpineSkeletonDataResource" path="res://Shadowfall/images/characters/shadowregent/rest_site/rest_site_shadowregent_skel_data.tres" id="2_yk5fu"]
+[ext_resource type="PackedScene" uid="uid://bgy88bk44xxvk" path="res://scenes/ui/selection_reticle.tscn" id="3_c7uia"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h2i30"]
+
+[node name="RegentRestSite" type="Node2D"]
+scale = Vector2(0.760006, 0.760006)
+script = ExtResource("1_rqbgi")
+
+[node name="SpineSprite2" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("2_yk5fu")
+multiply_material = SubResource("CanvasItemMaterial_h2i30")
+preview_skin = "Default"
+preview_animation = "_tracks/light_off"
+preview_frame = false
+preview_time = 0.0
+position = Vector2(7.894674, 11.842011)
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 17.105127
+offset_top = 24.999802
+offset_right = 17.105127
+offset_bottom = 24.999802
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -238.0
+offset_top = -570.0
+offset_right = 203.0
+offset_bottom = 139.0
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 168.42
+offset_top = -410.523
+offset_right = 168.42
+offset_bottom = -410.523
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -169.736
+offset_top = -392.102
+offset_right = -169.736
+offset_bottom = -392.102
