@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-FLAMEFIST",
+  "hue": 0.89,
+  "saturation": 1.26,
+  "value": 0.84,
+  "red": 0.85,
+  "green": 1.59,
+  "blue": 1.57,
+  "contrast": 1.3,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/molten_fist.tres"
+}

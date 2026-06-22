@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-MAKING_CHANGE",
+  "hue": 0.78,
+  "saturation": 1.52,
+  "value": 0.84,
+  "red": 0.94,
+  "green": 1.07,
+  "blue": 1.03,
+  "contrast": 1.15,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/outbreak.tres"
+}

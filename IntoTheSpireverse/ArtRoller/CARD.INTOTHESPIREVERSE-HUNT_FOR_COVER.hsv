@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-HUNT_FOR_COVER",
+  "hue": 0.54,
+  "saturation": 1.35,
+  "value": 1.23,
+  "red": 0.89,
+  "green": 1.13,
+  "blue": 1.35,
+  "contrast": 0.94,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/sneaky.tres"
+}

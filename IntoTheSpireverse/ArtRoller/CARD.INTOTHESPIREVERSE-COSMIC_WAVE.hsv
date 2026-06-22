@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-COSMIC_WAVE",
+  "hue": 0.6,
+  "saturation": 0.78,
+  "value": 1.08,
+  "red": 0.72,
+  "green": 0.8,
+  "blue": 0.97,
+  "contrast": 1.54,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/ball_lightning.tres"
+}

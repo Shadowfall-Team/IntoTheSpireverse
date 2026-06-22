@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SMUGGLERS_STRIKE",
+  "hue": 0.5,
+  "saturation": 1.37,
+  "value": 0.9,
+  "red": 1.17,
+  "green": 1.21,
+  "blue": 1.2,
+  "contrast": 1.2,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/manifest_authority.tres"
+}

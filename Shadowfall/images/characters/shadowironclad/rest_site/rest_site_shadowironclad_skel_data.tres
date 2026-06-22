@@ -1,9 +1,0 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3]
-
-[ext_resource type="SpineAtlasResource" uid="uid://x6fpjo40a6yo" path="res://Shadowfall/images/characters/shadowironclad/rest_site/restsite_shadowironclad.spatlas" id="1_ewals"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://19b94i2okvig" path="res://Shadowfall/images/characters/shadowironclad/rest_site/restsite_ironclad.spskel" id="2_qgkr7"]
-
-[resource]
-atlas_res = ExtResource("1_ewals")
-skeleton_file_res = ExtResource("2_qgkr7")
-default_mix = 0.2

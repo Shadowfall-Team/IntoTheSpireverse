@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-MULTI_CALL",
+  "hue": 0.2,
+  "saturation": 1.24,
+  "value": 1.01,
+  "red": 0.85,
+  "green": 0.94,
+  "blue": 1.23,
+  "contrast": 1.24,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/multi_cast.tres"
+}
