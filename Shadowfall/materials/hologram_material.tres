@@ -13,4 +13,3 @@ shader_parameter/hologramTexture = ExtResource("2_b8uir")
 shader_parameter/hologramTextureTiling = Vector2(1, 1)
 shader_parameter/edgeBrightness = 1.0
 shader_parameter/uvOffsetY = 0.0
-shader_parameter/objectPosition = Vector2(0, 0)

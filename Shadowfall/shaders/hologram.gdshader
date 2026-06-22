@@ -8,14 +8,19 @@ uniform sampler2D hologramTexture: hint_default_white;
 uniform vec2 hologramTextureTiling = vec2(1., 5.);
 uniform float edgeBrightness: hint_range(0.0, 1.0) = 0.71;
 uniform float uvOffsetY = 0.0;
-uniform vec2 objectPosition = vec2(0.0, 0.0);
+
+varying float objectPositionY;
 
 vec2 tilingAndOffset(vec2 uv, vec2 tiling, vec2 offset) {
     return mod(uv * tiling + offset, 1.0);
 }
 
+void vertex() {
+    objectPositionY = (MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).y;
+}
+
 void fragment() {
-    vec2 offset = vec2(0.0, TIME * speed + uvOffsetY - objectPosition.y * 0.01);
+    vec2 offset = vec2(0.0, TIME * speed + uvOffsetY - objectPositionY * 0.01);
     vec2 tiledUV = tilingAndOffset(UV, hologramTextureTiling, offset);
 
     vec4 noise = texture(hologramTexture, tiledUV);
