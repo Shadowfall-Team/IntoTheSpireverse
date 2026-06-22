@@ -66,4 +66,9 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override string CustomArmScissorsTexturePath => "multiplayer_hand_regent_scissors.png".ShadowRegentPath();
     public override string CustomMapMarkerPath => "map_marker_regent.png".ShadowRegentPath();
 
+    public override string CustomVisualPath => "res://Shadowfall/scenes/creature_visuals/shadowregent.tscn";
+    public override string CustomCharacterSelectBg => "res://Shadowfall/scenes/screens/char_select/shadowregent.tscn";
+    public override string CustomRestSiteAnimPath => "res://Shadowfall/scenes/rest_site/shadowregent_rest_site.tscn";
+    public override string CustomMerchantAnimPath => "res://Shadowfall/scenes/merchant/shadowregent_merchant.tscn";
+
 }

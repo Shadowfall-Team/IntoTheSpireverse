@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://1sb3yjut1s62"]
+
+[ext_resource type="Script" uid="uid://cghtlla3sw0po" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_v62mv"]
+[ext_resource type="SpineSkeletonDataResource" path="res://Shadowfall/images/characters/shadowironclad/shadowironclad_skel_data.tres" id="2_0jedi"]
+[ext_resource type="Shader" uid="uid://dfgtak7it7exn" path="res://images/vfx/slash_shader_flat.tres" id="3_rq7c3"]
+[ext_resource type="Script" uid="uid://h351k838kpyg" path="res://src/Core/Nodes/Vfx/NIroncladVfx.cs" id="3_wdh0x"]
+[ext_resource type="Texture2D" uid="uid://ihjpxxm3o87h" path="res://images/vfx/fire/basic_fire_noise.png" id="4_x8wap"]
+[ext_resource type="Texture2D" uid="uid://bsw3nxvr118xr" path="res://images/vfx/characters/ironclad_slash_base.png" id="6_g8ov4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rq7c3"]
+shader = ExtResource("3_rq7c3")
+shader_parameter/ColorParameter = Color(0.99, 0.34319997, 0.19799998, 1)
+shader_parameter/step = Vector2(0, 0.02)
+shader_parameter/master_step = 1.0
+shader_parameter/shape_mask_tex = ExtResource("6_g8ov4")
+shader_parameter/noise_1_strength = 1.0
+shader_parameter/noise_1_scale = Vector2(1.5, 1.5)
+shader_parameter/noise_1_panning = Vector2(0.1, -1.5)
+shader_parameter/noise_1_tex = ExtResource("4_x8wap")
+shader_parameter/noise_2_scale = Vector2(1.2, 1.2)
+shader_parameter/noise_2_panning = Vector2(-0.1, -2.2)
+shader_parameter/noise_2_tex = ExtResource("4_x8wap")
+shader_parameter/noise_2_strength = 1.0
+shader_parameter/opacity = 0.8
+
+[node name="Ironclad" type="Node2D"]
+script = ExtResource("1_v62mv")
+metadata/_edit_group_ = true
+
+[node name="Visuals" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("2_0jedi")
+preview_skin = "Default"
+preview_animation = "attack_heavy"
+preview_frame = true
+preview_time = 0.47
+unique_name_in_owner = true
+position = Vector2(5, -19)
+scale = Vector2(0.28, 0.28)
+metadata/_edit_lock_ = true
+
+[node name="SlashVfxSlot" type="SpineSlotNode" parent="Visuals"]
+normal_material = SubResource("ShaderMaterial_rq7c3")
+slot_name = "slash_mesh"
+show_behind_parent = true
+position = Vector2(1183.4478, -1660.7097)
+scale = Vector2(9.459185, 9.459185)
+
+[node name="NIroncladVfx" type="Node" parent="Visuals"]
+script = ExtResource("3_wdh0x")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -121.0
+offset_top = -278.0
+offset_right = 121.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, -168)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(30, -310)

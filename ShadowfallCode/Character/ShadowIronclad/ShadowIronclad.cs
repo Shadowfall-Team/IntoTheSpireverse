@@ -61,6 +61,11 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     public override string CustomArmScissorsTexturePath => "multiplayer_hand_ironclad_scissors.png".GranitecladPath();
     public override string CustomMapMarkerPath => "map_marker_ironclad.png".GranitecladPath();
 
+    public override string CustomVisualPath => "res://Shadowfall/scenes/creature_visuals/shadowironclad.tscn";
+    public override string CustomCharacterSelectBg => "res://Shadowfall/scenes/screens/char_select/shadowironclad.tscn";
+    public override string CustomRestSiteAnimPath => "res://Shadowfall/scenes/rest_site/shadowironclad_rest_site.tscn";
+    public override string CustomMerchantAnimPath => "res://Shadowfall/scenes/merchant/shadowironclad_merchant.tscn";
+
     // public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
     // public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
 }
