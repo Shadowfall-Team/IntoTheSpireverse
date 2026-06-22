@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3]
+
+[ext_resource type="SpineAtlasResource" uid="uid://xcahm1g5gv6u" path="res://Shadowfall/images/characters/shadowregent/char_select/characterselect_shadowregent.spatlas" id="1_oc4br"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://gqpfezo55af7" path="res://Shadowfall/images/characters/shadowregent/char_select/characterselect_regent.spskel" id="2_nlfqv"]
+
+[resource]
+atlas_res = ExtResource("1_oc4br")
+skeleton_file_res = ExtResource("2_nlfqv")
