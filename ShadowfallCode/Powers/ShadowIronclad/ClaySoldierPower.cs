@@ -59,14 +59,16 @@ public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
 
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (GetInternalData<Data>().activatedThisTurn)
-        {
-            await PowerCmd.Apply<ClaySoldierTemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
-                Owner, DynamicVars.Strength.BaseValue * Amount, Owner, null);
+        if (side is not CombatSide.Player) return;
 
-            await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
-                Owner, DynamicVars.Power<SlatePower>().BaseValue, Owner, null);
-        }
+        if (!GetInternalData<Data>().activatedThisTurn) return;
+
+        Flash();
+        await PowerCmd.Apply<ClaySoldierTemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
+            Owner, DynamicVars.Strength.BaseValue, Owner, null);
+        await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
+            Owner, DynamicVars.Power<SlatePower>().BaseValue, Owner, null);
+
         GetInternalData<Data>().activatedThisTurn = false;
     }
 }
