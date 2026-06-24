@@ -1,21 +1,14 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
-using IntoTheSpireverse.IntoTheSpireverseCode.Interfaces;
-using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 
 [Pool(typeof(TokenCardPool))]
 public sealed class MoltenRock() : RockCardBase(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)

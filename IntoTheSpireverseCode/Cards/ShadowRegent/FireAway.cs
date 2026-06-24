@@ -30,7 +30,7 @@ public class FireAway() : ShadowRegentCard(1,
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
 
         await PowerCmd.Apply<FirepowerPower>(
             new ThrowingPlayerChoiceContext(),

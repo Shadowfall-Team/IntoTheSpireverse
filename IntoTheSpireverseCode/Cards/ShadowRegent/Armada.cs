@@ -29,7 +29,7 @@ public class Armada() : ShadowRegentCard(
 
         if (IsUpgraded)
         {
-            await LoadAmmoCmd.LoadAmmo(1, Owner, this);
+            await LoadAmmoCmd.LoadAmmo(1, Owner);
         }
 
         await PowerCmd.Apply<ArmadaPower>(new ThrowingPlayerChoiceContext(),
@@ -49,6 +49,6 @@ public class ArmadaPower : ShadowPowerModel
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player) return;
-        await LoadAmmoCmd.LoadAmmo(Amount, Owner.Player, this);
+        await LoadAmmoCmd.LoadAmmo(Amount, Owner.Player);
     }
 }

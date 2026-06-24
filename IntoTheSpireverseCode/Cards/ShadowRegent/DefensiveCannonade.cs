@@ -39,7 +39,7 @@ public class DefensiveCannonade() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
 
         var power = await PowerCmd.Apply<DefensiveCannonadePower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,

@@ -27,7 +27,7 @@ public class CommBadge : ShadowRegentRelic
     {
         if (player != Owner || player.Creature.CombatState.RoundNumber > 1) return;
 
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
 
         await PowerCmd.Apply<VolleyDamagePower>(
             new ThrowingPlayerChoiceContext(),

@@ -51,7 +51,7 @@ public class TargetAcquired() : ShadowRegentCard(
             Owner.Creature,
             this);
 
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
     }
 
     protected override void OnUpgrade()

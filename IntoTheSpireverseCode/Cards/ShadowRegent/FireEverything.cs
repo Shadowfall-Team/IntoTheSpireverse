@@ -1,4 +1,7 @@
-using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,10 +11,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -36,7 +35,7 @@ public class FireEverything() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
 
         await PowerCmd.Apply<FireEverythingPower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,
@@ -61,6 +60,7 @@ public class FireEverythingPower : ShadowPowerModel
             modifiedCost = 0;
             return true;
         }
+
         modifiedCost = originalCost;
         return false;
     }

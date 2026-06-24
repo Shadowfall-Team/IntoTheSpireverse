@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;

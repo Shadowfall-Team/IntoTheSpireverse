@@ -1,12 +1,11 @@
 ﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
-using IntoTheSpireverse.IntoTheSpireverseCode.Interfaces;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 
 public abstract class RockCardBase(int cost, CardType type, CardRarity rarity, TargetType targetType)
-    : IntoTheSpireverseCard(cost, type, rarity, targetType, "ironclad"), IRockCard
+    : IntoTheSpireverseCard(cost, type, rarity, targetType, "ironclad")
 {
     private decimal _extraDamageFromRockPlays;
 

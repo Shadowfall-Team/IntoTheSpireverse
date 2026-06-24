@@ -1,13 +1,11 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using IntoTheSpireverse.IntoTheSpireverseCode.Interfaces;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 

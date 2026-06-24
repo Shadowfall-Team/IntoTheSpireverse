@@ -87,7 +87,7 @@ public class TrialOfWeaponryPower : ShadowPowerModel
                     if (DynamicVars["AttacksPlayedThisTurn"].BaseValue % 3 == 0)
                     {
                         Flash();
-                        await LoadAmmoCmd.LoadAmmo(Amount, Owner.Player, this);
+                        await LoadAmmoCmd.LoadAmmo(Amount, Owner.Player);
                         await PowerCmd.Remove(this);
                     }
                 }

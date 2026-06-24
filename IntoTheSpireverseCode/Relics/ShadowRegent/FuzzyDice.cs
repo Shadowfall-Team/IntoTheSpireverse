@@ -31,7 +31,7 @@ public class FuzzyDice : ShadowRegentRelic
 
         if (Owner.PlayerCombatState is { Energy: > 0 })
         {
-            await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+            await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
         }
     }
 }
