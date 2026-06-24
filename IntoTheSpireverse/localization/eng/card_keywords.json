@@ -1,0 +1,19 @@
+{
+  "INTOTHESPIREVERSE-DEVIOUS.title": "Devious",
+  "INTOTHESPIREVERSE-DEVIOUS.description": "Discard a card. This card's effects trigger one time for each Cost of the discarded card.",
+  "INTOTHESPIREVERSE-CUNNING.title": "Cunning",
+  "INTOTHESPIREVERSE-CUNNING.description": "This effect triggers if it is the leftmost card when played.",
+  "INTOTHESPIREVERSE-BLEED.title": "Bleed",
+  "INTOTHESPIREVERSE-BLEED.description": "Whenever a card is Exhausted, Bleeding characters lose 6 HP and Bleed decreases by 1.",
+  "INTOTHESPIREVERSE-INSTINCT.title": "Instinct",
+  "INTOTHESPIREVERSE-INSTINCT.description": "Increases the HP loss caused by Bleed.",
+  "INTOTHESPIREVERSE-LINGER.title": "Linger",
+  "INTOTHESPIREVERSE-LINGER.description": "If this card is in your hand at the end of your turn, Trigger this effect.",
+  "INTOTHESPIREVERSE-STARTUP.title": "Startup",
+  "INTOTHESPIREVERSE-STARTUP.description": "Effect triggers at the start of each combat if this card is in your [gold]Deck[/gold].",
+  "INTOTHESPIREVERSE-PICKUP.title": "Pickup",
+  "INTOTHESPIREVERSE-PICKUP.description": "Effect triggers when this card is added to your [gold]Deck[/gold].",
+  "INTOTHESPIREVERSE-CARGO.title": "Cargo",
+  "INTOTHESPIREVERSE-CARGO.description": "At the start of your turn, draw 1 card from your [gold]Cargo[/gold]."
+
+}

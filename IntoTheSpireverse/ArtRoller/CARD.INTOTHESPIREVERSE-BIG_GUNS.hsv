@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BIG_GUNS",
+  "hue": 0.32,
+  "saturation": 1.31,
+  "value": 1.03,
+  "red": 0.75,
+  "green": 1.47,
+  "blue": 0.83,
+  "contrast": 1.21,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/neutron_aegis.tres"
+}

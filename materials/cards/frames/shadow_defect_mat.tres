@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://brdm0t1874oll"]
 
-[ext_resource type="Shader" uid="uid://bjadwxrmsihto" path="res://Shadowfall/shaders/hsvWithGradient.gdshader" id="1_7elbp"]
+[ext_resource type="Shader" uid="uid://bjadwxrmsihto" path="res://IntoTheSpireverse/shaders/hsvWithGradient.gdshader" id="1_7elbp"]
 [ext_resource type="Texture2D" uid="uid://bu532h5e65p26" path="res://materials/cards/frames/card_darken_gradient.tres" id="2_1x7ti"]
 
 [resource]

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ATTACK_OF_OPPORTUNITY",
+  "hue": 0.28,
+  "saturation": 1.24,
+  "value": 1.12,
+  "red": 1.13,
+  "green": 1.08,
+  "blue": 1.47,
+  "contrast": 1.23,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/dash.tres"
+}

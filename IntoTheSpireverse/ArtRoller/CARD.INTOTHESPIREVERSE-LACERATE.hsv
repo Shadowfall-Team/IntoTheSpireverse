@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-LACERATE",
+  "hue": 0.81,
+  "saturation": 1.28,
+  "value": 0.99,
+  "red": 0.94,
+  "green": 0.84,
+  "blue": 1.26,
+  "contrast": 0.97,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/deadly_poison.tres"
+}

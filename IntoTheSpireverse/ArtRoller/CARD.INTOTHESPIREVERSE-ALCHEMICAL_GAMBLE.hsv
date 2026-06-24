@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ALCHEMICAL_GAMBLE",
+  "hue": 0.52,
+  "saturation": 1.16,
+  "value": 1.02,
+  "red": 1.01,
+  "green": 0.99,
+  "blue": 1.02,
+  "contrast": 1.33,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/calculated_gamble.tres"
+}

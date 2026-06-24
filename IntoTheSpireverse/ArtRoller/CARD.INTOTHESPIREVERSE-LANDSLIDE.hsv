@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-LANDSLIDE",
+  "hue": 0.11,
+  "saturation": 1.32,
+  "value": 1.15,
+  "red": 0.94,
+  "green": 1.11,
+  "blue": 1.04,
+  "contrast": 1.09,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/rampage.tres"
+}

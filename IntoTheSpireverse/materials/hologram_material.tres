@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cnm3o6q6r6nbc"]
+
+[ext_resource type="Shader" uid="uid://bauxey0lsb54l" path="res://IntoTheSpireverse/shaders/hologram.gdshader" id="1_tb6mt"]
+[ext_resource type="Texture2D" uid="uid://deiulpbnx2nk3" path="res://IntoTheSpireverse/images/materials/hologram_lines.png" id="2_b8uir"]
+
+[resource]
+shader = ExtResource("1_tb6mt")
+shader_parameter/baseColor = Color(0.042855524, 0.36929017, 0.4345597, 1)
+shader_parameter/speed = 0.10000000475
+shader_parameter/linesColor = Color(0.23624524, 0.39630368, 0.18571404, 1)
+shader_parameter/linesColorIntensity = 2.0
+shader_parameter/hologramTexture = ExtResource("2_b8uir")
+shader_parameter/hologramTextureTiling = Vector2(1, 1)
+shader_parameter/edgeBrightness = 1.0
+shader_parameter/uvOffsetY = 0.0

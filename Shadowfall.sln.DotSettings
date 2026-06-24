@@ -39,7 +39,7 @@
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1BE313041F989B4185D2966033C031C3/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=1BE313041F989B4185D2966033C031C3/Text/@EntryValue">namespace $NAMESPACE$;
 
-public class $CLASS$() : Shadowfall.ShadowfallCode.Cards.ShadowfallCard($COST$, MegaCrit.Sts2.Core.Entities.Cards.CardType.$TYPE$, MegaCrit.Sts2.Core.Entities.Cards.CardRarity.$RARITY$, MegaCrit.Sts2.Core.Entities.Cards.TargetType.$TARGET$) {
+public class $CLASS$() : IntoTheSpireverse.IntoTheSpireverseCode.Cards.IntoTheSpireverseCard($COST$, MegaCrit.Sts2.Core.Entities.Cards.CardType.$TYPE$, MegaCrit.Sts2.Core.Entities.Cards.CardRarity.$RARITY$, MegaCrit.Sts2.Core.Entities.Cards.TargetType.$TARGET$) {
     protected override async System.Threading.Tasks.Task OnPlay(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext choiceContext, MegaCrit.Sts2.Core.Entities.Cards.CardPlay play)
     {
         $END$
@@ -81,7 +81,7 @@ public class $CLASS$() : Shadowfall.ShadowfallCode.Cards.ShadowfallCard($COST$, 
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=499717A0618B7A48A826DDB10F9F0E03/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=499717A0618B7A48A826DDB10F9F0E03/Text/@EntryValue">namespace $NAMESPACE$;
 
-public class $CLASS$() : Shadowfall.ShadowfallCode.Cards.ShadowfallCard($COST$, MegaCrit.Sts2.Core.Entities.Cards.CardType.$TYPE$, MegaCrit.Sts2.Core.Entities.Cards.CardRarity.$RARITY$, MegaCrit.Sts2.Core.Entities.Cards.TargetType.$TARGET$) {
+public class $CLASS$() : IntoTheSpireverse.IntoTheSpireverseCode.Cards.IntoTheSpireverseCard($COST$, MegaCrit.Sts2.Core.Entities.Cards.CardType.$TYPE$, MegaCrit.Sts2.Core.Entities.Cards.CardRarity.$RARITY$, MegaCrit.Sts2.Core.Entities.Cards.TargetType.$TARGET$) {
     public override async System.Threading.Tasks.Task OnPlay(MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext choiceContext, MegaCrit.Sts2.Core.Entities.Cards.CardPlay play)
     {
         $END$
@@ -118,7 +118,7 @@ public class $CLASS$() : Shadowfall.ShadowfallCode.Cards.ShadowfallCard($COST$, 
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B4D0CA86CBDACD42AD544A77CAE9FDEC/Text/@EntryValue">namespace $NAMESPACE$;
 
 [BaseLib.Utils.Pool(typeof($POOL$))]
-public class $CLASS$() : Shadowfall.ShadowfallCode.Relics.ShadowfallRelic {
+public class $CLASS$() : IntoTheSpireverse.IntoTheSpireverseCode.Relics.IntoTheSpireverseRelic {
     public override MegaCrit.Sts2.Core.Entities.Relics.RelicRarity Rarity =&gt; MegaCrit.Sts2.Core.Entities.Relics.RelicRarity.$RARITY$;
     
     $END$

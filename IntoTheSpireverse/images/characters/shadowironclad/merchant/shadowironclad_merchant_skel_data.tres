@@ -1,0 +1,37 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=9 format=3]
+
+[ext_resource type="SpineAtlasResource" uid="uid://2totm3bug3x5" path="res://IntoTheSpireverse/images/characters/shadowironclad/merchant/shadowironclad_shop.spatlas" id="1_al5md"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://r5dx98bhr5wa" path="res://IntoTheSpireverse/images/characters/shadowironclad/merchant/ironclad.spskel" id="2_s0dap"]
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_q8rux"]
+from = "idle_loop"
+to = "attack"
+mix = 0.1
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_jxu7e"]
+from = "attack"
+to = "attack"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_tpffi"]
+from = "hurt"
+to = "hurt"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_iet4g"]
+from = "hurt"
+to = "die"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_tcmbt"]
+from = "idle_loop"
+to = "hurt"
+mix = 0.03
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_r7khs"]
+from = "hurt"
+to = "idle_loop"
+mix = 0.1
+
+[resource]
+atlas_res = ExtResource("1_al5md")
+skeleton_file_res = ExtResource("2_s0dap")
+default_mix = 0.05
+animation_mixes = [SubResource("SpineAnimationMix_q8rux"), SubResource("SpineAnimationMix_jxu7e"), SubResource("SpineAnimationMix_tpffi"), SubResource("SpineAnimationMix_iet4g"), SubResource("SpineAnimationMix_tcmbt"), SubResource("SpineAnimationMix_r7khs")]

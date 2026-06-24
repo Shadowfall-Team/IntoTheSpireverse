@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-AMBUSH",
+  "hue": 0.59,
+  "saturation": 1.27,
+  "value": 1.06,
+  "red": 1.02,
+  "green": 1.24,
+  "blue": 1.4,
+  "contrast": 1.2,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/pounce.tres"
+}

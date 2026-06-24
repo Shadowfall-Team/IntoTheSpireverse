@@ -1,0 +1,3 @@
+﻿namespace IntoTheSpireverse.IntoTheSpireverseCode.Config;
+
+public interface IIntoTheSpireverseDebug;
