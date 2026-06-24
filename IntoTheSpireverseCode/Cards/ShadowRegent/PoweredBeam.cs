@@ -14,7 +14,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
 public class PoweredBeam() : ShadowRegentCard(1,
     CardType.Skill,
-    CardRarity.Basic,
+    CardRarity.Common,
     TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
