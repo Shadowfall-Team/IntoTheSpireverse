@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-CHOKING_HAZARD",
+  "hue": 0.54,
+  "saturation": 0.87,
+  "value": 1.15,
+  "red": 0.88,
+  "green": 1,
+  "blue": 1.15,
+  "contrast": 1.18,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/strangle.tres"
+}

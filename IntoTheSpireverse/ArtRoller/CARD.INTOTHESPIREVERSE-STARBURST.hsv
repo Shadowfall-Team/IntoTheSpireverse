@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-STARBURST",
+  "hue": 0.7,
+  "saturation": 0.93,
+  "value": 1.21,
+  "red": 0.85,
+  "green": 1.24,
+  "blue": 0.57,
+  "contrast": 1.27,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/thunder.tres"
+}

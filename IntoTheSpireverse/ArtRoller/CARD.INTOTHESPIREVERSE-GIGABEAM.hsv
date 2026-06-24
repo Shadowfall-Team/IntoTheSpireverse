@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-GIGABEAM",
+  "hue": 0.58,
+  "saturation": 1.16,
+  "value": 1,
+  "red": 1.04,
+  "green": 1.24,
+  "blue": 0.62,
+  "contrast": 1.1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/hyperbeam.tres"
+}
