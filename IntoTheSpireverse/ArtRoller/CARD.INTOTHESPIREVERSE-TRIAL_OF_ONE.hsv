@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-TRIAL_OF_ONE",
+  "hue": 0.48,
+  "saturation": 1.01,
+  "value": 0.92,
+  "red": 0.94,
+  "green": 1.23,
+  "blue": 1.33,
+  "contrast": 1.15,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/comet.tres"
+}

@@ -1,11 +1,11 @@
 {
-  "projectId": "Shadowfall",
-  "localizationBase": "Shadowfall/localization/eng",
+  "projectId": "IntoTheSpireverse",
+  "localizationBase": "IntoTheSpireverse/localization/eng",
   "presets": [
     {
       "id": "card",
       "markers": [
-        "ShadowfallCard",
+        "IntoTheSpireverseCard",
         "CustomCardModel",
         "ShadowIroncladCard",
         "ShadowDefectCard"

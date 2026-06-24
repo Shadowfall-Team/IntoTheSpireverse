@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SEEK",
+  "hue": 0.42,
+  "saturation": 1.28,
+  "value": 1.07,
+  "red": 1.11,
+  "green": 0.94,
+  "blue": 1.16,
+  "contrast": 1.16,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/well_laid_plans.tres"
+}

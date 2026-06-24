@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ASSEMBLY_REQUIRED",
+  "hue": 0.58,
+  "saturation": 0.8,
+  "value": 1.13,
+  "red": 1.12,
+  "green": 1.19,
+  "blue": 1.13,
+  "contrast": 1.21,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/hammer_time.tres"
+}

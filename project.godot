@@ -10,13 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Shadowfall"
+config/name="IntoTheSpireverse"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="Shadowfall"
+project/assembly_name="IntoTheSpireverse"
 
 [rendering]
 

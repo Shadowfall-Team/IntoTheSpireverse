@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-PHASIC_STRIKE",
+  "hue": 0.88,
+  "saturation": 0.76,
+  "value": 1.1,
+  "red": 0.84,
+  "green": 0.93,
+  "blue": 1.43,
+  "contrast": 1.48,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/ftl.tres"
+}
