@@ -45,6 +45,7 @@ public sealed class Handclap() : ShadowNecrobinderCard(2, CardType.Attack, CardR
 
     private bool HasEnoughCurses =>
         IsMutable &&
+        Owner != null &&
         Owner.PlayerCombatState != null &&
         Owner.PlayerCombatState.AllCards.Count(c => c.Type == CardType.Curse) >= DynamicVars[_curseThresholdKey].IntValue;
 }
