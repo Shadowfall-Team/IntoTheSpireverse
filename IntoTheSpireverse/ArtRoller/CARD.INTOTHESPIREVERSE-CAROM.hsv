@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-CAROM",
+  "hue": 0.92,
+  "saturation": 0.72,
+  "value": 1,
+  "red": 0.94,
+  "green": 1.47,
+  "blue": 1.66,
+  "contrast": 1.25,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/ricochet.tres"
+}

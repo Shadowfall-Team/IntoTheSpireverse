@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-FELDSPAR",
+  "hue": 0.45,
+  "saturation": 1.16,
+  "value": 1,
+  "red": 1,
+  "green": 1.09,
+  "blue": 1.22,
+  "contrast": 1.12,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/iron_wave.tres"
+}
