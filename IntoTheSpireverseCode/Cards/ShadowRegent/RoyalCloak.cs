@@ -16,6 +16,8 @@ public class RoyalCloak() : ShadowRegentCard(2,
     CardRarity.Uncommon,
     TargetType.Self)
 {
+    public override bool GainsBlock => false;
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new BlockVar(1, ValueProp.Unpowered)
     ];
