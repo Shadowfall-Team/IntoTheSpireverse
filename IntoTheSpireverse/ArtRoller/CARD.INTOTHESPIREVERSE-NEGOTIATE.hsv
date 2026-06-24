@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-NEGOTIATE",
+  "hue": 0.09,
+  "saturation": 1.36,
+  "value": 1.16,
+  "red": 1,
+  "green": 1.11,
+  "blue": 0.91,
+  "contrast": 1.18,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/hand_trick.tres"
+}

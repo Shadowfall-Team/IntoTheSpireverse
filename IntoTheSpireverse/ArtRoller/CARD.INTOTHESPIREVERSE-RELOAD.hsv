@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-RELOAD",
+  "hue": 0.59,
+  "saturation": 0.68,
+  "value": 1.03,
+  "red": 1.06,
+  "green": 1.13,
+  "blue": 0.97,
+  "contrast": 1.14,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/spoils_of_battle.tres"
+}

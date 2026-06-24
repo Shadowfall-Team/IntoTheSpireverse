@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BLADE_WARD",
+  "hue": 0.94,
+  "saturation": 1,
+  "value": 1,
+  "red": 0.87,
+  "green": 1.5,
+  "blue": 2,
+  "contrast": 1.05,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/slice.tres"
+}

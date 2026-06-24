@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BLADE_CYCLONE",
+  "hue": 0.08,
+  "saturation": 1.02,
+  "value": 0.99,
+  "red": 0.76,
+  "green": 1.12,
+  "blue": 1.62,
+  "contrast": 1.38,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/dagger_spray.tres"
+}

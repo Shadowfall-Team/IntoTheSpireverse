@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-WARCRAFT",
+  "hue": 0.97,
+  "saturation": 0.31,
+  "value": 1.24,
+  "red": 1.26,
+  "green": 1.17,
+  "blue": 1.54,
+  "contrast": 1.07,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/hellraiser.tres"
+}

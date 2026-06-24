@@ -1,0 +1,8 @@
+{
+  "INTOTHESPIREVERSE-SHADOW_REGENT.title": "Shadow Regent",
+  "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.title": "Show Cargo pile card preview",
+  "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.hover.desc": "Show a preview of the top 3 cards of the cargo pile, in order.",
+  "INTOTHESPIREVERSE-DEVELOPMENT.title": "Development",
+  "INTOTHESPIREVERSE-SHOW_WIP_CONTENT.title": "Show WIP Content (REQUIRES RESTART)",
+  "INTOTHESPIREVERSE-SHOW_WIP_CONTENT.hover.desc": "Show and use non-finished content that is currently in development."
+}

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BLOODTAP",
+  "hue": 0.72,
+  "saturation": 0.97,
+  "value": 1,
+  "red": 0.7,
+  "green": 1.04,
+  "blue": 1.17,
+  "contrast": 1.22,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/noxious_fumes.tres"
+}

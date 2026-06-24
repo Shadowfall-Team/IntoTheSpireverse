@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-DEADLANDS_HEX",
+  "hue": 0.51,
+  "saturation": 1.22,
+  "value": 1.18,
+  "red": 0.97,
+  "green": 1.14,
+  "blue": 1.38,
+  "contrast": 1.18,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/offering.tres"
+}

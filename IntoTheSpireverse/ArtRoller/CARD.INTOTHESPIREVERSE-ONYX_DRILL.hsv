@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ONYX_DRILL",
+  "hue": 0.16,
+  "saturation": 1.26,
+  "value": 1.12,
+  "red": 0.9,
+  "green": 1.36,
+  "blue": 1.58,
+  "contrast": 1.07,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/helix_drill.tres"
+}

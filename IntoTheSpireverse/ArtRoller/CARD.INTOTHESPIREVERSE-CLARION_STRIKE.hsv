@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-CLARION_STRIKE",
+  "hue": 0.92,
+  "saturation": 0.85,
+  "value": 1.03,
+  "red": 1.09,
+  "green": 1.03,
+  "blue": 1,
+  "contrast": 0.94,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/momentum_strike.tres"
+}
