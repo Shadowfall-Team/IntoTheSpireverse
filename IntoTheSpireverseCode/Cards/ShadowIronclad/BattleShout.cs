@@ -15,7 +15,7 @@ public sealed class BattleShout() : ShadowIroncladCard(1, CardType.Skill, CardRa
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(IncreaseKey, 3m),
+        new(IncreaseKey, 3m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

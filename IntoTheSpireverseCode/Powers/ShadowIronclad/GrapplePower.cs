@@ -20,7 +20,7 @@ public sealed class GrapplePower : ShadowPowerModel
         if (amount <= 0m || creature != Source) return;
         Flash();
         await CreatureCmd.Damage(
-            new BlockingPlayerChoiceContext(), Owner, (decimal)Amount,
+            new BlockingPlayerChoiceContext(), Owner, Amount,
             ValueProp.Unpowered, Source, null);
     }
 

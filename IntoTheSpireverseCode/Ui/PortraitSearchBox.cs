@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 using MegaCrit.Sts2.Core.Logging;
 
 namespace IntoTheSpireverse;
@@ -22,7 +20,7 @@ public class PortraitSearchBox
         set => _searchBox.Text = value;
     }
 
-    public PortraitSearchBox(Godot.Node parent)
+    public PortraitSearchBox(Node parent)
     {
         _portraits = LoadAllPortraitPaths();
 
@@ -63,8 +61,8 @@ public class PortraitSearchBox
         int count = 0;
         foreach (string path in _portraits)
         {
-            string folder = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(path)) ?? "";
-            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+            string folder = Path.GetFileName(Path.GetDirectoryName(path)) ?? "";
+            string name = Path.GetFileNameWithoutExtension(path);
             string display = string.IsNullOrEmpty(folder) ? name : $"{folder}/{name}";
             
             if (display.Contains(searchText, StringComparison.OrdinalIgnoreCase))
@@ -93,8 +91,8 @@ public class PortraitSearchBox
     {
         string selectedPath = (string)_searchList.GetItemMetadata((int)index);
 
-        string name = System.IO.Path.GetFileNameWithoutExtension(selectedPath);
-        string folder = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(selectedPath)) ?? "";
+        string name = Path.GetFileNameWithoutExtension(selectedPath);
+        string folder = Path.GetFileName(Path.GetDirectoryName(selectedPath)) ?? "";
         _searchBox.Text = string.IsNullOrEmpty(folder) ? name : $"{folder}/{name}";
 
         _searchList.Hide();

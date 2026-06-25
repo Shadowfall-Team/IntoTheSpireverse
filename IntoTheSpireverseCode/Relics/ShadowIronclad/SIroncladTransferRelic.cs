@@ -44,7 +44,7 @@ public class Bellows : ShadowIroncladRelic
             {
                 DoHackyThingsForSpecificPowers(existingPower);
                 await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(),
-                    existingPower, (decimal)debuff.Amount,
+                    existingPower, debuff.Amount,
                     Owner.Creature, null);
             }
             else
@@ -52,7 +52,7 @@ public class Bellows : ShadowIroncladRelic
                 var power = (PowerModel)debuff.ClonePreservingMutability();
                 DoHackyThingsForSpecificPowers(power);
                 await PowerCmd.Apply(new ThrowingPlayerChoiceContext(),
-                    power, recipient, (decimal)debuff.Amount,
+                    power, recipient, debuff.Amount,
                     Owner.Creature, null);
             }
         }

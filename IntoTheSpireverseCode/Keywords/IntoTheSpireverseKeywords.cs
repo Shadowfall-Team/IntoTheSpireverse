@@ -1,15 +1,10 @@
 using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
@@ -56,7 +51,7 @@ public static class IntoTheSpireverseKeywords
         var cards = a.Pile.Cards;
         int i = cards.IndexOf(a);
         int j = cards.IndexOf(b);
-        return i >= 0 && j >= 0 && System.Math.Abs(i - j) == 1;
+        return i >= 0 && j >= 0 && Math.Abs(i - j) == 1;
     }
 
     public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)

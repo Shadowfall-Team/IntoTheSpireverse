@@ -19,7 +19,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.RandomEnemy)
 {
-    private static readonly Color VfxTint = new Color("c01020");
+    private static readonly Color VfxTint = new("c01020");
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

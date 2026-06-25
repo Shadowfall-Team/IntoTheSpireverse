@@ -18,7 +18,7 @@ public sealed class VampiricStrike() : ShadowIroncladCard(2, CardType.Attack, Ca
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8m, ValueProp.Move),
         new HealVar(3m),
-        new DynamicVar(HpThresholdKey, 50m)
+        new(HpThresholdKey, 50m)
     ];
 
     protected override bool ShouldGlowGoldInternal => IsAtOrBelowHalfHp;

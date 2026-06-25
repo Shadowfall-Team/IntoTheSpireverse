@@ -1,5 +1,4 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,7 +24,7 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
         new CardsVar(1),
     ];
     
-    private static readonly Color VfxTint = new Color("c01020");
+    private static readonly Color VfxTint = new("c01020");
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -58,7 +57,7 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
 
             await PowerCmd.Apply<BloodbondPower>(
                 new ThrowingPlayerChoiceContext(),
-                cardPlay.Target, (decimal)totalDamage,
+                cardPlay.Target, totalDamage,
                 Owner.Creature, this);
         }
 

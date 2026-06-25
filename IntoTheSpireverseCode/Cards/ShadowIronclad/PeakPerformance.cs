@@ -24,7 +24,7 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
     [
         new BlockVar(5m, ValueProp.Move),
         new PowerVar<StrengthPower>(1m),
-        new DynamicVar(RepeatKey, 2m),
+        new(RepeatKey, 2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

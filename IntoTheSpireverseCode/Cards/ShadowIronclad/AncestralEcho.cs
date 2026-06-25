@@ -20,7 +20,7 @@ public sealed class AncestralEcho() : ShadowIroncladCard(1, CardType.Skill, Card
 
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [
-        new DynamicVar(_replayKey, 1m)
+        new(_replayKey, 1m)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.ReplayStatic)] ;

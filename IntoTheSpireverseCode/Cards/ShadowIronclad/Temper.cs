@@ -1,11 +1,9 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
@@ -18,7 +16,7 @@ public sealed class Temper() : ShadowIroncladCard(1, CardType.Power, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(RetaliationAmountKey, 3m),
+        new(RetaliationAmountKey, 3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
@@ -7,21 +6,19 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 public abstract class RockCardBase(int cost, CardType type, CardRarity rarity, TargetType targetType)
     : IntoTheSpireverseCard(cost, type, rarity, targetType, "ironclad")
 {
-    private decimal _extraDamageFromRockPlays;
-
-    protected decimal ExtraDamageFromRockPlays
+    private decimal ExtraDamageFromRockPlays
     {
-        get => _extraDamageFromRockPlays;
-        private set
+        get;
+        set
         {
             AssertMutable();
-            _extraDamageFromRockPlays = value;
+            field = value;
         }
     }
 
-    protected override HashSet<CardTag> CanonicalTags => new() { IntoTheSpireverseCardTags.Rock };
+    protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Rock];
 
-    public virtual void BuffFromRockPlay(decimal extraDamage)
+    protected void BuffFromRockPlay(decimal extraDamage)
     {
         DynamicVars.Damage.BaseValue += extraDamage;
         ExtraDamageFromRockPlays += extraDamage;

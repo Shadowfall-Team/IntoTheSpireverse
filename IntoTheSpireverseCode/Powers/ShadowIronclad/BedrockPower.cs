@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Combat;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -26,7 +25,7 @@ public sealed class BedrockPower : ShadowPowerModel
                      .ToList())
         {
             await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
-                creature, (decimal)Amount, creature, null);
+                creature, Amount, creature, null);
         }
     }
 }

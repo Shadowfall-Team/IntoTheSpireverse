@@ -16,6 +16,6 @@ public class ToyCactus : ShadowIroncladRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("DamageReduction", 2m),
+        new("DamageReduction", 2m),
     ];
 }

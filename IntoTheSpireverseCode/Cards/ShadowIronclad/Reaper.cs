@@ -29,7 +29,7 @@ public sealed class Reaper() : ShadowIroncladCard(2, CardType.Attack, CardRarity
 
         int totalUnblocked = attack.Results.Sum(r => r.Sum(dr => dr.UnblockedDamage));
         if (totalUnblocked > 0)
-            await CreatureCmd.Heal(Owner.Creature, (decimal)totalUnblocked);
+            await CreatureCmd.Heal(Owner.Creature, totalUnblocked);
     }
 
     protected override void OnUpgrade()

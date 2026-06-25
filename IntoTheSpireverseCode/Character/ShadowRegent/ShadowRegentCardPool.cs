@@ -3,7 +3,6 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
-using Supermassive = IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent.Supermassive;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 

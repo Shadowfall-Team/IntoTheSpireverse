@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -8,7 +7,6 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
@@ -58,7 +56,7 @@ public sealed class SlatePower : ShadowPowerModel
     private decimal GetRiebeckiteBonus()
     {
         var riebeckite = Owner.Powers.OfType<RiebeckitePower>().FirstOrDefault();
-        return riebeckite != null ? (decimal)riebeckite.Amount : 0m;
+        return riebeckite != null ? riebeckite.Amount : 0m;
     }
 
     private bool IsObsidianActive()
