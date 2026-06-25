@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5xigdc6cjxec"
-path="res://.godot/imported/regent_win.png-11e061db64167270d51cd4edccaa2590.ctex"
+path="res://.godot/imported/regent_win.png-7c3f4e004f9939c21adfae7d2a70cd5a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/characters/shadowregent/regent_win.png"
-dest_files=["res://.godot/imported/regent_win.png-11e061db64167270d51cd4edccaa2590.ctex"]
+dest_files=["res://.godot/imported/regent_win.png-7c3f4e004f9939c21adfae7d2a70cd5a.ctex"]
 
 [params]
 

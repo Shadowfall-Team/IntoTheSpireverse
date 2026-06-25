@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlwdwsvtd4v8h"
-path="res://.godot/imported/grapeshot_power.png-45fd034ac75e181c40c0c891772244bc.ctex"
+path="res://.godot/imported/grapeshot_power.png-5de2f0e336e4b55e1730e0dc3ee2d2dc.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/big/grapeshot_power.png"
-dest_files=["res://.godot/imported/grapeshot_power.png-45fd034ac75e181c40c0c891772244bc.ctex"]
+dest_files=["res://.godot/imported/grapeshot_power.png-5de2f0e336e4b55e1730e0dc3ee2d2dc.ctex"]
 
 [params]
 

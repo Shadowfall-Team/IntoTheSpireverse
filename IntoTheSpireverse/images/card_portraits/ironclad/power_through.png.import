@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4oai4ypr2l5j"
-path="res://.godot/imported/power_through.png-0117b972c80afa10da07627122f36a46.ctex"
+path="res://.godot/imported/power_through.png-61246a0937ecad8f91add5b3bfb937c7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/power_through.png"
-dest_files=["res://.godot/imported/power_through.png-0117b972c80afa10da07627122f36a46.ctex"]
+dest_files=["res://.godot/imported/power_through.png-61246a0937ecad8f91add5b3bfb937c7.ctex"]
 
 [params]
 

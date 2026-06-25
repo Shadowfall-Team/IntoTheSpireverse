@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpf3qqy56usxl"
-path="res://.godot/imported/deep_rock.png-6a2f25260fc36abb0f087c81ec0d608f.ctex"
+path="res://.godot/imported/deep_rock.png-9d8b9ef61cced92b5e913eceaaedd6fd.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/big/deep_rock.png"
-dest_files=["res://.godot/imported/deep_rock.png-6a2f25260fc36abb0f087c81ec0d608f.ctex"]
+dest_files=["res://.godot/imported/deep_rock.png-9d8b9ef61cced92b5e913eceaaedd6fd.ctex"]
 
 [params]
 

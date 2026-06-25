@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://o6pa037puub8"
-path="res://.godot/imported/molten_rock.png-c6db7f722f1050eec1452d609484b658.ctex"
+path="res://.godot/imported/molten_rock.png-925e8f36e788b8777fcc36775982ddbb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/big/molten_rock.png"
-dest_files=["res://.godot/imported/molten_rock.png-c6db7f722f1050eec1452d609484b658.ctex"]
+dest_files=["res://.godot/imported/molten_rock.png-925e8f36e788b8777fcc36775982ddbb.ctex"]
 
 [params]
 

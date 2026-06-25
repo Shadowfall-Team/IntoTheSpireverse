@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kfj16yjn0tpg"
-path="res://.godot/imported/character_icon_regent.png-4c71900c861badd9c16d0ef67ce9fbb2.ctex"
+path="res://.godot/imported/character_icon_regent.png-0b37dd654f5d458f9fd5a53b410a13f2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/characters/shadowregent/character_icon_regent.png"
-dest_files=["res://.godot/imported/character_icon_regent.png-4c71900c861badd9c16d0ef67ce9fbb2.ctex"]
+dest_files=["res://.godot/imported/character_icon_regent.png-0b37dd654f5d458f9fd5a53b410a13f2.ctex"]
 
 [params]
 

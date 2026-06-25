@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c62m2iblirwt0"
-path="res://.godot/imported/spiked_rock.png-59ad3b606ad65e5a8699f32ef68d74e2.ctex"
+path="res://.godot/imported/spiked_rock.png-9c79952e50af5fcab60a20499bff7391.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/big/spiked_rock.png"
-dest_files=["res://.godot/imported/spiked_rock.png-59ad3b606ad65e5a8699f32ef68d74e2.ctex"]
+dest_files=["res://.godot/imported/spiked_rock.png-9c79952e50af5fcab60a20499bff7391.ctex"]
 
 [params]
 

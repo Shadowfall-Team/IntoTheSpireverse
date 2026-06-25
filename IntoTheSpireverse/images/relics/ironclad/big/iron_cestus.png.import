@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvyxnd4bba4tn"
-path="res://.godot/imported/iron_cestus.png-2403d4438ab64182d07f4de1adf24eee.ctex"
+path="res://.godot/imported/iron_cestus.png-20793e64206ed99bc95895ebbe0a9f72.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/ironclad/big/iron_cestus.png"
-dest_files=["res://.godot/imported/iron_cestus.png-2403d4438ab64182d07f4de1adf24eee.ctex"]
+dest_files=["res://.godot/imported/iron_cestus.png-20793e64206ed99bc95895ebbe0a9f72.ctex"]
 
 [params]
 

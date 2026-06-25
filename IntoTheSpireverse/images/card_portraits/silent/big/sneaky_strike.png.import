@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uqp82tep6aak"
-path="res://.godot/imported/sneaky_strike.png-8600d35f6a618625676dd5dca07aca8b.ctex"
+path="res://.godot/imported/sneaky_strike.png-a7b710519d7e25261c232086fd14e3b6.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/silent/big/sneaky_strike.png"
-dest_files=["res://.godot/imported/sneaky_strike.png-8600d35f6a618625676dd5dca07aca8b.ctex"]
+dest_files=["res://.godot/imported/sneaky_strike.png-a7b710519d7e25261c232086fd14e3b6.ctex"]
 
 [params]
 

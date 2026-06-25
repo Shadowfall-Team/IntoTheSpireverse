@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lqogfl33m1xt"
-path="res://.godot/imported/trial_of_weaponry_power.png-dc7551fbdb8aeb782261fffcea811f5e.ctex"
+path="res://.godot/imported/trial_of_weaponry_power.png-754b972704dd5c3a68c838413c816f38.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/big/trial_of_weaponry_power.png"
-dest_files=["res://.godot/imported/trial_of_weaponry_power.png-dc7551fbdb8aeb782261fffcea811f5e.ctex"]
+dest_files=["res://.godot/imported/trial_of_weaponry_power.png-754b972704dd5c3a68c838413c816f38.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bskooyaf0djgr"
-path="res://.godot/imported/trip.png-70b247080a61cb9b2d6725cc235ec12c.ctex"
+path="res://.godot/imported/trip.png-c986dcc2cd51afc4e74f7c3952dc2f49.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/regent/trip.png"
-dest_files=["res://.godot/imported/trip.png-70b247080a61cb9b2d6725cc235ec12c.ctex"]
+dest_files=["res://.godot/imported/trip.png-c986dcc2cd51afc4e74f7c3952dc2f49.ctex"]
 
 [params]
 
