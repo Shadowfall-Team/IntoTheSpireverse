@@ -1,10 +1,10 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
 
-namespace Shadowfall.ShadowfallCode.Cards.ShadowNecrobinder;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowNecrobinder;
 
 public sealed class Necronomicon() : ShadowNecrobinderCard(0, CardType.Power, CardRarity.Ancient, TargetType.Self)
 {

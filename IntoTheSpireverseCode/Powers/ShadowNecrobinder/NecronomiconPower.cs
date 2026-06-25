@@ -3,7 +3,7 @@ using BaseLib.Common.Rewards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 
-namespace Shadowfall.ShadowfallCode.Powers.ShadowNecrobinder;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
 public class NecronomiconPower : CustomPowerModel
 {
