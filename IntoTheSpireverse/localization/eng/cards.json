@@ -670,7 +670,7 @@
   "INTOTHESPIREVERSE-CONSTRUCT.title": "Construct",
   "INTOTHESPIREVERSE-ASSEMBLY_REQUIRED.description": "Add a [gold]Fragment[/gold] to each player's [gold]Draw Pile[/gold].{IfUpgraded:show:\nAdd an extra to your own.|}",
   "INTOTHESPIREVERSE-ASSEMBLY_REQUIRED.title": "Assembly Required",
-  "INTOTHESPIREVERSE-FRAGMENT.description": "Everyone gains {ShardsPower:diff()} [gold]Shards[/gold].",
+  "INTOTHESPIREVERSE-FRAGMENT.description": "All players gain {ShardsPower:diff()} [gold]Shards[/gold].",
   "INTOTHESPIREVERSE-FRAGMENT.title": "Fragment",
   "INTOTHESPIREVERSE-GRAPESHOT.description": "Your [gold]Shots[/gold] gain an extra hit that deals 50% damage.",
   "INTOTHESPIREVERSE-GRAPESHOT.title": "Grapeshot",
