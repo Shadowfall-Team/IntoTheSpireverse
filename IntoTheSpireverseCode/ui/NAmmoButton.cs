@@ -39,7 +39,7 @@ public partial class NAmmoButton : NButton
     private bool _initialized;
     private bool _hasEverHadAmmo;
     private readonly List<PlayAmmoCardAction> _playQueue = [];
-    private CardPile? _pile;
+    private AmmoCardPile? _pile;
 
     private Control _shipContainer = null!;
     private ShaderMaterial? _hologramMaterial;
@@ -198,7 +198,8 @@ public partial class NAmmoButton : NButton
     public void Initialize(Player player)
     {
         _player = player;
-        _pile = AmmoCardPile.AmmoPileType.GetPile(player);
+        _pile = (AmmoCardPile) AmmoCardPile.AmmoPileType.GetPile(player);
+        _pile.targetPosition = GetGlobalRect().GetCenter();
         _pile.ContentsChanged += OnPileContentsChanged;
         _energyIcon.Texture = PreloadManager.Cache.GetAsset<Texture2D>(
             EnergyIconHelper.GetPath(_player.Character.CardPool));

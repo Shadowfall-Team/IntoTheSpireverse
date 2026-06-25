@@ -9,15 +9,12 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 public class AmmoCardPile() : CustomPile(AmmoPileType)
 {
     [CustomEnum] public static PileType AmmoPileType;
+    public Vector2 targetPosition;
 
-    public override bool CardShouldBeVisible(CardModel card)
-    {
-        return true;
-    }
+    public override bool CardShouldBeVisible(CardModel card) => false;
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        // TODO: tune position to sit near the ammo button once scene is wired up
-        return new Vector2(1820, 900);
+        return targetPosition;
     }
 }
