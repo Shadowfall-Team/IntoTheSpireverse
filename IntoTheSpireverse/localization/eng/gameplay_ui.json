@@ -1,8 +1,3 @@
 ﻿{
-  "COMBAT_REWARD_CARD_UPGRADE": "Upgrade {cards:plural:a card|{} cards}.",
-  "COMBAT_REWARD_CARD_UPGRADE.selectionScreenPrompt": "Choose a card to upgrade.",
-  "COMBAT_REWARD_RANDOM_CARD_UPGRADE": "Upgrade a random card.",
-  "COMBAT_REWARD_CARD_TRANSFORM": "Transform {Upgrade:and Upgrade |}{cards:plural:a card|{} cards}",
-  "COMBAT_REWARD_CARD_TRANSFORM.selectionScreenPrompt": "Choose {Amount:plural:a card:[blue]{}[/blue] cards} to [gold]Transform[/gold]{Upgrade: and [gold]Upgrade[/gold]|}",
   "INTOTHESPIREVERSE-CARGO_PILE_INFO": "These cards are in your cargo."
 }
