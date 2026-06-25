@@ -1,5 +1,4 @@
 ﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,11 +8,9 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), ITranscendenceCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

@@ -1,12 +1,9 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class BattleShout() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     private const string IncreaseKey = "Increase";

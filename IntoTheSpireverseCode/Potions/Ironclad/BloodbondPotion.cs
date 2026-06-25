@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -7,13 +6,11 @@ using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Potions.Ironclad;
 
-[Pool(typeof(ShadowIroncladPotionPool))]
-public class BloodbondPotion : IntoTheSpireversePotion
+public class BloodbondPotion : ShadowIroncladPotion
 {
     public override PotionRarity Rarity => PotionRarity.Common;
 

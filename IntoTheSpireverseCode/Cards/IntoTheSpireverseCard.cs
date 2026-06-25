@@ -3,6 +3,8 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;

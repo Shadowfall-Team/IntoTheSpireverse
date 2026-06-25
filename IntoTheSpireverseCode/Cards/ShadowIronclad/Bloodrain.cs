@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,12 +10,10 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.TestSupport;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.RandomEnemy)
 {
     private static readonly Color VfxTint = new("c01020");

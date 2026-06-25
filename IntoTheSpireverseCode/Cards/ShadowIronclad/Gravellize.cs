@@ -1,6 +1,4 @@
-﻿using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,7 +7,6 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
