@@ -1,0 +1,54 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=13 format=3]
+
+[ext_resource type="SpineAtlasResource" uid="uid://d5ny3oqeqfir" path="res://IntoTheSpireverse/images/characters/shadowironclad/shadowironclad.spatlas" id="1_2wbon"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://b5ivdtnf4901" path="res://IntoTheSpireverse/images/characters/shadowironclad/ironclad.spskel" id="2_yikhd"]
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_q8rux"]
+from = "idle_loop"
+to = "attack"
+mix = 0.1
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_jxu7e"]
+from = "attack"
+to = "attack"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_tpffi"]
+from = "hurt"
+to = "hurt"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_iet4g"]
+from = "hurt"
+to = "die"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_tcmbt"]
+from = "idle_loop"
+to = "hurt"
+mix = 0.03
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_r7khs"]
+from = "hurt"
+to = "idle_loop"
+mix = 0.1
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_t3n0l"]
+from = "idle_loop"
+to = "attack_heavy"
+mix = 0.02
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_dg8sb"]
+from = "attack_heavy"
+to = "attack_heavy"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_febkg"]
+from = "attack"
+to = "attack_heavy"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_rhmex"]
+from = "attack_heavy"
+to = "attack"
+
+[resource]
+atlas_res = ExtResource("1_2wbon")
+skeleton_file_res = ExtResource("2_yikhd")
+default_mix = 0.05
+animation_mixes = [SubResource("SpineAnimationMix_q8rux"), SubResource("SpineAnimationMix_jxu7e"), SubResource("SpineAnimationMix_tpffi"), SubResource("SpineAnimationMix_iet4g"), SubResource("SpineAnimationMix_tcmbt"), SubResource("SpineAnimationMix_r7khs"), SubResource("SpineAnimationMix_t3n0l"), SubResource("SpineAnimationMix_dg8sb"), SubResource("SpineAnimationMix_febkg"), SubResource("SpineAnimationMix_rhmex")]

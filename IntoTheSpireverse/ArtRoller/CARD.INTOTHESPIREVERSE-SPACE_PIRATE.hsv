@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SPACE_PIRATE",
+  "hue": 0.17,
+  "saturation": 0.86,
+  "value": 0.82,
+  "red": 1.44,
+  "green": 1.16,
+  "blue": 1.22,
+  "contrast": 1.27,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/cloak_of_stars.tres"
+}

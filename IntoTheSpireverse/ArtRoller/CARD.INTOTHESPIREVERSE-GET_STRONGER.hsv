@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-GET_STRONGER",
+  "hue": 0.17,
+  "saturation": 1.56,
+  "value": 1.07,
+  "red": 1.04,
+  "green": 0.67,
+  "blue": 1.34,
+  "contrast": 1.03,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/seeking_edge.tres"
+}

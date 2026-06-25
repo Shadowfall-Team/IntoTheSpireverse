@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-COLD_FRONT",
+  "hue": 0.15,
+  "saturation": 0.83,
+  "value": 1.42,
+  "red": 0.48,
+  "green": 0.94,
+  "blue": 1.21,
+  "contrast": 0.89,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/ice_lance.tres"
+}

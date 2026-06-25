@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-CRYSTAL_CHASSIS",
+  "hue": 0.15,
+  "saturation": 1.37,
+  "value": 0.85,
+  "red": 1.36,
+  "green": 1.39,
+  "blue": 1.26,
+  "contrast": 1.13,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/parry.tres"
+}

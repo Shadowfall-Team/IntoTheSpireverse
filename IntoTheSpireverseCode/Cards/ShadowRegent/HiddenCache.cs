@@ -1,0 +1,50 @@
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+
+public class HiddenCache() : ShadowRegentCard(1,
+    CardType.Skill,
+    CardRarity.Common,
+    TargetType.Self)
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<ShardsPower>(1),
+        new PowerVar<ShardsNextTurnPower>(3)
+    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<ShardsPower>(),
+    ];
+
+    protected override async Task OnPlay(
+        PlayerChoiceContext choiceContext,
+        CardPlay play)
+    {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+            Owner.Character.CastAnimDelay);
+
+        await PowerCmd.Apply<ShardsPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars[nameof(ShardsPower)].BaseValue,
+            Owner.Creature,
+            this);
+
+        await PowerCmd.Apply<ShardsNextTurnPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars[nameof(ShardsNextTurnPower)].BaseValue,
+            Owner.Creature,
+            this);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars[nameof(ShardsNextTurnPower)].UpgradeValueBy(1);
+    }
+}

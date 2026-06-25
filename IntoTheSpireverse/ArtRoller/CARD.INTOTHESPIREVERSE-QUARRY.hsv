@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-QUARRY",
+  "hue": 0.16,
+  "saturation": 1.14,
+  "value": 1.21,
+  "red": 1,
+  "green": 0.65,
+  "blue": 1,
+  "contrast": 1.13,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/whirlwind.tres"
+}

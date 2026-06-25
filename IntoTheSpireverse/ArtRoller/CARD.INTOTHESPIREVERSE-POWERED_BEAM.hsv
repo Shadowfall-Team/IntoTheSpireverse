@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-POWERED_BEAM",
+  "hue": 0.3,
+  "saturation": 0.85,
+  "value": 1.11,
+  "red": 0.87,
+  "green": 1.38,
+  "blue": 1.16,
+  "contrast": 1.22,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/wrought_in_war.tres"
+}

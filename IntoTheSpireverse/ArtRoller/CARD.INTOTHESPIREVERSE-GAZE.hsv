@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-GAZE",
+  "hue": 0.93,
+  "saturation": 1.17,
+  "value": 1.02,
+  "red": 0.96,
+  "green": 0.76,
+  "blue": 1.36,
+  "contrast": 1.06,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/tesla_coil.tres"
+}

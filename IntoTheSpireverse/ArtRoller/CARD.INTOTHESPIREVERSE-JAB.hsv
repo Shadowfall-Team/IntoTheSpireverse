@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-LANDSLIDE",
+  "hue": 0.1,
+  "saturation": 0.8,
+  "value": 1.16,
+  "red": 1.07,
+  "green": 0.89,
+  "blue": 1.67,
+  "contrast": 1.18,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/anger.tres"
+}

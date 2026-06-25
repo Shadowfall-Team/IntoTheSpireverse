@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-RAZE_HELL",
+  "hue": 0.13,
+  "saturation": 0.94,
+  "value": 1.15,
+  "red": 0.98,
+  "green": 1,
+  "blue": 1.52,
+  "contrast": 1.24,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/pommel_strike.tres"
+}
