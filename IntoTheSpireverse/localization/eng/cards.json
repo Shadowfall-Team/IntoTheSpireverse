@@ -537,6 +537,10 @@
   "INTOTHESPIREVERSE-TINTED_ROCK.title": "Tinted Rock",
   "INTOTHESPIREVERSE-TINTED_ROCK.description": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
 
+  "INTOTHESPIREVERSE-STRIKE_CAPTAIN.title": "Strike",
+  "INTOTHESPIREVERSE-STRIKE_CAPTAIN.description": "Deal {Damage:diff()} damage.",
+  "INTOTHESPIREVERSE-DEFEND_CAPTAIN.title": "Defend",
+  "INTOTHESPIREVERSE-DEFEND_CAPTAIN.description": "Gain {Block:diff()} [gold]Block[/gold].",
   "INTOTHESPIREVERSE-LOAD.description": "Load {LoadAmmo:diff()} [gold]Ammo[/gold].",
   "INTOTHESPIREVERSE-LOAD.title": "Load",
   "INTOTHESPIREVERSE-STAR_CHARTS.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut a card from your hand into your [gold]Cargo[/gold].",

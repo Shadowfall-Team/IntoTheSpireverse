@@ -20,8 +20,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
     {
         return
         [
-            ModelDb.Card<StrikeRegent>(),
-            ModelDb.Card<DefendRegent>(),
             ModelDb.Card<Load>(),
             ModelDb.Card<StarCharts>(),
             ModelDb.Card<FutureProofing>(),
