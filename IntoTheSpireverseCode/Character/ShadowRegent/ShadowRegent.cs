@@ -41,14 +41,14 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<StrikeRegent>(),
-        ModelDb.Card<StrikeRegent>(),
-        ModelDb.Card<StrikeRegent>(),
-        ModelDb.Card<StrikeRegent>(),
-        ModelDb.Card<DefendRegent>(),
-        ModelDb.Card<DefendRegent>(),
-        ModelDb.Card<DefendRegent>(),
-        ModelDb.Card<DefendRegent>(),
+        ModelDb.Card<StrikeCaptain>(),
+        ModelDb.Card<StrikeCaptain>(),
+        ModelDb.Card<StrikeCaptain>(),
+        ModelDb.Card<StrikeCaptain>(),
+        ModelDb.Card<DefendCaptain>(),
+        ModelDb.Card<DefendCaptain>(),
+        ModelDb.Card<DefendCaptain>(),
+        ModelDb.Card<DefendCaptain>(),
         ModelDb.Card<StarCharts>(),
         ModelDb.Card<Load>(),
     ];
