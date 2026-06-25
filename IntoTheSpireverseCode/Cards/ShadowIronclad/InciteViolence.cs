@@ -34,6 +34,9 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
+        if (cardPlay.Target?.IsDead != false || cardPlay.Target.Monster == null)
+            return;
+
         InciteViolencePatch.IsIncitedAttack = true;
         var recoilResult = await DamageCmd.Attack(DynamicVars[RecoilKey].BaseValue)
             .FromMonsterSingleTarget(cardPlay.Target.Monster)
