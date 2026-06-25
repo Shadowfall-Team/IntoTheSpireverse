@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -55,12 +54,4 @@ public class EMPulse() : ShadowRegentCard(
     {
         DynamicVars["StrengthLoss"].UpgradeValueBy(2);
     }
-}
-
-
-public class EMPulsePower : TemporaryStrengthPower, ICustomPower
-{
-    public override AbstractModel OriginModel => ModelDb.Card<EMPulse>();
-
-    protected override bool IsPositive => false;
 }

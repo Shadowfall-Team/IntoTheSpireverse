@@ -2,15 +2,13 @@ using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -58,10 +56,4 @@ public class TargetAcquired() : ShadowRegentCard(
     {
         EnergyCost.UpgradeBy(-1);
     }
-}
-
-public class TargetedPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Debuff;
-    public override PowerStackType StackType => PowerStackType.Single;
 }

@@ -1,11 +1,9 @@
 ﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -36,10 +34,4 @@ public class TradeRoutes() : ShadowRegentCard(
     {
         AddKeyword(CardKeyword.Innate);
     }
-}
-
-public class TradeRoutesPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
 }

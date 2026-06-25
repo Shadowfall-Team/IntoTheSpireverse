@@ -39,6 +39,5 @@ public class GatherLight() : ShadowRegentCard(1,
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(3);
-        // DynamicVars[nameof(ShardsPower)].UpgradeValueBy(1);
     }
 }

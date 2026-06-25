@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Potions.ShadowRegent;
 

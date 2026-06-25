@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 

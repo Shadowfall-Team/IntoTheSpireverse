@@ -2,7 +2,7 @@ using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.HoverTips;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.utils;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 public static class LoadAmmoHoverTip
 {

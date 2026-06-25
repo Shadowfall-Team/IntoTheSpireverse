@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 

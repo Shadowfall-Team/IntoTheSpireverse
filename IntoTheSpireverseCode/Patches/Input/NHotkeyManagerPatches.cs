@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using GodotInput = Godot.Input;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
