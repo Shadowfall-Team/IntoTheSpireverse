@@ -16,8 +16,6 @@ public class Banana() : ShadowRegentCard(1,
     CardRarity.Uncommon,
     TargetType.Self)
 {
-    public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
-
     public override bool CanBeGeneratedInCombat => false;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

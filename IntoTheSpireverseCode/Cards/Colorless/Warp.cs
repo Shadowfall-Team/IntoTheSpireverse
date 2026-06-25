@@ -1,6 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,25 +11,17 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
-public class Warp() : CustomCardModel(0,
+public class Warp() : IntoTheSpireverseCard(0,
     CardType.Skill,
     CardRarity.Token,
-    TargetType.Self)
+    TargetType.Self,
+    "regent")
 {
-    public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        
-            // [
-                // new PowerVar<StrengthPower>(
-                    // 0),
-                // new EnergyVar(3)
-            // ]
-            // :
-            [
-                new PowerVar<StrengthPower>(1),
-                new EnergyVar(2)
-            ];
+    [
+        new PowerVar<StrengthPower>(1),
+        new EnergyVar(2)
+    ];
 
     public override void AfterCreated()
     {
