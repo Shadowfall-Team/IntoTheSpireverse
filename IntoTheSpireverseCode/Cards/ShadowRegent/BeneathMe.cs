@@ -18,17 +18,13 @@ public class BeneathMe() : ShadowRegentCard(1,
         new("Increase", 1)
     ];
 
-    private decimal _extraHits;
     private decimal ExtraHits
     {
-        get
-        {
-            return _extraHits;
-        }
+        get;
         set
         {
             AssertMutable();
-            _extraHits = value;
+            field = value;
         }
     }
 

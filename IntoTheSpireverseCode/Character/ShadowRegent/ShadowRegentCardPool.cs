@@ -35,7 +35,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<SpectrumShift>(),
             ModelDb.Card<HeavenlyDrill>(),
             ModelDb.Card<MakeItSo>(),
-            // ModelDb.Card<AstralStrike>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
             ModelDb.Card<MonarchsGaze>(),

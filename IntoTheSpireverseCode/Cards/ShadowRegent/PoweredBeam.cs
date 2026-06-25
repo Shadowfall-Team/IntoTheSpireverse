@@ -1,4 +1,5 @@
 using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Variables;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -20,7 +21,7 @@ public class PoweredBeam() : ShadowRegentCard(1,
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 1),
+        new LoadAmmoVar(1),
         new PowerVar<VigorPower>(2)
     ];
 
@@ -44,7 +45,7 @@ public class PoweredBeam() : ShadowRegentCard(1,
     {
         if (card == this)
         {
-            await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
+            await LoadAmmoCmd.LoadAmmo(DynamicVars[LoadAmmoVar.Key].BaseValue, Owner);
             await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, DynamicVars.Power<VigorPower>().BaseValue,
                 Owner.Creature, this);
         }

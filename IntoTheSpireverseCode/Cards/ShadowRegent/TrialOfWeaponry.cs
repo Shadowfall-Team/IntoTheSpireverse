@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Variables;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
@@ -16,7 +17,7 @@ public class TrialOfWeaponry() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 2)
+        new LoadAmmoVar(2)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -31,13 +32,13 @@ public class TrialOfWeaponry() : ShadowRegentCard(
 
         await PowerCmd.Apply<TrialOfWeaponryPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars["LoadAmmo"].BaseValue,
+            DynamicVars[LoadAmmoVar.Key].BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LoadAmmo"].UpgradeValueBy(1);
+        DynamicVars[LoadAmmoVar.Key].UpgradeValueBy(1);
     }
 }

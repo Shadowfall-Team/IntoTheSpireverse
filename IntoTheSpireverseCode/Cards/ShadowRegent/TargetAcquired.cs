@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Variables;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
@@ -21,7 +22,7 @@ public class TargetAcquired() : ShadowRegentCard(
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(1M, ValueProp.Move),
-        new IntVar("LoadAmmo", 1)
+        new LoadAmmoVar(1)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -49,7 +50,7 @@ public class TargetAcquired() : ShadowRegentCard(
             Owner.Creature,
             this);
 
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars[LoadAmmoVar.Key].BaseValue, Owner);
     }
 
     protected override void OnUpgrade()

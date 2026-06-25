@@ -1,3 +1,4 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Variables;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,7 +17,7 @@ public class FireEverything() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 3)
+        new LoadAmmoVar(3)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -29,7 +30,7 @@ public class FireEverything() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars[LoadAmmoVar.Key].BaseValue, Owner);
 
         await PowerCmd.Apply<FireEverythingPower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,
@@ -38,6 +39,6 @@ public class FireEverything() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LoadAmmo"].UpgradeValueBy(1);
+        DynamicVars[LoadAmmoVar.Key].UpgradeValueBy(1);
     }
 }
