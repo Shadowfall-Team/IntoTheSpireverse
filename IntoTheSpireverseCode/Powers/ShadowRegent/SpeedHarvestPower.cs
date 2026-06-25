@@ -1,13 +1,11 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
 public class SpeedHarvestPower : ShadowPowerModel
 {

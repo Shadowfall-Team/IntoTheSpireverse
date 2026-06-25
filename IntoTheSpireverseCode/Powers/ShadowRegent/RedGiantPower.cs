@@ -1,9 +1,8 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Rewards;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Rewards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
 public class RedGiantPower : ShadowPowerModel
 {

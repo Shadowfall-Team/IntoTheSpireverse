@@ -1,7 +1,6 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using MegaCrit.Sts2.Core.Entities.Powers;
+﻿using MegaCrit.Sts2.Core.Entities.Powers;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
 public class TradeRoutesPower : ShadowPowerModel
 {

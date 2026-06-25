@@ -1,12 +1,11 @@
 ﻿using BaseLib.Abstracts;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
 public class BigGunsPower : ShadowPowerModel, IHasSecondAmount
 {

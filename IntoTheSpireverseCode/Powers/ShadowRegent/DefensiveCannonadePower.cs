@@ -1,13 +1,12 @@
 ﻿using BaseLib.Abstracts;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
 public class DefensiveCannonadePower : ShadowPowerModel, IHasSecondAmount, IAmmoFiredListener
 {

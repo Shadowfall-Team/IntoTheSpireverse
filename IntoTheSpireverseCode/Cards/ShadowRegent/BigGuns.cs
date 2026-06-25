@@ -1,3 +1,4 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,7 +16,7 @@ public class BigGuns() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("BigGuns", 2),
+        new PowerVar<BigGunsPower>(2),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => LoadAmmoHoverTip.FromLoadAmmo();
@@ -29,13 +30,13 @@ public class BigGuns() : ShadowRegentCard(
 
         await PowerCmd.Apply<BigGunsPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars["BigGuns"].BaseValue,
+            DynamicVars[nameof(BigGunsPower)].BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["BigGuns"].UpgradeValueBy(1);
+        DynamicVars[nameof(BigGunsPower)].UpgradeValueBy(1);
     }
 }
