@@ -666,7 +666,7 @@
   "INTOTHESPIREVERSE-BIG_GUNS.title": "Big Guns",
   "INTOTHESPIREVERSE-TRIAL_OF_ONE.description": "The next time you spend 5{energyPrefix:energyIcons(1)} in a single turn,\ngain {StrengthPower:diff()} [gold]Strength[/gold] and 1 [gold]Intangible[/gold].",
   "INTOTHESPIREVERSE-TRIAL_OF_ONE.title": "Trial of One",
-  "INTOTHESPIREVERSE-CONSTRUCT.description": "At the start of your turn, gain {ShardsEachTurnPower:diff()} [gold]ShardsEachTurnPower:plural:Shard|Shards[/gold].",
+  "INTOTHESPIREVERSE-CONSTRUCT.description": "At the start of your turn, gain {ShardsEachTurnPower:diff()} [gold]{ShardsEachTurnPower:plural:Shard|Shards}[/gold].",
   "INTOTHESPIREVERSE-CONSTRUCT.title": "Construct",
   "INTOTHESPIREVERSE-ASSEMBLY_REQUIRED.description": "Add a [gold]Fragment[/gold] to each player's [gold]Draw Pile[/gold].{IfUpgraded:show:\nAdd an extra to your own.|}",
   "INTOTHESPIREVERSE-ASSEMBLY_REQUIRED.title": "Assembly Required",
