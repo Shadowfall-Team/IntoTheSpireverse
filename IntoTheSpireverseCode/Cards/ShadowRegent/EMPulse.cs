@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
+//TODO: check refactor for temporary strength loss
 public class EMPulse() : ShadowRegentCard(
     2,
     CardType.Skill,
@@ -29,7 +30,7 @@ public class EMPulse() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);

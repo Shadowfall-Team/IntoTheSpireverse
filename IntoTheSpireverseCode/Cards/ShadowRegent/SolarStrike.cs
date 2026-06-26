@@ -19,24 +19,27 @@ public class SolarStrike() : ShadowRegentCard(1,
         new PowerVar<ShardsPower>(1)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<ShardsPower>()
     ];
-    
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .Targeting(play.Target)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        
+
         await PowerCmd.Apply<ShardsPower>(
             new ThrowingPlayerChoiceContext(),
-            Owner.Creature,DynamicVars[nameof(ShardsPower)].BaseValue, 
-            Owner.Creature, 
+            Owner.Creature, DynamicVars[nameof(ShardsPower)].BaseValue,
+            Owner.Creature,
             this);
     }
 

@@ -19,7 +19,7 @@ public class TradeRoutes() : ShadowRegentCard(
     
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await PowerCmd.Apply<TradeRoutesPower>(
             new ThrowingPlayerChoiceContext(),

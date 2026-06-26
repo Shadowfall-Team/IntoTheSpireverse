@@ -21,21 +21,24 @@ public class Misdirection() : ShadowRegentCard(
     [
         new DamageVar(8, ValueProp.Move)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .Targeting(play.Target)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        
+
         var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner)
             .Cards.OrderBy(c => c.Rarity)
             .ThenBy(c => c.Id).ToList();
@@ -45,7 +48,7 @@ public class Misdirection() : ShadowRegentCard(
 
         if (selection == null) return;
         await CardPileCmd.Add(selection, PileType.Hand);
-        await Hook.AfterCardDrawn(CombatState, choiceContext, selection, false);
+        await Hook.AfterCardDrawn(CombatState!, choiceContext, selection, false);
     }
 
     protected override void OnUpgrade()

@@ -23,8 +23,10 @@ public class Trip() : IntoTheSpireverseCard(0,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         if (CombatState == null) return;
         if (IsUpgraded)
         {
@@ -37,7 +39,7 @@ public class Trip() : IntoTheSpireverseCard(0,
         {
             await PowerCmd.Apply<VulnerablePower>(
                 new ThrowingPlayerChoiceContext(),
-                play.Target,
+                cardPlay.Target,
                 DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
         }
     }

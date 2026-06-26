@@ -27,11 +27,10 @@ public class IllicitMunitions() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState == null) return;
 
-        var volleyCard = CombatState.CreateCard<Volley>(Owner);
+        var volleyCard = CombatState!.CreateCard<Volley>(Owner);
         volleyCard.AddKeyword(CardKeyword.Retain);
 
         var salvoCard = CombatState.CreateCard<Salvo>(Owner);

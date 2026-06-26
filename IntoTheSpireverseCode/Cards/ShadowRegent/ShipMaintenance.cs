@@ -13,8 +13,9 @@ public class ShipMaintenance() : ShadowRegentCard(
     TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Automation>(),
         HoverTipFactory.FromCard<Prowess>(),
         HoverTipFactory.FromCard<Stratagem>(),
@@ -23,22 +24,19 @@ public class ShipMaintenance() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        if (CombatState != null)
-        {
-            var automation = CombatState.CreateCard<Automation>(Owner);
-            automation.AddKeyword(CardKeyword.Ethereal);
-            var prowess = CombatState.CreateCard<Prowess>(Owner);
-            prowess.AddKeyword(CardKeyword.Ethereal);
-            var stratagem = CombatState.CreateCard<Stratagem>(Owner);
-            stratagem.AddKeyword(CardKeyword.Ethereal);
+        var automation = CombatState!.CreateCard<Automation>(Owner);
+        automation.AddKeyword(CardKeyword.Ethereal);
+        var prowess = CombatState.CreateCard<Prowess>(Owner);
+        prowess.AddKeyword(CardKeyword.Ethereal);
+        var stratagem = CombatState.CreateCard<Stratagem>(Owner);
+        stratagem.AddKeyword(CardKeyword.Ethereal);
 
-            await CardPileCmd.AddGeneratedCardsToCombat([automation, prowess, stratagem], PileType.Hand, Owner);
-        }
+        await CardPileCmd.AddGeneratedCardsToCombat([automation, prowess, stratagem], PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()

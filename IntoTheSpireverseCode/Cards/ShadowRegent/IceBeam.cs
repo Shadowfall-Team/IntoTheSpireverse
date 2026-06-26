@@ -18,26 +18,27 @@ public class IceBeam() : ShadowRegentCard(1,
         new PowerVar<WeakPower>(1),
         new("StrengthLoss", 2)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<WeakPower>(),
         HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState == null) return;
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        
+
         await PowerCmd.Apply<WeakPower>(
-            new ThrowingPlayerChoiceContext(),play.Target, DynamicVars.Weak.BaseValue,
+            new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars.Weak.BaseValue,
             Owner.Creature, this);
 
         await PowerCmd.Apply<IceBeamPower>(
-            new ThrowingPlayerChoiceContext(),play.Target,
+            new ThrowingPlayerChoiceContext(), cardPlay.Target,
             DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
     }
 

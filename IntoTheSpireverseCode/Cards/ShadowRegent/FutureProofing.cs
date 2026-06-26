@@ -18,26 +18,25 @@ public class FutureProofing() : ShadowRegentCard(1, CardType.Attack, CardRarity.
     [
         new DamageVar(7, ValueProp.Move),
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
     {
-        if (CombatState == null) return;
-
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .TargetingAllOpponents(CombatState)
+            .TargetingAllOpponents(CombatState!)
             .WithHitFx("vfx/vfx_starry_impact")
             .Execute(choiceContext);
 
-        IEnumerable<CardModel> card = CargoCardPile.CargoPileType.GetPile(Owner)
+        var card = CargoCardPile.CargoPileType.GetPile(Owner)
             .Cards.Where(c => c.IsUpgradable)
             .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection);
-        foreach (CardModel cardModel in card)
+        foreach (var cardModel in card)
         {
             CardCmd.Upgrade(cardModel);
             CardCmd.Preview(cardModel);

@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class GuidingShot(): ShadowRegentCard(1,
+public class GuidingShot() : ShadowRegentCard(1,
     CardType.Attack,
     CardRarity.Common,
     TargetType.AnyEnemy)
@@ -19,8 +19,9 @@ public class GuidingShot(): ShadowRegentCard(1,
         new DamageVar(6, ValueProp.Move),
         new PowerVar<VulnerablePower>(1)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<VulnerablePower>(),
     ];
 
@@ -29,26 +30,25 @@ public class GuidingShot(): ShadowRegentCard(1,
     {
         if (card == this)
         {
-            if (CombatState == null) return;
-                
-            var creature = Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
+            var creature = Owner.RunState.Rng.CombatTargets.NextItem(CombatState!.HittableEnemies);
             if (creature != null)
             {
                 await Cmd.Wait(0.25f);
-                await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
+                await PowerCmd.Apply<VulnerablePower>(new ThrowingPlayerChoiceContext(), creature,
+                    DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
             }
         }
     }
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState == null) return;
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .Targeting(play.Target)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
     }

@@ -14,16 +14,18 @@ public class RoyalCloak() : ShadowRegentCard(2,
 {
     public override bool GainsBlock => false;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new BlockVar(1, ValueProp.Unpowered)
     ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<RoyalCloakPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Block.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<RoyalCloakPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+            DynamicVars.Block.BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

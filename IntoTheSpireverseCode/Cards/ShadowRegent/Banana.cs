@@ -30,7 +30,7 @@ public class Banana() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
@@ -43,7 +43,7 @@ public class Banana() : ShadowRegentCard(1,
             Owner.Creature,
             this);
 
-        var tripCard = CombatState.CreateCard<Trip>(Owner);
+        var tripCard = CombatState!.CreateCard<Trip>(Owner);
         var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(tripCard, CargoCardPile.CargoPileType, Owner);
         CardCmd.PreviewCardPileAdd(cardAdd);
     }

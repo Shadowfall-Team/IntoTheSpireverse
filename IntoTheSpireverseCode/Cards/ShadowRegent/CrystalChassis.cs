@@ -28,7 +28,7 @@ public class CrystalChassis() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         //TODO: currently this uses fastenpower, do you want this to be its own power with its own icon?
         await PowerCmd.Apply<FastenPower>(
@@ -37,7 +37,7 @@ public class CrystalChassis() : ShadowRegentCard(
             Owner.Creature,
             this);
 
-        var ultimateDefend = CombatState.CreateCard<UltimateDefend>(Owner);
+        var ultimateDefend = CombatState!.CreateCard<UltimateDefend>(Owner);
         if (IsUpgraded)
         {
             CardCmd.Upgrade(ultimateDefend);

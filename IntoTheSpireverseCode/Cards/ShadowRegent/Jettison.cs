@@ -25,8 +25,10 @@ public class Jettison() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         var cargoedCards = (await CardSelectCmd.FromHand(choiceContext, Owner,
             new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 0, 999999),
             null,
@@ -39,7 +41,7 @@ public class Jettison() : ShadowRegentCard(1,
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .WithHitCount(cargoedCards.Count)
                 .FromCard(this)
-                .Targeting(play.Target)
+                .Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_starry_impact", null, "slash_attack.mp3")
                 .Execute(choiceContext);
         }

@@ -11,44 +11,44 @@ public class Strongarm() : ShadowRegentCard(3,
     CardRarity.Uncommon,
     TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(26, ValueProp.Move),
         new("Increase", 14)
     ];
-    
-    private decimal _extraDamage;
+
     private decimal ExtraDamage
     {
-        get
-        {
-            return _extraDamage;
-        }
+        get;
         set
         {
             AssertMutable();
-            _extraDamage = value;
+            field = value;
         }
     }
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .Targeting(play.Target)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-        
+
         DynamicVars.Damage.BaseValue += DynamicVars["Increase"].BaseValue;
         ExtraDamage += DynamicVars["Increase"].BaseValue;
     }
-    
+
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
         DynamicVars.Damage.BaseValue += ExtraDamage;
     }
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(4);

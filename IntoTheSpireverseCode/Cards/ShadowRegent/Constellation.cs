@@ -26,9 +26,9 @@ public class Constellation() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         var drawPile = PileType.Draw.GetPile(Owner)
             .Cards.OrderBy(c => c.Rarity)

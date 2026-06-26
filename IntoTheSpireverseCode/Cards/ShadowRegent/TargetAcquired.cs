@@ -27,23 +27,25 @@ public class TargetAcquired() : ShadowRegentCard(
     [
         CardKeyword.Retain
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         LoadAmmoHoverTip.FromLoadAmmo();
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .Targeting(play.Target)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        
+
         await PowerCmd.Apply<TargetedPower>(
             new ThrowingPlayerChoiceContext(),
-            play.Target,
+            cardPlay.Target,
             1,
             Owner.Creature,
             this);

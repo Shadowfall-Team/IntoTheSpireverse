@@ -27,10 +27,8 @@ public class Charter() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState == null) return;
-
         await CardPileCmd.AddToCombatAndPreview<MinionStrike>(Owner.Creature,
             CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, Owner);
     }
