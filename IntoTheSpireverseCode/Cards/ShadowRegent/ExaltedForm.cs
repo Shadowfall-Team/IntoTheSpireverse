@@ -1,12 +1,9 @@
-﻿using BaseLib.Abstracts;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -24,7 +21,7 @@ public class ExaltedForm() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
@@ -39,24 +36,5 @@ public class ExaltedForm() : ShadowRegentCard(
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Ethereal);
-    }
-}
-
-public class ExaltedFormPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext,
-        Player player)
-    {
-        if (Owner.Player == null || player != Owner.Player) return;
-
-        for (var i = 0; i < Amount; i++)
-        {
-            var discovery = CombatState.CreateCard<Discovery>(Owner.Player);
-            discovery.SetToFreeThisCombat();
-            await CardPileCmd.AddGeneratedCardToCombat(discovery, PileType.Hand, Owner.Player);
-        }
     }
 }

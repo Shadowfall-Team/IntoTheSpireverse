@@ -1,7 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
@@ -14,9 +13,9 @@ public static class CycleCmd
         if (amount <= 0) return;
         var hand = PileType.Hand.GetPile(player);
 
-        List<CardModel> cardsToDiscard = new (); 
+        List<CardModel> cardsToDiscard = []; 
         
-        for (int i = 0; i < amount; i++)
+        for (var i = 0; i < amount; i++)
         {
             if (i >= hand.Cards.Count) break;
             var leftmost = hand.Cards[i];

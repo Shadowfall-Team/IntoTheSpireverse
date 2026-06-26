@@ -2,7 +2,7 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
@@ -10,7 +10,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
 [Pool(typeof(ShadowIroncladRelicPool))]
 public abstract class ShadowIroncladRelic : CustomRelicModel
 {
-     public override string PackedIconPath
+    public override string PackedIconPath
     {
         get
         {

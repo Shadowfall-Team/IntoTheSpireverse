@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsqhs0fohm3g8"
-path="res://.godot/imported/banana.png-df68013229f23b40ea5e6b01bbbd044f.ctex"
+path="res://.godot/imported/banana.png-74697a1ee982ab2d7ca6b50947679192.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/regent/big/banana.png"
-dest_files=["res://.godot/imported/banana.png-df68013229f23b40ea5e6b01bbbd044f.ctex"]
+dest_files=["res://.godot/imported/banana.png-74697a1ee982ab2d7ca6b50947679192.ctex"]
 
 [params]
 

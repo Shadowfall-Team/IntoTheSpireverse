@@ -1,13 +1,10 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Titanic() : ShadowIroncladCard(3, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     
@@ -21,7 +18,7 @@ public sealed class Titanic() : ShadowIroncladCard(3, CardType.Power, CardRarity
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await CreatureCmd.GainMaxHp(Owner.Creature, (decimal)DynamicVars.MaxHp.IntValue);
+        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.IntValue);
     }
 
     protected override void OnUpgrade() => DynamicVars.MaxHp.UpgradeValueBy(1m);

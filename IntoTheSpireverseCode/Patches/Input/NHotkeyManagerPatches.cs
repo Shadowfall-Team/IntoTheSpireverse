@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using GodotInput = Godot.Input;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
@@ -65,7 +65,7 @@ public static class NHotkeyManagerPatches
         {
             _comboConsumedLeftTrigger = true;
 
-            var localCreature = LocalContext.GetMe(RunManager.Instance.State.Players).Creature;
+            var localCreature = LocalContext.GetMe(RunManager.Instance.State?.Players ?? throw new Exception("Cannot find player"))?.Creature;
             var ammoButton = NCombatRoom.Instance?.GetCreatureNode(localCreature)
                 ?.GetNodeOrNull<NAmmoButton>("AmmoButton");
             if (ammoButton != null && ammoButton.IsVisibleInTree())

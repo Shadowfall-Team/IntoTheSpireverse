@@ -35,9 +35,9 @@ public class StarCharts() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         var fromHandCard = await CardSelectCmd.FromHand(choiceContext, Owner,
             new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 1), null,
             this);

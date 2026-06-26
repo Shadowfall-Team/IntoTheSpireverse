@@ -1,8 +1,5 @@
 using HarmonyLib;
 using Godot;
-using System;
-using System.Linq;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Nodes;
@@ -11,7 +8,6 @@ using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
 namespace IntoTheSpireverse.Patches;
 

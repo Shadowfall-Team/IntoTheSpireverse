@@ -1,6 +1,4 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
-using Godot;
+﻿using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,12 +9,10 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.TestSupport;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -25,7 +21,7 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
         new CardsVar(1),
     ];
     
-    private static readonly Color VfxTint = new Color("c01020");
+    private static readonly Color VfxTint = new("c01020");
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -51,14 +47,14 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
                 var targetNode = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
                 if (targetNode != null)
                 {
-                    NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
+                    NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
                         NGaseousImpactVfx.Create(targetNode.VfxSpawnPosition, VfxTint));
                 }
             }
 
             await PowerCmd.Apply<BloodbondPower>(
                 new ThrowingPlayerChoiceContext(),
-                cardPlay.Target, (decimal)totalDamage,
+                cardPlay.Target, totalDamage,
                 Owner.Creature, this);
         }
 

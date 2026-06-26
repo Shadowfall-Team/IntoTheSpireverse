@@ -19,20 +19,18 @@ public class FillTheTank() : ShadowRegentCard(1,
         new CardsVar(2)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
         HoverTipFactory.FromCard<Fuel>()
     ];
-    
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState != null)
-        {
-            await CardPileCmd.AddToCombatAndPreview<Fuel>(Owner.Creature,
-                CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, Owner);
-        }
+        await CardPileCmd.AddToCombatAndPreview<Fuel>(Owner.Creature,
+            CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, Owner);
     }
 
     protected override void OnUpgrade()

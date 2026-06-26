@@ -1,13 +1,10 @@
-﻿using BaseLib.Abstracts;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -29,7 +26,7 @@ public class Armada() : ShadowRegentCard(
 
         if (IsUpgraded)
         {
-            await LoadAmmoCmd.LoadAmmo(1, Owner, this);
+            await LoadAmmoCmd.LoadAmmo(1, Owner);
         }
 
         await PowerCmd.Apply<ArmadaPower>(new ThrowingPlayerChoiceContext(),
@@ -37,18 +34,5 @@ public class Armada() : ShadowRegentCard(
             1,
             Owner.Creature,
             this);
-    }
-}
-
-public class ArmadaPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-    {
-        if (player != Owner.Player) return;
-        await LoadAmmoCmd.LoadAmmo(Amount, Owner.Player, this);
     }
 }

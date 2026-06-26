@@ -20,11 +20,11 @@ public class ReinforcedBody() : ShadowRegentCard(0,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         for (var i = 0; i < ResolveEnergyXValue(); i++)
         {
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             await Cmd.Wait(0.1f);
         }
     }

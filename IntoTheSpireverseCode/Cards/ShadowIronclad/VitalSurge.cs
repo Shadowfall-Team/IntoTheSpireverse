@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Combat;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,11 +6,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const string CalculatedHealKey = "CalculatedHeal";
@@ -32,7 +29,11 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
 
     private static decimal GetHpLostThisTurn(CardModel card)
     {
-        if (card.Owner?.Creature == null || card.CombatState == null) return 0m;
+        if (card.Owner?.Creature == null || card.CombatState == null)
+        {
+            return 0m;
+        }
+
         return CombatManager.Instance.History.Entries
             .OfType<DamageReceivedEntry>()
             .Where(e => e.HappenedThisTurn(card.CombatState)
@@ -44,9 +45,11 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-        decimal heal = ((CalculatedVar)DynamicVars[CalculatedHealKey]).Calculate(null);
+        var heal = ((CalculatedVar)DynamicVars[CalculatedHealKey]).Calculate(null);
         if (heal > 0)
+        {
             await CreatureCmd.Heal(Owner.Creature, (int)heal);
+        }
     }
 
     protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);

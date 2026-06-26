@@ -4,8 +4,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Variables;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -16,7 +17,7 @@ public class Reload() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 1),
+        new LoadAmmoVar(1),
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
         new CalculatedVar("AttacksPlayed").WithMultiplier((card, _) =>
@@ -30,13 +31,14 @@ public class Reload() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        var ammoToLoad = (int)DynamicVars["LoadAmmo"].BaseValue + ((CalculatedVar)DynamicVars["AttacksPlayed"]).Calculate(play.Target);
-        await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner, this);
+        var ammoToLoad = (int)DynamicVars[LoadAmmoVar.Key].BaseValue +
+                         ((CalculatedVar)DynamicVars["AttacksPlayed"]).Calculate(cardPlay.Target);
+        await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner);
     }
 
     protected override void OnUpgrade()

@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -29,7 +28,7 @@ public sealed class PebbleflingerPower : ShadowPowerModel
         if (data.skillsPlayed % 3 == 0)
         {
             Flash();
-            var rock = Owner.CombatState.CreateCard<SmallRock>(Owner.Player);
+            var rock = Owner.CombatState!.CreateCard<SmallRock>(Owner.Player);
             await CardPileCmd.AddGeneratedCardsToCombat([rock], PileType.Hand, Owner.Player);
         }
         InvokeDisplayAmountChanged();

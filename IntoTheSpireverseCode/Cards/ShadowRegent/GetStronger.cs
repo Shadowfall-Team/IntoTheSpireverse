@@ -22,7 +22,7 @@ public class GetStronger() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         var powerAmount = ResolveEnergyXValue();
         if (IsUpgraded)

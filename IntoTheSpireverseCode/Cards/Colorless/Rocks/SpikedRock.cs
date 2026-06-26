@@ -18,7 +18,7 @@ public sealed class SpikedRock() : RockCardBase(0, CardType.Attack, CardRarity.T
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(4m, ValueProp.Move),
-        new DynamicVar(RetaliationKey, 4m),
+        new(RetaliationKey, 4m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

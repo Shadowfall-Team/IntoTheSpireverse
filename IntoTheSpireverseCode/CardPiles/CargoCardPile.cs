@@ -18,12 +18,12 @@ public class CargoCardPile() : CustomPile(CargoPileType)
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        return new Vector2(75, 765); // Cargo pile position
+        return new Vector2(75, 765);
     }
 }
 
 public struct CargoSelectorPrefs
 {
-    public static LocString ToCargoSelectionPrompt => new LocString("card_selection", "INTOTHESPIREVERSE-TO_CARGO");
-    public static LocString FromCargoSelectionPrompt => new LocString("card_selection", "INTOTHESPIREVERSE-FROM_CARGO");
+    public static LocString ToCargoSelectionPrompt => new("card_selection", "INTOTHESPIREVERSE-TO_CARGO");
+    public static LocString FromCargoSelectionPrompt => new("card_selection", "INTOTHESPIREVERSE-FROM_CARGO");
 }

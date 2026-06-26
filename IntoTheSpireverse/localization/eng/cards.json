@@ -662,7 +662,7 @@
   "INTOTHESPIREVERSE-SPEED_HARVEST.title": "Speed Harvest",
   "INTOTHESPIREVERSE-TRIAL_OF_SPACE.description": "The next time you play a total of 15 cards, [gold]Upgrade[/gold] ALL of your cards.",
   "INTOTHESPIREVERSE-TRIAL_OF_SPACE.title": "Trial of Space",
-  "INTOTHESPIREVERSE-BIG_GUNS.description": "Your [gold]Shots[/gold] now deals damage to ALL enemies.\nEvery 10{energyPrefix:energyIcons(1)} you spend, Load {BigGuns:diff()} [gold]Ammo[/gold].",
+  "INTOTHESPIREVERSE-BIG_GUNS.description": "Your [gold]Shots[/gold] now deals damage to ALL enemies.\nEvery 10{energyPrefix:energyIcons(1)} you spend, Load {BigGunsPower:diff()} [gold]Ammo[/gold].",
   "INTOTHESPIREVERSE-BIG_GUNS.title": "Big Guns",
   "INTOTHESPIREVERSE-TRIAL_OF_ONE.description": "The next time you spend 5{energyPrefix:energyIcons(1)} in a single turn,\ngain {StrengthPower:diff()} [gold]Strength[/gold] and 1 [gold]Intangible[/gold].",
   "INTOTHESPIREVERSE-TRIAL_OF_ONE.title": "Trial of One",

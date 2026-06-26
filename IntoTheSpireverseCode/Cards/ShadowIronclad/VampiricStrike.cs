@@ -1,24 +1,21 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class VampiricStrike() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const string HpThresholdKey = "HpThreshold";
 
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8m, ValueProp.Move),
         new HealVar(3m),
-        new DynamicVar(HpThresholdKey, 50m)
+        new(HpThresholdKey, 50m)
     ];
 
     protected override bool ShouldGlowGoldInternal => IsAtOrBelowHalfHp;
@@ -34,7 +31,9 @@ public sealed class VampiricStrike() : ShadowIroncladCard(2, CardType.Attack, Ca
             .Execute(choiceContext);
 
         if (IsAtOrBelowHalfHp)
+        {
             await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
+        }
     }
 
     protected override void OnUpgrade()

@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -19,8 +18,9 @@ public class FirstOfficer() : ShadowRegentCard(0,
         CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         IsUpgraded ? HoverTipFactory.FromCard<Coordinate>(true) : HoverTipFactory.FromCard<Coordinate>(),
         IsUpgraded ? HoverTipFactory.FromCard<BelieveInYou>(true) : HoverTipFactory.FromCard<BelieveInYou>(),
         IsUpgraded ? HoverTipFactory.FromCard<Lift>(true) : HoverTipFactory.FromCard<Lift>(),
@@ -29,15 +29,17 @@ public class FirstOfficer() : ShadowRegentCard(0,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target?.Player);
+
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        if (play.Target != null)
+        if (cardPlay.Target != null)
         {
-            var cardModel = CardFactory.GetDistinctForCombat(play.Target.Player,
+            var cardModel = CardFactory.GetDistinctForCombat(cardPlay.Target.Player,
                 [
-                    ModelDb.Card<Coordinate>(), 
+                    ModelDb.Card<Coordinate>(),
                     ModelDb.Card<BelieveInYou>(),
                     ModelDb.Card<Lift>()
                 ],

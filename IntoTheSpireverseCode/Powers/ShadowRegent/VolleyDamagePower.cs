@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Entities.Powers;
+﻿using MegaCrit.Sts2.Core.Entities.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 

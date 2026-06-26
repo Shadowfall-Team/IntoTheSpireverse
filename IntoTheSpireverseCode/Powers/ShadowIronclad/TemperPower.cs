@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,6 +19,6 @@ public sealed class TemperPower : ShadowPowerModel
     {
         if (cardPlay.Card.Owner != Owner.Player || cardPlay.Card.Type != CardType.Skill) return;
         Flash();
-        await PowerCmd.Apply<RetaliationPower>(new ThrowingPlayerChoiceContext(), Owner, (decimal)Amount, Owner, null);
+        await PowerCmd.Apply<RetaliationPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
     }
 }

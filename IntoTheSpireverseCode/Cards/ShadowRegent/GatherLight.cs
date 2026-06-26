@@ -25,9 +25,9 @@ public class GatherLight() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         await PowerCmd.Apply<ShardsPower>(
             new ThrowingPlayerChoiceContext(),
@@ -39,6 +39,5 @@ public class GatherLight() : ShadowRegentCard(1,
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(3);
-        // DynamicVars[nameof(ShardsPower)].UpgradeValueBy(1);
     }
 }

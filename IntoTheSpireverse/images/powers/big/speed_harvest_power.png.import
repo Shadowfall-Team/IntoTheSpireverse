@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://von67lixdyjv"
-path="res://.godot/imported/speed_harvest_power.png-da0b6f0dca48d798b13a476d7d12f1af.ctex"
+path="res://.godot/imported/speed_harvest_power.png-622c41c33bca99cff80dd78f2c70309b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/big/speed_harvest_power.png"
-dest_files=["res://.godot/imported/speed_harvest_power.png-da0b6f0dca48d798b13a476d7d12f1af.ctex"]
+dest_files=["res://.godot/imported/speed_harvest_power.png-622c41c33bca99cff80dd78f2c70309b.ctex"]
 
 [params]
 

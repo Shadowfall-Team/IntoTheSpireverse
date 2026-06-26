@@ -22,14 +22,14 @@ public class MirrorImage() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         if (PileType.Hand.GetPile(Owner).Cards.Count + 1 >= DynamicVars["BlockThreshold"].IntValue)
         {
             await Cmd.Wait(0.25f);
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         }
     }
 

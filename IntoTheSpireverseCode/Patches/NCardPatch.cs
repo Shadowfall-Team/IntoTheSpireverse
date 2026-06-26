@@ -1,10 +1,7 @@
-using BaseLib.Utils;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Logging;
-using IntoTheSpireverse;
 
 namespace IntoTheSpireverse.Patches;
 

@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
@@ -46,6 +46,6 @@ public static class NCombatUiActivatePatch
         var container = __instance.GetNode<NCombatPilesContainer>("%CombatPileContainer");
         var cargoPile = container.GetNodeOrNull<NCargoPile>("_CargoPile");
         var player = LocalContext.GetMe(state);
-        cargoPile?.Initialize(player);
+        cargoPile?.Initialize(player ?? throw new Exception("Can't find player"));
     }
 }

@@ -17,7 +17,6 @@ public class AmmoCardPile() : CustomPile(AmmoPileType)
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
-        // TODO: tune position to sit near the ammo button once scene is wired up
         return new Vector2(1820, 900);
     }
 }

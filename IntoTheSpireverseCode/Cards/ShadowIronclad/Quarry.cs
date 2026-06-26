@@ -1,15 +1,12 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Quarry() : ShadowIroncladCard(-1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override bool HasEnergyCostX => true;
@@ -24,13 +21,17 @@ public sealed class Quarry() : ShadowIroncladCard(-1, CardType.Skill, CardRarity
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         var count = ResolveEnergyXValue() + 1;
-        var rocks = new CardModel[count];
+        var rocks = new List<CardModel>(count);
 
         for (var i = 0; i < count; i++)
         {
-            rocks[i] = CombatState.CreateCard<SmallRock>(Owner);
+            var rock = CombatState!.CreateCard<SmallRock>(Owner);
             if (IsUpgraded)
-                CardCmd.Upgrade(rocks[i]);
+            {
+                CardCmd.Upgrade(rock);
+            }
+
+            rocks.Add(rock);
         }
 
         await CardPileCmd.AddGeneratedCardsToCombat(rocks, PileType.Hand, Owner);

@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -8,10 +7,8 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 
 [Pool(typeof(TokenCardPool))]
 public sealed class GhostRock() : RockCardBase(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)

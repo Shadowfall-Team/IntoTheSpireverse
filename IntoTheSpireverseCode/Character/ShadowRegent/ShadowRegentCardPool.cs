@@ -1,11 +1,10 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
-using Supermassive = IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent.Supermassive;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
 public class ShadowRegentCardPool : CustomCardPoolModel
 {
@@ -35,7 +34,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<SpectrumShift>(),
             ModelDb.Card<HeavenlyDrill>(),
             ModelDb.Card<MakeItSo>(),
-            // ModelDb.Card<AstralStrike>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
             ModelDb.Card<MonarchsGaze>(),

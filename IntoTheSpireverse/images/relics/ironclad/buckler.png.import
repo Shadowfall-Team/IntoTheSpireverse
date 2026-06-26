@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdusqtdtuf4ek"
-path="res://.godot/imported/buckler.png-36b9136e0503ef8ae6f7630bd42388b1.ctex"
+path="res://.godot/imported/buckler.png-e15416f2e66d023540a3b2e998cff3ca.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/ironclad/buckler.png"
-dest_files=["res://.godot/imported/buckler.png-36b9136e0503ef8ae6f7630bd42388b1.ctex"]
+dest_files=["res://.godot/imported/buckler.png-e15416f2e66d023540a3b2e998cff3ca.ctex"]
 
 [params]
 

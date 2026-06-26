@@ -16,28 +16,31 @@ public class TheSealedThrone() : ShadowRegentCard(
     CardRarity.Ancient,
     TargetType.AnyEnemy)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Warp>(),
     ];
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CalculationBaseVar(4),
         new ExtraDamageVar(4),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
         {
-            return CombatManager.Instance.History.CardPlaysFinished.Count(e => 
+            return CombatManager.Instance.History.CardPlaysFinished.Count(e =>
                 e.CardPlay.Card.Owner == card.Owner && e.CardPlay.Card is Warp);
         })
     ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await DamageCmd.Attack(DynamicVars.CalculatedDamage)
             .FromCard(this)
-            .Targeting(play.Target)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_blunt", null, "heavy_attack.mp3")
             .Execute(choiceContext);
     }

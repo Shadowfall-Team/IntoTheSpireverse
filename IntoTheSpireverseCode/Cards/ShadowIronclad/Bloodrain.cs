@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,15 +10,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.TestSupport;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.RandomEnemy)
 {
-    private static readonly Color VfxTint = new Color("c01020");
+    private static readonly Color VfxTint = new("c01020");
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -36,18 +33,21 @@ public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRari
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        for (int i = 0; i < DynamicVars.Repeat.IntValue; i++)
+        for (var i = 0; i < DynamicVars.Repeat.IntValue; i++)
         {
             var enemy = Owner.RunState.Rng.CombatTargets
-                .NextItem<Creature>(CombatState.HittableEnemies);
-            if (enemy == null) continue;
+                .NextItem(CombatState!.HittableEnemies);
+            if (enemy == null)
+            {
+                continue;
+            }
 
             if (TestMode.IsOff)
             {
                 var targetNode = NCombatRoom.Instance?.GetCreatureNode(enemy);
                 if (targetNode != null)
                 {
-                    NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
+                    NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
                         NGaseousImpactVfx.Create(targetNode.VfxSpawnPosition, VfxTint));
                 }
             }

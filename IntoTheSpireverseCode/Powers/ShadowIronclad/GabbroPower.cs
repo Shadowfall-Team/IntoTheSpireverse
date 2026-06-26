@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Entities.Creatures;
+﻿using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -21,6 +20,6 @@ public sealed class GabbroPower : ShadowPowerModel
     {
         if (dealer != Owner || cardSource == null || !props.IsPoweredAttack()) return 0m;
         if (!cardSource.Tags.Contains(IntoTheSpireverseCardTags.Rock)) return 0m;
-        return (decimal)Amount;
+        return Amount;
     }
 }

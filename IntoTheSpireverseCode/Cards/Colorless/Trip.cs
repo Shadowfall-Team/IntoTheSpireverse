@@ -1,6 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,12 +9,12 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
-public class Trip() : CustomCardModel(0,
+public class Trip() : IntoTheSpireverseCard(0,
     CardType.Skill,
     CardRarity.Token,
-    TargetType.AnyEnemy)
+    TargetType.AnyEnemy,
+    "regent")
 {
-    public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -25,8 +23,10 @@ public class Trip() : CustomCardModel(0,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         if (CombatState == null) return;
         if (IsUpgraded)
         {
@@ -39,7 +39,7 @@ public class Trip() : CustomCardModel(0,
         {
             await PowerCmd.Apply<VulnerablePower>(
                 new ThrowingPlayerChoiceContext(),
-                play.Target,
+                cardPlay.Target,
                 DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
         }
     }

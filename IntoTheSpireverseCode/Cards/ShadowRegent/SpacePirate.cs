@@ -22,8 +22,9 @@ public class SpacePirate() : ShadowRegentCard(
     [
         new DamageVar(8, ValueProp.Move)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
         HoverTipFactory.FromCard<FlashOfSteel>(IsUpgraded),
         HoverTipFactory.FromCard<Fisticuffs>(IsUpgraded),
@@ -32,15 +33,17 @@ public class SpacePirate() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .Targeting(play.Target)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        if (play.Target != null)
+        if (cardPlay.Target != null)
         {
             var cardModel = CardFactory.GetDistinctForCombat(Owner,
                 [
@@ -56,10 +59,10 @@ public class SpacePirate() : ShadowRegentCard(
                     CardCmd.Upgrade(cardModel);
                 }
 
-                var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(cardModel, CargoCardPile.CargoPileType,
+                var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(cardModel,
+                    CargoCardPile.CargoPileType,
                     Owner);
                 CardCmd.PreviewCardPileAdd(cardPileAddResult);
-
             }
         }
     }

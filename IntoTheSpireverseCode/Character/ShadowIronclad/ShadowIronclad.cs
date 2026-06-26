@@ -1,19 +1,19 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
-using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 
 public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "ironclad";
-    public const string CharacterId = "IntoTheSpireverse";
+    public const string CharacterId = "ironclad";
 
     public static readonly Color Color = StsColors.red;
 

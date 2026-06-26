@@ -9,6 +9,8 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
+//TODO: From Arquebus - I'm not taking a pass on this right now so please, person who is working
+// on shadow necrobinder, please ensure this is good to go!
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.HasTurnEndInHandEffect), MethodType.Getter)]
 public class LingerHasTurnEndPatch
 {

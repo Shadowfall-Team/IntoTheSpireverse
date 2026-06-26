@@ -1,17 +1,12 @@
-﻿using BaseLib.Utils;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using IntoTheSpireverse.IntoTheSpireverseCode.Interfaces;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Rubblerouser() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -19,7 +14,7 @@ public sealed class Rubblerouser() : ShadowIroncladCard(1, CardType.Attack, Card
         new CalculationBaseVar(7m),
         new ExtraDamageVar(3m),
         new CalculatedDamageVar(ValueProp.Move)
-            .WithMultiplier((card, _) => card.Owner.PlayerCombatState.AllCards
+            .WithMultiplier((card, _) => card.Owner.PlayerCombatState!.AllCards
                 .Count(c => c.Tags.Contains(IntoTheSpireverseCardTags.Rock))),
     ];
 

@@ -1,13 +1,13 @@
-﻿using BaseLib.Abstracts;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
 public class SmugglersCargoPower : ShadowPowerModel
 {
@@ -22,10 +22,12 @@ public class SmugglersCargoPower : ShadowPowerModel
         {
             await CardPileCmd.Add(cardPlay.Card, CargoCardPile.CargoPileType);
         }
+
         await PowerCmd.Remove(this);
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (side == Owner.Side)
         {

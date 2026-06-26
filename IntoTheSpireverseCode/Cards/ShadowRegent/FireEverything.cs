@@ -1,17 +1,12 @@
-using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Combat;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Variables;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -23,7 +18,7 @@ public class FireEverything() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 3)
+        new LoadAmmoVar(3)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -31,12 +26,12 @@ public class FireEverything() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars[LoadAmmoVar.Key].BaseValue, Owner);
 
         await PowerCmd.Apply<FireEverythingPower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,
@@ -45,33 +40,6 @@ public class FireEverything() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LoadAmmo"].UpgradeValueBy(1);
-    }
-}
-
-public class FireEverythingPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
-
-    public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
-    {
-        if (card is AmmoVolley)
-        {
-            modifiedCost = 0;
-            return true;
-        }
-        modifiedCost = originalCost;
-        return false;
-    }
-
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
-        IEnumerable<Creature> participants)
-    {
-        if (side == Owner.Side)
-        {
-            Flash();
-            await PowerCmd.Remove(this);
-        }
+        DynamicVars[LoadAmmoVar.Key].UpgradeValueBy(1);
     }
 }

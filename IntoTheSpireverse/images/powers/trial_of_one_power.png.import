@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hddlwitvg4tl"
-path="res://.godot/imported/trial_of_one_power.png-8b0f5a6d47ab18b37797bbe7546e13b5.ctex"
+path="res://.godot/imported/trial_of_one_power.png-95aec9cddd0f08cede45a3ccf7d6cc73.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/trial_of_one_power.png"
-dest_files=["res://.godot/imported/trial_of_one_power.png-8b0f5a6d47ab18b37797bbe7546e13b5.ctex"]
+dest_files=["res://.godot/imported/trial_of_one_power.png-95aec9cddd0f08cede45a3ccf7d6cc73.ctex"]
 
 [params]
 

@@ -1,26 +1,22 @@
-﻿using BaseLib.Utils;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using IntoTheSpireverse.IntoTheSpireverseCode.Interfaces;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<SpikedRock>(false),
+        HoverTipFactory.FromCard<SpikedRock>(),
         HoverTipFactory.FromKeyword(CardKeyword.Unplayable),
     ];
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
         CardKeyword.Exhaust,
     ];
 
@@ -37,7 +33,7 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
 
         var wasUnplayable = original.Keywords.Contains(CardKeyword.Unplayable);
 
-        var spikedRock = CombatState.CreateCard<SpikedRock>(Owner);
+        var spikedRock = CombatState!.CreateCard<SpikedRock>(Owner);
         await CardCmd.Transform(original, spikedRock);
 
         if (wasUnplayable)

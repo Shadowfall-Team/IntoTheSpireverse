@@ -1,11 +1,7 @@
-﻿using BaseLib.Abstracts;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Rooms;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Rewards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -22,7 +18,7 @@ public class RedGiant() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         if (IsUpgraded)
         {
@@ -39,39 +35,6 @@ public class RedGiant() : ShadowRegentCard(
                 1,
                 Owner.Creature,
                 this);
-        }
-    }
-}
-
-public class RedGiantPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-    public override Task AfterCombatEnd(CombatRoom room)
-    {
-        if (Owner.Player == null) return Task.CompletedTask;
-        for (var i = 0; i < Amount; i++)
-        {
-            room.AddExtraReward(Owner.Player, new CardUpgradeReward(Owner.Player));
-        }
-
-        return Task.CompletedTask;
-    }
-}
-
-public class RedGiantRandomPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-    public override async Task AfterCombatEnd(CombatRoom room)
-    {
-        if (Owner.Player == null) return;
-
-        for (var i = 0; i < Amount; i++)
-        {
-            room.AddExtraReward(Owner.Player, new RandomCardUpgradeReward(Owner.Player));
         }
     }
 }

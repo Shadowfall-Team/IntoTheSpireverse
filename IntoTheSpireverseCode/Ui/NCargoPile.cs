@@ -16,7 +16,7 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 public partial class NCargoPile : NCombatCardPile
 {
@@ -187,9 +187,9 @@ public partial class NCargoPile : NCombatCardPile
 
         AddChild(holder);
         MoveChild(holder, 0);
-        holder.MouseFilter = Control.MouseFilterEnum.Pass;
-        holder.FocusMode = Control.FocusModeEnum.None;
-        holder.Hitbox.MouseFilter = Control.MouseFilterEnum.Pass;
+        holder.MouseFilter = MouseFilterEnum.Pass;
+        holder.FocusMode = FocusModeEnum.None;
+        holder.Hitbox.MouseFilter = MouseFilterEnum.Pass;
 
         PositionPreviewCard(holder, xOffset, scale);
         cardNode.UpdateVisuals(CargoCardPile.CargoPileType, CardPreviewMode.Normal);

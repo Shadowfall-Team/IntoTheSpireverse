@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brunnfsw4teeu"
-path="res://.godot/imported/retaliation_power.png-304a0f5f970d8bb49e2414307d9cfc5a.ctex"
+path="res://.godot/imported/retaliation_power.png-cb3ead6c794f357541c51f522782d318.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/big/retaliation_power.png"
-dest_files=["res://.godot/imported/retaliation_power.png-304a0f5f970d8bb49e2414307d9cfc5a.ctex"]
+dest_files=["res://.godot/imported/retaliation_power.png-cb3ead6c794f357541c51f522782d318.ctex"]
 
 [params]
 

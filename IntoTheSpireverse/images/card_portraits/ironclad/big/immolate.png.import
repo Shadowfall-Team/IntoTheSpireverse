@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bmsyc7dxd3v0x"
-path="res://.godot/imported/immolate.png-6cc59f8de8a94a362c9037695e248283.ctex"
+path="res://.godot/imported/immolate.png-1f19b10593fb5fcbfd3881e688b3afb5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/big/immolate.png"
-dest_files=["res://.godot/imported/immolate.png-6cc59f8de8a94a362c9037695e248283.ctex"]
+dest_files=["res://.godot/imported/immolate.png-1f19b10593fb5fcbfd3881e688b3afb5.ctex"]
 
 [params]
 

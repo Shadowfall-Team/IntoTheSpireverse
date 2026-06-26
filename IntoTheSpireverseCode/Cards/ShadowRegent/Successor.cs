@@ -25,7 +25,7 @@ public class Successor() : ShadowRegentCard(0, CardType.Skill, CardRarity.Rare, 
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);

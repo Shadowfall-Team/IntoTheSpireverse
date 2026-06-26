@@ -1,12 +1,9 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class BattleShout() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     private const string IncreaseKey = "Increase";
@@ -15,7 +12,7 @@ public sealed class BattleShout() : ShadowIroncladCard(1, CardType.Skill, CardRa
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(IncreaseKey, 3m),
+        new(IncreaseKey, 3m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

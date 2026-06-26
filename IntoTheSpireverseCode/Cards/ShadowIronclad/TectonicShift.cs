@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -7,11 +6,9 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-[Pool(typeof(ShadowIroncladCardPool))]
 public sealed class TectonicShift() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -37,12 +34,15 @@ public sealed class TectonicShift() : ShadowIroncladCard(2, CardType.Attack, Car
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
         foreach (var original in PileType.Hand.GetPile(Owner).Cards
-                     .Where(c => c != null && c.IsTransformable)
+                     .Where(c => c.IsTransformable)
                      .ToList())
         {
-            var rock = (CardModel)CombatState.CreateCard<SmallRock>(Owner);
+            var rock = CombatState!.CreateCard<SmallRock>(Owner);
             if (IsUpgraded)
+            {
                 CardCmd.Upgrade(rock);
+            }
+
             await CardCmd.Transform(original, rock);
         }
     }

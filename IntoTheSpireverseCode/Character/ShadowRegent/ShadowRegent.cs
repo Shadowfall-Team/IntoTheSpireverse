@@ -1,15 +1,14 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
-using MegaCrit.Sts2.Core.Entities.Characters;
-using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Characters;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
+using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
 public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
 {
@@ -25,8 +24,6 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override Color RemoteTargetingLineOutline => new("784000FF");
     
     public override CharacterGender Gender => CharacterGender.Masculine;
-
-    // public override string? CustomCharacterSelectIconPath => "IntoTheSpireverse/images/charui/char_select_char_name.png";
 
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;

@@ -5,11 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 
-public class CargoDrawManager() : CustomSingletonModel(true, false)
+public class CargoDrawManager() : CustomSingletonModel(HookType.Combat)
 {
      public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
      {

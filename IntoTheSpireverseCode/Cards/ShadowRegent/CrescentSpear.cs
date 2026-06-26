@@ -33,17 +33,17 @@ public class CrescentSpear() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState == null) return;
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .Targeting(play.Target)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_starry_impact", null, null)
             .Execute(choiceContext);
 
-        var uStrike = CombatState.CreateCard<UltimateStrike>(Owner);
+        var uStrike = CombatState!.CreateCard<UltimateStrike>(Owner);
         if (IsUpgraded)
         {
             CardCmd.Upgrade(uStrike);
