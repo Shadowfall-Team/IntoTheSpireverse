@@ -36,7 +36,7 @@ public static class IntoTheSpireverseKeywords
     public static CardKeyword Cargo;
     
     public static bool WasRightmostWhenPlayed(CardModel card) =>
-        HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
+        HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out var val) && val;
 
     public static bool IsRightmostActive(CardModel card) =>
         card.Pile?.Type == PileType.Hand && card.Pile.Cards.Count > 0 && card.Pile.Cards[^1] == card;
@@ -49,14 +49,14 @@ public static class IntoTheSpireverseKeywords
         if (a.Pile?.Type != PileType.Hand || a.Pile != b.Pile)
             return false;
         var cards = a.Pile.Cards;
-        int i = cards.IndexOf(a);
-        int j = cards.IndexOf(b);
+        var i = cards.IndexOf(a);
+        var j = cards.IndexOf(b);
         return i >= 0 && j >= 0 && Math.Abs(i - j) == 1;
     }
 
     public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)
     {
-        CardModel? card = (await CardSelectCmd.FromHandForDiscard(
+        var card = (await CardSelectCmd.FromHandForDiscard(
             context,
             player,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
@@ -66,13 +66,13 @@ public static class IntoTheSpireverseKeywords
         if (card == null)
             return;
 
-        int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
+        var repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
             repeats = player.PlayerCombatState.Energy;
         repeats += card is Weight ? player.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
         await CardCmd.Discard(context, card);
 
-        for (int i = 0; i < repeats; i++)
+        for (var i = 0; i < repeats; i++)
             await effect();
     }
 }
