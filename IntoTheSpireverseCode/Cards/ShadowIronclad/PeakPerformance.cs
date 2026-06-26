@@ -32,14 +32,16 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPile, AbstractModel? source)
     {
         if (card == this && Pile?.Type == PileType.Play)
+        {
             _sourcePile = oldPile;
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        int times = _sourcePile != PileType.Hand ? 1 + (int)DynamicVars[RepeatKey].BaseValue : 1;
-        for (int i = 0; i < times; i++)
+        var times = _sourcePile != PileType.Hand ? 1 + DynamicVars[RepeatKey].IntValue : 1;
+        for (var i = 0; i < times; i++)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             await PowerCmd.Apply<StrengthPower>(

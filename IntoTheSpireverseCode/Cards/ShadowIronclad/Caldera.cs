@@ -19,7 +19,7 @@ public sealed class Caldera() : ShadowIroncladCard(1, CardType.Skill, CardRarity
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<BombRock>(false),
+        HoverTipFactory.FromCard<BombRock>(),
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Linger),
     ];
 
@@ -31,7 +31,7 @@ public sealed class Caldera() : ShadowIroncladCard(1, CardType.Skill, CardRarity
             c => c.IsTransformable, this);
         foreach (var original in selected.ToList())
         {
-            var rock = (CardModel)CombatState.CreateCard<BombRock>(Owner);
+            var rock = CombatState!.CreateCard<BombRock>(Owner);
             await CardCmd.Transform(original, rock);
         }
     }

@@ -17,7 +17,7 @@ public sealed class GalacticStrike() : ShadowIroncladCard(1, CardType.Attack, Ca
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<DeepRock>(false),
+        HoverTipFactory.FromCard<DeepRock>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -28,7 +28,8 @@ public sealed class GalacticStrike() : ShadowIroncladCard(1, CardType.Attack, Ca
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        var topCard = PileType.Draw.GetPile(Owner).Cards.FirstOrDefault();
+        var cards = PileType.Draw.GetPile(Owner).Cards;
+        var topCard = cards.Count > 0 ? cards[0] : null;
         if (topCard != null)
         {
             await CardCmd.TransformTo<DeepRock>(topCard);

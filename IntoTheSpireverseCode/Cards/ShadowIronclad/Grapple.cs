@@ -19,15 +19,18 @@ public sealed class Grapple() : ShadowIroncladCard(1, CardType.Attack, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
             .Targeting(cardPlay.Target)
+            //TODO: should this get a vfx again?
             // .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
         if (cardPlay.Target?.IsDead == true || cardPlay.Target == null)
+        {
             return;
+        }
 
 
         var power = await PowerCmd.Apply<GrapplePower>(

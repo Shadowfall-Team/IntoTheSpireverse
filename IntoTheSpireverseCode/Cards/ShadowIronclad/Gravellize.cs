@@ -11,11 +11,12 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<SpikedRock>(false),
+        HoverTipFactory.FromCard<SpikedRock>(),
         HoverTipFactory.FromKeyword(CardKeyword.Unplayable),
     ];
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
         CardKeyword.Exhaust,
     ];
 
@@ -32,7 +33,7 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
 
         var wasUnplayable = original.Keywords.Contains(CardKeyword.Unplayable);
 
-        var spikedRock = CombatState.CreateCard<SpikedRock>(Owner);
+        var spikedRock = CombatState!.CreateCard<SpikedRock>(Owner);
         await CardCmd.Transform(original, spikedRock);
 
         if (wasUnplayable)

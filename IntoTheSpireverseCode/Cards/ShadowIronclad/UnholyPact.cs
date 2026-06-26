@@ -24,6 +24,8 @@ public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
         await PowerCmd.Apply<BloodbondPower>(

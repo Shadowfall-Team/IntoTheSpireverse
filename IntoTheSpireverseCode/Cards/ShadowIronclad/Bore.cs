@@ -11,7 +11,8 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
-public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), ITranscendenceCard
+public sealed class Bore()
+    : ShadowIroncladCard(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), ITranscendenceCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -20,9 +21,9 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<SmallRock>(false),
+        HoverTipFactory.FromCard<SmallRock>(),
     ];
-    
+
     public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<Avalanche>();
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -37,10 +38,9 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
         var original = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this))
             .FirstOrDefault();
-        if (original == null)
-            return;
+        if (original == null) return;
 
-        var rock = (CardModel)CombatState.CreateCard<SmallRock>(Owner);
+        var rock = CombatState!.CreateCard<SmallRock>(Owner);
         await CardCmd.Transform(original, rock);
     }
 

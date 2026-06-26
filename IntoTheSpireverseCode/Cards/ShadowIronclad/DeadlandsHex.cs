@@ -16,17 +16,18 @@ public sealed class DeadlandsHex() : ShadowIroncladCard(1, CardType.Skill, CardR
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<GhostRock>(false),
+        HoverTipFactory.FromCard<GhostRock>(),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
         var selected = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this)).FirstOrDefault();
         if (selected == null) return;
+
         var selectedType = selected.GetType();
-        var copies = Owner.PlayerCombatState.AllCards
+        var copies = Owner.PlayerCombatState!.AllCards
             .Where(c => c.GetType() == selectedType)
             .ToList();
         foreach (var copy in copies)

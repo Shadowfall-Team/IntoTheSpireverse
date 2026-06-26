@@ -10,7 +10,7 @@ public sealed class VampiricStrike() : ShadowIroncladCard(2, CardType.Attack, Ca
 {
     private const string HpThresholdKey = "HpThreshold";
 
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(8m, ValueProp.Move),
@@ -31,7 +31,9 @@ public sealed class VampiricStrike() : ShadowIroncladCard(2, CardType.Attack, Ca
             .Execute(choiceContext);
 
         if (IsAtOrBelowHalfHp)
+        {
             await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
+        }
     }
 
     protected override void OnUpgrade()

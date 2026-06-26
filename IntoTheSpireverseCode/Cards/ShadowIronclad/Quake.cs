@@ -23,16 +23,17 @@ public sealed class Quake() : ShadowIroncladCard(1, CardType.Attack, CardRarity.
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<RollingRock>(false),
+        HoverTipFactory.FromCard<RollingRock>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .TargetingAllOpponents(CombatState)
+            .TargetingAllOpponents(CombatState!)
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
+
         var drawPile = PileType.Draw.GetPile(Owner).Cards
             .OrderBy(c => c.Rarity)
             .ThenBy(c => c.Id)

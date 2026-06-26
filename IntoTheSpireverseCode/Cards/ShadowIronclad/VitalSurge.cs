@@ -29,7 +29,11 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
 
     private static decimal GetHpLostThisTurn(CardModel card)
     {
-        if (card.Owner?.Creature == null || card.CombatState == null) return 0m;
+        if (card.Owner?.Creature == null || card.CombatState == null)
+        {
+            return 0m;
+        }
+
         return CombatManager.Instance.History.Entries
             .OfType<DamageReceivedEntry>()
             .Where(e => e.HappenedThisTurn(card.CombatState)
@@ -41,9 +45,11 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-        decimal heal = ((CalculatedVar)DynamicVars[CalculatedHealKey]).Calculate(null);
+        var heal = ((CalculatedVar)DynamicVars[CalculatedHealKey]).Calculate(null);
         if (heal > 0)
+        {
             await CreatureCmd.Heal(Owner.Creature, (int)heal);
+        }
     }
 
     protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);

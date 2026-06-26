@@ -26,8 +26,8 @@ public sealed class AncestralEcho() : ShadowIroncladCard(1, CardType.Skill, Card
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        IReadOnlyList<CardModel> cards = PileType.Draw.GetPile(Owner).Cards;
-		CardModel? cardModel = cards.FirstOrDefault();
+        var cards = PileType.Draw.GetPile(Owner).Cards;
+        var cardModel = cards.Count > 0 ? cards[0] : null;
 		if (cardModel != null)
 		{
 			cardModel.BaseReplayCount += DynamicVars[_replayKey].IntValue;

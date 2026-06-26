@@ -21,13 +21,17 @@ public sealed class Quarry() : ShadowIroncladCard(-1, CardType.Skill, CardRarity
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         var count = ResolveEnergyXValue() + 1;
-        var rocks = new CardModel[count];
+        var rocks = new List<CardModel>(count);
 
         for (var i = 0; i < count; i++)
         {
-            rocks[i] = CombatState.CreateCard<SmallRock>(Owner);
+            var rock = CombatState!.CreateCard<SmallRock>(Owner);
             if (IsUpgraded)
-                CardCmd.Upgrade(rocks[i]);
+            {
+                CardCmd.Upgrade(rock);
+            }
+
+            rocks.Add(rock);
         }
 
         await CardPileCmd.AddGeneratedCardsToCombat(rocks, PileType.Hand, Owner);

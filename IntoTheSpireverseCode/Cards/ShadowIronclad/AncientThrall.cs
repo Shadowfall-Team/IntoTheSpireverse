@@ -29,8 +29,8 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
         if (card.Owner != Owner) return true;
         if (Pile?.Type != PileType.Hand) return true;
         if (card is AncientThrall) return true;
-        if (autoPlayType != AutoPlayType.None) return true;
-        return false;
+
+        return autoPlayType != AutoPlayType.None;
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -11,7 +11,7 @@ public sealed class Pebbleflinger() : ShadowIroncladCard(1, CardType.Power, Card
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<SmallRock>(false),
+        HoverTipFactory.FromCard<SmallRock>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

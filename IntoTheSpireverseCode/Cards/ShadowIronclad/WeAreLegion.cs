@@ -17,11 +17,10 @@ public sealed class WeAreLegion() : ShadowIroncladCard(1, CardType.Skill, CardRa
         var selection = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs,
             c => c.Type == CardType.Attack, this)).FirstOrDefault();
 
-        if (selection == null)
-            return;
+        if (selection == null) return;
 
         var toTransform = PileType.Hand.GetPile(Owner).Cards
-            .Where(c => c != null && c.IsTransformable && c.Type != CardType.Attack)
+            .Where(c => c.IsTransformable && c.Type != CardType.Attack)
             .ToList();
 
         foreach (var original in toTransform)

@@ -20,7 +20,7 @@ public sealed class PaintedPetra() : ShadowIroncladCard(1, CardType.Skill, CardR
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),
-        HoverTipFactory.FromCard<TintedRock>(false),
+        HoverTipFactory.FromCard<TintedRock>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

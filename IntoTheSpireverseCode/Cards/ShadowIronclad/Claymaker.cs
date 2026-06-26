@@ -20,13 +20,15 @@ public sealed class Claymaker() : ShadowIroncladCard(2, CardType.Attack, CardRar
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Shockwave>(false),
+        HoverTipFactory.FromCard<Shockwave>(),
     ];
 
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPile, AbstractModel? source)
     {
         if (card == this && Pile?.Type == PileType.Play)
+        {
             _sourcePile = oldPile;
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -40,7 +42,7 @@ public sealed class Claymaker() : ShadowIroncladCard(2, CardType.Attack, CardRar
             .Execute(choiceContext);
         if (_sourcePile != PileType.Hand)
         {
-            var shockwave = CombatState.CreateCard<Shockwave>(Owner);
+            var shockwave = CombatState!.CreateCard<Shockwave>(Owner);
             shockwave.SetToFreeThisCombat();
             await CardPileCmd.AddGeneratedCardsToCombat([shockwave], PileType.Hand, Owner);
         }

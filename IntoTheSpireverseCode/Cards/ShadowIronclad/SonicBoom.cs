@@ -25,13 +25,13 @@ public sealed class SonicBoom() : ShadowIroncladCard(1, CardType.Attack, CardRar
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .TargetingAllOpponents(CombatState)
+            .TargetingAllOpponents(CombatState!)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
         await PowerCmd.Apply<WeakPower>(
             new ThrowingPlayerChoiceContext(),
-            CombatState.HittableEnemies,
+            CombatState!.HittableEnemies,
             DynamicVars.Weak.BaseValue,
             Owner.Creature, this);
     }

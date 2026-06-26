@@ -15,11 +15,11 @@ public sealed class WildStrike() : ShadowIroncladCard(1, CardType.Attack, CardRa
         new DamageVar(12m, ValueProp.Move),
     ];
     
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Wound>(false),
+        HoverTipFactory.FromCard<Wound>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

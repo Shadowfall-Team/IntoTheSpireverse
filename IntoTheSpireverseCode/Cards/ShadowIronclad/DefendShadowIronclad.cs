@@ -10,7 +10,7 @@ public sealed class DefendShadowIronclad() : ShadowIroncladCard(1, CardType.Skil
 {
     public override bool GainsBlock => true;
 
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Defend };
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

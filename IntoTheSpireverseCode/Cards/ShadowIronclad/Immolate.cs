@@ -17,18 +17,18 @@ public sealed class Immolate() : ShadowIroncladCard(2, CardType.Attack, CardRari
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Burn>(false),
+        HoverTipFactory.FromCard<Burn>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .TargetingAllOpponents(CombatState)
+            .TargetingAllOpponents(CombatState!)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        var burn = CombatState.CreateCard<Burn>(Owner);
+        var burn = CombatState!.CreateCard<Burn>(Owner);
         await CardPileCmd.AddGeneratedCardsToCombat([burn], PileType.Hand, Owner);
     }
 

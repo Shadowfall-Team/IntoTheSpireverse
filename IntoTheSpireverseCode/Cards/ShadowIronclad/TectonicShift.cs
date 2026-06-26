@@ -34,12 +34,15 @@ public sealed class TectonicShift() : ShadowIroncladCard(2, CardType.Attack, Car
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
         foreach (var original in PileType.Hand.GetPile(Owner).Cards
-                     .Where(c => c != null && c.IsTransformable)
+                     .Where(c => c.IsTransformable)
                      .ToList())
         {
-            var rock = (CardModel)CombatState.CreateCard<SmallRock>(Owner);
+            var rock = CombatState!.CreateCard<SmallRock>(Owner);
             if (IsUpgraded)
+            {
                 CardCmd.Upgrade(rock);
+            }
+
             await CardCmd.Transform(original, rock);
         }
     }

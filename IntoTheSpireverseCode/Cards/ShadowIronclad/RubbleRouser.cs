@@ -14,7 +14,7 @@ public sealed class Rubblerouser() : ShadowIroncladCard(1, CardType.Attack, Card
         new CalculationBaseVar(7m),
         new ExtraDamageVar(3m),
         new CalculatedDamageVar(ValueProp.Move)
-            .WithMultiplier((card, _) => card.Owner.PlayerCombatState.AllCards
+            .WithMultiplier((card, _) => card.Owner.PlayerCombatState!.AllCards
                 .Count(c => c.Tags.Contains(IntoTheSpireverseCardTags.Rock))),
     ];
 

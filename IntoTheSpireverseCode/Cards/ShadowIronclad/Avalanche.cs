@@ -32,8 +32,8 @@ public sealed class Avalanche() : ShadowIroncladCard(1, CardType.Attack, CardRar
             .ToList();
         foreach (var original in selected)
         {
-            var template = Owner.RunState.Rng.CombatCardGeneration.NextItem(rockPool);
-            var rock = CombatState.CreateCard(template, Owner);
+            var template = Owner.RunState.Rng.CombatCardGeneration.NextItem(rockPool)!;
+            var rock = CombatState!.CreateCard(template, Owner);
             await CardCmd.Transform(original, rock);
         }
     }

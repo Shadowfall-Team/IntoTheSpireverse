@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -17,16 +18,16 @@ public sealed class PowerThrough() : ShadowIroncladCard(1, CardType.Skill, CardR
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Wound>(false),
+        HoverTipFactory.FromCard<Wound>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        var wounds = new[]
+        var wounds = new List<CardModel>
         {
-            CombatState.CreateCard<Wound>(Owner),
+            CombatState!.CreateCard<Wound>(Owner),
             CombatState.CreateCard<Wound>(Owner),
         };
         await CardPileCmd.AddGeneratedCardsToCombat(wounds, PileType.Hand, Owner);

@@ -27,6 +27,7 @@ public sealed class BumRush() : ShadowIroncladCard(2, CardType.Attack, CardRarit
         var selected = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this))
             .FirstOrDefault();
         if (selected == null) return;
+
         await CardPileCmd.Add(selected, PileType.Draw, CardPilePosition.Top);
     }
 

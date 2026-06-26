@@ -16,11 +16,11 @@ public sealed class VolcanicStrike() : ShadowIroncladCard(2, CardType.Attack, Ca
         new DamageVar(13m, ValueProp.Move),
     ];
     
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<MoltenRock>(false),
+        HoverTipFactory.FromCard<MoltenRock>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

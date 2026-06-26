@@ -18,8 +18,8 @@ public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRar
         new DamageVar(14m, ValueProp.Move),
         new(StrengthLossKey, 3m),
     ];
-    
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
+
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
