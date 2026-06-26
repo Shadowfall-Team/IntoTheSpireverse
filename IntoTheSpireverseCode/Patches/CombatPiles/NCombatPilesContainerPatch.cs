@@ -46,6 +46,6 @@ public static class NCombatUiActivatePatch
         var container = __instance.GetNode<NCombatPilesContainer>("%CombatPileContainer");
         var cargoPile = container.GetNodeOrNull<NCargoPile>("_CargoPile");
         var player = LocalContext.GetMe(state);
-        cargoPile?.Initialize(player);
+        cargoPile?.Initialize(player ?? throw new Exception("Can't find player"));
     }
 }
