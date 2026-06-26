@@ -28,7 +28,7 @@ public sealed class PebbleflingerPower : ShadowPowerModel
         if (data.skillsPlayed % 3 == 0)
         {
             Flash();
-            var rock = Owner.CombatState.CreateCard<SmallRock>(Owner.Player);
+            var rock = Owner.CombatState!.CreateCard<SmallRock>(Owner.Player);
             await CardPileCmd.AddGeneratedCardsToCombat([rock], PileType.Hand, Owner.Player);
         }
         InvokeDisplayAmountChanged();
