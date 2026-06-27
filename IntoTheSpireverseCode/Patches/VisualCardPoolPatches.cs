@@ -30,7 +30,7 @@ public static class VisualCardPoolPatches
         if (owningCharModel is IAltCharacter ownerAltCharacter)
         {
             // Alt character: if the card is displaying the base character's pool, swap to ours
-            if (currentPool == ownerAltCharacter.BaseCharacterModel.CardPool)
+            if (currentPool == ownerAltCharacter.BaseCharacterModel.CardPool && owningCharModel.CardPool.AllCardIds.Contains(__instance.Id))
             {
                 __result = owningCharModel.CardPool;
             }
@@ -38,7 +38,8 @@ public static class VisualCardPoolPatches
         else if (ModelDb.AllCharacters.Any(c =>
                      c is IAltCharacter ac &&
                      ac.BaseCharacterModel == owningCharModel &&
-                     currentPool == c.CardPool))
+                     currentPool == c.CardPool &&
+                     owningCharModel.CardPool.AllCardIds.Contains(__instance.Id)))
         {
             // Base character: if the card is displaying any alt character's pool (e.g. cards
             // gained via MirrorMirror), swap to the owner's pool instead.
