@@ -7,7 +7,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class EscortMe() : ShadowRegentCard(
+public class BoardingParty() : ShadowRegentCard(
     0,
     CardType.Skill,
     CardRarity.Rare,
@@ -18,7 +18,7 @@ public class EscortMe() : ShadowRegentCard(
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<MinionStrike>()
+        HoverTipFactory.FromCard<MinionDiveBomb>()
     ];
 
     protected override async Task OnPlay(
@@ -34,10 +34,10 @@ public class EscortMe() : ShadowRegentCard(
             xValue += 1;
         }
         
-        await CardPileCmd.AddToCombatAndPreview<MinionStrike>(
+        await CardPileCmd.AddToCombatAndPreview<MinionDiveBomb>(
             Owner.Creature,
             CargoCardPile.CargoPileType, xValue, Owner);
-        await CardPileCmd.AddToCombatAndPreview<MinionStrike>(
+        await CardPileCmd.AddToCombatAndPreview<MinionDiveBomb>(
             Owner.Creature,
             PileType.Hand, xValue, Owner);
         
