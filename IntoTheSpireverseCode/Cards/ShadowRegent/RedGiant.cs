@@ -1,44 +1,27 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Common.Rewards;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Rooms;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Rewards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class RedGiant() : ShadowRegentCard(
-    1,
-    CardType.Power,
-    CardRarity.Rare,
-    TargetType.Self)
+public class RedGiant() : ShadowRegentCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     public override bool CanBeGeneratedInCombat => false;
-    //TODO: Not sure if extra is needed for multiplayer. Plz playtest
-    public override CardMultiplayerConstraint MultiplayerConstraint =>
-        CardMultiplayerConstraint.SingleplayerOnly;
 
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
         if (IsUpgraded)
         {
-            await PowerCmd.Apply<RedGiantPower>(new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-                1,
-                Owner.Creature,
-                this);
+            await PowerCmd.Apply<RedGiantPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
         }
         else
         {
-            await PowerCmd.Apply<RedGiantRandomPower>(new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-                1,
-                Owner.Creature,
-                this);
+            await PowerCmd.Apply<RedGiantRandomPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
         }
     }
 }
@@ -51,10 +34,8 @@ public class RedGiantPower : ShadowPowerModel
     public override Task AfterCombatEnd(CombatRoom room)
     {
         if (Owner.Player == null) return Task.CompletedTask;
-        for (var i = 0; i < Amount; i++)
-        {
-            room.AddExtraReward(Owner.Player, new CardUpgradeReward(Owner.Player));
-        }
+        // put them in one reward to reduce information overload?
+        room.AddExtraReward(Owner.Player, new CardUpgradeReward(Owner.Player) { Amount = Amount });
 
         return Task.CompletedTask;
     }
@@ -65,13 +46,15 @@ public class RedGiantRandomPower : ShadowPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterCombatEnd(CombatRoom room)
+    public override Task AfterCombatEnd(CombatRoom room)
     {
-        if (Owner.Player == null) return;
-
-        for (var i = 0; i < Amount; i++)
+        if (Owner.Player == null) return Task.CompletedTask;
+        // random should be individual maybe?
+        // in-case you only want to upgade a certain amount of cards?
+        for (int i = 0; i < Amount; i++)
         {
             room.AddExtraReward(Owner.Player, new RandomCardUpgradeReward(Owner.Player));
         }
+        return Task.CompletedTask;
     }
 }

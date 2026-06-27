@@ -175,6 +175,9 @@
   "INTOTHESPIREVERSE-YOUR_DOOM_IS_NIGH_POWER.description": "Whenever you draw a [purple]Curse[/purple], a random enemy loses [blue]13[/blue] HP.",
   "INTOTHESPIREVERSE-YOUR_DOOM_IS_NIGH_POWER.smartDescription": "Whenever you draw a [purple]Curse[/purple], a random enemy loses [blue]{Amount}[/blue] HP.",
   "INTOTHESPIREVERSE-YOUR_DOOM_IS_NIGH_POWER.title": "Your Doom is Nigh",
+  "INTOTHESPIREVERSE-NECRONOMICON_POWER.title": "Necronomicon",
+  "INTOTHESPIREVERSE-NECRONOMICON_POWER.description": "At the end of combat, [gold]Transform[/gold] and [gold]Upgrade[/gold] a card.",
+  "INTOTHESPIREVERSE-NECRONOMICON_POWER.smartDescription": "At the end of combat, [gold]Transform[/gold] and [gold]Upgrade[/gold] [blue]{Amount}[/blue] {Amount:plural:card|cards}.",
 
   "INTOTHESPIREVERSE-SHARDS_POWER.description": "When you have [blue]6[/blue] [gold]Shards[/gold], consume them and create a [gold]Warp[/gold] in your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-SHARDS_POWER.smartDescription": "When you have [blue]6[/blue] [gold]Shards[/gold], consume them and create a [gold]Warp[/gold] in your [gold]Hand[/gold].",
