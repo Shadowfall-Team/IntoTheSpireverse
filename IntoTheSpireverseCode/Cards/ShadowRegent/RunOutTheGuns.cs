@@ -1,11 +1,11 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -35,12 +35,9 @@ public class RunOutTheGuns() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        var ammoToLoad = (int)DynamicVars["LoadAmmo"].BaseValue + ((CalculatedVar)DynamicVars["AttacksPlayed"]).Calculate(play.Target);
-        if (IsUpgraded) await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        
+        var ammoToLoad = (int)DynamicVars["LoadAmmo"].BaseValue +
+                         ((CalculatedVar)DynamicVars["AttacksPlayed"]).Calculate(play.Target);
+        if (IsUpgraded) ammoToLoad++;
+        await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner, this);
     }
 }
