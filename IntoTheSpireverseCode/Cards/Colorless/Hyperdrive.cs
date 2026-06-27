@@ -16,12 +16,12 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
-public class Hyperdrive() : CustomCardModel(-1,
+public class Hyperdrive() : ShadowRegentCard(-1,
     CardType.Skill,
     CardRarity.Token,
     TargetType.Self)
 {
-    public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    // public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         
