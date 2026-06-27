@@ -12,6 +12,7 @@ public class CargoCardPile() : CustomPile(CargoPileType)
     [CustomEnum] public static PileType CargoPileType;
 
     public override bool CardShouldBeVisible(CardModel card) => false;
+    public override bool NeedsCustomTransitionVisual => true;
 
     public override Vector2 GetTargetPosition(CardModel model, Vector2 size)
     {
