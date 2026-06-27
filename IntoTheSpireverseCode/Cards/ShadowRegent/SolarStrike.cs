@@ -24,6 +24,8 @@ public class SolarStrike() : ShadowRegentCard(1,
         HoverTipFactory.FromPower<ShardsPower>()
     ];
     
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
+    
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
