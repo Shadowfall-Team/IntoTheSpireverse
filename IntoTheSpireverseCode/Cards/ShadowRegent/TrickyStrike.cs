@@ -33,6 +33,7 @@ public class TrickyStrike() : ShadowRegentCard(1,
             .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
             .Execute(choiceContext);
 
+        //TODO: should this still have increase?
         DynamicVars.Repeat.BaseValue += DynamicVars["Increase"].BaseValue;
     }
     
