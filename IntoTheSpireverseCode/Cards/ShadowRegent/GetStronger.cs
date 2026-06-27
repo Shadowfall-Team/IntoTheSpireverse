@@ -9,7 +9,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 public class GetStronger() : ShadowRegentCard(
     0,
     CardType.Power,
-    CardRarity.Uncommon,
+    CardRarity.Rare,
     TargetType.Self)
 {
     protected override bool HasEnergyCostX => true;

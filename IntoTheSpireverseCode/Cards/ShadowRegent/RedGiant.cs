@@ -10,7 +10,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Rewards;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
 public class RedGiant() : ShadowRegentCard(
-    1,
+    2,
     CardType.Power,
     CardRarity.Rare,
     TargetType.Self)
@@ -24,39 +24,19 @@ public class RedGiant() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        if (IsUpgraded)
-        {
-            await PowerCmd.Apply<RedGiantPower>(new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-                1,
-                Owner.Creature,
-                this);
-        }
-        else
-        {
+        
+        
             await PowerCmd.Apply<RedGiantRandomPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
                 1,
                 Owner.Creature,
                 this);
-        }
+        
     }
-}
-
-public class RedGiantPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-    public override Task AfterCombatEnd(CombatRoom room)
+    
+    protected override void OnUpgrade()
     {
-        if (Owner.Player == null) return Task.CompletedTask;
-        for (var i = 0; i < Amount; i++)
-        {
-            room.AddExtraReward(Owner.Player, new CardUpgradeReward(Owner.Player));
-        }
-
-        return Task.CompletedTask;
+        EnergyCost.UpgradeBy(-1);
     }
 }
 

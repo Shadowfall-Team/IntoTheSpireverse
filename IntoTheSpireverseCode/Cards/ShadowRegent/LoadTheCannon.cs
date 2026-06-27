@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class Load() : ShadowRegentCard(1,
+public class LoadTheCannon() : ShadowRegentCard(1,
     CardType.Skill,
     CardRarity.Basic,
     TargetType.Self)

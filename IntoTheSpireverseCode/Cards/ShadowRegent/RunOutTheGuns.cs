@@ -1,31 +1,32 @@
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class FireAway() : ShadowRegentCard(1,
+public class RunOutTheGuns() : ShadowRegentCard(1,
     CardType.Skill,
-    CardRarity.Common,
+    CardRarity.Uncommon,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("LoadAmmo", 1),
-        new PowerVar<FirepowerPower>(6)
+        new CalculationBaseVar(0m),
+        new CalculationExtraVar(1m),
+        new CalculatedVar("AttacksPlayed").WithMultiplier((card, _) =>
+            CombatManager.Instance.History.CardPlaysFinished.Count(cardPlayEntry =>
+                cardPlayEntry.HappenedThisTurn(card.CombatState) &&
+                cardPlayEntry.CardPlay.Card.Type == CardType.Attack && cardPlayEntry.CardPlay.Card.Owner == card.Owner))
     ];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [CardKeyword.Exhaust];
-    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         LoadAmmoHoverTip.FromLoadAmmo();
-    
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -33,12 +34,13 @@ public class FireAway() : ShadowRegentCard(1,
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
-        
+
+        var ammoToLoad = (int)DynamicVars["LoadAmmo"].BaseValue + ((CalculatedVar)DynamicVars["AttacksPlayed"]).Calculate(play.Target);
+        if (IsUpgraded) await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner, this);
     }
 
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Exhaust);
+        
     }
 }

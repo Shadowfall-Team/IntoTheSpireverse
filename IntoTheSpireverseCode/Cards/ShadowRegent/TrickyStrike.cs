@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class BeneathMe() : ShadowRegentCard(1,
+public class TrickyStrike() : ShadowRegentCard(1,
     CardType.Attack,
     CardRarity.Uncommon,
     TargetType.AnyEnemy)

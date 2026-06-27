@@ -11,7 +11,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class FutureProofing() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
+public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
     TargetType.AllEnemies)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -57,6 +57,6 @@ public class FutureProofing() : ShadowRegentCard(1, CardType.Attack, CardRarity.
 
     protected override void OnUpgrade()
     {
-       
+        
     }
 }

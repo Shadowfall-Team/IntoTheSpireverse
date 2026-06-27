@@ -3,7 +3,6 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
-using Supermassive = IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent.Supermassive;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
@@ -23,23 +22,25 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<KnowThyPlace>(),
             ModelDb.Card<Patter>(),
-            ModelDb.Card<Glitterstream>(),
             ModelDb.Card<LunarBlast>(),
             ModelDb.Card<KinglyPunch>(),
             ModelDb.Card<KinglyKick>(),
-            ModelDb.Card<Monologue>(),
             ModelDb.Card<Terraforming>(),
             ModelDb.Card<Prophesize>(),
+            ModelDb.Card<Supermassive>(),
             ModelDb.Card<PillarOfCreation>(),
-            ModelDb.Card<Orbit>(),
-            ModelDb.Card<SpectrumShift>(),
             ModelDb.Card<HeavenlyDrill>(),
             ModelDb.Card<MakeItSo>(),
-            // ModelDb.Card<AstralStrike>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
             ModelDb.Card<MonarchsGaze>(),
             ModelDb.Card<ExaltedForm>(),
+            
+            //"Almost identical"
+            //Solar Strike
+            //Glow
+            //Hidden Cache
+            //Gather Light
         ];
     }
 }

@@ -9,9 +9,9 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class IllicitMunitions() : ShadowRegentCard(1,
+public class IllicitMunitions() : ShadowRegentCard(0,
     CardType.Skill,
-    CardRarity.Uncommon,
+    CardRarity.Rare,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
@@ -21,8 +21,8 @@ public class IllicitMunitions() : ShadowRegentCard(1,
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        HoverTipFactory.FromCard<Volley>(),
-        HoverTipFactory.FromCard<Salvo>()
+        IsUpgraded ? HoverTipFactory.FromCard<Volley>(true) : HoverTipFactory.FromCard<Volley>(),
+        IsUpgraded ? HoverTipFactory.FromCard<Salvo>(true) : HoverTipFactory.FromCard<Salvo>()
     ];
 
     protected override async Task OnPlay(
@@ -36,6 +36,11 @@ public class IllicitMunitions() : ShadowRegentCard(1,
 
         var salvoCard = CombatState.CreateCard<Salvo>(Owner);
         salvoCard.AddKeyword(CardKeyword.Retain);
+        if (IsUpgraded)
+        {
+            CardCmd.Upgrade(volleyCard);
+            CardCmd.Upgrade(salvoCard);
+        }
 
         var results = await CardPileCmd.AddGeneratedCardsToCombat([volleyCard, salvoCard], CargoCardPile.CargoPileType,
             Owner);
@@ -45,6 +50,6 @@ public class IllicitMunitions() : ShadowRegentCard(1,
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        
     }
 }

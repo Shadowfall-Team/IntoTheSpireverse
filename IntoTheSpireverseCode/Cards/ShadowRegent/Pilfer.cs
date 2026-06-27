@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Hooks;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class Convergence() : ShadowRegentCard(
+public class Pilfer() : ShadowRegentCard(
     1,
     CardType.Skill,
     CardRarity.Uncommon,

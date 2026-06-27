@@ -1,4 +1,7 @@
 using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,6 +12,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -18,13 +22,12 @@ public class Construct() : ShadowRegentCard(
     CardRarity.Uncommon,
     TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<ShardsEachTurnPower>(1)
-    ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardsPower>()
+        HoverTipFactory.FromPower<ShardsPower>(),
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        IsUpgraded ? HoverTipFactory.FromCard<Hyperdrive>(true) : HoverTipFactory.FromCard<Hyperdrive>()
+
     ];
 
     protected override async Task OnPlay(
@@ -34,27 +37,17 @@ public class Construct() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<ShardsEachTurnPower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
-            DynamicVars[nameof(ShardsEachTurnPower)].BaseValue,
-            Owner.Creature,
-            this);
+        var driveCard = CombatState.CreateCard<Hyperdrive>(Owner);
+        if (IsUpgraded)
+        {
+            CardCmd.Upgrade(driveCard);
+        }
+        var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(driveCard, CargoCardPile.CargoPileType, Owner);
+        CardCmd.PreviewCardPileAdd(cardAdd);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(ShardsEachTurnPower)].UpgradeValueBy(1);
-    }
-}
-
-public class ShardsEachTurnPower : ShadowPowerModel
-{
-    public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
-
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-    {
-        if (player != Owner.Player) return;
-        await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
+        
     }
 }

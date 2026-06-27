@@ -23,7 +23,7 @@ public class FireEverything() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 3)
+        new IntVar("LoadAmmo", 2)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
