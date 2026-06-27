@@ -1,5 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -18,6 +20,8 @@ public class TrickyStrike() : ShadowRegentCard(1,
         new("Increase", 1)
     ];
 
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
@@ -28,10 +32,20 @@ public class TrickyStrike() : ShadowRegentCard(1,
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-        
+
         DynamicVars.Repeat.BaseValue += DynamicVars["Increase"].BaseValue;
     }
-  
+    
+    public override async Task AfterAutoPostPlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)
+    {
+        if (Pile != null && Pile.Type == CargoCardPile.CargoPileType)
+        {
+            if (player == Owner)
+            {
+                await CardCmd.AutoPlay(choiceContext, this, null);
+            }
+        }
+    }
     protected override void OnUpgrade()
     {
         DynamicVars.Repeat.UpgradeValueBy(1M);
