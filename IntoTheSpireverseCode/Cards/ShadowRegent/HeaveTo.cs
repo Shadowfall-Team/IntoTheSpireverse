@@ -1,13 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -18,8 +17,9 @@ public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
     [
         new DamageVar(7, ValueProp.Move),
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
 
@@ -35,28 +35,18 @@ public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
             .Execute(choiceContext);
 
 
-
-        if (!IsUpgraded)
+        var cards = CargoCardPile.CargoPileType.GetPile(Owner)
+            .Cards.Where(c => c.IsUpgradable).ToList();
+        var targets = IsUpgraded ? cards : cards.TakeRandom(1, Owner.RunState.Rng.CombatCardSelection);
+        foreach (var cardModel in targets)
         {
-            IEnumerable<CardModel> card = CargoCardPile.CargoPileType.GetPile(Owner)
-                .Cards.Where(c => c.IsUpgradable)
-                .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection);
-            
-            foreach (CardModel cardModel in card)
-            {
-                CardCmd.Upgrade(cardModel);
-                CardCmd.Preview(cardModel);
-            }
+            CardCmd.Upgrade(cardModel);
+            CardCmd.Preview(cardModel);
         }
-        else
-        {
-            //TODO: Upgrade all cards in Cargo
-        }
-
     }
 
     protected override void OnUpgrade()
     {
-        
+        //Upgrade behaviour is handled within the OnPlay method.
     }
 }

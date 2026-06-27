@@ -545,7 +545,7 @@
   "INTOTHESPIREVERSE-LOAD_THE_CANNON.title": "Load the Cannon!",
   "INTOTHESPIREVERSE-STAR_CHARTS.description": "Gain {Block:diff()} [gold]Block[/gold].\nPut a card from your hand into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-STAR_CHARTS.title": "Star Charts",
-  "INTOTHESPIREVERSE-HEAVE_TO.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Upgrade[/gold] a random card in your [gold]Cargo[/gold].",
+  "INTOTHESPIREVERSE-HEAVE_TO.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Upgrade[/gold] {IfUpgraded:show:ALL your cards|a random card} in your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-HEAVE_TO.title": "Heave To!",
   "INTOTHESPIREVERSE-CHARTER.description": "Put {Cards:diff()} [gold]Minion Strikes[/gold] into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-CHARTER.title": "Charter",
