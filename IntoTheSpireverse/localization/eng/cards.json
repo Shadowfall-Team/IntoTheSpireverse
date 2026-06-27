@@ -660,7 +660,7 @@
   "INTOTHESPIREVERSE-BOARDING_PARTY.title": "Boarding Party",
   "INTOTHESPIREVERSE-SPEED_HARVEST.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nWhenever you fully Block an Attack, gain 1 [gold]Shard[/gold].",
   "INTOTHESPIREVERSE-SPEED_HARVEST.title": "Speed Harvest",
-  "INTOTHESPIREVERSE-TRIAL_OF_SPACE.description": "The next time you end your turn with 3 or more {energyPrefix:energyIcons(1)}, gain 3 {energyPrefix:energyIcons(1)} and draw 2 cards next turn",
+  "INTOTHESPIREVERSE-TRIAL_OF_SPACE.description": "The next time you end your turn with 3 or more {energyPrefix:energyIcons(1)}, gain {Energy:diff()} {energyPrefix:energyIcons(1)} and draw {Cards:diff()} cards next turn",
   "INTOTHESPIREVERSE-TRIAL_OF_SPACE.title": "Trial of Space",
   "INTOTHESPIREVERSE-BIG_GUNS.description": "Your [gold]Ammo[/gold] shots now deals damage to ALL enemies.\nEvery 10{energyPrefix:energyIcons(1)} you spend, Load {BigGuns:diff()} [gold]Ammo[/gold].",
   "INTOTHESPIREVERSE-BIG_GUNS.title": "Big Guns",
