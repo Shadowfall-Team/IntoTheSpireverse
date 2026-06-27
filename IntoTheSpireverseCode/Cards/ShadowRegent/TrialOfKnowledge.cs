@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -20,11 +21,7 @@ public class TrialOfKnowledge() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<TrialOfKnowledgePower>(5)
-    ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardsPower>(),
+        new PowerVar<TrialOfKnowledgePower>(1)
     ];
 
     protected override async Task OnPlay(
@@ -34,17 +31,17 @@ public class TrialOfKnowledge() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
+        if (IsUpgraded)
+        {
+            await CardPileCmd.Draw(choiceContext, 1, Owner);
+        }
+
         await PowerCmd.Apply<TrialOfKnowledgePower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature,
             DynamicVars[nameof(TrialOfKnowledgePower)].BaseValue,
             Owner.Creature,
             this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars[nameof(TrialOfKnowledgePower)].UpgradeValueBy(1);
     }
 }
 
@@ -53,22 +50,18 @@ public class TrialOfKnowledgePower : ShadowPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (Owner.Player == null) return;
         if (side == CombatSide.Enemy)
             return;
 
-        if (PileType.Hand.GetPile(Owner.Player).Cards.Count == 5)
+        if (PileType.Hand.GetPile(Owner.Player).Cards.Count >= 5)
         {
             Flash();
 
-            await PowerCmd.Apply<ShardsPower>(
-                new ThrowingPlayerChoiceContext(),
-                Owner,
-                Amount,
-                Owner, null);
-
+            await PowerCmd.Apply<RetainHandPower>(choiceContext, Owner, 1m, Owner, null);
             await PowerCmd.Remove(this);
         }
     }
