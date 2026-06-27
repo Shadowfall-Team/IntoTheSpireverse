@@ -26,7 +26,7 @@ public class Construct() : ShadowRegentCard(
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        IsUpgraded ? HoverTipFactory.FromCard<Hyperdrive>(true) : HoverTipFactory.FromCard<Hyperdrive>()
+        HoverTipFactory.FromCard<Hyperdrive>(IsUpgraded)
 
     ];
 

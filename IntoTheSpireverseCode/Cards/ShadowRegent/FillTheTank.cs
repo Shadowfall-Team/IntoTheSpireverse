@@ -21,7 +21,7 @@ public class FillTheTank() : ShadowRegentCard(1,
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        IsUpgraded ? HoverTipFactory.FromCard<Fuel>(true) : HoverTipFactory.FromCard<Fuel>()
+        HoverTipFactory.FromCard<Fuel>(IsUpgraded)
     ];
     
     protected override async Task OnPlay(

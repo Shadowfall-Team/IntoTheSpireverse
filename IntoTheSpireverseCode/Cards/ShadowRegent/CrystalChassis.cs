@@ -23,7 +23,7 @@ public class CrystalChassis() : ShadowRegentCard(
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        IsUpgraded ? HoverTipFactory.FromCard<UltimateDefend>(true) : HoverTipFactory.FromCard<UltimateDefend>()
+        HoverTipFactory.FromCard<UltimateDefend>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(

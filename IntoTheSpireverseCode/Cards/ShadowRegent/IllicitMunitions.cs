@@ -21,8 +21,8 @@ public class IllicitMunitions() : ShadowRegentCard(0,
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        IsUpgraded ? HoverTipFactory.FromCard<Volley>(true) : HoverTipFactory.FromCard<Volley>(),
-        IsUpgraded ? HoverTipFactory.FromCard<Salvo>(true) : HoverTipFactory.FromCard<Salvo>()
+        HoverTipFactory.FromCard<Volley>(IsUpgraded),
+        HoverTipFactory.FromCard<Salvo>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(
@@ -50,6 +50,5 @@ public class IllicitMunitions() : ShadowRegentCard(0,
 
     protected override void OnUpgrade()
     {
-        
     }
 }

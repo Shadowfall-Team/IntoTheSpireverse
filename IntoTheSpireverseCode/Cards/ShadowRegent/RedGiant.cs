@@ -1,11 +1,10 @@
-﻿using BaseLib.Abstracts;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Rewards;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Rooms;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Rewards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -16,6 +15,7 @@ public class RedGiant() : ShadowRegentCard(
     TargetType.Self)
 {
     public override bool CanBeGeneratedInCombat => false;
+
     //TODO: Not sure if extra is needed for multiplayer. Plz playtest
     public override CardMultiplayerConstraint MultiplayerConstraint =>
         CardMultiplayerConstraint.SingleplayerOnly;
@@ -24,16 +24,13 @@ public class RedGiant() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        
-        
-            await PowerCmd.Apply<RedGiantRandomPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<RedGiantRandomPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-                1,
-                Owner.Creature,
-                this);
-        
+            1,
+            Owner.Creature,
+            this);
     }
-    
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);
