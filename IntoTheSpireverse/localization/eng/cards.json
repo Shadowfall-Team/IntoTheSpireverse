@@ -608,7 +608,7 @@
   "INTOTHESPIREVERSE-GARBAGE_DAY.title": "Garbage Day",
   "INTOTHESPIREVERSE-TRIAL_OF_KNOWLEDGE.title": "Trial of Knowledge",
   "INTOTHESPIREVERSE-TRIAL_OF_KNOWLEDGE.description": "The next time you end your turn with 5 cards in your hand, [gold]Retain[/gold] your [gold]Hand[/gold] that turn.",
-  "INTOTHESPIREVERSE-TRIAL_OF_WEAPONRY.description": "The next time you play 3 Attacks in one turn, Load {LoadAmmo:diff()} [gold]Ammo[/gold].",
+  "INTOTHESPIREVERSE-TRIAL_OF_WEAPONRY.description": "The next time you play 3 Attacks in one turn, gain {Block:diff()} [gold]Block[/gold].",
   "INTOTHESPIREVERSE-TRIAL_OF_WEAPONRY.title": "Trial of Weaponry",
   "INTOTHESPIREVERSE-PILFER.description": "Draw {Cards:diff()} cards from your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-PILFER.title": "Pilfer",

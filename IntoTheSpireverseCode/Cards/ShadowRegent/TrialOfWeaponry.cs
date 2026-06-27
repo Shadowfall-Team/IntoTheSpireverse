@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -21,7 +22,7 @@ public class TrialOfWeaponry() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 3)
+        new BlockVar(12, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -36,14 +37,14 @@ public class TrialOfWeaponry() : ShadowRegentCard(
 
         await PowerCmd.Apply<TrialOfWeaponryPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars["LoadAmmo"].BaseValue,
+            DynamicVars.Block.BaseValue,
             Owner.Creature,
             this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LoadAmmo"].UpgradeValueBy(1);
+        DynamicVars.Block.UpgradeValueBy(4);
     }
 }
 
@@ -87,7 +88,8 @@ public class TrialOfWeaponryPower : ShadowPowerModel
                     if (DynamicVars["AttacksPlayedThisTurn"].BaseValue % 3 == 0)
                     {
                         Flash();
-                        await LoadAmmoCmd.LoadAmmo(Amount, Owner.Player, this);
+                        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered,
+                            null);
                         await PowerCmd.Remove(this);
                     }
                 }
