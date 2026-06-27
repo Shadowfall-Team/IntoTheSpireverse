@@ -32,12 +32,12 @@ public class AmmoVolley() : CustomCardModel(1,
             .WithMultiplier(static (card, _) =>
                 card.Owner.Creature.GetPowerAmount<FirepowerPower>() +
                 card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
-        .. MakeCalculatedBlock("ShotBlock", 0, (model, _) => GetOwnerBlockadeAmount(model))
+        .. MakeCalculatedBlock("ShotBlock", 0, (model, _) => GetOwnerDefensiveCannonadeAmount(model))
     ];
 
-    public override bool GainsBlock => GetOwnerBlockadeAmount(this) > 0;
+    public override bool GainsBlock => GetOwnerDefensiveCannonadeAmount(this) > 0;
 
-    private static decimal GetOwnerBlockadeAmount(CardModel cardModel)
+    private static decimal GetOwnerDefensiveCannonadeAmount(CardModel cardModel)
     {
         if (!cardModel.IsMutable || cardModel.Pile == null)
         {

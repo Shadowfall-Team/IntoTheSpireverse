@@ -1,10 +1,9 @@
-using MegaCrit.Sts2.Core.Combat;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
@@ -24,6 +23,12 @@ public static class AmmoResource
         {
             var card = combatState.CreateCard<AmmoVolley>(player);
             await CardPileCmd.AddGeneratedCardToCombat(card, AmmoCardPile.AmmoPileType, player);
+            
+            foreach (var model in player.Creature.CombatState.IterateHookListeners().ToList())
+            {
+                if (model is IAmmoLoadedListener listener)
+                    await listener.OnAmmoLoaded();
+            }
         }
     }
 
