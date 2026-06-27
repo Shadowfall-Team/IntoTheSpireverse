@@ -685,5 +685,7 @@
   "INTOTHESPIREVERSE-AMMO_VOLLEY.description": "Deal {CalculatedDamage:diff()} damage to a random enemy.{GainsBlock:cond:\nGain {ShotBlock:diff()} [gold]Block[/gold].|}",
   "INTOTHESPIREVERSE-AMMO_VOLLEY.title": "Shot",
   "INTOTHESPIREVERSE-SUPERMASSIVE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each card you created this combat.",
-  "INTOTHESPIREVERSE-SUPERMASSIVE.title": "Supermassive"
+  "INTOTHESPIREVERSE-SUPERMASSIVE.title": "Supermassive",
+  "INTOTHESPIREVERSE-BURY_CAPTAIN.description": "Deal {Damage:diff()} damage.",
+  "INTOTHESPIREVERSE-BURY_CAPTAIN.title": "Bury"
 }

@@ -18,7 +18,7 @@ public class GarbageDay() : ShadowRegentCard(
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
         HoverTipFactory.FromCard<Debris>(),
-        HoverTipFactory.FromCard<Bury>(IsUpgraded)
+        HoverTipFactory.FromCard<BuryCaptain>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(
@@ -33,8 +33,7 @@ public class GarbageDay() : ShadowRegentCard(
         await CardPileCmd.AddToCombatAndPreview<Debris>(Owner.Creature,
             CargoCardPile.CargoPileType, 4, Owner);
 
-        var bury = CombatState.CreateCard<Bury>(Owner);
-        bury.EnergyCost.SetThisCombat(0);
+        var bury = CombatState.CreateCard<BuryCaptain>(Owner);
         if (IsUpgraded)
         {
             CardCmd.Upgrade(bury);
