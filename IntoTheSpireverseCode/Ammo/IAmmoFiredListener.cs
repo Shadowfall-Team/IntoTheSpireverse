@@ -7,3 +7,8 @@ public interface IAmmoFiredListener
 {
     Task OnAmmoFired(Player player, IEnumerable<List<DamageResult>> results);
 }
+
+public interface IAmmoLoadedListener
+{
+    Task OnAmmoLoaded();
+}

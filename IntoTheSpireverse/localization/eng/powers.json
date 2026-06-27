@@ -253,5 +253,8 @@
   "INTOTHESPIREVERSE-FREE_SHOT_POWER.title": "FreeShotPower",
   "INTOTHESPIREVERSE-FIRE_EVERYTHING_POWER.description": "Your [gold]Shots[/gold] cost no energy this turn.",
   "INTOTHESPIREVERSE-FIRE_EVERYTHING_POWER.smartDescription": "Your [gold]Shots[/gold] cost no energy this turn.",
-  "INTOTHESPIREVERSE-FIRE_EVERYTHING_POWER.title": "Fire Everything"
+  "INTOTHESPIREVERSE-FIRE_EVERYTHING_POWER.title": "Fire Everything",
+  "INTOTHESPIREVERSE-BLOCKADE_POWER.description": "When you load [gold]Ammo[/gold], gain [gold]Block[/gold].",
+  "INTOTHESPIREVERSE-BLOCKADE_POWER.smartDescription": "When you load [gold]Ammo[/gold], gain {Amount} [gold]Block[/gold].",
+  "INTOTHESPIREVERSE-BLOCKADE_POWER.title": "Blockade"
 }

@@ -1,13 +1,10 @@
-using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Combat;
+using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -16,10 +13,10 @@ public class Blockade() : ShadowRegentCard(2,
     CardRarity.Uncommon,
     TargetType.Self)
 {
-    public override bool GainsBlock => false;
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
-        
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<VolleyDamagePower>(4),
+        new BlockVar(2, ValueProp.Unpowered)
     ];
 
     protected override async Task OnPlay(
@@ -27,11 +24,24 @@ public class Blockade() : ShadowRegentCard(2,
         CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        
+
+        await PowerCmd.Apply<VolleyDamagePower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars.Power<VolleyDamagePower>().BaseValue,
+            Owner.Creature,
+            this);
+
+        await PowerCmd.Apply<BlockadePower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars.Block.BaseValue,
+            Owner.Creature,
+            this);
     }
 
     protected override void OnUpgrade()
     {
-        
+        DynamicVars.Power<VolleyDamagePower>().UpgradeValueBy(2);
     }
 }
