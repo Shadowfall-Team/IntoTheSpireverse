@@ -33,8 +33,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<MakeItSo>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
-            ModelDb.Card<MonarchsGaze>(),
-            ModelDb.Card<ExaltedForm>(),
             
             //"Almost identical"
             //Solar Strike

@@ -18,7 +18,7 @@ public class Pilfer() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(1),
+        new CardsVar(3),
     ];
     
     protected override async Task OnPlay(

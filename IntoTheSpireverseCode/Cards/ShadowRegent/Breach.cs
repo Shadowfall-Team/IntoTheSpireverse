@@ -6,29 +6,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class Strongarm() : ShadowRegentCard(3,
+public class Breach() : ShadowRegentCard(2,
     CardType.Attack,
-    CardRarity.Uncommon,
+    CardRarity.Rare,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(26, ValueProp.Move),
-        new("Increase", 14)
+        new DamageVar(18, ValueProp.Move)
     ];
     
-    private decimal _extraDamage;
-    private decimal ExtraDamage
-    {
-        get
-        {
-            return _extraDamage;
-        }
-        set
-        {
-            AssertMutable();
-            _extraDamage = value;
-        }
-    }
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -41,17 +27,13 @@ public class Strongarm() : ShadowRegentCard(3,
             .Execute(choiceContext);
         
         DynamicVars.Damage.BaseValue += DynamicVars["Increase"].BaseValue;
-        ExtraDamage += DynamicVars["Increase"].BaseValue;
+
+        //TODO - Temp one-time Chem X power.
     }
     
-    protected override void AfterDowngraded()
-    {
-        base.AfterDowngraded();
-        DynamicVars.Damage.BaseValue += ExtraDamage;
-    }
+   
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4);
-        DynamicVars["Increase"].UpgradeValueBy(6);
+        DynamicVars.Damage.UpgradeValueBy(6);
     }
 }

@@ -21,7 +21,7 @@ public class FillTheTank() : ShadowRegentCard(1,
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        HoverTipFactory.FromCard<Fuel>()
+        IsUpgraded ? HoverTipFactory.FromCard<Fuel>(true) : HoverTipFactory.FromCard<Fuel>()
     ];
     
     protected override async Task OnPlay(
@@ -30,13 +30,23 @@ public class FillTheTank() : ShadowRegentCard(1,
     {
         if (CombatState != null)
         {
-            await CardPileCmd.AddToCombatAndPreview<Fuel>(Owner.Creature,
-                CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, Owner);
+            var fuelCard = CombatState.CreateCard<Fuel>(Owner);
+            if (IsUpgraded)
+            {
+                CardCmd.Upgrade(fuelCard);
+            }
+            var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(fuelCard, CargoCardPile.CargoPileType, Owner);
+            CardCmd.PreviewCardPileAdd(cardAdd);
+            
+            //TODO - This probably doesn't work or could be written better.
+            cardAdd = await CardPileCmd.AddGeneratedCardToCombat(fuelCard, CargoCardPile.CargoPileType, Owner);
+            CardCmd.PreviewCardPileAdd(cardAdd);
+
         }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1);
+        
     }
 }
