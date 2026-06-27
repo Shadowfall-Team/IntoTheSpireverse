@@ -34,18 +34,29 @@ public class FutureProofing() : ShadowRegentCard(1, CardType.Attack, CardRarity.
             .WithHitFx("vfx/vfx_starry_impact")
             .Execute(choiceContext);
 
-        IEnumerable<CardModel> card = CargoCardPile.CargoPileType.GetPile(Owner)
-            .Cards.Where(c => c.IsUpgradable)
-            .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection);
-        foreach (CardModel cardModel in card)
+
+
+        if (!IsUpgraded)
         {
-            CardCmd.Upgrade(cardModel);
-            CardCmd.Preview(cardModel);
+            IEnumerable<CardModel> card = CargoCardPile.CargoPileType.GetPile(Owner)
+                .Cards.Where(c => c.IsUpgradable)
+                .TakeRandom(1, Owner.RunState.Rng.CombatCardSelection);
+            
+            foreach (CardModel cardModel in card)
+            {
+                CardCmd.Upgrade(cardModel);
+                CardCmd.Preview(cardModel);
+            }
         }
+        else
+        {
+            //TODO: Upgrade all cards in Cargo
+        }
+
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+       
     }
 }

@@ -20,9 +20,12 @@ public class FireAway() : ShadowRegentCard(1,
         new PowerVar<FirepowerPower>(6)
     ];
 
-
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [CardKeyword.Exhaust];
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         LoadAmmoHoverTip.FromLoadAmmo();
+    
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -31,17 +34,11 @@ public class FireAway() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
         await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
-
-        await PowerCmd.Apply<FirepowerPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature,
-            DynamicVars[nameof(FirepowerPower)].BaseValue,
-            Owner.Creature,
-            this);
+        
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(FirepowerPower)].UpgradeValueBy(4);
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

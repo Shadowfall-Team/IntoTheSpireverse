@@ -26,7 +26,7 @@ public class AmmoVolley() : CustomCardModel(1,
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CalculationBaseVar(14),
+        new CalculationBaseVar(12),
         new ExtraDamageVar(1),
         new CalculatedDamageVar(ValueProp.Move)
             .WithMultiplier(static (card, _) =>

@@ -1,3 +1,4 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -5,6 +6,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+using MegaCrit.Sts2.Core.Hooks;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -16,34 +18,29 @@ public class Convergence() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new EnergyVar(1),
-        new PowerVar<ShardsNextTurnPower>(1)
+        new CardsVar(1),
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<ShardsPower>(),
-        HoverTipFactory.FromKeyword(CardKeyword.Retain),
-    ];
-
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
-            Owner.Character.CastAnimDelay);
-
-        await PowerCmd.Apply<RetainHandPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
-
-        await PowerCmd.Apply<EnergyNextTurnPower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
-            DynamicVars.Energy.BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<ShardsNextTurnPower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
-            DynamicVars[nameof(ShardsNextTurnPower)].BaseValue, Owner.Creature, this);
-    }
+        var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner);
+        if (!cargoPile.IsEmpty)
+        {
+            var cardModels = cargoPile.Cards.Take((int)DynamicVars.Cards.BaseValue).ToList();
+            foreach (var cardModel in cardModels)
+            {
+                await CardPileCmd.Add(cardModel, PileType.Hand);
+                if (Owner.Creature.CombatState == null) continue;
+                await Hook.AfterCardDrawn(Owner.Creature.CombatState, choiceContext, cardModel, true);
+            }
+        }
+        
+       }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(ShardsNextTurnPower)].UpgradeValueBy(1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

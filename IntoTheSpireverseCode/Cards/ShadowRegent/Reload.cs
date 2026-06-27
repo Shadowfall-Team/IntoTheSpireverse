@@ -36,11 +36,11 @@ public class Reload() : ShadowRegentCard(1,
             Owner.Character.CastAnimDelay);
 
         var ammoToLoad = (int)DynamicVars["LoadAmmo"].BaseValue + ((CalculatedVar)DynamicVars["AttacksPlayed"]).Calculate(play.Target);
-        await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner, this);
+        if (IsUpgraded) await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner, this);
     }
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        
     }
 }

@@ -15,7 +15,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
 public class TargetAcquired() : ShadowRegentCard(
-    1,
+    0,
     CardType.Attack,
     CardRarity.Uncommon,
     TargetType.AnyEnemy)
@@ -26,11 +26,6 @@ public class TargetAcquired() : ShadowRegentCard(
         new IntVar("LoadAmmo", 1)
     ];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Retain
-    ];
-    
     protected override IEnumerable<IHoverTip> ExtraHoverTips => 
         LoadAmmoHoverTip.FromLoadAmmo();
 
@@ -56,7 +51,7 @@ public class TargetAcquired() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        AddKeyword(CardKeyword.Retain);
     }
 }
 

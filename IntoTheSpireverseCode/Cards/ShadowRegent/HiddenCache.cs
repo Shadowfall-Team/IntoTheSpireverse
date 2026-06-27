@@ -15,7 +15,7 @@ public class HiddenCache() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<ShardsPower>(1),
-        new PowerVar<ShardsNextTurnPower>(3)
+        new PowerVar<ShardsNextTurnPower>(2)
     ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),

@@ -19,7 +19,8 @@ public class Misdirection() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move)
+        new DamageVar(8, ValueProp.Move),
+        new CardsVar(1)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -39,7 +40,7 @@ public class Misdirection() : ShadowRegentCard(
         var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner)
             .Cards.OrderBy(c => c.Rarity)
             .ThenBy(c => c.Id).ToList();
-        var prefs = new CardSelectorPrefs(CargoSelectorPrefs.FromCargoSelectionPrompt, 1);
+        var prefs = new CardSelectorPrefs(CargoSelectorPrefs.FromCargoSelectionPrompt, DynamicVars.Cards.IntValue);
 
         var selection = (await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, prefs)).FirstOrDefault();
 
@@ -50,6 +51,6 @@ public class Misdirection() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

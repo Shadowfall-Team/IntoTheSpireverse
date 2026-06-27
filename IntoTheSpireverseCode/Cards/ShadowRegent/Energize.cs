@@ -14,7 +14,7 @@ public class Energize() : ShadowRegentCard(2,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9, ValueProp.Move),
+        new DamageVar(8, ValueProp.Move),
         new EnergyVar(2)
     ];
 

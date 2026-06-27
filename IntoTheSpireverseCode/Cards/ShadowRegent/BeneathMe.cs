@@ -13,24 +13,10 @@ public class BeneathMe() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(2, ValueProp.Move),
+        new DamageVar(4, ValueProp.Move),
         new RepeatVar(2),
         new("Increase", 1)
     ];
-
-    private decimal _extraHits;
-    private decimal ExtraHits
-    {
-        get
-        {
-            return _extraHits;
-        }
-        set
-        {
-            AssertMutable();
-            _extraHits = value;
-        }
-    }
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -44,17 +30,10 @@ public class BeneathMe() : ShadowRegentCard(1,
             .Execute(choiceContext);
         
         DynamicVars.Repeat.BaseValue += DynamicVars["Increase"].BaseValue;
-        ExtraHits += DynamicVars["Increase"].BaseValue;
     }
-    
-    protected override void AfterDowngraded()
-    {
-        base.AfterDowngraded();
-        DynamicVars.Damage.BaseValue += ExtraHits;
-    }
-    
+  
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1);
+        DynamicVars.Repeat.UpgradeValueBy(1M);
     }
 }

@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class Successor() : ShadowRegentCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Successor() : ShadowRegentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
