@@ -256,5 +256,8 @@
   "INTOTHESPIREVERSE-FIRE_EVERYTHING_POWER.title": "Fire Everything",
   "INTOTHESPIREVERSE-BLOCKADE_POWER.description": "When you load [gold]Ammo[/gold], gain [gold]Block[/gold].",
   "INTOTHESPIREVERSE-BLOCKADE_POWER.smartDescription": "When you load [gold]Ammo[/gold], gain {Amount} [gold]Block[/gold].",
-  "INTOTHESPIREVERSE-BLOCKADE_POWER.title": "Blockade"
+  "INTOTHESPIREVERSE-BLOCKADE_POWER.title": "Blockade",
+  "INTOTHESPIREVERSE-BREACH_POWER.description": "The effects of your next X-cost card are increased.",
+  "INTOTHESPIREVERSE-BREACH_POWER.smartDescription": "The effects of your next X-cost card are increased by {Amount}.",
+  "INTOTHESPIREVERSE-BREACH_POWER.title": "Breach"
 }
