@@ -698,6 +698,6 @@
   "INTOTHESPIREVERSE-ROUSING_SPEECH.title": "Rousing Speech",
   "INTOTHESPIREVERSE-BREACH.description": "Deal {Damage:diff()} damage.\nThe effects of your next X-cost card are increased by {Increase:diff()}.",
   "INTOTHESPIREVERSE-BREACH.title": "Breach",
-  "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.description": "Put this into [gold]Cargo[/gold].\nAt the end of your turn, if this is in [gold]Cargo[/gold], gain {Block:diff()} [gold]Block[/gold].",
+  "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.description": "Put this into [gold]Cargo[/gold].\nAt the end of your turn, if this is in your [gold]Cargo[/gold], gain {Block:diff()} [gold]Block[/gold].",
   "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.title": "Brace for Impact!"
 }
