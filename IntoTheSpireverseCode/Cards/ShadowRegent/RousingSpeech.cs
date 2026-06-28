@@ -1,10 +1,13 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -51,7 +54,11 @@ public class RousingSpeech() : ShadowRegentCard(
     
 }
 
-public class RousingSpeechTemporaryStrengthPower : TemporaryStrengthPower
+public class RousingSpeechTemporaryStrengthPower : TemporaryStrengthPower, ICustomPower
 {
     public override AbstractModel OriginModel => ModelDb.Card<RousingSpeech>();
+    
+    string? ICustomPower.CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
+    string? ICustomPower.CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigPowerImagePath();
+
 }

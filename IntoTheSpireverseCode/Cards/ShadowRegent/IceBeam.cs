@@ -1,4 +1,7 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -51,6 +54,9 @@ public class IceBeam() : ShadowRegentCard(1,
 public class IceBeamPower : TemporaryStrengthPower, ICustomPower
 {
     public override AbstractModel OriginModel => ModelDb.Card<IceBeam>();
+
+    string? ICustomPower.CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
+    string? ICustomPower.CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigPowerImagePath();
 
     protected override bool IsPositive => false;
 }

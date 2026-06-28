@@ -582,7 +582,7 @@
   "INTOTHESPIREVERSE-BROADSIDE.title": "Broadside",
   "INTOTHESPIREVERSE-ILLICIT_MUNITIONS.description": "Put a [gold]Steady[/gold] [gold]{IfUpgraded:show:Volley+|Volley}[/gold] and [gold]Steady[/gold] [gold]{IfUpgraded:show:Salvo+|Salvo}[/gold] into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-ILLICIT_MUNITIONS.title": "Illicit Munitions",
-  "INTOTHESPIREVERSE-SHADOW_CRYSTAL.description": "Gain {ShardsPower:diff()} [gold]Shards[/gold].\nPut this in your [gold]Cargo[/gold].",
+  "INTOTHESPIREVERSE-SHADOW_CRYSTAL.description": "Gain {ShardsPower:diff()} [gold]Shards[/gold].",
   "INTOTHESPIREVERSE-SHADOW_CRYSTAL.title": "Shadow Crystal",
   "INTOTHESPIREVERSE-ENERGIZE.description": "Deal {Damage:diff()} damage.\nGain {Energy:energyIcons()}.\nCosts 0 if an X cost card was played this turn.",
   "INTOTHESPIREVERSE-ENERGIZE.title": "Energize!",

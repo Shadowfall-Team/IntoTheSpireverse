@@ -1,4 +1,6 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -61,6 +63,9 @@ public class EMPulse() : ShadowRegentCard(
 public class EMPulsePower : TemporaryStrengthPower, ICustomPower
 {
     public override AbstractModel OriginModel => ModelDb.Card<EMPulse>();
+
+    string? ICustomPower.CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
+    string? ICustomPower.CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigPowerImagePath();
 
     protected override bool IsPositive => false;
 }

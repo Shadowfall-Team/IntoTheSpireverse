@@ -16,8 +16,10 @@ public class ShadowCrystal() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ShardsPower>(3)
+        new PowerVar<ShardsPower>(6)
     ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),
@@ -32,12 +34,10 @@ public class ShadowCrystal() : ShadowRegentCard(1,
             Owner.Creature,
             DynamicVars[nameof(ShardsPower)].BaseValue, Owner.Creature, null);
 
-        //TODO: check if the card preview to cargo pile works correctly
-        await CardPileCmd.Add(this, CargoCardPile.CargoPileType);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(ShardsPower)].UpgradeValueBy(1);
+        DynamicVars[nameof(ShardsPower)].UpgradeValueBy(3);
     }
 }

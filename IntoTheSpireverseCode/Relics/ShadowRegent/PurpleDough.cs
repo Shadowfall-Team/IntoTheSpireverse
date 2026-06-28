@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 
@@ -28,22 +30,27 @@ public class PurpleDough : ShadowRegentRelic
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
 
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+
+    public override async Task AfterSideTurnStartLate(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side == Owner.Creature.Side)
         {
             if (combatState.RoundNumber <= 1)
             {
                 Flash();
-                var list = CardFactory.GetDistinctForCombat(Owner,
-                        ModelDb.CardPool<ColorlessCardPool>().GetUnlockedCards(
-                            Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint),
-                        DynamicVars.Cards.IntValue,
-                        Owner.RunState.Rng.CombatCardGeneration)
-                    .ToList();
-                Flash();
-                var result = await CardPileCmd.AddGeneratedCardsToCombat(list, CargoCardPile.CargoPileType, Owner);
-                CardCmd.PreviewCardPileAdd(result);
+                var cardModel = CardFactory.GetDistinctForCombat(Owner,
+                    [
+                        ModelDb.Card<SecretTechnique>(),
+                        ModelDb.Card<SecretWeapon>(),
+                        ModelDb.Card<MasterOfStrategy>()
+                    ],
+                    1, Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
+                if (cardModel != null)
+                {
+                    var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(cardModel, CargoCardPile.CargoPileType,
+                        Owner);
+                    CardCmd.PreviewCardPileAdd(cardPileAddResult);
+                }
             }
         }
     }

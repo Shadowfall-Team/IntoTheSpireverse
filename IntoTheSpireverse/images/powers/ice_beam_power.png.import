@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0k2vjiiwhg42"
-path="res://.godot/imported/shards_each_turn_power.png-e45364f6456d07b27eeb7915e555e810.ctex"
+uid="uid://b622cogtwg6ws"
+path="res://.godot/imported/ice_beam_power.png-b5b32c204c1bdd9f4bf03a432967afb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/powers/shards_each_turn_power.png"
-dest_files=["res://.godot/imported/shards_each_turn_power.png-e45364f6456d07b27eeb7915e555e810.ctex"]
+source_file="res://IntoTheSpireverse/images/powers/ice_beam_power.png"
+dest_files=["res://.godot/imported/ice_beam_power.png-b5b32c204c1bdd9f4bf03a432967afb5.ctex"]
 
 [params]
 
