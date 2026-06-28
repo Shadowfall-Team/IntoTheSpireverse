@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-ENERGIZE",
-  "hue": 0.58,
-  "saturation": 1.29,
-  "value": 1.09,
-  "red": 0.99,
-  "green": 1.12,
-  "blue": 1.16,
-  "contrast": 1.06,
+  "hue": 0.49,
+  "saturation": 1.06,
+  "value": 0.81,
+  "red": 1.27,
+  "green": 1.33,
+  "blue": 1.34,
+  "contrast": 1.14,
   "flip_h": true,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/radiate.tres"
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/shining_strike.tres"
 }

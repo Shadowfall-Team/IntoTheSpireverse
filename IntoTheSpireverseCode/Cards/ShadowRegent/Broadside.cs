@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class KnowledgeBlast() : ShadowRegentCard(2,
+public class Broadside() : ShadowRegentCard(2,
     CardType.Attack,
     CardRarity.Uncommon,
     TargetType.AllEnemies)

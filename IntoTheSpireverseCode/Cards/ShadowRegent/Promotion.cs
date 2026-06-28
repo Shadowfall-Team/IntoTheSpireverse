@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class GetStronger() : ShadowRegentCard(
+public class Promotion() : ShadowRegentCard(
     0,
     CardType.Power,
     CardRarity.Rare,
