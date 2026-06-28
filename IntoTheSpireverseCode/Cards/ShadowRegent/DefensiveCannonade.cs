@@ -26,7 +26,7 @@ public class DefensiveCannonade() : ShadowRegentCard(
     [
         new IntVar("LoadAmmo", 2),
         new IntVar("Shots", 2),
-        new BlockVar(6, ValueProp.Move),
+        new BlockVar(7, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -51,7 +51,7 @@ public class DefensiveCannonade() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(2);
+        DynamicVars.Block.UpgradeValueBy(3);
     }
 }
 

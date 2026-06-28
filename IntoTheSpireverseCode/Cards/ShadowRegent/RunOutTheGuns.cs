@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -17,12 +18,7 @@ public class RunOutTheGuns() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("LoadAmmo", 1),
-        new CalculationBaseVar(0m),
-        new CalculationExtraVar(1m),
-        new CalculatedVar("AttacksPlayed").WithMultiplier((card, _) =>
-            CombatManager.Instance.History.CardPlaysFinished.Count(cardPlayEntry =>
-                cardPlayEntry.HappenedThisTurn(card.CombatState) &&
-                cardPlayEntry.CardPlay.Card.Type == CardType.Attack && cardPlayEntry.CardPlay.Card.Owner == card.Owner))
+        new BlockVar(9, ValueProp.Move)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -34,10 +30,14 @@ public class RunOutTheGuns() : ShadowRegentCard(1,
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
-
-        var ammoToLoad = (int)DynamicVars["LoadAmmo"].BaseValue +
-                         ((CalculatedVar)DynamicVars["AttacksPlayed"]).Calculate(play.Target);
-        if (IsUpgraded) ammoToLoad++;
-        await LoadAmmoCmd.LoadAmmo(ammoToLoad, Owner, this);
+        
+        if (Owner.Creature.Block > 0) await LoadAmmoCmd.LoadAmmo((int)DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await LoadAmmoCmd.LoadAmmo((int)DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
+        
     }
+    
+    protected override bool ShouldGlowGoldInternal => Owner.Creature.Block > 0;
+    
+    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(3m);
 }

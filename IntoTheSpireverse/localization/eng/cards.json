@@ -572,7 +572,7 @@
   "INTOTHESPIREVERSE-PLOT.title": "Plot",
   "INTOTHESPIREVERSE-RELOAD.description": "Load {LoadAmmo:diff()} [gold]Ammo[/gold].",
   "INTOTHESPIREVERSE-RELOAD.title": "Reload!",
-  "INTOTHESPIREVERSE-RUN_OUT_THE_GUNS.description": "{IfUpgraded:show:Load {LoadAmmo:diff()} [gold]Ammo[/gold].\n|}Load 1 [gold]Ammo[/gold] for each Attack played this turn.",
+  "INTOTHESPIREVERSE-RUN_OUT_THE_GUNS.description": "Load 1 [gold]Ammo[/gold]. Load another if you have any [gold]Block[/gold].\nGain {Block:diff()} [gold]Block[/gold].",
   "INTOTHESPIREVERSE-RUN_OUT_THE_GUNS.title": "Run Out the Guns!",
   "INTOTHESPIREVERSE-SMUGGLERS_STRIKE.description": "Deal {Damage:diff()} damage.\nPut the next card you play this turn into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-SMUGGLERS_STRIKE.title": "Smuggler's Strike",
