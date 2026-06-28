@@ -27,7 +27,10 @@ public class PurpleDough : ShadowRegentRelic
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        HoverTipFactory.FromCard<SecretWeapon>(),
+        HoverTipFactory.FromCard<SecretTechnique>(),
+        HoverTipFactory.FromCard<MasterOfStrategy>()
     ];
 
 
