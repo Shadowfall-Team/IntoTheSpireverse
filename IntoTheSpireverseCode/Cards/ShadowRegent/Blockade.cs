@@ -42,6 +42,7 @@ public class Blockade() : ShadowRegentCard(2,
 
     protected override void OnUpgrade()
     {
+        DynamicVars.Block.UpgradeValueBy(1);
         DynamicVars.Power<VolleyDamagePower>().UpgradeValueBy(2);
     }
 }
