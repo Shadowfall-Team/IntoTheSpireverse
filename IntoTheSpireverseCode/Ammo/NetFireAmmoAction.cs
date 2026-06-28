@@ -5,9 +5,9 @@ using MegaCrit.Sts2.Core.Multiplayer.Serialization;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
-public struct NetPlayAmmoCardAction : INetAction, IPacketSerializable
+public struct NetFireAmmoAction : INetAction, IPacketSerializable
 {
-    public GameAction ToGameAction(Player player) => new PlayAmmoCardAction(player);
+    public GameAction ToGameAction(Player player) => new FireAmmoAction(player);
 
     public void Serialize(PacketWriter writer)
     {
@@ -18,5 +18,5 @@ public struct NetPlayAmmoCardAction : INetAction, IPacketSerializable
     {
     }
 
-    public override string ToString() => nameof(NetPlayAmmoCardAction);
+    public override string ToString() => nameof(NetFireAmmoAction);
 }

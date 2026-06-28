@@ -363,6 +363,8 @@
   "INTOTHESPIREVERSE-WRATH.description": "[gold]Startup[/gold] - Gain {StrengthPower} [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-YOUR_DOOM_IS_NIGH.title": "Your Doom is Nigh",
   "INTOTHESPIREVERSE-YOUR_DOOM_IS_NIGH.description": "Whenever you draw a [purple]Curse[/purple], a random enemy loses {Damage:diff()} HP.",
+  "INTOTHESPIREVERSE-NECRONOMICON.title": "Necronomicon",
+  "INTOTHESPIREVERSE-NECRONOMICON.description": "At the end of combat, you may [gold]Transform[/gold] and [gold]Upgrade[/gold] {Cards:plural:a card|{} cards}.",
 
   "INTOTHESPIREVERSE-ANCESTRAL_ECHO.title": "Ancestral Echo",
   "INTOTHESPIREVERSE-ANCESTRAL_ECHO.description": "Add [gold]Replay[/gold] {Replay:diff()} to the top card of your [gold]Draw Pile[/gold].",

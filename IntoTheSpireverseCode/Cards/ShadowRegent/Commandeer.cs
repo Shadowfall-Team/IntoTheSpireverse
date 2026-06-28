@@ -1,15 +1,8 @@
-using BaseLib.Extensions;
-using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Factories;
-using MegaCrit.Sts2.Core.Logging;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -18,12 +11,11 @@ public class Commandeer() : ShadowRegentCard(1,
     CardRarity.Rare,
     TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [
-        
-   
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
     ];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
 
     protected override async Task OnPlay(
@@ -31,38 +23,31 @@ public class Commandeer() : ShadowRegentCard(1,
         CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        
+
         var pools = Owner.UnlockState.CharacterCardPools.ToList();
         pools.Remove(Owner.Character.CardPool);
 
         var allCards = pools
-            .SelectMany(p => p.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint));
+            .SelectMany(p => p.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)).ToList();
 
         var rng = Owner.RunState.Rng.CombatCardGeneration;
 
-        foreach (var type in new[] { CardType.Attack})
+        foreach (var type in new[] { CardType.Attack })
         {
-            var card = CardFactory.GetDistinctForCombat(Owner, allCards.Where(c => c.Type == type), 1, rng).FirstOrDefault();
-            if (card != null)
+            var card = CardFactory.GetDistinctForCombat(Owner, allCards.Where(c => c.Type == type), 1, rng)
+                .FirstOrDefault();
+            if (card == null) continue;
+            var multiplier = IsUpgraded ? 3 : 2;
+            if (card.DynamicVars.TryGetValue("Damage", out _))
             {
-                if (IsUpgraded)
-                {
-                }
-                else
-                {
-                    if (card.DynamicVars.TryGetValue("Damage", out var damage))
-                    {
-                        card.DynamicVars.Damage.BaseValue *= 2;
-                    }
-                    else if (card.DynamicVars.TryGetValue("CalculationBase", out var calculationBase))
-                    {
-                        card.DynamicVars.CalculatedDamage.BaseValue *= 2;
-                    }
-                }
-                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
+                card.DynamicVars.Damage.BaseValue *= multiplier;
             }
-        }
+            else if (card.DynamicVars.TryGetValue("CalculationBase", out _))
+            {
+                card.DynamicVars.CalculatedDamage.BaseValue *= multiplier;
+            }
 
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
+        }
     }
-    
 }

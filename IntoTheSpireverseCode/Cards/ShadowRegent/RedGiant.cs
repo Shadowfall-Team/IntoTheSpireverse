@@ -1,5 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Rewards;
+using BaseLib.Common.Rewards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -16,13 +16,7 @@ public class RedGiant() : ShadowRegentCard(
 {
     public override bool CanBeGeneratedInCombat => false;
 
-    //TODO: Not sure if extra is needed for multiplayer. Plz playtest
-    public override CardMultiplayerConstraint MultiplayerConstraint =>
-        CardMultiplayerConstraint.SingleplayerOnly;
-
-    protected override async Task OnPlay(
-        PlayerChoiceContext choiceContext,
-        CardPlay play)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
         await PowerCmd.Apply<RedGiantRandomPower>(new ThrowingPlayerChoiceContext(),
             Owner.Creature,
@@ -45,8 +39,7 @@ public class RedGiantRandomPower : ShadowPowerModel
     public override async Task AfterCombatEnd(CombatRoom room)
     {
         if (Owner.Player == null) return;
-
-        for (var i = 0; i < Amount; i++)
+        for (int i = 0; i < Amount; i++)
         {
             room.AddExtraReward(Owner.Player, new RandomCardUpgradeReward(Owner.Player));
         }
