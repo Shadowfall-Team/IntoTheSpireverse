@@ -607,7 +607,7 @@
   "INTOTHESPIREVERSE-GARBAGE_DAY.description": "Put 4 [gold]Debris[/gold] and a 0-cost [gold]{IfUpgraded:show:Bury+|Bury}[/gold] into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-GARBAGE_DAY.title": "Garbage Day",
   "INTOTHESPIREVERSE-TRIAL_OF_KNOWLEDGE.title": "Trial of Knowledge",
-  "INTOTHESPIREVERSE-TRIAL_OF_KNOWLEDGE.description": "{IfUpgraded:show:Draw a card|}\nThe next time you end your turn with 5 or more cards in your hand, [gold]Retain[/gold] your [gold]Hand[/gold] that turn.",
+  "INTOTHESPIREVERSE-TRIAL_OF_KNOWLEDGE.description": "{IfUpgraded:show:Draw 1 card.\n|}The next time you end your turn with 5 or more cards in your hand, [gold]Retain[/gold] your [gold]Hand[/gold] that turn.",
   "INTOTHESPIREVERSE-TRIAL_OF_SKILL.description": "The next time you play 3 Skills in one turn, gain {IfUpgraded:show:an Upgraded |}[gold]Steady Minion Sacrifice[/gold].",
   "INTOTHESPIREVERSE-TRIAL_OF_SKILL.title": "Trial of Skill",
   "INTOTHESPIREVERSE-PILFER.description": "Draw {Cards:diff()} cards from your [gold]Cargo[/gold].",
@@ -699,5 +699,7 @@
   "INTOTHESPIREVERSE-BREACH.description": "Deal {Damage:diff()} damage.\nThe effects of your next X-cost card are increased by {Increase:diff()}.",
   "INTOTHESPIREVERSE-BREACH.title": "Breach",
   "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.description": "Put this into [gold]Cargo[/gold].\nAt the end of your turn, if this is in your [gold]Cargo[/gold], gain {Block:diff()} [gold]Block[/gold].",
-  "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.title": "Brace for Impact!"
+  "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.title": "Brace for Impact!",
+  "INTOTHESPIREVERSE-COMMANDEER.description": "Add a random Attack from another character to your [gold]Hand[/gold]. It deals {IfUpgraded:show:triple|double} damage.",
+  "INTOTHESPIREVERSE-COMMANDEER.title": "Commandeer"
 }

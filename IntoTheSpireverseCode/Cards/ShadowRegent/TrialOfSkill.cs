@@ -60,7 +60,7 @@ public class TrialOfSkill() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(4);
+       
     }
 }
 

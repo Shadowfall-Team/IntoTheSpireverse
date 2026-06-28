@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-COMMANDEER",
+  "hue": 0.72,
+  "saturation": 0.77,
+  "value": 1.23,
+  "red": 1,
+  "green": 0.89,
+  "blue": 1.16,
+  "contrast": 1.15,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/foregone_conclusion.tres"
+}
