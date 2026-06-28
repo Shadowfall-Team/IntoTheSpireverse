@@ -1,18 +1,11 @@
 using BaseLib.Abstracts;
-using BaseLib.Cards;
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
@@ -22,91 +15,21 @@ public class AmmoVolley() : CustomCardModel(1,
     CardRarity.Token,
     TargetType.RandomEnemy)
 {
-    public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    public override string CustomPortraitPath =>
+        $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CalculationBaseVar(12),
-        new ExtraDamageVar(1),
-        new CalculatedDamageVar(ValueProp.Move)
-            .WithMultiplier(static (card, _) =>
-                card.Owner.Creature.GetPowerAmount<FirepowerPower>() +
-                card.Owner.Creature.GetPowerAmount<VolleyDamagePower>()),
-        .. MakeCalculatedBlock("ShotBlock", 0, (model, _) => GetOwnerDefensiveCannonadeAmount(model))
+        new DamageVar(12, ValueProp.Move),
     ];
-
-    public override bool GainsBlock => GetOwnerDefensiveCannonadeAmount(this) > 0;
-
-    private static decimal GetOwnerDefensiveCannonadeAmount(CardModel cardModel)
-    {
-        if (!cardModel.IsMutable || cardModel.Pile == null)
-        {
-            return 0;
-        }
-
-        return cardModel.Owner.Creature.GetPowerInstances<DefensiveCannonadePower>().Sum(p => p.Amount);
-    }
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [BaseLibKeywords.Purge];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var hasBigGuns = Owner.Creature.HasPower<BigGunsPower>();
-
-        Creature? pickedTarget = null;
-        if (!hasBigGuns)
-        {
-            var hittableEnemies = CombatState?.HittableEnemies.ToList();
-            if (hittableEnemies?.Count > 0)
-            {
-                var preferredTargets = hittableEnemies.Where(e => e.HasPower<TargetedPower>()).ToList();
-                var targetPool = preferredTargets.Count > 0 ? preferredTargets : hittableEnemies;
-                pickedTarget = Owner.RunState.Rng.CombatTargets.NextItem(targetPool);
-            }
-        }
-
-        if (!hasBigGuns && pickedTarget == null)
-            return;
-
-        await ShotHelper.CreateMissile(CombatState, pickedTarget);
-
-        if (GainsBlock)
-        {
-            await CreatureCmd.GainBlock(Owner.Creature,
-                ((CalculatedVar)DynamicVars["ShotBlock"]).Calculate(Owner.Creature), ValueProp.Move, cardPlay);
-        }
-
-        var baseDamage = DynamicVars.CalculationBase.BaseValue;
-        var extraDamage = DynamicVars.ExtraDamage.BaseValue;
-        var multiplier = Owner.Creature.GetPowerAmount<FirepowerPower>()
-                         + Owner.Creature.GetPowerAmount<VolleyDamagePower>();
-        var damage = baseDamage + extraDamage * multiplier;
-
-        var command = DamageCmd.Attack(damage)
-                .WithHitCount(1)
-                .FromCard(this)
-                .WithAttackerAnim("Cast", Owner.Character.AttackAnimDelay)
-                .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
-            // .WithAttackerFx(null, "event:/sfx/characters/regent/regent_sovereign_blade", null)
-            ;
-
-        if (hasBigGuns)
-        {
-            command = command.TargetingAllOpponents(Owner.Creature.CombatState);
-        }
-        else
-        {
-            command = command.Targeting(pickedTarget!);
-        }
-
-        var executedCommand = await command.Execute(choiceContext);
-
-        await AmmoResource.InvokeOnAmmoFired(Owner, executedCommand.Results);
+        throw new InvalidOperationException("AmmoVolley is a phantom card and should never be played");
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.ExtraDamage.UpgradeValueBy(6);
     }
 
     public override TargetType TargetType => TargetType.RandomEnemy;
