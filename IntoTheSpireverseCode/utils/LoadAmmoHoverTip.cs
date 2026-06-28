@@ -11,7 +11,7 @@ public static class LoadAmmoHoverTip
     public static IEnumerable<IHoverTip> FromLoadAmmo()
     {
         var list = new List<IHoverTip> { HoverTipFactory.Static(LoadAmmo) };
-        list.AddRange(HoverTipFactory.FromCardWithCardHoverTips<AmmoVolley>());
+        //list.AddRange(HoverTipFactory.FromCardWithCardHoverTips<AmmoVolley>());
         return new List<IHoverTip>(list);
     }
 }
