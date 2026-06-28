@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BRACE_FOR_IMPACT",
+  "hue": 0.78,
+  "saturation": 0.79,
+  "value": 0.96,
+  "red": 1.22,
+  "green": 0.82,
+  "blue": 1,
+  "contrast": 0.99,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/manifest_authority.tres"
+}

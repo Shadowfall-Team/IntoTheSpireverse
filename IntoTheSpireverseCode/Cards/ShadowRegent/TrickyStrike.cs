@@ -32,9 +32,7 @@ public class TrickyStrike() : ShadowRegentCard(1,
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
             .Execute(choiceContext);
-
-        //TODO: should this still have increase?
-        DynamicVars.Repeat.BaseValue += DynamicVars["Increase"].BaseValue;
+        
     }
     
     public override async Task AfterAutoPostPlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)

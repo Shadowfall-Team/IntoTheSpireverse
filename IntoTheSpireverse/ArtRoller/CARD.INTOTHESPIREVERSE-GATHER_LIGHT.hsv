@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-GATHER_LIGHT",
-  "hue": 1,
-  "saturation": 1,
+  "hue": 0.7,
+  "saturation": 0.8,
   "value": 1,
-  "red": 1,
+  "red": 1.23,
   "green": 1,
-  "blue": 1,
-  "contrast": 1,
-  "flip_h": false,
+  "blue": 0.89,
+  "contrast": 1.03,
+  "flip_h": true,
   "portrait_path": "res://images/atlases/card_atlas.sprites/regent/gather_light.tres"
 }

@@ -29,16 +29,18 @@ public class RousingSpeech() : ShadowRegentCard(
 
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
-        
-        if(CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count > 0)
-            await PowerCmd.Apply<TemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
-                Owner.Creature,
-                CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count,
-                Owner.Creature,
-                this);
 
-      
-    }
+        if (CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count > 0)
+        {
+        await PowerCmd.Apply<TemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count,
+            Owner.Creature,
+            this);
+        }
+
+
+}
     
     protected override void OnUpgrade()
     {

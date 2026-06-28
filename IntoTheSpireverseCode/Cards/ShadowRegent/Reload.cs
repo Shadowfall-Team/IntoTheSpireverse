@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class Reload() : ShadowRegentCard(1,
+public class Reload() : ShadowRegentCard(0,
     CardType.Skill,
     CardRarity.Common,
     TargetType.Self)
@@ -17,8 +17,6 @@ public class Reload() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("LoadAmmo", 1),
-        //TODO: does this need the firepower power?
-        new PowerVar<FirepowerPower>(6)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];

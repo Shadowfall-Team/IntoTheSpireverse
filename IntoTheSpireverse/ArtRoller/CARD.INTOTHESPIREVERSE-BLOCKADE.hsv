@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BLOCKADE",
+  "hue": 0.65,
+  "saturation": 0.79,
+  "value": 1.12,
+  "red": 1.11,
+  "green": 1.18,
+  "blue": 0.87,
+  "contrast": 1.06,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/child_of_the_stars.tres"
+}

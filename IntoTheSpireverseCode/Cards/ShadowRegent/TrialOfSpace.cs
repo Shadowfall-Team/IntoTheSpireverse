@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-//TODO: check if this works with ammo & cargo piles
 public class TrialOfSpace() : ShadowRegentCard(
     1,
     CardType.Power,

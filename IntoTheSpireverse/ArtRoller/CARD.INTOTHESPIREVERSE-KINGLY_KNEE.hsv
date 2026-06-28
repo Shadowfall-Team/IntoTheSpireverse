@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-KINGLY_KNEE",
+  "hue": 0.73,
+  "saturation": 0.82,
+  "value": 1.03,
+  "red": 0.9,
+  "green": 0.96,
+  "blue": 1.07,
+  "contrast": 1.01,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/radiate.tres"
+}

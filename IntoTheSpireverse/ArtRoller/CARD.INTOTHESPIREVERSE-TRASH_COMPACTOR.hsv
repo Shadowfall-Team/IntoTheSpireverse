@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-TRASH_COMPACTOR",
+  "hue": 0.66,
+  "saturation": 0.91,
+  "value": 1.11,
+  "red": 0.82,
+  "green": 1.04,
+  "blue": 1.01,
+  "contrast": 1.2,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/crush_under.tres"
+}
