@@ -47,6 +47,7 @@ public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
 
     protected override void OnUpgrade()
     {
+        DynamicVars.Damage.UpgradeValueBy(1);
         //Upgrade behaviour is handled within the OnPlay method.
     }
 }

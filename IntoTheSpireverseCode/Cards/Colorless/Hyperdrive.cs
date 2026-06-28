@@ -21,7 +21,7 @@ public class Hyperdrive() : ShadowRegentCard(-1,
     CardRarity.Token,
     TargetType.Self)
 {
-    // public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         
