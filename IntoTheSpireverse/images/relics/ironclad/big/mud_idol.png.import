@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dw43gd5nvb15x"
-path="res://.godot/imported/mud_idol.png-b42419119bd7aebbc377405b223c4195.ctex"
+path="res://.godot/imported/mud_idol.png-6fc08c03a81021a4e0ddcf4c9703259c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/ironclad/big/mud_idol.png"
-dest_files=["res://.godot/imported/mud_idol.png-b42419119bd7aebbc377405b223c4195.ctex"]
+dest_files=["res://.godot/imported/mud_idol.png-6fc08c03a81021a4e0ddcf4c9703259c.ctex"]
 
 [params]
 

@@ -1,78 +1,67 @@
 using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
 public static class AmmoResource
 {
-    private static readonly SpireField<PlayerCombatState, AmmoState?> _ammoState = new(() => null);
-
-    public static AmmoState GetOrCreateState(Player player)
-    {
-        var pcs = player.PlayerCombatState;
-        var ammoState = _ammoState[pcs];
-        if (ammoState != null)
-        {
-            return ammoState;
-        }
-
-        var phantomCard = player.Creature.CombatState!.CreateCard<AmmoVolley>(player);
-        ammoState = new AmmoState { Ammo = 0, PhantomCard = phantomCard };
-        _ammoState[pcs] = ammoState;
-        return ammoState;
-    }
+    private static readonly SpireField<PlayerCombatState, int> _playerAmmo = new(() => 0);
 
     public static event Action<PlayerCombatState, int, int>? AmmoChanged;
 
     // TODO: stub for future ship muzzle-flash VFX
     // public static event Action<Player>? OnAmmoFiredStub;
 
-    public static int GetAmmo(Player player) => GetOrCreateState(player).Ammo;
+    public static int GetAmmo(Player player) => _playerAmmo[player.PlayerCombatState];
 
     public static async Task GainAmmo(int amount, Player player)
     {
         if (player.Creature.CombatState == null) return;
 
-        var state = GetOrCreateState(player);
         for (var i = 0; i < amount; i++)
         {
-            var oldVal = state.Ammo;
-            state.Ammo++;
-            AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, state.Ammo);
+            var oldVal = _playerAmmo[player.PlayerCombatState];
+            _playerAmmo[player.PlayerCombatState] = oldVal + 1;
+            AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, oldVal + 1);
 
             foreach (var model in player.Creature.CombatState.IterateHookListeners().ToList())
             {
                 if (model is IAmmoLoadedListener listener)
-                {
                     await listener.OnAmmoLoaded();
-                }
             }
         }
     }
 
-    public static void LoseAmmo(int amount, Player player)
+    internal static void LoseAmmo(int amount, Player player)
     {
-        var ammoState = GetOrCreateState(player);
-        var oldVal = ammoState.Ammo;
-        ammoState.Ammo = Math.Max(0, ammoState.Ammo - amount);
-        if (ammoState.Ammo != oldVal)
-        {
-            AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, ammoState.Ammo);
-        }
+        var oldVal = _playerAmmo[player.PlayerCombatState];
+        var newVal = Math.Max(0, oldVal - amount);
+        if (newVal == oldVal) return;
+        _playerAmmo[player.PlayerCombatState] = newVal;
+        AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, newVal);
     }
 
-    public static decimal GetShotDamagePreview(Player player)
+    /// <summary>
+    /// Base damage + Strength + IModifiesAmmoShotDamage listeners (Firepower, Volley Damage).
+    /// </summary>
+    public static decimal GetShotDamage(Player player)
     {
-        var phantom = GetOrCreateState(player).PhantomCard;
-        return Hook.ModifyDamage(
-            player.RunState, player.Creature.CombatState, null, player.Creature,
-            phantom.DynamicVars.Damage.BaseValue, ValueProp.Move, phantom,
-            ModifyDamageHookType.All, CardPreviewMode.Normal, out _);
+        var damage = AmmoVolley.BaseDamage;
+
+        // Strength
+        damage += player.Creature.GetPowerAmount<StrengthPower>();
+
+        // Firepower, Volley, and any future IModifiesAmmoShotDamage powers
+        foreach (var model in player.Creature.CombatState!.IterateHookListeners())
+        {
+            if (model is IModifiesAmmoShotDamage modifier)
+                damage = modifier.ModifyAmmoShotDamage(player, damage);
+        }
+
+        return damage;
     }
 
     public static int GetShotEnergyCost(Player player)
@@ -81,11 +70,8 @@ public static class AmmoResource
         foreach (var model in player.Creature.CombatState!.IterateHookListeners())
         {
             if (model is IModifiesShotCost modifier)
-            {
                 cost = modifier.ModifyShotCost(cost);
-            }
         }
-
         return cost;
     }
 
@@ -94,9 +80,7 @@ public static class AmmoResource
         foreach (var model in player.Creature.CombatState!.IterateHookListeners().ToList())
         {
             if (model is IAmmoFiringListener listener)
-            {
                 await listener.OnAmmoFiring(player);
-            }
         }
     }
 
@@ -107,9 +91,7 @@ public static class AmmoResource
         foreach (var model in player.Creature.CombatState!.IterateHookListeners().ToList())
         {
             if (model is IAmmoFiredListener listener)
-            {
                 await listener.OnAmmoFired(player, results);
-            }
         }
     }
 }

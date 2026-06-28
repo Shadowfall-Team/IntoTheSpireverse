@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bu6qrsxavp6nt"
-path="res://.godot/imported/smugglers_cargo_power.png-217c0115146a6b87ed520e642c27c17e.ctex"
+path="res://.godot/imported/smugglers_cargo_power.png-2e6ff825883f050bc66f786cd53cc779.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/big/smugglers_cargo_power.png"
-dest_files=["res://.godot/imported/smugglers_cargo_power.png-217c0115146a6b87ed520e642c27c17e.ctex"]
+dest_files=["res://.godot/imported/smugglers_cargo_power.png-2e6ff825883f050bc66f786cd53cc779.ctex"]
 
 [params]
 

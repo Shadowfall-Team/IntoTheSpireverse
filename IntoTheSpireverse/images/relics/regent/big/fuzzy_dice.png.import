@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://basmhp5c8fces"
-path="res://.godot/imported/fuzzy_dice.png-cc9ff1a00792e5c0f25ed87c946c0342.ctex"
+path="res://.godot/imported/fuzzy_dice.png-4474b8512f84f4c42c8ef9f03946a7bf.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/regent/big/fuzzy_dice.png"
-dest_files=["res://.godot/imported/fuzzy_dice.png-cc9ff1a00792e5c0f25ed87c946c0342.ctex"]
+dest_files=["res://.godot/imported/fuzzy_dice.png-4474b8512f84f4c42c8ef9f03946a7bf.ctex"]
 
 [params]
 

@@ -1,12 +1,10 @@
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
@@ -26,17 +24,12 @@ public class FireAmmoAction : GameAction
     protected override async Task ExecuteAction()
     {
         var combatState = _player.Creature.CombatState;
-        if (combatState == null)
-        {
-            Cancel();
-            return;
-        }
+        if (combatState == null) { Cancel(); return; }
 
-        var ammoState = AmmoResource.GetOrCreateState(_player);
         var cost = AmmoResource.GetShotEnergyCost(_player);
         var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();
 
-        if (ammoState.Ammo <= 0 || _player.PlayerCombatState.Energy < cost ||
+        if (AmmoResource.GetAmmo(_player) <= 0 || _player.PlayerCombatState.Energy < cost ||
             !hasBigGuns && !combatState.HittableEnemies.Any())
         {
             Cancel();
@@ -46,8 +39,6 @@ public class FireAmmoAction : GameAction
         await PlayerCmd.LoseEnergy(cost, _player);
         AmmoResource.LoseAmmo(1, _player);
         await AmmoResource.InvokeOnAmmoFiring(_player);
-
-        var phantom = ammoState.PhantomCard;
 
         Creature? pickedTarget = null;
         if (!hasBigGuns)
@@ -69,44 +60,26 @@ public class FireAmmoAction : GameAction
             await CreatureCmd.GainBlock(_player.Creature, blockAmount, ValueProp.Move, null);
         }
 
-        var attackCmd = DamageCmd.Attack(phantom.DynamicVars.Damage.BaseValue)
-            .WithHitCount(1)
-            .FromCard(phantom)
-            .WithAttackerAnim("Cast", _player.Character.CastAnimDelay)
-            .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3");
+        var shotDamage = AmmoResource.GetShotDamage(_player);
+        IEnumerable<Creature> targets = hasBigGuns
+            ? combatState.HittableEnemies
+            : (IEnumerable<Creature>)[pickedTarget!];
 
-        attackCmd = hasBigGuns
-            ? attackCmd.TargetingAllOpponents(combatState)
-            : attackCmd.Targeting(pickedTarget!);
-
-        var executedCmd = await attackCmd.Execute(new ThrowingPlayerChoiceContext());
+        var results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
+            targets, shotDamage, ValueProp.Unpowered, _player.Creature);
 
         if (_player.Creature.HasPower<GrapeshotPower>())
         {
             var grapeshot = _player.Creature.GetPowerAmount<GrapeshotPower>();
-            var baseDamage = phantom.DynamicVars.Damage.BaseValue;
+            var halfDmg = Math.Floor(0.5m * AmmoResource.GetShotDamage(_player));
             for (var i = 0; i < grapeshot; i++)
             {
                 if (hasBigGuns)
                 {
-                    var followTargets = combatState.HittableEnemies;
                     await ShotHelper.CreateMissile(combatState, null, skipWait: true);
-                    foreach (var t in followTargets)
-                    {
-                        var halfDmg = Math.Floor(0.5m * Hook.ModifyDamage(_player.RunState,
-                            combatState,
-                            t,
-                            _player.Creature,
-                            baseDamage,
-                            ValueProp.Move,
-                            phantom,
-                            ModifyDamageHookType.Additive |
-                            ModifyDamageHookType.Multiplicative, CardPreviewMode.None,
-                            out _
-                        ));
-                        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), t,
-                            halfDmg, ValueProp.Unpowered, _player.Creature, phantom);
-                    }
+                    foreach (var t in combatState.HittableEnemies)
+                        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
+                            t, halfDmg, ValueProp.Unpowered, _player.Creature);
                 }
                 else
                 {
@@ -116,25 +89,13 @@ public class FireAmmoAction : GameAction
                     var followTarget = _player.RunState.Rng.CombatTargets.NextItem(targetPool);
 
                     await ShotHelper.CreateMissile(combatState, followTarget, skipWait: true);
-
-                    var halfDmg = Math.Floor(0.5m * Hook.ModifyDamage(_player.RunState,
-                        combatState,
-                        followTarget,
-                        _player.Creature,
-                        baseDamage,
-                        ValueProp.Move,
-                        phantom,
-                        ModifyDamageHookType.Additive | ModifyDamageHookType.Multiplicative,
-                        CardPreviewMode.None,
-                        out _
-                    ));
-                    await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), followTarget,
-                        halfDmg, ValueProp.Unpowered, _player.Creature, phantom);
+                    await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
+                        followTarget, halfDmg, ValueProp.Unpowered, _player.Creature);
                 }
             }
         }
 
-        await AmmoResource.InvokeOnAmmoFired(_player, executedCmd.Results);
+        await AmmoResource.InvokeOnAmmoFired(_player, [results.ToList()]);
     }
 
     public override INetAction ToNetAction() => new NetFireAmmoAction();

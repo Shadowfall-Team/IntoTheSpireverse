@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbretncpddsjn"
-path="res://.godot/imported/shards_each_turn_power.png-4b1485bfaa072073e3d9512b520e1f41.ctex"
+path="res://.godot/imported/shards_each_turn_power.png-dee722f5b5884a6e4ddd8048023a3e02.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/big/shards_each_turn_power.png"
-dest_files=["res://.godot/imported/shards_each_turn_power.png-4b1485bfaa072073e3d9512b520e1f41.ctex"]
+dest_files=["res://.godot/imported/shards_each_turn_power.png-dee722f5b5884a6e4ddd8048023a3e02.ctex"]
 
 [params]
 

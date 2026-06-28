@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqwkrxelk8pip"
-path="res://.godot/imported/red_giant_random_power.png-4779cf8ff1b3d597439ba264c70c1654.ctex"
+path="res://.godot/imported/red_giant_random_power.png-6754729188b4a746aa9baaca66b57861.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/big/red_giant_random_power.png"
-dest_files=["res://.godot/imported/red_giant_random_power.png-4779cf8ff1b3d597439ba264c70c1654.ctex"]
+dest_files=["res://.godot/imported/red_giant_random_power.png-6754729188b4a746aa9baaca66b57861.ctex"]
 
 [params]
 

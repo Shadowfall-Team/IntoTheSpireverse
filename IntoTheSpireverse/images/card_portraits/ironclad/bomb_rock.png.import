@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgms27g3fgefh"
-path="res://.godot/imported/bomb_rock.png-b592b8faa5ca8b140d4cb4e8a23a921c.ctex"
+path="res://.godot/imported/bomb_rock.png-87a04b740b459aedcc033b3e86129bb8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/bomb_rock.png"
-dest_files=["res://.godot/imported/bomb_rock.png-b592b8faa5ca8b140d4cb4e8a23a921c.ctex"]
+dest_files=["res://.godot/imported/bomb_rock.png-87a04b740b459aedcc033b3e86129bb8.ctex"]
 
 [params]
 

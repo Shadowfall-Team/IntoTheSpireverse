@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccvqlvqmbm511"
-path="res://.godot/imported/heart_of_stone.png-1ddc64aeba40e5e8cb26a7be1aa152e7.ctex"
+path="res://.godot/imported/heart_of_stone.png-4e4b10a24b3700720fda87909efd9792.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/ironclad/big/heart_of_stone.png"
-dest_files=["res://.godot/imported/heart_of_stone.png-1ddc64aeba40e5e8cb26a7be1aa152e7.ctex"]
+dest_files=["res://.godot/imported/heart_of_stone.png-4e4b10a24b3700720fda87909efd9792.ctex"]
 
 [params]
 

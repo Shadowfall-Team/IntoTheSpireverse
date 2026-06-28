@@ -25,3 +25,9 @@ public interface IModifiesShotCost
 {
     int ModifyShotCost(int current);
 }
+
+/// <summary>Pure additive damage modifier for ammo shots. Firepower/Volley implement this.</summary>
+public interface IModifiesAmmoShotDamage
+{
+    decimal ModifyAmmoShotDamage(Player player, decimal current);
+}

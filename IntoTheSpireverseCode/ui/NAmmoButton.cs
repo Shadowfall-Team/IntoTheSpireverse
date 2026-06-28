@@ -58,8 +58,6 @@ public partial class NAmmoButton : NButton
     protected override string? ClickedSfx => "event:/sfx/ui/clicks/ui_click";
     protected override string? HoveredSfx => "event:/sfx/ui/clicks/ui_hover";
 
-    private CardModel? PhantomCard => AmmoResource.GetOrCreateState(_player)?.PhantomCard;
-
     private int AvailableAmmoCount =>
         AmmoResource.GetAmmo(_player) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
 
@@ -70,7 +68,6 @@ public partial class NAmmoButton : NButton
             if (!_initialized || _player.PlayerCombatState == null ||
                 _player.Creature.CombatState?.CurrentSide != CombatSide.Player)
                 return false;
-            if (PhantomCard == null) return false;
             if (AvailableAmmoCount <= 0) return false;
             var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();
             if (!hasBigGuns && !(_player.Creature.CombatState?.HittableEnemies.Any() ?? false))
@@ -229,7 +226,7 @@ public partial class NAmmoButton : NButton
         if (!_initialized) return;
 
         NHoverTipSet.CreateAndShow(this, LoadAmmoHoverTip.FromLoadAmmo(_player))
-            ?.SetAlignment(this, HoverTipAlignment.Left);
+            ?.SetAlignment(this, HoverTipAlignment.Right);
     }
 
     protected override void OnUnfocus()
@@ -340,19 +337,7 @@ public partial class NAmmoButton : NButton
 
         _ammoCountLabel.Text = AvailableAmmoCount.ToString();
 
-        var card = PhantomCard ?? ModelDb.Card<AmmoVolley>();
-        var preHookDamage = card.DynamicVars.Damage.BaseValue;
-        var damage = (int)Hook.ModifyDamage(
-            _player.RunState,
-            _player.Creature.CombatState,
-            null,
-            _player.Creature,
-            preHookDamage,
-            ValueProp.Move,
-            card,
-            ModifyDamageHookType.All,
-            CardPreviewMode.Normal,
-            out _);
+        var damage = (int)AmmoResource.GetShotDamage(_player);
         _damageLabel.Text = $"{damage}";
         _damageIcon.Texture = GetAttackIntentTexture(damage);
         _energyCostLabel.Text = AmmoResource.GetShotEnergyCost(_player).ToString();

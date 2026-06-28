@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bopw5noh7vfb1"
-path="res://.godot/imported/temper_power.png-7e088f11c8f90b1006a8ec776b6e2145.ctex"
+path="res://.godot/imported/temper_power.png-d9e451992e99144cbd5cdd9830b9b6d9.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/temper_power.png"
-dest_files=["res://.godot/imported/temper_power.png-7e088f11c8f90b1006a8ec776b6e2145.ctex"]
+dest_files=["res://.godot/imported/temper_power.png-d9e451992e99144cbd5cdd9830b9b6d9.ctex"]
 
 [params]
 

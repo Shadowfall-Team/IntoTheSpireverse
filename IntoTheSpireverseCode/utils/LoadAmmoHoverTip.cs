@@ -13,7 +13,7 @@ public static class LoadAmmoHoverTip
 
     public static IEnumerable<IHoverTip> FromLoadAmmo(Player? player = null)
     {
-        var damage = player != null ? AmmoResource.GetShotDamagePreview(player) : AmmoVolley.BaseDamage;
+        var damage = player != null ? AmmoResource.GetShotDamage(player) : AmmoVolley.BaseDamage;
         return [HoverTipFactory.Static(LoadAmmo), FromAmmoButton(damage)];
     }
 

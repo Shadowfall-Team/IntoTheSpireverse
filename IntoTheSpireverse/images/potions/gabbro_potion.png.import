@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://yh4j65jhxofi"
-path="res://.godot/imported/gabbro_potion.png-25f5f620c4e1f97347fb18666ac29a3e.ctex"
+path="res://.godot/imported/gabbro_potion.png-c90ea135d95bf3f74f978f1caa746c4c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/potions/gabbro_potion.png"
-dest_files=["res://.godot/imported/gabbro_potion.png-25f5f620c4e1f97347fb18666ac29a3e.ctex"]
+dest_files=["res://.godot/imported/gabbro_potion.png-c90ea135d95bf3f74f978f1caa746c4c.ctex"]
 
 [params]
 

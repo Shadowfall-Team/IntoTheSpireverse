@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bc6rl5p5efv4p"
-path="res://.godot/imported/second_wind.png-d3b66b6d20c7cf0def3cd0335b97391f.ctex"
+path="res://.godot/imported/second_wind.png-97b7713bf02adef515822ff89f357fe4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/second_wind.png"
-dest_files=["res://.godot/imported/second_wind.png-d3b66b6d20c7cf0def3cd0335b97391f.ctex"]
+dest_files=["res://.godot/imported/second_wind.png-97b7713bf02adef515822ff89f357fe4.ctex"]
 
 [params]
 

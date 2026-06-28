@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cr5pfcyvlds3w"
-path="res://.godot/imported/ammo_volley.png-02bf5ae1a99bd4a914df9d7bc69bb6ee.ctex"
+path="res://.godot/imported/hyperdrive.png-0af222fa2d686aa5ab0b6e91961fa5e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/card_portraits/regent/ammo_volley.png"
-dest_files=["res://.godot/imported/ammo_volley.png-02bf5ae1a99bd4a914df9d7bc69bb6ee.ctex"]
+source_file="res://IntoTheSpireverse/images/card_portraits/regent/hyperdrive.png"
+dest_files=["res://.godot/imported/hyperdrive.png-0af222fa2d686aa5ab0b6e91961fa5e8.ctex"]
 
 [params]
 

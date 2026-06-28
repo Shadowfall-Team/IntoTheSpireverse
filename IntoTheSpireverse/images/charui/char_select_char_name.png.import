@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://buvrmpb46m1s4"
-path="res://.godot/imported/char_select_char_name.png-28ab3012adaf22c56cd18d3ca098b674.ctex"
+path="res://.godot/imported/char_select_char_name.png-1947271139e9fc0905f67346577ccf3b.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/charui/char_select_char_name.png"
-dest_files=["res://.godot/imported/char_select_char_name.png-28ab3012adaf22c56cd18d3ca098b674.ctex"]
+dest_files=["res://.godot/imported/char_select_char_name.png-1947271139e9fc0905f67346577ccf3b.ctex"]
 
 [params]
 

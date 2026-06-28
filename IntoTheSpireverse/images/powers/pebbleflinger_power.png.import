@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dk3mlm3t4ktju"
-path="res://.godot/imported/pebbleflinger_power.png-5be0e572b5aaf81a6cff324322d3480d.ctex"
+path="res://.godot/imported/pebbleflinger_power.png-1b910ca299f7630d43a050e6daa46231.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/pebbleflinger_power.png"
-dest_files=["res://.godot/imported/pebbleflinger_power.png-5be0e572b5aaf81a6cff324322d3480d.ctex"]
+dest_files=["res://.godot/imported/pebbleflinger_power.png-1b910ca299f7630d43a050e6daa46231.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cv37do5s7sio6"
-path="res://.godot/imported/heart_of_the_mountain.png-0ca3f37d2fb8dee7d42a696423eb110b.ctex"
+path="res://.godot/imported/heart_of_the_mountain.png-50f4a5eb0544a9c18bf3e5ad9ebb9a0e.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/ironclad/big/heart_of_the_mountain.png"
-dest_files=["res://.godot/imported/heart_of_the_mountain.png-0ca3f37d2fb8dee7d42a696423eb110b.ctex"]
+dest_files=["res://.godot/imported/heart_of_the_mountain.png-50f4a5eb0544a9c18bf3e5ad9ebb9a0e.ctex"]
 
 [params]
 

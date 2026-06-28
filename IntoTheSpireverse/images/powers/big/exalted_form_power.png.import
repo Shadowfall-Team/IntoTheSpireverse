@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gwkmql0rmhc5"
-path="res://.godot/imported/exalted_form_power.png-7d4bae5f98cbf683949605afeaebe78c.ctex"
+path="res://.godot/imported/exalted_form_power.png-8c31e9dc128c7ab11de58d90caa7f784.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/big/exalted_form_power.png"
-dest_files=["res://.godot/imported/exalted_form_power.png-7d4bae5f98cbf683949605afeaebe78c.ctex"]
+dest_files=["res://.godot/imported/exalted_form_power.png-8c31e9dc128c7ab11de58d90caa7f784.ctex"]
 
 [params]
 

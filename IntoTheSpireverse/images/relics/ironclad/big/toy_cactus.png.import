@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://duyp86s1al2dj"
-path="res://.godot/imported/toy_cactus.png-39de3a139ac57db5288e562a36d153bd.ctex"
+path="res://.godot/imported/toy_cactus.png-30f06618d377c95a06fb76589f5508b8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/ironclad/big/toy_cactus.png"
-dest_files=["res://.godot/imported/toy_cactus.png-39de3a139ac57db5288e562a36d153bd.ctex"]
+dest_files=["res://.godot/imported/toy_cactus.png-30f06618d377c95a06fb76589f5508b8.ctex"]
 
 [params]
 

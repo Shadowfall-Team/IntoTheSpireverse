@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgjs1c6adfckh"
-path="res://.godot/imported/purple_dough.png-ae8584ebb85744c1f9b237e63658397b.ctex"
+path="res://.godot/imported/purple_dough.png-06a19a6d163e37b29b63d2e1766249a3.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/regent/purple_dough.png"
-dest_files=["res://.godot/imported/purple_dough.png-ae8584ebb85744c1f9b237e63658397b.ctex"]
+dest_files=["res://.godot/imported/purple_dough.png-06a19a6d163e37b29b63d2e1766249a3.ctex"]
 
 [params]
 
