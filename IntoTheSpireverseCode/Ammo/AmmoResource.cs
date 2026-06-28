@@ -1,7 +1,10 @@
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Hooks;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
@@ -61,6 +64,15 @@ public static class AmmoResource
         {
             AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, ammoState.Ammo);
         }
+    }
+
+    public static decimal GetShotDamagePreview(Player player)
+    {
+        var phantom = GetOrCreateState(player).PhantomCard;
+        return Hook.ModifyDamage(
+            player.RunState, player.Creature.CombatState, null, player.Creature,
+            phantom.DynamicVars.Damage.BaseValue, ValueProp.Move, phantom,
+            ModifyDamageHookType.All, CardPreviewMode.Normal, out _);
     }
 
     public static int GetShotEnergyCost(Player player)

@@ -1,5 +1,4 @@
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
@@ -8,9 +7,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
@@ -23,15 +22,13 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
 
 public partial class NAmmoButton : NButton
 {
     private static readonly string _scenePath = "res://IntoTheSpireverse/scenes/CaptainsShip.tscn";
-
-    private static readonly AccessTools.FieldRef<CardModel, CardUpgradePreviewType> _upgradePreviewTypeRef =
-        AccessTools.FieldRefAccess<CardModel, CardUpgradePreviewType>("_upgradePreviewType");
 
     private static readonly string _megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
 
@@ -228,16 +225,11 @@ public partial class NAmmoButton : NButton
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
-        if (PhantomCard == null) return;
 
-        //I've opted to go with the fieldref pattern here as I don't think it wise to publicize this generally.
-        //This is an issue with how UpdateDynamicVarPreview only updates dynamicvars if the card is in hand or in play (CardUpgradePreviewType.Combat).
-        //The best solution would be to transpile the CardModel.UpdateDynamicVarPreview method, but this workaround is a lot less work and is only slightly more disgusting. 
-        _upgradePreviewTypeRef(PhantomCard) = CardUpgradePreviewType.Combat;
-        NHoverTipSet.CreateAndShow(this,
-                [HoverTipFactory.FromCard(PhantomCard), .. PhantomCard.HoverTips])
+        if (!_initialized) return;
+
+        NHoverTipSet.CreateAndShow(this, LoadAmmoHoverTip.FromLoadAmmo(_player))
             ?.SetAlignment(this, HoverTipAlignment.Left);
-        _upgradePreviewTypeRef(PhantomCard) = CardUpgradePreviewType.None;
     }
 
     protected override void OnUnfocus()
