@@ -25,8 +25,7 @@ public class PoweredBeam() : ShadowRegentCard(1,
         new PowerVar<VigorPower>(2)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        LoadAmmoHoverTip.FromLoadAmmo();
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [.. LoadAmmoHoverTip.FromLoadAmmo()];
 
     protected override void OnUpgrade()
     {

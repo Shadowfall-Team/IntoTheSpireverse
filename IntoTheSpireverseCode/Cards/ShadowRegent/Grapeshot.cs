@@ -52,30 +52,30 @@ public class GrapeshotPower : ShadowPowerModel, IAmmoFiredListener
         if (player.Creature != Owner) return;
         Flash();
 
-        var resultsList = results.ToList();
-        for (var i = 0; i < Amount; i++)
-        {
-            foreach (List<DamageResult> result in resultsList)
-            {
-                IReadOnlyList<Creature>? hitTargets;
-                if (Owner.HasPower<BigGunsPower>())
-                {
-                    hitTargets = CombatState.HittableEnemies;
-                    await ShotHelper.CreateMissile(CombatState, null);
-                }
-                else
-                {
-                    var hittableEnemies = CombatState.HittableEnemies.ToList();
-                    var preferredTargets = hittableEnemies.Where(e => e.HasPower<TargetedPower>()).ToList();
-                    var targetPool = preferredTargets.Count > 0 ? preferredTargets : hittableEnemies;
-                    hitTargets =
-                        [Owner.Player.RunState.Rng.CombatTargets.NextItem(targetPool)];
-                    await ShotHelper.CreateMissile(CombatState, hitTargets[0]);
-                }
-
-                await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), hitTargets,
-                    result.Max(d => d.TotalDamage) / 2M, ValueProp.Unpowered, Owner);
-            }
-        }
+        // var resultsList = results.ToList();
+        // for (var i = 0; i < Amount; i++)
+        // {
+        //     foreach (List<DamageResult> result in resultsList)
+        //     {
+        //         IReadOnlyList<Creature>? hitTargets;
+        //         if (Owner.HasPower<BigGunsPower>())
+        //         {
+        //             hitTargets = CombatState.HittableEnemies;
+        //             await ShotHelper.CreateMissile(CombatState, null);
+        //         }
+        //         else
+        //         {
+        //             var hittableEnemies = CombatState.HittableEnemies.ToList();
+        //             var preferredTargets = hittableEnemies.Where(e => e.HasPower<TargetedPower>()).ToList();
+        //             var targetPool = preferredTargets.Count > 0 ? preferredTargets : hittableEnemies;
+        //             hitTargets = [Owner.Player.RunState.Rng.CombatTargets.NextItem(targetPool)];
+        //             if (hitTargets[0] == null) return;
+        //             await ShotHelper.CreateMissile(CombatState, hitTargets[0]);
+        //         }
+        //
+        //         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), hitTargets,
+        //             result.Max(d => d.TotalDamage) / 2M, ValueProp.Unpowered, Owner);
+        //     }
+        // }
     }
 }

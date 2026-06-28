@@ -353,7 +353,7 @@ public partial class NAmmoButton : NButton
         _ammoCountLabel.Text = AvailableAmmoCount.ToString();
 
         var card = TopCard ?? ModelDb.Card<AmmoVolley>();
-        var preHookDamage = card.DynamicVars.CalculatedDamage.Calculate(null);
+        var preHookDamage = card.DynamicVars.Damage.BaseValue;
         var damage = (int)Hook.ModifyDamage(
             _player.RunState,
             _player.Creature.CombatState,
