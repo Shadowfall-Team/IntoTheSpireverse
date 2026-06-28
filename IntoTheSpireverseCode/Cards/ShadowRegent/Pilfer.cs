@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Hooks;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
@@ -18,24 +19,24 @@ public class Pilfer() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(3),
+        new CardsVar(2),
     ];
     
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner);
-        if (!cargoPile.IsEmpty)
-        {
-            var cardModels = cargoPile.Cards.Take((int)DynamicVars.Cards.BaseValue).ToList();
-            foreach (var cardModel in cardModels)
-            {
-                await CardPileCmd.Add(cardModel, PileType.Hand);
-                if (Owner.Creature.CombatState == null) continue;
-                await Hook.AfterCardDrawn(Owner.Creature.CombatState, choiceContext, cardModel, true);
-            }
-        }
+        
+        var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner)
+            .Cards.OrderBy(c => c.Rarity)
+            .ThenBy(c => c.Id).ToList();
+        var prefs = new CardSelectorPrefs(CargoSelectorPrefs.FromCargoSelectionPrompt, DynamicVars.Cards.IntValue);
+
+        var selection = (await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, prefs)).FirstOrDefault();
+
+        if (selection == null) return;
+        await CardPileCmd.Add(selection, PileType.Hand);
+        await Hook.AfterCardDrawn(CombatState, choiceContext, selection, false);
         
        }
 
