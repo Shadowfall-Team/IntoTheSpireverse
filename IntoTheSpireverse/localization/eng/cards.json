@@ -642,7 +642,7 @@
   "INTOTHESPIREVERSE-E_M_PULSE.title": "EM Pulse",
   "INTOTHESPIREVERSE-THE_STARS_ALIGN.description": "Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.",
   "INTOTHESPIREVERSE-THE_STARS_ALIGN.title": "The Stars Align",
-  "INTOTHESPIREVERSE-FIRE_EVERYTHING.description": "Load {LoadAmmo:diff()} [gold]Ammo[/gold]. Your [gold]Ammo[/gold] cost no energy to fire this turn.",
+  "INTOTHESPIREVERSE-FIRE_EVERYTHING.description": "Load {LoadAmmo:diff()} [gold]Ammo[/gold]. Your [gold]Ammo[/gold] cost no {energyPrefix:energyIcons(1)} to fire this turn.",
   "INTOTHESPIREVERSE-FIRE_EVERYTHING.title": "Fire Everything!",
   "INTOTHESPIREVERSE-POWERED_THRUSTERS.description": "When drawn, draw {Cards:diff()} cards.",
   "INTOTHESPIREVERSE-POWERED_THRUSTERS.title": "Powered Thrusters",
