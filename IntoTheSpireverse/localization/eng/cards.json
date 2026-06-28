@@ -630,7 +630,7 @@
   "INTOTHESPIREVERSE-HOARD.title": "Hoard",
   "INTOTHESPIREVERSE-ARMADA.description": "{IfUpgraded:show:Load 1 [gold]Ammo[/gold].\n|}At the start of your turn, Load 1 [gold]Ammo[/gold].",
   "INTOTHESPIREVERSE-ARMADA.title": "Armada",
-  "INTOTHESPIREVERSE-TRADE_ROUTES.description": "You draw an additional card from your [gold]Cargo[/gold] each turn.",
+  "INTOTHESPIREVERSE-TRADE_ROUTES.description": "Draw an additional card from your [gold]Cargo[/gold] each turn.",
   "INTOTHESPIREVERSE-TRADE_ROUTES.title": "Trade Routes",
   "INTOTHESPIREVERSE-CRYSTAL_CHASSIS.description": "Your Defends grant {ExtraBlock:diff()} additional [gold]Block[/gold].\nAdd an [gold]{IfUpgraded:show:Ultimate Defend+|Ultimate Defend}[/gold] into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-CRYSTAL_CHASSIS.title": "Crystal Chassis",
