@@ -580,7 +580,7 @@
   "INTOTHESPIREVERSE-JETTISON.title": "Jettison",
   "INTOTHESPIREVERSE-BROADSIDE.description": "Deal {Damage:diff()} damage to ALL enemies twice.",
   "INTOTHESPIREVERSE-BROADSIDE.title": "Broadside",
-  "INTOTHESPIREVERSE-ILLICIT_MUNITIONS.description": "Put a [gold]{IfUpgraded:show:Volley+|Volley}[/gold] and [gold]{IfUpgraded:show:Salvo+|Salvo}[/gold] into your [gold]Cargo[/gold].\nGive them [gold]Retain[/gold].",
+  "INTOTHESPIREVERSE-ILLICIT_MUNITIONS.description": "Put a [gold]Steady[/gold] [gold]{IfUpgraded:show:Volley+|Volley}[/gold] and [gold]Steady[/gold] [gold]{IfUpgraded:show:Salvo+|Salvo}[/gold] into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-ILLICIT_MUNITIONS.title": "Illicit Munitions",
   "INTOTHESPIREVERSE-SHADOW_CRYSTAL.description": "Gain {ShardsPower:diff()} [gold]Shards[/gold].\nPut this in your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-SHADOW_CRYSTAL.title": "Shadow Crystal",
@@ -694,6 +694,7 @@
   "INTOTHESPIREVERSE-BLOCKADE.title": "Blockade",
   "INTOTHESPIREVERSE-TRASH_COMPACTOR.description": "Deal {Damage:diff()} damage X times. Choose up to X cards in your [gold]Cargo[/gold] to [gold]Exhaust[/gold].",
   "INTOTHESPIREVERSE-TRASH_COMPACTOR.title": "Trash Compactor",
+  "INTOTHESPIREVERSE-TRASH_COMPACTOR.selectionScreenPrompt": "Choose cards to Exhaust.",
   "INTOTHESPIREVERSE-HYPERDRIVE.description": "When drawn, gain {ShardsPower:diff()} [gold]Shards[/gold].",
   "INTOTHESPIREVERSE-HYPERDRIVE.title": "Hyperdrive",
   "INTOTHESPIREVERSE-ROUSING_SPEECH.description": "Gain 1 Strength this turn for each card in [gold]Cargo[/gold].",
@@ -702,6 +703,6 @@
   "INTOTHESPIREVERSE-BREACH.title": "Breach",
   "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.description": "Put this into [gold]Cargo[/gold].\nAt the end of your turn, if this is in your [gold]Cargo[/gold], gain {Block:diff()} [gold]Block[/gold].",
   "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.title": "Brace for Impact!",
-  "INTOTHESPIREVERSE-COMMANDEER.description": "Add a random Attack from another character to your [gold]Hand[/gold]. It deals {IfUpgraded:show:triple|double} damage.",
+  "INTOTHESPIREVERSE-COMMANDEER.description": "Add a random Attack from different class to your [gold]Hand[/gold]. It deals {IfUpgraded:show:triple|double} damage.",
   "INTOTHESPIREVERSE-COMMANDEER.title": "Commandeer"
 }

@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Models.Enchantments;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -21,6 +22,7 @@ public class IllicitMunitions() : ShadowRegentCard(0,
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        ..HoverTipFactory.FromEnchantment<Steady>(),
         HoverTipFactory.FromCard<Volley>(IsUpgraded),
         HoverTipFactory.FromCard<Salvo>(IsUpgraded)
     ];
@@ -32,10 +34,10 @@ public class IllicitMunitions() : ShadowRegentCard(0,
         if (CombatState == null) return;
 
         var volleyCard = CombatState.CreateCard<Volley>(Owner);
-        volleyCard.AddKeyword(CardKeyword.Retain);
+        CardCmd.Enchant<Steady>(volleyCard, 1);
 
         var salvoCard = CombatState.CreateCard<Salvo>(Owner);
-        salvoCard.AddKeyword(CardKeyword.Retain);
+        CardCmd.Enchant<Steady>(salvoCard, 1);
         if (IsUpgraded)
         {
             CardCmd.Upgrade(volleyCard);

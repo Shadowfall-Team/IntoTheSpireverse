@@ -27,7 +27,7 @@ public class TrialOfSkill() : ShadowRegentCard(
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        // why this not compile? HoverTipFactory.FromEnchantment<Steady>(),
+        ..HoverTipFactory.FromEnchantment<Steady>(),
         HoverTipFactory.FromCard<MinionSacrifice>(IsUpgraded)
 
     ];
@@ -105,18 +105,15 @@ public class TrialOfWeaponryPower : ShadowPowerModel
                     if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 3 == 0)
                     {
                         Flash();
-                            
-                        //TODO - Tried a few attempts here but couldn't get the right setup for multiple, modified, upgraded cards added via generated cards to combat.
-                        var sacCards = Array.Empty<CardModel>();
+
                         for (int i = 0; i < Amount; i++)
                         {
                             var sacCard = CombatState.CreateCard<MinionSacrifice>(Owner.Player);
                             CardCmd.Enchant<Steady>(sacCard, 1);
-                            sacCards.AddItem(sacCard);
+                            await CardPileCmd.AddGeneratedCardToCombat(sacCard, PileType.Hand, Owner.Player);
+
                         }
-                            
-                        await CardPileCmd.AddGeneratedCardsToCombat(sacCards, PileType.Hand, Owner.Player);
-                            
+
                         await PowerCmd.Remove(this);
                     }
                 }
@@ -165,17 +162,15 @@ public class TrialOfWeaponryPowerPlus : ShadowPowerModel
                         if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 3 == 0)
                         {
                             Flash();
-                            
-                            var sacCards = Array.Empty<CardModel>();
+
                             for (int i = 0; i < Amount; i++)
                             {
                                 var sacCard = CombatState.CreateCard<MinionSacrifice>(Owner.Player);
                                 CardCmd.Upgrade(sacCard);
                                 CardCmd.Enchant<Steady>(sacCard, 1);
-                                sacCards.AddItem(sacCard);
+                                await CardPileCmd.AddGeneratedCardToCombat(sacCard, PileType.Hand, Owner.Player);
+
                             }
-                            
-                            await CardPileCmd.AddGeneratedCardsToCombat(sacCards, PileType.Hand, Owner.Player);
                             
                             await PowerCmd.Remove(this);
                         }
