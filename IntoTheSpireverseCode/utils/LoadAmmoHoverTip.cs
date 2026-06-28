@@ -1,6 +1,5 @@
 using BaseLib.Patches.Content;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
@@ -13,7 +12,7 @@ public static class LoadAmmoHoverTip
 
     public static IEnumerable<IHoverTip> FromLoadAmmo(Player? player = null)
     {
-        var damage = player != null ? AmmoResource.GetShotDamage(player) : AmmoVolley.BaseDamage;
+        var damage = player != null ? AmmoResource.GetShotDamage(player) : AmmoResource.BaseDamage;
         return [HoverTipFactory.Static(LoadAmmo), FromAmmoButton(damage)];
     }
 

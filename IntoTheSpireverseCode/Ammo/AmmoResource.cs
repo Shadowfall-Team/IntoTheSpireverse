@@ -44,12 +44,14 @@ public static class AmmoResource
         AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, newVal);
     }
 
+    
+    public const decimal BaseDamage = 12;
     /// <summary>
     /// Base damage + Strength + IModifiesAmmoShotDamage listeners (Firepower, Volley Damage).
     /// </summary>
     public static decimal GetShotDamage(Player player)
     {
-        var damage = AmmoVolley.BaseDamage;
+        var damage = BaseDamage;
 
         // Strength
         damage += player.Creature.GetPowerAmount<StrengthPower>();

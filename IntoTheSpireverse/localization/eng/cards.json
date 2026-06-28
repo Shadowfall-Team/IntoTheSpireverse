@@ -650,7 +650,7 @@
   "INTOTHESPIREVERSE-POWERED_THRUSTERS.title": "Powered Thrusters",
   "INTOTHESPIREVERSE-SUCCESSOR.description": "Add [gold]Replay[/gold] {Repeat:diff()} to a card in your [gold]Hand[/gold] and put it into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-SUCCESSOR.title": "Successor",
-  "INTOTHESPIREVERSE-MISDIRECTION.description": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} card from your [gold]Cargo[/gold].",
+  "INTOTHESPIREVERSE-MISDIRECTION.description": "Deal {Damage:diff()} damage.\nDraw the top {Cards:diff()} card from your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-MISDIRECTION.title": "Misdirection",
   "INTOTHESPIREVERSE-POWERED_BARRIER.description": "When you draw this, gain {Block:diff()} [gold]Block[/gold].",
   "INTOTHESPIREVERSE-POWERED_BARRIER.title": "Powered Barrier",
