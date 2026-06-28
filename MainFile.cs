@@ -1,11 +1,13 @@
 using System.Reflection;
 using BaseLib.Config;
+using BaseLib.Utils;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse;
 
@@ -34,5 +36,13 @@ public partial class MainFile : Node
         ModConfigRegistry.Register(ModId, new IntoTheSpireverseConfig());
 
         SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(TheLaw));
+
+        CustomCharacterUtils.TryOrderCustomCharacters([
+            typeof(ShadowIronclad),
+            typeof(ShadowSilent),
+            typeof(ShadowRegent),
+            typeof(ShadowNecrobinder),
+            typeof(ShadowDefect),
+        ]);
     }
 }
