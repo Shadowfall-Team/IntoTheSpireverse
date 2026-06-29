@@ -42,6 +42,7 @@
   "INTOTHESPIREVERSE-COMM_BADGE.description": "Start combat with [blue]{LoadAmmo}[/blue] [gold]Ammo[/gold]. Your [gold]Shots[/gold] deal [blue]{VolleyDamagePower}[/blue] more damage.",
   "INTOTHESPIREVERSE-COMM_BADGE.flavor": "",
   "INTOTHESPIREVERSE-COMM_BADGE.title": "Comm Badge",
+  "SEA_GLASS.INTOTHESPIREVERSE-SHADOW_REGENT.title": "Captain's Glass",
   
   "INTOTHESPIREVERSE-HEART_OF_STONE.title": "Heart of Stone",
   "INTOTHESPIREVERSE-HEART_OF_STONE.description": "After defeating an [gold]Elite[/gold], heal [green]{Heal}[/green] HP, and raise your Max HP by [blue]{MaxHp}[/blue].",
@@ -70,6 +71,7 @@
   "INTOTHESPIREVERSE-MUD_IDOL.title": "Mud Idol",
   "INTOTHESPIREVERSE-MUD_IDOL.description": "Whenever you [gold]Transform[/gold] a Rock into another Rock, [gold]Upgrade[/gold] it and [gold]Enchant[/gold] it with [purple]Polished[/purple].",
   "INTOTHESPIREVERSE-MUD_IDOL.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "SEA_GLASS.INTOTHESPIREVERSE-SHADOW_IRONCLAD.title": "Tectonic Glass",
 
   "INTOTHESPIREVERSE-S_NECRO_STARTER.description": "The first time you draw a [purple]Curse[/purple] each combat, [gold]Exhaust[/gold] it to gain {Energy:energyIcons()} and draw [blue]{Cards}[/blue] cards.",
   "INTOTHESPIREVERSE-S_NECRO_STARTER.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
