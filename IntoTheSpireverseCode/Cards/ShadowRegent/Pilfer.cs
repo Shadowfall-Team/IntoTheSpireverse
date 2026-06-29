@@ -32,12 +32,15 @@ public class Pilfer() : ShadowRegentCard(
             .ThenBy(c => c.Id).ToList();
         var prefs = new CardSelectorPrefs(CargoSelectorPrefs.FromCargoSelectionPrompt, DynamicVars.Cards.IntValue);
 
-        var selection = (await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, prefs)).FirstOrDefault();
+        var selections = await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, prefs);
 
-        if (selection == null) return;
-        await CardPileCmd.Add(selection, PileType.Hand);
-        await Hook.AfterCardDrawn(CombatState, choiceContext, selection, false);
-        
+        if (selections == null || !selections.Any()) return;
+
+        foreach (var selection in selections)
+        {
+            await CardPileCmd.Add(selection, PileType.Hand);
+            await Hook.AfterCardDrawn(CombatState, choiceContext, selection, false);
+        }
        }
 
     protected override void OnUpgrade()
