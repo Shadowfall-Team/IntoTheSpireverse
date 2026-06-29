@@ -46,7 +46,7 @@ public class Hyperdrive() : ShadowRegentCard(-1,
         {
             await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
                 Owner.Creature,
-                DynamicVars[nameof(ShardsPower)].BaseValue, Owner.Creature, null);
+                DynamicVars[nameof(ShardsPower)].BaseValue * await GeneratePlayCount(CombatState, null), Owner.Creature, null);
         }
     }
 
