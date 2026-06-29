@@ -22,21 +22,11 @@ public abstract class IntoTheSpireverseCard(int cost, CardType type, CardRarity 
     }
 }
 
-[Pool(typeof(ShadowDefectCardPool))]
-public abstract class ShadowDefectCard(int cost, CardType type, CardRarity rarity, TargetType target) :
-    IntoTheSpireverseCard(cost, type, rarity, target, "defect");
 
 [Pool(typeof(ShadowIroncladCardPool))]
 public abstract class ShadowIroncladCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     IntoTheSpireverseCard(cost, type, rarity, target, "ironclad");
 
-[Pool(typeof(ShadowSilentCardPool))]
-public abstract class ShadowSilentCard(int cost, CardType type, CardRarity rarity, TargetType target) :
-    IntoTheSpireverseCard(cost, type, rarity, target, "silent");
-
-[Pool(typeof(ShadowNecrobinderCardPool))]
-public abstract class ShadowNecrobinderCard(int cost, CardType type, CardRarity rarity, TargetType target) :
-    IntoTheSpireverseCard(cost, type, rarity, target, "necrobinder");
 
 [Pool(typeof(ShadowRegentCardPool))]
 public abstract class ShadowRegentCard(int cost, CardType type, CardRarity rarity, TargetType target) :

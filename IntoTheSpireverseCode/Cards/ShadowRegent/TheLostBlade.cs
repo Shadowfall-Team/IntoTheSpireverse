@@ -14,7 +14,7 @@ public class TheLostBlade() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(40, ValueProp.Move)
+        new DamageVar(50, ValueProp.Move)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];

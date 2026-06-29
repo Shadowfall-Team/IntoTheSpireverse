@@ -11,9 +11,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
@@ -61,23 +59,6 @@ public static class IntoTheSpireverseKeywords
 
     public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)
     {
-        CardModel? card = (await CardSelectCmd.FromHandForDiscard(
-            context,
-            player,
-            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
-            null,
-            source)).FirstOrDefault();
-
-        if (card == null)
-            return;
-
-        int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
-        if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
-            repeats = player.PlayerCombatState.Energy;
-        repeats += card is Weight ? player.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
-        await CardCmd.Discard(context, card);
-
-        for (int i = 0; i < repeats; i++)
-            await effect();
+        
     }
 }
