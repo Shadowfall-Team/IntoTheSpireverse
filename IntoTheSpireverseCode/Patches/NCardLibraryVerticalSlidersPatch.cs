@@ -56,7 +56,7 @@ public class NCardLibraryVerticalSlidersPatch
     static void SetupSlidersOnInspector(NCardLibrary __instance)
     {
        // if (!IntoTheSpireverseConfig.ShowWipContent) return;
-        if (_loaded) return;
+        if (true) return;
         var inspectScreen = NGame.Instance!.GetInspectCardScreen();
 
         _sliderContainer = new PanelContainer();
