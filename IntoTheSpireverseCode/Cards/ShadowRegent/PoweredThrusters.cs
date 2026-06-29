@@ -32,7 +32,7 @@ public class PoweredThrusters() : ShadowRegentCard(
     {
         if (card == this)
         {
-            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue * await GeneratePlayCount(CombatState, null), Owner);
         }
     }
 

@@ -578,6 +578,7 @@
   "INTOTHESPIREVERSE-SMUGGLERS_STRIKE.title": "Smuggler's Strike",
   "INTOTHESPIREVERSE-JETTISON.description": "Put any number of cards from your hand into your [gold]Cargo[/gold].\nDeal {Damage:diff()} damage for each.",
   "INTOTHESPIREVERSE-JETTISON.title": "Jettison",
+  "INTOTHESPIREVERSE-JETTISON.selectionScreenPrompt": "Choose cards to Eject to your [gold]Cargo[/gold]",
   "INTOTHESPIREVERSE-BROADSIDE.description": "Deal {Damage:diff()} damage to ALL enemies twice.",
   "INTOTHESPIREVERSE-BROADSIDE.title": "Broadside",
   "INTOTHESPIREVERSE-ILLICIT_MUNITIONS.description": "Put a [gold]Steady[/gold] [gold]{IfUpgraded:show:Volley+|Volley}[/gold] and [gold]Steady[/gold] [gold]{IfUpgraded:show:Salvo+|Salvo}[/gold] into your [gold]Cargo[/gold].",
