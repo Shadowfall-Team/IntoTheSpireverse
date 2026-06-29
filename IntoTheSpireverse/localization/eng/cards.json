@@ -612,7 +612,7 @@
   "INTOTHESPIREVERSE-TRIAL_OF_KNOWLEDGE.description": "{IfUpgraded:show:Draw 1 card.\n|}The next time you end your turn with 5 or more cards in your hand, [gold]Retain[/gold] your [gold]Hand[/gold] that turn.",
   "INTOTHESPIREVERSE-TRIAL_OF_SKILL.description": "The next time you play 3 Skills in one turn, add a {IfUpgraded:show:an Upgraded |}[gold]Steady Minion Sacrifice[/gold] to your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-TRIAL_OF_SKILL.title": "Trial of Skill",
-  "INTOTHESPIREVERSE-PILFER.description": "Put {Cards:diff()} {Cards:plural:card|cards} from your [gold]Cargo[/gold] into your [gold]Hand[/gold]. {Cards:plural:It counts|They count} counts as having been drawn.",
+  "INTOTHESPIREVERSE-PILFER.description": "Put {Cards:diff()} {Cards:plural:card|cards} from your [gold]Cargo[/gold] into your [gold]Hand[/gold]. {Cards:plural:It counts|They count} as having been drawn.",
   "INTOTHESPIREVERSE-PILFER.title": "Pilfer",
   "INTOTHESPIREVERSE-CONTRABAND.description": "Put the top {Cards:diff()} cards of your draw pile into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-CONTRABAND.title": "Contraband",
