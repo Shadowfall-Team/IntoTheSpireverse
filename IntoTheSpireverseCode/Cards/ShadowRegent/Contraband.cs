@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -35,8 +36,7 @@ public class Contraband() : ShadowRegentCard(
         if (!drawPile.IsEmpty)
         {
             var cards = drawPile.Cards.Take(DynamicVars.Cards.IntValue);
-            var cardPileAddResult = await CardPileCmd.Add(cards, CargoCardPile.CargoPileType);
-            CardCmd.PreviewCardPileAdd(cardPileAddResult);
+            await CardPileCmdExtras.TransferPileAndPreview(cards, PileType.Draw, CargoCardPile.CargoPileType);
         }
     }
 
