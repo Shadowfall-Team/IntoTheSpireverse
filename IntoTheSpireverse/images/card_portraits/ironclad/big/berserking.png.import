@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhqv4h0f2sutr"
-path="res://.godot/imported/berserking.png-c6f3b6d88a8ea11ad212ad7cbf333c46.ctex"
+path="res://.godot/imported/berserking.png-ad9e087fa4dd3a0eb728108361fb22b0.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/big/berserking.png"
-dest_files=["res://.godot/imported/berserking.png-c6f3b6d88a8ea11ad212ad7cbf333c46.ctex"]
+dest_files=["res://.godot/imported/berserking.png-ad9e087fa4dd3a0eb728108361fb22b0.ctex"]
 
 [params]
 

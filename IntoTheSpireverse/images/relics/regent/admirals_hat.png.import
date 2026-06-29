@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0y7p0ab4oqng"
-path="res://.godot/imported/admirals_hat.png-faf64feede2168e3693c37247b747d08.ctex"
+path="res://.godot/imported/admirals_hat.png-8d0344b0631789f8c9770142c88dbc4a.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/regent/admirals_hat.png"
-dest_files=["res://.godot/imported/admirals_hat.png-faf64feede2168e3693c37247b747d08.ctex"]
+dest_files=["res://.godot/imported/admirals_hat.png-8d0344b0631789f8c9770142c88dbc4a.ctex"]
 
 [params]
 

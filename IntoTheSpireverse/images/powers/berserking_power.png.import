@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://koror5d0h1kx"
-path="res://.godot/imported/berserking_power.png-3f084b744ecca9025ec6176400be0201.ctex"
+path="res://.godot/imported/berserking_power.png-a75abe496f90fea7f42e774dcdcbed1c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/berserking_power.png"
-dest_files=["res://.godot/imported/berserking_power.png-3f084b744ecca9025ec6176400be0201.ctex"]
+dest_files=["res://.godot/imported/berserking_power.png-a75abe496f90fea7f42e774dcdcbed1c.ctex"]
 
 [params]
 

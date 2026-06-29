@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsy054j6lquh6"
-path="res://.godot/imported/multiplayer_hand_ironclad_paper.png-471e21474ea02462c30f89451b3d2865.ctex"
+path="res://.godot/imported/multiplayer_hand_ironclad_paper.png-7c0ea1bb494884fee9c7450da9bc34b2.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/characters/shadowironclad/multiplayer_hand_ironclad_paper.png"
-dest_files=["res://.godot/imported/multiplayer_hand_ironclad_paper.png-471e21474ea02462c30f89451b3d2865.ctex"]
+dest_files=["res://.godot/imported/multiplayer_hand_ironclad_paper.png-7c0ea1bb494884fee9c7450da9bc34b2.ctex"]
 
 [params]
 

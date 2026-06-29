@@ -6,6 +6,8 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -19,24 +21,26 @@ public class FillTheTank() : ShadowRegentCard(1,
         new CardsVar(2)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        HoverTipFactory.FromCard<Fuel>()
+        HoverTipFactory.FromCard<Fuel>(IsUpgraded)
     ];
-    
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        if (CombatState != null)
+        for (var i = 0; i < DynamicVars.Cards.IntValue; i++)
         {
-            await CardPileCmd.AddToCombatAndPreview<Fuel>(Owner.Creature,
-                CargoCardPile.CargoPileType, DynamicVars.Cards.IntValue, Owner);
-        }
-    }
+            var fuelCard = CombatState!.CreateCard<Fuel>(Owner);
+            if (IsUpgraded)
+            {
+                CardCmd.Upgrade(fuelCard);
+            }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Cards.UpgradeValueBy(1);
+            var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(fuelCard, CargoCardPile.CargoPileType, Owner);
+            CardCmd.PreviewCardPileAdd(cardAdd);
+        }
     }
 }

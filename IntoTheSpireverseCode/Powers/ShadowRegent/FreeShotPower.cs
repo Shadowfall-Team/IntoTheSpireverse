@@ -1,31 +1,19 @@
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
-public class FreeShotPower : ShadowPowerModel, IAmmoFiredListener
+public class FreeShotPower : ShadowPowerModel, IModifiesShotCost, IAmmoFiringListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
-    {
-        if (card is AmmoVolley)
-        {
-            modifiedCost = 0;
-            return true;
-        }
-        modifiedCost = originalCost;
-        return false;
-    }
+    public int ModifyShotCost(int current) => Amount > 0 ? 0 : current;
 
-    public async Task OnAmmoFired(Player player, IEnumerable<List<DamageResult>> results)
+    public async Task OnAmmoFiring(Player player)
     {
         if (player.Creature != Owner) return;
         Flash();

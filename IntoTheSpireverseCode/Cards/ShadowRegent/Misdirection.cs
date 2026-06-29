@@ -19,7 +19,8 @@ public class Misdirection() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move)
+        new DamageVar(9, ValueProp.Move),
+        new CardsVar(1)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -36,20 +37,22 @@ public class Misdirection() : ShadowRegentCard(
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         
-        var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner)
-            .Cards.OrderBy(c => c.Rarity)
-            .ThenBy(c => c.Id).ToList();
-        var prefs = new CardSelectorPrefs(CargoSelectorPrefs.FromCargoSelectionPrompt, 1);
-
-        var selection = (await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, prefs)).FirstOrDefault();
-
-        if (selection == null) return;
-        await CardPileCmd.Add(selection, PileType.Hand);
-        await Hook.AfterCardDrawn(CombatState, choiceContext, selection, false);
+        var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner);
+        if (!cargoPile.IsEmpty)
+        {
+            var cardModels = cargoPile.Cards.Take((int)DynamicVars.Cards.BaseValue).ToList();
+            foreach (var cardModel in cardModels)
+            {
+                await CardPileCmd.Add(cardModel, PileType.Hand);
+                if (Owner.Creature.CombatState == null) continue;
+                await Hook.AfterCardDrawn(Owner.Creature.CombatState, choiceContext, cardModel, true);
+            }
+        }
+        
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }

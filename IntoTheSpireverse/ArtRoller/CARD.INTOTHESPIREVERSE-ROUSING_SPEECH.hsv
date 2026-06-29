@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ROUSING_SPEECH",
+  "hue": 0.65,
+  "saturation": 0.91,
+  "value": 0.91,
+  "red": 1.09,
+  "green": 1.29,
+  "blue": 0.84,
+  "contrast": 0.96,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/monologue.tres"
+}

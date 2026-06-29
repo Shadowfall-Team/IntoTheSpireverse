@@ -10,7 +10,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
 public static class ShotHelper
 {
-    public static async Task CreateMissile(ICombatState combatState, Creature? pickedTarget)
+    public static async Task CreateMissile(ICombatState combatState, Creature? pickedTarget, bool skipWait = false)
     {
         var combatRoom = NCombatRoom.Instance;
         if (combatRoom != null)
@@ -25,7 +25,8 @@ public static class ShotHelper
                 if (missile != null)
                 {
                     combatRoom.CombatVfxContainer.AddChildSafely(missile);
-                    await Cmd.Wait(missile.WaitTime);
+                    if (!skipWait)
+                        await Cmd.Wait(missile.WaitTime);
                 }
             }
         }

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bhby5rcgb383g"
-path="res://.godot/imported/comm_badge_outline.png-4992028c4afdd8d5d5d3a0ce1d3df6c8.ctex"
+path="res://.godot/imported/comm_badge_outline.png-9edcaddb5fe88f627e8d9b33cac16bb8.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/regent/comm_badge_outline.png"
-dest_files=["res://.godot/imported/comm_badge_outline.png-4992028c4afdd8d5d5d3a0ce1d3df6c8.ctex"]
+dest_files=["res://.godot/imported/comm_badge_outline.png-9edcaddb5fe88f627e8d9b33cac16bb8.ctex"]
 
 [params]
 

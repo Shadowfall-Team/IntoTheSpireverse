@@ -10,7 +10,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class Jettison() : ShadowRegentCard(1,
+public class Jettison() : ShadowRegentCard(2,
     CardType.Attack,
     CardRarity.Rare,
     TargetType.AnyEnemy)
@@ -22,6 +22,11 @@ public class Jettison() : ShadowRegentCard(1,
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
+    {
+        CardKeyword.Exhaust,
+    };
+
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -47,6 +52,6 @@ public class Jettison() : ShadowRegentCard(1,
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2);
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

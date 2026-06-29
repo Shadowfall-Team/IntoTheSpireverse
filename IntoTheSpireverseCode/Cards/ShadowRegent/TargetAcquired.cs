@@ -11,11 +11,13 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
 public class TargetAcquired() : ShadowRegentCard(
-    1,
+    0,
     CardType.Attack,
     CardRarity.Uncommon,
     TargetType.AnyEnemy)
@@ -26,11 +28,6 @@ public class TargetAcquired() : ShadowRegentCard(
         new IntVar("LoadAmmo", 1)
     ];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Retain
-    ];
-    
     protected override IEnumerable<IHoverTip> ExtraHoverTips => 
         LoadAmmoHoverTip.FromLoadAmmo();
 
@@ -56,7 +53,7 @@ public class TargetAcquired() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        AddKeyword(CardKeyword.Retain);
     }
 }
 
@@ -64,4 +61,13 @@ public class TargetedPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Single;
+
+    public async override Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    {
+        if (side != Owner.Side)
+        {
+            await PowerCmd.Remove(this);
+        }
+    }
+
 }

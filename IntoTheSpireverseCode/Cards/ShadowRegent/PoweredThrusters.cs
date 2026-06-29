@@ -14,7 +14,7 @@ public class PoweredThrusters() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(3)
+        new CardsVar(2)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];

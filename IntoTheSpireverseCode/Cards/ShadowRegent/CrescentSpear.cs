@@ -28,7 +28,7 @@ public class CrescentSpear() : ShadowRegentCard(1,
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        IsUpgraded ? HoverTipFactory.FromCard<UltimateStrike>(true) : HoverTipFactory.FromCard<UltimateStrike>()
+        HoverTipFactory.FromCard<UltimateStrike>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(

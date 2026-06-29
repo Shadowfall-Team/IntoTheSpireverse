@@ -25,7 +25,7 @@ public class StarCharts() : ShadowRegentCard(
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(10, ValueProp.Move),
+        new BlockVar(9, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

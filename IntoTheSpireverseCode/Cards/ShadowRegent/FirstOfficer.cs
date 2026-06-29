@@ -21,9 +21,9 @@ public class FirstOfficer() : ShadowRegentCard(0,
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        IsUpgraded ? HoverTipFactory.FromCard<Coordinate>(true) : HoverTipFactory.FromCard<Coordinate>(),
-        IsUpgraded ? HoverTipFactory.FromCard<BelieveInYou>(true) : HoverTipFactory.FromCard<BelieveInYou>(),
-        IsUpgraded ? HoverTipFactory.FromCard<Lift>(true) : HoverTipFactory.FromCard<Lift>(),
+        HoverTipFactory.FromCard<Coordinate>(IsUpgraded),
+        HoverTipFactory.FromCard<BelieveInYou>(IsUpgraded),
+        HoverTipFactory.FromCard<Lift>(IsUpgraded)
     ];
 
 

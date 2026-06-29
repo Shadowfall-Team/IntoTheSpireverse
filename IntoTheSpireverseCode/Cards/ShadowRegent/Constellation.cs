@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -34,15 +35,20 @@ public class Constellation() : ShadowRegentCard(
             .Cards.OrderBy(c => c.Rarity)
             .ThenBy(c => c.Id).ToList();
         if (drawPile.Count == 0) return;
-        
+
+        var noChoice = drawPile.Count == 1;
+
         var cardSelectorPrefs =
             new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 1);
         var results =
-            (await CardSelectCmd.FromSimpleGrid(choiceContext, drawPile, Owner,
-                cardSelectorPrefs)).ToList();
+            await CardSelectCmd.FromSimpleGrid(choiceContext, drawPile, Owner,
+                cardSelectorPrefs);
 
-        await CardPileCmd.Add(results, CargoCardPile.CargoPileType);
-        CardCmd.Preview(results);
+        if (noChoice) {
+            await CardPileCmdExtras.TransferPileAndPreview(results, PileType.Draw, CargoCardPile.CargoPileType);
+        } else {
+            await CardPileCmd.Add(results, CargoCardPile.CargoPileType);
+        }
     }
 
     protected override void OnUpgrade()

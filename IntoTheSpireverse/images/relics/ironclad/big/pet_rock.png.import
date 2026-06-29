@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmpoq0x61dk4q"
-path="res://.godot/imported/pet_rock.png-c155db2d8de046bc5c493de9f0d584ff.ctex"
+path="res://.godot/imported/pet_rock.png-c0380df55511d1e740e7e0e9bb4ee191.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/ironclad/big/pet_rock.png"
-dest_files=["res://.godot/imported/pet_rock.png-c155db2d8de046bc5c493de9f0d584ff.ctex"]
+dest_files=["res://.godot/imported/pet_rock.png-c0380df55511d1e740e7e0e9bb4ee191.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccf0dtixx5tnc"
-path="res://.godot/imported/dilithium_crystal.png-66d5511b1966fb4f130bba1989020480.ctex"
+path="res://.godot/imported/dilithium_crystal.png-c27c6d4ebc9033e9bdcd7b83358c3c21.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/relics/regent/dilithium_crystal.png"
-dest_files=["res://.godot/imported/dilithium_crystal.png-66d5511b1966fb4f130bba1989020480.ctex"]
+dest_files=["res://.godot/imported/dilithium_crystal.png-c27c6d4ebc9033e9bdcd7b83358c3c21.ctex"]
 
 [params]
 

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -35,10 +36,14 @@ public class Plot() : ShadowRegentCard(1,
             .ThenBy(c => c.Id).ToList();
         if (discardPile.Count == 0) return;
 
+        var noChoice = discardPile.Count == 1;
+
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var selection = (await CardSelectCmd.FromSimpleGrid(choiceContext, discardPile, Owner, prefs)).FirstOrDefault();
-        if (selection != null)
-        {
+        var selection = await CardSelectCmd.FromSimpleGrid(choiceContext, discardPile, Owner, prefs);
+
+        if (noChoice) {
+            await CardPileCmdExtras.TransferPileAndPreview(selection, PileType.Discard, CargoCardPile.CargoPileType);
+        } else {
             await CardPileCmd.Add(selection, CargoCardPile.CargoPileType);
         }
     }

@@ -33,7 +33,7 @@
   "INTOTHESPIREVERSE-BOBBLEHEAD.description": "The first time each turn that you put a card into your [gold]Cargo[/gold], gain [blue]{StrengthPower}[/blue] [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-BOBBLEHEAD.flavor": "",
   "INTOTHESPIREVERSE-BOBBLEHEAD.title": "Bobblehead",
-  "INTOTHESPIREVERSE-PURPLE_DOUGH.description": "At the start of combat, put [blue]{Cards}[/blue] random Colorless cards into your [gold]Cargo[/gold].",
+  "INTOTHESPIREVERSE-PURPLE_DOUGH.description": "After starting your first turn of combat, put [gold]Secret Weapon[/gold], [gold]Secret Technique[/gold], or [gold]Master of Strategy[/gold] into your [gold]Cargo[/gold] (chosen at random).",
   "INTOTHESPIREVERSE-PURPLE_DOUGH.flavor": "",
   "INTOTHESPIREVERSE-PURPLE_DOUGH.title": "Purple Dough",
   "INTOTHESPIREVERSE-HULA_FIGURE.description": "[gold]Warp[/gold] now grants {Energy:energyIcons()}, but no Strength.",

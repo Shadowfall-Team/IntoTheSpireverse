@@ -1,5 +1,4 @@
 using Godot;
-using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
@@ -8,9 +7,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
@@ -21,8 +20,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
 
@@ -30,16 +30,12 @@ public partial class NAmmoButton : NButton
 {
     private static readonly string _scenePath = "res://IntoTheSpireverse/scenes/CaptainsShip.tscn";
 
-    private static readonly AccessTools.FieldRef<CardModel, CardUpgradePreviewType> _upgradePreviewTypeRef =
-        AccessTools.FieldRefAccess<CardModel, CardUpgradePreviewType>("_upgradePreviewType");
-
     private static readonly string _megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
 
     private Player _player = null!;
     private bool _initialized;
     private bool _hasEverHadAmmo;
-    private readonly List<PlayAmmoCardAction> _playQueue = [];
-    private AmmoCardPile? _pile;
+    private readonly List<FireAmmoAction> _playQueue = [];
 
     private Control _shipContainer = null!;
     private ShaderMaterial? _hologramMaterial;
@@ -62,10 +58,8 @@ public partial class NAmmoButton : NButton
     protected override string? ClickedSfx => "event:/sfx/ui/clicks/ui_click";
     protected override string? HoveredSfx => "event:/sfx/ui/clicks/ui_hover";
 
-    private CardModel? TopCard => _pile?.Cards.ToList().FirstOrDefault();
-
     private int AvailableAmmoCount =>
-        (_pile?.Cards.Count ?? 0) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
+        AmmoResource.GetAmmo(_player) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
 
     private bool CanFire
     {
@@ -74,10 +68,11 @@ public partial class NAmmoButton : NButton
             if (!_initialized || _player.PlayerCombatState == null ||
                 _player.Creature.CombatState?.CurrentSide != CombatSide.Player)
                 return false;
-            var top = TopCard;
-            if (top == null) return false;
             if (AvailableAmmoCount <= 0) return false;
-            return AvailableEnergy >= top.EnergyCost.GetWithModifiers(CostModifiers.All)
+            var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();
+            if (!hasBigGuns && !(_player.Creature.CombatState?.HittableEnemies.Any() ?? false))
+                return false;
+            return AvailableEnergy >= AmmoResource.GetShotEnergyCost(_player)
                    && NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play
                    && !CombatManager.Instance.IsOverOrEnding;
         }
@@ -88,10 +83,8 @@ public partial class NAmmoButton : NButton
         get
         {
             if (_player.PlayerCombatState == null) return 0;
-            var top = TopCard;
-            if (top == null) return _player.PlayerCombatState.Energy;
             var pendingCost = _playQueue.Count(a => a.State == GameActionState.WaitingForExecution)
-                              * top.EnergyCost.GetWithModifiers(CostModifiers.All);
+                              * AmmoResource.GetShotEnergyCost(_player);
             return _player.PlayerCombatState.Energy - pendingCost;
         }
     }
@@ -128,6 +121,7 @@ public partial class NAmmoButton : NButton
         base._EnterTree();
         CombatManager.Instance.StateTracker.CombatStateChanged += OnCombatStateChanged;
         RunManager.Instance.ActionQueueSet.ActionEnqueued += OnActionEnqueued;
+        AmmoResource.AmmoChanged += OnAmmoChanged;
         if (NControllerManager.Instance != null)
         {
             NControllerManager.Instance.ControllerDetected += OnControllerChanged;
@@ -142,10 +136,9 @@ public partial class NAmmoButton : NButton
     public override void _ExitTree()
     {
         base._ExitTree();
-        if (_pile != null)
-            _pile.ContentsChanged -= OnPileContentsChanged;
         CombatManager.Instance.StateTracker.CombatStateChanged -= OnCombatStateChanged;
         RunManager.Instance.ActionQueueSet.ActionEnqueued -= OnActionEnqueued;
+        AmmoResource.AmmoChanged -= OnAmmoChanged;
         if (NControllerManager.Instance != null)
         {
             NControllerManager.Instance.ControllerDetected -= OnControllerChanged;
@@ -198,9 +191,6 @@ public partial class NAmmoButton : NButton
     public void Initialize(Player player)
     {
         _player = player;
-        _pile = (AmmoCardPile) AmmoCardPile.AmmoPileType.GetPile(player);
-        _pile.targetPosition = GetGlobalRect().GetCenter();
-        _pile.ContentsChanged += OnPileContentsChanged;
         _energyIcon.Texture = PreloadManager.Cache.GetAsset<Texture2D>(
             EnergyIconHelper.GetPath(_player.Character.CardPool));
         _initialized = true;
@@ -232,17 +222,11 @@ public partial class NAmmoButton : NButton
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
-        var top = TopCard;
-        if (top == null) return;
 
-        //I've opted to go with the fieldref pattern here as I don't think it wise to publicize this generally.
-        //This is an issue with how UpdateDynamicVarPreview only updates dynamicvars if the card is in hand or in play (CardUpgradePreviewType.Combat).
-        //The best solution would be to transpile the CardModel.UpdateDynamicVarPreview method, but this workaround is a lot less work and is only slightly more disgusting. 
-        _upgradePreviewTypeRef(top) = CardUpgradePreviewType.Combat;
-        NHoverTipSet.CreateAndShow(this,
-                [HoverTipFactory.FromCard(top), .. top.HoverTips])
-            ?.SetAlignment(this, HoverTipAlignment.Left);
-        _upgradePreviewTypeRef(top) = CardUpgradePreviewType.None;
+        if (!_initialized) return;
+
+        NHoverTipSet.CreateAndShow(this, LoadAmmoHoverTip.FromLoadAmmo(_player))
+            ?.SetAlignment(this, HoverTipAlignment.Right);
     }
 
     protected override void OnUnfocus()
@@ -276,7 +260,7 @@ public partial class NAmmoButton : NButton
         _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
         _bumpTween.TweenProperty(_fireButtonBackground, "modulate", Colors.White, 0.05);
 
-        var action = new PlayAmmoCardAction(_player);
+        var action = new FireAmmoAction(_player);
         RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(action);
         WaitForActionComplete(action);
     }
@@ -284,7 +268,7 @@ public partial class NAmmoButton : NButton
     protected override void OnEnable()
     {
         base.OnEnable();
-        _comboIcons?.Refresh(true);
+        _comboIcons?.Refresh();
         UpdateFireLabel();
     }
 
@@ -295,7 +279,7 @@ public partial class NAmmoButton : NButton
         UpdateFireLabel();
     }
 
-    private async void WaitForActionComplete(PlayAmmoCardAction action)
+    private async void WaitForActionComplete(FireAmmoAction action)
     {
         while (action.State != GameActionState.Finished && action.State != GameActionState.Canceled)
         {
@@ -310,14 +294,14 @@ public partial class NAmmoButton : NButton
 
     #region Event Handlers
 
-    private void OnPileContentsChanged()
+    private void OnAmmoChanged(PlayerCombatState pcs, int oldVal, int newVal)
     {
-        if (!_hasEverHadAmmo && _pile!.Cards.Count > 0)
+        if (!_initialized || pcs != _player.PlayerCombatState) return;
+        if (!_hasEverHadAmmo && newVal > 0)
         {
             _hasEverHadAmmo = true;
             AnimIn();
         }
-
         UpdateState();
     }
 
@@ -326,7 +310,7 @@ public partial class NAmmoButton : NButton
     private void OnActionEnqueued(GameAction action)
     {
         if (!_initialized) return;
-        if (action is not PlayAmmoCardAction ammoAction) return;
+        if (action is not FireAmmoAction ammoAction) return;
         if (ammoAction.OwnerId != _player.NetId) return;
         _playQueue.Add(ammoAction);
         UpdateState();
@@ -353,22 +337,10 @@ public partial class NAmmoButton : NButton
 
         _ammoCountLabel.Text = AvailableAmmoCount.ToString();
 
-        var card = TopCard ?? ModelDb.Card<AmmoVolley>();
-        var preHookDamage = card.DynamicVars.CalculatedDamage.Calculate(null);
-        var damage = (int)Hook.ModifyDamage(
-            _player.RunState,
-            _player.Creature.CombatState,
-            null,
-            _player.Creature,
-            preHookDamage,
-            ValueProp.Move,
-            card,
-            ModifyDamageHookType.All,
-            CardPreviewMode.Normal,
-            out _);
+        var damage = (int)AmmoResource.GetShotDamage(_player);
         _damageLabel.Text = $"{damage}";
         _damageIcon.Texture = GetAttackIntentTexture(damage);
-        _energyCostLabel.Text = card.EnergyCost.GetWithModifiers(CostModifiers.All).ToString();
+        _energyCostLabel.Text = AmmoResource.GetShotEnergyCost(_player).ToString();
 
         _shipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f);
         SetEnabled(CanFire);

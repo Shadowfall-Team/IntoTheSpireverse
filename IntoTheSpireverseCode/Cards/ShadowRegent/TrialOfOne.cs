@@ -45,7 +45,7 @@ public class TrialOfOne() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Strength.UpgradeValueBy(1);
+        DynamicVars.Strength.UpgradeValueBy(2);
     }
 }
 

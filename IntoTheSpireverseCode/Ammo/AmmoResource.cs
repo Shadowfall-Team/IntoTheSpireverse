@@ -1,41 +1,96 @@
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using MegaCrit.Sts2.Core.Models.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
-using MegaCrit.Sts2.Core.Saves;
-using MegaCrit.Sts2.Core.Settings;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
 public static class AmmoResource
 {
-    //TODO: Exposed for muzzle flash on ship for later
-    // public static event Action<Player, CardPlay>? OnAmmoFired;
+    private static readonly SpireField<PlayerCombatState, int> _playerAmmo = new(() => 0);
 
-    public static int GetAmmo(Player player) => AmmoCardPile.AmmoPileType.GetPile(player).Cards.Count;
+    public static event Action<PlayerCombatState, int, int>? AmmoChanged;
+
+    // TODO: stub for future ship muzzle-flash VFX
+    // public static event Action<Player>? OnAmmoFiredStub;
+
+    public static int GetAmmo(Player player) => _playerAmmo[player.PlayerCombatState];
 
     public static async Task GainAmmo(int amount, Player player)
     {
-        var combatState = player.Creature.CombatState;
-        if (combatState == null) return;
+        if (player.Creature.CombatState == null) return;
 
         for (var i = 0; i < amount; i++)
         {
-            var card = combatState.CreateCard<AmmoVolley>(player);
-            var result = CardPileCmd.AddGeneratedCardToCombat(card, AmmoCardPile.AmmoPileType, player);
-            var animTime = SaveManager.Instance.PrefsSave.FastMode >= FastModeType.Fast ? 0.1f : 0.6f;
-            CardCmd.PreviewCardPileAdd(await result, animTime);
+            var oldVal = _playerAmmo[player.PlayerCombatState];
+            _playerAmmo[player.PlayerCombatState] = oldVal + 1;
+            AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, oldVal + 1);
+
+            foreach (var model in player.Creature.CombatState.IterateHookListeners().ToList())
+            {
+                if (model is IAmmoLoadedListener listener)
+                    await listener.OnAmmoLoaded();
+            }
+        }
+    }
+
+    internal static void LoseAmmo(int amount, Player player)
+    {
+        var oldVal = _playerAmmo[player.PlayerCombatState];
+        var newVal = Math.Max(0, oldVal - amount);
+        if (newVal == oldVal) return;
+        _playerAmmo[player.PlayerCombatState] = newVal;
+        AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, newVal);
+    }
+
+    
+    public const decimal BaseDamage = 12;
+    /// <summary>
+    /// Base damage + Strength + IModifiesAmmoShotDamage listeners (Firepower, Volley Damage).
+    /// </summary>
+    public static decimal GetShotDamage(Player player)
+    {
+        var damage = BaseDamage;
+
+        // Strength
+        damage += player.Creature.GetPowerAmount<StrengthPower>();
+
+        // Firepower, Volley, and any future IModifiesAmmoShotDamage powers
+        foreach (var model in player.Creature.CombatState!.IterateHookListeners())
+        {
+            if (model is IModifiesAmmoShotDamage modifier)
+                damage = modifier.ModifyAmmoShotDamage(player, damage);
+        }
+
+        return damage;
+    }
+
+    public static int GetShotEnergyCost(Player player)
+    {
+        var cost = 1;
+        foreach (var model in player.Creature.CombatState!.IterateHookListeners())
+        {
+            if (model is IModifiesShotCost modifier)
+                cost = modifier.ModifyShotCost(cost);
+        }
+        return cost;
+    }
+
+    public static async Task InvokeOnAmmoFiring(Player player)
+    {
+        foreach (var model in player.Creature.CombatState!.IterateHookListeners().ToList())
+        {
+            if (model is IAmmoFiringListener listener)
+                await listener.OnAmmoFiring(player);
         }
     }
 
     public static async Task InvokeOnAmmoFired(Player player, IEnumerable<List<DamageResult>> results)
     {
-        // OnAmmoFired?.Invoke(player, shotFired);
+        // OnAmmoFiredStub?.Invoke(player);
 
-        foreach (var model in player.Creature.CombatState.IterateHookListeners().ToList())
+        foreach (var model in player.Creature.CombatState!.IterateHookListeners().ToList())
         {
             if (model is IAmmoFiredListener listener)
                 await listener.OnAmmoFired(player, results);

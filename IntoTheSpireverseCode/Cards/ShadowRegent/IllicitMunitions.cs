@@ -6,12 +6,13 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Models.Enchantments;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class IllicitMunitions() : ShadowRegentCard(1,
+public class IllicitMunitions() : ShadowRegentCard(0,
     CardType.Skill,
-    CardRarity.Uncommon,
+    CardRarity.Rare,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
@@ -21,8 +22,9 @@ public class IllicitMunitions() : ShadowRegentCard(1,
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        HoverTipFactory.FromCard<Volley>(),
-        HoverTipFactory.FromCard<Salvo>()
+        ..HoverTipFactory.FromEnchantment<Steady>(),
+        HoverTipFactory.FromCard<Volley>(IsUpgraded),
+        HoverTipFactory.FromCard<Salvo>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(
@@ -32,10 +34,15 @@ public class IllicitMunitions() : ShadowRegentCard(1,
         if (CombatState == null) return;
 
         var volleyCard = CombatState.CreateCard<Volley>(Owner);
-        volleyCard.AddKeyword(CardKeyword.Retain);
+        CardCmd.Enchant<Steady>(volleyCard, 1);
 
         var salvoCard = CombatState.CreateCard<Salvo>(Owner);
-        salvoCard.AddKeyword(CardKeyword.Retain);
+        CardCmd.Enchant<Steady>(salvoCard, 1);
+        if (IsUpgraded)
+        {
+            CardCmd.Upgrade(volleyCard);
+            CardCmd.Upgrade(salvoCard);
+        }
 
         var results = await CardPileCmd.AddGeneratedCardsToCombat([volleyCard, salvoCard], CargoCardPile.CargoPileType,
             Owner);
@@ -45,6 +52,5 @@ public class IllicitMunitions() : ShadowRegentCard(1,
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
     }
 }

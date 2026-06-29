@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4gvw27cb47ms"
-path="res://.godot/imported/armada_power.png-ce833e99080317abd007916ae4aa31ff.ctex"
+path="res://.godot/imported/armada_power.png-15a46e1c279d4df3eaca60b65e3b4e24.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/armada_power.png"
-dest_files=["res://.godot/imported/armada_power.png-ce833e99080317abd007916ae4aa31ff.ctex"]
+dest_files=["res://.godot/imported/armada_power.png-15a46e1c279d4df3eaca60b65e3b4e24.ctex"]
 
 [params]
 

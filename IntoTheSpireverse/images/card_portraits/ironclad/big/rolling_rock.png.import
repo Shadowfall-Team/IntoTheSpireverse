@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hsyknsr6r5jo"
-path="res://.godot/imported/rolling_rock.png-2f290f30fc64ad2e31406f2165588e2e.ctex"
+path="res://.godot/imported/rolling_rock.png-bc8adf008b07164afbf2b291ee8ae593.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/card_portraits/ironclad/big/rolling_rock.png"
-dest_files=["res://.godot/imported/rolling_rock.png-2f290f30fc64ad2e31406f2165588e2e.ctex"]
+dest_files=["res://.godot/imported/rolling_rock.png-bc8adf008b07164afbf2b291ee8ae593.ctex"]
 
 [params]
 

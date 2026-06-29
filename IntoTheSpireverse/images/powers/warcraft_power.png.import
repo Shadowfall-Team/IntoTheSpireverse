@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://263m52iaeyyq"
-path="res://.godot/imported/warcraft_power.png-249776b43abc277977de57177d762853.ctex"
+path="res://.godot/imported/warcraft_power.png-b75eb24e31dcb32ec3c82fd0a310d045.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://IntoTheSpireverse/images/powers/warcraft_power.png"
-dest_files=["res://.godot/imported/warcraft_power.png-249776b43abc277977de57177d762853.ctex"]
+dest_files=["res://.godot/imported/warcraft_power.png-b75eb24e31dcb32ec3c82fd0a310d045.ctex"]
 
 [params]
 
