@@ -45,8 +45,8 @@ public class PoweredBeam() : ShadowRegentCard(1,
     {
         if (card == this)
         {
-            await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
-            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, DynamicVars.Power<VigorPower>().BaseValue,
+            await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue * await GeneratePlayCount(CombatState, null), Owner, this);
+            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, DynamicVars.Power<VigorPower>().BaseValue * await GeneratePlayCount(CombatState, null),
                 Owner.Creature, this);
         }
     }

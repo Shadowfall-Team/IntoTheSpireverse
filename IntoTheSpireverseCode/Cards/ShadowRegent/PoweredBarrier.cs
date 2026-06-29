@@ -33,7 +33,8 @@ public class PoweredBarrier() : ShadowRegentCard(
     {
         if (card == this)
         {
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
+            for (int i = 0; i < await GeneratePlayCount(CombatState, null); i++)
+                await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
         }
     }
 
