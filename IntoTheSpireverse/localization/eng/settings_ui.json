@@ -1,8 +1,15 @@
 {
-  "INTOTHESPIREVERSE-SHADOW_REGENT.title": "Shadow Regent",
+  "INTOTHESPIREVERSE-mod_title": "Into the Spireverse",
+  "INTOTHESPIREVERSE-SHADOW_REGENT.title": "The Captain",
   "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.title": "Show Cargo pile card preview",
   "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.hover.desc": "Show a preview of the top 3 cards of the cargo pile, in order.",
   "INTOTHESPIREVERSE-DEVELOPMENT.title": "Development",
   "INTOTHESPIREVERSE-SHOW_WIP_CONTENT.title": "Show WIP Content (REQUIRES RESTART)",
-  "INTOTHESPIREVERSE-SHOW_WIP_CONTENT.hover.desc": "Show and use non-finished content that is currently in development."
+  "INTOTHESPIREVERSE-SHOW_WIP_CONTENT.hover.desc": "Show and use non-finished content that is currently in development.",
+  "INTOTHESPIREVERSE-KEYBINDS.title": "Keybinds",
+  "INTOTHESPIREVERSE-CAPTURE_CARGO_PILE_BINDING.title": "View Cargo Pile",
+  "INTOTHESPIREVERSE-CAPTURE_CARGO_PILE_BINDING.hover.desc": "Click to rebind the keyboard shortcut that opens the Cargo Pile.\n\nDefault: Ctrl + A",
+  "INTOTHESPIREVERSE-CAPTURE_FIRE_BINDING.title": "FIRE! Button",
+  "INTOTHESPIREVERSE-CAPTURE_FIRE_BINDING.hover.desc": "Click to rebind the keyboard shortcut that triggers the FIRE! button.\n\nDefault: Ctrl + F",
+  "INTOTHESPIREVERSE-PRESS_A_KEY": "[press a key...]"
 }
