@@ -4,8 +4,9 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using MegaCrit.Sts2.Core.Entities.Players;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -26,9 +27,9 @@ public class BraceForImpact() : ShadowRegentCard(1,
         await CardPileCmd.Add(this, CargoCardPile.CargoPileType);
     }
 
-    public override async Task AfterAutoPostPlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (Pile?.Type == CargoCardPile.CargoPileType && player == Owner)
+        if (Pile?.Type == CargoCardPile.CargoPileType && side == Owner.Creature.Side)
         {
             await EnchantBlockWithoutCardPlayPatch.WithEnchantment(
                 Enchantment,
