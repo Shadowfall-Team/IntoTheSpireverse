@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
@@ -37,6 +38,7 @@ public class FireAmmoAction : GameAction
         }
 
         await PlayerCmd.LoseEnergy(cost, _player);
+        await Hook.AfterEnergySpent(combatState, AmmoResource.GetOrCreatePhantomCard(_player), cost);
         AmmoResource.LoseAmmo(1, _player);
         await AmmoResource.InvokeOnAmmoFiring(_player);
 

@@ -6,6 +6,8 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
@@ -38,11 +40,11 @@ public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
         var cards = CargoCardPile.CargoPileType.GetPile(Owner)
             .Cards.Where(c => c.IsUpgradable).ToList();
         var targets = IsUpgraded ? cards : cards.TakeRandom(1, Owner.RunState.Rng.CombatCardSelection);
-        foreach (var cardModel in targets)
-        {
-            CardCmd.Upgrade(cardModel);
-            CardCmd.Preview(cardModel);
-        }
+
+        CardCmd.Upgrade(targets, CardPreviewStyle.None);
+        CardCmd.Preview((IReadOnlyList<CardModel>)targets);
+
+        CargoCardPile.CargoPileType.GetPile(Owner).InvokeContentsChanged();
     }
 
     protected override void OnUpgrade()
