@@ -1,5 +1,5 @@
-﻿{
-  "ENTROPY_ORB.title": "Entropy",
-  "ENTROPY_ORB.description": "Orb: When a card is discarded, deal damage to the frontmost enemy. Gain Strength when evoked.",
-  "ENTROPY_ORB.smartDescription": "[gold]Passive:[/gold] When a card is discarded, deal [blue]{Passive}[/blue] damage to the frontmost enemy.\n[gold]Evoke:[/gold] Gain [blue]{Evoke}[/blue] Strength."
+{
+  "INTOTHESPIREVERSE-ENTROPY_ORB.title": "Entropy",
+  "INTOTHESPIREVERSE-ENTROPY_ORB.description": "Orb: When a card is discarded, deal damage to the frontmost enemy. Gain Strength when evoked.",
+  "INTOTHESPIREVERSE-ENTROPY_ORB.smartDescription": "[gold]Passive:[/gold] When a card is discarded, deal [blue]{Passive}[/blue] damage to the frontmost enemy.\n[gold]Evoke:[/gold] Gain [blue]{Evoke}[/blue] Strength."
 }
