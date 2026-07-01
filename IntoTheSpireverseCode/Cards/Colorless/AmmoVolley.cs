@@ -15,7 +15,8 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 public class AmmoVolley() : CustomCardModel(1,
     CardType.Attack,
     CardRarity.Token,
-    TargetType.RandomEnemy)
+    TargetType.RandomEnemy,
+    false)
 {
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
