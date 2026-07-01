@@ -1,14 +1,22 @@
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
 public static class AmmoResource
 {
     private static readonly SpireField<PlayerCombatState, int> _playerAmmo = new(() => 0);
+    private static readonly SpireField<PlayerCombatState, CardModel?> _phantomShotCard = new(() => null);
+
+    public static CardModel GetOrCreatePhantomCard(Player player)
+    {
+        return _phantomShotCard[player.PlayerCombatState] ??=
+            player.Creature.CombatState!.CreateCard<AmmoVolley>(player);
+    }
 
     public static event Action<PlayerCombatState, int, int>? AmmoChanged;
 
@@ -44,8 +52,9 @@ public static class AmmoResource
         AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, newVal);
     }
 
-    
+
     public const decimal BaseDamage = 12;
+
     /// <summary>
     /// Base damage + Strength + IModifiesAmmoShotDamage listeners (Firepower, Volley Damage).
     /// </summary>
@@ -74,6 +83,7 @@ public static class AmmoResource
             if (model is IModifiesShotCost modifier)
                 cost = modifier.ModifyShotCost(cost);
         }
+
         return cost;
     }
 

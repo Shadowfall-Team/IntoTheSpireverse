@@ -684,7 +684,7 @@
   "INTOTHESPIREVERSE-THE_SEALED_THRONE.title": "Overdrive",
   "INTOTHESPIREVERSE-SMUGGLE.description": "Choose up to {Cards:diff()} cards in your hand to put into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-SMUGGLE.title": "Smuggle",
-  "INTOTHESPIREVERSE-AMMO_VOLLEY.description": "Deal {Damage:diff()} damage to a random enemy.",
+  "INTOTHESPIREVERSE-AMMO_VOLLEY.description": "This is a phantom card and should never actually be played.\nPlaying this card will crash the game.",
   "INTOTHESPIREVERSE-AMMO_VOLLEY.title": "Shot",
   "INTOTHESPIREVERSE-SUPERMASSIVE.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each card you created this combat.",
   "INTOTHESPIREVERSE-SUPERMASSIVE.title": "Supermassive",
