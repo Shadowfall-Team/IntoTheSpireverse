@@ -46,7 +46,7 @@ public class KinglyKnee() : ShadowRegentCard(1,
     {
         if (card == this)
         {
-            await PlayerCmd.GainEnergy(1, Owner);
+            await PlayerCmd.GainEnergy(1 * await GeneratePlayCount(CombatState, null), Owner);
         }
     }
 
