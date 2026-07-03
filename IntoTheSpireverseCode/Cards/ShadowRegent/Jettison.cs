@@ -35,7 +35,7 @@ public class Jettison() : ShadowRegentCard(2,
     {
         if (cardPlay.Target == null) return;
         var cargoedCards = (await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 0, 999999),
+            new CardSelectorPrefs(SelectionScreenPrompt, 0, 999999),
             null,
             this)).ToList();
         
