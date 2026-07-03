@@ -38,7 +38,9 @@ public class FireAmmoAction : GameAction
         }
 
         await PlayerCmd.LoseEnergy(cost, _player);
-        await Hook.AfterEnergySpent(combatState, AmmoResource.GetOrCreatePhantomCard(_player), cost);
+        var phantomCard = AmmoResource.GetOrCreatePhantomCard(_player);
+        if (phantomCard != null)
+            await Hook.AfterEnergySpent(combatState, phantomCard, cost);
         AmmoResource.LoseAmmo(1, _player);
         await AmmoResource.InvokeOnAmmoFiring(_player);
 

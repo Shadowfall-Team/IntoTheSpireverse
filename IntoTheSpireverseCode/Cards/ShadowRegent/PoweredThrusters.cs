@@ -30,10 +30,8 @@ public class PoweredThrusters() : ShadowRegentCard(
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
-        if (card == this)
-        {
-            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue * await GeneratePlayCount(CombatState, null), Owner);
-        }
+        if (CombatState == null || card != this) return;
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue * await GeneratePlayCount(CombatState, null), Owner);
     }
 
     protected override void OnUpgrade()

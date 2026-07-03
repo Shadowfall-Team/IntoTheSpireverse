@@ -31,11 +31,9 @@ public class PoweredBarrier() : ShadowRegentCard(
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
-        if (card == this)
-        {
-            for (int i = 0; i < await GeneratePlayCount(CombatState, null); i++)
-                await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
-        }
+        if (CombatState == null || card != this) return;
+        for (int i = 0; i < await GeneratePlayCount(CombatState, null); i++)
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
     }
 
     protected override void OnUpgrade()

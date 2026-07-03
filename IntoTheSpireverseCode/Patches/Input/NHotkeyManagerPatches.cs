@@ -2,6 +2,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Runs;
 using GodotInput = Godot.Input;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;

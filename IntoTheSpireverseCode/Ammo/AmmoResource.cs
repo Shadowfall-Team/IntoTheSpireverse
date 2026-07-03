@@ -12,10 +12,11 @@ public static class AmmoResource
     private static readonly SpireField<PlayerCombatState, int> PlayerAmmo = new(() => 0);
     private static readonly SpireField<PlayerCombatState, CardModel?> PhantomShotCard = new(() => null);
 
-    public static CardModel GetOrCreatePhantomCard(Player player)
+    public static CardModel? GetOrCreatePhantomCard(Player player)
     {
+        if (player.PlayerCombatState == null || player.Creature.CombatState == null) return null;
         return PhantomShotCard[player.PlayerCombatState] ??=
-            player.Creature.CombatState!.CreateCard<AmmoVolley>(player);
+            player.Creature.CombatState.CreateCard<AmmoVolley>(player);
     }
 
     public static event Action<PlayerCombatState, int, int>? AmmoChanged;

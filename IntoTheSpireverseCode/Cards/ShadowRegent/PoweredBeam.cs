@@ -43,11 +43,11 @@ public class PoweredBeam() : ShadowRegentCard(1,
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
-        if (card == this)
-        {
-            await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue * await GeneratePlayCount(CombatState, null), Owner, this);
-            await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, DynamicVars.Power<VigorPower>().BaseValue * await GeneratePlayCount(CombatState, null),
-                Owner.Creature, this);
-        }
+        if (CombatState == null || card != this) return;
+        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue * await GeneratePlayCount(CombatState, null),
+            Owner, this);
+        await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature,
+            DynamicVars.Power<VigorPower>().BaseValue * await GeneratePlayCount(CombatState, null),
+            Owner.Creature, this);
     }
 }

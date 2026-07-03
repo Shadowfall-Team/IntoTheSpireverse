@@ -28,8 +28,11 @@ internal static class ModShortcutHelpers
 
     internal static NAmmoButton? GetAmmoButton()
     {
+        if (RunManager.Instance.State == null) return null;
+        var creature = LocalContext.GetMe(RunManager.Instance.State.Players)?.Creature;
+        if (creature == null) return null;
         return NCombatRoom.Instance?
-            .GetCreatureNode(LocalContext.GetMe(RunManager.Instance.State.Players).Creature)
+            .GetCreatureNode(creature)
             ?.GetNodeOrNull<NAmmoButton>("AmmoButton");
     }
 }

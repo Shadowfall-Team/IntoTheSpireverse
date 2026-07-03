@@ -40,15 +40,13 @@ public class KinglyKnee() : ShadowRegentCard(1,
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
     }
-    
-    
+
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
-        if (card == this)
-        {
-            await PlayerCmd.GainEnergy(1 * await GeneratePlayCount(CombatState, null), Owner);
-        }
+        if (CombatState == null || card != this) return;
+        await PlayerCmd.GainEnergy(1 * await GeneratePlayCount(CombatState, null), Owner);
     }
 
 
