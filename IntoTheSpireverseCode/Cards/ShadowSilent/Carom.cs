@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,10 +23,11 @@ public sealed class Carom() : ShadowSilentCard(1, CardType.Attack, CardRarity.Co
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
             DamageCmd
                 .Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCardCompatibility(this, cardPlay)
                 .TargetingRandomOpponents(CombatState)
                 .Execute(choiceContext));
     }

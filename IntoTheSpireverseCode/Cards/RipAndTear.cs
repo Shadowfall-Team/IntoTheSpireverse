@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,10 +20,11 @@ public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState ==  null) return;
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(3)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .TargetingRandomOpponents(CombatState)
             .Execute(choiceContext);

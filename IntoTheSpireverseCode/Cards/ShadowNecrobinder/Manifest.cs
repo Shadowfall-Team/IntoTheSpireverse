@@ -30,6 +30,7 @@ public sealed class Manifest() : ShadowNecrobinderCard(2, CardType.Skill, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Decay>(Owner), PileType.Hand, Owner);

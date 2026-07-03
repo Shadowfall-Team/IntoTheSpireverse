@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -21,7 +22,7 @@ public sealed class LastRites() : ShadowNecrobinderCard(6, CardType.Attack, Card
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
@@ -46,7 +47,7 @@ public sealed class LastRites() : ShadowNecrobinderCard(6, CardType.Attack, Card
 
     private void RecalculateCost()
     {
-        int curseCount = Owner.PlayerCombatState.AllCards.Count(c => c.Type == CardType.Curse);
+        int curseCount = Owner.PlayerCombatState?.AllCards.Count(c => c.Type == CardType.Curse) ?? 0;
         int newReduction = curseCount * DynamicVars.Energy.IntValue;
         int delta = newReduction - _appliedReduction;
         if (delta != 0)

@@ -23,9 +23,9 @@ public sealed class Avalanche() : ShadowIroncladCard(1, CardType.Attack, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        if (cardPlay.Target == null || CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
@@ -38,6 +38,7 @@ public sealed class Avalanche() : ShadowIroncladCard(1, CardType.Attack, CardRar
         foreach (var original in selected)
         {
             var template = Owner.RunState.Rng.CombatCardGeneration.NextItem(rockPool);
+            if (template == null) continue;
             var rock = CombatState.CreateCard(template, Owner);
             await CardCmd.Transform(original, rock);
         }

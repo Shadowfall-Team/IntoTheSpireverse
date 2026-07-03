@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class VioletVeilPower : CustomPowerModel
+public class VioletVeilPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -23,7 +23,7 @@ public class VioletVeilPower : CustomPowerModel
 
     public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (side != Owner.Side) return;
+        if (side != Owner.Side || Owner.Player == null) return;
 
         var selected = await CardSelectCmd.FromHand(choiceContext, Owner.Player,
             new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1), null, this);

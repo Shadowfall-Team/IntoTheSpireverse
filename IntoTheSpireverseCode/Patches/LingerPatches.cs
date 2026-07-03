@@ -30,7 +30,7 @@ public class LingerDiscardRedirectPatch
     [HarmonyPrefix]
     static void Prefix(CardModel card, ref CardPile newPile, ref CardPilePosition position)
     {
-        if (!card.Keywords.Contains(IntoTheSpireverseKeywords.Linger)) return;
+        if (!card.Keywords.Contains(IntoTheSpireverseKeywords.Linger) || card.Owner.Creature.CombatState == null) return;
 
         // Card opted into draw pile redirect (beats both discard and Ethereal exhaust)
         if ((newPile.Type == PileType.Discard || newPile.Type == PileType.Exhaust)

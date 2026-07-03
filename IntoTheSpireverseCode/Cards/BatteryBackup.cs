@@ -34,7 +34,7 @@ public sealed class BatteryBackup : ShadowDefectCard
 
 		// TODO: confirm the property name for max energy per turn on Owner or PlayerCombatState
 		int maxEnergy = base.Owner.MaxEnergy;
-		int currentEnergy = base.Owner.PlayerCombatState.Energy;
+		int currentEnergy = base.Owner.PlayerCombatState?.Energy ?? 0;
 		int bonusEnergy = base.IsUpgraded ? base.DynamicVars.Energy.IntValue : 0;
 
 		int toGain = (maxEnergy - currentEnergy) + bonusEnergy;

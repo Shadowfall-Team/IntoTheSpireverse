@@ -21,6 +21,7 @@ public sealed class MakingChange() : ShadowSilentCard(3, CardType.Skill, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
         for (int i = 0; i < 2; i++)

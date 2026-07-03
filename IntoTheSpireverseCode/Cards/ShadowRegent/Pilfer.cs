@@ -21,27 +21,24 @@ public class Pilfer() : ShadowRegentCard(
     [
         new CardsVar(2),
     ];
-    
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        
+        if (CombatState == null) return;
         var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner)
             .Cards.OrderBy(c => c.Rarity)
             .ThenBy(c => c.Id).ToList();
         var prefs = new CardSelectorPrefs(CargoSelectorPrefs.FromCargoSelectionPrompt, DynamicVars.Cards.IntValue);
 
         var selections = await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, prefs);
-
-        if (selections == null || !selections.Any()) return;
-
         foreach (var selection in selections)
         {
             await CardPileCmd.Add(selection, PileType.Hand);
             await Hook.AfterCardDrawn(CombatState, choiceContext, selection, false);
         }
-       }
+    }
 
     protected override void OnUpgrade()
     {

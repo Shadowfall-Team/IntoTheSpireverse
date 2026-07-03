@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -8,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class YourDoomIsNighPower : CustomPowerModel
+public class YourDoomIsNighPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -24,6 +25,7 @@ public class YourDoomIsNighPower : CustomPowerModel
         var enemies = CombatState.HittableEnemies;
         if (enemies.Count == 0) return;
         var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(enemies);
-        await CreatureCmd.Damage(choiceContext, [target], Amount, ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+        if (target == null) return;
+        await CreatureCmdCompatibility.Damage(choiceContext, target, Amount, ValueProp.Unblockable | ValueProp.Unpowered, Owner, null, null);
     }
 }

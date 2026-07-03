@@ -37,7 +37,7 @@ public sealed class Altar : ShadowDefectCard
 	{
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
 
-		CardModel selected = (await CardSelectCmd.FromHand(
+		CardModel? selected = (await CardSelectCmd.FromHand(
 			context: choiceContext,
 			player: base.Owner,
 			prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1),

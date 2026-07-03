@@ -26,6 +26,7 @@ public sealed class Blightstorm : ShadowDefectCard
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
+		if (Owner.PlayerCombatState == null) return;
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
 		foreach (OrbModel orb in base.Owner.PlayerCombatState.OrbQueue.Orbs.ToList())
 		{

@@ -19,7 +19,7 @@ public class SNecroCurseExhaust : ShadowNecrobinderRelic
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner) return;
-        if (player.Creature.CombatState.RoundNumber != 1) return;
+        if (player.Creature.CombatState?.RoundNumber != 1) return;
 
         var curses = PileType.Draw.GetPile(Owner).Cards
             .Where(c => c.Type == CardType.Curse)
@@ -32,6 +32,7 @@ public class SNecroCurseExhaust : ShadowNecrobinderRelic
         for (int i = 0; i < toExhaust; i++)
         {
             var curse = Owner.RunState.Rng.CombatCardSelection.NextItem(curses);
+            if (curse == null) continue;
             curses.Remove(curse);
             await CardCmd.Exhaust(choiceContext, curse);
         }

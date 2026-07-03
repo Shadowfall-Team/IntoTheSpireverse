@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -33,7 +34,7 @@ public sealed class BerserkingPower : ShadowPowerModel
         Flash();
 
         DamageVar selfDamage = (DamageVar)DynamicVars[SelfDamageKey];
-        await CreatureCmd.Damage(choiceContext, Owner, selfDamage.BaseValue, selfDamage.Props, Owner, (CardModel?)null);
+        await CreatureCmdCompatibility.Damage(choiceContext, Owner, selfDamage.BaseValue, selfDamage.Props, Owner, (CardModel?)null, null);
         await PlayerCmd.GainEnergy((decimal)Amount, Owner.Player);
     }
 

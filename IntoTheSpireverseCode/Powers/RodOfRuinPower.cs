@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.Orbs;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public sealed class RodOfRuinPower : CustomPowerModel
+public sealed class RodOfRuinPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
  

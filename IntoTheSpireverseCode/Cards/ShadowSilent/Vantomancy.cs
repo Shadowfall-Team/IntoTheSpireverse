@@ -24,6 +24,7 @@ public sealed class Vantomancy() : ShadowSilentCard(2, CardType.Power, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await PowerCmd.Apply<Slippery2Power>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(Slippery2Power)].BaseValue, Owner.Creature, this);
 
         for (int i = 0; i < 2; i++)

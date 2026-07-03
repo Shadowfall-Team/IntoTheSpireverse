@@ -18,7 +18,7 @@ public class SNecroRetain : ShadowNecrobinderRelic
 
     public override Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player != Owner) return Task.CompletedTask;
+        if (player != Owner || player.Creature.CombatState == null) return Task.CompletedTask;
         if (!Hook.ShouldFlush(player.Creature.CombatState, player)) return Task.CompletedTask;
 
         var hand = PileType.Hand.GetPile(Owner).Cards
@@ -29,7 +29,7 @@ public class SNecroRetain : ShadowNecrobinderRelic
 
         Flash();
         var card = Owner.RunState.Rng.CombatCardSelection.NextItem(hand);
-        card.GiveSingleTurnRetain();
+        card?.GiveSingleTurnRetain();
 
         return Task.CompletedTask;
     }

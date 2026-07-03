@@ -22,6 +22,7 @@ public sealed class Lament() : ShadowNecrobinderCard(0, CardType.Skill, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         int x = ResolveEnergyXValue();
         if (IsUpgraded)

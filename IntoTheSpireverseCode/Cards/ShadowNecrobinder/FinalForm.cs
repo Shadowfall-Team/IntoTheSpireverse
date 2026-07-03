@@ -25,22 +25,22 @@ public sealed class FinalForm() : ShadowNecrobinderCard(3, CardType.Power, CardR
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        CardModel target;
+        CardModel? target;
         if (IsUpgraded)
         {
             var prefs = new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1);
             target = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this)).FirstOrDefault();
-            if (target == null) return;
         }
         else
         {
             var pile = PileType.Hand.GetPile(Owner);
             target = Owner.RunState.Rng.CombatCardSelection.NextItem(pile.Cards);
-            if (target == null) return;
         }
+
+        if (target == null) return;
 
         await CardCmd.Exhaust(choiceContext, target);
         var power = await PowerCmd.Apply<FinalFormPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 5, Owner.Creature, this);
-        power.SetSelectedCard(target);
+        power?.SetSelectedCard(target);
     }
 }

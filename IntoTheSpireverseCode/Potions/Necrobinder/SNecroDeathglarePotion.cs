@@ -24,7 +24,8 @@ public class SNecroDeathglarePotion : IntoTheSpireversePotion
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
-        var deathglare = Owner.Creature.CombatState.CreateCard<Deathglare>(Owner);
+        var deathglare = Owner.Creature.CombatState?.CreateCard<Deathglare>(Owner);
+        if (deathglare == null) return;
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(
             deathglare, PileType.Draw, Owner, CardPilePosition.Random));
     }

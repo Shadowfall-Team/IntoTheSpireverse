@@ -14,6 +14,7 @@ public class SingleMind() : ShadowDefectCard(1, CardType.Skill, CardRarity.Rare,
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (Owner.PlayerCombatState == null) return;
         var orbs = Owner.PlayerCombatState.OrbQueue.Orbs;
         if (orbs.Count == 0) return;
         var first = orbs.First();

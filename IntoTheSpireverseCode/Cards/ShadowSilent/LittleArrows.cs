@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,6 +16,7 @@ public sealed class LittleArrows() : ShadowSilentCard(1, CardType.Attack, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         int statusCount = PileType.Hand.GetPile(Owner).Cards.Count(c => c.Type == CardType.Status);
 
         if (statusCount > 0)
@@ -22,7 +24,7 @@ public sealed class LittleArrows() : ShadowSilentCard(1, CardType.Attack, CardRa
             await DamageCmd
                 .Attack(DynamicVars.Damage.BaseValue)
                 .WithHitCount(statusCount)
-                .FromCard(this)
+                .FromCardCompatibility(this, cardPlay)
                 .TargetingRandomOpponents(CombatState)
                 .Execute(choiceContext);
         }

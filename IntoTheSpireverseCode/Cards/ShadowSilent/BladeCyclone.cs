@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,11 +24,12 @@ public sealed class BladeCyclone() : ShadowSilentCard(1, CardType.Attack, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         for (int i = 0; i < 2; i++)
         {
             await DamageCmd
                 .Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCardCompatibility(this, cardPlay)
                 .TargetingAllOpponents(CombatState)
                 .Execute(choiceContext);
         }

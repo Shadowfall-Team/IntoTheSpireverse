@@ -17,11 +17,12 @@ public sealed class BorrowedNotes() : ShadowSilentCard(1, CardType.Skill, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         var pools = Owner.UnlockState.CharacterCardPools.ToList();
         pools.Remove(Owner.Character.CardPool);
 
         var allCards = pools
-            .SelectMany(p => p.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint));
+            .SelectMany(p => p.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)).ToList();
 
         var rng = Owner.RunState.Rng.CombatCardGeneration;
 

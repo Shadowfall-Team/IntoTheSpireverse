@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,18 +19,20 @@ public class SmugglersStrike() : ShadowRegentCard(0,
     [
         new DamageVar(5, ValueProp.Move)
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
-    
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(play.Target)
+            .FromCardCompatibility(this, cardPlay)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_giant_horizontal_slash", null, null)
             .Execute(choiceContext);
     }
@@ -39,7 +42,7 @@ public class SmugglersStrike() : ShadowRegentCard(0,
     {
         if (cardPlay.Card == this)
             await PowerCmd.Apply<SmugglersCargoPower>(
-                new ThrowingPlayerChoiceContext(),Owner.Creature, 1,
+                new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
                 Owner.Creature, this);
     }
 

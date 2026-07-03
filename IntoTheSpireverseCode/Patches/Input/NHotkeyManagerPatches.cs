@@ -65,7 +65,8 @@ public static class NHotkeyManagerPatches
         {
             _comboConsumedLeftTrigger = true;
 
-            var localCreature = LocalContext.GetMe(RunManager.Instance.State.Players).Creature;
+            if (RunManager.Instance.State == null) return false;
+            var localCreature = LocalContext.GetMe(RunManager.Instance.State.Players)?.Creature;
             var ammoButton = NCombatRoom.Instance?.GetCreatureNode(localCreature)
                 ?.GetNodeOrNull<NAmmoButton>("AmmoButton");
             if (ammoButton != null && ammoButton.IsVisibleInTree())

@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -30,8 +31,9 @@ public class Jettison() : ShadowRegentCard(2,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         var cargoedCards = (await CardSelectCmd.FromHand(choiceContext, Owner,
             new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 0, 999999),
             null,
@@ -43,8 +45,8 @@ public class Jettison() : ShadowRegentCard(2,
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .WithHitCount(cargoedCards.Count)
-                .FromCard(this)
-                .Targeting(play.Target)
+                .FromCardCompatibility(this, cardPlay)
+                .Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_starry_impact", null, "slash_attack.mp3")
                 .Execute(choiceContext);
         }

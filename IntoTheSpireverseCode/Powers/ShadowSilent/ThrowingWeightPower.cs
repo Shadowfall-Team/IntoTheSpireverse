@@ -6,10 +6,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
-public sealed class ThrowingWeightPower : CustomPowerModel
+public sealed class ThrowingWeightPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -21,9 +22,10 @@ public sealed class ThrowingWeightPower : CustomPowerModel
             var enemies = CombatState.HittableEnemies;
             if (enemies.Count == 0) return;
 
-            Creature? target = Owner.Player.RunState.Rng.CombatTargets.NextItem(enemies);
+            var target = Owner.Player.RunState.Rng.CombatTargets.NextItem(enemies);
+            if (target == null) return;
             Flash();
-			await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, base.Amount, ValueProp.Unpowered, base.Owner, null);
+			await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), target, base.Amount, ValueProp.Unpowered, base.Owner, null, null);
         }
     }
 }

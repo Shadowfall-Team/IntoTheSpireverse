@@ -8,17 +8,19 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class LamentPower : CustomPowerModel
+public class LamentPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override Decimal ModifyDamageAdditive(
+    public override decimal ModifyDamageAdditiveCompatibility
+    (
         Creature? target,
         Decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (cardSource == null || !cardSource.Tags.Contains(CardTag.Strike)) return 0m;
         if (dealer != Owner) return 0m;

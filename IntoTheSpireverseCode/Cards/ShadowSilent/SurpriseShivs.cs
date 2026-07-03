@@ -25,6 +25,7 @@ public sealed class SurpriseShivs() : ShadowSilentCard(3, CardType.Power, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
         {
             await Shiv.CreateInHand(Owner, DynamicVars["Shivs"].IntValue, CombatState);

@@ -9,7 +9,7 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public class ClarionStrikePower : CustomPowerModel
+public class ClarionStrikePower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

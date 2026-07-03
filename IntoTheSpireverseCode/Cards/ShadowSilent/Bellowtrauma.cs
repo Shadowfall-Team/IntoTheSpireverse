@@ -27,6 +27,7 @@ public sealed class Bellowtrauma() : ShadowSilentCard(1, CardType.Skill, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         foreach (Creature creature in CombatState.HittableEnemies)
         {
             bool wasBleeding = creature.GetPowerAmount<BleedPower>() > 0;

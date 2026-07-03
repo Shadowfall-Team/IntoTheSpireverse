@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -27,6 +28,7 @@ public sealed class ShadowStrike : ShadowDefectCard
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
+		if (CombatState == null) return;
 		List<CardModel> hand = PileType.Hand.GetPile(base.Owner).Cards.ToList();
 		IEnumerable<CardModel> selected = await CardSelectCmd.FromHandForDiscard(
 			choiceContext,
@@ -46,7 +48,7 @@ public sealed class ShadowStrike : ShadowDefectCard
 		{
 			await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
 				.WithHitCount(discarded)
-				.FromCard(this)
+				.FromCardCompatibility(this, cardPlay)
 				.TargetingRandomOpponents(base.CombatState)
 				.WithHitFx("vfx/vfx_attack_slash")
 				.Execute(choiceContext);

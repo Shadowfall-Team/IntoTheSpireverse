@@ -27,7 +27,7 @@ public class SNecroSoulStrikeEthereal : ShadowNecrobinderRelic
 
     public override Task AfterRoomEntered(AbstractRoom room)
     {
-        if (room is not CombatRoom) return Task.CompletedTask;
+        if (room is not CombatRoom || Owner.PlayerCombatState == null) return Task.CompletedTask;
         foreach (var card in Owner.PlayerCombatState.AllCards)
         {
             if (CanAffect(card))

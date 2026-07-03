@@ -30,9 +30,11 @@ public sealed class Darkblades() : ShadowNecrobinderCard(1, CardType.Skill, Card
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         foreach (Creature creature in CombatState.GetTeammatesOf(Owner.Creature)
-                     .Where(c => c != null && c.IsAlive && c.IsPlayer))
+                     .Where(c => c is { IsAlive: true, IsPlayer: true }))
         {
+            if (creature.Player == null) continue;
             var soulStrikes = SoulStrike.Create(creature.Player, DynamicVars.Cards.IntValue, CombatState).ToList();
             var combat = await CardPileCmd.AddGeneratedCardsToCombat(
                 (IEnumerable<CardModel>)soulStrikes, PileType.Draw, Owner, CardPilePosition.Random);

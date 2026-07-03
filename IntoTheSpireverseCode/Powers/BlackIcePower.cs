@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public class BlackIcePower : CustomPowerModel
+public class BlackIcePower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -27,9 +27,9 @@ public class BlackIcePower : CustomPowerModel
         if (side != CombatSide.Player) return;
         if (Owner.Player == null) return;
 
-        var darkOrbCount = Owner.Player.PlayerCombatState.OrbQueue.Orbs.Count(x => x is DarkOrb);
+        var darkOrbCount = Owner.Player.PlayerCombatState?.OrbQueue.Orbs.Count(x => x is DarkOrb) ?? 0;
         
         for (int i = 0; i < darkOrbCount; i++)
-            await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, (CardPlay) null);
+            await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
     }
 }

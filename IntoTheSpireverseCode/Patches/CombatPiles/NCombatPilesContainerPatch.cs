@@ -46,6 +46,7 @@ public static class NCombatUiActivatePatch
         var container = __instance.GetNode<NCombatPilesContainer>("%CombatPileContainer");
         var cargoPile = container.GetNodeOrNull<NCargoPile>("_CargoPile");
         var player = LocalContext.GetMe(state);
+        if (player == null) return;
         cargoPile?.Initialize(player);
     }
 }

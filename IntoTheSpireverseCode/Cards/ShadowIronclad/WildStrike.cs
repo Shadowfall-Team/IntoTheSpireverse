@@ -27,14 +27,15 @@ public sealed class WildStrike() : ShadowIroncladCard(1, CardType.Attack, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         var wound = CombatState.CreateCard<Wound>(Owner);
-        await CardPileCmd.AddGeneratedCardsToCombat([wound], PileType.Hand, Owner);
+        await CardPileCmd.AddGeneratedCardToCombat(wound, PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(5m);

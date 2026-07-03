@@ -26,6 +26,7 @@ public sealed class VipersKiss() : ShadowSilentCard(2, CardType.Skill, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
         {
             await PowerCmd.Apply<BleedPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars[nameof(BleedPower)].BaseValue, Owner.Creature, this);
