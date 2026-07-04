@@ -39,9 +39,6 @@ public sealed class CripplingCloud() : ShadowSilentCard(2, CardType.Skill, CardR
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         this.SpawnVfx();
         await Cmd.CustomScaledWait(0.2f, 0.4f);
-        await PowerCmd.Apply<PoisonPower>(
-            choiceContext, cardPlay.Target, DynamicVars.Poison.BaseValue, 
-            Owner.Creature, this);
         foreach (Creature hittableEnemy in CombatState.HittableEnemies)
         {
             await PowerCmd.Apply<PoisonPower>(choiceContext, hittableEnemy, DynamicVars.Poison.BaseValue,

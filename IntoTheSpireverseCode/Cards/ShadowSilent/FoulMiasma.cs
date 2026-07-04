@@ -7,38 +7,31 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class Chrysalis() : ShadowSilentCard(2, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class FoulMiasma() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
-    public override bool GainsBlock => true;
-    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(10m, ValueProp.Move),
-        new CardsVar(1),
+        new PowerVar<FoulMiasmaPower>(2m),
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromCard<Scale>()
-    ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
-        await PowerCmd.Apply<ChrysalisPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars.Cards.BaseValue,
+        await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
+        await PowerCmd.Apply<FoulMiasmaPower>(
+            choiceContext, Owner.Creature,
+            DynamicVars.Power<FoulMiasmaPower>().BaseValue,
             Owner.Creature, this);
     }
-
+    
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
-        DynamicVars.Cards.UpgradeValueBy(1m);
+        DynamicVars.Power<FoulMiasmaPower>().UpgradeValueBy(1m);
     }
 }
