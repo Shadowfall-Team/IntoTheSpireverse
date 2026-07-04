@@ -8,13 +8,16 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
-public sealed class MeasuredDefense() : ShadowSilentCard(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public sealed class TalonSlash() : ShadowSilentCard(1, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
 {
-    public override bool GainsBlock => true;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(3m, ValueProp.Move),
+        new DamageVar(7m, ValueProp.Move),
+    ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        IntoTheSpireverseKeywords.Devious,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -25,11 +28,15 @@ public sealed class MeasuredDefense() : ShadowSilentCard(0, CardType.Skill, Card
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
-            CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false));
-    }
+            DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this, cardPlay)
+                .TargetingRandomOpponents(CombatState)
+                .WithHitFx("vfx/vfx_attack_slash")
+                .Execute(choiceContext));
+	}
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

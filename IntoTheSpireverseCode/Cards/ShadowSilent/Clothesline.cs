@@ -1,21 +1,22 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
-public sealed class MassAppeal() : ShadowSilentCard(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+[Pool(typeof(ShadowSilentCardPool))]
+public sealed class Clothesline() : ShadowSilentCard(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4m, ValueProp.Move),
-        new PowerVar<WeakPower>(1m),
+        new DamageVar(8m, ValueProp.Move),
+        new PowerVar<WeakPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -25,21 +26,22 @@ public sealed class MassAppeal() : ShadowSilentCard(1, CardType.Attack, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
-        await DamageCmd
-            .Attack(DynamicVars.Damage.BaseValue)
-            .FromCardCompatibility(this, cardPlay)
-            .TargetingAllOpponents(CombatState)
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this, cardPlay)
+            .Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
 
-        foreach (Creature creature in CombatState.HittableEnemies)
-        {
-            await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), creature, DynamicVars.Weak.BaseValue, Owner.Creature, this);
-        }
+        await PowerCmd.Apply<WeakPower>(
+            choiceContext, cardPlay.Target, DynamicVars.Weak.BaseValue,
+            Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Weak.UpgradeValueBy(1m);
     }
 }
