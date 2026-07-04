@@ -14,6 +14,7 @@
   "INTOTHESPIREVERSE-PICKUP.title": "Pickup",
   "INTOTHESPIREVERSE-PICKUP.description": "Effect triggers when this card is added to your [gold]Deck[/gold].",
   "INTOTHESPIREVERSE-CARGO.title": "Cargo",
-  "INTOTHESPIREVERSE-CARGO.description": "At the start of your turn, draw 1 card from your [gold]Cargo[/gold]."
-
+  "INTOTHESPIREVERSE-CARGO.description": "At the start of your turn, draw 1 card from your [gold]Cargo[/gold].",
+  "INTOTHESPIREVERSE-MUDDLE.title": "Muddle",
+  "INTOTHESPIREVERSE-MUDDLE.description": "Randomize a card's cost between [blue]0[/blue] and [blue]3[/blue] this turn."
 }
