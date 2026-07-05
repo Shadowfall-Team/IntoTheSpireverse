@@ -43,6 +43,7 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
+        ModelDb.Relic<MysticCharm>()
     ];
     
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowSilentCardPool>();
