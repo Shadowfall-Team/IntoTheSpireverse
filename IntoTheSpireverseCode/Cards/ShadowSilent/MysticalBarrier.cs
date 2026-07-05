@@ -14,11 +14,11 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class MoltingSeason() : ShadowSilentCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class MysticalBarrier() : ShadowSilentCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<MoltingSeasonPower>(1m),
+        new PowerVar<MysticalBarrierPower>(1m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -29,9 +29,9 @@ public sealed class MoltingSeason() : ShadowSilentCard(2, CardType.Power, CardRa
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
-        await PowerCmd.Apply<MoltingSeasonPower>(
+        await PowerCmd.Apply<MysticalBarrierPower>(
             choiceContext, Owner.Creature,
-            DynamicVars.Power<MoltingSeasonPower>().BaseValue,
+            DynamicVars.Power<MysticalBarrierPower>().BaseValue,
             Owner.Creature, this);
     }
     
