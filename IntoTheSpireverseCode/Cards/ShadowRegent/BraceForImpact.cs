@@ -34,7 +34,7 @@ public class BraceForImpact() : ShadowRegentCard(1,
             await EnchantBlockWithoutCardPlayPatch.WithEnchantment(
                 Enchantment,
                 Owner.PlayerCombatState,
-                async () => await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null)
+                () => CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null)
             );
         }
     }
