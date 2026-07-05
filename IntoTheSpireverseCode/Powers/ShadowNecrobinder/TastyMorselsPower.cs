@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class TastyMorselsPower : CustomPowerModel
+public class TastyMorselsPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

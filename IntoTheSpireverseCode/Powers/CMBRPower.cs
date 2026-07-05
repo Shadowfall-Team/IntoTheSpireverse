@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public sealed class CmbrPower : CustomPowerModel
+public sealed class CmbrPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
 

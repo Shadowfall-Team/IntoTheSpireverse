@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Linq;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
 namespace IntoTheSpireverse.Cards;
@@ -20,9 +21,10 @@ public sealed class PhasicStrike() : ShadowDefectCard(1, CardType.Attack, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

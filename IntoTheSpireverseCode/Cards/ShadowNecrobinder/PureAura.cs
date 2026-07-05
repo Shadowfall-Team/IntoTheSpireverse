@@ -45,6 +45,7 @@ public sealed class PureAura() : ShadowNecrobinderCard(3, CardType.Skill, CardRa
 
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
+        if (CombatState == null) return;
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
         {

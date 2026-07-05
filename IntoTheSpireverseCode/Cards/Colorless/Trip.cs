@@ -35,7 +35,7 @@ public class Trip() : CustomCardModel(0,
                 CombatState.HittableEnemies,
                 DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
         }
-        else
+        else if (play.Target != null)
         {
             await PowerCmd.Apply<VulnerablePower>(
                 new ThrowingPlayerChoiceContext(),

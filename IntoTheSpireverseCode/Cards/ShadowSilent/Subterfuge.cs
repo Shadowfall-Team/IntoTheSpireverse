@@ -25,6 +25,7 @@ public sealed class Subterfuge() : ShadowSilentCard(2, CardType.Skill, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
 
         var discardPile = PileType.Discard.GetPile(Owner).Cards.ToList();

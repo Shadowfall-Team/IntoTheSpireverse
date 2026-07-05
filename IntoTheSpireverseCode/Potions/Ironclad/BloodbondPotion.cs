@@ -33,10 +33,11 @@ public class BloodbondPotion : IntoTheSpireversePotion
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
+        if (Owner.Creature.CombatState == null) return;
         var targets = Owner.Creature.CombatState.HittableEnemies;
         await PowerCmd.Apply<BloodbondPower>(
             new ThrowingPlayerChoiceContext(),
-            (IEnumerable<Creature>)targets,
+            targets,
             DynamicVars.Power<BloodbondPower>().BaseValue,
             Owner.Creature, null);
     }

@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public sealed class CosmicFormPower : CustomPowerModel
+public sealed class CosmicFormPower : IntoTheSpireversePower
 {
 	public override PowerType Type => PowerType.Buff;
 

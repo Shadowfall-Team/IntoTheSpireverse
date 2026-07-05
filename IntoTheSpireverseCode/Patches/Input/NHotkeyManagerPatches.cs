@@ -2,6 +2,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Runs;
 using GodotInput = Godot.Input;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
@@ -47,9 +48,9 @@ public static class NHotkeyManagerPatches
         {
             _comboConsumedLeftTrigger = true;
 
+            if (RunManager.Instance.State == null) return false;
             var ammoButton = ModShortcutHelpers.GetAmmoButton();
             if (ammoButton == null || !ammoButton.IsVisibleInTree()) return false;
-
             ModShortcutHelpers.OnPressHandler(ammoButton);
             ModShortcutHelpers.OnReleaseHandler(ammoButton);
 

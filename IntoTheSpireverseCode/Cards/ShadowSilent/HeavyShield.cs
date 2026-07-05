@@ -23,6 +23,7 @@ public sealed class HeavyShield() : ShadowSilentCard(1, CardType.Skill, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
         await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Weight>(Owner), PileType.Hand, Owner);
     }

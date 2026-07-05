@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,11 +23,13 @@ public sealed class BladeWard() : ShadowSilentCard(2, CardType.Attack, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(2).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        if (cardPlay.Target == null) return;
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(2).FromCardCompatibility(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
     }
 
     public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
     {
+        if (CombatState == null) return;
         if (card == this)
             await CardPileCmd.AddGeneratedCardToCombat(CombatState.CreateCard<Ward>(Owner), PileType.Hand, Owner);
     }

@@ -13,7 +13,7 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public sealed class EclipseEmbracePower : CustomPowerModel
+public sealed class EclipseEmbracePower : IntoTheSpireversePower
 {
 	public override PowerType Type => PowerType.Buff;
 

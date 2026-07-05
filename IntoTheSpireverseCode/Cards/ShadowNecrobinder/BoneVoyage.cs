@@ -33,12 +33,12 @@ public sealed class BoneVoyage() : ShadowNecrobinderCard(1, CardType.Skill, Card
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+        if (CombatState == null || cardPlay.Target == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<WeakPower>(new ThrowingPlayerChoiceContext(), cardPlay.Target, DynamicVars.Weak.BaseValue, Owner.Creature, this);
         var soulStrikes = SoulStrike.Create(Owner, DynamicVars.Cards.IntValue, CombatState).ToList();
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(
-            (IEnumerable<CardModel>)soulStrikes, PileType.Draw, Owner, CardPilePosition.Random));
+            soulStrikes, PileType.Draw, Owner, CardPilePosition.Random));
     }
 
     protected override void OnUpgrade()

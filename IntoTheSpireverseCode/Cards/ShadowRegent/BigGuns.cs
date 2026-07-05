@@ -66,6 +66,7 @@ public class BigGunsPower : ShadowPowerModel, IHasSecondAmount
 
     public override async Task AfterEnergySpent(CardModel card, int amount)
     {
+        if (Owner.Player == null) return;
         if (card.Owner.Creature == Owner)
         {
             if (CombatManager.Instance.IsInProgress && amount > 0)

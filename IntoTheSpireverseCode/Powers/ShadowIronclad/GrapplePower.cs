@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -19,9 +20,9 @@ public sealed class GrapplePower : ShadowPowerModel
     {
         if (amount <= 0m || creature != Source) return;
         Flash();
-        await CreatureCmd.Damage(
+        await CreatureCmdCompatibility.Damage(
             new BlockingPlayerChoiceContext(), Owner, (decimal)Amount,
-            ValueProp.Unpowered, Source, null);
+            ValueProp.Unpowered, Source, null, null);
     }
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)

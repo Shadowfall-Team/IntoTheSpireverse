@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,6 +21,7 @@ public sealed class Poke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Comm
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         // Gain 5 (6) Block
         await CreatureCmd.GainBlock(
             Owner.Creature,
@@ -29,7 +31,7 @@ public sealed class Poke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Comm
         // Deal 1 damage to all enemies
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

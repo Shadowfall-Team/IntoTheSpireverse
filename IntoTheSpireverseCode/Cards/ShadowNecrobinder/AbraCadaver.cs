@@ -16,8 +16,8 @@ public sealed class AbraCadaver() : ShadowNecrobinderCard(0, CardType.Skill, Car
     [
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
-        new CalculatedVar(_calculatedStrKey).WithMultiplier((card, _) =>
-            card.Owner.PlayerCombatState.AllCards.Count(c => c.Type == CardType.Curse)),
+        new CalculatedVar(_calculatedStrKey).WithMultiplier(static (card, _) =>
+            card.Owner.PlayerCombatState?.AllCards.Count(c => c.Type == CardType.Curse) ?? 0),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

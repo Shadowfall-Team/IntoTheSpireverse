@@ -23,7 +23,7 @@ public sealed class PebbleflingerPower : ShadowPowerModel
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner != Owner.Player || cardPlay.Card.Type != CardType.Skill) return;
+        if (Owner.CombatState == null ||cardPlay.Card.Owner != Owner.Player || cardPlay.Card.Type != CardType.Skill) return;
         var data = GetInternalData<Data>();
         data.skillsPlayed++;
         if (data.skillsPlayed % 3 == 0)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 using System.Threading.Tasks;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -21,10 +22,10 @@ public sealed class OnyxDrill : ShadowDefectCard
 {
 	protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
 	{
-		(DynamicVar) new CalculationBaseVar(0),
-		(DynamicVar) new ExtraDamageVar(5M),
+		new CalculationBaseVar(0),
+		new ExtraDamageVar(5M),
 		new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
-			(CardModel card, Creature? _) => card.Owner.PlayerCombatState.AllCards.Count(c => c is Void))
+			static (card, _) => card.Owner.PlayerCombatState?.AllCards.Count(c => c is Void) ?? 0)
 	};
 
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
@@ -40,7 +41,7 @@ public sealed class OnyxDrill : ShadowDefectCard
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-		await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCard(this).Targeting(cardPlay.Target)
+		await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCardCompatibility(this, cardPlay).Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
 	}

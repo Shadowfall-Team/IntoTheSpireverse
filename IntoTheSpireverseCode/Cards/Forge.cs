@@ -25,7 +25,7 @@ public sealed class Forge() : ShadowDefectCard(0, CardType.Skill, CardRarity.Com
         foreach (CardModel card in PileType.Hand.GetPile(Owner).Cards.Where(c => c.IsUpgradable))
             CardCmd.Upgrade(card);
 
-        CardModel discarded = (await CardSelectCmd.FromHandForDiscard(
+        var discarded = (await CardSelectCmd.FromHandForDiscard(
             choiceContext,
             Owner,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),

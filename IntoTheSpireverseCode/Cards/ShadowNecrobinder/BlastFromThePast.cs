@@ -28,6 +28,7 @@ public sealed class BlastFromThePast() : ShadowNecrobinderCard(0, CardType.Skill
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         var winningDeckCards = GetLastWinningRunCards();
@@ -72,7 +73,7 @@ public sealed class BlastFromThePast() : ShadowNecrobinderCard(0, CardType.Skill
         {
             var result = SaveManager.Instance.LoadRunHistory(runName);
             if (!result.Success) continue;
-            if (!result.SaveData.Win) continue;
+            if (result.SaveData is not { Win: true }) continue;
 
             var seen = new HashSet<ModelId>();
             var cards = new List<SerializableCard>();
@@ -80,7 +81,7 @@ public sealed class BlastFromThePast() : ShadowNecrobinderCard(0, CardType.Skill
             {
                 foreach (var card in player.Deck)
                 {
-                    if (!seen.Add(card.Id)) continue;
+                    if (card.Id == null || !seen.Add(card.Id)) continue;
                     try
                     {
                         ModelDb.GetById<CardModel>(card.Id);

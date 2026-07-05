@@ -20,6 +20,7 @@ public sealed class BloodCatalyst() : ShadowSilentCard(1, CardType.Skill, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         int multiplier = IsUpgraded ? 2 : 1;
 
         int bleed = cardPlay.Target.GetPowerAmount<BleedPower>();

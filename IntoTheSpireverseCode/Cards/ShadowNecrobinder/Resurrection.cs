@@ -20,8 +20,10 @@ public sealed class Resurrection() : ShadowNecrobinderCard(1, CardType.Skill, Ca
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        foreach (Creature creature in CombatState.PlayerCreatures.Where(c => c != null && c.IsAlive).ToList())
+        if (CombatState == null) return;
+        foreach (Creature creature in CombatState.PlayerCreatures.Where(c => c.IsAlive).ToList())
         {
+            if (creature.Player == null) continue;
             var graveblast = CombatState.CreateCard<Graveblast>(creature.Player);
             graveblast.SetToFreeThisTurn();
             await CardPileCmd.AddGeneratedCardToCombat(graveblast, PileType.Hand, Owner);

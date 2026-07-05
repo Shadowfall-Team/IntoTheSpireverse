@@ -30,6 +30,7 @@ public sealed class WhiteHole() : ShadowDefectCard(0, CardType.Skill, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await OrbCmd.Channel<PlasmaOrb>(choiceContext, Owner);
 
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(

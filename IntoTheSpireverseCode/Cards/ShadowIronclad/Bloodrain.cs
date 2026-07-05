@@ -34,6 +34,7 @@ public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         for (int i = 0; i < DynamicVars.Repeat.IntValue; i++)
@@ -47,7 +48,7 @@ public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRari
                 var targetNode = NCombatRoom.Instance?.GetCreatureNode(enemy);
                 if (targetNode != null)
                 {
-                    NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
+                    NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
                         NGaseousImpactVfx.Create(targetNode.VfxSpawnPosition, VfxTint));
                 }
             }

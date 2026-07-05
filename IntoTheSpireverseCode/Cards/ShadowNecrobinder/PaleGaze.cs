@@ -25,6 +25,7 @@ public sealed class PaleGaze() : ShadowNecrobinderCard(2, CardType.Power, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var deathglare = CombatState.CreateCard<Deathglare>(Owner);
         if (IsUpgraded)

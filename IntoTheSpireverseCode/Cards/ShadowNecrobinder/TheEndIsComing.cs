@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -20,13 +21,14 @@ public sealed class TheEndIsComing() : ShadowNecrobinderCard(1, CardType.Attack,
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         _timesPlayed++;
         DynamicVars["PlayCount"].BaseValue = _timesPlayed;
 
         if (_timesPlayed >= 3)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
+                .FromCardCompatibility(this, cardPlay)
                 .TargetingAllOpponents(CombatState)
                 .WithHitFx("vfx/vfx_giant_horizontal_slash")
                 .Execute(choiceContext);

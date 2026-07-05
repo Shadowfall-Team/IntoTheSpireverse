@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -29,25 +30,23 @@ public class KinglyKnee() : ShadowRegentCard(1,
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
-        if (CombatState == null) return;
+        if (cardPlay.Target == null) return;
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(play.Target)
+            .FromCardCompatibility(this, cardPlay)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
     }
-    
-    
+
+
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
-        if (card == this)
-        {
-            await PlayerCmd.GainEnergy(1 * await GeneratePlayCount(CombatState, null), Owner);
-        }
+        if (CombatState == null || card != this) return;
+        await PlayerCmd.GainEnergy(1 * await GeneratePlayCount(CombatState, null), Owner);
     }
 
 

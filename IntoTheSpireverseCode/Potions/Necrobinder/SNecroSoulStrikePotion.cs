@@ -31,6 +31,7 @@ public class SNecroSoulStrikePotion : IntoTheSpireversePotion
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
+        if (Owner.Creature.CombatState == null) return;
         await SoulStrike.CreateInHand(Owner, DynamicVars.Cards.IntValue, Owner.Creature.CombatState);
     }
 }

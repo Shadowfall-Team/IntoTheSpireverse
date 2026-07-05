@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -33,17 +34,18 @@ public class TargetAcquired() : ShadowRegentCard(
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
-        CardPlay play)
+        CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(play.Target)
+            .FromCardCompatibility(this, cardPlay)
+            .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         
         await PowerCmd.Apply<TargetedPower>(
             new ThrowingPlayerChoiceContext(),
-            play.Target,
+            cardPlay.Target,
             1,
             Owner.Creature,
             this);

@@ -31,6 +31,7 @@ public sealed class DarkBoost() : ShadowDefectCard(0, CardType.Skill, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.GainBlock(
             Owner.Creature,
             DynamicVars.Block,

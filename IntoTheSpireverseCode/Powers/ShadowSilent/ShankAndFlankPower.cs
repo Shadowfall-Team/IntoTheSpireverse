@@ -9,14 +9,14 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
-public class ShankAndFlankPower : CustomPowerModel
+public class ShankAndFlankPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState) 
     {
-        if (side != Owner.Side) return;
+        if (side != Owner.Side || Owner.Player == null) return;
 
         Flash();
         for (int i = 0; i < Amount; i++)

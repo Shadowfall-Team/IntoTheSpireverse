@@ -23,7 +23,7 @@ public sealed class HuntForCover() : ShadowSilentCard(1, CardType.Skill, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var hand = PileType.Hand.GetPile(Owner).Cards.ToList();
+        if (CombatState == null) return;
         int discardCount = (int)DynamicVars["Discard"].BaseValue;
 
         var selected = (await CardSelectCmd.FromHandForDiscard(

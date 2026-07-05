@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class NecronomiconPower : CustomPowerModel
+public class NecronomiconPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

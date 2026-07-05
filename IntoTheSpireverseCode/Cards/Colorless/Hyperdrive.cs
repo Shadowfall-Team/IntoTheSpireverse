@@ -21,15 +21,15 @@ public class Hyperdrive() : ShadowRegentCard(-1,
     CardRarity.Token,
     TargetType.Self)
 {
-    public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    public override string CustomPortraitPath =>
+        $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        
-            [
-                new PowerVar<ShardsPower>(3)
-            ]
-    ;
-    
+
+    [
+        new PowerVar<ShardsPower>(3)
+    ];
+
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         [CardKeyword.Unplayable];
@@ -42,12 +42,11 @@ public class Hyperdrive() : ShadowRegentCard(-1,
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext,
         CardModel card, bool fromHandDraw)
     {
-        if (card == this)
-        {
-            await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
-                Owner.Creature,
-                DynamicVars[nameof(ShardsPower)].BaseValue * await GeneratePlayCount(CombatState, null), Owner.Creature, null);
-        }
+        if (CombatState == null || card != this) return;
+        await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars[nameof(ShardsPower)].BaseValue * await GeneratePlayCount(CombatState, null), Owner.Creature,
+            null);
     }
 
 

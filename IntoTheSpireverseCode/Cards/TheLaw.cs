@@ -63,6 +63,7 @@ public sealed class TheLaw : ShadowDefectCard
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
+		if (CombatState == null) return;
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
 
 		List<CardModel> generated = new List<CardModel>();

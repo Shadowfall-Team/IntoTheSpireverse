@@ -28,6 +28,7 @@ public sealed class MoreMore() : ShadowNecrobinderCard(1, CardType.Power, CardRa
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         if (CombatState.RunState.CurrentRoom is CombatRoom combatRoom)

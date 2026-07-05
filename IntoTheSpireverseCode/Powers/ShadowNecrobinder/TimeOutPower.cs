@@ -1,12 +1,11 @@
-﻿using MegaCrit.Sts2.Core.Models;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowNecrobinder;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class TimeOutPower : TemporaryStrengthPower
+public class TimeOutPower : CustomTemporaryPowerModelWrapper<TimeOut, StrengthPower>
 {
-    // Power format may be incorrect, unsure if BaseLib has or is going to have a CustomPowerModel equivalent for Temp. Strength effects
-    public override AbstractModel OriginModel => ModelDb.Card<TimeOut>();
-    protected override bool IsPositive => false;
+    protected override bool InvertInternalPowerAmount => true;
 }

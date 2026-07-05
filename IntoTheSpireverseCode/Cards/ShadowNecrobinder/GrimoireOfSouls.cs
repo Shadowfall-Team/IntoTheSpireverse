@@ -25,6 +25,7 @@ public sealed class GrimoireOfSouls() : ShadowNecrobinderCard(2, CardType.Power,
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         var clumsies = new List<CardModel>();

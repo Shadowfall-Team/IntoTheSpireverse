@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
-public sealed class Slippery2Power : CustomPowerModel
+public sealed class Slippery2Power : IntoTheSpireversePower
 {
 	public override PowerType Type => PowerType.Buff;
 	public override PowerStackType StackType => PowerStackType.Counter;

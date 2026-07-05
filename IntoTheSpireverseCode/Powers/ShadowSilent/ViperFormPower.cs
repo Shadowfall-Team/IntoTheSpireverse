@@ -8,7 +8,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
-public sealed class ViperFormPower : CustomPowerModel
+public sealed class ViperFormPower : IntoTheSpireversePower
 {
     // TODO when baselib gets twoamountpowers redo this to show remaining triggers left as well
     public override PowerType Type => PowerType.Buff;

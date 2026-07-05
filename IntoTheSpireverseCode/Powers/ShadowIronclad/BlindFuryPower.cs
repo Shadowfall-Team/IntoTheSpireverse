@@ -76,13 +76,14 @@ public sealed class BlindFuryPower : ShadowPowerModel
 
     private Creature? GetTarget(CardModel card, ICombatState combatState)
     {
+        if (Owner.Player == null) return null;
         var rng = Owner.Player.RunState.Rng.CombatTargets;
         return card.TargetType switch
         {
             TargetType.AnyEnemy => combatState.HittableEnemies.FirstOrDefault(),
             TargetType.AnyPlayer => Owner,
             TargetType.AnyAlly => rng.NextItem(combatState.Allies
-                .Where(c => c != null && c.IsAlive && c.IsPlayer && c != Owner)),
+                .Where(c => c is { IsAlive: true, IsPlayer: true } && c != Owner)),
             _ => null
         };
     }

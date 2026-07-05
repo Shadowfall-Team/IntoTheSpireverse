@@ -16,9 +16,10 @@ public class Fission() : ShadowDefectCard (0, CardType.Skill,CardRarity.Ancient,
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (Owner.PlayerCombatState == null) return;
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
  
-        int orbCount = base.Owner.PlayerCombatState.OrbQueue.Orbs.Count;
+        int orbCount = Owner.PlayerCombatState.OrbQueue.Orbs.Count;
         if (orbCount == 0)
             return;
  

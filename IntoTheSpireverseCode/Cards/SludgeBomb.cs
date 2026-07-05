@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -36,7 +37,8 @@ public sealed class SludgeBomb : ShadowDefectCard
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		CardModel voidCard = PileType.Exhaust.GetPile(base.Owner).Cards
+		if (CombatState == null) return;
+		var voidCard = PileType.Exhaust.GetPile(base.Owner).Cards
 			.FirstOrDefault(c => c is Void);
 
 		if (voidCard == null)
@@ -44,7 +46,7 @@ public sealed class SludgeBomb : ShadowDefectCard
 
 		await CardPileCmd.RemoveFromCombat(voidCard);
 
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCardCompatibility(this, cardPlay)
 			.TargetingAllOpponents(base.CombatState)
 			.WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
 			.Execute(choiceContext);

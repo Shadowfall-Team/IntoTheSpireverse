@@ -1,4 +1,5 @@
 using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -10,7 +11,7 @@ using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public sealed class SongOfSorrowPower : CustomPowerModel
+public sealed class SongOfSorrowPower : IntoTheSpireversePower
 {
 	public override PowerType Type => PowerType.Buff;
 
@@ -26,7 +27,7 @@ public sealed class SongOfSorrowPower : CustomPowerModel
 		if (creator == card.Owner && card is Void)
 		{
 			Flash();
-			await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.CombatState.HittableEnemies, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null);
+			await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), base.CombatState.HittableEnemies, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null, null);
 		}
 	}
 }

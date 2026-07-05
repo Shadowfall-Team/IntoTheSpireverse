@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -32,8 +33,8 @@ public class BloodbondPower : ShadowPowerModel
         if (damageResult.UnblockedDamage <= 0) return;
 
         Flash();
-        await CreatureCmd.Damage(choiceContext, Owner, Amount,
-            ValueProp.Unblockable | ValueProp.Unpowered, target, null);
+        await CreatureCmdCompatibility.Damage(choiceContext, Owner, Amount,
+            ValueProp.Unblockable | ValueProp.Unpowered, target, null, null);
 
         var relic = target.Player?.Relics.OfType<Buckler>().FirstOrDefault();
         if (relic != null)

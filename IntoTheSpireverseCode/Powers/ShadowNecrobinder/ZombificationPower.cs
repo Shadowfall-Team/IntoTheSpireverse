@@ -9,14 +9,14 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class ZombificationPower : CustomPowerModel
+public class ZombificationPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Side) return;
+        if (side != Owner.Side || Owner.Player == null) return;
         var cards = PileType.Discard.GetPile(Owner.Player).Cards
             .Where(c => !c.Keywords.Contains(CardKeyword.Unplayable))
             .ToList()

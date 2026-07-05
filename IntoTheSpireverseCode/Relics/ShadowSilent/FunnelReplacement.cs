@@ -30,6 +30,7 @@ public class FunnelReplacement : ShadowSilentRelic
     
     public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
+        if (Owner.Creature.CombatState == null) return;
       if (side != Owner.Creature.Side || combatState.RoundNumber > 1) 
       { 
           return; 

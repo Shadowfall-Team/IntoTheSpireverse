@@ -25,11 +25,14 @@ public sealed class Vampire() : ShadowSilentCard(1, CardType.Skill, CardRarity.R
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
         {
             if (cardPlay.Target.HasPower<BleedPower>())
             {
-                await PowerCmd.Decrement(cardPlay.Target.GetPower<BleedPower>());
+                var power = cardPlay.Target.GetPower<BleedPower>();
+                if (power == null) return;
+                await PowerCmd.Decrement(power);
                 await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue, true);
             }
         });

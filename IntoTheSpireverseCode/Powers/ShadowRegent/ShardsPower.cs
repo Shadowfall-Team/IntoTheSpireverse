@@ -35,6 +35,7 @@ public class ShardsPower : ShadowPowerModel
 
     private async Task AddWarpToHand()
     {
+        if (Owner.Player == null) return;
         Flash();
         await Cmd.Wait(0.25f);
 

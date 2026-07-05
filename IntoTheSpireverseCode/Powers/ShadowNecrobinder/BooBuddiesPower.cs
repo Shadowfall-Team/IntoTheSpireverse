@@ -7,7 +7,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class BooBuddiesPower : CustomPowerModel
+public class BooBuddiesPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class FinalFormPower : CustomPowerModel
+public class FinalFormPower : IntoTheSpireversePower
 {
     private const string _cardKey = "Card";
 

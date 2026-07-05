@@ -30,7 +30,7 @@ public class FireAmmoAction : GameAction
         var cost = AmmoResource.GetShotEnergyCost(_player);
         var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();
 
-        if (AmmoResource.GetAmmo(_player) <= 0 || _player.PlayerCombatState.Energy < cost ||
+        if (AmmoResource.GetAmmo(_player) <= 0 || _player.PlayerCombatState?.Energy < cost ||
             !hasBigGuns && !combatState.HittableEnemies.Any())
         {
             Cancel();
@@ -38,7 +38,9 @@ public class FireAmmoAction : GameAction
         }
 
         await PlayerCmd.LoseEnergy(cost, _player);
-        await Hook.AfterEnergySpent(combatState, AmmoResource.GetOrCreatePhantomCard(_player), cost);
+        var phantomCard = AmmoResource.GetOrCreatePhantomCard(_player);
+        if (phantomCard != null)
+            await Hook.AfterEnergySpent(combatState, phantomCard, cost);
         AmmoResource.LoseAmmo(1, _player);
         await AmmoResource.InvokeOnAmmoFiring(_player);
 
@@ -89,8 +91,8 @@ public class FireAmmoAction : GameAction
                     var preferredTargets = hittableEnemies.Where(e => e.HasPower<TargetedPower>()).ToList();
                     var targetPool = preferredTargets.Count > 0 ? preferredTargets : hittableEnemies;
                     var followTarget = _player.RunState.Rng.CombatTargets.NextItem(targetPool);
-
                     await ShotHelper.CreateMissile(combatState, followTarget, skipWait: true);
+                    if (followTarget == null) continue;
                     await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
                         followTarget, halfDmg, ValueProp.Unpowered, _player.Creature);
                 }

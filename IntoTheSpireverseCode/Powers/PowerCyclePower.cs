@@ -12,7 +12,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public sealed class PowerCyclePower : CustomPowerModel
+public sealed class PowerCyclePower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

@@ -24,7 +24,7 @@ public sealed class CriticalMass() : ShadowDefectCard(0, CardType.Skill, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (Owner.PlayerCombatState.Energy == 0)
+        if (Owner.PlayerCombatState?.Energy == 0)
         {
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
             await PlayerCmd.GainEnergy((int)DynamicVars.Energy.BaseValue, Owner);

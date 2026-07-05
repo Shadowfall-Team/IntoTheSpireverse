@@ -7,14 +7,14 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
-public class GrimoireOfSoulsPower : CustomPowerModel
+public class GrimoireOfSoulsPower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (cardPlay.Card is not SoulStrike) return;
+        if (cardPlay.Card is not SoulStrike || Owner.Player == null) return;
         Flash();
         await CardPileCmd.Draw(context, Amount, Owner.Player);
     }

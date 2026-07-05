@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -7,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
+using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
@@ -26,15 +28,16 @@ public sealed class RetaliationPower : ShadowPowerModel
     {
         if (target != Owner || dealer == null || !props.IsPoweredAttack())
             return;
-        await CreatureCmd.Damage(choiceContext, dealer, (decimal)Amount, ValueProp.Unpowered, Owner, (CardModel?)null);
+        await CreatureCmdCompatibility.Damage(choiceContext, dealer, (decimal)Amount, ValueProp.Unpowered, Owner, (CardModel?)null, null);
     }
 
-    public override decimal ModifyDamageAdditive(
+    public override decimal ModifyDamageAdditiveCompatibility(
         Creature? target,
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (target != Owner || !props.IsPoweredAttack()) return 0m;
 

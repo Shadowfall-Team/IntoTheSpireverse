@@ -1,27 +1,26 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Orbs;
 using IntoTheSpireverse.Orbs;
+using MegaCrit.Sts2.Core.Models;
 
-namespace MegaCrit.Sts2.Core.Models.Powers;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public sealed class StarburstPower : PowerModel
+// TODO : description and smartdescription
+public sealed class StarburstPower : IntoTheSpireversePower
 {
 	public override PowerType Type => PowerType.Buff;
 
 	public override PowerStackType StackType => PowerStackType.Counter;
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
+	protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+	[
 		HoverTipFactory.Static(StaticHoverTip.Evoke),
 		HoverTipFactory.FromOrb<EntropyOrb>(),
 		HoverTipFactory.FromCard<Shiv>()
-	};
+	];
 
 	public override async Task AfterOrbEvoked(PlayerChoiceContext choiceContext, OrbModel orb, IEnumerable<Creature> targets)
 	{

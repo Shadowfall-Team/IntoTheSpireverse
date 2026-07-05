@@ -32,7 +32,7 @@ public class IceBeam() : ShadowRegentCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        if (CombatState == null) return;
+        if (CombatState == null || play.Target == null) return;
 
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         
