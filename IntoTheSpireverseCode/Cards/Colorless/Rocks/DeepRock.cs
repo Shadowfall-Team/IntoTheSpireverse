@@ -27,7 +27,7 @@ public sealed class DeepRock() : RockCardBase(2, CardType.Attack, CardRarity.Tok
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         var attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);

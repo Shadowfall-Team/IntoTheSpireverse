@@ -25,7 +25,7 @@ public sealed class BuryCaptain() : ShadowRegentCard(
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.bluntPath, tmpSfx: TmpSfx.bluntAttack)
             .Execute(choiceContext);

@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
@@ -29,8 +30,8 @@ public sealed class Pyroclast() : ShadowIroncladCard(0, CardType.Skill, CardRari
         if (slateAmount > 0)
         {
             VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
-            await CreatureCmd.Damage(choiceContext, Owner.Creature, slateAmount,
-                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+            await CreatureCmdCompatibility.Damage(choiceContext, Owner.Creature, slateAmount,
+                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
             await PlayerCmd.GainEnergy(slateAmount, Owner);
         }
     }

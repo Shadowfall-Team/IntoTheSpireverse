@@ -29,10 +29,8 @@ public sealed class DeadlandsHex() : ShadowIroncladCard(1, CardType.Skill, CardR
         var selected = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this)).FirstOrDefault();
         if (selected == null) return;
         var selectedType = selected.GetType();
-        var copies = Owner.PlayerCombatState.AllCards
-            .Where(c => c.GetType() == selectedType)
-            .ToList();
-        foreach (var copy in copies)
+        foreach (var copy in Owner.PlayerCombatState?.AllCards
+                     .Where(c => c.GetType() == selectedType) ?? [])
         {
             await CardCmd.TransformTo<GhostRock>(copy);
         }

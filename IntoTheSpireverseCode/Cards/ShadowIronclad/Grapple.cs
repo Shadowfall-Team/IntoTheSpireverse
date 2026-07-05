@@ -22,9 +22,10 @@ public sealed class Grapple() : ShadowIroncladCard(1, CardType.Attack, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         // ArgumentNullException.ThrowIfNull(cardPlay.Target);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             // .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

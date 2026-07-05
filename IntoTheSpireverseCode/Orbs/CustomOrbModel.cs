@@ -1,11 +1,13 @@
-﻿using MegaCrit.Sts2.Core.Models;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Helpers;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Assets;
 
 namespace IntoTheSpireverse.Orbs;
 
-public abstract class CustomOrbModel : OrbModel
+public abstract class CustomOrbModel : OrbModel, ICustomModel
 {
     /// <summary>
     /// Override this to provide a custom sprite path for your orb.
@@ -55,7 +57,7 @@ public abstract class CustomOrbModel : OrbModel
         Node2D sprite = PreloadManager.Cache.GetScene(this.SpritePath).Instantiate<Node2D>();
         new MegaCrit.Sts2.Core.Bindings.MegaSpine.MegaSprite((Variant)(GodotObject)sprite.GetNode((NodePath)"SpineSkeleton"))
             .GetAnimationState()
-            .SetAnimation("idle_loop");
+            .SetAnimationCompat("idle_loop");
         return sprite;
     }
 }

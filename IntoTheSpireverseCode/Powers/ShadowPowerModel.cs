@@ -5,7 +5,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 
-public abstract class ShadowPowerModel : CustomPowerModel
+public abstract class ShadowPowerModel : IntoTheSpireversePower
 {
     //Loads from IntoTheSpireverse/images/powers/your_power.png
     public override string CustomPackedIconPath

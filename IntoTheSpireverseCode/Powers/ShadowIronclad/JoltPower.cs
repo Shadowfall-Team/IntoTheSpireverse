@@ -24,7 +24,7 @@ public sealed class JoltPower : ShadowPowerModel
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (target != Owner || result.UnblockedDamage <= 0 || _triggeredThisTurn ||
+        if (Owner.CombatState == null || Owner.Player == null || target != Owner || result.UnblockedDamage <= 0 || _triggeredThisTurn ||
             Owner.CombatState.CurrentSide != Owner.Side)
             return;
 

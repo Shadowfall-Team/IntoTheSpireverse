@@ -16,7 +16,7 @@ public sealed class WarcraftPower : ShadowPowerModel
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (side != CombatSide.Player) return;
+        if (side != CombatSide.Player || Owner.Player == null) return;
         if (Owner.Block < 15) return;
         Flash();
         await CardPileCmd.AutoPlayFromDrawPile(choiceContext, Owner.Player, Amount, CardPilePosition.Top, false);

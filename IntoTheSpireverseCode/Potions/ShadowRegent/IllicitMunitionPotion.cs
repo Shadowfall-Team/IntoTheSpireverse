@@ -36,6 +36,7 @@ public class IllicitMunitionPotion : ShadowRegentPotion
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
+        if (target?.Player == null) return;
         await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, target.Player, null);
 
         await PowerCmd.Apply<SiegePower>(choiceContext, target, DynamicVars.Power<SiegePower>().BaseValue,

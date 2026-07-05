@@ -25,7 +25,7 @@ public sealed class WomboCombo() : ShadowIroncladCard(3, CardType.Attack, CardRa
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(2)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

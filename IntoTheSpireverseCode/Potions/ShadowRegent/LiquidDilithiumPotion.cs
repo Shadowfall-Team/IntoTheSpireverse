@@ -28,6 +28,7 @@ public class LiquidDilithiumPotion : ShadowRegentPotion
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
+        if (target == null) return;
         await PowerCmd.Apply<ShardsPower>(choiceContext, target, DynamicVars.Power<ShardsPower>().BaseValue,
             Owner.Creature, null);
     }

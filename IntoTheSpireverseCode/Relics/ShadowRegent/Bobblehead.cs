@@ -9,10 +9,11 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 
-//
 public class Bobblehead : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
@@ -49,6 +50,13 @@ public class Bobblehead : ShadowRegentRelic
             Owner.Creature,
                 DynamicVars.Strength.BaseValue, Owner.Creature, null);
         }
+    }
+
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    {
+        if (side != CombatSide.Player) { return; }
+
+        UsedThisTurn = false;
     }
 
     public override Task AfterCombatEnd(CombatRoom _)

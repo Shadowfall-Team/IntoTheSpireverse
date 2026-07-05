@@ -30,14 +30,14 @@ public sealed class TectonicShift() : ShadowIroncladCard(2, CardType.Attack, Car
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        if (CombatState == null ||cardPlay.Target == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
             .Execute(choiceContext);
         foreach (var original in PileType.Hand.GetPile(Owner).Cards
-                     .Where(c => c != null && c.IsTransformable)
+                     .Where(c => c.IsTransformable)
                      .ToList())
         {
             var rock = (CardModel)CombatState.CreateCard<SmallRock>(Owner);

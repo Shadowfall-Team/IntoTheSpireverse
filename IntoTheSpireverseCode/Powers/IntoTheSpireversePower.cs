@@ -1,0 +1,5 @@
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+
+public abstract class IntoTheSpireversePower : CustomPowerModelCompatibility;

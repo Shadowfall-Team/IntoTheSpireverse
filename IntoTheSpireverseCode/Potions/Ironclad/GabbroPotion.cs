@@ -39,7 +39,8 @@ public class GabbroPotion : IntoTheSpireversePotion
             Owner.Creature, DynamicVars.Power<GabbroPower>().BaseValue,
             Owner.Creature, null);
 
-        var card = Owner.Creature.CombatState.CreateCard<PrimalForce>(Owner);
-        await CardPileCmd.AddGeneratedCardsToCombat([card], PileType.Hand, Owner);
+        var card = Owner.Creature.CombatState?.CreateCard<PrimalForce>(Owner);
+        if (card == null) return;
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
 }

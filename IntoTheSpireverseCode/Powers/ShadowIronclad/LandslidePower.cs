@@ -1,11 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Models;
+﻿using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Models.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
-public class LandslidePower : TemporaryStrengthPower
+public class LandslidePower : CustomTemporaryPowerModelWrapper<Landslide, StrengthPower>
 {
-    public override AbstractModel OriginModel => ModelDb.Card<Landslide>();
-    protected override bool IsPositive => false;
+    protected override bool InvertInternalPowerAmount => true;
 }

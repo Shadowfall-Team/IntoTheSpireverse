@@ -27,7 +27,7 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         SfxCmd.Play("event:/sfx/enemy/enemy_attacks/devoted_sculptor/devoted_sculptor_attack");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithAttackerAnim("Attack", Owner.Character.AttackAnimDelay + 0.25f)
             .WithHitFx("vfx/vfx_attack_slash")

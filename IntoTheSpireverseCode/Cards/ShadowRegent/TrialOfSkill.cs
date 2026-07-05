@@ -24,12 +24,10 @@ public class TrialOfSkill() : ShadowRegentCard(
     CardRarity.Uncommon,
     TargetType.Self)
 {
-
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         ..HoverTipFactory.FromEnchantment<Steady>(),
         HoverTipFactory.FromCard<MinionSacrifice>(IsUpgraded)
-
     ];
 
     protected override async Task OnPlay(
@@ -55,12 +53,10 @@ public class TrialOfSkill() : ShadowRegentCard(
                 Owner.Creature,
                 this);
         }
-        
     }
 
     protected override void OnUpgrade()
     {
-       
     }
 }
 
@@ -90,92 +86,80 @@ public class TrialOfWeaponryPower : ShadowPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext context,
         CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature == Owner)
+        if (Owner.Player == null || cardPlay.Card.Owner.Creature != Owner || CombatManager.Instance.IsInProgress ||
+            cardPlay.Card.Type != CardType.Skill) return;
         {
-            if (CombatManager.Instance.IsInProgress)
+            DynamicVars["SkillsPlayedThisTurn"].BaseValue++;
+            if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 2 == 0)
             {
-                if (cardPlay.Card.Type == CardType.Skill)
+                StartPulsing();
+            }
+
+            if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 3 == 0)
+            {
+                Flash();
+
+                for (int i = 0; i < Amount; i++)
                 {
-                    DynamicVars["SkillsPlayedThisTurn"].BaseValue++;
-                    if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 2 == 0)
-                    {
-                        StartPulsing();
-                    }
-
-                    if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 3 == 0)
-                    {
-                        Flash();
-
-                        for (int i = 0; i < Amount; i++)
-                        {
-                            var sacCard = CombatState.CreateCard<MinionSacrifice>(Owner.Player);
-                            CardCmd.Enchant<Steady>(sacCard, 1);
-                            await CardPileCmd.AddGeneratedCardToCombat(sacCard, PileType.Hand, Owner.Player);
-
-                        }
-
-                        await PowerCmd.Remove(this);
-                    }
+                    var sacCard = CombatState.CreateCard<MinionSacrifice>(Owner.Player);
+                    CardCmd.Enchant<Steady>(sacCard, 1);
+                    await CardPileCmd.AddGeneratedCardToCombat(sacCard, PileType.Hand, Owner.Player);
                 }
+
+                await PowerCmd.Remove(this);
             }
         }
     }
 }
 
 public class TrialOfWeaponryPowerPlus : ShadowPowerModel
+{
+    public override PowerType Type => PowerType.Buff;
+    public override PowerStackType StackType => PowerStackType.Counter;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("SkillsPlayedThisTurn", 0)
+    ];
+
+    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        public override PowerType Type => PowerType.Buff;
-        public override PowerStackType StackType => PowerStackType.Counter;
-
-        protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new IntVar("SkillsPlayedThisTurn", 0)
-        ];
-
-        public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+        if (side != Owner.Side)
         {
-            if (side != Owner.Side)
-            {
-                return Task.CompletedTask;
-            }
-
-            DynamicVars["SkillsPlayedThisTurn"].BaseValue = 0;
-            StopPulsing();
             return Task.CompletedTask;
         }
 
-        public override async Task AfterCardPlayed(PlayerChoiceContext context,
-            CardPlay cardPlay)
+        DynamicVars["SkillsPlayedThisTurn"].BaseValue = 0;
+        StopPulsing();
+        return Task.CompletedTask;
+    }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext context,
+        CardPlay cardPlay)
+    {
+        if (Owner.Player == null || cardPlay.Card.Owner.Creature != Owner || !CombatManager.Instance.IsInProgress ||
+            cardPlay.Card.Type != CardType.Skill) return;
+
+        DynamicVars["SkillsPlayedThisTurn"].BaseValue++;
+        if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 2 == 0)
         {
-            if (cardPlay.Card.Owner.Creature == Owner)
-            {
-                if (CombatManager.Instance.IsInProgress)
-                {
-                    if (cardPlay.Card.Type == CardType.Skill)
-                    {
-                        DynamicVars["SkillsPlayedThisTurn"].BaseValue++;
-                        if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 2 == 0)
-                        {
-                            StartPulsing();
-                        }
-
-                        if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 3 == 0)
-                        {
-                            Flash();
-
-                            for (int i = 0; i < Amount; i++)
-                            {
-                                var sacCard = CombatState.CreateCard<MinionSacrifice>(Owner.Player);
-                                CardCmd.Upgrade(sacCard);
-                                CardCmd.Enchant<Steady>(sacCard, 1);
-                                await CardPileCmd.AddGeneratedCardToCombat(sacCard, PileType.Hand, Owner.Player);
-
-                            }
-                            
-                            await PowerCmd.Remove(this);
-                        }
-                    }
-                }
-            }
+            StartPulsing();
         }
+
+        if (DynamicVars["SkillsPlayedThisTurn"].BaseValue % 3 == 0)
+        {
+            Flash();
+
+            for (int i = 0; i < Amount; i++)
+            {
+                var sacCard = CombatState.CreateCard<MinionSacrifice>(Owner.Player);
+                CardCmd.Upgrade(sacCard);
+                CardCmd.Enchant<Steady>(sacCard, 1);
+                await CardPileCmd.AddGeneratedCardToCombat(sacCard, PileType.Hand, Owner.Player);
+            }
+
+            await PowerCmd.Remove(this);
+        }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -6,6 +7,8 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
@@ -29,7 +32,7 @@ public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
         if (CombatState == null) return;
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_starry_impact")
             .Execute(choiceContext);
@@ -38,11 +41,11 @@ public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
         var cards = CargoCardPile.CargoPileType.GetPile(Owner)
             .Cards.Where(c => c.IsUpgradable).ToList();
         var targets = IsUpgraded ? cards : cards.TakeRandom(1, Owner.RunState.Rng.CombatCardSelection);
-        foreach (var cardModel in targets)
-        {
-            CardCmd.Upgrade(cardModel);
-            CardCmd.Preview(cardModel);
-        }
+
+        CardCmd.Upgrade(targets, CardPreviewStyle.None);
+        CardCmd.Preview((IReadOnlyList<CardModel>)targets);
+
+        CargoCardPile.CargoPileType.GetPile(Owner).InvokeContentsChanged();
     }
 
     protected override void OnUpgrade()

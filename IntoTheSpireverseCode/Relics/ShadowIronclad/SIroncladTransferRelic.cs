@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -26,9 +27,9 @@ public class Bellows : ShadowIroncladRelic
 
         if (debuffs.Count == 0) return;
 
-        var livingEnemies = Owner.Creature.CombatState.HittableEnemies
+        var livingEnemies = Owner.Creature.CombatState?.HittableEnemies
             .Where(c => c != target)
-            .ToList();
+            .ToList() ?? [];
 
         if (livingEnemies.Count == 0) return;
 
@@ -36,6 +37,7 @@ public class Bellows : ShadowIroncladRelic
 
         var recipient = Owner.RunState.Rng.CombatCardSelection.NextItem(livingEnemies);
 
+        if (recipient == null) return;
         foreach (var debuff in debuffs)
         {
             var existingPower = recipient.GetPowerById(debuff.Id);
@@ -61,6 +63,6 @@ public class Bellows : ShadowIroncladRelic
     private static void DoHackyThingsForSpecificPowers(PowerModel power)
     {
         if (power is ITemporaryPower temporaryPower)
-            temporaryPower.IgnoreNextInstance();
+            CompatibilityUtils.DoHackyThingsForSpecificPowers(temporaryPower);
     }
 }

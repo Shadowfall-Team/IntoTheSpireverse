@@ -37,7 +37,7 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         var damageResponse = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
@@ -51,7 +51,7 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
                 var targetNode = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
                 if (targetNode != null)
                 {
-                    NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
+                    NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(
                         NGaseousImpactVfx.Create(targetNode.VfxSpawnPosition, VfxTint));
                 }
             }

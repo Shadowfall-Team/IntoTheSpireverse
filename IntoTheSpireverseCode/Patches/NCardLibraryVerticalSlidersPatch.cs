@@ -117,7 +117,7 @@ public class NCardLibraryVerticalSlidersPatch
         inspectScreen.AddChild(_sliderContainer);
         inspectScreen.MoveChild(_sliderContainer, inspectScreen.GetChildCount() - 1);
 
-        _defaultOutputFolderField.PlaceholderText = CardArtRoller.DefaultsOutputDirectory;
+        _defaultOutputFolderField?.PlaceholderText = CardArtRoller.DefaultsOutputDirectory;
         
         _loaded = true;
     }
@@ -412,7 +412,7 @@ public class NCardLibraryVerticalSlidersPatch
     private static TextureRect? GetInspectedPortrait()
     {
         var ncard = NGame.Instance!.GetInspectCardScreen().GetNodeOrNull<NCard>("Card");
-        if (ncard.Model.Rarity == CardRarity.Ancient) return ncard.GetNodeOrNull<TextureRect>("%AncientPortrait");
+        if (ncard.Model?.Rarity == CardRarity.Ancient) return ncard.GetNodeOrNull<TextureRect>("%AncientPortrait");
         return ncard.GetNodeOrNull<TextureRect>("%Portrait");
     }
 

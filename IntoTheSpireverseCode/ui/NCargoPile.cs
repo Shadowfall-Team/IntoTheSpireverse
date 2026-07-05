@@ -134,7 +134,7 @@ public partial class NCargoPile : NCombatCardPile
 
     private void HandleContentsChanged()
     {
-        _currentCount = _pile.Cards.Count;
+        _currentCount = _pile?.Cards.Count ?? 0;
         _countLabel.SetTextAutoSize(_currentCount.ToString());
 
         if (_currentCount > 0 && Visible)
@@ -155,7 +155,7 @@ public partial class NCargoPile : NCombatCardPile
 
     private void CreateCardPreview()
     {
-        if (_pile.Cards.Count == 0 || !IntoTheSpireverseConfig.ShowCargoCardStack)
+        if (_pile == null || _pile.Cards.Count == 0 || !IntoTheSpireverseConfig.ShowCargoCardStack)
             return;
 
         var count = Math.Min(MaxPreviewCards, _pile.Cards.Count);

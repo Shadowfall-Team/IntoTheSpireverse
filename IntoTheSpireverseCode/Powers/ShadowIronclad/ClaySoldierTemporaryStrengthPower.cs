@@ -5,7 +5,4 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
-public class ClaySoldierTemporaryStrengthPower : TemporaryStrengthPower
-{
-    public override AbstractModel OriginModel => ModelDb.Card<ClaySoldier>();
-}
+public class ClaySoldierTemporaryStrengthPower : CustomTemporaryPowerModelWrapper<ClaySoldier, StrengthPower>;

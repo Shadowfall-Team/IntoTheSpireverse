@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - buildabranch
+      - production-2chars
   pull_request:
     types: [opened, synchronize, reopened]
 permissions:

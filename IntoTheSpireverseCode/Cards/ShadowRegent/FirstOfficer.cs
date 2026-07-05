@@ -19,8 +19,9 @@ public class FirstOfficer() : ShadowRegentCard(0,
         CardMultiplayerConstraint.MultiplayerOnly;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Coordinate>(IsUpgraded),
         HoverTipFactory.FromCard<BelieveInYou>(IsUpgraded),
         HoverTipFactory.FromCard<Lift>(IsUpgraded)
@@ -32,27 +33,25 @@ public class FirstOfficer() : ShadowRegentCard(0,
         CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        if (play.Target?.Player == null) return;
 
-        if (play.Target != null)
+        var cardModel = CardFactory.GetDistinctForCombat(play.Target.Player,
+            [
+                ModelDb.Card<Coordinate>(),
+                ModelDb.Card<BelieveInYou>(),
+                ModelDb.Card<Lift>()
+            ],
+            1, Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
+
+
+        if (cardModel != null)
         {
-            var cardModel = CardFactory.GetDistinctForCombat(play.Target.Player,
-                [
-                    ModelDb.Card<Coordinate>(), 
-                    ModelDb.Card<BelieveInYou>(),
-                    ModelDb.Card<Lift>()
-                ],
-                1, Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
-
-
-            if (cardModel != null)
+            if (IsUpgraded)
             {
-                if (IsUpgraded)
-                {
-                    CardCmd.Upgrade(cardModel);
-                }
-
-                await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, Owner);
+                CardCmd.Upgrade(cardModel);
             }
+
+            await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, Owner);
         }
     }
 }

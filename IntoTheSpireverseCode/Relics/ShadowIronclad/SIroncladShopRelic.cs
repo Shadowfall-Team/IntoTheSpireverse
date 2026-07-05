@@ -31,9 +31,9 @@ public class CrimsonAmulet : ShadowIroncladRelic
     {
         if (room is not CombatRoom) return;
 
-        var targets = Owner.Creature.CombatState
+        var targets = Owner.Creature.CombatState?
             .GetOpponentsOf(Owner.Creature)
-            .Where(c => c.IsAlive);
+            .Where(c => c.IsAlive).ToList();
 
         Flash();
 
