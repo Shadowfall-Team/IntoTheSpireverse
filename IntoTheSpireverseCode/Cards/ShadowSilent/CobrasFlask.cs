@@ -41,13 +41,11 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         Vector2 lastPos = NCombatRoom.Instance.GetCreatureNode(Owner.Creature).VfxSpawnPosition;
-        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
+        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async() =>
         {
             Creature enemy = cardPlay.Card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
             if (enemy != null)
             {
-                
-                /* I really wanted to make this have the cool potion bouncing around, but i cant figure it out :(
                  if (TestMode.IsOff)
                 {
                     NCreature targetNode = NCombatRoom.Instance.GetCreatureNode(enemy);
@@ -56,7 +54,7 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
                         NCombatRoom.Instance.CombatVfxContainer.AddChildSafely((Node)NItemThrowVfx.Create(lastPos,
                             targetNode.GetBottomOfHitbox(), ModelDb.Potion<PoisonPotion>().Image));
                         lastPos = targetNode.VfxSpawnPosition;
-                        Cmd.Wait(0.5f);
+                        await Cmd.Wait(0.5f);
                         NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
                             (Node)NSplashVfx.Create(targetNode.VfxSpawnPosition, _vfxTint));
                         NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
@@ -64,16 +62,9 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
                         NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
                             (Node)NGaseousImpactVfx.Create(targetNode.VfxSpawnPosition, _vfxTint));
                     }
-                } */
-                NPoisonImpactVfx child = NPoisonImpactVfx.Create(enemy);
-                NCombatRoom instance = NCombatRoom.Instance;
-                if (instance != null)
-                    instance.CombatVfxContainer.AddChildSafely(child);
-                
-                PowerCmd.Apply<PoisonPower>(choiceContext, enemy, DynamicVars.Poison.BaseValue, Owner.Creature, this);
+                } 
+                await PowerCmd.Apply<PoisonPower>(choiceContext, enemy, DynamicVars.Poison.BaseValue, cardPlay.Card.Owner.Creature, this);
             }
-
-            return null;
         });
     }
 
