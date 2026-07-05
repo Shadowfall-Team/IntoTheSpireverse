@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Models;
+﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Helpers;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
@@ -6,7 +7,7 @@ using MegaCrit.Sts2.Core.Assets;
 
 namespace IntoTheSpireverse.Orbs;
 
-public abstract class CustomOrbModel : OrbModel
+public abstract class CustomOrbModel : OrbModel, ICustomModel
 {
     /// <summary>
     /// Override this to provide a custom sprite path for your orb.
