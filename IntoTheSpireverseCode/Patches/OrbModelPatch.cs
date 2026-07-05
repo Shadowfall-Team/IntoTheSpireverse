@@ -19,9 +19,5 @@ public class OrbModelPatch
         if (__instance == null)
             return;
         
-        if (__instance is EntropyOrb)
-        {
-            __result = SceneHelper.GetScenePath("orbs/orb_visuals/lightning_orb");
-        }
     }
 }

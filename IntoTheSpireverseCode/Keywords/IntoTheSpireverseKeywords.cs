@@ -11,9 +11,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
@@ -74,7 +72,6 @@ public static class IntoTheSpireverseKeywords
         int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
             repeats = player.PlayerCombatState.Energy;
-        repeats += card is Weight ? player.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
         await CardCmd.Discard(context, card);
 
         for (int i = 0; i < repeats; i++)

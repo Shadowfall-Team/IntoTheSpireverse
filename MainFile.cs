@@ -35,14 +35,10 @@ public partial class MainFile : Node
 
         ModConfigRegistry.Register(ModId, new IntoTheSpireverseConfig());
 
-        SavedPropertiesTypeCache.InjectTypeIntoCache(typeof(TheLaw));
 
         CustomCharacterUtils.TryOrderCustomCharacters([
             typeof(ShadowIronclad),
-            typeof(ShadowSilent),
-            typeof(ShadowRegent),
-            typeof(ShadowNecrobinder),
-            typeof(ShadowDefect),
+            typeof(ShadowRegent)
         ]);
     }
 }
