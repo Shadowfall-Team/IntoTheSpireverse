@@ -37,7 +37,7 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
         ModelDb.Card<DefendShadowSilent>(),
         ModelDb.Card<DefendShadowSilent>(),
         ModelDb.Card<DefendShadowSilent>(),
-        ModelDb.Card<Undercut>(),
+        ModelDb.Card<Foretell>(),
         ModelDb.Card<Clothesline>(),
     ];
 

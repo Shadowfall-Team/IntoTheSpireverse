@@ -11,30 +11,40 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class Shift() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Stimulant() : ShadowSilentCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    private const string MuddleCountKey = "MuddleCount";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar(3),
+        new DynamicVar(MuddleCountKey, 1m),
     ];
-    
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var drawn = await CardPileCmd.Draw(
-            choiceContext, DynamicVars.Cards.BaseValue, Owner);
-
-        IntoTheSpireverseKeywords.ApplyMuddleAll(drawn);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CardPileCmd.Draw(
+            choiceContext, 
+            DynamicVars.Cards.BaseValue, 
+            Owner);
+        
+        await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
+            choiceContext,
+            Owner,
+            this,
+            DynamicVars[MuddleCountKey].IntValue
+        );
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1);
+        DynamicVars[MuddleCountKey].UpgradeValueBy(1m);
     }
 }

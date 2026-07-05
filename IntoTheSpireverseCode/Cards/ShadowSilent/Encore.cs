@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -6,26 +7,23 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class Undercut() : ShadowSilentCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+public sealed class Encore() : ShadowSilentCard(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    private const string MuddleCountKey = "MuddleCount";
-
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    
+    public override bool GainsBlock => true;
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7m, ValueProp.Move),
-        new DynamicVar(MuddleCountKey, 1m),
+        new DamageVar(54m, ValueProp.Move),
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
-    ];
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
@@ -35,18 +33,10 @@ public sealed class Undercut() : ShadowSilentCard(1, CardType.Attack, CardRarity
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-
-        await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
-            choiceContext,
-            Owner,
-            this,
-            DynamicVars[MuddleCountKey].IntValue
-        );
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1m);
-        DynamicVars[MuddleCountKey].UpgradeValueBy(1m);
+        DynamicVars.Damage.UpgradeValueBy(10m);
     }
 }

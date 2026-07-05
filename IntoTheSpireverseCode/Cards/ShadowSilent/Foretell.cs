@@ -8,11 +8,11 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
-public sealed class Foretell() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class Foretell() : ShadowSilentCard(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(5m, ValueProp.Move),
+        new BlockVar(3m, ValueProp.Move),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -33,6 +33,6 @@ public sealed class Foretell() : ShadowSilentCard(1, CardType.Skill, CardRarity.
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(2m);
+        DynamicVars.Block.UpgradeValueBy(1m);
     }
 }

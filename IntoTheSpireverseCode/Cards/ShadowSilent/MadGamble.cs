@@ -11,30 +11,26 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class Shift() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class MadGamble() : ShadowSilentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        new CardsVar(3),
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
-    ];
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var drawn = await CardPileCmd.Draw(
-            choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        var hand = PileType.Hand.GetPile(Owner).Cards;
+        int cardsToDraw = hand.Count;
 
-        IntoTheSpireverseKeywords.ApplyMuddleAll(drawn);
+        await CardCmd.DiscardAndDraw(choiceContext, hand, cardsToDraw);
+
+        IntoTheSpireverseKeywords.ApplyMuddleHand(Owner);
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Cards.UpgradeValueBy(1);
-    }
+    protected override void OnUpgrade() =>
+        EnergyCost.UpgradeBy(-1);
 }
