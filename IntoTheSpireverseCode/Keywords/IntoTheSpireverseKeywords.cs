@@ -98,7 +98,7 @@ public static class IntoTheSpireverseKeywords
     
     public interface ICardMuddledListener
     {
-        Task AfterCardMuddled(ICombatState combatState);
+        Task AfterCardMuddled(ICombatState combatState, CardModel cardModel);
     }
 
     public static void ApplyMuddle(CardModel card)
@@ -129,7 +129,7 @@ public static class IntoTheSpireverseKeywords
         foreach (var model in card.Owner.Creature.CombatState!.IterateHookListeners().ToList())
         {
             if (model is ICardMuddledListener powerListener)
-                powerListener.AfterCardMuddled(card.Owner.Creature.CombatState);
+                powerListener.AfterCardMuddled(card.Owner.Creature.CombatState, card);
         }
     }
 

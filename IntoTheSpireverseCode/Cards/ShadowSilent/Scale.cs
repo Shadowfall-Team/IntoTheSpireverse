@@ -1,5 +1,7 @@
 using BaseLib.Abstracts;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,6 +15,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 public sealed class Scale() : CustomCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
     public override bool GainsBlock => true;
+    protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Scale];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
 

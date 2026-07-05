@@ -22,29 +22,48 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
-public class FoulMiasmaPower : ShadowPowerModel, IntoTheSpireverseKeywords.ICardMuddledListener
+public class LuckyStreakPower : ShadowPowerModel, IntoTheSpireverseKeywords.ICardMuddledListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     
+
+    protected override object InitInternalData() => new Data();
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
-        HoverTipFactory.FromPower<PoisonPower>(),
+        HoverTipFactory.ForEnergy(this),
     ];
+    
     public async Task AfterCardMuddled(ICombatState combatState, CardModel cardModel)
     {
         if (cardModel.Owner != Owner.Player) 
             return;
+        var data = GetInternalData<Data>();
+        if (data.cardMuddledThisTurn)
+            return;
         Flash();
         await Cmd.CustomScaledWait(0.2f, 0.4f);
-        foreach (Creature hittableEnemy in CombatState.HittableEnemies)
-        {
-          NCreature creatureNode = NCombatRoom.Instance?.GetCreatureNode(hittableEnemy);
-          if (creatureNode != null)
-            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(NGaseousImpactVfx.Create(creatureNode.VfxSpawnPosition, new Color("83eb85")));
-        }
-        await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, Amount, Owner, null);
-            
+        data.cardMuddledThisTurn = true;
+        for (int i = 0; i < Amount; ++i)
+            await PlayerCmd.GainEnergy(1M, Owner.Player);
+    }
+    
+    public override Task AfterSideTurnStart(
+        CombatSide side,
+        IReadOnlyList<Creature> participants,
+        ICombatState combatState)
+    {
+        if (!participants.Contains(Owner))
+            return Task.CompletedTask;
+
+        GetInternalData<Data>().cardMuddledThisTurn = false;
+        return Task.CompletedTask;
+    }
+    
+    private class Data
+    {
+        public bool cardMuddledThisTurn;
     }
 }

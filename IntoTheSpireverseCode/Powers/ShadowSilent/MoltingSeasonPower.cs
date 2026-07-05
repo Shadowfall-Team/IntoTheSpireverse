@@ -14,15 +14,10 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
-public class ChrysalisPower : ShadowPowerModel
+public class MoltingSeasonPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromCard<Scale>()
-    ];
     
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
@@ -35,6 +30,6 @@ public class ChrysalisPower : ShadowPowerModel
             .ToArray();
         
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner.Player);
-        await PowerCmd.Remove(this);
     }
+
 }
