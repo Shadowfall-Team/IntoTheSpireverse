@@ -35,7 +35,7 @@ public sealed class Penance() : ShadowNecrobinderCard(-1, CardType.Curse, CardRa
         // A different hook may be needed if it should be possible to draw a Soul Strike in the opening hand, currently
         // this happens AFTER the opening hand is drawn
         
-        if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return;
+        if (side != Owner.Creature.Side || Owner.PlayerCombatState?.TurnNumber > 1) return;
         var soulStrikes = SoulStrike.Create(Owner, DynamicVars.Cards.IntValue, combatState);
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(soulStrikes, PileType.Draw, Owner, CardPilePosition.Random));
     }

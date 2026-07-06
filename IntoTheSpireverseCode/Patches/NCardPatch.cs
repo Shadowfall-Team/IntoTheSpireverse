@@ -5,6 +5,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
 using IntoTheSpireverse;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
 namespace IntoTheSpireverse.Patches;
 
@@ -13,7 +14,7 @@ public static class NCardPatch
 {
     static void Postfix(NCard __instance)
     {
-        if (__instance == null || !__instance.IsNodeReady() || __instance.Model == null)
+        if (!__instance.IsNodeReady() || __instance.Model == null)
             return;
         
         string cardId = __instance.Model.Id.ToString();
@@ -38,13 +39,13 @@ public static class NCardPatch
 
         if (__instance.Model.Rarity == CardRarity.Ancient)
         { 
-            var ancientPortrait = __instance.GetNodeOrNull<TextureRect>("%AncientPortrait");
+            if (__instance.GetNodeOrNull<TextureRect>("%AncientPortrait") is not {} ancientPortrait) return;
             CardShaderHelper.ApplyToPortrait(ancientPortrait, h, s, v, r, g, b, contrast);
             ancientPortrait.FlipH = flipH;
         }
         else
         {
-            var portrait = __instance.GetNodeOrNull<TextureRect>("%Portrait");
+            if (__instance.GetNodeOrNull<TextureRect>("%Portrait") is not {} portrait) return;
             CardShaderHelper.ApplyToPortrait(portrait, h, s, v, r, g, b, contrast);
             portrait.FlipH = flipH;
         }

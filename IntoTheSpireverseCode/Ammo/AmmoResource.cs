@@ -1,5 +1,7 @@
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -24,7 +26,15 @@ public static class AmmoResource
     // TODO: stub for future ship muzzle-flash VFX
     // public static event Action<Player>? OnAmmoFiredStub;
 
-    public static int GetAmmo(Player player) => player.PlayerCombatState != null ? PlayerAmmo[player.PlayerCombatState] : 0;
+    public static int GetAmmo(Player player) =>
+        player.PlayerCombatState != null ? PlayerAmmo[player.PlayerCombatState] : 0;
+
+    public static bool CanSpendAmmo(Player player)
+    {
+        if (player.PlayerCombatState == null) return false;
+        if (GetAmmo(player) <= 0) return false;
+        return player.PlayerCombatState.Energy >= GetShotEnergyCost(player);
+    }
 
     public static async Task GainAmmo(int amount, Player player)
     {
@@ -65,7 +75,8 @@ public static class AmmoResource
         var damage = BaseDamage;
 
         // Strength
-        damage += player.Creature.GetPowerAmount<StrengthPower>();
+        if(player.HasPower<AmmoStrengthPower>())
+            damage += player.Creature.GetPowerAmount<StrengthPower>();
 
         // Firepower, Volley, and any future IModifiesAmmoShotDamage powers
         foreach (var model in player.Creature.CombatState!.IterateHookListeners())

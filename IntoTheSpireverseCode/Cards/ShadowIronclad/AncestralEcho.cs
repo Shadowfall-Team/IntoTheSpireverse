@@ -10,7 +10,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class AncestralEcho() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public sealed class AncestralEcho() : ShadowIroncladCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     private static readonly string _replayKey = "Replay";
 

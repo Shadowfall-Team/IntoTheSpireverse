@@ -32,7 +32,7 @@ public class FinalFormPower : IntoTheSpireversePower
         if (card == null) return;
 
         Flash();
-        await CardCmd.AutoPlay(choiceContext, card.CreateDupe(), null);
+        await CardCmd.AutoPlay(choiceContext, card.CreateDupe(player), null);
         await PowerCmd.Decrement(this);
     }
 

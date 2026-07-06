@@ -15,9 +15,13 @@ public sealed class Deposit() : ShadowIroncladCard(2, CardType.Skill, CardRarity
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SlatePower>(4m),
+        new PowerVar<SlatePower>(5m),
     ];
-
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust
+    ];
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),
@@ -32,5 +36,5 @@ public sealed class Deposit() : ShadowIroncladCard(2, CardType.Skill, CardRarity
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(2m);
 }

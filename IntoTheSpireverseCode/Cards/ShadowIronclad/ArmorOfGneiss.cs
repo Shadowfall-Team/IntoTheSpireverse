@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
@@ -23,8 +24,8 @@ public sealed class ArmorOfGneiss() : ShadowIroncladCard(2, CardType.Skill, Card
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(10m, ValueProp.Move),
-        new PowerVar<SlatePower>(6m),
+        new BlockVar(14, ValueProp.Move),
+        new PowerVar<BlurPower>(2),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -36,11 +37,11 @@ public sealed class ArmorOfGneiss() : ShadowIroncladCard(2, CardType.Skill, Card
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        await PowerCmd.Apply<SlatePower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
+        await PowerCmd.Apply<BlurPower>(
+            choiceContext,
+            Owner.Creature, DynamicVars.Power<BlurPower>().BaseValue,
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(2m);
+    protected override void OnUpgrade() => DynamicVars.Power<BlurPower>().UpgradeValueBy(1);
 }

@@ -3,6 +3,8 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+using Constellation = MegaCrit.Sts2.Core.Models.Cards.Constellation;
+using Plot = MegaCrit.Sts2.Core.Models.Cards.Plot;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
@@ -19,6 +21,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
     {
         return
         [
+            ModelDb.Card<CelestialMight>(),
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<KnowThyPlace>(),
             ModelDb.Card<Patter>(),
@@ -34,10 +37,13 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
             
+            
+            ModelDb.Card<Constellation>(),
+            ModelDb.Card<Plot>()
+            
             //"Almost identical"
             //Solar Strike
             //Glow
-            //Hidden Cache
             //Gather Light
         ];
     }

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-REQUISITION",
+  "hue": 0.74,
+  "saturation": 1.11,
+  "value": 0.88,
+  "red": 1.06,
+  "green": 1.27,
+  "blue": 1.09,
+  "contrast": 1.03,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/tactician.tres"
+}

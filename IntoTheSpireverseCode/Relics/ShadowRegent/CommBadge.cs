@@ -1,12 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 
@@ -16,7 +16,7 @@ public class CommBadge : ShadowRegentRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 1),
+        new LoadAmmoVar(1),
         new PowerVar<VolleyDamagePower>(2),
     ];
 
@@ -25,9 +25,9 @@ public class CommBadge : ShadowRegentRelic
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player != Owner || player.Creature.CombatState == null || player.Creature.CombatState.RoundNumber > 1) return;
+        if (player != Owner || player.PlayerCombatState?.TurnNumber > 1) return;
 
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
 
         await PowerCmd.Apply<VolleyDamagePower>(
             new ThrowingPlayerChoiceContext(),

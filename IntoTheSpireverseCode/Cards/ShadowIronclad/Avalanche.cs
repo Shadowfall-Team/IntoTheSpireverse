@@ -18,7 +18,7 @@ public sealed class Avalanche() : ShadowIroncladCard(1, CardType.Attack, CardRar
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(20m, ValueProp.Move)
+        new DamageVar(15m, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -40,6 +40,8 @@ public sealed class Avalanche() : ShadowIroncladCard(1, CardType.Attack, CardRar
             var template = Owner.RunState.Rng.CombatCardGeneration.NextItem(rockPool);
             if (template == null) continue;
             var rock = CombatState.CreateCard(template, Owner);
+            if (IsUpgraded)
+                CardCmd.Upgrade(rock);
             await CardCmd.Transform(original, rock);
         }
     }

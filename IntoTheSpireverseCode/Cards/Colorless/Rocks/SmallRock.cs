@@ -17,7 +17,7 @@ public sealed class SmallRock() : RockCardBase(0, CardType.Attack, CardRarity.To
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
+        new DamageVar(5m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

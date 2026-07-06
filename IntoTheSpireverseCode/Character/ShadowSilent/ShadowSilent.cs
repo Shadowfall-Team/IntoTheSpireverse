@@ -37,13 +37,13 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
         ModelDb.Card<DefendShadowSilent>(),
         ModelDb.Card<DefendShadowSilent>(),
         ModelDb.Card<DefendShadowSilent>(),
-        ModelDb.Card<CheapShot>(),
-        ModelDb.Card<MeasuredDefense>(),
+        ModelDb.Card<Foretell>(),
+        ModelDb.Card<Clothesline>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<ArmoredPack>()
+        ModelDb.Relic<MysticCharm>()
     ];
     
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowSilentCardPool>();

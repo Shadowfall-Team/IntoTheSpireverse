@@ -16,7 +16,7 @@ public sealed class Quarry() : ShadowIroncladCard(-1, CardType.Skill, CardRarity
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<SmallRock>(IsUpgraded),
+        HoverTipFactory.FromCard<SmallRock>(true),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -24,14 +24,13 @@ public sealed class Quarry() : ShadowIroncladCard(-1, CardType.Skill, CardRarity
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        var count = ResolveEnergyXValue() + 1;
+        var count = ResolveEnergyXValue() + (IsUpgraded ? 1 : 0);
         var rocks = new CardModel[count];
 
         for (var i = 0; i < count; i++)
         {
             rocks[i] = CombatState.CreateCard<SmallRock>(Owner);
-            if (IsUpgraded)
-                CardCmd.Upgrade(rocks[i]);
+            CardCmd.Upgrade(rocks[i]);
         }
 
         await CardPileCmd.AddGeneratedCardsToCombat(rocks, PileType.Hand, Owner);

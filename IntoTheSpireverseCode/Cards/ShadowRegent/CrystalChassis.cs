@@ -18,7 +18,7 @@ public class CrystalChassis() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new("ExtraBlock", 3)
+        new("ExtraBlock", 2)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -33,7 +33,7 @@ public class CrystalChassis() : ShadowRegentCard(
         if (CombatState == null) return;
         //TODO: currently this uses fastenpower, do you want this to be its own power with its own icon?
         await PowerCmd.Apply<FastenPower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
+            choiceContext,Owner.Creature,
             DynamicVars["ExtraBlock"].BaseValue,
             Owner.Creature,
             this);
