@@ -55,7 +55,7 @@ public sealed class Blunderbuss() : ShadowSilentCard(1, CardType.Attack, CardRar
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(hits)
-            .FromCard(this, cardPlay)
+            .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

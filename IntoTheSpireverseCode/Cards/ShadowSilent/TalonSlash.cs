@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using BaseLib.Utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
@@ -29,7 +30,7 @@ public sealed class TalonSlash() : ShadowSilentCard(1, CardType.Attack, CardRari
     {
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
             DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this, cardPlay)
+                .FromCardCompatibility(this, cardPlay)
                 .TargetingRandomOpponents(CombatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext));

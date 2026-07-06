@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
+using BaseLib.Cards.Variables;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
@@ -16,6 +17,9 @@ public sealed class HolyShield() : ShadowSilentCard(1, CardType.Skill, CardRarit
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(8m, ValueProp.Move),
+        // TODO: using persist here is a hack because the GetResultPileTypeForCardPlay function changed in beta
+        // using persist gives essentially the same functionality, but it adds a tooltip
+        new PersistVar(100)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -36,11 +40,11 @@ public sealed class HolyShield() : ShadowSilentCard(1, CardType.Skill, CardRarit
         Played += MuddleAfterPlay;
     }
 
-    protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
-    {
-        (PileType pileType, CardPilePosition cardPilePosition) = base.GetResultPileTypeAndPositionForCardPlay();
-        return pileType == PileType.Discard ? (PileType.Hand, CardPilePosition.Bottom) : (pileType, cardPilePosition);
-    }
+    // protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlay()
+    // {
+    //     (PileType pileType, CardPilePosition cardPilePosition) = base.GetResultPileTypeAndPositionForCardPlay();
+    //     return pileType == PileType.Discard ? (PileType.Hand, CardPilePosition.Bottom) : (pileType, cardPilePosition);
+    // }
 
     protected override void OnUpgrade()
     {

@@ -27,7 +27,7 @@ public class VenomousPower : ShadowPowerModel
         HoverTipFactory.FromPower<PoisonPower>(),
     ];
 
-    public override Decimal ModifyDamageMultiplicative(
+    public override decimal ModifyDamageMultiplicativeCompatibility(
         Creature? target,
         decimal amount,
         ValueProp props,

@@ -48,7 +48,7 @@ public sealed class InertBlade() : ShadowSilentCard(0, CardType.Attack, CardRari
         int cost = EnergyCost.GetWithModifiers(CostModifiers.All);
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this, cardPlay)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

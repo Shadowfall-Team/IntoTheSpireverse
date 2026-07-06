@@ -25,7 +25,7 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
     [
         new DamageVar(12m, ValueProp.Move),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         CardKeyword.Exhaust,
@@ -46,7 +46,7 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
         {
             ArgumentNullException.ThrowIfNull(cardPlay.Target);
             bool shouldTriggerFatal = cardPlay.Target.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
-            AttackCommand attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
+            AttackCommand attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCardCompatibility(this, cardPlay).Targeting(cardPlay.Target).WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
             if (!shouldTriggerFatal)
                 combatRoom = null;
             else if (!attackCommand.Results.SelectMany(r => r).Any(r => r.WasTargetKilled))

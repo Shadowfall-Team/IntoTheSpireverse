@@ -37,7 +37,7 @@ public sealed class Medusa() : ShadowSilentCard(0, CardType.Attack, CardRarity.R
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
         {
             DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this, cardPlay)
+                .FromCardCompatibility(this, cardPlay)
                 .Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);

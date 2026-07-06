@@ -9,6 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
@@ -16,7 +17,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<PoisonPower>()
@@ -32,7 +33,7 @@ public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, Car
                 if (hittableEnemy.HasPower<PoisonPower>())
                 {
                     var power = hittableEnemy.GetPower<PoisonPower>();
-                    await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), power.Owner, power.Amount, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
+                    await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), power.Owner, power.Amount, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
                     if (power.Owner.IsAlive)
                         await PowerCmd.Decrement(power);
                     else

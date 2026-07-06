@@ -29,7 +29,7 @@ public sealed class Intoxicate() : ShadowSilentCard(3, CardType.Attack, CardRari
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         int poisonAmount = (await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this, cardPlay)
+            .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext)).Results.SelectMany(r => r).Sum(r => r.TotalDamage);
