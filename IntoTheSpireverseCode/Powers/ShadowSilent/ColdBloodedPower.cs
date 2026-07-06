@@ -1,4 +1,5 @@
 ﻿
+using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -29,18 +30,13 @@ public class ColdBloodedPower : ShadowPowerModel
         HoverTipFactory.FromPower<RetaliationPower>()
     ];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new PowerVar<RetaliationPower>(1M),
-    ];
-
     protected override object InitInternalData() => new Data();
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner)
             return Task.CompletedTask;
-        GetInternalData<Data>().amountsForPlayedCards.Add(cardPlay.Card, DynamicVars.Strength.IntValue);
+        GetInternalData<Data>().amountsForPlayedCards.Add(cardPlay.Card, Amount);
         return Task.CompletedTask;
     }
 

@@ -37,8 +37,6 @@ public sealed class Horror() : ShadowSilentCard(4, CardType.Skill, CardRarity.Ra
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         foreach (Creature hittableEnemy in CombatState.HittableEnemies)
         {
-            await PowerCmd.Apply<PoisonPower>(choiceContext, hittableEnemy, DynamicVars.Poison.BaseValue,
-                Owner.Creature, this);
             await PowerCmd.Apply<WeakPower>(choiceContext, hittableEnemy, DynamicVars.Weak.BaseValue,
                 Owner.Creature, this);
         }

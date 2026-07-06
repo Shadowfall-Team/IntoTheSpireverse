@@ -20,7 +20,7 @@ public sealed class ColdBlooded() : ShadowSilentCard(1, CardType.Power, CardRari
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ColdBloodedPower>(1m),
+        new PowerVar<ColdBloodedPower>(6m),
         new CardsVar(3)
     ];
     
@@ -47,6 +47,7 @@ public sealed class ColdBlooded() : ShadowSilentCard(1, CardType.Power, CardRari
     
     protected override void OnUpgrade()
     {
+        DynamicVars.Power<ColdBloodedPower>().UpgradeValueBy(2);
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

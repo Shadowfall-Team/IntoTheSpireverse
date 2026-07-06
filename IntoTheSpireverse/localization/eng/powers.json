@@ -88,6 +88,9 @@
   "INTOTHESPIREVERSE-VENOMOUS_POWER.title": "Venomous",
   "INTOTHESPIREVERSE-VENOMOUS_POWER.description": "[gold]Poisoned[/gold] enemies take additional damage.",
   "INTOTHESPIREVERSE-VENOMOUS_POWER.smartDescription": "[gold]Poisoned[/gold] enemies take an additional [blue]{Amount}%[/blue] damage.",
+  "INTOTHESPIREVERSE-AGENT_OF_CHAOS_POWER.title": "Agent of Chaos",
+  "INTOTHESPIREVERSE-AGENT_OF_CHAOS_POWER.description": "All Attacks gain [gold]Sly[/gold].\nWhenever you discard a card, [gold]Exhaust[/gold] it.",
+  "INTOTHESPIREVERSE-AGENT_OF_CHAOS_POWER.smartDescription": "All Attacks gain [gold]Sly[/gold].\nWhenever you discard a card, [gold]Exhaust[/gold] it.",
 
   "STARBURST_POWER.description": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [gold]Shivs[/gold].",
   "STARBURST_POWER.smartDescription": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [blue]{Amount}[/blue] [gold]{Amount:plural:Shiv|Shivs}[/gold].",

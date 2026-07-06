@@ -45,17 +45,17 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
         else
         {
             ArgumentNullException.ThrowIfNull(cardPlay.Target);
-            
-            bool shouldTriggerFatal = cardPlay.Target.Powers.All( p => p.ShouldOwnerDeathTriggerFatal());
+            bool shouldTriggerFatal = cardPlay.Target.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
             AttackCommand attackCommand = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
             if (!shouldTriggerFatal)
                 combatRoom = null;
-            else if (!attackCommand.Results.SelectMany((r => r)).Any(r => r.WasTargetKilled))
+            else if (!attackCommand.Results.SelectMany(r => r).Any(r => r.WasTargetKilled))
             {
                 combatRoom = null;
             }
             else
             {
+                combatRoom.AddExtraReward(Owner, new CardRemovalReward(Owner));
                 await PowerCmd.Apply<StarvationPower>(choiceContext, Owner.Creature, 1M, Owner.Creature, this);
                 combatRoom = null;
             }

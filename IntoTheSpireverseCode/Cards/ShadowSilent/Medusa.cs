@@ -44,6 +44,7 @@ public sealed class Medusa() : ShadowSilentCard(0, CardType.Attack, CardRarity.R
             PowerCmd.Apply<VulnerablePower>(
                 choiceContext, cardPlay.Target, DynamicVars.Vulnerable.BaseValue,
                 Owner.Creature, this);
+            await Cmd.Wait(0.5f);
         });
     }
 

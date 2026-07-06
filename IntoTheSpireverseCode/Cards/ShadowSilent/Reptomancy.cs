@@ -33,6 +33,6 @@ public sealed class Reptomancy() : ShadowSilentCard(0, CardType.Skill, CardRarit
                 CardCmd.Upgrade(card);
             transformations.Add(new CardTransformation(original, card));
         }
-        await CardCmd.Transform((IEnumerable<CardTransformation>) transformations, null);
+        await CardCmd.Transform(transformations, null);
     }
 }

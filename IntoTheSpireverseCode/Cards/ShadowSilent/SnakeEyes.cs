@@ -21,6 +21,11 @@ public sealed class SnakeEyes() : ShadowSilentCard(1, CardType.Power, CardRarity
     [
         new PowerVar<SnakeEyesPower>(1m),
     ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

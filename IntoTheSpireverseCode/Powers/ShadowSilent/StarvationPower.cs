@@ -23,11 +23,4 @@ public class StarvationPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
-    public override Task AfterCombatEnd(CombatRoom room)
-    {
-        for (int index = 0; index < Amount; ++index)
-            room.AddExtraReward(Owner.Player, new CardRemovalReward(Owner.Player));
-        return Task.CompletedTask;
-    }
 }

@@ -10,33 +10,34 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class Venomous() : ShadowSilentCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class AgentOfChaos() : ShadowSilentCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<VenomousPower>(25m),
+        new PowerVar<AgentOfChaosPower>(1m),
     ];
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<PoisonPower>()
-    ];
+        HoverTipFactory.FromKeyword(CardKeyword.Sly),
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
+    ];  
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
-        await PowerCmd.Apply<VenomousPower>(
+        await PowerCmd.Apply<AgentOfChaosPower>(
             choiceContext, Owner.Creature,
-            DynamicVars.Power<VenomousPower>().BaseValue,
+            DynamicVars.Power<AgentOfChaosPower>().BaseValue,
             Owner.Creature, this);
     }
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Power<VenomousPower>().UpgradeValueBy(25m);
+        EnergyCost.UpgradeBy(-1);
     }
 }

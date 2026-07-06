@@ -22,7 +22,7 @@ public class EasyGoingPower : ShadowPowerModel
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Scale>()
+        HoverTipFactory.Static(StaticHoverTip.Block),
     ];
     
     public override async Task AfterCardDiscarded(

@@ -17,6 +17,8 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromEnchantment<Slither>();
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -25,20 +27,13 @@ public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.R
         foreach (CardModel cardModel in cardToPerplex)
         {
             CardCmd.Enchant<Slither>(cardModel, 1M);
-            NCardEnchantVfx child = NCardEnchantVfx.Create(cardModel);
-            if (child != null)
-            {
-                NRun instance = NRun.Instance;
-                if (instance != null)
-                    instance.GlobalUi.CardPreviewContainer.AddChildSafely(child);
-            }
         }
         cardToPerplex = null;
     }
     
     public static bool CanEnchant(CardModel card)
     {
-        return card.Enchantment != null;
+        return card.Enchantment == null && ModelDb.Enchantment<Slither>().CanEnchant(card);
     }
     
     protected override void OnUpgrade()

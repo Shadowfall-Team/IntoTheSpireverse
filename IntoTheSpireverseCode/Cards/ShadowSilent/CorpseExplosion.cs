@@ -28,8 +28,6 @@ public sealed class CorpseExplosion() : ShadowSilentCard(2, CardType.Skill, Card
     [
         HoverTipFactory.FromPower<PoisonPower>(),
     ];
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
