@@ -29,7 +29,7 @@ public class SNecroLingerBlock : ShadowNecrobinderRelic
 
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return Task.CompletedTask;
+        if (side != Owner.Creature.Side || Owner.PlayerCombatState?.TurnNumber > 1) return Task.CompletedTask;
         LingerHelper.OnLingerTriggered += OnLingerFired;
         return Task.CompletedTask;
     }

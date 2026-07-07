@@ -19,7 +19,7 @@ public class SNecroCurseExhaust : ShadowNecrobinderRelic
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner) return;
-        if (player.Creature.CombatState?.RoundNumber != 1) return;
+        if (player.PlayerCombatState?.TurnNumber != 1) return;
 
         var curses = PileType.Draw.GetPile(Owner).Cards
             .Where(c => c.Type == CardType.Curse)

@@ -25,7 +25,7 @@ public class CommBadge : ShadowRegentRelic
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player != Owner || player.Creature.CombatState == null || player.Creature.CombatState.RoundNumber > 1) return;
+        if (player != Owner || player.PlayerCombatState?.TurnNumber > 1) return;
 
         await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
 
