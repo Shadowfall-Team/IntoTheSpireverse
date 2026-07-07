@@ -10,8 +10,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-//TODO: check if this needs to be renamed
-public class TheSealedThrone() : ShadowRegentCard(
+public class Overdrive() : ShadowRegentCard(
     1,
     CardType.Attack,
     CardRarity.Ancient,
