@@ -16,11 +16,12 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 [Pool(typeof(ShadowSilentCardPool))]
 public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, IntoTheSpireverseKeywords.Devious];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<PoisonPower>()
+        HoverTipFactory.FromPower<PoisonPower>(),
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
