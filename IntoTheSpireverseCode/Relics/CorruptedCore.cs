@@ -40,7 +40,7 @@ public class CorruptedCore : ShadowDefectRelic
     public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         var corruptedCore = this;
-        if (side != corruptedCore.Owner.Creature.Side || combatState.RoundNumber > 1)
+        if (side != corruptedCore.Owner.Creature.Side || Owner.PlayerCombatState?.TurnNumber > 1)
             return;
         for (int i = 0; (Decimal) i < corruptedCore.DynamicVars["Entropy"].BaseValue; ++i)
             await OrbCmd.Channel<EntropyOrb>((PlayerChoiceContext) new BlockingPlayerChoiceContext(), corruptedCore.Owner);

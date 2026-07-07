@@ -44,7 +44,7 @@ public class ArmoredPack : ShadowSilentRelic
     PlayerChoiceContext choiceContext,
     ICombatState combatState)
   {
-    if (player != Owner || combatState.RoundNumber != 1)
+    if (player != Owner || Owner.PlayerCombatState?.TurnNumber != 1)
       return;
     List<CardModel?> cards = new List<CardModel?>();
     for (int index = 0; index < DynamicVars.Cards.IntValue; ++index)

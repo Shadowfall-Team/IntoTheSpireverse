@@ -31,7 +31,7 @@ public class CaptainsHat : ShadowRegentRelic
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player != Owner || player.Creature.CombatState == null || player.Creature.CombatState.RoundNumber > DynamicVars["Rounds"].IntValue) return;
+        if (player != Owner || player.PlayerCombatState?.TurnNumber > DynamicVars["Rounds"].IntValue) return;
         await PowerCmd.Apply<ShardsPower>(
             new ThrowingPlayerChoiceContext(), Owner.Creature,
             DynamicVars.Power<ShardsPower>().BaseValue, Owner.Creature, null);

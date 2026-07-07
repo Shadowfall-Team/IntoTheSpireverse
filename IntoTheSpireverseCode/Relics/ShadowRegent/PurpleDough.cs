@@ -38,7 +38,7 @@ public class PurpleDough : ShadowRegentRelic
     {
         if (side == Owner.Creature.Side)
         {
-            if (combatState.RoundNumber <= 1)
+            if (Owner.PlayerCombatState?.TurnNumber <= 1)
             {
                 Flash();
                 var cardModel = CardFactory.GetDistinctForCombat(Owner,

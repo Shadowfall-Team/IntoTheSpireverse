@@ -28,7 +28,7 @@ public sealed class Servitude() : ShadowNecrobinderCard(-1, CardType.Curse, Card
 
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return;
+        if (side != Owner.Creature.Side || Owner.PlayerCombatState?.TurnNumber > 1) return;
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 }

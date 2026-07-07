@@ -28,7 +28,7 @@ public sealed class Hubris() : ShadowNecrobinderCard(-1, CardType.Curse, CardRar
 
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Creature.Side || combatState.RoundNumber > 1) return;
+        if (side != Owner.Creature.Side || Owner.PlayerCombatState?.TurnNumber > 1) return;
         await CreatureCmd.Damage(
             new ThrowingPlayerChoiceContext(),
             combatState.HittableEnemies,
