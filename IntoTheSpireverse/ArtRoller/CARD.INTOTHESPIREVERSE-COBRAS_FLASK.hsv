@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-COBRAS_FLASK",
+  "hue": 0.73,
+  "saturation": 0.77,
+  "value": 1.17,
+  "red": 0.62,
+  "green": 1.44,
+  "blue": 1.01,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/bouncing_flask.tres"
+}

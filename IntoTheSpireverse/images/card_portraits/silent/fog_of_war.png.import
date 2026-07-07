@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c462pecrdvpsm"
-path="res://.godot/imported/sneaky_strike.png-520c28af7509a3a1a14307c0b780f1c3.ctex"
+uid="uid://cssqhi85ijak6"
+path="res://.godot/imported/fog_of_war.png-ad67388a8ab7f65f8065ddc27e2f312e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/card_portraits/silent/sneaky_strike.png"
-dest_files=["res://.godot/imported/sneaky_strike.png-520c28af7509a3a1a14307c0b780f1c3.ctex"]
+source_file="res://IntoTheSpireverse/images/card_portraits/silent/fog_of_war.png"
+dest_files=["res://.godot/imported/fog_of_war.png-ad67388a8ab7f65f8065ddc27e2f312e.ctex"]
 
 [params]
 

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-EASY_GOING",
+  "hue": 0.65,
+  "saturation": 1.67,
+  "value": 1.27,
+  "red": 1,
+  "green": 1,
+  "blue": 1,
+  "contrast": 0.75,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/footwork.tres"
+}

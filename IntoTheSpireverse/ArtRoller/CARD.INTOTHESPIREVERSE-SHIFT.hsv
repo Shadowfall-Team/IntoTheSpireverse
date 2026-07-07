@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SHIFT",
+  "hue": 0.11,
+  "saturation": 0.87,
+  "value": 1.18,
+  "red": 0.91,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/acrobatics.tres"
+}

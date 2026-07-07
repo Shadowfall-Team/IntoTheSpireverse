@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-REPTOMANCY",
+  "hue": 0.76,
+  "saturation": 1.38,
+  "value": 1.16,
+  "red": 1,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/finisher.tres"
+}

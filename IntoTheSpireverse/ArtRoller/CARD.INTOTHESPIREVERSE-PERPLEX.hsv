@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-PERPLEX",
+  "hue": 0.96,
+  "saturation": 1.57,
+  "value": 1.4,
+  "red": 0.94,
+  "green": 1.16,
+  "blue": 1.22,
+  "contrast": 0.77,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/status/beckon.tres"
+}

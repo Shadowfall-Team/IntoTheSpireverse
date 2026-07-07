@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-STARVATION",
+  "hue": 0.65,
+  "saturation": 1,
+  "value": 1,
+  "red": 1,
+  "green": 0.8,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/the_hunt.tres"
+}

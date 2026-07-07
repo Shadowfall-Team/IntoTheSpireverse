@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ILLUSION",
+  "hue": 0.6,
+  "saturation": 1.82,
+  "value": 1.26,
+  "red": 1,
+  "green": 1,
+  "blue": 1,
+  "contrast": 0.73,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/mirage.tres"
+}

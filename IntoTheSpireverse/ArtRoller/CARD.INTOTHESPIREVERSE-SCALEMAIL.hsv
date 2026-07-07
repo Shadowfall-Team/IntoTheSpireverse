@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SCALEMAIL",
+  "hue": 0.66,
+  "saturation": 1.32,
+  "value": 0.77,
+  "red": 0.54,
+  "green": 1.35,
+  "blue": 0.82,
+  "contrast": 0.84,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/abrasive.tres"
+}

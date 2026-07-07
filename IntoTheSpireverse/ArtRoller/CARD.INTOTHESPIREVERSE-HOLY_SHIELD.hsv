@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-HOLY_SHIELD",
+  "hue": 0.4,
+  "saturation": 0.9,
+  "value": 0.96,
+  "red": 1.53,
+  "green": 1,
+  "blue": 1,
+  "contrast": 0.8,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/tank.tres"
+}

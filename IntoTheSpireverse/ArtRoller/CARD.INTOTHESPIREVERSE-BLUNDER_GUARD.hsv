@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BLUNDER_GUARD",
+  "hue": 0.32,
+  "saturation": 0.78,
+  "value": 1.05,
+  "red": 1,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": false,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/colorless/panache.tres"
+}

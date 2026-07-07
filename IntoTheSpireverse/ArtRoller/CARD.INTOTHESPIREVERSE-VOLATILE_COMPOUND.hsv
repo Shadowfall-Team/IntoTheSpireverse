@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-VOLATILE_COMPOUND",
+  "hue": 0.76,
+  "saturation": 1.2,
+  "value": 0.84,
+  "red": 1,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1.14,
+  "flip_h": false,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/status/toxic.tres"
+}

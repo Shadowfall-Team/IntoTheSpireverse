@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-OUROBOROS",
+  "hue": 0.27,
+  "saturation": 1.25,
+  "value": 0.88,
+  "red": 1,
+  "green": 1,
+  "blue": 1,
+  "contrast": 0.84,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/loop.tres"
+}

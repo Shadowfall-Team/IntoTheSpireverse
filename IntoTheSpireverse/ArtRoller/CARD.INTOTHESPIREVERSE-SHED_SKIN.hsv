@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SHED_SKIN",
+  "hue": 0.76,
+  "saturation": 1.1,
+  "value": 1.23,
+  "red": 0.77,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/hidden_daggers.tres"
+}
