@@ -17,8 +17,6 @@ public sealed class Shift() : ShadowSilentCard(1, CardType.Skill, CardRarity.Unc
     [
         new CardsVar(3),
     ];
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [

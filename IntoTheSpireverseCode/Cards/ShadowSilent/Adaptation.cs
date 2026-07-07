@@ -17,8 +17,7 @@ public sealed class Adaptation() : ShadowSilentCard(1, CardType.Skill, CardRarit
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
-        IntoTheSpireverseKeywords.Devious,
-        CardKeyword.Exhaust,
+        IntoTheSpireverseKeywords.Devious
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -34,6 +33,6 @@ public sealed class Adaptation() : ShadowSilentCard(1, CardType.Skill, CardRarit
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }
