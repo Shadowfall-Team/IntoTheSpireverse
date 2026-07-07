@@ -74,7 +74,7 @@
   "INTOTHESPIREVERSE-RIDDLE_WITH_HOLES.title": "Riddle with Holes",
   "INTOTHESPIREVERSE-RIDDLE_WITH_HOLES.description": "Deal {Damage:diff()} damage {Repeat:diff()} times.",
   "INTOTHESPIREVERSE-OATH_OF_SILENCE.title": "Oath of Silence",
-  "INTOTHESPIREVERSE-OATH_OF_SILENCE.description": "Whenever you play [blue]3[/blue] or fewer cards in a turn, draw {OathOfSilencePower:diff()} additional {OathOfSilencePower:plural:card|cards} next turn.",
+  "INTOTHESPIREVERSE-OATH_OF_SILENCE.description": "If you play 3 or fewer cards in a turn, draw {OathOfSilencePower:diff()} {OathOfSilencePower:plural:card|cards} at the start of your next turn.",
   "INTOTHESPIREVERSE-THOUSAND_CUTS.title": "Thousand Cuts",
   "INTOTHESPIREVERSE-THOUSAND_CUTS.description": "Whenever you play a card, deal {ThousandCutsPower:diff()} damage to ALL enemies.",
   "INTOTHESPIREVERSE-MASTERFUL_STAB.title": "Masterful Stab",
@@ -147,7 +147,7 @@
   "INTOTHESPIREVERSE-VENOMOUS.title": "Venomous",
   "INTOTHESPIREVERSE-VENOMOUS.description": "[gold]Poisoned[/gold] enemies take an additional {VenomousPower:diff()}% damage.",
   "INTOTHESPIREVERSE-AGENT_OF_CHAOS.title": "Agent of Chaos",
-  "INTOTHESPIREVERSE-AGENT_OF_CHAOS.description": "All AttDICEacks gain [gold]Sly[/gold].\nWhenever you discard a card, [gold]Exhaust[/gold] it.",
+  "INTOTHESPIREVERSE-AGENT_OF_CHAOS.description": "All Attacks gain [gold]Sly[/gold].\nWhenever you discard a card, [gold]Exhaust[/gold] it.",
   "INTOTHESPIREVERSE-HONE_TACTICS.title": "Hone Tactics",
   "INTOTHESPIREVERSE-HONE_TACTICS.description": "Discard {Cards:diff()} {Cards:plural:card|cards}.\nNext turn, gain {energyPrefix:energyIcons(1)} equal to its cost.",
 
