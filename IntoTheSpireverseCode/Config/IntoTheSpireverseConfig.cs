@@ -10,6 +10,7 @@ internal class IntoTheSpireverseConfig : SimpleModConfig
 {
     [ConfigSection("ShadowRegent")]
     public static bool ShowCargoCardStack { get; set; } = true;
+    public static bool ShowAmmoReminder { get; set; } = false;
 
     /*
     [ConfigSection("Development")]
