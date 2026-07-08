@@ -6,19 +6,19 @@ using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
 
-public partial class NAmmoPileReminder : Control
+public partial class NAmmoCounterReminder : Control
 {
-    private NAmmoPile _pile = null!;
+    private NAmmoCounter _counter = null!;
     private Player? _player;
     private Tween? _fadeTween;
 
     public override void _Ready()
     {
-        _pile = ResourceLoader.Load<PackedScene>(IntoTheSpireverseResources.AmmoPileScene).Instantiate<NAmmoPile>();
+        _counter = ResourceLoader.Load<PackedScene>(IntoTheSpireverseResources.AmmoCounterScene).Instantiate<NAmmoCounter>();
         var font = PreloadManager.Cache.GetAsset<Font>(IntoTheSpireverseResources.MegaLabelFont);
-        _pile.ApplyFont(font, minSize: 32, maxSize: 32);
-        _pile.Modulate = new Color(1, 1, 1, 0);
-        AddChild(_pile);
+        _counter.ApplyFont(font, minSize: 32, maxSize: 32);
+        _counter.Modulate = new Color(1, 1, 1, 0);
+        AddChild(_counter);
     }
 
     public void Initialize(Player player)
@@ -53,15 +53,11 @@ public partial class NAmmoPileReminder : Control
                          && _player.Creature.CombatState?.CurrentSide == CombatSide.Player;
 
         if (shouldShow)
-        {
-            _pile.SetCount(AmmoResource.GetAmmo(_player!));
-        }
-
-        var opacity = shouldShow ? 1f : 0f;
+            _counter.SetCount(AmmoResource.GetAmmo(_player!));
 
         _fadeTween?.Kill();
         _fadeTween = CreateTween();
-        _fadeTween.TweenProperty(_pile, "modulate:a", opacity, 0.2f)
+        _fadeTween.TweenProperty(_counter, "modulate:a", shouldShow ? 1f : 0f, 0.2f)
             .SetEase(Tween.EaseType.Out)
             .SetTrans(Tween.TransitionType.Sine);
     }

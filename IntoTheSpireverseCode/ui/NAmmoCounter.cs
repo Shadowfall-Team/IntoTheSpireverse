@@ -3,7 +3,7 @@ using MegaCrit.Sts2.addons.mega_text;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
 
-public partial class NAmmoPile : Control
+public partial class NAmmoCounter : Control
 {
     private IntoTheSpireverseMegaLabel? _countLabel;
 

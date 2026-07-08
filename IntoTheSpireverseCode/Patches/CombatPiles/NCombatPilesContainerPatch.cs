@@ -43,7 +43,7 @@ public static class NCombatUiActivatePatch
         ammoButton?.Initialize(player);
 
         var endTurnButton = NCombatRoom.Instance?.Ui.EndTurnButton;
-        var ammoReminder = endTurnButton?.GetNodeOrNull<NAmmoPileReminder>("_AmmoReminder");
+        var ammoReminder = endTurnButton?.GetNodeOrNull<NAmmoCounterReminder>("_AmmoReminder");
         ammoReminder?.Initialize(player);
     }
 }

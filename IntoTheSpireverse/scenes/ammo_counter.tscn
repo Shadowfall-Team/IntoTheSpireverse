@@ -2,15 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://51osq8vorvg8" path="res://IntoTheSpireverse/images/combat_ui/ammo_pile.png" id="1_jsifu"]
 [ext_resource type="Script" uid="uid://btpgy6v3mi745" path="res://IntoTheSpireverseCode/Ui/IntoTheSpireverseMegaLabel.cs" id="2_dveh0"]
-[ext_resource type="Script" uid="uid://brvk4mke74g6" path="res://IntoTheSpireverseCode/Ui/NAmmoPile.cs" id="3_ammopile"]
+[ext_resource type="Script" uid="uid://brvk4mke74g6" path="res://IntoTheSpireverseCode/Ui/NAmmoCounter.cs" id="3_ammocounter"]
 
-[node name="AmmoPile" type="Control"]
+[node name="AmmoCounter" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 80.0
 mouse_filter = 2
-script = ExtResource("3_ammopile")
+script = ExtResource("3_ammocounter")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1

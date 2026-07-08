@@ -38,7 +38,7 @@ public partial class NCargoPile : NCombatCardPile
 
     protected override PileType Pile => CargoCardPile.CargoPileType;
 
-    private static readonly string _scenePath = "res://IntoTheSpireverse/scenes/CargoPile.tscn";
+    private static readonly string _scenePath = IntoTheSpireverseResources.CargoPileScene;
 
     public static AddedNode<NCombatPilesContainer, NCargoPile> _ = new(container =>
     {
