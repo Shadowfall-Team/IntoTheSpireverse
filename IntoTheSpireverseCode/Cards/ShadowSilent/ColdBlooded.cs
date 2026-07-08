@@ -20,8 +20,8 @@ public sealed class ColdBlooded() : ShadowSilentCard(1, CardType.Power, CardRari
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ColdBloodedPower>(6m),
-        new CardsVar(3)
+        new PowerVar<ColdBloodedPower>(4m),
+        new CardsVar(2)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
