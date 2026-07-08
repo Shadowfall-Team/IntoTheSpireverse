@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SNECKO_FORM",
+  "hue": 0.19,
+  "saturation": 1.47,
+  "value": 1.18,
+  "red": 1.28,
+  "green": 0.94,
+  "blue": 1.2,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/wraith_form.tres"
+}
