@@ -17,7 +17,7 @@ public class MysticPendant : ShadowSilentRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(1),
+        new CardsVar(3),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
