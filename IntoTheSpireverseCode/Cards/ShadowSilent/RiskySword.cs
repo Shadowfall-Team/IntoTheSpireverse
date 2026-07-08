@@ -21,7 +21,7 @@ public sealed class RiskySword() : ShadowSilentCard(1, CardType.Attack, CardRari
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8m, ValueProp.Move),
-        new DynamicVar(IncreaseKey, 8m),
+        new DynamicVar(IncreaseKey, 12m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -50,7 +50,7 @@ public sealed class RiskySword() : ShadowSilentCard(1, CardType.Attack, CardRari
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
-        DynamicVars[IncreaseKey].UpgradeValueBy(3m);
+        DynamicVars[IncreaseKey].UpgradeValueBy(4m);
     }
     
     protected override void AfterDowngraded()
