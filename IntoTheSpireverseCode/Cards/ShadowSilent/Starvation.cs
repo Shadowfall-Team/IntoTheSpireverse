@@ -29,6 +29,7 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         CardKeyword.Exhaust,
+        CardKeyword.Eternal,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
