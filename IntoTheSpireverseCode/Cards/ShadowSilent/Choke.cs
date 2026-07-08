@@ -24,11 +24,6 @@ public sealed class Choke() : ShadowSilentCard(2, CardType.Attack, CardRarity.Un
         new DamageVar(14m, ValueProp.Move),
         new PowerVar<ChokePower>(3m),
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        EnergyHoverTip,
-    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

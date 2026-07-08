@@ -17,8 +17,7 @@ public sealed class Reptomancy() : ShadowSilentCard(0, CardType.Skill, CardRarit
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Dagger>(IsUpgraded),
-        HoverTipFactory.Static(StaticHoverTip.Transform),
+        HoverTipFactory.FromCard<Dagger>(IsUpgraded)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

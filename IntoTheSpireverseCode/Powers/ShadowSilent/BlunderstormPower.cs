@@ -32,7 +32,7 @@ public class BlunderstormPower : ShadowPowerModel
 
     public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        return card.Owner.Creature != Owner || CombatManager.Instance.History.CardPlaysStarted.Count( e => e.Actor == Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState) && e.CardPlay.Card.EnergyCost.GetResolved() >= 3) >= Amount || card.EnergyCost.GetResolved() < 3 ? playCount : playCount + 1;
+        return card.Owner.Creature != Owner || CombatManager.Instance.History.CardPlaysStarted.Count( e => e.Actor == Owner && e.CardPlay.IsFirstInSeries && e.HappenedThisTurn(CombatState) && e.CardPlay.Resources.EnergyValue >= 3) >= Amount || card.EnergyCost.GetResolved() < 3 ? playCount : playCount + 1;
     }
 
     public override Task AfterModifyingCardPlayCount(CardModel card)

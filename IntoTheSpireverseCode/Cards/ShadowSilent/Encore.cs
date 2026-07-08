@@ -17,8 +17,6 @@ public sealed class Encore() : ShadowSilentCard(4, CardType.Attack, CardRarity.R
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     
-    public override bool GainsBlock => true;
-    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(54m, ValueProp.Move),

@@ -10,6 +10,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
@@ -18,6 +19,11 @@ public sealed class BlunderGuard() : ShadowSilentCard(0, CardType.Power, CardRar
 {
     private const string StrengthKey = "StrengthGain";
     
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.Static(StaticHoverTip.Block),
+        HoverTipFactory.FromPower<StrengthPower>(),
+    ];
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<BlunderGuardPower>(6m),

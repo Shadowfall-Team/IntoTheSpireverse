@@ -20,6 +20,12 @@ public sealed class LuckyStreak() : ShadowSilentCard(2, CardType.Power, CardRari
     [
         new PowerVar<LuckyStreakPower>(1m),
     ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.ForEnergy(this),
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

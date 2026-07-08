@@ -15,7 +15,6 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 [Pool(typeof(ShadowSilentCardPool))]
 public sealed class TouchOfDeath() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    public override bool GainsBlock => true;
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

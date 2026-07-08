@@ -20,6 +20,11 @@ public sealed class EasyGoing() : ShadowSilentCard(1, CardType.Power, CardRarity
     [
         new PowerVar<EasyGoingPower>(2m),
     ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.Static(StaticHoverTip.Block)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
