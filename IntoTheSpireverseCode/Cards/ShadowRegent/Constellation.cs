@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
@@ -21,7 +22,9 @@ public class Constellation() : ShadowRegentCard(
     [
         new BlockVar(8, ValueProp.Move)
     ];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
 
@@ -31,22 +34,28 @@ public class Constellation() : ShadowRegentCard(
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
 
-        var drawPile = PileType.Draw.GetPile(Owner)
-            .Cards.OrderBy(c => c.Rarity)
+        var hand = PileType.Hand.GetPile(Owner)
+            .Cards.ToList();
+        var drawPile = PileType.Draw.GetPile(Owner).Cards
+            .OrderBy(c => c.Rarity)
             .ThenBy(c => c.Id).ToList();
-        if (drawPile.Count == 0) return;
+        List<CardModel> drawOrHand = [..hand, ..drawPile];
+        if (drawOrHand.Count == 0) return;
 
-        var noChoice = drawPile.Count == 1;
+        var noChoice = drawOrHand.Count == 1;
 
         var cardSelectorPrefs =
             new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 1);
         var results =
-            await CardSelectCmd.FromSimpleGrid(choiceContext, drawPile, Owner,
-                cardSelectorPrefs);
+            (await CardSelectCmd.FromSimpleGrid(choiceContext, drawOrHand, Owner,
+                cardSelectorPrefs)).ToList();
 
-        if (noChoice) {
-            await CardPileCmdExtras.TransferPileAndPreview(results, PileType.Draw, CargoCardPile.CargoPileType);
-        } else {
+        if (noChoice)
+        {
+            await CardPileCmdExtras.TransferPileAndPreview(results, results.First().Pile!.Type, CargoCardPile.CargoPileType);
+        }
+        else
+        {
             await CardPileCmd.Add(results, CargoCardPile.CargoPileType);
         }
     }

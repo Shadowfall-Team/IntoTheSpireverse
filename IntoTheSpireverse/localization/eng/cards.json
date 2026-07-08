@@ -679,7 +679,7 @@
   "INTOTHESPIREVERSE-GRAPESHOT.title": "Grapeshot",
   "INTOTHESPIREVERSE-EXALTED_FORM.description": "At the start of your turn, add a 0-cost [gold]Discovery[/gold] to your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-EXALTED_FORM.title": "Exalted Form",
-  "INTOTHESPIREVERSE-CONSTELLATION.description": "Gain {Block:diff()} [gold]Block[/gold]. Put a card from your [gold]Draw Pile[/gold] into your [gold]Cargo[/gold].",
+  "INTOTHESPIREVERSE-CONSTELLATION.description": "Gain {Block:diff()} [gold]Block[/gold]. Put a card from your [gold]Hand[/gold] or [gold]Draw Pile[/gold] into your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-CONSTELLATION.title": "Constellation",
   "INTOTHESPIREVERSE-OVERDRIVE.description": "Deal {CalculatedDamage:diff()} damage. Double this card's damage for each [gold]Warp[/gold] you've played this combat.",
   "INTOTHESPIREVERSE-OVERDRIVE.title": "Overdrive",
