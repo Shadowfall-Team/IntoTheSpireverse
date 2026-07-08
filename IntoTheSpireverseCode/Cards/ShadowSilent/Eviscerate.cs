@@ -21,7 +21,7 @@ public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRari
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(7m, ValueProp.Move),
-        new RepeatVar(4),
+        new RepeatVar(3),
         new EnergyVar(1),
     ];
     
