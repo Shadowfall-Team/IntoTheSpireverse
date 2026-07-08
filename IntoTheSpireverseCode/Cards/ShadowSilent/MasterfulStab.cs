@@ -39,7 +39,7 @@ public sealed class MasterfulStab() : ShadowSilentCard(0, CardType.Attack, CardR
             .Execute(choiceContext);
     }
     
-    public override bool TryModifyEnergyCostInCombatLate(
+    public override bool TryModifyEnergyCostInCombat(
         CardModel card,
         decimal originalCost,
         out decimal modifiedCost)
