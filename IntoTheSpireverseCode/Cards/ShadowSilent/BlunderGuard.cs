@@ -27,7 +27,7 @@ public sealed class BlunderGuard() : ShadowSilentCard(0, CardType.Power, CardRar
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<BlunderGuardPower>(6m),
-        new DynamicVar(StrengthKey, 2m),
+        new DynamicVar(StrengthKey, 1m),
         new EnergyVar(3)
     ];
 

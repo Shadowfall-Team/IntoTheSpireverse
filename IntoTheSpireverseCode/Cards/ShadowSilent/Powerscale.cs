@@ -19,7 +19,7 @@ public sealed class Powerscale() : ShadowSilentCard(2, CardType.Power, CardRarit
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<PowerscalePower>(1m),
+        new PowerVar<PowerscalePower>(3m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

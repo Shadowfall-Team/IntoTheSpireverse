@@ -38,6 +38,6 @@ public sealed class Unburden() : ShadowSilentCard(1, CardType.Skill, CardRarity.
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(4m);
     }
 }
