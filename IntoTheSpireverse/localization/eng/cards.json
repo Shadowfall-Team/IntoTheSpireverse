@@ -150,6 +150,10 @@
   "INTOTHESPIREVERSE-AGENT_OF_CHAOS.description": "All Attacks gain [gold]Sly[/gold].\nWhenever you discard a card, [gold]Exhaust[/gold] it.",
   "INTOTHESPIREVERSE-HONE_TACTICS.title": "Hone Tactics",
   "INTOTHESPIREVERSE-HONE_TACTICS.description": "Discard {Cards:diff()} {Cards:plural:card|cards}.\nNext turn, gain {energyPrefix:energyIcons(1)} equal to its cost.",
+  "INTOTHESPIREVERSE-HAYMAKER.title": "Haymaker",
+  "INTOTHESPIREVERSE-HAYMAKER.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].",
+  "INTOTHESPIREVERSE-SNECKO_FORM.title": "Snecko Form",
+  "INTOTHESPIREVERSE-SNECKO_FORM.description": "Become [gold]Confused[/gold].\nGain {Stats:diff()} [gold]Strength[/gold] and [gold]Dexterity[/gold].",
 
   "INTOTHESPIREVERSE-DECAY.description": "[gold]Channel[/gold] 1 [gold]Entropy[/gold].\n[gold]Cycle[/gold].",
   "INTOTHESPIREVERSE-DECAY.title": "Decay",
