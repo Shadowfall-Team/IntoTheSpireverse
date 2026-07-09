@@ -28,9 +28,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
 
 public partial class NAmmoButton : NButton
 {
-    private static readonly string _scenePath = "res://IntoTheSpireverse/scenes/CaptainsShip.tscn";
-
-    private static readonly string _megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
+    private static readonly string _scenePath = IntoTheSpireverseResources.CaptainsShipScene;
 
     private Player _player = null!;
     private bool _initialized;
@@ -40,7 +38,7 @@ public partial class NAmmoButton : NButton
     private Control _shipContainer = null!;
     private ShaderMaterial? _hologramMaterial;
     private IntoTheSpireverseMegaRichTextLabel _damageLabel = null!;
-    private IntoTheSpireverseMegaLabel _ammoCountLabel = null!;
+    private NAmmoCounter _ammoCounter = null!;
     private IntoTheSpireverseMegaLabel _fireLabel = null!;
     private IntoTheSpireverseMegaLabel _energyCostLabel = null!;
     private TextureRect _energyIcon = null!;
@@ -69,11 +67,12 @@ public partial class NAmmoButton : NButton
                 _player.Creature.CombatState?.CurrentSide != CombatSide.Player)
                 return false;
             if (AvailableAmmoCount <= 0) return false;
+            if (AvailableEnergy < AmmoResource.GetShotEnergyCost(_player)) return false;
+
             var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();
             if (!hasBigGuns && !(_player.Creature.CombatState?.HittableEnemies.Any() ?? false))
                 return false;
-            return AvailableEnergy >= AmmoResource.GetShotEnergyCost(_player)
-                   && NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play
+            return NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play
                    && !CombatManager.Instance.IsOverOrEnding;
         }
     }
@@ -96,7 +95,7 @@ public partial class NAmmoButton : NButton
         _shipContainer = GetNode<Control>("ShipContainer");
         _hologramMaterial = GetNode<TextureRect>("ShipContainer/ShipIcon").Material as ShaderMaterial;
         _damageLabel = GetNode<IntoTheSpireverseMegaRichTextLabel>("%DamageLabel");
-        _ammoCountLabel = GetNode<IntoTheSpireverseMegaLabel>("%Count");
+        _ammoCounter = GetNode<NAmmoCounter>("AmmoContainer/AmmoCounter");
         _fireLabel = GetNode<IntoTheSpireverseMegaLabel>("%FireButtonLabel");
         _energyCostLabel = GetNode<IntoTheSpireverseMegaLabel>("%EnergyLabel");
         _energyIcon = GetNode<TextureRect>("%EnergyIcon");
@@ -173,13 +172,11 @@ public partial class NAmmoButton : NButton
     public static NAmmoButton Create()
     {
         var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
-        var font = PreloadManager.Cache.GetAsset<Font>(_megaLabelFont);
+        var font = PreloadManager.Cache.GetAsset<Font>(IntoTheSpireverseResources.MegaLabelFont);
         ApplyFont(button.GetNode<IntoTheSpireverseMegaRichTextLabel>("%DamageLabel"), font,
             minSize: 22,
             maxSize: 28);
-        ApplyFont(button.GetNode<IntoTheSpireverseMegaLabel>("%Count"), font, minSize: 32,
-            maxSize: 32);
-        ApplyFont(button.GetNode<IntoTheSpireverseMegaLabel>("%FireButtonLabel"),
+        button.GetNode<NAmmoCounter>("AmmoContainer/AmmoCounter").ApplyFont(font, minSize: 32, maxSize: 32);        ApplyFont(button.GetNode<IntoTheSpireverseMegaLabel>("%FireButtonLabel"),
             font, minSize: 20, maxSize: 20);
         ApplyFont(button.GetNode<IntoTheSpireverseMegaLabel>("%EnergyLabel"),
             font, minSize: 21, maxSize: 24);
@@ -302,6 +299,7 @@ public partial class NAmmoButton : NButton
             _hasEverHadAmmo = true;
             AnimIn();
         }
+
         UpdateState();
     }
 
@@ -335,7 +333,7 @@ public partial class NAmmoButton : NButton
         if (!_initialized) return;
         if (_player.PlayerCombatState == null) return;
 
-        _ammoCountLabel.Text = AvailableAmmoCount.ToString();
+        _ammoCounter.SetCount(AvailableAmmoCount);
 
         var damage = (int)AmmoResource.GetShotDamage(_player);
         _damageLabel.Text = $"{damage}";

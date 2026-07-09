@@ -1,10 +1,9 @@
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.ui;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
@@ -24,17 +23,6 @@ public static class NCombatPilesContainerPatch
     {
         __instance.GetNodeOrNull<NCargoPile>("_CargoPile")?.Disable();
     }
-    
-    [HarmonyPatch(nameof(NCombatPilesContainer.Initialize))]
-    [HarmonyPostfix]
-    public static void Postfix(Player player)
-    {
-        if (!LocalContext.IsMe(player)) return;
-
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        var ammoButton = creatureNode?.GetNodeOrNull<NAmmoButton>("AmmoButton");
-        ammoButton?.Initialize(player);
-    }
 }
 
 [HarmonyPatch(typeof(NCombatUi), "Activate")]
@@ -47,6 +35,15 @@ public static class NCombatUiActivatePatch
         var cargoPile = container.GetNodeOrNull<NCargoPile>("_CargoPile");
         var player = LocalContext.GetMe(state);
         if (player == null) return;
+
         cargoPile?.Initialize(player);
+
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        var ammoButton = creatureNode?.GetNodeOrNull<NAmmoButton>("AmmoButton");
+        ammoButton?.Initialize(player);
+
+        var endTurnButton = NCombatRoom.Instance?.Ui.EndTurnButton;
+        var ammoReminder = endTurnButton?.GetNodeOrNull<NAmmoCounterReminder>("_AmmoReminder");
+        ammoReminder?.Initialize(player);
     }
 }

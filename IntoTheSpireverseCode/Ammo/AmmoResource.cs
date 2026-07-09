@@ -24,7 +24,15 @@ public static class AmmoResource
     // TODO: stub for future ship muzzle-flash VFX
     // public static event Action<Player>? OnAmmoFiredStub;
 
-    public static int GetAmmo(Player player) => player.PlayerCombatState != null ? PlayerAmmo[player.PlayerCombatState] : 0;
+    public static int GetAmmo(Player player) =>
+        player.PlayerCombatState != null ? PlayerAmmo[player.PlayerCombatState] : 0;
+
+    public static bool CanSpendAmmo(Player player)
+    {
+        if (player.PlayerCombatState == null) return false;
+        if (GetAmmo(player) <= 0) return false;
+        return player.PlayerCombatState.Energy >= GetShotEnergyCost(player);
+    }
 
     public static async Task GainAmmo(int amount, Player player)
     {
