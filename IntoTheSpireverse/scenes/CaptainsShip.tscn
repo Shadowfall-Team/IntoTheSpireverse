@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dbtqxgu7bq2i7"]
 
-[ext_resource type="Script" uid="uid://cvpeugt8eskxh" path="res://IntoTheSpireverseCode/ui/NAmmoButton.cs" id="1_dh6nf"]
-[ext_resource type="Script" uid="uid://btpgy6v3mi745" path="res://IntoTheSpireverseCode/ui/IntoTheSpireverseMegaLabel.cs" id="1_ruvg3"]
+[ext_resource type="Script" uid="uid://cvpeugt8eskxh" path="res://IntoTheSpireverseCode/Ui/NAmmoButton.cs" id="1_dh6nf"]
+[ext_resource type="Script" uid="uid://btpgy6v3mi745" path="res://IntoTheSpireverseCode/Ui/IntoTheSpireverseMegaLabel.cs" id="1_ruvg3"]
 [ext_resource type="Material" uid="uid://cnm3o6q6r6nbc" path="res://IntoTheSpireverse/materials/hologram_material.tres" id="2_anfaq"]
 [ext_resource type="Texture2D" uid="uid://dla5jkt2ao6b7" path="res://IntoTheSpireverse/images/combat_ui/captainship.png" id="2_nfjci"]
-[ext_resource type="Script" uid="uid://drltdclew0sp6" path="res://IntoTheSpireverseCode/ui/IntoTheSpireverseMegaRichTextLabel.cs" id="4_anfaq"]
+[ext_resource type="Script" uid="uid://drltdclew0sp6" path="res://IntoTheSpireverseCode/Ui/IntoTheSpireverseMegaRichTextLabel.cs" id="4_anfaq"]
 [ext_resource type="Texture2D" uid="uid://5ris3fd14de4" path="res://IntoTheSpireverse/images/combat_ui/ammo_button.png" id="4_dc20g"]
 [ext_resource type="PackedScene" uid="uid://ddy8nki3qj363" path="res://IntoTheSpireverse/scenes/ammo_counter.tscn" id="6_2lcad"]
 [ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://IntoTheSpireverse/images/relics/relic_outline.png" id="7_8knwp"]
