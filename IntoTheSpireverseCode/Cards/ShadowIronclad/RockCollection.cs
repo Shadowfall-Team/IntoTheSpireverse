@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class RockCollection() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class RockCollection() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

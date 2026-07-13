@@ -410,7 +410,7 @@
   "INTOTHESPIREVERSE-DEPOSIT.title": "Deposit",
   "INTOTHESPIREVERSE-DEPOSIT.description": "Gain {SlatePower:diff()} [gold]Slate[/gold].",
   "INTOTHESPIREVERSE-DIG_DEEP.title": "Dig Deep",
-  "INTOTHESPIREVERSE-DIG_DEEP.description": "Lose {HpLoss:diff()} HP.\nDraw {Cards:diff()} {Cards:plural:card|cards} and gain {Energy:energyIcons()}.\nThis card cannot be played again this turn.",
+  "INTOTHESPIREVERSE-DIG_DEEP.description": "Lose {HpLoss:diff()} HP.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nThis card cannot be played again this turn.",
   "INTOTHESPIREVERSE-DISMEMBER.title": "Dismember",
   "INTOTHESPIREVERSE-DISMEMBER.description": "Lose {HpLoss:diff()} HP.\nDeal {Damage:diff()} damage.\nPlay the top card of your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-EARTHBEND.title": "Earthbend",
