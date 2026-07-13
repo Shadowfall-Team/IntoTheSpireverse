@@ -14,7 +14,7 @@ public sealed class DeepRock() : RockCardBase(2, CardType.Attack, CardRarity.Tok
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(14m, ValueProp.Move),
+        new DamageVar(12m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [

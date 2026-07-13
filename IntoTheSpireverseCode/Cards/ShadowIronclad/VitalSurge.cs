@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
@@ -24,7 +25,8 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(5m, ValueProp.Move),
+        
+        new EnergyVar(2),
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
         new CalculatedVar(CalculatedHealKey).WithMultiplier((card, _) => GetHpLostThisTurn(card)),
@@ -42,12 +44,16 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+       
+        
+        await PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+
 
         decimal heal = ((CalculatedVar)DynamicVars[CalculatedHealKey]).Calculate(null);
         if (heal > 0)
             await CreatureCmd.Heal(Owner.Creature, (int)heal);
     }
 
-    protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);
+    protected override void OnUpgrade() => 
+        DynamicVars.Energy.UpgradeValueBy(1m);
 }

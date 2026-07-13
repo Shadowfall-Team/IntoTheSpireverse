@@ -27,7 +27,7 @@ public sealed class BombRock() : RockCardBase(3, CardType.Attack, CardRarity.Tok
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(22m, ValueProp.Move),
+        new DamageVar(20m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

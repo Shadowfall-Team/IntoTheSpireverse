@@ -15,8 +15,9 @@ public sealed class DigDeep() : ShadowIroncladCard(0, CardType.Skill, CardRarity
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HpLossVar(2m),
+        new HpLossVar(3m),
         new CardsVar(2),
+        new EnergyVar(1)
     ];
 
     protected override bool IsPlayable => !HasBeenPlayedThisTurn;
@@ -28,6 +29,8 @@ public sealed class DigDeep() : ShadowIroncladCard(0, CardType.Skill, CardRarity
             DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
 
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
+
     }
 
     protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1m);

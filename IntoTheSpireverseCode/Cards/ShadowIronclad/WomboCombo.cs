@@ -22,9 +22,9 @@ public sealed class WomboCombo() : ShadowIroncladCard(3, CardType.Attack, CardRa
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-
+        
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(2)
+            .WithHitCount(ResolveEnergyXValue())
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
@@ -33,6 +33,7 @@ public sealed class WomboCombo() : ShadowIroncladCard(3, CardType.Attack, CardRa
         if (CombatManager.Instance.IsOverOrEnding) return;
 
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        //TODO - Filter this to only cards of ResolveEnergyXValue or less
         var card = (await CardSelectCmd.FromSimpleGrid(
             choiceContext,
             PileType.Discard.GetPile(Owner).Cards,

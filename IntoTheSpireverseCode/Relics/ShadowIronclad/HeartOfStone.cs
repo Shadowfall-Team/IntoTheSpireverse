@@ -23,6 +23,9 @@ public class HeartOfStone : ShadowIroncladRelic
 
     public override async Task AfterCombatVictory(CombatRoom room)
     {
+        //TODO: New Starter Relic: Absorbs the first 6 HP you lose each combat.
+        //TODO: New Starter Upgrade: Absorbs the first 12 HP you lose each combat.
+
         if (room.RoomType != RoomType.Elite) return;
         if (Owner.Creature.IsDead) return;
 

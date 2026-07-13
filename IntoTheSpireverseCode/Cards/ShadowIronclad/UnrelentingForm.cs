@@ -22,6 +22,7 @@ public sealed class UnrelentingForm() : ShadowIroncladCard(3, CardType.Power, Ca
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        //TODO - Full-scale rework. Spending all of the hand isn't really what this character does. Change to "Gain E and draw 1 card after each of the first 2(3) Attacks each turn."
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         (await PowerCmd.Apply<UnrelentingFormPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this))

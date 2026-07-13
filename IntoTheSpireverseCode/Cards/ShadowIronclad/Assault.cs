@@ -18,6 +18,8 @@ public sealed class Assault() : ShadowIroncladCard(2, CardType.Skill, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        //TODO - Full rework to: "Shuffle all Attacks in your Discard pile into your Draw pile and reduce their cost by 1 until played. Draw 3(4) cards."
+        
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         var drawPile = PileType.Draw.GetPile(Owner);

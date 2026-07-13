@@ -22,8 +22,8 @@ public sealed class MoltenRock() : RockCardBase(1, CardType.Attack, CardRarity.T
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9m, ValueProp.Move),
-        new PowerVar<GabbroPower>(3m),
+        new DamageVar(8m, ValueProp.Move),
+        new PowerVar<GabbroPower>(2m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
