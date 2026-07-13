@@ -1,9 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
 
@@ -11,30 +14,59 @@ public class HeartOfTheMountain : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new HealVar(18m),
-        new MaxHpVar(2m),
-        new PowerVar<StrengthPower>(3m)
-    ];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(16)];
 
-    public override async Task AfterRoomEntered(AbstractRoom room)
+    private int _healedThisCombat;
+
+    private int HealedThisCombat
     {
-        if (room.RoomType == RoomType.Boss || room.RoomType == RoomType.Elite)
+        get { return _healedThisCombat; }
+        set
         {
-            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(),
-                Owner.Creature, DynamicVars.Strength.BaseValue, Owner.Creature, null
-            );
+            _healedThisCombat = value;
+            UpdateDisplay();
         }
     }
 
-    public override async Task AfterCombatVictory(CombatRoom room)
+    public override int DisplayAmount => DynamicVars.Heal.IntValue - HealedThisCombat;
+
+    public override bool ShowCounter => CombatManager.Instance.IsInProgress && DisplayAmount > 0;
+
+    public override async Task AfterDamageReceived(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        DamageResult result,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource)
     {
-        if (room.RoomType != RoomType.Elite) return;
-        if (Owner.Creature.IsDead) return;
+        if (HealedThisCombat >= DynamicVars.Heal.IntValue || target != Owner.Creature || result.UnblockedDamage <= 0)
+            return;
 
         Flash();
-        await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);
-        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue);
+        var healAmount = Math.Clamp(result.UnblockedDamage, 0, DynamicVars.Heal.IntValue - HealedThisCombat);
+        await CreatureCmd.Heal(target, healAmount, false);
+        HealedThisCombat += healAmount;
+
+        UpdateDisplay();
+    }
+
+    public override Task BeforeCombatStart()
+    {
+        UpdateDisplay();
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCombatEnd(CombatRoom _)
+    {
+        HealedThisCombat = 0;
+        Status = RelicStatus.Normal;
+        return Task.CompletedTask;
+    }
+
+    private void UpdateDisplay()
+    {
+        Status = HealedThisCombat >= DynamicVars.Heal.IntValue ? RelicStatus.Disabled : RelicStatus.Normal;
+        InvokeDisplayAmountChanged();
     }
 }
