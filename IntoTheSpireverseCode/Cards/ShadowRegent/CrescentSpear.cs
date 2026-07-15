@@ -23,7 +23,7 @@ public class CrescentSpear() : ShadowRegentCard(1,
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, ValueProp.Move)
+        new DamageVar(9, ValueProp.Move)
     ];
     
     

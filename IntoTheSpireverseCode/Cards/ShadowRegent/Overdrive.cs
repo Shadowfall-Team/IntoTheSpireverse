@@ -23,6 +23,7 @@ public class Overdrive() : ShadowRegentCard(
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
+        new IntVar("FakeBaseDamage", 4),
         new CalculationBaseVar(0),
         new ExtraDamageVar(4),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
@@ -47,6 +48,7 @@ public class Overdrive() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
+        DynamicVars["FakeBaseDamage"].UpgradeValueBy(4);
         DynamicVars.ExtraDamage.UpgradeValueBy(4);
     }
 }

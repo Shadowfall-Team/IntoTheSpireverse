@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class EMPulse() : ShadowRegentCard(
+public class PoweredPulse() : ShadowRegentCard(
     2,
     CardType.Skill,
     CardRarity.Rare,
@@ -23,8 +23,9 @@ public class EMPulse() : ShadowRegentCard(
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
@@ -46,9 +47,9 @@ public class EMPulse() : ShadowRegentCard(
 
             foreach (var creature in CombatState.HittableEnemies)
             {
-                await PowerCmd.Apply<EMPulsePower>(
-                    new ThrowingPlayerChoiceContext(),creature,
-                    DynamicVars["StrengthLoss"].BaseValue * await GeneratePlayCount(CombatState, creature), Owner.Creature, this);
+                await PowerCmd.Apply<PoweredPulsePower>(choiceContext, creature,
+                    DynamicVars["StrengthLoss"].BaseValue * await GeneratePlayCount(CombatState, creature),
+                    Owner.Creature, this);
             }
         }
     }
@@ -59,10 +60,9 @@ public class EMPulse() : ShadowRegentCard(
     }
 }
 
-
-public class EMPulsePower : TemporaryStrengthPower, ICustomPower
+public class PoweredPulsePower : TemporaryStrengthPower, ICustomPower
 {
-    public override AbstractModel OriginModel => ModelDb.Card<EMPulse>();
+    public override AbstractModel OriginModel => ModelDb.Card<PoweredPulse>();
 
     string? ICustomPower.CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
     string? ICustomPower.CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigPowerImagePath();
