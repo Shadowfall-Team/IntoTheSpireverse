@@ -16,7 +16,7 @@ public sealed class Medusa() : ShadowSilentCard(0, CardType.Attack, CardRarity.R
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8m, ValueProp.Move),
+        new DamageVar(7m, ValueProp.Move),
         new PowerVar<VulnerablePower>(1m),
     ];
     

@@ -12,11 +12,11 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class Intoxicate() : ShadowSilentCard(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public sealed class Intoxicate() : ShadowSilentCard(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

@@ -34,11 +34,6 @@ public sealed class MomentOfClarity() : ShadowSilentCard(1, CardType.Skill, Card
         EnergyHoverTip,
     ];
     
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        CardKeyword.Exhaust,
-    ];
-    
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int cost = EnergyCost.GetWithModifiers(CostModifiers.All);

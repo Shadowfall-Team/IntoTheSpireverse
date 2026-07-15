@@ -15,7 +15,7 @@ public sealed class Shift() : ShadowSilentCard(1, CardType.Skill, CardRarity.Unc
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(3),
+        new CardsVar(2),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

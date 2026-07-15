@@ -21,7 +21,7 @@ public sealed class RiskySword() : ShadowSilentCard(1, CardType.Attack, CardRari
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8m, ValueProp.Move),
-        new DynamicVar(IncreaseKey, 12m),
+        new DynamicVar(IncreaseKey, 10m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

@@ -22,8 +22,8 @@ public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarit
     private const string StrengthLossKey = "StrengthLoss";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<PoisonPower>(9m),
-        new DynamicVar(StrengthLossKey, 9m),
+        new PowerVar<PoisonPower>(8m),
+        new DynamicVar(StrengthLossKey, 8m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

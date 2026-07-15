@@ -23,7 +23,7 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
     private readonly Color _vfxTint = new Color("83eb85");
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<PoisonPower>(5m),
+        new PowerVar<PoisonPower>(4m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

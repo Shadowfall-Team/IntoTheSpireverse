@@ -15,11 +15,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 [Pool(typeof(ShadowSilentCardPool))]
 public sealed class Encore() : ShadowSilentCard(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(54m, ValueProp.Move),
+        new DamageVar(44m, ValueProp.Move),
     ];
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -35,6 +34,6 @@ public sealed class Encore() : ShadowSilentCard(4, CardType.Attack, CardRarity.R
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(10m);
+        DynamicVars.Damage.UpgradeValueBy(11m);
     }
 }

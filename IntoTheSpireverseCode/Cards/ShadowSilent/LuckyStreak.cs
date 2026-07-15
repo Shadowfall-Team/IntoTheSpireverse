@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class LuckyStreak() : ShadowSilentCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class LuckyStreak() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

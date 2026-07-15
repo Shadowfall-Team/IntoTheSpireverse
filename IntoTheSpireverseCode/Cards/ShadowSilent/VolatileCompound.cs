@@ -16,7 +16,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 [Pool(typeof(ShadowSilentCardPool))]
 public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, IntoTheSpireverseKeywords.Devious];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [IntoTheSpireverseKeywords.Devious];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -45,5 +45,5 @@ public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, Car
     }
 
     protected override void OnUpgrade() =>
-        RemoveKeyword(CardKeyword.Exhaust);
+        EnergyCost.UpgradeBy(-1);
 }
