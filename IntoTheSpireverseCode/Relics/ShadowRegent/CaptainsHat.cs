@@ -24,8 +24,8 @@ public class CaptainsHat : ShadowRegentRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Rounds", 3),
-        new PowerVar<ShardsPower>(2)
+        new IntVar("Rounds", 2),
+        new PowerVar<ShardsPower>(3)
     ];
 
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0k2vjiiwhg42"
-path="res://.godot/imported/e_m_pulse_power.png-b7bfcad125b2bc39b5825b01fa8524f6.ctex"
+uid="uid://dksl26yvvnsl7"
+path="res://.godot/imported/powered_pulse_power.png-c7b80e3b7fccc2470802a9dccbe6771f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/powers/e_m_pulse_power.png"
-dest_files=["res://.godot/imported/e_m_pulse_power.png-b7bfcad125b2bc39b5825b01fa8524f6.ctex"]
+source_file="res://IntoTheSpireverse/images/powers/big/powered_pulse_power.png"
+dest_files=["res://.godot/imported/powered_pulse_power.png-c7b80e3b7fccc2470802a9dccbe6771f.ctex"]
 
 [params]
 

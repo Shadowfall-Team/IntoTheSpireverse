@@ -1,13 +1,13 @@
+using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 
@@ -15,20 +15,32 @@ public class AdmiralsHat : ShadowRegentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("Rounds", 2),
+        new PowerVar<ShardsPower>(4)
+    ];
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        
         HoverTipFactory.FromPower<ShardsPower>(),
-        HoverTipFactory.FromCard<Warp>()
+        HoverTipFactory.FromCard<Warp>(true)
     ];
-    
-    
+
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player != Owner) return;
-        if (player.Creature.CombatState == null || player.PlayerCombatState?.TurnNumber > 1) return;
+        if (player != Owner || player.PlayerCombatState?.TurnNumber > DynamicVars["Rounds"].IntValue) return;
+        await PowerCmd.Apply<ShardsPower>(
+            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            DynamicVars.Power<ShardsPower>().BaseValue, Owner.Creature, null);
+    }
 
-        var warp = player.Creature.CombatState.CreateCard<Warp>(player);
-        await CardPileCmd.AddGeneratedCardToCombat(warp, PileType.Hand, player);
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
+    {
+        if (creator != null && creator == Owner && card.CanonicalInstance == ModelDb.Card<Warp>())
+        {
+            Flash();
+            CardCmd.Upgrade(card);
+        }
     }
 }

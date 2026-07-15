@@ -1,5 +1,7 @@
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -73,7 +75,8 @@ public static class AmmoResource
         var damage = BaseDamage;
 
         // Strength
-        damage += player.Creature.GetPowerAmount<StrengthPower>();
+        if(player.HasPower<AmmoStrengthPower>())
+            damage += player.Creature.GetPowerAmount<StrengthPower>();
 
         // Firepower, Volley, and any future IModifiesAmmoShotDamage powers
         foreach (var model in player.Creature.CombatState!.IterateHookListeners())
