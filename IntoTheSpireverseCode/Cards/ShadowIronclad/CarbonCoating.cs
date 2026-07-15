@@ -11,7 +11,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class CarbonCoating() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class CarbonCoating() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const string CalculatedSlateKey = "CalculatedSlate";
 
@@ -30,6 +30,10 @@ public sealed class CarbonCoating() : ShadowIroncladCard(1, CardType.Skill, Card
     [
         HoverTipFactory.FromPower<SlatePower>(),
     ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -44,5 +48,6 @@ public sealed class CarbonCoating() : ShadowIroncladCard(1, CardType.Skill, Card
         }
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    
+    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
 }

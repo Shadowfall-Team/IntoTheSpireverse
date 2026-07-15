@@ -14,7 +14,7 @@ public sealed class Gabbro() : ShadowIroncladCard(1, CardType.Power, CardRarity.
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<GabbroPower>(6m),
+        new PowerVar<GabbroPower>(4m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

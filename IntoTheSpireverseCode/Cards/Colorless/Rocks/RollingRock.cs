@@ -15,7 +15,7 @@ public sealed class RollingRock() : RockCardBase(1, CardType.Attack, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(10m, ValueProp.Move),
+        new DamageVar(9m, ValueProp.Move),
         new DynamicVar(IncreaseKey, 3m),
     ];
 

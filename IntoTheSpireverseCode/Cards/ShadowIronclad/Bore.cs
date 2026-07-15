@@ -47,5 +47,5 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
         await CardCmd.Transform(original, rock);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);
 }
