@@ -687,7 +687,7 @@
   "INTOTHESPIREVERSE-SUPERMASSIVE.title": "Supermassive",
   "INTOTHESPIREVERSE-BURY_CAPTAIN.description": "Deal {Damage:diff()} damage.",
   "INTOTHESPIREVERSE-BURY_CAPTAIN.title": "Bury",
-  "INTOTHESPIREVERSE-BLOCKADE.description": "[gold]Ammo[/gold] now benefits from your [gold]Strength[/gold].\nWhen you load [gold]Ammo[/gold], gain {Block:diff()} [gold]Block[/gold].",
+  "INTOTHESPIREVERSE-BLOCKADE.description": "[gold]Ammo[/gold] now benefits from your [gold]Strength[/gold].\nWhen you fire [gold]Ammo[/gold], gain {Block:diff()} [gold]Block[/gold].",
   "INTOTHESPIREVERSE-BLOCKADE.title": "Blockade",
   "INTOTHESPIREVERSE-TRASH_COMPACTOR.description": "Deal {Damage:diff()} damage X times. Choose up to X cards in your [gold]Cargo[/gold] to [gold]Exhaust[/gold].",
   "INTOTHESPIREVERSE-TRASH_COMPACTOR.title": "Trash Compactor",
