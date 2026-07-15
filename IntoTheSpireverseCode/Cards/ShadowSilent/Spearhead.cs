@@ -1,37 +1,31 @@
-using BaseLib.Abstracts;
-using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
-[Pool(typeof(TokenCardPool))]
-public sealed class Dagger() : CustomCardModel(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+[Pool(typeof(ShadowSilentCardPool))]
+public sealed class Spearhead() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CalculationBaseVar(10M),
-        new ExtraDamageVar(4M),
+        new CalculationBaseVar(6M),
+        new ExtraDamageVar(2M),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
         {
-            PlayerCombatState playerCombatState = card.Owner.PlayerCombatState;
-            return playerCombatState != null ? playerCombatState.ExhaustPile.Cards.Count(c => c is Scale) : 0;
+            int count = PileType.Hand.GetPile(card.Owner).Cards.Count;
+            CardPile pile = card.Pile;
+            if ((pile != null ? (pile.Type == PileType.Hand ? 1 : 0) : 0) != 0)
+                --count;
+            return count;
         })
-    ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromCard<Scale>(true)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -47,6 +41,6 @@ public sealed class Dagger() : CustomCardModel(1, CardType.Attack, CardRarity.To
 
     protected override void OnUpgrade()
     {
-        DynamicVars.ExtraDamage.UpgradeValueBy(2m);
+        DynamicVars.ExtraDamage.UpgradeValueBy(1m);
     }
 }

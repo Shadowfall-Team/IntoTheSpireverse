@@ -1,5 +1,6 @@
 ﻿
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -19,8 +20,28 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
-public class StarvationPower : ShadowPowerModel
+public class PestilencePower : ShadowPowerModel
 {
-    public override PowerType Type => PowerType.Debuff;
+    public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<PoisonPower>()
+    ];
+    
+    
+    public override async Task AfterDamageReceived(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        DamageResult _,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? __)
+    {
+        if (target != Owner || dealer == null || !props.IsPoweredAttack())
+            return;
+        await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), dealer, Amount, Owner, null);
+    }
+
 }

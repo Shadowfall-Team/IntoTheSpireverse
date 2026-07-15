@@ -1,4 +1,7 @@
 ﻿{
   "INTOTHESPIREVERSE-POLISHED.title": "Polished",
-  "INTOTHESPIREVERSE-POLISHED.description": "This card gains [gold]Retain[/gold] and deals [blue]{Damage}[/blue] additional damage."
+  "INTOTHESPIREVERSE-POLISHED.description": "This card gains [gold]Retain[/gold] and deals [blue]{Damage}[/blue] additional damage.",
+  "INTOTHESPIREVERSE-ARMORED.title": "Armored",
+  "INTOTHESPIREVERSE-ARMORED.description": "This card gains [blue]{Block}[/blue] additional [gold]Block[/gold] and gives {Amount:energyIcons()}.",
+  "INTOTHESPIREVERSE-ARMORED.extraCardText": "Gain {Amount:energyIcons()}."
 }

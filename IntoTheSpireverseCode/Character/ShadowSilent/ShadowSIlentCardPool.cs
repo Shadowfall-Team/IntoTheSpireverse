@@ -39,7 +39,6 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<Flechettes>(),
             ModelDb.Card<LegSweep>(),
             ModelDb.Card<Malaise>(),
-            ModelDb.Card<Pinpoint>(),
             ModelDb.Card<PoisonedStab>(),
             ModelDb.Card<Predator>(),
             ModelDb.Card<SerpentForm>(),

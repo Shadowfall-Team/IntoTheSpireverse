@@ -1,12 +1,12 @@
 {
-  "card_id": "CARD.INTOTHESPIREVERSE-DICE_BOULDER",
-  "hue": 0.3,
-  "saturation": 0.81,
-  "value": 1.09,
+  "card_id": "CARD.INTOTHESPIREVERSE-MISTY_STEP",
+  "hue": 0.78,
+  "saturation": 0.67,
+  "value": 1.56,
   "red": 1,
   "green": 1,
   "blue": 1,
-  "contrast": 0.88,
+  "contrast": 0.86,
   "flip_h": true,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/afterimage.tres"
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/shadow_step.tres"
 }

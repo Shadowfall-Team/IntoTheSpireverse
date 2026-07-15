@@ -1,3 +1,4 @@
+using BaseLib.Extensions;
 using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -16,6 +17,7 @@ using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
@@ -44,6 +46,9 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Cargo;
+    
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword Arcane;
     
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
@@ -108,16 +113,21 @@ public static class IntoTheSpireverseKeywords
 
         int currentCost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         int newCost;
+        int maxCostReduce = 0;
+        if (card.Owner.Creature.HasPower<SharpWitPower>())
+        {
+            maxCostReduce = card.Owner.Creature.GetPowerAmount<SharpWitPower>();
+        }
 
         if (currentCost >= 0 && currentCost <= 3)
         {
-            newCost = card.Owner.RunState.Rng.CombatEnergyCosts.NextInt(3);
-            if (newCost >= currentCost)
+            newCost = card.Owner.RunState.Rng.CombatEnergyCosts.NextInt(Math.Max(1,3 - maxCostReduce));
+            if (newCost >= currentCost && maxCostReduce < 3)
                 newCost++;
         }
         else
         {
-            newCost = card.Owner.RunState.Rng.CombatEnergyCosts.NextInt(4);
+            newCost = card.Owner.RunState.Rng.CombatEnergyCosts.NextInt(Math.Max(1,4 - maxCostReduce));
         }
 
         card.EnergyCost.SetThisTurnOrUntilPlayed(newCost);

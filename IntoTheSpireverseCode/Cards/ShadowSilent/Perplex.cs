@@ -27,8 +27,15 @@ public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.R
         foreach (CardModel cardModel in cardToPerplex)
         {
             CardCmd.Enchant<Slither>(cardModel, 1M);
+            
+            NCardEnchantVfx child = NCardEnchantVfx.Create(cardModel);
+            if (child != null)
+            {
+                NRun instance = NRun.Instance;
+                if (instance != null)
+                    instance.GlobalUi.CardPreviewContainer.AddChildSafely( child);
+            }
         }
-        cardToPerplex = null;
     }
     
     public static bool CanEnchant(CardModel card)

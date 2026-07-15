@@ -1,6 +1,6 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-IMMOBILIZE",
-  "hue": 0.64,
+  "hue": 0.33,
   "saturation": 1.19,
   "value": 0.84,
   "red": 1,
@@ -8,5 +8,5 @@
   "blue": 1,
   "contrast": 1,
   "flip_h": false,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/deadly_poison.tres"
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/phantom_blades.tres"
 }

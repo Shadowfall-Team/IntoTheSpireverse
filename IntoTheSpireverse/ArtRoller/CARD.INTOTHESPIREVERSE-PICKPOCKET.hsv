@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-PICKPOCKET",
+  "hue": 0.13,
+  "saturation": 1.23,
+  "value": 1.01,
+  "red": 0.93,
+  "green": 1.07,
+  "blue": 1,
+  "contrast": 1.07,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/infinite_blades.tres"
+}

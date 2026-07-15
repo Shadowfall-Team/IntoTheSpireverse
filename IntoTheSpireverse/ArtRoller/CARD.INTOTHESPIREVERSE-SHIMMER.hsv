@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SHIMMER",
+  "hue": 0.09,
+  "saturation": 1.33,
+  "value": 1.05,
+  "red": 0.67,
+  "green": 1,
+  "blue": 1.18,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/corrosive_wave.tres"
+}

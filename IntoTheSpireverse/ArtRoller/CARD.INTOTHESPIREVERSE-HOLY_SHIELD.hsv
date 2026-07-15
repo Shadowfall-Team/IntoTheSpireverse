@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-HOLY_SHIELD",
-  "hue": 0.4,
+  "hue": 0.69,
   "saturation": 0.9,
-  "value": 0.96,
-  "red": 1.53,
-  "green": 1,
+  "value": 1.46,
+  "red": 0.73,
+  "green": 0.49,
   "blue": 1,
-  "contrast": 0.8,
+  "contrast": 1.05,
   "flip_h": true,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/tank.tres"
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/flame_barrier.tres"
 }

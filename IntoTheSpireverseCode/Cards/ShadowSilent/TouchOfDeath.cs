@@ -9,41 +9,34 @@ using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class TouchOfDeath() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class TouchOfDeath() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(25m, ValueProp.Move),
-        new EnergyVar(1),
+        new PowerVar<TouchOfDeathPower>(4m),
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<PoisonPower>(),
     ];
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
-
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCardCompatibility(this, cardPlay)
-            .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
-    }
-
-    public override async Task AfterCardDiscarded(
-        PlayerChoiceContext choiceContext,
-        CardModel card)
-    {
-        if (card != this || CombatState == null)
-            return;
-        card.EnergyCost.AddThisCombat(-DynamicVars.Energy.IntValue);
+        await PowerCmd.Apply<TouchOfDeathPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature, DynamicVars.Power<TouchOfDeathPower>().BaseValue,
+            Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(5m);
+        DynamicVars.Power<TouchOfDeathPower>().UpgradeValueBy(1m);
     }
 }
