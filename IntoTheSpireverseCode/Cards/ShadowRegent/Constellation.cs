@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
@@ -45,7 +46,7 @@ public class Constellation() : ShadowRegentCard(
         var noChoice = drawOrHand.Count == 1;
 
         var cardSelectorPrefs =
-            new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 1);
+            new CardSelectorPrefs(new LocString("card_selection", "INTOTHESPIREVERSE-CONSTELLATION_SELECT"), 1);
         var results =
             (await CardSelectCmd.FromSimpleGrid(choiceContext, drawOrHand, Owner,
                 cardSelectorPrefs)).ToList();
