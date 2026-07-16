@@ -85,6 +85,12 @@ public static class IntoTheSpireverseKeywords
         if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
             repeats = player.PlayerCombatState.Energy;
         await CardCmd.Discard(context, card);
+        
+        foreach (var model in card.Owner.Creature.CombatState!.IterateHookListeners().ToList())
+        {
+            if (model is IModifyDeviousListener deviousListener)
+                repeats = deviousListener.ModifyDeviousValue(card, repeats);
+        }
 
         for (int i = 0; i < repeats; i++)
             await effect();
@@ -104,6 +110,16 @@ public static class IntoTheSpireverseKeywords
     public interface ICardMuddledListener
     {
         Task AfterCardMuddled(ICombatState combatState, CardModel cardModel);
+    }
+    
+    public interface IShouldPermanentMuddleListener
+    {
+        bool ShouldPermanentMuddle(CardModel card);
+    }
+    
+    public interface IModifyDeviousListener
+    {
+        int ModifyDeviousValue(CardModel card, int originalValue);
     }
 
     public static void ApplyMuddle(CardModel card)
@@ -130,7 +146,19 @@ public static class IntoTheSpireverseKeywords
             newCost = card.Owner.RunState.Rng.CombatEnergyCosts.NextInt(Math.Max(1,4 - maxCostReduce));
         }
 
-        card.EnergyCost.SetThisTurnOrUntilPlayed(newCost);
+        bool permanentMuddle = false;
+        
+        foreach (var model in card.Owner.Creature.CombatState!.IterateHookListeners().ToList())
+        {
+            if (model is IShouldPermanentMuddleListener muddleListener)
+                permanentMuddle |= muddleListener.ShouldPermanentMuddle(card);
+        }
+        
+        if (permanentMuddle)
+            card.EnergyCost.SetThisCombat(newCost);
+        else
+            card.EnergyCost.SetThisTurnOrUntilPlayed(newCost);
+        
         NCard.FindOnTable(card)?.PlayRandomizeCostAnim();
 
         if (card is IMuddleListener listener)
