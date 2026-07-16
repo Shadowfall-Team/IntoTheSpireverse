@@ -83,6 +83,17 @@
         <None Include="IntoTheSpireverse/**"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="IntoTheSpireverseCode\Cards\ShadowNecrobinder\" />
+      <Folder Include="IntoTheSpireverseCode\Cards\ShadowSilent\" />
+      <Folder Include="IntoTheSpireverseCode\Character\ShadowSilent\" />
+      <Folder Include="IntoTheSpireverseCode\Potions\Necrobinder\" />
+      <Folder Include="IntoTheSpireverseCode\Powers\ShadowNecrobinder\" />
+      <Folder Include="IntoTheSpireverseCode\Powers\ShadowSilent\" />
+      <Folder Include="IntoTheSpireverseCode\Relics\ShadowNecrobinder\" />
+      <Folder Include="IntoTheSpireverseCode\Relics\ShadowSilent\" />
+    </ItemGroup>
+
     <Target Name="CheckSts2DataDirForCopy" BeforeTargets="CopyToModsFolderOnBuild"
             Condition="!Exists('$(Sts2DataDir)') And !Exists('$(ModsPath)')">
         <Error Text="Cannot copy build output to mods folder: neither '$(Sts2DataDir)' nor '$(ModsPath)' exists. Install STS2 locally or pass /p:ModsPath=... in CI."/>
