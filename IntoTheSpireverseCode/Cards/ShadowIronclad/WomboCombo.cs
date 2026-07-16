@@ -17,7 +17,11 @@ public sealed class WomboCombo() : ShadowIroncladCard(0, CardType.Attack, CardRa
     [
         new DamageVar(10, ValueProp.Move),
     ];
-
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust
+    ];
+    
     protected override bool HasEnergyCostX => true;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -46,5 +50,5 @@ public sealed class WomboCombo() : ShadowIroncladCard(0, CardType.Attack, CardRa
         await CardCmd.AutoPlay(choiceContext, card, null);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(5);
 }
