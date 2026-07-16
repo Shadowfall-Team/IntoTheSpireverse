@@ -18,7 +18,7 @@ public class SolarStrike() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(9, ValueProp.Move),
-        new PowerVar<ShardsPower>(1)
+        new PowerVar<ShardsPower>(2)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -39,7 +39,7 @@ public class SolarStrike() : ShadowRegentCard(1,
             .Execute(choiceContext);
         
         await PowerCmd.Apply<ShardsPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,DynamicVars[nameof(ShardsPower)].BaseValue, 
             Owner.Creature, 
             this);

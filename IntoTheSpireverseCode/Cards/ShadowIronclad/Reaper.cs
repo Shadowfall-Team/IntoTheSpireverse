@@ -16,7 +16,7 @@ public sealed class Reaper() : ShadowIroncladCard(2, CardType.Attack, CardRarity
     ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new DamageVar(4m, ValueProp.Move)
+        new DamageVar(8m, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -35,6 +35,6 @@ public sealed class Reaper() : ShadowIroncladCard(2, CardType.Attack, CardRarity
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1m);
+        DynamicVars.Damage.UpgradeValueBy(4m);
     }
 }

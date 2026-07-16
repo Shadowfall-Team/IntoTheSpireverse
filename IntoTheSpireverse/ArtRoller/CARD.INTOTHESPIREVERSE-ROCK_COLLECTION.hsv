@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-ROCK_COLLECTION",
+  "hue": 0.54,
+  "saturation": 0.79,
+  "value": 0.74,
+  "red": 1.49,
+  "green": 1.15,
+  "blue": 1.09,
+  "contrast": 1.04,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/capacitor.tres"
+}

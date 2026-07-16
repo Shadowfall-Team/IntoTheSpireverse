@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://rmrfg6p1csk3"]
 
-[ext_resource type="Script" uid="uid://bv6fg5v6npaq6" path="res://IntoTheSpireverseCode/ui/NCharAltArrow.cs" id="1_mqvp8"]
+[ext_resource type="Script" uid="uid://bv6fg5v6npaq6" path="res://IntoTheSpireverseCode/Ui/NCharAltArrow.cs" id="1_mqvp8"]
 [ext_resource type="Texture2D" uid="uid://c7kumcmbdvuji" path="res://IntoTheSpireverse/images/charui/tiny_arrow_up.png" id="2_deba5"]
 
 [node name="CharAltArrow" type="Control"]

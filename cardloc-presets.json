@@ -29,7 +29,7 @@
     {
       "id": "power",
       "markers": [
-        "CustomPowerModel",
+        "IntoTheSpireversePower",
         "ShadowPowerModel"
       ],
       "fields": [

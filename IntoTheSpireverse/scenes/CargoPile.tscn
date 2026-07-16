@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://6eg3wyso673l"]
 
-[ext_resource type="Script" uid="uid://bbssk02w08our" path="res://IntoTheSpireverseCode/ui/NCargoPile.cs" id="1_nrwxg"]
+[ext_resource type="Script" uid="uid://bbssk02w08our" path="res://IntoTheSpireverseCode/Ui/NCargoPile.cs" id="1_nrwxg"]
 [ext_resource type="Texture2D" uid="uid://pjc3qjehft1w" path="res://IntoTheSpireverse/images/combat_ui/cargo_pile.png" id="2_sxrqi"]
 [ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://IntoTheSpireverse/images/relics/relic_outline.png" id="3_sxrqi"]
-[ext_resource type="Script" uid="uid://cdwygcc8hduxl" path="res://IntoTheSpireverseCode/ui/IntoTheSpireverseMegaLabel.cs" id="4_x0xmf"]
+[ext_resource type="Script" uid="uid://cdwygcc8hduxl" path="res://IntoTheSpireverseCode/Ui/IntoTheSpireverseMegaLabel.cs" id="4_x0xmf"]
 
 [node name="CargoPile" type="Control"]
 layout_mode = 3

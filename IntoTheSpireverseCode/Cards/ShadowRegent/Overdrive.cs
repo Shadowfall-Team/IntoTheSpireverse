@@ -10,25 +10,27 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-//TODO: check if this needs to be renamed
-public class TheSealedThrone() : ShadowRegentCard(
+public class Overdrive() : ShadowRegentCard(
     1,
     CardType.Attack,
     CardRarity.Ancient,
     TargetType.AnyEnemy)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Warp>(),
     ];
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CalculationBaseVar(4),
+        new IntVar("FakeBaseDamage", 4),
+        new CalculationBaseVar(0),
         new ExtraDamageVar(4),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
         {
-            return CombatManager.Instance.History.CardPlaysFinished.Count(e => 
+            var warpCount = CombatManager.Instance.History.CardPlaysFinished.Count(e =>
                 e.CardPlay.Card.Owner == card.Owner && e.CardPlay.Card is Warp);
+            return (decimal)Math.Pow(2, warpCount);
         })
     ];
 
@@ -46,6 +48,7 @@ public class TheSealedThrone() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
+        DynamicVars["FakeBaseDamage"].UpgradeValueBy(4);
         DynamicVars.ExtraDamage.UpgradeValueBy(4);
     }
 }

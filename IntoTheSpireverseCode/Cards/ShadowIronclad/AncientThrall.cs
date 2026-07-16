@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -8,6 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
@@ -17,13 +19,12 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HpLossVar(2m),
-        new EnergyVar(1),
-        new CardsVar(1),
+        new PowerVar<StrengthPower>(2m),
     ];
-
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        EnergyHoverTip,
+        HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
     protected override bool ShouldGlowRedInternal => true;
@@ -41,9 +42,12 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
     {
         await CreatureCmdCompatibility.Damage(choiceContext, Owner.Creature,
             DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
-        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        
+        await PowerCmd.Apply<StrengthPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
+            Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars.Strength.UpgradeValueBy(1m);
 }

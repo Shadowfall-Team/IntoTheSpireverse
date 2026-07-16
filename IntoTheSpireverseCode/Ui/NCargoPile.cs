@@ -38,8 +38,7 @@ public partial class NCargoPile : NCombatCardPile
 
     protected override PileType Pile => CargoCardPile.CargoPileType;
 
-    private static readonly string _scenePath = "res://IntoTheSpireverse/scenes/CargoPile.tscn";
-    private static readonly string megaLabelFont = "res://themes/kreon_bold_glyph_space_one.tres";
+    private static readonly string _scenePath = IntoTheSpireverseResources.CargoPileScene;
 
     public static AddedNode<NCombatPilesContainer, NCargoPile> _ = new(container =>
     {
@@ -51,7 +50,7 @@ public partial class NCargoPile : NCombatCardPile
         background.Texture = ResourceLoader.Load<Texture2D>("res://images/packed/combat_ui/pile_button_count.png");
 
         var countLabel = cargoPileButton.GetNode<IntoTheSpireverseMegaLabel>("CountContainer/Count");
-        var font = PreloadManager.Cache.GetAsset<Font>(megaLabelFont);
+        var font = PreloadManager.Cache.GetAsset<Font>(IntoTheSpireverseResources.MegaLabelFont);
         countLabel.AddThemeFontOverride(ThemeConstants.Label.Font, font);
         countLabel.MinFontSize = 20;
         countLabel.MaxFontSize = 26;

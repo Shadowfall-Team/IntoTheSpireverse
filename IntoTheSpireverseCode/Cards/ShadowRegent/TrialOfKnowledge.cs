@@ -1,14 +1,11 @@
-﻿using BaseLib.Abstracts;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
@@ -37,7 +34,7 @@ public class TrialOfKnowledge() : ShadowRegentCard(
         }
 
         await PowerCmd.Apply<TrialOfKnowledgePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             DynamicVars[nameof(TrialOfKnowledgePower)].BaseValue,
             Owner.Creature,
@@ -57,11 +54,12 @@ public class TrialOfKnowledgePower : ShadowPowerModel
         if (side == CombatSide.Enemy)
             return;
 
-        if (PileType.Hand.GetPile(Owner.Player).Cards.Count >= 5)
+        if (PileType.Hand.GetPile(Owner.Player).Cards.Count >= 3)
         {
             Flash();
 
             await PowerCmd.Apply<RetainHandPower>(choiceContext, Owner, 1m, Owner, null);
+            await PowerCmd.Apply<BlurPower>(choiceContext, Owner, 1m, Owner, null);
             await PowerCmd.Remove(this);
         }
     }

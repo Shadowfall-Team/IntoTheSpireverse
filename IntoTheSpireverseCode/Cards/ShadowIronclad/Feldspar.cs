@@ -39,5 +39,5 @@ public sealed class Feldspar() : ShadowIroncladCard(1, CardType.Attack, CardRari
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);
 }

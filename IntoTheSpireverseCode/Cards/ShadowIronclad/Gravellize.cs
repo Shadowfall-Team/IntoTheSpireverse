@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless.Rocks;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Interfaces;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
 
@@ -18,6 +19,8 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
     [
         HoverTipFactory.FromCard<SpikedRock>(false),
         HoverTipFactory.FromKeyword(CardKeyword.Unplayable),
+        HoverTipFactory.FromPower<RetaliationPower>(),
+
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [

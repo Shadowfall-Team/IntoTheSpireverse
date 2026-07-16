@@ -4,5 +4,5 @@
   "INTOTHESPIREVERSE-LOAD_AMMO.title": "Ammo",
   "INTOTHESPIREVERSE-LOAD_AMMO.description": "Once loaded, [gold]Ammo[/gold] may be fired at any time, dealing 12 damage to a random enemy (scaling with Strength).",
   "INTOTHESPIREVERSE-AMMO_BUTTON.title": "FIRE!",
-  "INTOTHESPIREVERSE-AMMO_BUTTON.description": "Deal {Damage} damage to a random enemy."
+  "INTOTHESPIREVERSE-AMMO_BUTTON.description": "Deal {Damage} damage to a random enemy.\n\nThis does not count as playing a card."
 }

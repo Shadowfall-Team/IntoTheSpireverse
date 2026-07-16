@@ -18,20 +18,14 @@ public class Warp() : CustomCardModel(0,
     CardRarity.Token,
     TargetType.Self)
 {
-    public override string CustomPortraitPath => $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+    public override string CustomPortraitPath =>
+        $"res://IntoTheSpireverse/images/card_portraits/regent/big/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        
-            // [
-                // new PowerVar<StrengthPower>(
-                    // 0),
-                // new EnergyVar(3)
-            // ]
-            // :
-            [
-                new PowerVar<StrengthPower>(1),
-                new EnergyVar(2)
-            ];
+    [
+        new PowerVar<StrengthPower>(1),
+        new EnergyVar(1)
+    ];
 
     public override void AfterCreated()
     {
@@ -63,6 +57,6 @@ public class Warp() : CustomCardModel(0,
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Strength.UpgradeValueBy(1);
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

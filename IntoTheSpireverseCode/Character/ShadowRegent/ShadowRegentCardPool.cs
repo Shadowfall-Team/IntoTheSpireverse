@@ -19,6 +19,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
     {
         return
         [
+            ModelDb.Card<CelestialMight>(),
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<KnowThyPlace>(),
             ModelDb.Card<Patter>(),

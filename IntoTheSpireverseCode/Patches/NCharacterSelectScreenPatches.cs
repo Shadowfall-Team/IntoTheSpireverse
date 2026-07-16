@@ -6,6 +6,8 @@ using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.ui;
 using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
+using MegaCrit.Sts2.Core.Nodes.Screens.CustomRun;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
@@ -38,6 +40,11 @@ public class NCharacterSelectButtonPatches
     public static void InitPostfix(NCharacterSelectButton __instance,
         CharacterModel character, ICharacterSelectButtonDelegate del)
     {
+        if (__instance.GetAncestorOfType<NCustomRunScreen>() != null)
+        {
+            return;
+        }
+
         var altCharacterCount = ModelDb.AllCharacters.Count(c =>
             AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
             altCharacter.BaseCharacterModel == character);

@@ -15,7 +15,7 @@ public class Glow() : ShadowRegentCard(1,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         
-        new PowerVar<ShardsPower>(1),
+        new PowerVar<ShardsPower>(2),
         new CardsVar(1),
         new PowerVar<DrawCardsNextTurnPower>(1)
     ];
@@ -31,13 +31,13 @@ public class Glow() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         
         await PowerCmd.Apply<ShardsPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,DynamicVars[nameof(ShardsPower)].BaseValue, 
             Owner.Creature, 
             this);
         
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()

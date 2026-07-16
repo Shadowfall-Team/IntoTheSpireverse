@@ -21,7 +21,7 @@ public class FireEverything() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 2)
+        new IntVar("LoadAmmo", 1)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -37,7 +37,7 @@ public class FireEverything() : ShadowRegentCard(
         await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, Owner, this);
 
         await PowerCmd.Apply<FireEverythingPower>(
-            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            choiceContext, Owner.Creature,
             1, Owner.Creature, this);
     }
 

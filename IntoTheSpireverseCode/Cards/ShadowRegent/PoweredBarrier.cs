@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -33,7 +34,13 @@ public class PoweredBarrier() : ShadowRegentCard(
     {
         if (CombatState == null || card != this) return;
         for (int i = 0; i < await GeneratePlayCount(CombatState, null); i++)
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null);
+        {
+            await EnchantBlockWithoutCardPlayPatch.WithEnchantment(
+                Enchantment,
+                Owner.PlayerCombatState,
+                () => CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, null)
+            );
+        }
     }
 
     protected override void OnUpgrade()
