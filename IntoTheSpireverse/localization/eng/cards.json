@@ -661,7 +661,7 @@
   "INTOTHESPIREVERSE-RED_GIANT.title": "Red Giant",
   "INTOTHESPIREVERSE-SHIP_MAINTENANCE.description": "Add a [gold]Ethereal[/gold] [gold]Automation[/gold], [gold]Prowess[/gold] and [gold]Stratagem[/gold] to your [gold]Hand[/gold].{IfUpgraded:show:\nGain {energyPrefix:energyIcons(1)}.|}",
   "INTOTHESPIREVERSE-SHIP_MAINTENANCE.title": "Ship Maintenance",
-  "INTOTHESPIREVERSE-BOARDING_PARTY.description": "Add X{IfUpgraded:show:+1|} [gold]Minion Dive Bomb[/gold] to your [gold]Hand[/gold] and [gold]Cargo[/gold].",
+  "INTOTHESPIREVERSE-BOARDING_PARTY.description": "Add X [gold]Minion Dive Bomb[/gold] to your [gold]Hand[/gold]{IfUpgraded:show: and [gold]Cargo[/gold]|}.",
   "INTOTHESPIREVERSE-BOARDING_PARTY.title": "Boarding Party",
   "INTOTHESPIREVERSE-SPEED_HARVEST.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nWhenever you fully [gold]Block[/gold] a source of damage, gain 1 [gold]Shard[/gold].",
   "INTOTHESPIREVERSE-SPEED_HARVEST.title": "Speed Harvest",
