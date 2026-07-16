@@ -2,25 +2,39 @@
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
 public class ShipMaintenance() : ShadowRegentCard(
-    1,
+    0,
     CardType.Skill,
     CardRarity.Rare,
     TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<Automation>(),
-        HoverTipFactory.FromCard<Prowess>(),
-        HoverTipFactory.FromCard<Stratagem>(),
-        HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    {
+        get
+        {
+            var automation = (CardModel)ModelDb.Card<Automation>().MutableClone();
+            automation.AddKeyword(CardKeyword.Ethereal);
+            var prowess = (CardModel)ModelDb.Card<Prowess>().MutableClone();
+            prowess.AddKeyword(CardKeyword.Ethereal);
+            var stratagem = (CardModel)ModelDb.Card<Stratagem>().MutableClone();
+            stratagem.AddKeyword(CardKeyword.Ethereal);
+            return
+            [
+                HoverTipFactory.FromCard(automation),
+                HoverTipFactory.FromCard(prowess),
+                HoverTipFactory.FromCard(stratagem),
+                HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
+            ];
+        }
+    }
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -28,6 +42,11 @@ public class ShipMaintenance() : ShadowRegentCard(
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
+
+        if (IsUpgraded)
+        {
+            await PlayerCmd.GainEnergy(1, Owner);
+        }
 
         if (CombatState != null)
         {
@@ -44,6 +63,5 @@ public class ShipMaintenance() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
     }
 }

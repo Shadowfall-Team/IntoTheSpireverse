@@ -11,7 +11,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class Plot() : ShadowRegentCard(1,
+public class Scheme() : ShadowRegentCard(1,
     CardType.Skill,
     CardRarity.Common,
     TargetType.Self)

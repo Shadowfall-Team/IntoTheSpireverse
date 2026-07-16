@@ -41,6 +41,11 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             ModelDb.Card<PrimalForce>(),
             ModelDb.Card<Aggression>(),
             ModelDb.Card<Juggernaut>(),
+            
+            
+            ModelDb.Card<Midnight>(),
+            ModelDb.Card<Blaze>(),
+            ModelDb.Card<Outrage>()
         ];
     }
 }

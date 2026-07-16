@@ -11,7 +11,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class Constellation() : ShadowRegentCard(
+public class Starseeker() : ShadowRegentCard(
     0,
     CardType.Skill,
     CardRarity.Ancient,
