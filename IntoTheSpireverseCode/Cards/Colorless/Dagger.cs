@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(TokenCardPool))]
-public sealed class Dagger() : CustomCardModel(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+public sealed class Dagger() : ShadowColorlessCard(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
 

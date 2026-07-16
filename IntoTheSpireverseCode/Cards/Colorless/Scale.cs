@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
 [Pool(typeof(TokenCardPool))]
-public sealed class Scale() : CustomCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
     public override bool GainsBlock => true;
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Scale];

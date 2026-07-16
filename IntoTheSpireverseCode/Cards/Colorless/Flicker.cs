@@ -12,7 +12,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
-public sealed class Flicker() : CustomCardModel(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+public sealed class Flicker() : ShadowColorlessCard(0, CardType.Skill, CardRarity.Token, TargetType.Self)
 {
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
