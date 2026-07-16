@@ -1,8 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
@@ -14,43 +12,55 @@ public class HeartOfStone : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(8)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Absorb", 8m)];
 
     public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<HeartOfTheMountain>();
 
-    private int _healedThisCombat;
+    private int _absorbedThisCombat;
 
-    private int HealedThisCombat
+    // Set in ModifyHpLostAfterOstyLate (which must stay a pure calculation — it also decides the displayed
+    // damage numbers), then committed in AfterModifyingHpLostAfterOsty, which the game only invokes when
+    // the damage was actually applied. Same pattern as the base game's BufferPower.
+    private decimal _pendingAbsorb;
+
+    private int AbsorbedThisCombat
     {
-        get { return _healedThisCombat; }
+        get { return _absorbedThisCombat; }
         set
         {
-            _healedThisCombat = value;
+            _absorbedThisCombat = value;
             UpdateDisplay();
         }
     }
 
-    public override int DisplayAmount => DynamicVars.Heal.IntValue - HealedThisCombat;
+    public override int DisplayAmount => DynamicVars["Absorb"].IntValue - AbsorbedThisCombat;
 
     public override bool ShowCounter => CombatManager.Instance.IsInProgress && DisplayAmount > 0;
 
-    public override async Task AfterDamageReceived(
-        PlayerChoiceContext choiceContext,
+    public override decimal ModifyHpLostAfterOstyLate(
         Creature target,
-        DamageResult result,
+        decimal amount,
         ValueProp props,
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (HealedThisCombat >= DynamicVars.Heal.IntValue || target != Owner.Creature || result.UnblockedDamage <= 0)
-            return;
+        if (target != Owner.Creature || amount <= 0m)
+            return amount;
 
+        decimal remaining = DynamicVars["Absorb"].IntValue - AbsorbedThisCombat;
+        if (remaining <= 0m)
+            return amount;
+
+        _pendingAbsorb = Math.Min(amount, remaining);
+        return amount - _pendingAbsorb;
+    }
+
+    public override Task AfterModifyingHpLostAfterOsty()
+    {
         Flash();
-        var healAmount = Math.Clamp(result.UnblockedDamage, 0, DynamicVars.Heal.IntValue - HealedThisCombat);
-        await CreatureCmd.Heal(target, healAmount, false);
-        HealedThisCombat += healAmount;
-
-        UpdateDisplay();
+        AbsorbedThisCombat += (int)_pendingAbsorb;
+        _pendingAbsorb = 0m;
+        return Task.CompletedTask;
     }
 
     public override Task BeforeCombatStart()
@@ -61,14 +71,14 @@ public class HeartOfStone : ShadowIroncladRelic
 
     public override Task AfterCombatEnd(CombatRoom _)
     {
-        HealedThisCombat = 0;
+        AbsorbedThisCombat = 0;
         Status = RelicStatus.Normal;
         return Task.CompletedTask;
     }
 
     private void UpdateDisplay()
     {
-        Status = HealedThisCombat >= DynamicVars.Heal.IntValue ? RelicStatus.Disabled : RelicStatus.Normal;
+        Status = AbsorbedThisCombat >= DynamicVars["Absorb"].IntValue ? RelicStatus.Disabled : RelicStatus.Normal;
         InvokeDisplayAmountChanged();
     }
 }
