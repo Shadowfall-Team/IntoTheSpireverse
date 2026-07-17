@@ -7,9 +7,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using IntoTheSpireverse.Orbs;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Trinvoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
 {

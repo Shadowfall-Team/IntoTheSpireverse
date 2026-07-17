@@ -10,7 +10,7 @@ using IntoTheSpireverse.Orbs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 
-namespace IntoTheSpireverse.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Decay() : ShadowDefectCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {

@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
 public class ClarionStrikePower : IntoTheSpireversePower
 {

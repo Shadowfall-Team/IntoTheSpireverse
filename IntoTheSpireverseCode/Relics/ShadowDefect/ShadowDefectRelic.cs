@@ -5,7 +5,7 @@ using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowDefect;
 
 [Pool(typeof(ShadowDefectRelicPool))]
 public abstract class ShadowDefectRelic : CustomRelicModel

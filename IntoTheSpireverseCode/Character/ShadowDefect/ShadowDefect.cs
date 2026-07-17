@@ -1,16 +1,14 @@
 ﻿using BaseLib.Abstracts;
-using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
-using MegaCrit.Sts2.Core.Models.Relics;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics;
-using Decay = IntoTheSpireverse.Cards.Decay;
-using Invoke = IntoTheSpireverse.Cards.Invoke;
+using Decay = IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect.Decay;
+using Invoke = IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect.Invoke;
+using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowDefect;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
@@ -47,11 +45,11 @@ public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        (RelicModel) ModelDb.Relic<CorruptedCore>()
+        ModelDb.Relic<CorruptedCore>()
     ];
-    
+
     public override int BaseOrbSlotCount => 3;
-    
+
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowDefectCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ShadowDefectRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ShadowDefectPotionPool>();

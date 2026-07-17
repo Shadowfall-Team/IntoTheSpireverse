@@ -9,9 +9,8 @@ using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.Models.Relics;
 using IntoTheSpireverse.Orbs;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowDefect;
 
-  
 public class CorruptedCore : ShadowDefectRelic
 {
 

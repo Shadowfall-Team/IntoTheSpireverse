@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using IntoTheSpireverse.Orbs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
-namespace IntoTheSpireverse.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
   
 public sealed class Invoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)

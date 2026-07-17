@@ -8,11 +8,10 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class SongOfSorrow : ShadowDefectCard
 {

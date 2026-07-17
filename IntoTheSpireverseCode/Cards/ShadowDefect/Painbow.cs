@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Models.Orbs;
 using IntoTheSpireverse.Orbs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
-namespace IntoTheSpireverse.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Painbow() : ShadowDefectCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {

@@ -6,11 +6,10 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class EclipseEmbrace : ShadowDefectCard
 {
