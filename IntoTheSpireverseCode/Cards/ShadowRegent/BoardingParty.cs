@@ -29,17 +29,16 @@ public class BoardingParty() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         var xValue = ResolveEnergyXValue();
-        if (IsUpgraded)
-        {
-            xValue += 1;
-        }
         
-        await CardPileCmd.AddToCombatAndPreview<MinionDiveBomb>(
-            Owner.Creature,
-            CargoCardPile.CargoPileType, xValue, Owner);
         await CardPileCmd.AddToCombatAndPreview<MinionDiveBomb>(
             Owner.Creature,
             PileType.Hand, xValue, Owner);
         
+        if (IsUpgraded)
+        {
+            await CardPileCmd.AddToCombatAndPreview<MinionDiveBomb>(
+                Owner.Creature,
+                CargoCardPile.CargoPileType, xValue, Owner);
+        }
     }
 }

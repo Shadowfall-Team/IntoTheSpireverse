@@ -24,12 +24,25 @@ public class SpacePirate() : ShadowRegentCard(
         new DamageVar(8, ValueProp.Move)
     ];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
-        HoverTipFactory.FromCard<FlashOfSteel>(IsUpgraded),
-        HoverTipFactory.FromCard<Fisticuffs>(IsUpgraded),
-        HoverTipFactory.FromCard<TheBomb>(IsUpgraded)
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    {
+        get
+        {
+            var flashOfSteel = (CardModel)ModelDb.Card<FlashOfSteel>().MutableClone();
+            flashOfSteel.AddKeyword(CardKeyword.Exhaust);
+            var fisticuffs = (CardModel)ModelDb.Card<Fisticuffs>().MutableClone();
+            fisticuffs.AddKeyword(CardKeyword.Exhaust);
+            var theBomb = (CardModel)ModelDb.Card<TheBomb>().MutableClone();
+            theBomb.AddKeyword(CardKeyword.Exhaust);
+            return
+            [
+                HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+                HoverTipFactory.FromCard(flashOfSteel, IsUpgraded),
+                HoverTipFactory.FromCard(fisticuffs, IsUpgraded),
+                HoverTipFactory.FromCard(theBomb, IsUpgraded)
+            ];
+        }
+    }
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -57,6 +70,8 @@ public class SpacePirate() : ShadowRegentCard(
                 {
                     CardCmd.Upgrade(cardModel);
                 }
+
+                cardModel.AddKeyword(CardKeyword.Exhaust);
 
                 var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(cardModel, CargoCardPile.CargoPileType,
                     Owner);

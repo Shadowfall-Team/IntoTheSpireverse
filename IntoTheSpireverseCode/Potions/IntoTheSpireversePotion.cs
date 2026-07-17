@@ -7,6 +7,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Potions;
 
+[Pool(typeof(ShadowDefectPotionPool))]
 public abstract class IntoTheSpireversePotion : CustomPotionModel
 {
     public override string? CustomPackedImagePath

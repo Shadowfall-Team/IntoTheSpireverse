@@ -20,7 +20,7 @@ public class StarCharts() : ShadowRegentCard(
 {
     public CardModel GetTranscendenceTransformedCard()
     {
-        return ModelDb.Card<Constellation>();
+        return ModelDb.Card<Starseeker>();
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

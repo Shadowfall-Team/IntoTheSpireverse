@@ -14,7 +14,7 @@ public static class NCardPatch
 {
     static void Postfix(NCard __instance)
     {
-        if (__instance?.IsNodeReady() != true || __instance.Model is not IntoTheSpireverseCard)
+        if (!__instance.IsNodeReady() || __instance.Model == null)
             return;
         
         string cardId = __instance.Model.Id.ToString();
