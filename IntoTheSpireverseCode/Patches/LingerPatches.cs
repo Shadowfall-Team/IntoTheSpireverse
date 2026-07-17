@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
@@ -61,8 +60,7 @@ public static class LingerHelper
     public static event Func<CardModel, PlayerChoiceContext, Task>? OnLingerTriggered;
     public static int GetTriggerCount(CardModel card)
     {
-        var power = card.Owner.Creature.Powers.OfType<PatiencePower>().FirstOrDefault();
-        return 1 + (power?.Amount ?? 0);
+        return 1;
     }
 
     public static async Task NotifyLingerTriggered(CardModel card, PlayerChoiceContext choiceContext)
