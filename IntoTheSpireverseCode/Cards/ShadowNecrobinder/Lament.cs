@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowNecrobinder;
 
