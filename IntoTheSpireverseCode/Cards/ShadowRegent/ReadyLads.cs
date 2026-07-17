@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
-public class ReadyTheGuns() : ShadowRegentCard(
+public class ReadyLads() : ShadowRegentCard(
         2,
         CardType.Skill,
         CardRarity.Uncommon,

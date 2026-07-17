@@ -710,6 +710,6 @@
   "INTOTHESPIREVERSE-COMMANDEER.title": "Commandeer",  
   "INTOTHESPIREVERSE-REQUISITION.description": "Load {LoadAmmo} Ammo.\nDraw {Cards:diff()} cards.",
   "INTOTHESPIREVERSE-REQUISITION.title": "Requisition",
-  "INTOTHESPIREVERSE-READY_THE_GUNS.description": "ALL players Load {LoadAmmo:diff()} [gold]Ammo[/gold].",
-  "INTOTHESPIREVERSE-READY_THE_GUNS.title": "Ready the Guns"
+  "INTOTHESPIREVERSE-READY_LADS.description": "ALL players Load {LoadAmmo:diff()} [gold]Ammo[/gold].",
+  "INTOTHESPIREVERSE-READY_LADS.title": "Ready Lads!"
 }
