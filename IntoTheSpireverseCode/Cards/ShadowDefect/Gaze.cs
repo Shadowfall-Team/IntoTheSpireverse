@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Gaze() : ShadowDefectCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {

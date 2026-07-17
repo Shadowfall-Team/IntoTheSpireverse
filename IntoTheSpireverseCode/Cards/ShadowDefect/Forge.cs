@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 using System.Linq;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
-namespace IntoTheSpireverse.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Forge() : ShadowDefectCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {

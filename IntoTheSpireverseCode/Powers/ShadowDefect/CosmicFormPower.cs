@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
 public sealed class CosmicFormPower : IntoTheSpireversePower
 {

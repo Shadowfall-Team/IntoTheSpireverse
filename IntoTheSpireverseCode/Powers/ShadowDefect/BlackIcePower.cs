@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
 public class BlackIcePower : IntoTheSpireversePower
 {

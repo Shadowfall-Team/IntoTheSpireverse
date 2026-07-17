@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public class SingleMind() : ShadowDefectCard(1, CardType.Skill, CardRarity.Rare, TargetType.None)
 {

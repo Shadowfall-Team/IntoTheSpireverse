@@ -10,10 +10,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Process() : ShadowDefectCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {

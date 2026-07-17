@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
 public sealed class Deathglare() : CustomCardModel(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)

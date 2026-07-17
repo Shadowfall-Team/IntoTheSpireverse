@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
-namespace IntoTheSpireverse.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class DarkBoost() : ShadowDefectCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {

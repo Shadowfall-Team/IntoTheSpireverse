@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
-namespace IntoTheSpireverse.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Brainshock() : ShadowDefectCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {

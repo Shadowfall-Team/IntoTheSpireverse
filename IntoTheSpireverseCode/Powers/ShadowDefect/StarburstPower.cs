@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.Orbs;
 using MegaCrit.Sts2.Core.Models;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
 // TODO : description and smartdescription
 public sealed class StarburstPower : IntoTheSpireversePower

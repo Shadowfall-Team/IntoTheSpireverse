@@ -9,10 +9,9 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Altar : ShadowDefectCard
 {

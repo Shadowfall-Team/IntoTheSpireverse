@@ -9,9 +9,9 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
-namespace IntoTheSpireverse.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class InfectedShot() : ShadowDefectCard(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {

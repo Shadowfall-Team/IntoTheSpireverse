@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.Orbs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
-namespace IntoTheSpireverse.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class EndOfCreation() : ShadowDefectCard(2, CardType.Attack, CardRarity.Common, TargetType.None)
 {

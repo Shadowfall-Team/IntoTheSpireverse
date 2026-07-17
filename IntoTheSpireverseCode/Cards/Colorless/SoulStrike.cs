@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
 public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)

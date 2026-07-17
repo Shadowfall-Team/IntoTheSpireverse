@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
 public sealed class PowerCyclePower : IntoTheSpireversePower
 {

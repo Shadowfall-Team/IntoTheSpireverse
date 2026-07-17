@@ -4,10 +4,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowDefect;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect;
 
 public sealed class Powercycle : ShadowDefectCard
 {
