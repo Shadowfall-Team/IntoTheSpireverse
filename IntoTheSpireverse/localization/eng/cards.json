@@ -709,5 +709,7 @@
   "INTOTHESPIREVERSE-COMMANDEER.description": "Add a random Attack from different class to your [gold]Hand[/gold]. It deals {IfUpgraded:show:triple|double} damage.",
   "INTOTHESPIREVERSE-COMMANDEER.title": "Commandeer",  
   "INTOTHESPIREVERSE-REQUISITION.description": "Load {LoadAmmo} Ammo.\nDraw {Cards:diff()} cards.",
-  "INTOTHESPIREVERSE-REQUISITION.title": "Requisition"
+  "INTOTHESPIREVERSE-REQUISITION.title": "Requisition",
+  "INTOTHESPIREVERSE-READY_THE_GUNS.description": "ALL players Load {LoadAmmo:diff()} [gold]Ammo[/gold].",
+  "INTOTHESPIREVERSE-READY_THE_GUNS.title": "Ready the Guns"
 }
