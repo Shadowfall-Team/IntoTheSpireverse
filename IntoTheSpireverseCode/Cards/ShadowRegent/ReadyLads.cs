@@ -1,5 +1,5 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,15 +9,15 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 
 public class ReadyLads() : ShadowRegentCard(
-        2,
-        CardType.Skill,
-        CardRarity.Uncommon,
-        TargetType.AllAllies)
+    2,
+    CardType.Skill,
+    CardRarity.Uncommon,
+    TargetType.AllAllies)
 {
     public override CardMultiplayerConstraint MultiplayerConstraint =>
         CardMultiplayerConstraint.MultiplayerOnly;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new IntVar("LoadAmmo", 2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new LoadAmmoVar(2)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => LoadAmmoHoverTip.FromLoadAmmo();
 
@@ -30,13 +30,13 @@ public class ReadyLads() : ShadowRegentCard(
             if (teammate is not { Player: { } player, IsAlive: true, IsPlayer: true })
                 continue;
 
-            await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, player, this);
+            await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, player, this);
             await Cmd.Wait(0.1f);
         }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["LoadAmmo"].UpgradeValueBy(1);
+        DynamicVars.LoadAmmo.UpgradeValueBy(1);
     }
 }
