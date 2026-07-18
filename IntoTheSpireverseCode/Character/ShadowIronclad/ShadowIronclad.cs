@@ -10,7 +10,9 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
+#pragma warning disable STS001
 public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
+#pragma warning restore STS001
 {
     public override string PlaceholderID => "ironclad";
     public const string CharacterId = "IntoTheSpireverse";

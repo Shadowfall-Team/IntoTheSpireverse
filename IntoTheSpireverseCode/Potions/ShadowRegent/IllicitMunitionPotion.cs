@@ -1,4 +1,8 @@
 ﻿using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
+using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -7,10 +11,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Potions.ShadowRegent;
 
@@ -22,7 +22,7 @@ public class IllicitMunitionPotion : ShadowRegentPotion
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 1),
+        new LoadAmmoVar(1),
         new IntVar("Shots", 1),
         new PowerVar<SiegePower>(2),
         new BlockVar(6, ValueProp.Unpowered),
@@ -37,7 +37,7 @@ public class IllicitMunitionPotion : ShadowRegentPotion
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
         if (target?.Player == null) return;
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue, target.Player, null);
+        await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, target.Player, null);
 
         await PowerCmd.Apply<SiegePower>(choiceContext, target, DynamicVars.Power<SiegePower>().BaseValue,
             Owner.Creature, null);
