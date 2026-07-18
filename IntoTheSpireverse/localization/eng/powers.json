@@ -234,7 +234,7 @@
   "INTOTHESPIREVERSE-TRIAL_OF_SPACE_POWER.description": "The next time you end your turn with 3 or more {energyPrefix:energyIcons(1)}, gain more {energyPrefix:energyIcons(1)} and draw cards.",
   "INTOTHESPIREVERSE-TRIAL_OF_SPACE_POWER.smartDescription": "The next time you end your turn with 3 or more {energyPrefix:energyIcons(1)}, gain more {energyPrefix:energyIcons(1)} and draw cards.",
   "INTOTHESPIREVERSE-TRIAL_OF_SPACE_POWER.title": "Trial of Space",
-  "INTOTHESPIREVERSE-BIG_GUNS_POWER.description": "Every 10 [gold]Energy[/gold] you spend, Load [gold]Ammo[/gold].",
+  "INTOTHESPIREVERSE-BIG_GUNS_POWER.description": "Your [gold]Ammo[/gold] shots now deals damage to ALL enemies.\nEvery 10 [gold]Energy[/gold] you spend, Load [gold]Ammo[/gold].",
   "INTOTHESPIREVERSE-BIG_GUNS_POWER.smartDescription": "Every 10 {energyPrefix:energyIcons(1)} you spend, load [blue]{Amount}[/blue] [gold]Ammo[/gold].\nYou have spent {EnergySpent} energy.",
   "INTOTHESPIREVERSE-BIG_GUNS_POWER.title": "Big Guns",
   "INTOTHESPIREVERSE-TRIAL_OF_ONE_POWER.description": "The next time you spend 5{energyPrefix:energyIcons(1)} in a single turn, gain [gold]Strength[/gold] and 1 [gold]Intangible[/gold].",
