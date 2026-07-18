@@ -16,6 +16,8 @@ public sealed class UnrelentingForm() : ShadowIroncladCard(3, CardType.Power, Ca
         new PowerVar<UnrelentingFormPower>(2),
     ];
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [EnergyHoverTip];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -31,5 +33,8 @@ public sealed class UnrelentingForm() : ShadowIroncladCard(3, CardType.Power, Ca
         );
     }
 
-    protected override void OnUpgrade() => DynamicVars[nameof(UnrelentingFormPower)].UpgradeValueBy(1);
+    protected override void OnUpgrade()
+    {
+        RemoveKeyword(CardKeyword.Ethereal);
+    }
 }

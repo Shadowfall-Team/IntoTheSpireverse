@@ -11,7 +11,9 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
+#pragma warning disable STS001
 public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
+#pragma warning restore STS001
 {
     public override string PlaceholderID => "regent";
     public const string CharacterId = "regent";

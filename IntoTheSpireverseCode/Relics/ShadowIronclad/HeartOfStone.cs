@@ -47,6 +47,10 @@ public class HeartOfStone : ShadowIroncladRelic
         if (target != Owner.Creature || amount <= 0m)
             return amount;
 
+        // Only absorb combat damage — event/non-combat HP loss must pass through untouched.
+        if (!CombatManager.Instance.IsInProgress)
+            return amount;
+
         decimal remaining = DynamicVars["Absorb"].IntValue - AbsorbedThisCombat;
         if (remaining <= 0m)
             return amount;

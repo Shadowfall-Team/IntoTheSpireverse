@@ -461,7 +461,7 @@
   "INTOTHESPIREVERSE-QUAKE.title": "Quake",
   "INTOTHESPIREVERSE-QUAKE.description": "Deal {Damage:diff()} damage to ALL enemies.\n[gold]Transform[/gold] a card in your [gold]Draw Pile[/gold] into [gold]Rolling Rock[/gold].",
   "INTOTHESPIREVERSE-QUARRY.title": "Quarry",
-  "INTOTHESPIREVERSE-QUARRY.description": "Add X+1 {IfUpgraded:show:[gold]Small Rocks+[/gold]|[gold]Small Rocks[/gold]} into your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-QUARRY.description": "Add {IfUpgraded:show:X+1|X} [gold]Small Rocks[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-PILLAR_OF_MUTATION.title": "Pillar of Mutation",
   "INTOTHESPIREVERSE-PILLAR_OF_MUTATION.description": "Whenever you create a card, gain {Block:diff()} [gold]Block[/gold] and {VigorPower:diff()} [gold]Vigor[/gold].",
   "INTOTHESPIREVERSE-REAPER.title": "Reaper",
