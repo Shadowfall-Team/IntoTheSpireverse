@@ -1,5 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;

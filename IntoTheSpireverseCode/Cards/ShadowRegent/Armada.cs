@@ -1,13 +1,12 @@
-﻿using BaseLib.Abstracts;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 

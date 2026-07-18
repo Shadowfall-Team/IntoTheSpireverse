@@ -1,7 +1,7 @@
 using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +20,7 @@ public class PoweredBeam() : ShadowRegentCard(1,
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("LoadAmmo", 1),
+        new LoadAmmoVar(1),
         new PowerVar<VolleyDamagePower>(1)
     ];
 
@@ -43,7 +43,7 @@ public class PoweredBeam() : ShadowRegentCard(1,
         CardModel card, bool fromHandDraw)
     {
         if (CombatState == null || card != this) return;
-        await LoadAmmoCmd.LoadAmmo(DynamicVars["LoadAmmo"].BaseValue * await GeneratePlayCount(CombatState, null),
+        await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue * await GeneratePlayCount(CombatState, null),
             Owner, this);
         await PowerCmd.Apply<VolleyDamagePower>(choiceContext, Owner.Creature,
             DynamicVars.Power<VolleyDamagePower>().BaseValue * await GeneratePlayCount(CombatState, null),
