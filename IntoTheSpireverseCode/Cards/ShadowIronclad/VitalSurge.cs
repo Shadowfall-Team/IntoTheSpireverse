@@ -17,18 +17,15 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
 {
     private const string CalculatedHealKey = "CalculatedHeal";
 
-    public override bool GainsBlock => true;
-
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
         CardKeyword.Exhaust,
     ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        
         new EnergyVar(2),
-        new CalculationBaseVar(0m),
-        new CalculationExtraVar(1m),
+        new CalculationBaseVar(0),
+        new CalculationExtraVar(1),
         new CalculatedVar(CalculatedHealKey).WithMultiplier((card, _) => GetHpLostThisTurn(card)),
     ];
 
@@ -46,7 +43,7 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
        
         
-        await PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
 
 
         decimal heal = ((CalculatedVar)DynamicVars[CalculatedHealKey]).Calculate(null);
@@ -54,6 +51,5 @@ public sealed class VitalSurge() : ShadowIroncladCard(1, CardType.Skill, CardRar
             await CreatureCmd.Heal(Owner.Creature, (int)heal);
     }
 
-    protected override void OnUpgrade() => 
-        DynamicVars.Energy.UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars.Energy.UpgradeValueBy(1);
 }
