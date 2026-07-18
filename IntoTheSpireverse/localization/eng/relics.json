@@ -45,10 +45,10 @@
   "SEA_GLASS.INTOTHESPIREVERSE-SHADOW_REGENT.title": "Captain's Glass",
   
   "INTOTHESPIREVERSE-HEART_OF_STONE.title": "Heart of Stone",
-  "INTOTHESPIREVERSE-HEART_OF_STONE.description": "Absorb the first [blue]{Absorb}[/blue] damage you would take each combat.",
+  "INTOTHESPIREVERSE-HEART_OF_STONE.description": "Absorb the first [blue]{Absorb}[/blue] damage you lose each combat.",
   "INTOTHESPIREVERSE-HEART_OF_STONE.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
   "INTOTHESPIREVERSE-HEART_OF_THE_MOUNTAIN.title": "Heart of the Mountain",
-  "INTOTHESPIREVERSE-HEART_OF_THE_MOUNTAIN.description": "Absorb the first [blue]{Absorb}[/blue] damage you would take each combat.",
+  "INTOTHESPIREVERSE-HEART_OF_THE_MOUNTAIN.description": "Absorb the first [blue]{Absorb}[/blue] damage you lose each combat.",
   "INTOTHESPIREVERSE-HEART_OF_THE_MOUNTAIN.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
   "INTOTHESPIREVERSE-BUCKLER.title": "Buckler",
   "INTOTHESPIREVERSE-BUCKLER.description": "The first time an enemy loses HP to [gold]Bloodbond[/gold] each combat, heal [green]{Heal}[/green] HP.",
