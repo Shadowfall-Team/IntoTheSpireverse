@@ -11,7 +11,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
 
 public sealed class JoltPower : ShadowPowerModel
 {
-    private bool _triggeredThisTurn;
+    // Tracked per side, so Jolt can trigger once during the player's turn and once during the enemy's.
+    private bool _triggeredOnPlayerTurn;
+    private bool _triggeredOnEnemyTurn;
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -24,20 +26,29 @@ public sealed class JoltPower : ShadowPowerModel
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (Owner.CombatState == null || Owner.Player == null || target != Owner || result.UnblockedDamage <= 0 || _triggeredThisTurn)
+        if (Owner.CombatState == null || Owner.Player == null || target != Owner || result.UnblockedDamage <= 0)
             return;
 
-        _triggeredThisTurn = true;
+        var onEnemyTurn = Owner.CombatState.CurrentSide == CombatSide.Enemy;
+        if (onEnemyTurn ? _triggeredOnEnemyTurn : _triggeredOnPlayerTurn)
+            return;
+
+        if (onEnemyTurn)
+            _triggeredOnEnemyTurn = true;
+        else
+            _triggeredOnPlayerTurn = true;
+
         Flash();
         await CardPileCmd.Draw(choiceContext, Amount, Owner.Player);
     }
 
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (side != Owner.Side)
-            return Task.CompletedTask;
+        if (side == CombatSide.Enemy)
+            _triggeredOnEnemyTurn = false;
+        else if (side == Owner.Side)
+            _triggeredOnPlayerTurn = false;
 
-        _triggeredThisTurn = false;
         return Task.CompletedTask;
     }
 }
