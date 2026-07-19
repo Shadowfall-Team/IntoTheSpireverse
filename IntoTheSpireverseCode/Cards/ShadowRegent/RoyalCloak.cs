@@ -45,7 +45,7 @@ public class RoyalCloakPower : ShadowPowerModel
 
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (Owner.Player == null) return;
+        if (side != Owner.Side || Owner.Player == null) return;
 
         await CreatureCmd.GainBlock(Owner,
             PileType.Hand.GetPile(Owner.Player).Cards.Count * Amount, ValueProp.Unpowered,

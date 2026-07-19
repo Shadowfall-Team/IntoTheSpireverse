@@ -17,7 +17,10 @@ public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
 {
     private class Data
     {
-        public bool activatedThisTurn; // technically "last turn" by the time its used
+        // Damage taken during the player's turn and during the enemy's turn are tracked separately, so a
+        // hit on each side stacks up and both resolve at the start of the player's next turn.
+        public bool activatedOnPlayerTurn;
+        public bool activatedOnEnemyTurn;
     }
 
     public override PowerType Type => PowerType.Buff;
@@ -52,8 +55,13 @@ public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext,
         Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
-        if (target != Owner || GetInternalData<Data>().activatedThisTurn || result.UnblockedDamage <= 0) return;
-        GetInternalData<Data>().activatedThisTurn = true;
+        if (target != Owner || result.UnblockedDamage <= 0) return;
+
+        var data = GetInternalData<Data>();
+        if (CombatState?.CurrentSide == CombatSide.Enemy)
+            data.activatedOnEnemyTurn = true;
+        else
+            data.activatedOnPlayerTurn = true;
         // set to flash/indicate as ready? do powers ever do that?
     }
 
@@ -61,14 +69,20 @@ public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
     {
         if (side is not CombatSide.Player) return;
 
-        if (!GetInternalData<Data>().activatedThisTurn) return;
+        var data = GetInternalData<Data>();
+        var triggers = (data.activatedOnPlayerTurn ? 1 : 0) + (data.activatedOnEnemyTurn ? 1 : 0);
+        if (triggers == 0) return;
 
-        Flash();
-        await PowerCmd.Apply<ClaySoldierTemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
-            Owner, DynamicVars.Strength.BaseValue, Owner, null);
-        await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
-            Owner, DynamicVars.Power<SlatePower>().BaseValue, Owner, null);
+        data.activatedOnPlayerTurn = false;
+        data.activatedOnEnemyTurn = false;
 
-        GetInternalData<Data>().activatedThisTurn = false;
+        for (var i = 0; i < triggers; i++)
+        {
+            Flash();
+            await PowerCmd.Apply<ClaySoldierTemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
+                Owner, DynamicVars.Strength.BaseValue, Owner, null);
+            await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
+                Owner, DynamicVars.Power<SlatePower>().BaseValue, Owner, null);
+        }
     }
 }

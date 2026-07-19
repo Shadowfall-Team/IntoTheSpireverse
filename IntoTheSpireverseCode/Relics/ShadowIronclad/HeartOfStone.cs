@@ -1,6 +1,8 @@
 ﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
@@ -12,20 +14,15 @@ public class HeartOfStone : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Absorb", 8m)];
+    private const string _absorbKey = "Absorb";
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(_absorbKey, 8)];
 
     public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<HeartOfTheMountain>();
 
     private int _absorbedThisCombat;
-
-    // Set in ModifyHpLostAfterOstyLate (which must stay a pure calculation — it also decides the displayed
-    // damage numbers), then committed in AfterModifyingHpLostAfterOsty, which the game only invokes when
-    // the damage was actually applied. Same pattern as the base game's BufferPower.
-    private decimal _pendingAbsorb;
-
     private int AbsorbedThisCombat
     {
-        get { return _absorbedThisCombat; }
+        get => _absorbedThisCombat;
         set
         {
             _absorbedThisCombat = value;
@@ -33,7 +30,13 @@ public class HeartOfStone : ShadowIroncladRelic
         }
     }
 
-    public override int DisplayAmount => DynamicVars["Absorb"].IntValue - AbsorbedThisCombat;
+    private int _hpBeforeHpLoss;
+    private int _finalUnblockedDamage;
+
+    private int RemainingAbsorbAmount => DynamicVars[_absorbKey].IntValue - AbsorbedThisCombat;
+    private int EffectiveHp => _hpBeforeHpLoss + RemainingAbsorbAmount;
+
+    public override int DisplayAmount => RemainingAbsorbAmount;
 
     public override bool ShowCounter => CombatManager.Instance.IsInProgress && DisplayAmount > 0;
 
@@ -44,27 +47,51 @@ public class HeartOfStone : ShadowIroncladRelic
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (target != Owner.Creature || amount <= 0m)
-            return amount;
-
-        // Only absorb combat damage — event/non-combat HP loss must pass through untouched.
-        if (!CombatManager.Instance.IsInProgress)
-            return amount;
-
-        decimal remaining = DynamicVars["Absorb"].IntValue - AbsorbedThisCombat;
-        if (remaining <= 0m)
-            return amount;
-
-        _pendingAbsorb = Math.Min(amount, remaining);
-        return amount - _pendingAbsorb;
+        if (target == Owner.Creature)
+        {
+            _hpBeforeHpLoss = target.CurrentHp;
+            _finalUnblockedDamage = (int)amount;
+        }
+        return amount;
     }
 
-    public override Task AfterModifyingHpLostAfterOsty()
+    public override async Task AfterDamageReceived(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        DamageResult result,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource)
     {
+        if (!CombatManager.Instance.IsInProgress || target != Owner.Creature || RemainingAbsorbAmount <= 0 || result.UnblockedDamage <= 0)
+            return;
+
+        int absorbed = Math.Min(result.UnblockedDamage, RemainingAbsorbAmount);
+
         Flash();
-        AbsorbedThisCombat += (int)_pendingAbsorb;
-        _pendingAbsorb = 0m;
-        return Task.CompletedTask;
+        await CreatureCmd.Heal(target, absorbed, false);
+        AbsorbedThisCombat += absorbed;
+    }
+
+    public override bool ShouldDieLate(Creature creature)
+    {
+        if (!CombatManager.Instance.IsInProgress || creature != Owner.Creature) return true;
+
+        return _finalUnblockedDamage >= EffectiveHp;
+    }
+
+    public override async Task AfterPreventingDeath(Creature creature)
+    {
+        if (!CombatManager.Instance.IsInProgress || creature != Owner.Creature) return;
+
+        int absorbed = Math.Min(_finalUnblockedDamage, RemainingAbsorbAmount);
+
+        int postDamageHp = _hpBeforeHpLoss - _finalUnblockedDamage + absorbed;
+
+        Flash();
+        await CreatureCmd.Heal(creature, postDamageHp);
+
+        AbsorbedThisCombat += absorbed;
     }
 
     public override Task BeforeCombatStart()
@@ -82,7 +109,7 @@ public class HeartOfStone : ShadowIroncladRelic
 
     private void UpdateDisplay()
     {
-        Status = AbsorbedThisCombat >= DynamicVars["Absorb"].IntValue ? RelicStatus.Disabled : RelicStatus.Normal;
+        Status = RemainingAbsorbAmount <= 0 ? RelicStatus.Disabled : RelicStatus.Normal;
         InvokeDisplayAmountChanged();
     }
 }
