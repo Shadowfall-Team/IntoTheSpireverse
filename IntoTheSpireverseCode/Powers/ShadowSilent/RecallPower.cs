@@ -22,26 +22,25 @@ public class RecallPower : ShadowPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
+    public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        PileType pileType,
-        CardPilePosition position)
+        CardLocation location)
     {
         if (card.Owner.Creature != Owner)
-            return (pileType, position);
+            return location;
         if (card.IsDupe)
-            return (pileType, position);
-        if (pileType == PileType.None)
-            return (pileType, position);
-        return (PileType.Hand, CardPilePosition.Top);
+            return location;
+        if (location.pileType == PileType.None)
+            return location;
+        location.pileType = PileType.Hand;
+        location.position = CardPilePosition.Top;
+        return location;
     }
 
-    public override Task AfterModifyingCardPlayResultPileOrPosition(
-        CardModel card,
-        PileType pileType,
-        CardPilePosition position)
+    public override Task AfterModifyingCardPlayResultLocation(
+        CardModel card, CardLocation location)
     {
         Flash();
         PowerCmd.Decrement(this);

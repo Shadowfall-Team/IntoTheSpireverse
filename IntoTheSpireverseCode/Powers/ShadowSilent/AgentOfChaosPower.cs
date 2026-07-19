@@ -68,16 +68,18 @@ public class AgentOfChaosPower : ShadowPowerModel
         }
     }
     
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
+    public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        PileType pileType,
-        CardPilePosition position)
+        CardLocation location)
     {
-        if (card.Owner.Creature != this.Owner)
-            return (pileType, position);
-        return !GetInternalData<Data>().discardedSlyCards.Contains(card) ? (pileType, position) : (PileType.Exhaust, position);
+        if (card.Owner.Creature != Owner)
+            return location;
+        if (!GetInternalData<Data>().discardedSlyCards.Contains(card))
+            return location;
+        location.pileType = PileType.Exhaust;
+        return location;
     }
     
     
