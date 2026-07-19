@@ -5,15 +5,15 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		ExportDebug|Any CPU = ExportDebug|Any CPU
-		ExportRelease|Any CPU = ExportRelease|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Production|Any CPU = Production|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{006437A8-557A-4B15-87C1-357D2A6A097F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{006437A8-557A-4B15-87C1-357D2A6A097F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{006437A8-557A-4B15-87C1-357D2A6A097F}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{006437A8-557A-4B15-87C1-357D2A6A097F}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{006437A8-557A-4B15-87C1-357D2A6A097F}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{006437A8-557A-4B15-87C1-357D2A6A097F}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{006437A8-557A-4B15-87C1-357D2A6A097F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{006437A8-557A-4B15-87C1-357D2A6A097F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{006437A8-557A-4B15-87C1-357D2A6A097F}.Production|Any CPU.ActiveCfg = Production|Any CPU
+		{006437A8-557A-4B15-87C1-357D2A6A097F}.Production|Any CPU.Build.0 = Production|Any CPU
 	EndGlobalSection
 EndGlobal
