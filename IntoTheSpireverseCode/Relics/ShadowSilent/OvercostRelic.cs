@@ -72,27 +72,27 @@ public class OvercostRelic : ShadowSilentRelic, IOvercostListener, IBeforeEnergy
         return Task.CompletedTask;
     }
     
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
+    public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        PileType pileType,
-        CardPilePosition position)
+        CardLocation location)
     {
         if (card.Owner != Owner)
-            return (pileType, position);
+            return location;
         if (card.EnergyCost.GetResolved() <= EnergyBeforePlay)
-            return (pileType, position);
+            return location;
         if (isAutoPlay)
-            return (pileType, position);
+            return location;
         
         Flash();
         
         Status = RelicStatus.Normal;
         WasUsedThisCombat = true;
         EnergyBeforePlay = 0;
+        location.pileType = PileType.Exhaust;
         
-        return (PileType.Exhaust, position);
+        return location;
     }
     
     public override Task AfterCombatEnd(CombatRoom _)
