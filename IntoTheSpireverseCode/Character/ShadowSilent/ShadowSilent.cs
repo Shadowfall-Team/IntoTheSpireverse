@@ -37,13 +37,13 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
         ModelDb.Card<DefendShadowSilent>(),
         ModelDb.Card<DefendShadowSilent>(),
         ModelDb.Card<DefendShadowSilent>(),
-        ModelDb.Card<CheapShot>(),
-        ModelDb.Card<MeasuredDefense>(),
+        ModelDb.Card<Foretell>(),
+        ModelDb.Card<Clothesline>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<ArmoredPack>()
+        ModelDb.Relic<MysticCharm>()
     ];
     
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowSilentCardPool>();
@@ -58,4 +58,7 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     // public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
     // public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
     // public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
+    
+    public override string CustomVisualPath => "res://IntoTheSpireverse/scenes/creature_visuals/shadowsilent.tscn";
+    public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/shadowsilent_merchant.tscn";
 }

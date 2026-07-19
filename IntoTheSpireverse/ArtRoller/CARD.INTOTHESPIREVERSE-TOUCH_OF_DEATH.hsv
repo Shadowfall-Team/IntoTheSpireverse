@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-TOUCH_OF_DEATH",
+  "hue": 0.88,
+  "saturation": 0.85,
+  "value": 0.87,
+  "red": 1.08,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1.15,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/necrobinder/enfeebling_touch.tres"
+}

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-MISTY_STEP",
+  "hue": 0.69,
+  "saturation": 1.28,
+  "value": 1.56,
+  "red": 1,
+  "green": 1,
+  "blue": 1,
+  "contrast": 0.86,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/shadow_step.tres"
+}

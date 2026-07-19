@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://d4li4q7d3n0nb"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dcgjjiwexpujq" path="res://IntoTheSpireverse/images/characters/shadowsilent/merchant/silent_shop.atlas" id="1_st8n0"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cbaww6gd7g743" path="res://IntoTheSpireverse/images/characters/shadowsilent/silent.skel" id="2_g2c6w"]
+
+[resource]
+atlas_res = ExtResource("1_st8n0")
+skeleton_file_res = ExtResource("2_g2c6w")

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-COLD_BLOODED",
+  "hue": 0.4,
+  "saturation": 0.89,
+  "value": 0.99,
+  "red": 0.84,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/necrobinder/eidolon.tres"
+}

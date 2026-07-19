@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-DENATURE",
+  "hue": 0.87,
+  "saturation": 0.85,
+  "value": 1.12,
+  "red": 1,
+  "green": 0.86,
+  "blue": 0.86,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/defect/synthesis.tres"
+}

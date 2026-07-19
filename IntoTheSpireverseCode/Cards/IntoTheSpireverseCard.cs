@@ -4,6 +4,7 @@ using BaseLib.Utils;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
@@ -41,3 +42,7 @@ public abstract class ShadowNecrobinderCard(int cost, CardType type, CardRarity 
 [Pool(typeof(ShadowRegentCardPool))]
 public abstract class ShadowRegentCard(int cost, CardType type, CardRarity rarity, TargetType target) :
     IntoTheSpireverseCard(cost, type, rarity, target, "regent");
+
+[Pool(typeof(TokenCardPool))]
+public abstract class ShadowColorlessCard(int cost, CardType type, CardRarity rarity, TargetType target) :
+    IntoTheSpireverseCard(cost, type, rarity, target, "colorless");

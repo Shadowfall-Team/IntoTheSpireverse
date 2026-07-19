@@ -6,4 +6,5 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 public static class IntoTheSpireverseCardTags
 {
     public static readonly CardTag Rock = CustomEnums.GenerateKey<CardTag>("IntoTheSpireverse", "Rock");
+    public static readonly CardTag Scale = CustomEnums.GenerateKey<CardTag>("IntoTheSpireverse", "Scale");
 }
