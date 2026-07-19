@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 
 public class TrialOfOnePower : ShadowPowerModel
 {

@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 
 public class FireEverythingPower : ShadowPowerModel, IModifiesShotCost
 {

@@ -2,7 +2,7 @@ using BaseLib.Common.Rewards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 
 public class RedGiantRandomPower : ShadowPowerModel
 {

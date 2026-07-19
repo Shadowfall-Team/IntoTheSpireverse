@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 
 public class BigGunsPower : ShadowPowerModel, IHasSecondAmount
 {

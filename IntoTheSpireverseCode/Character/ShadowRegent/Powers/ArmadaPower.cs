@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 
 public class ArmadaPower : ShadowPowerModel
 {
