@@ -1,15 +1,14 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Relics;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
 #pragma warning disable STS001
 public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter

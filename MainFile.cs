@@ -4,11 +4,12 @@ using BaseLib.Utils;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.Core.Saves.Runs;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using MegaCrit.Sts2.Core.Multiplayer.Serialization;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
 namespace IntoTheSpireverse;
 

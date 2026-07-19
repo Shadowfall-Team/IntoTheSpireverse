@@ -3,7 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 
 public class ShadowDefectCardPool : CustomCardPoolModel
 {
@@ -30,36 +30,36 @@ public class ShadowDefectCardPool : CustomCardPoolModel
     {
         return new CardModel[]
         {
-            (CardModel) ModelDb.Card<StrikeDefect>(),
-            (CardModel) ModelDb.Card<DefendDefect>(),
-            (CardModel) ModelDb.Card<BeamCell>(),
-            (CardModel) ModelDb.Card<Claw>(),
-            (CardModel) ModelDb.Card<Barrage>(),
-            (CardModel) ModelDb.Card<ColdSnap>(),
-            (CardModel) ModelDb.Card<SweepingBeam>(),
-            (CardModel) ModelDb.Card<Turbo>(),
-            (CardModel) ModelDb.Card<ChargeBattery>(),
-            (CardModel) ModelDb.Card<Hologram>(),
-            (CardModel) ModelDb.Card<Scrape>(),
-            (CardModel) ModelDb.Card<Null>(),
-            (CardModel) ModelDb.Card<RocketPunch>(),
-            (CardModel) ModelDb.Card<Darkness>(),
-            (CardModel) ModelDb.Card<EnergySurge>(),
-            (CardModel) ModelDb.Card<WhiteNoise>(),
-            (CardModel) ModelDb.Card<Glacier>(),
-            (CardModel) ModelDb.Card<ShadowShield>(),
-            (CardModel) ModelDb.Card<Iteration>(),
-            (CardModel) ModelDb.Card<Loop>(),
-            (CardModel) ModelDb.Card<BulkUp>(),
-            (CardModel) ModelDb.Card<Feral>(),
-            (CardModel) ModelDb.Card<Shatter>(),
-            (CardModel) ModelDb.Card<AllForOne>(),
-            (CardModel) ModelDb.Card<Ignition>(),
-            (CardModel) ModelDb.Card<SignalBoost>(),
-            (CardModel) ModelDb.Card<Defragment>(),
-            (CardModel) ModelDb.Card<MachineLearning>(),
-            (CardModel) ModelDb.Card<MegaCrit.Sts2.Core.Models.Cards.Buffer>(),
-            (CardModel) ModelDb.Card<ConsumingShadow>(),
+            ModelDb.Card<StrikeDefect>(),
+            ModelDb.Card<DefendDefect>(),
+            ModelDb.Card<BeamCell>(),
+            ModelDb.Card<Claw>(),
+            ModelDb.Card<Barrage>(),
+            ModelDb.Card<ColdSnap>(),
+            ModelDb.Card<SweepingBeam>(),
+            ModelDb.Card<Turbo>(),
+            ModelDb.Card<ChargeBattery>(),
+            ModelDb.Card<Hologram>(),
+            ModelDb.Card<Scrape>(),
+            ModelDb.Card<Null>(),
+            ModelDb.Card<RocketPunch>(),
+            ModelDb.Card<Darkness>(),
+            ModelDb.Card<EnergySurge>(),
+            ModelDb.Card<WhiteNoise>(),
+            ModelDb.Card<Glacier>(),
+            ModelDb.Card<ShadowShield>(),
+            ModelDb.Card<Iteration>(),
+            ModelDb.Card<Loop>(),
+            ModelDb.Card<BulkUp>(),
+            ModelDb.Card<Feral>(),
+            ModelDb.Card<Shatter>(),
+            ModelDb.Card<AllForOne>(),
+            ModelDb.Card<Ignition>(),
+            ModelDb.Card<SignalBoost>(),
+            ModelDb.Card<Defragment>(),
+            ModelDb.Card<MachineLearning>(),
+            ModelDb.Card<MegaCrit.Sts2.Core.Models.Cards.Buffer>(),
+            ModelDb.Card<ConsumingShadow>(),
         };
     }
 }

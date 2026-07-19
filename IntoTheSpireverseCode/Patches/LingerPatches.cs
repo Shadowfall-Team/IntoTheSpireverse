@@ -1,11 +1,11 @@
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowNecrobinder;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 

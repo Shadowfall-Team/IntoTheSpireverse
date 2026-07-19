@@ -1,17 +1,14 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Cards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Relics;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
-using MegaCrit.Sts2.Core.Models.Relics;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowNecrobinder;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowNecrobinder;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
 
 public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
 {

@@ -1,0 +1,17 @@
+using BaseLib.Abstracts;
+using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
+
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+
+public class PoweredPulsePower : TemporaryStrengthPower, ICustomPower
+{
+    public override AbstractModel OriginModel => ModelDb.Card<PoweredPulse>();
+
+    string? ICustomPower.CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
+    string? ICustomPower.CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigPowerImagePath();
+
+    protected override bool IsPositive => false;
+}

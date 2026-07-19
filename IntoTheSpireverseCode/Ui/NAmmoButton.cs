@@ -1,6 +1,6 @@
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;

@@ -1,4 +1,6 @@
 using BaseLib.Patches.Content;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -11,9 +13,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 

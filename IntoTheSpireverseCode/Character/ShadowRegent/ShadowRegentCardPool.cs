@@ -2,11 +2,10 @@
 using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
 using Constellation = MegaCrit.Sts2.Core.Models.Cards.Constellation;
 using Plot = MegaCrit.Sts2.Core.Models.Cards.Plot;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
 public class ShadowRegentCardPool : CustomCardPoolModel
 {

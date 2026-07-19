@@ -1,7 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 
 public class ShadowDefectPotionPool : CustomPotionPoolModel
 {

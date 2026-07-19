@@ -5,7 +5,6 @@ using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
 using IntoTheSpireverse;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards;
 
 namespace IntoTheSpireverse.Patches;
 

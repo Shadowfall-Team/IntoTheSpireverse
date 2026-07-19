@@ -1,4 +1,4 @@
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;

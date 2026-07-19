@@ -1,16 +1,16 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Relics;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
-using Decay = IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect.Decay;
-using Invoke = IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowDefect.Invoke;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowDefect;
+using Decay = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards.Decay;
+using Invoke = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards.Invoke;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 
 public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
 {
