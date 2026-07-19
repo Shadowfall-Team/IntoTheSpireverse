@@ -1,14 +1,10 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
-using BaseLib.Utils;
 using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
-[Pool(typeof(ShadowDefectPotionPool))]
 public abstract class IntoTheSpireversePotion : CustomPotionModel
 {
     public override string? CustomPackedImagePath
@@ -20,6 +16,3 @@ public abstract class IntoTheSpireversePotion : CustomPotionModel
         }
     }
 }
-
-[Pool(typeof(ShadowRegentPotionPool))]
-public abstract class ShadowRegentPotion : IntoTheSpireversePotion;

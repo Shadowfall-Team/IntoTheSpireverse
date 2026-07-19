@@ -9,8 +9,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Potions;
 
-[Pool(typeof(ShadowNecrobinderPotionPool))]
-public class SNecroDeathglarePotion : IntoTheSpireversePotion
+public class SNecroDeathglarePotion : ShadowNecrobinderPotion
 {
     public override PotionRarity Rarity => PotionRarity.Rare;
     public override PotionUsage Usage => PotionUsage.CombatOnly;

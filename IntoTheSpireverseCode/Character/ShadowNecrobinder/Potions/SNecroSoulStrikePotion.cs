@@ -9,8 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Potions;
 
-[Pool(typeof(ShadowNecrobinderPotionPool))]
-public class SNecroSoulStrikePotion : IntoTheSpireversePotion
+public class SNecroSoulStrikePotion : ShadowNecrobinderPotion
 {
     public override PotionRarity Rarity => PotionRarity.Uncommon;
     public override PotionUsage Usage => PotionUsage.CombatOnly;
