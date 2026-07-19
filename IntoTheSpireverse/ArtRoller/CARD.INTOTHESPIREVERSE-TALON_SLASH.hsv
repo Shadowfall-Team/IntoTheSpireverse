@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-TALON_SLASH",
-  "hue": 0.1,
-  "saturation": 0.91,
-  "value": 1.02,
+  "hue": 0.63,
+  "saturation": 1.19,
+  "value": 0.91,
   "red": 1,
   "green": 1.2,
   "blue": 0.93,
-  "contrast": 1,
+  "contrast": 1.16,
   "flip_h": true,
   "portrait_path": "res://images/atlases/card_atlas.sprites/silent/flick_flack.tres"
 }

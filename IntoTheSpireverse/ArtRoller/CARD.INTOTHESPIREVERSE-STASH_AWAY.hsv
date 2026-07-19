@@ -1,10 +1,10 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-STASH_AWAY",
-  "hue": 0.6,
+  "hue": 0.81,
   "saturation": 0.6,
   "value": 1.28,
   "red": 1,
-  "green": 1,
+  "green": 1.5,
   "blue": 1,
   "contrast": 0.95,
   "flip_h": false,

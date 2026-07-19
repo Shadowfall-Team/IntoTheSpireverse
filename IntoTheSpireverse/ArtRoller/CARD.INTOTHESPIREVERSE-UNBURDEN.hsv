@@ -1,11 +1,11 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-UNBURDEN",
-  "hue": 0.84,
-  "saturation": 1,
+  "hue": 0.8,
+  "saturation": 0.67,
   "value": 1,
   "red": 1,
-  "green": 1,
-  "blue": 1,
+  "green": 1.32,
+  "blue": 0.49,
   "contrast": 1,
   "flip_h": false,
   "portrait_path": "res://images/atlases/card_atlas.sprites/silent/survivor.tres"
