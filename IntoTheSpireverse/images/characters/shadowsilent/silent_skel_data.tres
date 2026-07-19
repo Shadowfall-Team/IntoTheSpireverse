@@ -1,0 +1,28 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3 uid="uid://bqlhf04mk2866"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dq7y3dlq1mmdq" path="res://IntoTheSpireverse/images/characters/shadowsilent/silent.atlas" id="1_tybe6"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://cbaww6gd7g743" path="res://IntoTheSpireverse/images/characters/shadowsilent/silent.skel" id="2_n4dcu"]
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_ej2q8"]
+from = "hurt"
+to = "hurt"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_63nwy"]
+from = "hurt"
+to = "die"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_di581"]
+from = "idle_loop"
+to = "hurt"
+mix = 0.02
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_ynr7g"]
+from = "cast"
+to = "idle_loop"
+mix = 0.02
+
+[resource]
+atlas_res = ExtResource("1_tybe6")
+skeleton_file_res = ExtResource("2_n4dcu")
+default_mix = 0.05
+animation_mixes = [SubResource("SpineAnimationMix_ej2q8"), SubResource("SpineAnimationMix_63nwy"), SubResource("SpineAnimationMix_di581"), SubResource("SpineAnimationMix_ynr7g")]
