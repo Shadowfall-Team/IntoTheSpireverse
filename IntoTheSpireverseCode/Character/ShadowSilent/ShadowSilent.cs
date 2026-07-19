@@ -60,4 +60,5 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     // public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
     
     public override string CustomVisualPath => "res://IntoTheSpireverse/scenes/creature_visuals/shadowsilent.tscn";
+    public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/shadowsilent_merchant.tscn";
 }

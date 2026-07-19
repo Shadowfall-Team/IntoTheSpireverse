@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://de6eyocinxgxa"
+path="res://.godot/imported/silent_shop.atlas-198e2ca74bdd9080162e322fefa08fe7.spatlas"
+
+[deps]
+
+source_file="res://IntoTheSpireverse/images/characters/shadowsilent/merchant/silent_shop.atlas"
+dest_files=["res://.godot/imported/silent_shop.atlas-198e2ca74bdd9080162e322fefa08fe7.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"
