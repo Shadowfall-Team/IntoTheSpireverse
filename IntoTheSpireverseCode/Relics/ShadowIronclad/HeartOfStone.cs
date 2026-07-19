@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
 
@@ -44,6 +45,8 @@ public class HeartOfStone : ShadowIroncladRelic
         Creature? dealer,
         CardModel? cardSource)
     {
+        HeartOfStoneAbsorbPatch.ClearPending();
+
         if (target != Owner.Creature || amount <= 0m)
             return amount;
 
@@ -62,8 +65,15 @@ public class HeartOfStone : ShadowIroncladRelic
     public override Task AfterModifyingHpLostAfterOsty()
     {
         Flash();
-        AbsorbedThisCombat += (int)_pendingAbsorb;
+        var absorbed = (int)_pendingAbsorb;
+        AbsorbedThisCombat += absorbed;
         _pendingAbsorb = 0m;
+
+        // The HP never drops, so tell the patch to report the absorbed damage on the DamageResult the game
+        // is about to build — otherwise "when you lose HP" effects (Clay Soldier, etc.) see nothing.
+        if (absorbed > 0)
+            HeartOfStoneAbsorbPatch.ReportAbsorbed(Owner.Creature, absorbed);
+
         return Task.CompletedTask;
     }
 
