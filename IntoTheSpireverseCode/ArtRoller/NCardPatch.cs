@@ -49,9 +49,5 @@ public static class NCardPatch
             CardShaderHelper.ApplyToPortrait(portrait, h, s, v, r, g, b, contrast);
             portrait.FlipH = flipH;
         }
-
-
-
-
     }
 }
