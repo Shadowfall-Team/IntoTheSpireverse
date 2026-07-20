@@ -1,4 +1,5 @@
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
@@ -35,6 +36,7 @@ public partial class NCharAltArrow : NGoldArrowButton
         _currentAltIndex = (_currentAltIndex + 1) % Characters.Count;
         var character = Characters[_currentAltIndex];
 
+        IntoTheSpireverseConfig.SaveSelectedAlt(character);
         parent.Init(character, ClickDelegate);
 
         var portraitContainer = parent.GetNode<Control>("MarginContainer");
@@ -71,5 +73,11 @@ public partial class NCharAltArrow : NGoldArrowButton
         _portraitTween.TweenProperty(node, "modulate:a", 1.0f, duration)
             .SetDelay(duration)
             .SetEase(Tween.EaseType.In);
+    }
+
+    public void SyncIndexToCharacter(CharacterModel current)
+    {
+        _currentAltIndex = Characters.IndexOf(current);
+        if (_currentAltIndex == -1) _currentAltIndex = 0;
     }
 }
