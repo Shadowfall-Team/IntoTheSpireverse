@@ -1,9 +1,8 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using Constellation = MegaCrit.Sts2.Core.Models.Cards.Constellation;
-using Plot = MegaCrit.Sts2.Core.Models.Cards.Plot;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
@@ -18,8 +17,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
 
     protected override CardModel[] GenerateAllCards()
     {
-        return
-        [
+        CardModel[] cards = [
             ModelDb.Card<CelestialMight>(),
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<KnowThyPlace>(),
@@ -35,15 +33,18 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<MakeItSo>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
-            
-            
-            ModelDb.Card<Constellation>(),
-            ModelDb.Card<Plot>()
-            
             //"Almost identical"
             //Solar Strike
             //Glow
             //Gather Light
         ];
+
+        var sts2Assembly = typeof(ModelDb).Assembly;
+        CardModel[] extraCards = ModelDbCompatibility.GetCardModelsSafely([
+            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Constellation"),
+            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Plot")
+        ]);
+
+        return cards.Concat(extraCards).ToArray<CardModel>();
     }
 }
