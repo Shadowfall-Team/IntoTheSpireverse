@@ -20,7 +20,7 @@
     <PropertyGroup Condition="$(Configuration.Contains('Production'))">
         <PlatformTarget>AnyCPU</PlatformTarget>
         <!-- You can add the base character names in ALL CAPS (eg: SILENT) in a ";" delimited list to test in the production env -->
-        <DefineConstants>$(DefineConstants);PRODUCTION</DefineConstants>
+        <DefineConstants>$(DefineConstants);PRODUCTION;IRONCLAD;REGENT</DefineConstants>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
         <InnerConfiguration>$(Configuration)</InnerConfiguration>
@@ -82,7 +82,6 @@
         <EmbeddedResource Remove="materials/**"/>
         <EmbeddedResource Remove="shaders/**"/>
         <EmbeddedResource Remove="images/**"/>
-        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowDefect\**" />
     </ItemGroup>
 
     <ItemGroup>
