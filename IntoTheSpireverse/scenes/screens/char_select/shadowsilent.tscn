@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://fcuocamiai2r"]
+[gd_scene load_steps=22 format=3 uid="uid://fcuocamiai2r"]
 
 [ext_resource type="Shader" uid="uid://bhbks0b5wou86" path="res://IntoTheSpireverse/shaders/vfx_water_reflection.gdshader" id="1_4op7v"]
 [ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowsilent/char_select/characterselect_shadowsilent_skel_data.tres" id="1_4vfsy"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://1kkpinmk0bim" path="res://IntoTheSpireverse/images/vfx/wave_noise_round.png" id="7_i05fu"]
 [ext_resource type="Script" uid="uid://dygnxf47gloc5" path="res://IntoTheSpireverse/scenes/little_light_script.gd" id="8_catwu"]
 [ext_resource type="Texture2D" uid="uid://bo6kq6pmaql0o" path="res://IntoTheSpireverse/images/vfx/dot.png" id="9_3lbej"]
+[ext_resource type="Script" uid="uid://bl8qvqwbq8lts" path="res://IntoTheSpireverseCode/utils/NSpineAutoPlayer.cs" id="10_3pdvd"]
 [ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://IntoTheSpireverse/shaders/canvas_item_material_additive_shared.tres" id="shared_additive_mat"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3lbej"]
@@ -215,11 +216,11 @@ material = SubResource("CanvasItemMaterial_ou856")
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ou856")
 
-[node name="@SpineMesh2D@230952" type="SpineMesh2D" parent="SpineSprite"]
+[node name="_SpineMesh2D_230952" type="SpineMesh2D" parent="SpineSprite"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ou856")
 
-[node name="@SpineMesh2D@230953" type="SpineMesh2D" parent="SpineSprite"]
+[node name="_SpineMesh2D_230953" type="SpineMesh2D" parent="SpineSprite"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ou856")
 
@@ -247,7 +248,7 @@ material = SubResource("CanvasItemMaterial_ou856")
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ou856")
 
-[node name="@SpineMesh2D@230960" type="SpineMesh2D" parent="SpineSprite"]
+[node name="_SpineMesh2D_230960" type="SpineMesh2D" parent="SpineSprite"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ou856")
 
@@ -260,7 +261,7 @@ show_behind_parent = true
 material = SubResource("CanvasItemMaterial_ou856")
 
 [node name="NSpineAutoPlayer" type="Node" parent="SpineSprite"]
-metadata/_custom_type_script = "uid://b0oho7pjc1dtg"
+script = ExtResource("10_3pdvd")
 
 [node name="light_small2" type="CPUParticles2D" parent="."]
 material = ExtResource("shared_additive_mat")

@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
 public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
 {
