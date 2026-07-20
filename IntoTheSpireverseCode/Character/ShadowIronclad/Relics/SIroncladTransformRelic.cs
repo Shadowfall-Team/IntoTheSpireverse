@@ -1,4 +1,4 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Enchantments;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Enchantments;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 

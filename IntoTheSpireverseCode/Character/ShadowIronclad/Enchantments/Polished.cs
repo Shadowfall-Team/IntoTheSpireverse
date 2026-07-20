@@ -1,12 +1,11 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Enchantments;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Enchantments;
 
-public sealed class Polished : IntoTheSpireverseEnchantments
+public sealed class Polished : IntoTheSpireverseEnchantment
 {
     public override bool CanEnchantCardType(CardType cardType) => cardType == CardType.Attack;
 

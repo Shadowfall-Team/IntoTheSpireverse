@@ -7,9 +7,9 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 #endregion
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Enchantments;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
-public class IntoTheSpireverseEnchantments : CustomEnchantmentModel
+public class IntoTheSpireverseEnchantment : CustomEnchantmentModel
 {
     protected override string? CustomIconPath
     {
