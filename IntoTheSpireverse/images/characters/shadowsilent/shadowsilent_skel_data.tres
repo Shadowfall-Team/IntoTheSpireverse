@@ -1,7 +1,7 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3 uid="uid://bqlhf04mk2866"]
+[gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3]
 
-[ext_resource type="SpineAtlasResource" uid="uid://dq7y3dlq1mmdq" path="res://IntoTheSpireverse/images/characters/shadowsilent/silent.atlas" id="1_tybe6"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://cbaww6gd7g743" path="res://IntoTheSpireverse/images/characters/shadowsilent/silent.skel" id="2_n4dcu"]
+[ext_resource type="SpineAtlasResource" uid="uid://0pymmhq7j1s39" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.atlas" id="1_myst4"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://qhoa03v71ugaz" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.skel" id="2_m4zey"]
 
 [sub_resource type="SpineAnimationMix" id="SpineAnimationMix_ej2q8"]
 from = "hurt"
@@ -22,7 +22,7 @@ to = "idle_loop"
 mix = 0.02
 
 [resource]
-atlas_res = ExtResource("1_tybe6")
-skeleton_file_res = ExtResource("2_n4dcu")
+atlas_res = ExtResource("1_myst4")
+skeleton_file_res = ExtResource("2_m4zey")
 default_mix = 0.05
 animation_mixes = [SubResource("SpineAnimationMix_ej2q8"), SubResource("SpineAnimationMix_63nwy"), SubResource("SpineAnimationMix_di581"), SubResource("SpineAnimationMix_ynr7g")]

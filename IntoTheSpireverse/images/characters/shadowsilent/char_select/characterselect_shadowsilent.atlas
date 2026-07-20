@@ -1,0 +1,10 @@
+characterselect_shadowsilent.png
+size:2684,1206
+filter:Linear,Linear
+scale:0.5
+character
+bounds:3,3,2319,1200
+hair
+bounds:2328,810,393,353
+offsets:2,0,395,353
+rotate:90

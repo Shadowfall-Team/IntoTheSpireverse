@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkx1yh2d3gj"]
 
 [ext_resource type="Script" uid="uid://cghtlla3sw0po" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_hpa0q"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://bqlhf04mk2866" path="res://IntoTheSpireverse/images/characters/shadowregent/silent_skel_data.tres" id="2_6jvbt"]
+[ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent_skel_data.tres" id="2_6jvbt"]
 
 [node name="Silent" type="Node2D"]
 script = ExtResource("1_hpa0q")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://yirtxm2nffuj"]
 
 [ext_resource type="Script" uid="uid://b2ww8leotjikm" path="res://src/Core/Nodes/Screens/Shops/NMerchantCharacter.cs" id="1_tiw17"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://d4li4q7d3n0nb" path="res://IntoTheSpireverse/images/characters/shadowsilent/merchant/shadowsilent_merchant_skel_data.tres" id="2_tiw17"]
+[ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowsilent/merchant/shadowsilent_merchant_skel_data.tres" id="2_tiw17"]
 
 [node name="SilentMerchant" type="Node2D"]
 script = ExtResource("1_tiw17")
