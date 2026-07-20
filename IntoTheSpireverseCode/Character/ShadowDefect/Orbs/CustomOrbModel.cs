@@ -1,11 +1,11 @@
 ﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Helpers;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Models;
 
-namespace IntoTheSpireverse.Orbs;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Orbs;
 
 public abstract class CustomOrbModel : OrbModel, ICustomModel
 {

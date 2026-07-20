@@ -1,6 +1,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Orbs;
 using MegaCrit.Sts2.Core.Assets;
 
 namespace IntoTheSpireverse.Patches;
@@ -11,7 +12,7 @@ internal class CustomOrbIcon
     [HarmonyPrefix]
     private static bool UseCustomIcon(OrbModel __instance, ref CompressedTexture2D __result)
     {
-        if (!(__instance is IntoTheSpireverse.Orbs.CustomOrbModel customOrbModel))
+        if (!(__instance is CustomOrbModel customOrbModel))
             return true;
 
         if (string.IsNullOrEmpty(customOrbModel.CustomIconPath))

@@ -3,7 +3,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.Helpers;
 using Godot;
-using IntoTheSpireverse.Orbs;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Orbs;
 
 namespace IntoTheSpireverse.Patches;
 

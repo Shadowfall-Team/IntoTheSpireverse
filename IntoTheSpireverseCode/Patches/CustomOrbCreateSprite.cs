@@ -2,6 +2,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Orbs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Logging;
@@ -14,7 +15,7 @@ internal class CustomOrbCreateSprite
     [HarmonyPrefix]
     private static bool UseCustomCreateSprite(OrbModel __instance, ref Node2D __result)
     {
-        if (!(__instance is IntoTheSpireverse.Orbs.CustomOrbModel customOrbModel))
+        if (!(__instance is CustomOrbModel customOrbModel))
             return true;
 
         string spritePath = customOrbModel.CustomSpritePath ?? 
