@@ -1,7 +1,7 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Orbs;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 namespace IntoTheSpireverse.Patches;
 

@@ -1,6 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Helpers;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Orbs;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 public abstract class PlaceholderOrbModel : CustomOrbModel
 {

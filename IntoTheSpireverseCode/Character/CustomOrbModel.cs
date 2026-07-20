@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Orbs;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
 public abstract class CustomOrbModel : OrbModel, ICustomModel
 {
