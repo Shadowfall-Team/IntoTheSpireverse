@@ -50,8 +50,6 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Outrage")
         ]);
 
-        cards.Concat(extraCards);
-
-        return cards;
+        return cards.Concat(extraCards).ToArray<CardModel>();
     }
 }

@@ -45,8 +45,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Plot")
         ]);
 
-        cards.Concat(extraCards);
-
-        return cards;
+        return cards.Concat(extraCards).ToArray<CardModel>();
     }
 }
