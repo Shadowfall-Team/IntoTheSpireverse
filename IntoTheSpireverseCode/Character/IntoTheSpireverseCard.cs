@@ -1,7 +1,9 @@
 ﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
+using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 
@@ -19,3 +21,7 @@ public abstract class IntoTheSpireverseCard(int cost, CardType type, CardRarity 
         }
     }
 }
+
+[Pool(typeof(TokenCardPool))]
+public abstract class ShadowColorlessCard(int cost, CardType type, CardRarity rarity, TargetType target) :
+    IntoTheSpireverseCard(cost, type, rarity, target, "colorless");

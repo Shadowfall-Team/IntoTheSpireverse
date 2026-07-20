@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkx1yh2d3gj"]
+
+[ext_resource type="Script" uid="uid://cghtlla3sw0po" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_hpa0q"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bqlhf04mk2866" path="res://IntoTheSpireverse/images/characters/shadowregent/silent_skel_data.tres" id="2_6jvbt"]
+
+[node name="Silent" type="Node2D"]
+script = ExtResource("1_hpa0q")
+metadata/_edit_group_ = true
+
+[node name="Visuals" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("2_6jvbt")
+preview_skin = "Default"
+preview_animation = "idle_loop"
+preview_frame = false
+preview_time = 0.0
+unique_name_in_owner = true
+position = Vector2(16, -21)
+scale = Vector2(0.29, 0.29)
+metadata/_edit_lock_ = true
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -122.0
+offset_top = -244.0
+offset_right = 122.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -146)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -302)

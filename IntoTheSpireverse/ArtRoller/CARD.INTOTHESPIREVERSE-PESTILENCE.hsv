@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-PESTILENCE",
+  "hue": 0.45,
+  "saturation": 1.21,
+  "value": 0.9,
+  "red": 1,
+  "green": 1,
+  "blue": 1.28,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/necrobinder/misery.tres"
+}

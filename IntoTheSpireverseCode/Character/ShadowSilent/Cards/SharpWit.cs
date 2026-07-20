@@ -1,43 +1,39 @@
-using MegaCrit.Sts2.Core.CardSelection;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-public sealed class SharpWit() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+[Pool(typeof(ShadowSilentCardPool))]
+public sealed class SharpWit() : ShadowSilentCard(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(2),
-        new PowerVar<DrawCardsNextTurnPower>(2m),
+        new PowerVar<SharpWitPower>(1m),
+    ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var discardPile = PileType.Discard.GetPile(Owner).Cards.ToList();
-
-        if (discardPile.Count > 0)
-        {
-            var selected = await CardSelectCmd.FromSimpleGrid(
-                choiceContext,
-                discardPile,
-                Owner,
-                new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue));
-
-            foreach (var card in selected)
-            {
-                await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Top, null, false);
-            }
-        }
-
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
+        await PowerCmd.Apply<SharpWitPower>(
+            choiceContext, Owner.Creature,
+            DynamicVars.Power<SharpWitPower>().BaseValue,
+            Owner.Creature, this);
     }
-
+    
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1m);
+        EnergyCost.UpgradeBy(-1);
     }
 }

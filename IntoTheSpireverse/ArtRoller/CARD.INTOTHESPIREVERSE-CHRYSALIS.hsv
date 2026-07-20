@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-CHRYSALIS",
+  "hue": 0.76,
+  "saturation": 0.71,
+  "value": 1,
+  "red": 1,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": false,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/event/metamorphosis.tres"
+}

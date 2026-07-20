@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-OATH_OF_SILENCE",
+  "hue": 0.56,
+  "saturation": 0.64,
+  "value": 1.55,
+  "red": 0.83,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/curse/doubt.tres"
+}
