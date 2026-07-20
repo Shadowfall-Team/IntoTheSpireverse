@@ -1,20 +1,29 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
     <Import Project=".\Sts2PathDiscovery.props"/>
+
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>true</ImplicitUsings>
-        <Nullable>enable</Nullable> <!--Makes code analysis regarding null values stricter.-->
+        <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
         <LangVersion>Latest</LangVersion>
         <DefaultItemExcludes>packages/**</DefaultItemExcludes>
+        <Configurations>Debug;Release;Production</Configurations>
+        <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <!-- Diasble architecture mismatch warning; mods are ideally built for all platforms (MSIL)
-             while your local StS2 version will be for your specific platform. -->
-        <NoWarn>$(NoWarn);MSB3270</NoWarn>
+    <!-- Used the Contains() check in case we ever do something like ReleaseProduction and DebugProduction -->
+    <!-- Can add "or $(InnerConfiguration.Contains('Production'))" to this (and the other check for this) as an alternative to the 
+         IsInnerGodotExport check on the CopyAfterBuild target -->
+    <PropertyGroup Condition="$(Configuration.Contains('Production'))">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <!-- You can add the base character names in ALL CAPS (eg: SILENT) in a ";" delimited list to test in the production env -->
+        <DefineConstants>$(DefineConstants);PRODUCTION;IRONCLAD;REGENT</DefineConstants>
+        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
+        <PathMap>$(AppOutputBase)=.\</PathMap>
+        <InnerConfiguration>$(Configuration)</InnerConfiguration>
     </PropertyGroup>
 
     <ItemGroup Condition="Exists('$(Sts2DataDir)')">
@@ -83,22 +92,28 @@
         <None Include="IntoTheSpireverse/**"/>
     </ItemGroup>
 
+    <ItemGroup Condition="$(Configuration.Contains('Production'))">
+        <Compile Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
+        <Compile Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
+        <Compile Remove="IntoTheSpireverseCode\Character\ShadowSilent\**"/>
+        <Compile Remove="IntoTheSpireverseCode\ArtRoller\NCardLibraryVerticalSlidersPatch.cs"/>
+        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
+        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
+        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowSilent\**"/>
+        <EmbeddedResource Remove="IntoTheSpireverseCode\ArtRoller\NCardLibraryVerticalSlidersPatch.cs"/>
+    </ItemGroup>
+
     <Target Name="CheckSts2DataDirForCopy" BeforeTargets="CopyToModsFolderOnBuild"
             Condition="!Exists('$(Sts2DataDir)') And !Exists('$(ModsPath)')">
         <Error Text="Cannot copy build output to mods folder: neither '$(Sts2DataDir)' nor '$(ModsPath)' exists. Install STS2 locally or pass /p:ModsPath=... in CI."/>
     </Target>
 
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
+    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent"
+        Condition="'$(IsInnerGodotExport)' != 'true'">
         <Message Text="Copying .dll .pdb and .json to mods folder." Importance="high" />
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
         <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
         <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-    </Target>
-
-    <Target Name="CopyQuickPck" AfterTargets="PackPck" Condition="Exists('$(PckPackerOutputPath)') And '$(PckPackerSkipped)' != 'true'">
-        <Message Text="Copying quick .pck to mods folder." Importance="high"/>
-        <Copy SourceFiles="$(PckPackerOutputPath)"
-              DestinationFolder="$(ModsPath)/$(MSBuildProjectName)" />
     </Target>
 
     <Target Name="NeedGodotForPublish" BeforeTargets="Publish">
@@ -108,8 +123,10 @@
 
     <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
         <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModsPath)$(MSBuildProjectName)/$(MSBuildProjectName).pck&quot;"
-              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-              ContinueOnError="WarnAndContinue"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(TargetDir)$(MSBuildProjectName).pck&quot;"
+            EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+        ContinueOnError="WarnAndContinue"/>
+        <Message Text="IC = $(InnerConfiguration)" Importance="High"/>
+        <Copy SourceFiles="$(TargetDir)$(MSBuildProjectName).pck" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
     </Target>
 </Project>

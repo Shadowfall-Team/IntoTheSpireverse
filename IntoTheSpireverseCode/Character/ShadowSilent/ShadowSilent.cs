@@ -1,14 +1,14 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
 public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
 {

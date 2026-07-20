@@ -5,7 +5,8 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 

@@ -1,0 +1,42 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+
+public class ShadowCrystal() : ShadowRegentCard(1,
+    CardType.Skill,
+    CardRarity.Uncommon,
+    TargetType.Self)
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<ShardsPower>(6)
+    ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        HoverTipFactory.FromPower<ShardsPower>(),
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+    ];
+
+    protected override async Task OnPlay(
+        PlayerChoiceContext choiceContext,
+        CardPlay play)
+    {
+        await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
+            Owner.Creature,
+            DynamicVars[nameof(ShardsPower)].BaseValue, Owner.Creature, null);
+
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars[nameof(ShardsPower)].UpgradeValueBy(3);
+    }
+}

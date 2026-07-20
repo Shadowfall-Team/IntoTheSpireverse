@@ -1,8 +1,0 @@
-﻿using BaseLib.Abstracts;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
-
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowIronclad;
-
-public class ClaySoldierTemporaryStrengthPower : CustomTemporaryPowerModelWrapper<ClaySoldier, StrengthPower>;

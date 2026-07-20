@@ -4,7 +4,7 @@ namespace IntoTheSpireverse;
 
 public static class CardShaderHelper
 {
-    private const string ShaderPath = "res://rendering/color_adjust.gdshader";
+    private static readonly string ShaderPath = Path.Join("res://", MainFile.ModId, "shaders/color_adjust.gdshader");
 
     public static ShaderMaterial CreateMaterial(float h, float s, float v, float r = 1f, float g = 1f, float b = 1f, float contrast = 1f)
     {

@@ -1,7 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
 public class ShadowRegentPotionPool : CustomPotionPoolModel
 {
