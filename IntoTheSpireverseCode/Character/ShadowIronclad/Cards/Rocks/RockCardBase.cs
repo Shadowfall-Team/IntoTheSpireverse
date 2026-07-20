@@ -1,5 +1,4 @@
 ﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
-using IntoTheSpireverse.IntoTheSpireverseCode.Interfaces;
 using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
