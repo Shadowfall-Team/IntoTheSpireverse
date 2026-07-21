@@ -2,7 +2,7 @@
   "CARGO_PILE.title": "Cargo Pile",
   "CARGO_PILE.description": "At the start of each turn,\nan extra card is drawn from here.\nClick to view the cards in your Cargo pile (in order).",
   "INTOTHESPIREVERSE-LOAD_AMMO.title": "Ammo",
-  "INTOTHESPIREVERSE-LOAD_AMMO.description": "Once loaded, [gold]Ammo[/gold] may be fired at any time, dealing {Damage} damage to a random enemy.",
+  "INTOTHESPIREVERSE-LOAD_AMMO.description": "Once loaded, [gold]Ammo[/gold] may be fired at any time, dealing {Damage} damage to the last enemy you Attacked.",
   "INTOTHESPIREVERSE-AMMO_BUTTON.title": "FIRE!",
-  "INTOTHESPIREVERSE-AMMO_BUTTON.description": "Deal {Damage} damage to a random enemy.\nThis does not count as playing a card."
+  "INTOTHESPIREVERSE-AMMO_BUTTON.description": "Deal {Damage} damage to the last enemy you Attacked.\nThis does not count as playing a card."
 }

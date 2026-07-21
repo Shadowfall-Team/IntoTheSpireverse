@@ -16,8 +16,7 @@ public class Glow() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         
         new PowerVar<ShardsPower>(2),
-        new CardsVar(1),
-        new PowerVar<DrawCardsNextTurnPower>(1)
+        new CardsVar(2)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -37,11 +36,10 @@ public class Glow() : ShadowRegentCard(1,
             this);
         
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, Owner.Creature, DynamicVars[nameof(DrawCardsNextTurnPower)].BaseValue, Owner.Creature, this);
     }
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1);
+        DynamicVars[nameof(ShardsPower)].UpgradeValueBy(1);
     }
 }

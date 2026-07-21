@@ -1,4 +1,4 @@
-﻿using BaseLib.Abstracts;
+using BaseLib.Abstracts;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Models;
@@ -23,8 +23,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<KnowThyPlace>(),
             ModelDb.Card<Patter>(),
             ModelDb.Card<LunarBlast>(),
-            ModelDb.Card<KinglyPunch>(),
-            ModelDb.Card<KinglyKick>(),
             ModelDb.Card<Terraforming>(),
             ModelDb.Card<Prophesize>(),
             ModelDb.Card<Supermassive>(),
@@ -33,6 +31,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<MakeItSo>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
+            ModelDb.Card<Royalties>(),
+            ModelDb.Card<Tutor>(),
             //"Almost identical"
             //Solar Strike
             //Glow

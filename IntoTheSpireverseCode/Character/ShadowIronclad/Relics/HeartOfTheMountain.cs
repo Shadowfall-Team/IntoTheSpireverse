@@ -15,7 +15,7 @@ public class HeartOfTheMountain : ShadowIroncladRelic
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     private const string _absorbKey = "Absorb";
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(_absorbKey, 16)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(_absorbKey, 12)];
 
     private int _absorbedThisCombat;
     private int AbsorbedThisCombat

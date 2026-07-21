@@ -1,4 +1,7 @@
 ﻿{
+  "INTOTHESPIREVERSE-CRYSTALLINE.title": "Crystalline",
+  "INTOTHESPIREVERSE-CRYSTALLINE.description": "When played, gain [blue]{ShardsPower}[/blue] [gold]{ShardsPower:plural:Shard|Shards}[/gold] and [blue]{Block}[/blue] [gold]Block[/gold].",
+  "INTOTHESPIREVERSE-CRYSTALLINE.extraCardText": "Gain [blue]{ShardsPower}[/blue] [gold]{ShardsPower:plural:Shard|Shards}[/gold] and [blue]{Block}[/blue] [gold]Block[/gold].",
   "INTOTHESPIREVERSE-POLISHED.title": "Polished",
   "INTOTHESPIREVERSE-POLISHED.description": "This card gains [gold]Retain[/gold] and deals [blue]{Damage}[/blue] additional damage.",
   "INTOTHESPIREVERSE-ARMORED.title": "Armored",

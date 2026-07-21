@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BIG_BOOM",
+  "hue": 0.88,
+  "saturation": 0.85,
+  "value": 0.9,
+  "red": 1.14,
+  "green": 1.03,
+  "blue": 1.29,
+  "contrast": 0.96,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/big_bang.tres"
+}

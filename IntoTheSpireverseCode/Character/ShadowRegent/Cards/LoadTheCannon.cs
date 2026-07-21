@@ -37,13 +37,6 @@ public class LoadTheCannon() : ShadowRegentCard(1,
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        await PowerCmd.Apply<TargetedPower>(
-            new ThrowingPlayerChoiceContext(),
-            cardPlay.Target,
-            1,
-            Owner.Creature,
-            this);
-
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
     }
 

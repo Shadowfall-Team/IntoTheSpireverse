@@ -26,6 +26,7 @@ public class StarCharts() : ShadowRegentCard(
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(9, ValueProp.Move),
+        new CardsVar(1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -38,14 +39,15 @@ public class StarCharts() : ShadowRegentCard(
         CardPlay play)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
-        var fromHandCard = await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 1), null,
+        var fromHandCards = await CardSelectCmd.FromHand(choiceContext, Owner,
+            new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, DynamicVars.Cards.IntValue), null,
             this);
-        await CardPileCmd.Add(fromHandCard, CargoCardPile.CargoPileType);
+        await CardPileCmd.Add(fromHandCards, CargoCardPile.CargoPileType);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(4);
+        DynamicVars.Block.UpgradeValueBy(2);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

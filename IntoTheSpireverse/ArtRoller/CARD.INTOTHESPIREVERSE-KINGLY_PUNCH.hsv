@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-KINGLY_PUNCH",
+  "hue": 0.0,
+  "saturation": 1.0,
+  "value": 1.0,
+  "red": 1.0,
+  "green": 1.0,
+  "blue": 1.0,
+  "contrast": 1.0,
+  "flip_h": false,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/kingly_punch.tres"
+}

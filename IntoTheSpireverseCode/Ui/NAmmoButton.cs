@@ -63,7 +63,7 @@ public partial class NAmmoButton : NButton
             if (AvailableAmmoCount <= 0) return false;
             if (AvailableEnergy < AmmoResource.GetShotEnergyCost(_player)) return false;
 
-            var hasBigGuns = _player.Creature.HasPower<BigGunsPower>();
+            var hasBigGuns = _player.Creature.HasPower<MassMunitionPower>();
             if (!hasBigGuns && !(_player.Creature.CombatState?.HittableEnemies.Any() ?? false))
                 return false;
             return NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play

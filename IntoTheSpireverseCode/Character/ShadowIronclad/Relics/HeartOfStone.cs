@@ -15,7 +15,7 @@ public class HeartOfStone : ShadowIroncladRelic
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     private const string _absorbKey = "Absorb";
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(_absorbKey, 8)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(_absorbKey, 6)];
 
     public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<HeartOfTheMountain>();
 
