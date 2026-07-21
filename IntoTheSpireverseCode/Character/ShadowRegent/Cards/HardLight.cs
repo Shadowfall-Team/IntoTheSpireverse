@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
-public class GatherLight() : ShadowRegentCard(1,
+public class HardLight() : ShadowRegentCard(1,
     CardType.Skill,
     CardRarity.Common,
     TargetType.Self)

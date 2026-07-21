@@ -30,12 +30,11 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<Arsenal>(),
             ModelDb.Card<Royalties>(),
             ModelDb.Card<Tutor>(),
-            //"Almost identical"
+            
+            //Close enough to be considered a duplicate: 
             //Solar Strike
             //Glow
             //Gather Light
-            //Kingly Kick
-            //Kingly Punch
         ];
 
         var sts2Assembly = typeof(ModelDb).Assembly;

@@ -6,6 +6,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
@@ -26,6 +27,12 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
     public CharacterModel BaseCharacterModel => ModelDb.Character<Ironclad>();
+
+    public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
+    [
+        (ModelDb.Card<FlameBarrierShadow>(), ModelDb.Card<FlameBarrier>())
+    ];
+
     public override int StartingHp => 80;
     
     public override IEnumerable<CardModel> StartingDeck =>
