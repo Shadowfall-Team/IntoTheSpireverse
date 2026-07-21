@@ -3,6 +3,7 @@ using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
