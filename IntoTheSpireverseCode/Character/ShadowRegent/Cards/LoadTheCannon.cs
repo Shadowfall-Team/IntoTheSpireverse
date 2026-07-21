@@ -34,14 +34,10 @@ public class LoadTheCannon() : ShadowRegentCard(1,
             .Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
+            .WithHitCount(IsUpgraded ? 2 : 1)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
-    }
-
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3);
     }
 }
