@@ -22,7 +22,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<KnowThyPlace>(),
             ModelDb.Card<LunarBlast>(),
-            ModelDb.Card<Prophesize>(),
             ModelDb.Card<Supermassive>(),
             ModelDb.Card<PillarOfCreation>(),
             ModelDb.Card<HeavenlyDrill>(),
@@ -35,6 +34,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             //Solar Strike
             //Glow
             //Gather Light
+            //Kingly Kick
+            //Kingly Punch
         ];
 
         var sts2Assembly = typeof(ModelDb).Assembly;
