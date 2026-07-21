@@ -4,7 +4,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
 
 public partial class NAmmoTargetIndicator : TextureRect
 {
