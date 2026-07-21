@@ -7,6 +7,8 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
+using VanillaKinglyKick = MegaCrit.Sts2.Core.Models.Cards.KinglyKick;
+using VanillaKinglyPunch = MegaCrit.Sts2.Core.Models.Cards.KinglyPunch;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
@@ -33,6 +35,12 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
     public CharacterModel BaseCharacterModel => ModelDb.Character<Regent>();
+
+    public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
+    [
+        (ModelDb.Card<KinglyKick>(), ModelDb.Card<VanillaKinglyKick>()),
+        (ModelDb.Card<KinglyPunch>(), ModelDb.Card<VanillaKinglyPunch>())
+    ];
 
     public override int StartingHp => 75;
     

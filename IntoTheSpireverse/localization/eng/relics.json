@@ -2,7 +2,11 @@
   "INTOTHESPIREVERSE-CORRUPTED_CORE.description": "Does stuff",
   "INTOTHESPIREVERSE-CORRUPTED_CORE.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
   "INTOTHESPIREVERSE-CORRUPTED_CORE.title": "CorruptedCore",
-  
+
+  "INTOTHESPIREVERSE-PARALLEL_STONE.description": "When obtained, gain your [gold]parallel self[/gold]'s starting relic.\nCard rewards may also contain cards from your [gold]parallel self[/gold].",
+  "INTOTHESPIREVERSE-PARALLEL_STONE.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
+  "INTOTHESPIREVERSE-PARALLEL_STONE.title": "Parallel Stone",
+
   "INTOTHESPIREVERSE-MYSTIC_CHARM.description": "At the start of each combat, add [blue]{Cards}[/blue] {Cards:plural:[gold]Flicker[/gold]|[gold]Flickers[/gold]} into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-MYSTIC_CHARM.flavor": "[red]Details for this relic will be revealed in the future...[/red]",
   "INTOTHESPIREVERSE-MYSTIC_CHARM.title": "Mystic Charm",
