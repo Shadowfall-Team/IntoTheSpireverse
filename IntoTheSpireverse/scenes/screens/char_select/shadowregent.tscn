@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" uid="uid://dey8fk26ksk5a" path="res://src/Core/Nodes/Screens/CharacterSelect/NRegentCharacterSelectBg.cs" id="1_2cgkb"]
+[ext_resource type="Script" uid="uid://dey8fk26ksk5a" path="res://IntoTheSpireverseCode/utils/NRegentCharacterSelectBg.cs" id="1_2cgkb"]
 [ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowregent/char_select/characterselect_shadowregent_skel_data.tres" id="1_hym5c"]
-[ext_resource type="Script" uid="uid://b0oho7pjc1dtg" path="res://src/Core/Nodes/Animation/NSpineAutoPlayer.cs" id="3_q43pu"]
-[ext_resource type="Texture2D" uid="uid://d2srbops1xqm0" path="res://images/vfx/dot.png" id="4_q43pu"]
+[ext_resource type="Script" uid="uid://bl8qvqwbq8lts" path="res://IntoTheSpireverseCode/utils/NSpineAutoPlayer.cs" id="3_q43pu"]
+[ext_resource type="Texture2D" uid="uid://d2srbops1xqm0" path="res://IntoTheSpireverseCode/images/vfx/dot.png" id="4_q43pu"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ou856"]
 
