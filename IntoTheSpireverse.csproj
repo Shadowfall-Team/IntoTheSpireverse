@@ -59,6 +59,9 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnPressHandler"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnReleaseHandler"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._hpBarHitbox"/>
     </ItemGroup>
 
     <ItemGroup>
