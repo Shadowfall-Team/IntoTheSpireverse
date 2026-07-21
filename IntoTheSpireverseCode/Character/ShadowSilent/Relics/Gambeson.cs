@@ -10,7 +10,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Color
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class StartScaleRelic : ShadowSilentRelic
+public class Gambeson : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 

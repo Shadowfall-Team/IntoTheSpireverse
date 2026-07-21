@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class WideAngle() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+public sealed class SprayOfThorns() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>

@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class RetaliationScaleRelic : ShadowSilentRelic
+public class ArmoredCore : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
     

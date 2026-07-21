@@ -1,5 +1,7 @@
 using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 

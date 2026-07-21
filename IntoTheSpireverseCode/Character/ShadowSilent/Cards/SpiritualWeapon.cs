@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class RiskySword() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy),
+public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy),
     IntoTheSpireverseKeywords.IMuddleListener
 {
     private const string IncreaseKey = "Increase";

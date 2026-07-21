@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class MuddleBlockRelic : ShadowSilentRelic, IntoTheSpireverseKeywords.ICardMuddledListener
+public class PrayerBeads : ShadowSilentRelic, IntoTheSpireverseKeywords.ICardMuddledListener
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 

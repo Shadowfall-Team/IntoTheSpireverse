@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 [Pool(typeof(ShadowSilentCardPool))]
-public sealed class Pickpocket() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
     private const string UpgradeCountKey = "UpgradeCount";
     

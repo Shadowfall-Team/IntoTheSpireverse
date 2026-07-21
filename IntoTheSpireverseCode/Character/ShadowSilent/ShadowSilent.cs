@@ -19,7 +19,7 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     public static readonly Color Color = StsColors.blue;
 
     public override Color NameColor => Color;
-    public override CharacterGender Gender => CharacterGender.Neutral;
+    public override CharacterGender Gender => CharacterGender.Feminine;
     
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
