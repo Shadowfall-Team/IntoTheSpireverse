@@ -40,7 +40,7 @@ public class StarCharts() : ShadowRegentCard(
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, play);
         var fromHandCards = await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, DynamicVars.Cards.IntValue), null,
+            new CardSelectorPrefs(CargoSelectorPrefs.ToCargoSelectionPrompt, 0, DynamicVars.Cards.IntValue), null,
             this);
         await CardPileCmd.Add(fromHandCards, CargoCardPile.CargoPileType);
     }

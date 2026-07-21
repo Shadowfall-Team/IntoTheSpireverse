@@ -43,6 +43,6 @@ public class IceBeam() : ShadowRegentCard(1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars["StrengthLoss"].UpgradeValueBy(1);
+        DynamicVars.Weak.UpgradeValueBy(1);
     }
 }
