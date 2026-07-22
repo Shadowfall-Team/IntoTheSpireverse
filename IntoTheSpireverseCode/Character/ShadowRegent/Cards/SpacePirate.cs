@@ -21,7 +21,7 @@ public class SpacePirate() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move)
+        new DamageVar(10, ValueProp.Move)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips

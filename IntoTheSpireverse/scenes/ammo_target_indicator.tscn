@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" uid="uid://b6vslfcad6cv3" path="res://IntoTheSpireverse/images/characters/shadowregent/ammoIndicator.png" id="1_ammoind"]
+[ext_resource type="Script" path="res://IntoTheSpireverseCode/ui/NAmmoTargetIndicator.cs" id="2_ammoind"]
+[ext_resource type="Script" path="res://IntoTheSpireverseCode/ui/NPulseEffect.cs" id="3_ammopulse"]
+
+[node name="AmmoTargetIndicator" type="TextureRect"]
+top_level = true
+z_index = 100
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 44.8
+offset_bottom = 44.8
+pivot_offset = Vector2(22.4, 22.4)
+mouse_filter = 2
+texture = ExtResource("1_ammoind")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_ammoind")
+
+[node name="Pulse" type="Node" parent="."]
+script = ExtResource("3_ammopulse")
