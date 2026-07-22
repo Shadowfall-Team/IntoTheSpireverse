@@ -37,14 +37,18 @@ public class Commandeer() : ShadowRegentCard(1,
             var card = CardFactory.GetDistinctForCombat(Owner, allCards.Where(c => c.Type == type), 1, rng)
                 .FirstOrDefault();
             if (card == null) continue;
-            var multiplier = IsUpgraded ? 3 : 2;
+            // +50%, or +100% upgraded. Floored, so an odd base value rounds down rather than
+            // handing the card a fractional damage number.
+            var multiplier = IsUpgraded ? 2m : 1.5m;
             if (card.DynamicVars.TryGetValue("Damage", out _))
             {
-                card.DynamicVars.Damage.BaseValue *= multiplier;
+                card.DynamicVars.Damage.BaseValue =
+                    Math.Floor(card.DynamicVars.Damage.BaseValue * multiplier);
             }
             else if (card.DynamicVars.TryGetValue("CalculationBase", out _))
             {
-                card.DynamicVars.CalculatedDamage.BaseValue *= multiplier;
+                card.DynamicVars.CalculatedDamage.BaseValue =
+                    Math.Floor(card.DynamicVars.CalculatedDamage.BaseValue * multiplier);
             }
 
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);

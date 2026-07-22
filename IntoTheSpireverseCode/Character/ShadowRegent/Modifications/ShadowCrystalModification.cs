@@ -32,9 +32,11 @@ public sealed class ShadowCrystalModification : Modification
 
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (Owner == null) return;
-
-        var creature = Owner.Owner.Creature;
+        // CardModel.Owner is declared non-nullable for convenience, but is documented as null on
+        // a canonical model and at end of combat before the next room - which a modification can
+        // outlive, since it resolves off the card it is attached to rather than off a play.
+        var creature = Owner?.Owner?.Creature;
+        if (creature == null) return;
 
         await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
             creature,

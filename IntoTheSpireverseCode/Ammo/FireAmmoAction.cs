@@ -1,3 +1,4 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
@@ -19,7 +20,7 @@ public class FireAmmoAction : GameAction
 
     protected override async Task ExecuteAction()
     {
-        if (!await AmmoResource.TryFireShot(_player, chargeEnergy: true))
+        if (!await FireAmmoCmd.Fire(_player, chargeEnergy: true))
             Cancel();
     }
 
