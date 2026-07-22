@@ -71,30 +71,14 @@ public static class AmmoResource
     }
 
 
-    /// <summary>
-    /// True while a shot's damage is resolving. Ammo damage is dealt as plain Unpowered damage,
-    /// so this is the only way for a power to tell it apart from other non-attack damage.
-    /// Shots resolve one at a time on the action queue, so a simple flag is sufficient.
-    /// </summary>
-    public static bool IsResolvingShot { get; private set; }
-
-    internal static async Task WhileResolvingShot(Func<Task> resolve)
-    {
-        IsResolvingShot = true;
-        try
-        {
-            await resolve();
-        }
-        finally
-        {
-            IsResolvingShot = false;
-        }
-    }
+    public static event Action<PlayerCombatState, Creature?>? LastAttackTargetChanged;
 
     public static void SetLastAttackTarget(Player player, Creature target)
     {
         if (player.PlayerCombatState == null) return;
+        if (LastAttackTarget[player.PlayerCombatState] == target) return;
         LastAttackTarget[player.PlayerCombatState] = target;
+        LastAttackTargetChanged?.Invoke(player.PlayerCombatState, target);
     }
 
     public static Creature? GetLastAttackTarget(Player player)
@@ -164,10 +148,13 @@ public static class AmmoResource
             return false;
         }
 
+        // Doubles as the cardSource on every damage call below, which is how powers such as
+        // PiercedPower tell an Ammo shot apart from other Unpowered damage.
+        var phantomCard = GetOrCreatePhantomCard(player);
+
         if (chargeEnergy)
         {
             await PlayerCmd.LoseEnergy(cost, player);
-            var phantomCard = GetOrCreatePhantomCard(player);
             if (phantomCard != null)
                 await Hook.AfterEnergySpent(combatState, phantomCard, cost);
         }
@@ -195,14 +182,11 @@ public static class AmmoResource
             ? combatState.HittableEnemies
             : (IEnumerable<Creature>)[pickedTarget!];
 
-        IEnumerable<DamageResult> results = [];
-        await WhileResolvingShot(async () =>
+        var results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
+            targets, shotDamage, ValueProp.Unpowered, player.Creature, phantomCard, null);
+
+        if (player.Creature.HasPower<GrapeshotPower>())
         {
-            results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
-                targets, shotDamage, ValueProp.Unpowered, player.Creature);
-
-            if (!player.Creature.HasPower<GrapeshotPower>()) return;
-
             var grapeshot = player.Creature.GetPowerAmount<GrapeshotPower>();
             var halfDmg = Math.Floor(0.5m * GetShotDamage(player));
             for (var i = 0; i < grapeshot; i++)
@@ -212,7 +196,7 @@ public static class AmmoResource
                     await ShotHelper.CreateMissile(combatState, null, skipWait: true);
                     foreach (var t in combatState.HittableEnemies)
                         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
-                            t, halfDmg, ValueProp.Unpowered, player.Creature);
+                            t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
                 }
                 else
                 {
@@ -220,10 +204,10 @@ public static class AmmoResource
                     await ShotHelper.CreateMissile(combatState, followTarget, skipWait: true);
                     if (followTarget == null) continue;
                     await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
-                        followTarget, halfDmg, ValueProp.Unpowered, player.Creature);
+                        followTarget, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
                 }
             }
-        });
+        }
 
         await InvokeOnAmmoFired(player, [results.ToList()]);
         return true;

@@ -1,4 +1,4 @@
-using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,9 +25,9 @@ public class PiercedPower : ShadowPowerModel
     {
         if (target != Owner) return 0m;
 
-        // Attack cards come through powered; Ammo is plain Unpowered damage, so it
-        // only counts while a shot is actually resolving.
-        if (!props.IsPoweredAttack() && !AmmoResource.IsResolvingShot) return 0m;
+        // Attack cards come through powered; Ammo is plain Unpowered damage, and is
+        // identified by the phantom card AmmoResource passes as its cardSource.
+        if (!props.IsPoweredAttack() && cardSource is not AmmoVolley) return 0m;
 
         return Amount;
     }
