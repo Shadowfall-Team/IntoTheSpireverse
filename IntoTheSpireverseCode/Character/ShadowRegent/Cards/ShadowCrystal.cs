@@ -8,16 +8,13 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Nodes;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
 public class ShadowCrystal() : ShadowRegentCard(1,
-    CardType.Power,
+    CardType.Skill,
     CardRarity.Uncommon,
     TargetType.Self)
 {
@@ -25,6 +22,8 @@ public class ShadowCrystal() : ShadowRegentCard(1,
     [
         new CardsVar(2)
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -46,14 +45,10 @@ public class ShadowCrystal() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
+        // No NCardEnchantVfx here, unlike Perplex: that vfx reads the card's Enchantment, and a
+        // Modification is a CardModifier precisely so it doesn't occupy the Enchantment slot.
         foreach (var card in selected)
-        {
             CardModifier.AddModifier<ShadowCrystalModification>(card);
-
-            var vfx = NCardEnchantVfx.Create(card);
-            if (vfx != null)
-                NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(vfx);
-        }
     }
 
     protected override void OnUpgrade()

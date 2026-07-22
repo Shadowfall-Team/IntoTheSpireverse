@@ -3,14 +3,10 @@ using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
@@ -129,89 +125,8 @@ public static class AmmoResource
         return cost;
     }
 
-    /// <summary>
-    /// Resolves one Ammo shot: spends the Ammo, fires the missile and runs every on-fire
-    /// effect. Shared by the FIRE button and by cards that fire on the player's behalf.
-    /// Returns false if the shot could not happen at all (no Ammo, no energy, no targets).
-    /// </summary>
-    public static async Task<bool> TryFireShot(Player player, bool chargeEnergy)
-    {
-        var combatState = player.Creature.CombatState;
-        if (combatState == null) return false;
-
-        var cost = chargeEnergy ? GetShotEnergyCost(player) : 0;
-        var hasBigGuns = player.Creature.HasPower<MassMunitionPower>();
-
-        if (GetAmmo(player) <= 0 || player.PlayerCombatState?.Energy < cost ||
-            !hasBigGuns && !combatState.HittableEnemies.Any())
-        {
-            return false;
-        }
-
-        // Doubles as the cardSource on every damage call below, which is how powers such as
-        // PiercedPower tell an Ammo shot apart from other Unpowered damage.
-        var phantomCard = GetOrCreatePhantomCard(player);
-
-        if (chargeEnergy)
-        {
-            await PlayerCmd.LoseEnergy(cost, player);
-            if (phantomCard != null)
-                await Hook.AfterEnergySpent(combatState, phantomCard, cost);
-        }
-
-        LoseAmmo(1, player);
-        await InvokeOnAmmoFiring(player);
-
-        Creature? pickedTarget = null;
-        if (!hasBigGuns)
-            pickedTarget = PickShotTarget(player, combatState);
-
-        await ShotHelper.CreateMissile(combatState, pickedTarget);
-
-        var blockAmount = combatState.IterateHookListeners()
-            .OfType<DefensiveCannonadePower>()
-            .Where(p => p.Owner == player.Creature)
-            .Sum(p => p.Amount);
-        if (blockAmount > 0)
-        {
-            await CreatureCmd.GainBlock(player.Creature, blockAmount, ValueProp.Move, null);
-        }
-
-        var shotDamage = GetShotDamage(player);
-        IEnumerable<Creature> targets = hasBigGuns
-            ? combatState.HittableEnemies
-            : (IEnumerable<Creature>)[pickedTarget!];
-
-        var results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
-            targets, shotDamage, ValueProp.Unpowered, player.Creature, phantomCard, null);
-
-        if (player.Creature.HasPower<GrapeshotPower>())
-        {
-            var grapeshot = player.Creature.GetPowerAmount<GrapeshotPower>();
-            var halfDmg = Math.Floor(0.5m * GetShotDamage(player));
-            for (var i = 0; i < grapeshot; i++)
-            {
-                if (hasBigGuns)
-                {
-                    await ShotHelper.CreateMissile(combatState, null, skipWait: true);
-                    foreach (var t in combatState.HittableEnemies)
-                        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
-                            t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
-                }
-                else
-                {
-                    var followTarget = PickShotTarget(player, combatState);
-                    await ShotHelper.CreateMissile(combatState, followTarget, skipWait: true);
-                    if (followTarget == null) continue;
-                    await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
-                        followTarget, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
-                }
-            }
-        }
-
-        await InvokeOnAmmoFired(player, [results.ToList()]);
-        return true;
-    }
+    // Shot resolution lives in FireAmmoCmd. This type owns the Ammo resource itself: the count,
+    // the target it remembers, and the numbers a shot is worth.
 
     public static async Task InvokeOnAmmoFiring(Player player)
     {

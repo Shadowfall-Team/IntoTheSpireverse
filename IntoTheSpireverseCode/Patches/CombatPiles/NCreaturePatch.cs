@@ -24,7 +24,6 @@ public static class NCreaturePatch
                              ?? stateDisplay?._hpBarHitbox
                              ?? (Control?)healthBar
                              ?? __instance.Hitbox;
-            if (anchor == null) return;
 
             // Parent to the state display rather than the creature, so the crosshair is a
             // sibling of the health bar and inherits its modulate and visibility: it fades
