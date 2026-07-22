@@ -17,7 +17,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
 public class ShadowCrystal() : ShadowRegentCard(1,
-    CardType.Skill,
+    CardType.Power,
     CardRarity.Uncommon,
     TargetType.Self)
 {
@@ -25,8 +25,6 @@ public class ShadowCrystal() : ShadowRegentCard(1,
     [
         new CardsVar(2)
     ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
