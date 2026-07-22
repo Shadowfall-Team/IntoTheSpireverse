@@ -1,5 +1,9 @@
+using BaseLib.Abstracts;
 using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Enchantments;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Modifications;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.Modifications;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,7 +11,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
@@ -26,7 +29,10 @@ public class ShadowCrystal() : ShadowRegentCard(1,
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-        HoverTipFactory.FromEnchantment<Crystalline>();
+    [
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Modify),
+        HoverTipFactory.FromPower<ShardsPower>()
+    ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -37,24 +43,20 @@ public class ShadowCrystal() : ShadowRegentCard(1,
             DynamicVars.Cards.IntValue);
 
         var selected = await CardSelectCmd.FromHand(choiceContext, Owner, prefs,
-            CanEnchant, this);
+            Modification.CanModify, this);
 
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
             Owner.Character.CastAnimDelay);
 
         foreach (var card in selected)
         {
-            CardCmd.Enchant<Crystalline>(card, 1m);
+            CardModifier.AddModifier<ShadowCrystalModification>(card);
 
             var vfx = NCardEnchantVfx.Create(card);
             if (vfx != null)
                 NRun.Instance?.GlobalUi.CardPreviewContainer.AddChildSafely(vfx);
         }
     }
-
-    // One-slot system, so already-enchanted cards are not offered.
-    public static bool CanEnchant(CardModel card) =>
-        card.Enchantment == null && ModelDb.Enchantment<Crystalline>().CanEnchant(card);
 
     protected override void OnUpgrade()
     {

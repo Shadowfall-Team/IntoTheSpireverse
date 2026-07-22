@@ -5,8 +5,6 @@
 [ext_resource type="Script" path="res://IntoTheSpireverseCode/ui/NPulseEffect.cs" id="3_ammopulse"]
 
 [node name="AmmoTargetIndicator" type="TextureRect"]
-top_level = true
-z_index = 100
 visible = false
 layout_mode = 3
 anchors_preset = 0

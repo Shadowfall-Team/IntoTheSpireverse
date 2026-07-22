@@ -38,9 +38,11 @@ public partial class NPulseEffect : Node
 
     private void OnTargetVisibilityChanged()
     {
+        // IsVisibleInTree, not Visible: an ancestor hiding the target (the creature's state
+        // display fading out) also fires this, and the pulse should stop for that too.
         // Restart the pulse each time it reappears so it always starts from the same point.
         _time = 0f;
-        SetProcess(_target.Visible);
+        SetProcess(_target.IsVisibleInTree());
         Apply();
     }
 

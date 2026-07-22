@@ -19,7 +19,7 @@ public class Misdirection() : ShadowRegentCard(
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move),
+        new DamageVar(9, ValueProp.Move),
         new CardsVar(1)
     ];
     

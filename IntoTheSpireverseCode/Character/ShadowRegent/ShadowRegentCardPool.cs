@@ -22,7 +22,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<KnowThyPlace>(),
             ModelDb.Card<LunarBlast>(),
-            ModelDb.Card<Supermassive>(),
+            ModelDb.Card<Glimmer>(),
             ModelDb.Card<PillarOfCreation>(),
             ModelDb.Card<HeavenlyDrill>(),
             ModelDb.Card<MakeItSo>(),

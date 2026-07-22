@@ -8,7 +8,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
 public class Commandeer() : ShadowRegentCard(1,
     CardType.Skill,
-    CardRarity.Rare,
+    CardRarity.Uncommon,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

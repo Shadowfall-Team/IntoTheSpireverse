@@ -26,9 +26,12 @@ public static class NCreaturePatch
                              ?? __instance.Hitbox;
             if (anchor == null) return;
 
+            // Parent to the state display rather than the creature, so the crosshair is a
+            // sibling of the health bar and inherits its modulate and visibility: it fades
+            // out with the bar and the pause dim covers it the same way.
             var indicator = NAmmoTargetIndicator.Create(__instance, anchor);
             indicator.Name = "AmmoTargetIndicator";
-            __instance.AddChild(indicator);
+            ((Control?)stateDisplay ?? __instance).AddChild(indicator);
             return;
         }
 
