@@ -44,5 +44,10 @@ public static class NCreaturePatch
             __instance.Hitbox.Size.X * 0.5f + 10f,
             -400f
         );
+
+        if (__instance.Entity.Player.BaseOrbSlotCount > 0)
+        {
+            ammoButton.ApplyOrbOffset(true);
+        }
     }
 }
