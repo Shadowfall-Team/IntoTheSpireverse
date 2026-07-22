@@ -78,11 +78,14 @@ public partial class NAmmoTargetIndicator : TextureRect
     }
 
     /// <summary>
-    /// TopLevel means Position is global, so the anchor's screen rect drives it directly
-    /// and no ancestor transform, clipping, or layout can move it out of view. The scene
-    /// sets PivotOffset to the crosshair's centre, so the pulse scales in place and this
-    /// only has to place the unscaled rect: left edge HorizontalGap past the bar's right
-    /// edge, vertically centred on the bar.
+    /// Places the crosshair from the anchor's screen rect: left edge HorizontalGap past the
+    /// bar's right edge, vertically centred on it. The scene sets PivotOffset to the
+    /// crosshair's centre, so the pulse scales in place and this only has to place the
+    /// unscaled rect.
+    ///
+    /// Assigning GlobalPosition (rather than Position) keeps this independent of where the
+    /// node sits in the tree, so it stays correct as a child of the state display, whose
+    /// transform the crosshair now inherits along with its modulate.
     ///
     /// Only needs to run when the crosshair is shown: the health bar moves during the
     /// creature's spawn-in animation and is fixed after that, and the crosshair cannot be

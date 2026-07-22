@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd0qykgw56tf6"
-path="res://.godot/imported/trial_of_knowledge_power.png-1d9df1bd39254cced84be0dabdc2f592.ctex"
+uid="uid://lqogfl33m1xt"
+path="res://.godot/imported/trial_of_combat_power.png-4df3546792e151108972d95becae3038.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/powers/big/trial_of_knowledge_power.png"
-dest_files=["res://.godot/imported/trial_of_knowledge_power.png-1d9df1bd39254cced84be0dabdc2f592.ctex"]
+source_file="res://IntoTheSpireverse/images/powers/big/trial_of_combat_power.png"
+dest_files=["res://.godot/imported/trial_of_combat_power.png-4df3546792e151108972d95becae3038.ctex"]
 
 [params]
 

@@ -1,4 +1,5 @@
 ﻿using BaseLib.Abstracts;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -12,7 +13,13 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 
 public class CargoDrawManager() : CustomSingletonModel(HookType.Combat)
 {
-     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+     // BeforeHandDraw rather than AfterPlayerTurnStart: CombatManager runs this hook, then the
+     // 5-card hand draw, then AfterPlayerTurnStart - so this is what puts Cargo cards in hand
+     // ahead of the normal draw.
+     public override async Task BeforeHandDraw(
+         Player player,
+         PlayerChoiceContext choiceContext,
+         ICombatState combatState)
      {
          var cargoPile = CargoCardPile.CargoPileType.GetPile(player);
          if (!cargoPile.IsEmpty)

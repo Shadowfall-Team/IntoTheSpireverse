@@ -17,6 +17,8 @@
   "INTOTHESPIREVERSE-CARGO.description": "At the start of your turn, draw 1 card from your [gold]Cargo[/gold].",
   "INTOTHESPIREVERSE-MUDDLE.title": "Muddle",
   "INTOTHESPIREVERSE-MUDDLE.description": "Randomize a card's cost between [blue]0[/blue] and [blue]3[/blue] this turn.",
+  "INTOTHESPIREVERSE-MODIFY.title": "Modify",
+  "INTOTHESPIREVERSE-MODIFY.description": "Changes a card for the rest of combat. A Modified card cannot be Modified again.",
   "INTOTHESPIREVERSE-ARCANE.title": "Arcane",
   "INTOTHESPIREVERSE-ARCANE.description": "Start each combat with this card in your [gold]Exhaust[/gold] pile."
 }
