@@ -42,8 +42,11 @@ public partial class NAmmoButton : NButton
 
     private Tween? _fadeTween;
     private Tween? _bumpTween;
+    private Tween? _orbTween;
 
     private float _bobTime;
+    private bool _orbOffsetApplied;
+    private static readonly Vector2 OrbSlotOffset = new(35f, 160f);
     private const float BobAmplitude = 5f;
     private const float BobFrequency = 2f;
 
@@ -361,6 +364,28 @@ public partial class NAmmoButton : NButton
         };
         return PreloadManager.Cache.GetAsset<Texture2D>(
             ImageHelper.GetImagePath($"packed/intents/attack/intent_attack_{tier}.png"));
+    }
+
+    public void ApplyOrbOffset(bool hasOrbs)
+    {
+        if (hasOrbs && !_orbOffsetApplied)
+        {
+            _orbTween?.Kill();
+            _orbTween = CreateTween();
+            _orbTween.TweenProperty(this, "position", Position + OrbSlotOffset, 0.5f)
+                .SetEase(Tween.EaseType.Out)
+                .SetTrans(Tween.TransitionType.Sine);
+            _orbOffsetApplied = true;
+        }
+        else if (!hasOrbs && _orbOffsetApplied)
+        {
+            _orbTween?.Kill();
+            _orbTween = CreateTween();
+            _orbTween.TweenProperty(this, "position", Position - OrbSlotOffset, 0.5f)
+                .SetEase(Tween.EaseType.Out)
+                .SetTrans(Tween.TransitionType.Sine);
+            _orbOffsetApplied = false;
+        }
     }
 
     #endregion
