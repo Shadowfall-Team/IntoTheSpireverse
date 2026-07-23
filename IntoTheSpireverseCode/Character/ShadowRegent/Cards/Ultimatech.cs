@@ -55,6 +55,8 @@ public class Ultimatech() : ShadowRegentCard(
             CardModel ultimate = isBasicStrike
                 ? CombatState.CreateCard<UltimateStrike>(Owner)
                 : CombatState.CreateCard<UltimateDefend>(Owner);
+            
+            if (card.IsUpgraded) CardCmd.Upgrade(ultimate);
 
             await CardPileCmd.AddGeneratedCardToCombat(ultimate, PileType.Hand, Owner);
         }
