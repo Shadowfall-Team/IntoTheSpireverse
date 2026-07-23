@@ -708,7 +708,7 @@
   "INTOTHESPIREVERSE-BREACH.title": "Breach",
   "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.description": "Gain {Block:diff()} [gold]Block[/gold]. Put this into [gold]Cargo[/gold] if it's not there.\nAt end of turn, if this is in [gold]Cargo[/gold], play it.",
   "INTOTHESPIREVERSE-BRACE_FOR_IMPACT.title": "Brace for Impact!",
-  "INTOTHESPIREVERSE-COMMANDEER.description": "Add a random Attack from different class into your [gold]Hand[/gold]. It deals {IfUpgraded:show:100%|50%} more damage.",
+  "INTOTHESPIREVERSE-COMMANDEER.description": "Add a random Attack from different class into your [gold]Hand[/gold]. It deals {IfUpgraded:show:150%|100%} more damage.",
   "INTOTHESPIREVERSE-COMMANDEER.title": "Commandeer",
   "INTOTHESPIREVERSE-BIG_BOOM.description": "Gain {Energy:energyIcons()}.\nDraw {Cards} {Cards:plural:card|cards}.\nGain {ShardsPower} [gold]{ShardsPower:plural:Shard|Shards}[/gold].\nLoad {LoadAmmo} [gold]Ammo[/gold].",
   "INTOTHESPIREVERSE-BIG_BOOM.title": "Big Boom",

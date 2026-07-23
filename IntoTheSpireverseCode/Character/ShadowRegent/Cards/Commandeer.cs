@@ -39,7 +39,7 @@ public class Commandeer() : ShadowRegentCard(1,
             if (card == null) continue;
             // +50%, or +100% upgraded. Floored, so an odd base value rounds down rather than
             // handing the card a fractional damage number.
-            var multiplier = IsUpgraded ? 2m : 1.5m;
+            var multiplier = IsUpgraded ? 2.5m : 2m;
             if (card.DynamicVars.TryGetValue("Damage", out _))
             {
                 card.DynamicVars.Damage.BaseValue =
