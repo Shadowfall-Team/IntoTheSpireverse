@@ -1,0 +1,5 @@
+[gd_resource type="CanvasItemMaterial" format=3 uid="uid://cwijwxnvmis53"]
+
+[resource]
+resource_name = "canvas_item_material_additive_shared"
+blend_mode = 1

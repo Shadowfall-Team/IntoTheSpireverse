@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2srbops1xqm0"
-path="res://.godot/imported/dot.png-4b0baae347008cbd543ff1143be5e60e.ctex"
+uid="uid://b7gtl7gvi5tfc"
+path="res://.godot/imported/short_grain_rice_particle.png-9336df376e3fa78fb8669290d0db1a39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/vfx/dot.png"
-dest_files=["res://.godot/imported/dot.png-4b0baae347008cbd543ff1143be5e60e.ctex"]
+source_file="res://IntoTheSpireverse/images/vfx/short_grain_rice_particle.png"
+dest_files=["res://.godot/imported/short_grain_rice_particle.png-9336df376e3fa78fb8669290d0db1a39.ctex"]
 
 [params]
 

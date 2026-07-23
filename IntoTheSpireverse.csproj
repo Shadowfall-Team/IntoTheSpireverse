@@ -103,6 +103,10 @@
         <EmbeddedResource Remove="IntoTheSpireverseCode\ArtRoller\NCardLibraryVerticalSlidersPatch.cs"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="IntoTheSpireverse\images\vfx\" />
+    </ItemGroup>
+
     <Target Name="CheckSts2DataDirForCopy" BeforeTargets="CopyToModsFolderOnBuild"
             Condition="!Exists('$(Sts2DataDir)') And !Exists('$(ModsPath)')">
         <Error Text="Cannot copy build output to mods folder: neither '$(Sts2DataDir)' nor '$(ModsPath)' exists. Install STS2 locally or pass /p:ModsPath=... in CI."/>
