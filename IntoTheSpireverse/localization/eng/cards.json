@@ -712,7 +712,7 @@
   "INTOTHESPIREVERSE-COMMANDEER.title": "Commandeer",
   "INTOTHESPIREVERSE-BIG_BOOM.description": "Gain {Energy:energyIcons()}.\nDraw {Cards} {Cards:plural:card|cards}.\nGain {ShardsPower} [gold]{ShardsPower:plural:Shard|Shards}[/gold].\nLoad {LoadAmmo} [gold]Ammo[/gold].",
   "INTOTHESPIREVERSE-BIG_BOOM.title": "Big Boom",
-  "INTOTHESPIREVERSE-ULTIMATECH.description": "Choose {Cards:diff()} {Cards:plural:card|cards} to [gold]Exhaust[/gold].\nFor each basic Strike or Defend exhausted, add its [gold]Ultimate[/gold] into your hand.",
+  "INTOTHESPIREVERSE-ULTIMATECH.description": "Choose up to {Cards:diff()} {Cards:plural:card|cards} to [gold]Exhaust[/gold].\nFor each basic Strike or Defend exhausted, add its [gold]Ultimate[/gold] into your hand.",
   "INTOTHESPIREVERSE-ULTIMATECH.title": "Ultimatech",
   "INTOTHESPIREVERSE-TWINBLAST_POWDER.description": "Fire {Shots} of your stored [gold]Ammo[/gold].\nThese shots deal {BonusDamage:diff()} additional damage.",
   "INTOTHESPIREVERSE-TWINBLAST_POWDER.title": "Twinblast Powder",

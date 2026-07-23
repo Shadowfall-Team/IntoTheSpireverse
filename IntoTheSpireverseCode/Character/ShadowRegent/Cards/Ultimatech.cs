@@ -37,7 +37,7 @@ public class Ultimatech() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         var selected = await CardSelectCmd.FromHand(choiceContext, Owner,
-            new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, DynamicVars.Cards.IntValue),
+            new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 0, DynamicVars.Cards.IntValue),
             null,
             this);
 
