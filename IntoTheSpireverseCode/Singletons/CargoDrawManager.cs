@@ -28,6 +28,8 @@ public class CargoDrawManager() : CustomSingletonModel(HookType.Combat)
              var cardModels = cargoPile.Cards.Take(1 + tradeRoutes).ToList();
              foreach (var cardModel in cardModels)
              {
+                 if (PileType.Hand.GetPile(player).Cards.Count >= CardPile.MaxCardsInHand) return;
+
                  await CardPileCmd.Add(cardModel, PileType.Hand);
                  if (player.Creature.CombatState == null) continue;
                  await Hook.AfterCardDrawn(player.Creature.CombatState, choiceContext, cardModel, true);
