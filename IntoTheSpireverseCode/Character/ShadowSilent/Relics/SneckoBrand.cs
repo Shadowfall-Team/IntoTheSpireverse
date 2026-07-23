@@ -11,18 +11,23 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Color
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class MysticPendant : ShadowSilentRelic
+public class SneckoBrand : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
+    public override RelicModel? GetUpgradeReplacement()
+    {
+        return ModelDb.Relic<SoulBrand>();
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(3),
+        new CardsVar(1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Flicker>(true),
+        HoverTipFactory.FromCard<Flicker>(),
     ];
 
     public override async Task BeforeHandDraw(
@@ -38,8 +43,6 @@ public class MysticPendant : ShadowSilentRelic
         var cards = Enumerable.Range(0, DynamicVars.Cards.IntValue)
             .Select(_ => combatState.CreateCard<Flicker>(Owner))
             .ToArray();
-        foreach (CardModel card in cards)
-            CardCmd.Upgrade(card);
 
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner);
     }

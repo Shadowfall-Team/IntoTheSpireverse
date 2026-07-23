@@ -15,9 +15,9 @@ public class ShadowSilentRelicPool : CustomRelicPoolModel
     {
         return new List<RelicModel>([
             //starter
-            ModelDb.Relic<MysticCharm>(),
+            ModelDb.Relic<SneckoBrand>(),
             //common
-            ModelDb.Relic<WiltedRose>(),
+            ModelDb.Relic<BaleteRoot>(),
             //uncommon
             ModelDb.Relic<Gambeson>(),
             ModelDb.Relic<PrayerBeads>(),

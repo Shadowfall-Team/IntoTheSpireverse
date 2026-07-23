@@ -7,7 +7,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class WiltedRose : ShadowSilentRelic, IntoTheSpireverseKeywords.IModifyDeviousListener
+public class BaleteRoot : ShadowSilentRelic, IntoTheSpireverseKeywords.IModifyDeviousListener
 {
     public override RelicRarity Rarity => RelicRarity.Common;
 
