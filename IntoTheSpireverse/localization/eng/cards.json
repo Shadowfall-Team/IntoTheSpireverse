@@ -714,7 +714,7 @@
   "INTOTHESPIREVERSE-BIG_BOOM.title": "Big Boom",
   "INTOTHESPIREVERSE-ULTIMATECH.description": "Choose {Cards:diff()} {Cards:plural:card|cards} to [gold]Exhaust[/gold].\nFor each basic Strike or Defend exhausted, add its [gold]Ultimate[/gold] into your hand.",
   "INTOTHESPIREVERSE-ULTIMATECH.title": "Ultimatech",
-  "INTOTHESPIREVERSE-TWINBLAST_POWDER.description": "Fire {Shots} of your stored [gold]Ammo[/gold].\nThe shots deal {BonusDamage:diff()} additional damage.",
+  "INTOTHESPIREVERSE-TWINBLAST_POWDER.description": "Fire {Shots} of your stored [gold]Ammo[/gold].\nThese shots deal {BonusDamage:diff()} additional damage.",
   "INTOTHESPIREVERSE-TWINBLAST_POWDER.title": "Twinblast Powder",
   "INTOTHESPIREVERSE-HIJACK.description": "Steal up to {StrengthPower:diff()} [gold]Strength[/gold] and {Block:diff()} [gold]Block[/gold] from the enemy.\nGain {ShardsPower:diff()} [gold]{ShardsPower:plural:Shard|Shards}[/gold].",
   "INTOTHESPIREVERSE-HIJACK.title": "Hijack",
