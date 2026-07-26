@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
-public class ChrysalisPower : ShadowPowerModel
+public class GrazePower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
