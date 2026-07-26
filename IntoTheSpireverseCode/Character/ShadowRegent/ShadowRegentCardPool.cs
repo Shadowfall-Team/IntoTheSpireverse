@@ -1,4 +1,4 @@
-﻿using BaseLib.Abstracts;
+using BaseLib.Abstracts;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Models;
@@ -21,19 +21,17 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<CelestialMight>(),
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<KnowThyPlace>(),
-            ModelDb.Card<Patter>(),
             ModelDb.Card<LunarBlast>(),
-            ModelDb.Card<KinglyPunch>(),
-            ModelDb.Card<KinglyKick>(),
-            ModelDb.Card<Terraforming>(),
-            ModelDb.Card<Prophesize>(),
-            ModelDb.Card<Supermassive>(),
+            ModelDb.Card<Glimmer>(),
             ModelDb.Card<PillarOfCreation>(),
             ModelDb.Card<HeavenlyDrill>(),
             ModelDb.Card<MakeItSo>(),
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
-            //"Almost identical"
+            ModelDb.Card<Royalties>(),
+            ModelDb.Card<Tutor>(),
+            
+            //Close enough to be considered a duplicate: 
             //Solar Strike
             //Glow
             //Gather Light

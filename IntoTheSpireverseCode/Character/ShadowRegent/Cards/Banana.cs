@@ -48,8 +48,7 @@ public class Banana() : ShadowRegentCard(1,
             this);
 
         var tripCard = CombatState.CreateCard<Trip>(Owner);
-        var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(tripCard, CargoCardPile.CargoPileType, Owner);
-        CardCmd.PreviewCardPileAdd(cardAdd);
+        await CardPileCmd.AddGeneratedCardToCombat(tripCard, PileType.Hand, Owner);
     }
 
     protected override void OnUpgrade()

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-TRIAL_OF_AUDACITY",
+  "hue": 0.16,
+  "saturation": 0.74,
+  "value": 1.31,
+  "red": 1.06,
+  "green": 1.01,
+  "blue": 0.94,
+  "contrast": 1.13,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/seven_stars.tres"
+}

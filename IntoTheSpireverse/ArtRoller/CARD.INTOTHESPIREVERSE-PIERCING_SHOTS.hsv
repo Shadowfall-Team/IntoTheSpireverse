@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-PIERCING_SHOTS",
+  "hue": 0.75,
+  "saturation": 0.62,
+  "value": 1.01,
+  "red": 1.08,
+  "green": 1.04,
+  "blue": 0.55,
+  "contrast": 1.1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/gamma_blast.tres"
+}

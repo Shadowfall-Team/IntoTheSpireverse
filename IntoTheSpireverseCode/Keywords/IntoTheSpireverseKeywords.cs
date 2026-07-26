@@ -53,6 +53,9 @@ public static class IntoTheSpireverseKeywords
     
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Arcane;
+
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Modify;
     
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;

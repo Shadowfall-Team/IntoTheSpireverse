@@ -8,7 +8,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 public class RedGiant() : ShadowRegentCard(
     2,
     CardType.Power,
-    CardRarity.Rare,
+    CardRarity.Ancient,
     TargetType.Self)
 {
     public override bool CanBeGeneratedInCombat => false;
