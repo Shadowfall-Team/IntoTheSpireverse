@@ -13,7 +13,8 @@ public abstract class ShadowSilentRelic : CustomRelicModel
     {
         get
         {
-            var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".RelicImagePath();
+            var path1 = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+            var path = Path.Join(MainFile.ModId, "images", "relics", "silent", path1);
             return ResourceLoader.Exists(path) ? path : "relic.png".RelicImagePath();
         }
     }
@@ -22,7 +23,8 @@ public abstract class ShadowSilentRelic : CustomRelicModel
     {
         get
         {
-            var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png".RelicImagePath();
+            var path1 = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}_outline.png";
+            var path = Path.Join(MainFile.ModId, "images", "relics", "silent", path1);
             return ResourceLoader.Exists(path) ? path : "relic_outline.png".RelicImagePath();
         }
     }
@@ -31,7 +33,8 @@ public abstract class ShadowSilentRelic : CustomRelicModel
     {
         get
         {
-            var path = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigRelicImagePath();
+            var path1 = $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png";
+            var path = Path.Join(MainFile.ModId, "images", "relics", "silent", "big", path1);
             return ResourceLoader.Exists(path) ? path : "relic.png".BigRelicImagePath();
         }
     }
