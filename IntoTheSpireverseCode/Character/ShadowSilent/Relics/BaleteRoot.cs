@@ -9,7 +9,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
 public class BaleteRoot : ShadowSilentRelic, IntoTheSpireverseKeywords.IModifyDeviousListener
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
+    public override RelicRarity Rarity => RelicRarity.Rare;
 
     private const string increaseKey = "Increase";
 

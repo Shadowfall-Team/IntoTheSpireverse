@@ -19,12 +19,12 @@ public class ShadowSilentRelicPool : CustomRelicPoolModel
             //common
             ModelDb.Relic<BaleteRoot>(),
             //uncommon
-            ModelDb.Relic<Gambeson>(),
+            ModelDb.Relic<Rattleback>(),
             ModelDb.Relic<PrayerBeads>(),
             //rare
             ModelDb.Relic<ArmoredCore>(),
             ModelDb.Relic<SistersCrown>(),
-            ModelDb.Relic<PaperSnecko>(),
+            ModelDb.Relic<VinoSerpento>(),
             //shop
             ModelDb.Relic<Mithridatium>(),
         ]);
