@@ -16,7 +16,7 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     public override string PlaceholderID => "silent";
     public const string CharacterId = "IntoTheSpireverse";
 
-    public static readonly Color Color = StsColors.blue;
+    public static readonly Color Color = StsColors.orange;
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Feminine;
