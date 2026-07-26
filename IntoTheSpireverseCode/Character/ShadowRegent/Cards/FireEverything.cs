@@ -33,9 +33,8 @@ public class FireEverything() : ShadowRegentCard(
 
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
 
-        await PowerCmd.Apply<FireEverythingPower>(
-            choiceContext, Owner.Creature,
-            1, Owner.Creature, this);
+        // Counted after loading, so the Ammo this card just loaded pays out too.
+        await PlayerCmd.GainEnergy(AmmoResource.GetAmmo(Owner), Owner);
     }
 
     protected override void OnUpgrade()

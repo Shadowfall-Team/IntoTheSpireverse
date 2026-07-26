@@ -6,4 +6,6 @@ internal static class IntoTheSpireverseResources
     public const string AmmoCounterScene = "res://IntoTheSpireverse/scenes/ammo_counter.tscn";
     public const string CaptainsShipScene = "res://IntoTheSpireverse/scenes/CaptainsShip.tscn";
     public const string CargoPileScene = "res://IntoTheSpireverse/scenes/CargoPile.tscn";
+    public const string AmmoIndicatorTexture = "res://IntoTheSpireverse/images/characters/shadowregent/ammoIndicator.png";
+    public const string AmmoTargetIndicatorScene = "res://IntoTheSpireverse/scenes/ammo_target_indicator.tscn";
 }

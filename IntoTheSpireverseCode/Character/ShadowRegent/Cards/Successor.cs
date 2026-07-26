@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
-public class Successor() : ShadowRegentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class Successor() : ShadowRegentCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -43,8 +43,5 @@ public class Successor() : ShadowRegentCard(1, CardType.Skill, CardRarity.Rare, 
         CardCmd.PreviewCardPileAdd(cardPileAddResult);
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Repeat.UpgradeValueBy(1);
-    }
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

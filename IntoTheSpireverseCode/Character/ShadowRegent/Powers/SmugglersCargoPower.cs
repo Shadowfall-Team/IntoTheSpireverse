@@ -17,10 +17,14 @@ public class SmugglersCargoPower : ShadowPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext context,
         CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature == Owner && cardPlay.ResultPile == PileType.Discard)
+        // Another player's card must not consume this - "the next card you play" is per-player.
+        if (cardPlay.Card.Owner.Creature != Owner) return;
+
+        if (cardPlay.ResultPile == PileType.Discard)
         {
             await CardPileCmd.Add(cardPlay.Card, CargoCardPile.CargoPileType);
         }
+
         await PowerCmd.Remove(this);
     }
 

@@ -23,7 +23,7 @@ public class Hyperdrive() : ShadowRegentCard(-1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
 
     [
-        new PowerVar<ShardsPower>(3)
+        new PowerVar<ShardsPower>(4)
     ];
 
 
@@ -48,6 +48,6 @@ public class Hyperdrive() : ShadowRegentCard(-1,
 
     protected override void OnUpgrade()
     {
-        DynamicVars[nameof(ShardsPower)].UpgradeValueBy(1);
+        DynamicVars[nameof(ShardsPower)].UpgradeValueBy(2);
     }
 }

@@ -2,6 +2,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -13,6 +14,7 @@ public static class AmmoResource
 {
     private static readonly SpireField<PlayerCombatState, int> PlayerAmmo = new(() => 0);
     private static readonly SpireField<PlayerCombatState, CardModel?> PhantomShotCard = new(() => null);
+    private static readonly SpireField<PlayerCombatState, Creature?> LastAttackTarget = new(() => null);
 
     public static CardModel? GetOrCreatePhantomCard(Player player)
     {
@@ -65,16 +67,39 @@ public static class AmmoResource
     }
 
 
+    public static event Action<PlayerCombatState, Creature?>? LastAttackTargetChanged;
+
+    public static void SetLastAttackTarget(Player player, Creature target)
+    {
+        if (player.PlayerCombatState == null) return;
+        if (LastAttackTarget[player.PlayerCombatState] == target) return;
+        LastAttackTarget[player.PlayerCombatState] = target;
+        LastAttackTargetChanged?.Invoke(player.PlayerCombatState, target);
+    }
+
+    public static Creature? GetLastAttackTarget(Player player)
+    {
+        if (player.PlayerCombatState == null) return null;
+        var target = LastAttackTarget[player.PlayerCombatState];
+        if (target == null) return null;
+        return player.Creature.CombatState?.HittableEnemies.Contains(target) == true ? target : null;
+    }
+
+    public static Creature? PickShotTarget(Player player, ICombatState combatState)
+    {
+        var lastTarget = GetLastAttackTarget(player);
+        if (lastTarget != null) return lastTarget;
+
+        return player.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies);
+    }
+
+
     public const decimal BaseDamage = 12;
 
-    /// <summary>
-    /// Base damage + Strength + IModifiesAmmoShotDamage listeners (Firepower, Volley Damage).
-    /// </summary>
     public static decimal GetShotDamage(Player player)
     {
         var damage = BaseDamage;
 
-        // Strength
         if(player.HasPower<AmmoStrengthPower>())
             damage += player.Creature.GetPowerAmount<StrengthPower>();
 
@@ -99,6 +124,9 @@ public static class AmmoResource
 
         return cost;
     }
+
+    // Shot resolution lives in FireAmmoCmd. This type owns the Ammo resource itself: the count,
+    // the target it remembers, and the numbers a shot is worth.
 
     public static async Task InvokeOnAmmoFiring(Player player)
     {

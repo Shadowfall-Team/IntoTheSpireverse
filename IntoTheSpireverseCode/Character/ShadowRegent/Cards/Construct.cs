@@ -18,7 +18,6 @@ public class Construct() : ShadowRegentCard(
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
         HoverTipFactory.FromCard<Hyperdrive>(IsUpgraded)
 
     ];
@@ -36,7 +35,8 @@ public class Construct() : ShadowRegentCard(
         {
             CardCmd.Upgrade(driveCard);
         }
-        var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(driveCard, CargoCardPile.CargoPileType, Owner);
+        var cardAdd = await CardPileCmd.AddGeneratedCardToCombat(
+            driveCard, PileType.Draw, Owner, CardPilePosition.Random);
         CardCmd.PreviewCardPileAdd(cardAdd);
     }
 

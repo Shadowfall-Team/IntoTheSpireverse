@@ -14,7 +14,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 public class Misdirection() : ShadowRegentCard(
     1,
     CardType.Attack,
-    CardRarity.Uncommon,
+    CardRarity.Common,
     TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -54,6 +54,7 @@ public class Misdirection() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

@@ -32,14 +32,13 @@ public class TrialOfSpacePower : ShadowPowerModel, IHasSecondAmount
         if (side == CombatSide.Enemy)
             return;
 
+        if (Owner.Player.PlayerCombatState?.Energy < 2) return;
+
         Flash();
 
-        if (Owner.Player.PlayerCombatState?.Energy >= 3)
-        {
-            await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner, Amount, Owner, null);
-            await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, Owner, Cards, Owner, null);
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner, Amount, Owner, null);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, Owner, Cards, Owner, null);
 
-            await PowerCmd.Remove(this);
-        }
+        await PowerCmd.Remove(this);
     }
 }
