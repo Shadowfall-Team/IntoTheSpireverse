@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SHIELD_DRONES",
+  "hue": 0.18,
+  "saturation": 0.89,
+  "value": 1.15,
+  "red": 0.88,
+  "green": 1.12,
+  "blue": 0.97,
+  "contrast": 1.06,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/patter.tres"
+}

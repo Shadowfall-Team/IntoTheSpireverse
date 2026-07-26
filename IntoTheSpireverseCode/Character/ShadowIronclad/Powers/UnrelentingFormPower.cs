@@ -21,10 +21,14 @@ public sealed class UnrelentingFormPower : ShadowPowerModel
         if (!(player.PlayerCombatState is { Phase: PlayerTurnPhase.Play })
             || player != Owner.Player
             || cardPlay.Card.Type != CardType.Attack
+            // The history is shared across players, so the tally has to be filtered to the
+            // owner's own Attacks or co-op allies eat this power's allowance.
             || CombatManager
                 .Instance.History.Entries.OfType<CardPlayFinishedEntry>()
                 .Count(e =>
-                    e.CardPlay.Card.Type == CardType.Attack && e.HappenedThisTurn(CombatState)
+                    e.CardPlay.Card.Owner == Owner.Player
+                    && e.CardPlay.Card.Type == CardType.Attack
+                    && e.HappenedThisTurn(CombatState)
                 ) > Amount
         ) return;
 

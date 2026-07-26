@@ -29,9 +29,10 @@ public class Warp() : CustomCardModel(0,
 
     public override void AfterCreated()
     {
-        if (!Owner.Relics.OfType<HulaFigure>().Any()) return;
-        DynamicVars.Strength.BaseValue -= 1;
-        DynamicVars.Energy.BaseValue += 1;
+        var hulaFigure = Owner.Relics.OfType<HulaFigure>().FirstOrDefault();
+        if (hulaFigure == null) return;
+        DynamicVars.Strength.BaseValue = 0;
+        DynamicVars.Energy.BaseValue = hulaFigure.DynamicVars.Energy.BaseValue;
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
