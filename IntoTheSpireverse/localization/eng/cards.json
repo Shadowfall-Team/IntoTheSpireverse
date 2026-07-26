@@ -68,7 +68,7 @@
   "INTOTHESPIREVERSE-THOUSAND_CUTS.title": "Thousand Cuts",
   "INTOTHESPIREVERSE-THOUSAND_CUTS.description": "Whenever you play a card, deal {ThousandCutsPower:diff()} damage to ALL enemies.",
   "INTOTHESPIREVERSE-MASTERFUL_STAB.title": "Masterful Stab",
-  "INTOTHESPIREVERSE-MASTERFUL_STAB.description": "Costs an additional {Energy:energyIcons()} for each time you lost HP this combat.\nDeal {Damage:diff()} damage.",
+  "INTOTHESPIREVERSE-MASTERFUL_STAB.description": "Whenever you lose HP this combat, this card costs an additional {Energy:energyIcons()}.\nDeal {Damage:diff()} damage.",
   "INTOTHESPIREVERSE-SCALEMAIL.title": "Scalemail",
   "INTOTHESPIREVERSE-SCALEMAIL.description": "Add {IfUpgraded:show:X+1|X} [gold]Scales[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-COBRAS_FLASK.title": "Cobra's Flask",
