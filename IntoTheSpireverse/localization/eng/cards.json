@@ -52,7 +52,7 @@
   "INTOTHESPIREVERSE-SPIRITUAL_WEAPON.title": "Spiritual Weapon",
   "INTOTHESPIREVERSE-SPIRITUAL_WEAPON.description": "Deal {Damage:diff()} damage.\nWhenever this card is [gold]Muddled[/gold], increase its damage by {Increase:diff()} this combat.",
   "INTOTHESPIREVERSE-PLUNDER.title": "Plunder",
-  "INTOTHESPIREVERSE-PLUNDER.description": "Deal {Damage:diff()} damage.\nDraw 1 card for each card that costs {Energy:energyIcons()} or more in your [gold]Hand[/gold].{InCombat:\n(Draw {CalculatedDraw} {CalculatedDraw:plural:card|cards})|}.",
+  "INTOTHESPIREVERSE-PLUNDER.description": "Deal {Damage:diff()} damage.\nDraw 1 card for each card that costs {Energy:energyIcons()} or more in your [gold]Hand[/gold].{InCombat:\n(Draw {CalculatedDraw} {CalculatedDraw:plural:card|cards}).|}",
   "INTOTHESPIREVERSE-MISTY_STEP.title": "Misty Step",
   "INTOTHESPIREVERSE-MISTY_STEP.description": "Gain {Block:diff()} [gold]Block[/gold].\nIncrease this card's [gold]Block[/gold] by {BlockIncrease:diff()} and cost by {Energy:energyIcons()}.",
   "INTOTHESPIREVERSE-FOUL_MIASMA.title": "Foul Miasma",
