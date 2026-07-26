@@ -22,7 +22,7 @@
 
   "INTOTHESPIREVERSE-VIRAL_POTION.description": "Apply [blue]{PoisonPower}[/blue] [gold]Poison[/gold] to ALL enemies.",
   "INTOTHESPIREVERSE-VIRAL_POTION.title": "Viral Potion",
-  "INTOTHESPIREVERSE-CRAFTY_POTION.description": "Add [blue]{Cards}[blue] [gold]{Cards:plural:Scale+|Scales+}[/gold] into your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-CRAFTY_POTION.description": "Add [blue]{Cards}[/blue] [gold]{Cards:plural:Scale+|Scales+}[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-CRAFTY_POTION.title": "Crafty Potion",
   "INTOTHESPIREVERSE-NIGHTMARE_FUEL_POTION.description": "Choose a card. Add [blue]{Cards}[/blue] {Cards:plural:copy|copies} of that card into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-NIGHTMARE_FUEL_POTION.title": "Nightmare Fuel",

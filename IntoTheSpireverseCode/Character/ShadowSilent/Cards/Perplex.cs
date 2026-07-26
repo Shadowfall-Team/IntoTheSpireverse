@@ -1,3 +1,7 @@
+using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Modifications;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.Modifications;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,17 +17,15 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromEnchantment<Slither>();
-    
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        IEnumerable<CardModel> cardToPerplex = await CardSelectCmd.FromCombatPile(choiceContext, PileType.Draw.GetPile(Owner), Owner, new CardSelectorPrefs(SelectionScreenPrompt, 1), CanEnchant);
+        IEnumerable<CardModel> cardToPerplex = await CardSelectCmd.FromCombatPile(choiceContext, PileType.Draw.GetPile(Owner), Owner, new CardSelectorPrefs(SelectionScreenPrompt, 1), CanModify);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         foreach (CardModel cardModel in cardToPerplex)
         {
-            CardCmd.Enchant<Slither>(cardModel, 1M);
+            CardModifier.AddModifier<SlitherModification>(cardModel);
             
             NCardEnchantVfx child = NCardEnchantVfx.Create(cardModel);
             if (child != null)
@@ -35,9 +37,9 @@ public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.R
         }
     }
     
-    public static bool CanEnchant(CardModel card)
+    public static bool CanModify(CardModel card)
     {
-        return card.Enchantment == null && ModelDb.Enchantment<Slither>().CanEnchant(card);
+        return Modification.CanModify(card) && IntoTheSpireverseKeywords.CanMuddle(card);
     }
     
     protected override void OnUpgrade()
