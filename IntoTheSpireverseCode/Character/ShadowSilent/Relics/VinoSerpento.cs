@@ -27,7 +27,7 @@ public class VinoSerpento : ShadowSilentRelic
     }
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<PoisonPower>(1M)
+        new PowerVar<PoisonPower>(4)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -63,6 +63,7 @@ public class VinoSerpento : ShadowSilentRelic
     {
         Flash();
         WasUsedThisCombat = true;
+        Status = RelicStatus.Normal;
         return Task.CompletedTask;
     }
 }
