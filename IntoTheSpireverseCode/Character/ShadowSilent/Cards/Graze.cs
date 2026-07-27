@@ -31,7 +31,7 @@ public sealed class Graze() : ShadowSilentCard(2, CardType.Skill, CardRarity.Com
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
-        await PowerCmd.Apply<ChrysalisPower>(
+        await PowerCmd.Apply<GrazePower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Cards.BaseValue,
             Owner.Creature, this);

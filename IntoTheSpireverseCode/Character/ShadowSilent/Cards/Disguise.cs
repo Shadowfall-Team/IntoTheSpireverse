@@ -45,6 +45,6 @@ public sealed class Disguise() : ShadowSilentCard(2, CardType.Skill, CardRarity.
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(-1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

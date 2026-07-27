@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -22,7 +23,7 @@ public sealed class Choke() : ShadowSilentCard(2, CardType.Attack, CardRarity.Un
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(14m, ValueProp.Move),
-        new PowerVar<ChokePower>(3m),
+        new PowerVar<StranglePower>(3m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -35,15 +36,15 @@ public sealed class Choke() : ShadowSilentCard(2, CardType.Attack, CardRarity.Un
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        await PowerCmd.Apply<ChokePower>(
+        await PowerCmd.Apply<StranglePower>(
             choiceContext, cardPlay.Target,
-            DynamicVars.Power<ChokePower>().BaseValue,
+            DynamicVars.Power<StranglePower>().BaseValue,
             Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(4m);
-        DynamicVars.Power<ChokePower>().UpgradeValueBy(2m);
+        DynamicVars.Power<StranglePower>().UpgradeValueBy(2m);
     }
 }

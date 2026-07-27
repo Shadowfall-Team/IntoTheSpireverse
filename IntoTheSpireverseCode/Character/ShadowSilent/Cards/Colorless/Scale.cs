@@ -1,10 +1,14 @@
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
@@ -30,5 +34,22 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(3m);
+    }
+    
+    public static async Task<IEnumerable<CardModel>> CreateInHand(
+        Player owner,
+        int count,
+        ICombatState combatState,
+        Player? creator = null)
+    {
+        if (count == 0)
+            return Array.Empty<CardModel>();
+        if (CombatManager.Instance.IsOverOrEnding)
+            return Array.Empty<CardModel>();
+        List<CardModel> scales = new List<CardModel>();
+        for (int index = 0; index < count; ++index)
+            scales.Add(combatState.CreateCard<Scale>(owner));
+        IReadOnlyList<CardPileAddResult> combat = await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, creator ?? owner);
+        return scales;
     }
 }

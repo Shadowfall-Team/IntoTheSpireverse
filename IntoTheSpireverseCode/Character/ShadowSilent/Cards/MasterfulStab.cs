@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -36,26 +37,13 @@ public sealed class MasterfulStab() : ShadowSilentCard(0, CardType.Attack, CardR
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
     }
-    
-    public override bool TryModifyEnergyCostInCombat(
-        CardModel card,
-        decimal originalCost,
-        out decimal modifiedCost)
+
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
+        Creature? dealer, CardModel? cardSource)
     {
-        modifiedCost = originalCost;
-        if (card != this)
-            return false;
-
-        int count = CombatManager.Instance.History.Entries
-            .OfType<DamageReceivedEntry>()
-            .Count(e => e.Receiver == Owner.Creature
-                        && e.Result.UnblockedDamage > 0);
-
-        if (count <= 0)
-            return false;
-
-        modifiedCost = originalCost + count * DynamicVars.Energy.IntValue;
-        return true;
+        if (!CombatManager.Instance.IsInProgress || target != Owner.Creature || result.UnblockedDamage <= 0)
+            return;
+        EnergyCost.AddThisCombat(DynamicVars.Energy.IntValue);;
     }
 
     protected override void OnUpgrade()
