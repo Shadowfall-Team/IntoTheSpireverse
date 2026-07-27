@@ -130,7 +130,7 @@
   "INTOTHESPIREVERSE-RECALL.title": "Recall",
   "INTOTHESPIREVERSE-RECALL.description": "Deal {Damage:diff()} damage.\nThe next card you play is returned to your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-OATH_OF_DEVOTION.title": "Oath of Devotion",
-  "INTOTHESPIREVERSE-OATH_OF_DEVOTION.description": "Reduce the maximum cost of [gold]Muddled[/gold] cards by {energyPrefix:energyIcons(1)}.",
+  "INTOTHESPIREVERSE-OATH_OF_DEVOTION.description": "Reduce the maximum cost of [gold]Muddled[/gold] cards by 1.",
   "INTOTHESPIREVERSE-SPEARHEAD.title": "Spearhead",
   "INTOTHESPIREVERSE-SPEARHEAD.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each other card in your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-DISGUISE.title": "Disguise",
