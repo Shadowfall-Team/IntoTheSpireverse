@@ -141,9 +141,9 @@ public static class IntoTheSpireverseKeywords
         int newCost;
         int maxCostReduce = 0;
 #if SILENT
-        if (card.Owner.Creature.HasPower<SharpWitPower>())
+        if (card.Owner.Creature.HasPower<OathOfDevotionPower>())
         {
-            maxCostReduce = card.Owner.Creature.GetPowerAmount<SharpWitPower>();
+            maxCostReduce = card.Owner.Creature.GetPowerAmount<OathOfDevotionPower>();
         }
 #endif
 
