@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -13,7 +14,7 @@ using MegaCrit.Sts2.Core.Rooms;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergySpentListener
+public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergySpentListener, ICardGlowGoldListener
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
     
@@ -69,6 +70,17 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
             return Task.CompletedTask;
         EnergyBeforePlay = card.Owner.PlayerCombatState.Energy;
         return Task.CompletedTask;
+    }
+    
+    public bool ShouldCardGlowGold(CardModel card)
+    {
+        if (card.Owner != Owner || WasUsedThisCombat)
+            return false;
+        if (card.EnergyCost.GetWithModifiers(CostModifiers.All) > card.Owner.PlayerCombatState.Energy)
+        {
+            return true;
+        }
+        return false;
     }
     
     public override CardLocation ModifyCardPlayResultLocation(
