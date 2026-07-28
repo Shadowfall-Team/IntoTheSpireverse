@@ -23,7 +23,6 @@ public sealed class DoubleLift() : ShadowSilentCard(0, CardType.Attack, CardRari
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
         EnergyHoverTip,
     ];
 

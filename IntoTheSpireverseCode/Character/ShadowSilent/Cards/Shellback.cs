@@ -1,9 +1,11 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
@@ -18,6 +20,12 @@ public sealed class Shellback() : ShadowSilentCard(1, CardType.Power, CardRarity
         new PowerVar<ShellbackPower>(6m),
         new DynamicVar(EnergyKey, 1m)
     ];
+    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+        [
+            HoverTipFactory.FromCard<Scale>(),
+            HoverTipFactory.Static(StaticHoverTip.Block),
+        ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
