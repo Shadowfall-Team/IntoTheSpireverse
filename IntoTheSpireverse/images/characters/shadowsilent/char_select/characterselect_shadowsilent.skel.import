@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://bve825xfvfbm3"
+path="res://.godot/imported/characterselect_shadowsilent.skel-17ac6397ce58a5f269fc797dbbf5fb45.spskel"
+
+[deps]
+
+source_file="res://IntoTheSpireverse/images/characters/shadowsilent/char_select/characterselect_shadowsilent.skel"
+dest_files=["res://.godot/imported/characterselect_shadowsilent.skel-17ac6397ce58a5f269fc797dbbf5fb45.spskel"]
+
+[params]
+

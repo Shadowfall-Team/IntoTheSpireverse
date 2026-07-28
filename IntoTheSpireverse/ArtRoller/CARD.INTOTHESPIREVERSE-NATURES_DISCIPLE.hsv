@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-NATURES_DISCIPLE",
+  "hue": 0.19,
+  "saturation": 0.72,
+  "value": 1.06,
+  "red": 0.85,
+  "green": 1.14,
+  "blue": 1.17,
+  "contrast": 1.24,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/colorless/ultimate_strike.tres"
+}

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-OATH_OF_DEVOTION",
+  "hue": 0.63,
+  "saturation": 1.26,
+  "value": 1.39,
+  "red": 0.59,
+  "green": 1.12,
+  "blue": 1.04,
+  "contrast": 0.91,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/sneaky.tres"
+}

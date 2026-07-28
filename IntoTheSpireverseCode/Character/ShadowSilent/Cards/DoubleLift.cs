@@ -47,6 +47,6 @@ public sealed class DoubleLift() : ShadowSilentCard(0, CardType.Attack, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

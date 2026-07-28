@@ -1,0 +1,49 @@
+restsite_shadow_silent.png
+size:348,1041
+filter:Linear,Linear
+scale:0.6
+bod
+bounds:201,228,136,138
+offsets:94,176,251,317
+rotate:90
+bottom drapery
+bounds:68,15,88,131
+rotate:90
+cast shadow
+bounds:2,454,189,367
+offsets:0,0,194,367
+hair
+bounds:282,101,64,125
+head
+bounds:163,105,117,121
+offsets:0,1,118,122
+highlights
+bounds:2,105,159,347
+hood top
+bounds:250,918,96,121
+offsets:0,1,96,122
+l arm 1
+bounds:193,660,45,161
+offsets:1,0,47,162
+l arm 2
+bounds:193,571,34,87
+offsets:0,1,34,89
+l leg
+bounds:240,557,103,164
+offsets:0,3,103,167
+leg draps
+bounds:2,2,64,101
+offsets:1,1,65,103
+r arm
+bounds:250,723,94,193
+offsets:2,0,96,195
+r leg
+bounds:193,366,189,139
+offsets:0,0,190,139
+rotate:90
+shadow
+bounds:2,823,246,216
+offsets:4,3,251,221
+skull
+bounds:201,38,68,65
+offsets:3,0,71,65

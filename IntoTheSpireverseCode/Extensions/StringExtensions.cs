@@ -53,6 +53,11 @@ public static class StringExtensions
         return Path.Join(MainFile.ModId, "images", "characters", "shadowregent", path);
     }
     
+    public static string ShadowSilentPath(this string path)
+    {
+        return Path.Join(MainFile.ModId, "images", "characters", "shadowsilent", path);
+    }
+    
     public static string PotionImagePath(this string path)
     {
         return Path.Join(MainFile.ModId, "images", "potions", path);
