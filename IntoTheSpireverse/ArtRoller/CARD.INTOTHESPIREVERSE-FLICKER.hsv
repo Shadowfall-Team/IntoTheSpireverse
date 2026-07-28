@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-FLICKER",
-  "hue": 0.79,
-  "saturation": 1.4,
-  "value": 1.06,
-  "red": 0.71,
-  "green": 1,
-  "blue": 1,
+  "hue": 0.76,
+  "saturation": 1.34,
+  "value": 1.01,
+  "red": 0.59,
+  "green": 0.99,
+  "blue": 0.56,
   "contrast": 1,
   "flip_h": true,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/blur.tres"
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/inferno.tres"
 }
