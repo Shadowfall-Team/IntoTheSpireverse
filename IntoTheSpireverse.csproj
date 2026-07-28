@@ -62,6 +62,15 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._hpBarHitbox"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NSubmenuStack._submenus"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NSubmenu._stack"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NMainMenuSubmenuStack._compendiumSubmenu"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._cardLibrarySubmenu"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._relicCollectionSubmenu"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._potionLabSubmenu"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NInspectCardScreen._card"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.InspectScreens.NInspectRelicScreen._relics"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._model"/>
     </ItemGroup>
 
     <ItemGroup>

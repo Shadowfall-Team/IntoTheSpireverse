@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -31,7 +32,8 @@ public class StarCharts() : ShadowRegentCard(
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        ..Artists.AnneBean.HoverTip(this)
     ];
 
     protected override async Task OnPlay(
