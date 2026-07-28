@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SHIP_MAINTENANCE",
+  "hue": 0.63,
+  "saturation": 0.74,
+  "value": 1.04,
+  "red": 1.48,
+  "green": 1.13,
+  "blue": 0.88,
+  "contrast": 1.15,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/the_smith.tres"
+}
