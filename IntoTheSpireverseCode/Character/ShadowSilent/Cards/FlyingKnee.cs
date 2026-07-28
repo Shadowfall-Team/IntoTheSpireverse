@@ -35,7 +35,7 @@ public sealed class FlyingKnee() : ShadowSilentCard(1, CardType.Attack, CardRari
 
         await PowerCmd.Apply<EnergyNextTurnPower>(
             choiceContext, Owner.Creature,
-            (decimal)DynamicVars.Energy.IntValue,
+            DynamicVars.Energy.IntValue,
             Owner.Creature, this);
     }
 

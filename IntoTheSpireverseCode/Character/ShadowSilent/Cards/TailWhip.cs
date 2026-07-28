@@ -26,6 +26,7 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)

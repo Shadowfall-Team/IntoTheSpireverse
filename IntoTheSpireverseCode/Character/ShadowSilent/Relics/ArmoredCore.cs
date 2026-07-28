@@ -13,11 +13,11 @@ public class ArmoredCore : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
     
-    private const string retaliationKey = "Retaliation";
+    private const string RetaliationKey = "Retaliation";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(retaliationKey, 3M)
+        new DynamicVar(RetaliationKey, 3M)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -30,6 +30,6 @@ public class ArmoredCore : ShadowSilentRelic
         if (cardPlay.Card.Owner != Owner || !cardPlay.Card.Tags.Contains(IntoTheSpireverseCardTags.Scale))
             return;
         Flash();
-        await PowerCmd.Apply<RetaliationPower>(choiceContext, Owner.Creature, DynamicVars[retaliationKey].IntValue, Owner.Creature, null);
+        await PowerCmd.Apply<RetaliationPower>(choiceContext, Owner.Creature, DynamicVars[RetaliationKey].IntValue, Owner.Creature, null);
     }
 }

@@ -19,8 +19,9 @@ public sealed class Reptomancy() : ShadowSilentCard(0, CardType.Skill, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        List<CardModel> list = PileType.Hand.GetPile(Owner).Cards.Where((c => c != null && c.IsTransformable && c.Tags.Contains(IntoTheSpireverseCardTags.Scale))).ToList<CardModel>();
+        List<CardModel> list = PileType.Hand.GetPile(Owner).Cards.Where(c => c.IsTransformable && c.Tags.Contains(IntoTheSpireverseCardTags.Scale)).ToList();
         List<CardTransformation> transformations = new List<CardTransformation>();
         foreach (CardModel original in list)
         {

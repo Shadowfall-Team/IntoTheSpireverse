@@ -30,6 +30,7 @@ public sealed class Encore() : ShadowSilentCard(0, CardType.Attack, CardRarity.R
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)

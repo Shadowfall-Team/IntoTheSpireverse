@@ -1,5 +1,4 @@
 ﻿using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -37,7 +36,7 @@ public sealed class DoubleLift() : ShadowSilentCard(0, CardType.Attack, CardRari
             .Execute(choiceContext);
         
         CardSelectorPrefs prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        CardModel card = (await CardSelectCmd.FromCombatPile(choiceContext, PileType.Discard.GetPile(Owner), Owner, prefs)).FirstOrDefault();
+        var card = (await CardSelectCmd.FromCombatPile(choiceContext, PileType.Discard.GetPile(Owner), Owner, prefs)).FirstOrDefault();
         if (card == null)
             return;
         card.EnergyCost.SetThisTurnOrUntilPlayed(DynamicVars.Energy.IntValue);

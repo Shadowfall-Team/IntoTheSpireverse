@@ -32,6 +32,7 @@ public sealed class CripplingCloud() : ShadowSilentCard(2, CardType.Skill, CardR
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         this.SpawnVfx();
         await Cmd.CustomScaledWait(0.2f, 0.4f);
@@ -45,10 +46,11 @@ public sealed class CripplingCloud() : ShadowSilentCard(2, CardType.Skill, CardR
     }
     private void SpawnVfx()
     {
-        Node combatVfxContainer = NCombatRoom.Instance?.CombatVfxContainer;
+        if (CombatState == null) return;
+        var combatVfxContainer = NCombatRoom.Instance?.CombatVfxContainer;
         if (combatVfxContainer == null)
             return;
-        NSmokyVignetteVfx child = NSmokyVignetteVfx.Create(new Color(0.8f, 0.8f, 0.3f, 0.66f), new Color(0.0f, 4f, 0.0f, 0.33f));
+        var child = NSmokyVignetteVfx.Create(new Color(0.8f, 0.8f, 0.3f, 0.66f), new Color(0.0f, 4f, 0.0f, 0.33f));
         combatVfxContainer.AddChildSafely(child);
         foreach (Creature hittableEnemy in CombatState.HittableEnemies)
             combatVfxContainer.AddChildSafely(NSmokePuffVfx.Create(hittableEnemy, NSmokePuffVfx.SmokePuffColor.Green));

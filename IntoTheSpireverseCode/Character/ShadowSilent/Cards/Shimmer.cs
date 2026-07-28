@@ -26,6 +26,7 @@ public sealed class Shimmer() : ShadowSilentCard(2, CardType.Skill, CardRarity.R
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var flickers = Enumerable.Range(0, DynamicVars.Cards.IntValue)
             .Select(_ => CombatState.CreateCard<Flicker>(Owner))

@@ -14,7 +14,6 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 [Pool(typeof(ShadowSilentCardPool))]
 public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
-    private const string UpgradeCountKey = "UpgradeCount";
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -29,6 +28,7 @@ public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, Card
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)

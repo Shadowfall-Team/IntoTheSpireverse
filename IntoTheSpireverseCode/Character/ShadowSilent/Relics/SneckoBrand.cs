@@ -15,7 +15,7 @@ public class SneckoBrand : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
 
-    public override RelicModel? GetUpgradeReplacement()
+    public override RelicModel GetUpgradeReplacement()
     {
         return ModelDb.Relic<SoulBrand>();
     }

@@ -32,7 +32,8 @@ public class AgentOfChaosPower : ShadowPowerModel
 
     public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
-        foreach (CardModel card in this.Owner.Player.PlayerCombatState.AllCards.Where(c => c.Type == CardType.Attack))
+        if (Owner.Player == null || Owner.Player.PlayerCombatState == null) return Task.CompletedTask;
+        foreach (CardModel card in Owner.Player.PlayerCombatState.AllCards.Where(c => c.Type == CardType.Attack))
             CardCmd.ApplyKeyword(card, CardKeyword.Sly);
         return Task.CompletedTask;
     }
@@ -40,6 +41,7 @@ public class AgentOfChaosPower : ShadowPowerModel
     public override async Task AfterCardDiscarded(
         PlayerChoiceContext choiceContext, CardModel card)
     {
+        if (Owner.CombatState == null) return;
         if (card.Owner != Owner.Player)
             return;
         if (Owner.Side != Owner.CombatState.CurrentSide)
@@ -48,11 +50,11 @@ public class AgentOfChaosPower : ShadowPowerModel
         Flash();
         if (!card.Keywords.Contains(CardKeyword.Sly))
         {
-            await CardCmd.Exhaust(choiceContext, card, false, false);
+            await CardCmd.Exhaust(choiceContext, card);
         }
         else
         {
-            GetInternalData<Data>().discardedSlyCards.Add(card);
+            GetInternalData<Data>().DiscardedSlyCards.Add(card);
         }
     }
     
@@ -64,7 +66,7 @@ public class AgentOfChaosPower : ShadowPowerModel
     {
         if (card.Owner.Creature != Owner)
             return location;
-        if (!GetInternalData<Data>().discardedSlyCards.Contains(card))
+        if (!GetInternalData<Data>().DiscardedSlyCards.Contains(card))
             return location;
         location.pileType = PileType.Exhaust;
         return location;
@@ -73,6 +75,6 @@ public class AgentOfChaosPower : ShadowPowerModel
     
     private class Data
     {
-        public List<CardModel> discardedSlyCards = new();
+        public List<CardModel> DiscardedSlyCards = new();
     }
 }

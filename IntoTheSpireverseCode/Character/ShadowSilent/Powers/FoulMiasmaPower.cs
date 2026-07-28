@@ -10,7 +10,6 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
@@ -34,9 +33,9 @@ public class FoulMiasmaPower : ShadowPowerModel, IntoTheSpireverseKeywords.ICard
         await Cmd.CustomScaledWait(0.2f, 0.4f);
         foreach (Creature hittableEnemy in CombatState.HittableEnemies)
         {
-          NCreature creatureNode = NCombatRoom.Instance?.GetCreatureNode(hittableEnemy);
+          var creatureNode = NCombatRoom.Instance?.GetCreatureNode(hittableEnemy);
           if (creatureNode != null)
-            NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(NGaseousImpactVfx.Create(creatureNode.VfxSpawnPosition, new Color("83eb85")));
+            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGaseousImpactVfx.Create(creatureNode.VfxSpawnPosition, new Color("83eb85")));
         }
         await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, Amount, Owner, null);
             

@@ -8,7 +8,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
@@ -28,7 +27,7 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
 
     protected override void OnUpgrade()
@@ -49,7 +48,7 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
         List<CardModel> scales = new List<CardModel>();
         for (int index = 0; index < count; ++index)
             scales.Add(combatState.CreateCard<Scale>(owner));
-        IReadOnlyList<CardPileAddResult> combat = await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, creator ?? owner);
+        await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, creator ?? owner);
         return scales;
     }
 }

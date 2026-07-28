@@ -34,7 +34,7 @@ public sealed class MysticSlash() : ShadowSilentCard(3, CardType.Attack, CardRar
             .Execute(choiceContext);
 
             await PlayerCmd.GainEnergy(
-                (decimal)DynamicVars.Energy.IntValue, Owner);
+                DynamicVars.Energy.IntValue, Owner);
     }
 
     protected override void OnUpgrade()

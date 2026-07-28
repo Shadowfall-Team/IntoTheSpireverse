@@ -31,6 +31,7 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
             .Select(_ => CombatState.CreateCard<Scale>(Owner))

@@ -23,7 +23,7 @@ public sealed class MistyStep() : ShadowSilentCard(0, CardType.Skill, CardRarity
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         decimal increase = DynamicVars[IncreaseKey].BaseValue;
         DynamicVars.Block.BaseValue += increase;

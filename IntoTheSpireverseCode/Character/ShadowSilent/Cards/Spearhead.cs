@@ -17,7 +17,7 @@ public sealed class Spearhead() : ShadowSilentCard(1, CardType.Attack, CardRarit
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
         {
             int count = PileType.Hand.GetPile(card.Owner).Cards.Count;
-            CardPile pile = card.Pile;
+            var pile = card.Pile;
             if ((pile != null ? (pile.Type == PileType.Hand ? 1 : 0) : 0) != 0)
                 --count;
             return count;

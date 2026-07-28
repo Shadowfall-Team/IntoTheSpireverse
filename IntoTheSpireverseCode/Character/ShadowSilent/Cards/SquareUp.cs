@@ -28,7 +28,7 @@ public sealed class SquareUp() : ShadowSilentCard(1, CardType.Skill, CardRarity.
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<ConserveEnergyPower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<ConserveEnergyPower>().BaseValue,

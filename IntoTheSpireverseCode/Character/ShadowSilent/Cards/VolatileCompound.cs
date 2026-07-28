@@ -24,6 +24,7 @@ public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, Car
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async() =>
         {
@@ -32,6 +33,7 @@ public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, Car
                 if (hittableEnemy.HasPower<PoisonPower>())
                 {
                     var power = hittableEnemy.GetPower<PoisonPower>();
+                    if (power == null) return;
                     await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), power.Owner, power.Amount, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
                     if (power.Owner.IsAlive)
                         await PowerCmd.Decrement(power);

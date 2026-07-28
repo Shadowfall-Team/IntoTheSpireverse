@@ -58,7 +58,7 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     public override string CustomArmScissorsTexturePath => "multiplayer_hand_silent_scissors.png".ShadowSilentPath();
     
     public override string CustomIconTexturePath => "character_icon_silent.png".ShadowSilentPath();
-    public override string? CustomIconOutlineTexturePath => "character_icon_silent_outline.png".ShadowSilentPath();
+    public override string CustomIconOutlineTexturePath => "character_icon_silent_outline.png".ShadowSilentPath();
     public override string CustomCharacterSelectIconPath => "char_select_silent.png".ShadowSilentPath();
     public override string CustomMapMarkerPath => "map_marker_silent.png".ShadowSilentPath();
 

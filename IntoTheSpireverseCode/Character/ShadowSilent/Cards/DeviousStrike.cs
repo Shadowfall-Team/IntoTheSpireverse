@@ -48,7 +48,7 @@ public sealed class DeviousStrike() : ShadowSilentCard(2, CardType.Attack, CardR
         if (HasDiscardedThisTurn)
         {
             await PlayerCmd.GainEnergy(
-                (decimal)DynamicVars.Energy.IntValue, Owner);
+                DynamicVars.Energy.IntValue, Owner);
         }
     }
 

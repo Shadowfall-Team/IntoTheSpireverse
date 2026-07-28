@@ -1,6 +1,5 @@
 ﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -43,7 +42,7 @@ public sealed class MasterfulStab() : ShadowSilentCard(0, CardType.Attack, CardR
     {
         if (!CombatManager.Instance.IsInProgress || target != Owner.Creature || result.UnblockedDamage <= 0)
             return;
-        EnergyCost.AddThisCombat(DynamicVars.Energy.IntValue);;
+        EnergyCost.AddThisCombat(DynamicVars.Energy.IntValue);
     }
 
     protected override void OnUpgrade()

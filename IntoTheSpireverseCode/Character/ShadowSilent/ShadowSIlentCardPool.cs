@@ -44,6 +44,10 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<Snakebite>(),
             ModelDb.Card<ToolsOfTheTrade>(),
             ModelDb.Card<Flanking>(),
+            ModelDb.Card<Concoct>(),
+            ModelDb.Card<BladeSymphony>(),
+            ModelDb.Card<Sneaky>(),
+            ModelDb.Card<Fade>(),
         ];
     }
 }

@@ -22,7 +22,7 @@ public class HaveFaithPower : ShadowPowerModel
     {
         if (card.Owner != Owner.Player)
             return;
-        if (Owner.Side != Owner.CombatState.CurrentSide)
+        if (Owner.Side != Owner.CombatState?.CurrentSide)
             return;
 
         Flash();

@@ -18,6 +18,7 @@ public sealed class Blunderbuss() : ShadowSilentCard(2, CardType.Attack, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         int energyBeforePlay = (Owner.PlayerCombatState?.Energy ?? 0)
                                + cardPlay.Resources.EnergySpent;
 
