@@ -29,8 +29,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
             ModelDb.Card<Royalties>(),
-            ModelDb.Card<Tutor>(),
-            
+
             //Close enough to be considered a duplicate: 
             //Solar Strike
             //Glow
@@ -39,7 +38,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
 
         var sts2Assembly = typeof(ModelDb).Assembly;
         CardModel[] extraCards = ModelDbCompatibility.GetCardModelsSafely([
-            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Constellation"),
+            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Tutor"),
             sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Plot")
         ]);
 
