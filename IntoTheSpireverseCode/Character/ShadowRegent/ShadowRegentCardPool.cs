@@ -29,6 +29,7 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             ModelDb.Card<CrashLanding>(),
             ModelDb.Card<Arsenal>(),
             ModelDb.Card<Royalties>(),
+            ModelDb.Card<Orbit>(),
 
             //Close enough to be considered a duplicate: 
             //Solar Strike
