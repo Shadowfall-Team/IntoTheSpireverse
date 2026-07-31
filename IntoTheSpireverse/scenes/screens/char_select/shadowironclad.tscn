@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://c4lel0323idte"]
 
 [ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowironclad/char_select/characterselect_shadowironclad_skel_data.tres" id="1_hpvbb"]
-[ext_resource type="Script" uid="uid://bl8qvqwbq8lts" path="res://IntoTheSpireverseCode/utils/NSpineAutoPlayer.cs" id="2_0xyo4"]
+[ext_resource type="Script" uid="uid://bl8qvqwbq8lts" path="res://IntoTheSpireverseCode/Utils/NSpineAutoPlayer.cs" id="2_0xyo4"]
 [ext_resource type="Texture2D" uid="uid://d2srbops1xqm0" path="res://IntoTheSpireverse/images/vfx/dot.png" id="3_0xyo4"]
 [ext_resource type="Texture2D" uid="uid://b7gtl7gvi5tfc" path="res://IntoTheSpireverse/images/vfx/short_grain_rice_particle.png" id="4_cg5cs"]
 [ext_resource type="Texture2D" uid="uid://b72mj3cao7go2" path="res://IntoTheSpireverse/images/vfx/short_rice_no_glow_particle.png" id="5_fxeui"]

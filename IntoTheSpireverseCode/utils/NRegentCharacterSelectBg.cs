@@ -2,7 +2,7 @@
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.utils;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 public partial class NRegentCharacterSelectBg : Control
 {

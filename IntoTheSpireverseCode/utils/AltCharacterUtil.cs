@@ -2,7 +2,7 @@ using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.utils;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 public static class AltCharacterUtil
 {
