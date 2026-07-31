@@ -1,3 +1,4 @@
+using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -27,7 +28,8 @@ public class ComboControllerIcons
         var im = NInputManager.Instance;
         if (cm == null || im == null) return;
 
-        var show = cm.IsUsingController && enabled;
+        //TODO: migrate this whole thing to use NHotkeyIcons once v110 is released to main
+        var show = cm.IsUsingButtonInputsCompatibility() && enabled;
         _iconA.Visible = show;
         _iconB.Visible = show;
         _separator?.Visible = show;
