@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://c4lel0323idte"]
 
 [ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowironclad/char_select/characterselect_shadowironclad_skel_data.tres" id="1_hpvbb"]
-[ext_resource type="Script" uid="uid://b0oho7pjc1dtg" path="res://src/Core/Nodes/Animation/NSpineAutoPlayer.cs" id="2_0xyo4"]
-[ext_resource type="Texture2D" uid="uid://d2srbops1xqm0" path="res://images/vfx/dot.png" id="3_0xyo4"]
-[ext_resource type="Texture2D" uid="uid://b7gtl7gvi5tfc" path="res://images/vfx/short_grain_rice_particle.png" id="4_cg5cs"]
-[ext_resource type="Texture2D" uid="uid://b72mj3cao7go2" path="res://images/vfx/short_rice_no_glow_particle.png" id="5_fxeui"]
-[ext_resource type="Texture2D" uid="uid://bxa6vlqeby20" path="res://images/vfx/light.png" id="6_t2v6e"]
-[ext_resource type="Script" uid="uid://8tp7h0nkic6u" path="res://scenes/backgrounds/little_light_script.gd" id="7_66imf"]
-[ext_resource type="CanvasItemMaterial" uid="uid://c4ycqv0gdxvmr" path="res://themes/canvas_item_material_additive_shared.tres" id="shared_additive_mat"]
+[ext_resource type="Script" uid="uid://bl8qvqwbq8lts" path="res://IntoTheSpireverseCode/utils/NSpineAutoPlayer.cs" id="2_0xyo4"]
+[ext_resource type="Texture2D" uid="uid://d2srbops1xqm0" path="res://IntoTheSpireverse/images/vfx/dot.png" id="3_0xyo4"]
+[ext_resource type="Texture2D" uid="uid://b7gtl7gvi5tfc" path="res://IntoTheSpireverse/images/vfx/short_grain_rice_particle.png" id="4_cg5cs"]
+[ext_resource type="Texture2D" uid="uid://b72mj3cao7go2" path="res://IntoTheSpireverse/images/vfx/short_rice_no_glow_particle.png" id="5_fxeui"]
+[ext_resource type="Texture2D" uid="uid://bxa6vlqeby20" path="res://IntoTheSpireverse/images/vfx/light.png" id="6_t2v6e"]
+[ext_resource type="Material" uid="uid://cwijwxnvmis53" path="res://IntoTheSpireverse/scenes/screens/char_select/canvas_item_material_additive_shared.tres" id="6_v5bo5"]
+[ext_resource type="Script" uid="uid://dygnxf47gloc5" path="res://IntoTheSpireverse/scenes/little_light_script.gd" id="7_66imf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ou856"]
 
@@ -47,13 +47,13 @@ grow_vertical = 2
 pivot_offset = Vector2(1280, 600)
 
 [node name="SpineSprite" type="SpineSprite" parent="."]
-position = Vector2(-185, -20)
-scale = Vector2(0.46, 0.46)
 skeleton_data_res = ExtResource("1_hpvbb")
 preview_skin = "default"
 preview_animation = "animation"
 preview_frame = false
 preview_time = 0.0
+position = Vector2(-185, -20)
+scale = Vector2(0.46, 0.46)
 
 [node name="_SpineMesh2D_148096" type="SpineMesh2D" parent="SpineSprite"]
 show_behind_parent = true
@@ -201,7 +201,6 @@ material = SubResource("CanvasItemMaterial_ou856")
 
 [node name="NSpineAutoPlayer" type="Node" parent="SpineSprite"]
 script = ExtResource("2_0xyo4")
-metadata/_custom_type_script = "uid://b0oho7pjc1dtg"
 
 [node name="ash" type="CPUParticles2D" parent="."]
 visible = false
@@ -253,7 +252,7 @@ color_ramp = SubResource("Gradient_w0doc")
 
 [node name="light6" type="CPUParticles2D" parent="."]
 visible = false
-material = ExtResource("shared_additive_mat")
+material = ExtResource("6_v5bo5")
 position = Vector2(1297, 1263)
 scale = Vector2(5.22916, 5)
 skew = -0.000679374
@@ -271,7 +270,6 @@ script = ExtResource("7_66imf")
 
 [node name="light7" type="CPUParticles2D" parent="."]
 visible = false
-material = ExtResource("shared_additive_mat")
 position = Vector2(737, 1324)
 scale = Vector2(5.22916, 5)
 skew = -0.000679374

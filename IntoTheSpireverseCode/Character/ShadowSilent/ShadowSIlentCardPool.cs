@@ -2,9 +2,8 @@
 using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowSilent;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
 public class ShadowSilentCardPool : CustomCardPoolModel
 {
@@ -32,29 +31,19 @@ public class ShadowSilentCardPool : CustomCardPoolModel
     {
         return
         [
-            ModelDb.Card<Acrobatics>(),
-            ModelDb.Card<Afterimage>(),
-            ModelDb.Card<Backflip>(),
-            ModelDb.Card<BladeDance>(),
-            ModelDb.Card<Blur>(),
+            ModelDb.Card<BulletTime>(),
             ModelDb.Card<Burst>(),
-            ModelDb.Card<CloakAndDagger>(),
             ModelDb.Card<DaggerThrow>(),
-            ModelDb.Card<DodgeAndRoll>(),
-            ModelDb.Card<EchoingSlash>(),
-            ModelDb.Card<EscapePlan>(),
             ModelDb.Card<Expose>(),
-            ModelDb.Card<FanOfKnives>(),
-            ModelDb.Card<Flanking>(),
-            ModelDb.Card<Footwork>(),
+            ModelDb.Card<Flechettes>(),
             ModelDb.Card<LegSweep>(),
             ModelDb.Card<Malaise>(),
-            ModelDb.Card<Nightmare>(),
+            ModelDb.Card<PoisonedStab>(),
             ModelDb.Card<Predator>(),
-            ModelDb.Card<Skewer>(),
-            ModelDb.Card<StormOfSteel>(),
-            ModelDb.Card<TheHunt>(),
-            ModelDb.Card<Tracking>()
+            ModelDb.Card<SerpentForm>(),
+            ModelDb.Card<Snakebite>(),
+            ModelDb.Card<ToolsOfTheTrade>(),
+            ModelDb.Card<Flanking>(),
         ];
     }
 }

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SCALE",
+  "hue": 0.33,
+  "saturation": 1.26,
+  "value": 1.04,
+  "red": 0.99,
+  "green": 1.14,
+  "blue": 1.37,
+  "contrast": 1.05,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/defend_ironclad.tres"
+}

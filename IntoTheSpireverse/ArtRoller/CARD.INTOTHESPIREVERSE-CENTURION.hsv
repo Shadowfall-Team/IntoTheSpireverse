@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-CENTURION",
+  "hue": 0.43,
+  "saturation": 0.61,
+  "value": 0.97,
+  "red": 0.93,
+  "green": 1.22,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/tank.tres"
+}

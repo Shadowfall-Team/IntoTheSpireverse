@@ -1,0 +1,44 @@
+using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
+
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
+
+public sealed class OnyxDrill : ShadowDefectCard
+{
+	protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
+	{
+		new CalculationBaseVar(0),
+		new ExtraDamageVar(5M),
+		new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
+			static (card, _) => card.Owner.PlayerCombatState?.AllCards.Count(c => c is Void) ?? 0)
+	};
+
+	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+	{
+		HoverTipFactory.FromCard<Void>(base.IsUpgraded)
+	};
+
+	public OnyxDrill()
+		: base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+	{
+	}
+
+	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+	{
+		ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+		await DamageCmd.Attack(base.DynamicVars.CalculatedDamage).FromCardCompatibility(this, cardPlay).Targeting(cardPlay.Target)
+			.WithHitFx("vfx/vfx_attack_slash")
+			.Execute(choiceContext);
+	}
+
+	protected override void OnUpgrade()
+	{
+		base.EnergyCost.UpgradeBy(-1);
+	}
+}

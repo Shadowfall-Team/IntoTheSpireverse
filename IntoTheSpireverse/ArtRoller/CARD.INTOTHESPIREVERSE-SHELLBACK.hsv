@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SHELLBACK",
+  "hue": 0.28,
+  "saturation": 0.47,
+  "value": 1.23,
+  "red": 1.19,
+  "green": 1,
+  "blue": 0.7,
+  "contrast": 0.79,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/accuracy.tres"
+}

@@ -1,15 +1,17 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Relics;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowRegent;
+using VanillaKinglyKick = MegaCrit.Sts2.Core.Models.Cards.KinglyKick;
+using VanillaKinglyPunch = MegaCrit.Sts2.Core.Models.Cards.KinglyPunch;
+using VanillaSupermassive = MegaCrit.Sts2.Core.Models.Cards.Supermassive;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
 #pragma warning disable STS001
 public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
@@ -34,6 +36,13 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
     public CharacterModel BaseCharacterModel => ModelDb.Character<Regent>();
+
+    public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
+    [
+        (ModelDb.Card<KinglyKick>(), ModelDb.Card<VanillaKinglyKick>()),
+        (ModelDb.Card<KinglyPunch>(), ModelDb.Card<VanillaKinglyPunch>()),
+        (ModelDb.Card<Cards.Supermassive>(), ModelDb.Card<VanillaSupermassive>())
+    ];
 
     public override int StartingHp => 75;
     

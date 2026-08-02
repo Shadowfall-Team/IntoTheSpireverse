@@ -2,8 +2,8 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
-using IntoTheSpireverse.IntoTheSpireverseCode.Enchantments;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Enchantments;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 

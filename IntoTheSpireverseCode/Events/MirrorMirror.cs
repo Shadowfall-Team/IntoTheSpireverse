@@ -1,17 +1,16 @@
 using BaseLib.Abstracts;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Runs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using IntoTheSpireverse.IntoTheSpireverseCode.Relics;
 using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Events;
@@ -24,21 +23,15 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("TakeCardsSelect", 1),
-        new IntVar("TakeCardsCount", 6),
+        new IntVar("TakeCardsSelect", 3),
+        new IntVar("TakeCardsCount", 18),
 
-        new IntVar("ReplaceCharSelect", 3),
-        new IntVar("ReplaceCharCount", 18),
-        new IntVar("ReplaceCharMaxHp", 9),
-
-        new MaxHpVar(3)
+        new CardsVar(1)
     ];
 
     public override bool IsAllowed(IRunState runState)
     {
-        return runState.Players.All(p =>
-            p.Character is IAltCharacter ||
-            ModelDb.AllCharacters.Any(a => AltCharacterUtil.IsAvailableAltCharacter(a) && a is IAltCharacter ac && ac.BaseCharacterModel == p.Character));
+        return runState.Players.All(p => AltCharacterUtil.HasMirrorCharacter(p.Character));
     }
 
     private async Task TakeCards()
@@ -53,27 +46,9 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
     private async Task ReplaceCharacter()
     {
-        if (Owner != null && _mirrorCharacterModel != null)
+        if (Owner != null)
         {
-            await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue * 3);
-
-            await TakeCards(DynamicVars["ReplaceCharSelect"].IntValue, DynamicVars["ReplaceCharCount"].IntValue,
-                "REPLACED_CHARACTER");
-
-            var relicModels = Owner.Relics.Where(r => r.Rarity == RelicRarity.Starter).ToList();
-            foreach (var relic in relicModels)
-            {
-                await RelicCmd.Remove(relic);
-            }
-
-            var characterField = AccessTools.Field(typeof(Player), "<Character>k__BackingField");
-            characterField.SetValue(Owner, _mirrorCharacterModel);
-
-            for (var index = 0; index < Owner.Character.StartingRelics.Count; index++)
-            {
-                var relicModel = Owner.Character.StartingRelics[index];
-                await RelicCmd.Obtain(relicModel.ToMutable(), Owner, index);
-            }
+            await RelicCmd.Obtain<ParallelStone>(Owner);
         }
 
         SetEventFinished(PageDescription("REPLACED_CHARACTER"));
@@ -83,13 +58,18 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
     {
         if (Owner == null || _mirrorCharacterModel == null) return;
 
+        // Never offer a card we already have our own copy of: an outright duplicate of one of our cards, or (for alt
+        // characters, whose pool borrows from the base character's) a card that is in both pools already.
+        var bannedIds = AltCharacterUtil.GetBannedCardIds(Owner.Character);
+        var isAlt = Owner.Character is IAltCharacter;
+        var ownPoolCards = Owner.Character.CardPool.AllCards;
+
         var cardCreationResults = CardFactory.CreateForReward(
                 Owner,
                 cardCreateCount,
                 CardCreationOptions.ForNonCombatWithDefaultOdds([_mirrorCharacterModel.CardPool],
-                    Owner.Character is IAltCharacter
-                        ? cardModel => !Owner.Character.CardPool.AllCards.Contains(cardModel)
-                        : null)
+                    cardModel => !bannedIds.Contains(cardModel.Id) &&
+                                 (!isAlt || !ownPoolCards.Contains(cardModel)))
             )
             .OrderByDescending(c => c.Card.Rarity)
             .ThenBy(c => c.Card.Id)
@@ -108,10 +88,17 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         }
     }
 
-    private async Task GainMaxHp()
+    private async Task UpgradeCard()
     {
-        if (Owner == null) return;
-        await CreatureCmd.GainMaxHp(Owner.Creature, DynamicVars.MaxHp.BaseValue);
+        if (Owner != null)
+        {
+            var prefs = new CardSelectorPrefs(CardSelectorPrefs.UpgradeSelectionPrompt, DynamicVars.Cards.IntValue);
+            foreach (var cardModel in await CardSelectCmd.FromDeckForUpgrade(Owner, prefs))
+            {
+                CardCmd.Upgrade(cardModel);
+            }
+        }
+
         SetEventFinished(PageDescription("GAINED_MAX_HP"));
     }
 
@@ -123,13 +110,16 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
         _mirrorCharacterModel = Owner.Character is IAltCharacter ownerAltCharacter
             ? ownerAltCharacter.BaseCharacterModel
-            : Owner.RunState.Rng.CombatCardSelection.NextItem(ModelDb.AllCharacters
-                .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter ac && ac.BaseCharacterModel == Owner.Character));
+            : Owner.RunState.Rng.CombatCardSelection.NextItem(AltCharacterUtil.GetMirrorCharacters(Owner.Character));
         return
         [
             Option(TakeCards),
-            Option(ReplaceCharacter),
-            Option(GainMaxHp)
+            Option(ReplaceCharacter, HoverTipFactory.FromRelic<ParallelStone>()),
+            // The loc key no longer matches the method name, so build the option explicitly.
+            new EventOption(this, UpgradeCard, OptionLocKey("GAIN_MAX_HP"))
         ];
     }
+
+    // EventModel.InitialOptionKey slugifies the class name, which drops the mod prefix that custom events need.
+    private string OptionLocKey(string optionName) => $"{Id.Entry}.pages.INITIAL.options.{optionName}";
 }

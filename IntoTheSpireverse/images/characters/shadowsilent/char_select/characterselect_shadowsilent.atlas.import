@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://bjwshmvi0eewu"
+path="res://.godot/imported/characterselect_shadowsilent.atlas-dde95965e93982eaa489b49c1127f32f.spatlas"
+
+[deps]
+
+source_file="res://IntoTheSpireverse/images/characters/shadowsilent/char_select/characterselect_shadowsilent.atlas"
+dest_files=["res://.godot/imported/characterselect_shadowsilent.atlas-dde95965e93982eaa489b49c1127f32f.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

@@ -1,0 +1,47 @@
+﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
+
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
+
+[Pool(typeof(ShadowIroncladCardPool))]
+public sealed class RockCollection() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<SlatePower>(1m),
+    ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (CombatState == null) return;
+
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+
+        var rockPool = ModelDb.AllCards
+            .Where(c => c.Tags.Contains(IntoTheSpireverseCardTags.Rock))
+            .ToList();
+
+        var rocks = new CardModel[2];
+
+        for (var i = 0; i < 2; i++)
+        {
+            var template = Owner.RunState.Rng.CombatCardGeneration.NextItem(rockPool);
+            if (template == null) continue;
+
+            rocks[i] = CombatState.CreateCard(template, Owner);
+        }
+
+        await CardPileCmd.AddGeneratedCardsToCombat(rocks, PileType.Hand, Owner);
+    }
+
+    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
+}

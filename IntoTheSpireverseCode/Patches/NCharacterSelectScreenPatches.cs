@@ -8,6 +8,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.ui;
 using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.CustomRun;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
@@ -29,26 +30,46 @@ public class NCharacterSelectScreenPatches
     }
 }
 
-[HarmonyPatch(typeof(NCharacterSelectButton))]
+[HarmonyPatch(typeof(NCharacterSelectButton), nameof(NCharacterSelectButton.Init))]
 public class NCharacterSelectButtonPatches
 {
     private const string _scenePath = "res://IntoTheSpireverse/scenes/CharAltArrow.tscn";
     private const string _shaderMaterialPath = "res://materials/vfx/hsv.tres";
 
-    [HarmonyPatch("Init")]
     [HarmonyPrefix]
-    public static void InitPostfix(NCharacterSelectButton __instance,
-        CharacterModel character, ICharacterSelectButtonDelegate del)
+    public static void InitPrefix(NCharacterSelectButton __instance, ref CharacterModel character)
     {
-        if (__instance.GetAncestorOfType<NCustomRunScreen>() != null)
+        if (__instance.GetAncestorOfType<NCustomRunScreen>() is not null) return;
+
+        var baseName = (character is IAltCharacter alt ? alt.BaseCharacterModel : character).GetType().Name;
+        var selectedName = IntoTheSpireverseConfig.GetSelectedAlt(baseName);
+
+        if (selectedName != baseName &&
+            ModelDb.AllCharacters.FirstOrDefault(c => c.GetType().Name == selectedName && c is IAltCharacter) is { } found)
         {
+            character = found;
+        }
+    }
+
+    [HarmonyPostfix]
+    public static void InitPostfix(NCharacterSelectButton __instance, CharacterModel character, ICharacterSelectButtonDelegate del)
+    {
+        if (__instance.GetAncestorOfType<NCustomRunScreen>() is not null) return;
+
+        if (__instance.GetNodeOrNull<NCharAltArrow>("CharAltArrow") is { } existingArrow)
+        {
+            existingArrow.SyncIndexToCharacter(character);
             return;
         }
 
-        var altCharacterCount = ModelDb.AllCharacters.Count(c =>
-            AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
-            altCharacter.BaseCharacterModel == character);
-        if (altCharacterCount <= 0) return;
+        var baseChar = character is IAltCharacter alt ? alt.BaseCharacterModel : character;
+
+        var altCharacters = ModelDb.AllCharacters
+            .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) &&
+                    c is IAltCharacter { BaseCharacterModel: var b } && b == baseChar)
+            .ToList();
+
+        if (altCharacters is []) return;
 
         var arrowButton = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NCharAltArrow>();
         var arrowTextureRect = arrowButton.GetNode<TextureRect>("TextureRect");
@@ -58,11 +79,8 @@ public class NCharacterSelectButtonPatches
         arrowButton.Position = new Vector2(50 - arrowButton.Size.X / 2, -(arrowButton.Size.Y / 2) - 15);
         arrowButton.ClickDelegate = del;
 
-        arrowButton.Characters = ModelDb.AllCharacters
-            .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) && c is IAltCharacter altCharacter &&
-                        altCharacter.BaseCharacterModel == character)
-            .ToList();
-        arrowButton.Characters.Add(character);
+        arrowButton.Characters = [baseChar, .. altCharacters];
+        arrowButton.SyncIndexToCharacter(character);
 
         __instance.AddChild(arrowButton);
     }

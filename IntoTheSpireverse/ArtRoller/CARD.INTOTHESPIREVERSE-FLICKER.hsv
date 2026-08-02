@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-FLICKER",
+  "hue": 0.79,
+  "saturation": 1.4,
+  "value": 1.06,
+  "red": 0.71,
+  "green": 1,
+  "blue": 1,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/blur.tres"
+}

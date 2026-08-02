@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Orbs;
 using MegaCrit.Sts2.Core.Helpers;
 using Godot;
-using IntoTheSpireverse.Orbs;
 
 namespace IntoTheSpireverse.Patches;
 
@@ -18,10 +17,11 @@ public class OrbModelPatch
     {
         if (__instance == null)
             return;
-        
+#if DEFECT
         if (__instance is EntropyOrb)
         {
             __result = SceneHelper.GetScenePath("orbs/orb_visuals/lightning_orb");
         }
+#endif
     }
 }

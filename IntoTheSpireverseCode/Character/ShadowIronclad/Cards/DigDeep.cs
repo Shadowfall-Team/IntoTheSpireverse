@@ -1,0 +1,38 @@
+﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
+
+[Pool(typeof(ShadowIroncladCardPool))]
+public sealed class DigDeep() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new HpLossVar(3m),
+        new CardsVar(3)
+    ];
+
+    protected override bool IsPlayable => !HasBeenPlayedThisTurn;
+    protected override bool ShouldGlowRedInternal => HasBeenPlayedThisTurn;
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await CreatureCmdCompatibility.Damage(choiceContext, Owner.Creature,
+            DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
+
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+
+    }
+
+    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1m);
+
+    private bool HasBeenPlayedThisTurn =>
+        CombatManager.Instance.History.CardPlaysFinished
+            .Any(e => e.CardPlay.Card == this && e.HappenedThisTurn(CombatState));
+}

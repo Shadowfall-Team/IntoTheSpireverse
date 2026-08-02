@@ -1,14 +1,15 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
-using IntoTheSpireverse.IntoTheSpireverseCode.Cards.ShadowIronclad;
-using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
-using IntoTheSpireverse.IntoTheSpireverseCode.Relics.ShadowIronclad;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 
 #pragma warning disable STS001
 public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
@@ -18,14 +19,25 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     public const string CharacterId = "IntoTheSpireverse";
 
     public static readonly Color Color = StsColors.red;
-
     public override Color NameColor => Color;
+    public override Color EnergyLabelOutlineColor => new("801212");
+    public override Color DialogueColor => new("2F0E10");
+    public override Color MapDrawingColor => new ("4A1518");
+    public override Color RemoteTargetingLineColor => new("99000a");
+    public override Color RemoteTargetingLineOutline => MapDrawingColor;
+
     public override CharacterGender Gender => CharacterGender.Masculine;
     
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
     public CharacterModel BaseCharacterModel => ModelDb.Character<Ironclad>();
+
+    public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
+    [
+        (ModelDb.Card<FlameBarrierShadow>(), ModelDb.Card<FlameBarrier>())
+    ];
+
     public override int StartingHp => 80;
     
     public override IEnumerable<CardModel> StartingDeck =>

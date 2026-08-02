@@ -1,0 +1,154 @@
+silent_skull.png
+size:618,523
+filter:Linear,Linear
+scale:0.32
+back arm
+bounds:512,147,33,52
+back arm 1
+bounds:585,127,31,26
+back arm 2
+bounds:547,75,18,41
+offsets:1,0,19,41
+back arm cloak
+bounds:184,149,59,146
+back arm cloak back
+bounds:2,62,18,107
+offsets:0,8,18,115
+rotate:90
+back dagger
+bounds:389,74,74,38
+offsets:0,2,74,40
+back hand
+bounds:591,98,27,24
+offsets:0,2,27,26
+rotate:90
+back hand 2
+bounds:520,73,25,43
+badge
+bounds:465,72,44,53
+offsets:0,1,44,54
+rotate:90
+blade_shine
+bounds:160,40,12,15
+offsets:1,1,14,17
+blade_twirls
+bounds:322,2,32,17
+offsets:1,0,34,19
+bottom foot
+bounds:502,201,43,26
+bottom hood
+bounds:547,148,36,49
+bottom horn
+bounds:160,2,50,35
+bottom leg bottom
+bounds:385,175,24,88
+rotate:90
+bottom leg top
+bounds:552,246,64,56
+cape_back_attack
+bounds:315,167,68,89
+cape_front_attack
+bounds:2,297,200,171
+cape_front_blocking
+bounds:245,171,68,132
+cloak back
+bounds:204,305,119,163
+death_half_scale/death_antlers
+bounds:444,32,38,60
+rotate:90
+death_half_scale/death_bottom leg
+bounds:248,36,133,36
+rotate:90
+death_half_scale/death_hair
+bounds:184,39,108,62
+rotate:90
+death_half_scale/death_hood
+bounds:384,24,48,58
+rotate:90
+death_half_scale/death_neck
+bounds:444,2,28,60
+offsets:0,0,29,60
+rotate:90
+death_half_scale/death_shadow
+bounds:2,470,388,51
+death_half_scale/death_skirt back
+bounds:601,204,40,15
+rotate:90
+death_half_scale/death_skirt fabric
+bounds:392,372,185,85
+death_half_scale/death_skull
+bounds:579,375,28,15
+death_half_scale/death_spine sash
+bounds:305,21,54,77
+rotate:90
+death_half_scale/death_top leg
+bounds:385,201,115,26
+death_half_scale/death_torso
+bounds:305,77,88,82
+rotate:90
+dress
+bounds:2,2,53,156
+rotate:90
+eye
+bounds:541,276,11,9
+rotate:90
+hair
+bounds:286,29,140,17
+rotate:90
+hair top
+bounds:506,9,5,61
+head
+bounds:585,155,31,42
+hood top
+bounds:459,118,51,55
+left cape
+bounds:512,118,27,41
+rotate:90
+neck bottom
+bounds:513,21,49,23
+rotate:90
+neck top
+bounds:212,2,57,32
+right cape
+bounds:392,289,81,158
+rotate:90
+shadow
+bounds:392,459,220,62
+offsets:0,0,221,63
+shiv_blur
+bounds:118,57,238,64
+offsets:2,0,240,64
+rotate:90
+shiv_hand
+bounds:567,86,34,22
+rotate:90
+skull
+bounds:547,199,52,45
+offsets:6,0,58,46
+slash
+bounds:2,82,114,213
+offsets:1,1,115,214
+top arm
+bounds:271,2,49,17
+top arm cloak
+bounds:325,258,65,210
+offsets:13,0,78,210
+top dagger
+bounds:389,114,68,59
+top foot
+bounds:475,175,24,33
+rotate:90
+top hand
+bounds:555,122,28,24
+top hand 2
+bounds:538,43,23,28
+top horn
+bounds:579,392,65,28
+rotate:90
+top leg
+bounds:392,229,58,147
+offsets:0,0,122,147
+rotate:90
+torso copy
+bounds:552,304,66,64
+rotate:90
