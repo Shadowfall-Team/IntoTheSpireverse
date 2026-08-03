@@ -6,6 +6,18 @@ on:
       - production-2chars-2
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      upload_to_workshop:
+        description: 'Upload the built mod to the Steam Workshop'
+        type: boolean
+        required: false
+        default: false
+      change_note:
+        description: 'Changelog note shown to subscribers on the Workshop'
+        type: string
+        required: false
+        default: ''
 permissions:
   contents: write
 jobs:
@@ -42,3 +54,22 @@ jobs:
         with:
           name: IntoTheSpireverse
           path: output/mods
+  workshop-upload:
+    if: github.event_name == 'workflow_dispatch' && inputs.upload_to_workshop == true
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download mod artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: IntoTheSpireverse
+          path: output/mods
+      - name: Upload to Steam Workshop
+        uses: m00nl1ght-dev/steam-workshop-deploy@v3
+        with:
+          username: ${{ secrets.STEAM_USERNAME }}
+          configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
+          appId: '2868840'
+          publishedFileId: ${{ vars.WORKSHOP_ITEM_ID }}
+          path: output/mods/IntoTheSpireverse
+          changeNote: ${{ inputs.change_note }}
