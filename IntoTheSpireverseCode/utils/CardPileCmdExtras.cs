@@ -14,7 +14,7 @@ using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Settings;
 using MegaCrit.Sts2.Core.TestSupport;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.utils
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils
 {
     public static class CardPileCmdExtras
     {
