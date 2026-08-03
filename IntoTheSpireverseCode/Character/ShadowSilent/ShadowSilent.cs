@@ -1,4 +1,5 @@
-﻿using BaseLib.Abstracts;
+﻿using System.Diagnostics.CodeAnalysis;
+using BaseLib.Abstracts;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
@@ -11,6 +12,7 @@ using MegaCrit.Sts2.Core.Models.Characters;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
+[SuppressMessage("Localization", "STS001:Symbol missing localization")]
 public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
 {
     public override string PlaceholderID => "silent";
