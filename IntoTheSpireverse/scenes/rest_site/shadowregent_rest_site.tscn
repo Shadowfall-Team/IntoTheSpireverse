@@ -27,6 +27,14 @@ offset_top = 24.999802
 offset_right = 17.105127
 offset_bottom = 24.999802
 
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("3_c7uia")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -238.0
+offset_top = -567.0
+offset_right = 203.0
+offset_bottom = 136.0
+
 [node name="Hitbox" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 anchors_preset = 0

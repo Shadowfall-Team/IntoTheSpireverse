@@ -240,6 +240,11 @@ turbulence_influence_max = 0.03
 script = ExtResource("1_3dwrg")
 metadata/_edit_group_ = true
 
+[node name="%FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
 [node name="Visuals" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("3_jb1vq")
 multiply_material = SubResource("CanvasItemMaterial_53uu0")

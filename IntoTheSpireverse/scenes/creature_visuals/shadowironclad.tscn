@@ -27,6 +27,11 @@ shader_parameter/opacity = 0.8
 script = ExtResource("1_v62mv")
 metadata/_edit_group_ = true
 
+[node name="FormVfx" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
 [node name="Visuals" type="SpineSprite" parent="."]
 skeleton_data_res = ExtResource("2_0jedi")
 preview_skin = "Default"
