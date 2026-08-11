@@ -2,8 +2,8 @@ name: Publish
 on:
   push:
     branches:
+      - production
       - main
-      - production-2chars-2
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
@@ -43,10 +43,18 @@ jobs:
         run: |
           "$GODOT_PATH" --headless --import || true
           "$GODOT_PATH" --headless --import
+      - name: Determine configuration
+        id: config
+        run: |
+          if [ "$GITHUB_REF_NAME" = "production" ]; then
+            echo "configuration=Production" >> "$GITHUB_OUTPUT"
+          else
+            echo "configuration=Release" >> "$GITHUB_OUTPUT"
+          fi
       - name: Publish
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
-          dotnet publish IntoTheSpireverse.csproj -c Release \
+          dotnet publish IntoTheSpireverse.csproj -c "${{ steps.config.outputs.configuration }}" \
           /p:GodotPath="$GODOT_PATH" \
           /p:ModsPath="${{ github.workspace }}/output/mods/"
       - name: Upload artifact
@@ -65,7 +73,7 @@ jobs:
           name: IntoTheSpireverse
           path: output/mods
       - name: Upload to Steam Workshop
-        uses: m00nl1ght-dev/steam-workshop-deploy@v3
+        uses: m00nl1ght-dev/steam-workshop-deploy@v4
         with:
           username: ${{ secrets.STEAM_USERNAME }}
           configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
