@@ -160,6 +160,10 @@
   "INTOTHESPIREVERSE-SHIMMER.description": "Add {Cards:diff()} [gold]{Cards:plural:Flicker+|Flickers+}[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-DAGGER.title": "Dagger",
   "INTOTHESPIREVERSE-DAGGER.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each [gold]Scale[/gold] in your [gold]Exhaust[/gold] pile.",
+  "INTOTHESPIREVERSE-MIND_SLITHER.title": "Mind Slither",
+  "INTOTHESPIREVERSE-MIND_SLITHER.description": "Add an [gold]Ethereal Flicker[/gold] to ALL players Hands.",
+  "INTOTHESPIREVERSE-BRILLIANCE.title": "Brilliance",
+  "INTOTHESPIREVERSE-BRILLIANCE.description": "Choose another player.\nThe first time they draw a card that costs {energyPrefix:energyIcons(3)} or more each turn, [gold]Muddle[/gold] it.",
 
   "INTOTHESPIREVERSE-DECAY.description": "[gold]Channel[/gold] 1 [gold]Entropy[/gold].\n[gold]Cycle[/gold].",
   "INTOTHESPIREVERSE-DECAY.title": "Decay",

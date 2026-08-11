@@ -4,6 +4,7 @@ bin/
 .git/
 .idea/
 .vs/
+.run/
 publish/
 Properties/
 packages/

@@ -96,6 +96,9 @@
   "INTOTHESPIREVERSE-PESTILENCE_POWER.description": "Whenever you are attacked, apply [gold]Poison[/gold] back.",
   "INTOTHESPIREVERSE-PESTILENCE_POWER.smartDescription": "Whenever you are attacked, apply [blue]{Amount}[/blue] [gold]Poison[/gold] back.",
   "INTOTHESPIREVERSE-PESTILENCE_POWER.title": "Pestilence",
+  "INTOTHESPIREVERSE-BRILLIANCE_POWER.description": "The first card you draw each turn that costs [blue]3[/blue] or more is [gold]Muddled[/gold].",
+  "INTOTHESPIREVERSE-BRILLIANCE_POWER.smartDescription": "The first {Amount:plural:card|[blue]{}[/blue] cards} you draw each turn that costs [blue]3[/blue] or more {Amount:plural:is|are} [gold]Muddled[/gold].",
+  "INTOTHESPIREVERSE-BRILLIANCE_POWER.title": "Brilliance",
 
   "STARBURST_POWER.description": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [gold]Shivs[/gold].",
   "STARBURST_POWER.smartDescription": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [blue]{Amount}[/blue] [gold]{Amount:plural:Shiv|Shivs}[/gold].",
