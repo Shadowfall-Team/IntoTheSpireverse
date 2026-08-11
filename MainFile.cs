@@ -56,5 +56,14 @@ public partial class MainFile : Node
             typeof(ShadowDefect),
 #endif
         ]);
+
+        var customCursorPath = ProjectSettings.GetSetting("display/mouse_cursor/custom_image").AsString();
+        var customHotspot = ProjectSettings.GetSetting("display/mouse_cursor/custom_image_hotspot").AsVector2();
+
+        if (!string.IsNullOrEmpty(customCursorPath))
+        {
+            var cursorTexture = ResourceLoader.Load<Resource>(customCursorPath);
+            Input.SetCustomMouseCursor(cursorTexture, Input.CursorShape.PointingHand, customHotspot);
+        }
     }
 }

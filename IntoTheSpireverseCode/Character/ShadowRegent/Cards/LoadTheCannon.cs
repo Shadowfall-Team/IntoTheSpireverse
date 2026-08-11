@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,7 +24,10 @@ public class LoadTheCannon() : ShadowRegentCard(1,
         new DamageVar(3, ValueProp.Move)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => LoadAmmoHoverTip.FromLoadAmmo();
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
+        ..LoadAmmoHoverTip.FromLoadAmmo(),
+        ..Artists.AnneBean.HoverTip(this)
+    ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
