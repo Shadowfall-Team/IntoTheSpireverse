@@ -220,10 +220,9 @@ public static class IntoTheSpireverseKeywords
             source
         );
 
-        var applyMuddleFromHandSelection = selected as CardModel[] ?? selected.ToArray();
-        foreach (var card in applyMuddleFromHandSelection)
+        foreach (var card in selected ?? [])
             ApplyMuddle(card);
 
-        return applyMuddleFromHandSelection;
+        return selected ?? [];
     }
 }
