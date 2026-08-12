@@ -20,6 +20,13 @@ preview_time = 0.0
 layout_mode = 3
 anchors_preset = 0
 
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("3_mt86d")]
+unique_name_in_owner = true
+offset_left = -153.0
+offset_top = -350.0
+offset_right = 267.0
+offset_bottom = 320.0
+
 [node name="Hitbox" type="Control" parent="ControlRoot"]
 unique_name_in_owner = true
 layout_mode = 3

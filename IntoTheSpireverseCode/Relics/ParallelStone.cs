@@ -3,7 +3,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;

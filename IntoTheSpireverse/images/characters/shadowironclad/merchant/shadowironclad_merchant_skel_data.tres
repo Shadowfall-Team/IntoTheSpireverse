@@ -1,7 +1,7 @@
 [gd_resource type="SpineSkeletonDataResource" load_steps=9 format=3]
 
-[ext_resource type="SpineAtlasResource" uid="uid://2totm3bug3x5" path="res://IntoTheSpireverse/images/characters/shadowironclad/merchant/shadowironclad_shop.spatlas" id="1_al5md"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://r5dx98bhr5wa" path="res://IntoTheSpireverse/images/characters/shadowironclad/merchant/ironclad.spskel" id="2_s0dap"]
+[ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/shadowironclad/merchant/shadowironclad_shop.spatlas" id="1_al5md"]
+[ext_resource type="SpineSkeletonFileResource" path="res://IntoTheSpireverse/images/characters/shadowironclad/merchant/ironclad.spskel" id="2_s0dap"]
 
 [sub_resource type="SpineAnimationMix" id="SpineAnimationMix_q8rux"]
 from = "idle_loop"

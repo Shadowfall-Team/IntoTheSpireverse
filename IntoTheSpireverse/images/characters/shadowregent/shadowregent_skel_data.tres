@@ -1,7 +1,7 @@
 [gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3]
 
-[ext_resource type="SpineAtlasResource" uid="uid://orbf0gwo5e11" path="res://IntoTheSpireverse/images/characters/shadowregent/shadowregent.spatlas" id="1_86jqo"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://xbijxptt6ohz" path="res://IntoTheSpireverse/images/characters/shadowregent/regent.spskel" id="2_xr0sn"]
+[ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/shadowregent/shadowregent.spatlas" id="1_86jqo"]
+[ext_resource type="SpineSkeletonFileResource" path="res://IntoTheSpireverse/images/characters/shadowregent/regent.spskel" id="2_xr0sn"]
 
 [sub_resource type="SpineAnimationMix" id="SpineAnimationMix_y55pg"]
 from = "cast"

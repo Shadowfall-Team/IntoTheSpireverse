@@ -28,6 +28,7 @@ public class ComboControllerIcons
         var im = NInputManager.Instance;
         if (cm == null || im == null) return;
 
+        //TODO: migrate this whole thing to use NHotkeyIcons once v110 is released to main
         var show = cm.IsUsingButtonInputsCompatibility() && enabled;
         _iconA.Visible = show;
         _iconB.Visible = show;
