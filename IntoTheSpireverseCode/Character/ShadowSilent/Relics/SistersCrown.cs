@@ -57,13 +57,12 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
         return Task.CompletedTask;
     }
     
-    public Task BeforeEnergySpent(CardModel card)
+    public async Task BeforeEnergySpent(CardModel card)
     {
-        if (card.Owner.PlayerCombatState == null) return Task.CompletedTask;
+        if (card.Owner.PlayerCombatState == null) return;
         if (card.Owner != Owner)
-            return Task.CompletedTask;
+            return;
         EnergyBeforePlay = card.Owner.PlayerCombatState.Energy;
-        return Task.CompletedTask;
     }
     
     public bool ShouldCardGlowGold(CardModel card)
