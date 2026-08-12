@@ -11,11 +11,11 @@ public class BaleteRoot : ShadowSilentRelic, IntoTheSpireverseKeywords.IModifyDe
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
 
-    private const string IncreaseKey = "Increase";
+    private const string _increaseKey = "Increase";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(IncreaseKey, 1M)
+        new DynamicVar(_increaseKey, 1M)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -33,6 +33,6 @@ public class BaleteRoot : ShadowSilentRelic, IntoTheSpireverseKeywords.IModifyDe
 
     public int ModifyDeviousValue(CardModel card, int originalValue)
     {
-        return Owner != card.Owner ? originalValue : originalValue + DynamicVars[IncreaseKey].IntValue;
+        return Owner != card.Owner ? originalValue : originalValue + DynamicVars[_increaseKey].IntValue;
     }
 }
