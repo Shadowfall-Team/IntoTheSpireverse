@@ -28,8 +28,7 @@ public class BrilliancePower : ShadowPowerModel
         if (card.Owner.Creature == Owner && card.EnergyCost.GetWithModifiers(CostModifiers.All) >= 3 && IntoTheSpireverseKeywords.CanMuddle(card))
         {
             IntoTheSpireverseKeywords.ApplyMuddle(card);
-            
+            await PowerCmd.Decrement(this);
         }
-        await PowerCmd.Decrement(this);
     }
 }
