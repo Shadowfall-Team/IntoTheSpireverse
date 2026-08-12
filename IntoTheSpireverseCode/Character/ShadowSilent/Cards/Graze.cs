@@ -10,7 +10,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Color
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Graze() : ShadowSilentCard(2, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     public override bool GainsBlock => true;

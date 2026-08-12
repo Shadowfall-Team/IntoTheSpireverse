@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class DoubleLift() : ShadowSilentCard(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
 

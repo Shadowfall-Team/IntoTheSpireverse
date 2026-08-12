@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class CorpseExplosion() : ShadowSilentCard(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Shimmer() : ShadowSilentCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
 

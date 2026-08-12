@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Enchantment
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
 

@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class SprayOfThorns() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     

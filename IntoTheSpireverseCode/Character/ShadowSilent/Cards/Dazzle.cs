@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Dazzle() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const string MuddleCountKey = "MuddleCount";

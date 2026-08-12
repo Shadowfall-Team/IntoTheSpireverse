@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class MysticSlash() : ShadowSilentCard(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     

@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Scalemail() : ShadowSilentCard(-1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override bool HasEnergyCostX => true;

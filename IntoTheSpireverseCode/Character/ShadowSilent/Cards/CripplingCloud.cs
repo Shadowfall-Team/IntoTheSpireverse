@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class CripplingCloud() : ShadowSilentCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Shellback() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     private const string EnergyKey = "EnergyCost";

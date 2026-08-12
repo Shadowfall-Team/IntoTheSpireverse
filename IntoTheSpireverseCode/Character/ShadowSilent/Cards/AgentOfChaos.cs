@@ -9,7 +9,6 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
 public sealed class AgentOfChaos() : ShadowSilentCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

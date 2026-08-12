@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
     

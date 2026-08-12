@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Disguise() : ShadowSilentCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     
