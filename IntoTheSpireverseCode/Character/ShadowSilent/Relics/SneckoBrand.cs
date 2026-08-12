@@ -41,8 +41,7 @@ public class SneckoBrand : ShadowSilentRelic
         Flash();
 
         var cards = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => combatState.CreateCard<Flicker>(Owner))
-            .ToArray();
+            .Select(_ => combatState.CreateCard<Flicker>(Owner));
 
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner);
     }

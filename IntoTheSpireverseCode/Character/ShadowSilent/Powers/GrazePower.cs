@@ -26,8 +26,7 @@ public class GrazePower : ShadowPowerModel
         Flash();
         
         var scales = Enumerable.Range(0, Amount)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner.Player))
-            .ToArray();
+            .Select(_ => CombatState.CreateCard<Scale>(Owner.Player));
         
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner.Player);
         await PowerCmd.Remove(this);

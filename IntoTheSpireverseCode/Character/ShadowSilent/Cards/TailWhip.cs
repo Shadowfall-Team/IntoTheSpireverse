@@ -36,8 +36,7 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
             .Execute(choiceContext);
         
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner))
-            .ToArray();
+            .Select(_ => CombatState.CreateCard<Scale>(Owner));
         
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
     }

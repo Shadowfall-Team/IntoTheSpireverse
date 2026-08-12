@@ -35,8 +35,7 @@ public class Rattleback : ShadowSilentRelic
         Flash();
 
         var cards = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => combatState.CreateCard<Scale>(Owner))
-            .ToArray();
+            .Select(_ => combatState.CreateCard<Scale>(Owner));
 
         await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner);
     }
