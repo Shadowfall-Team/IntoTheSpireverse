@@ -1,5 +1,6 @@
 ﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -19,39 +20,16 @@ public class BrilliancePower : ShadowPowerModel
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
     ];
     
-    protected override object InitInternalData() => new Data();
-    
     public override async Task AfterCardDrawnEarly(
         PlayerChoiceContext choiceContext,
         CardModel card,
         bool fromHandDraw)
     {
-        Data internalData =  GetInternalData<Data>();
-        if (card.Owner.Creature == Owner && Filter(card) && internalData.CardsMuddledThisTurn < Amount)
+        if (card.Owner.Creature == Owner && card.EnergyCost.GetWithModifiers(CostModifiers.All) >= 3 && IntoTheSpireverseKeywords.CanMuddle(card))
         {
             IntoTheSpireverseKeywords.ApplyMuddle(card);
-            ++internalData.CardsMuddledThisTurn;
+            
         }
-    }
-    
-    public override Task AfterSideTurnEnd(
-        PlayerChoiceContext choiceContext,
-        CombatSide side,
-        IEnumerable<Creature> participants)
-    {
-        if (!participants.Contains(Owner))
-            return Task.CompletedTask;
-        GetInternalData<Data>().CardsMuddledThisTurn = 0;
-        return Task.CompletedTask;
-    }
-    
-    private bool Filter(CardModel card)
-    {
-        return card.EnergyCost.GetWithModifiers(CostModifiers.All) >= 3 && IntoTheSpireverseKeywords.CanMuddle(card);
-    }
-    
-    private class Data
-    {
-        public int CardsMuddledThisTurn;
+        await PowerCmd.Decrement(this);
     }
 }

@@ -24,8 +24,6 @@ public sealed class Brilliance() : ShadowSilentCard(1, CardType.Skill, CardRarit
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
     ];
     
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
@@ -35,6 +33,6 @@ public sealed class Brilliance() : ShadowSilentCard(1, CardType.Skill, CardRarit
     
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Exhaust);
+        AddKeyword(CardKeyword.Retain);
     }
 }
