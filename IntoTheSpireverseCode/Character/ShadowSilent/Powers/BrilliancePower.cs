@@ -2,9 +2,9 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
@@ -14,6 +14,11 @@ public class BrilliancePower : ShadowPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
+    ];
+    
     protected override object InitInternalData() => new Data();
     
     public override async Task AfterCardDrawnEarly(
@@ -22,10 +27,10 @@ public class BrilliancePower : ShadowPowerModel
         bool fromHandDraw)
     {
         Data internalData =  GetInternalData<Data>();
-        if (card.Owner.Creature == Owner && Filter(card) && internalData.cardsMuddledThisTurn < Amount)
+        if (card.Owner.Creature == Owner && Filter(card) && internalData.CardsMuddledThisTurn < Amount)
         {
             IntoTheSpireverseKeywords.ApplyMuddle(card);
-            ++internalData.cardsMuddledThisTurn;
+            ++internalData.CardsMuddledThisTurn;
         }
     }
     
@@ -36,7 +41,7 @@ public class BrilliancePower : ShadowPowerModel
     {
         if (!participants.Contains(Owner))
             return Task.CompletedTask;
-        GetInternalData<Data>().cardsMuddledThisTurn = 0;
+        GetInternalData<Data>().CardsMuddledThisTurn = 0;
         return Task.CompletedTask;
     }
     
@@ -47,6 +52,6 @@ public class BrilliancePower : ShadowPowerModel
     
     private class Data
     {
-        public int cardsMuddledThisTurn;
+        public int CardsMuddledThisTurn;
     }
 }

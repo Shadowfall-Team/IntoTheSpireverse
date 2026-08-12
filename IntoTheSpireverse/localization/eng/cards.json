@@ -164,6 +164,10 @@
   "INTOTHESPIREVERSE-MIND_SLITHER.description": "Add an [gold]Ethereal Flicker[/gold] to ALL players Hands.",
   "INTOTHESPIREVERSE-BRILLIANCE.title": "Brilliance",
   "INTOTHESPIREVERSE-BRILLIANCE.description": "Choose another player.\nThe first time they draw a card that costs {energyPrefix:energyIcons(3)} or more each turn, [gold]Muddle[/gold] it.",
+  "INTOTHESPIREVERSE-DRAGONSCALE.title": "Dragonscale",
+  "INTOTHESPIREVERSE-DRAGONSCALE.description": "Choose another player.\nWhenever you create a [gold]Scale[/gold], add a [gold]Scale[/gold] into their [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-DIVINE_INTERVENTION.title": "Divine Intervention",
+  "INTOTHESPIREVERSE-DIVINE_INTERVENTION.description": "A random ally deals double damage this turn.",
 
   "INTOTHESPIREVERSE-DECAY.description": "[gold]Channel[/gold] 1 [gold]Entropy[/gold].\n[gold]Cycle[/gold].",
   "INTOTHESPIREVERSE-DECAY.title": "Decay",
