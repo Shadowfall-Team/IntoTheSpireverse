@@ -80,7 +80,7 @@
     </ItemGroup>
 
     <ItemGroup Condition="Exists('$(Sts2DataDir)')">
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="all">
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.2" PrivateAssets="all">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
