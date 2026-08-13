@@ -19,24 +19,50 @@ on:
         required: false
         default: ''
 permissions:
-  contents: write
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj', 'nuget.config') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+      - name: Cache MegaDot editor
+        id: cache-megadot
+        uses: actions/cache@v4
+        with:
+          path: megadot
+          key: megadot-4.5.1-m.11-linux-x86_64
       - name: Install MegaDot
+        if: steps.cache-megadot.outputs.cache-hit != 'true'
         run: |
-          curl -L -o megadot.zip "https://megadot.megacrit.com/4.5.1-m.11/megadot-4.5.1-m.11-linux-x86_64-editor-csharp.zip"
+          curl -fL --retry 3 --retry-delay 5 -o megadot.zip "https://megadot.megacrit.com/4.5.1-m.11/megadot-4.5.1-m.11-linux-x86_64-editor-csharp.zip"
           unzip -q megadot.zip -d megadot
           chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
-          echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Set GODOT_PATH
+        run: echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Cache spine-godot extension
+        id: cache-spine
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/bin
+          key: spine-godot-4.2-4.5.1-stable
       - name: Install spine-godot extension
+        if: steps.cache-spine.outputs.cache-hit != 'true'
         run: |
-          curl -fL --retry 3 -o spine-godot.zip \
+          curl -fL --retry 3 --retry-delay 5 -o spine-godot.zip \
             "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-4.2-4.5.1-stable.zip"
           unzip -oq spine-godot.zip -d "${{ github.workspace }}"
       - name: Import Godot resources
@@ -62,10 +88,21 @@ jobs:
         with:
           name: IntoTheSpireverse
           path: output/mods
+          retention-days: 14
+  # IMPORTANT: STEAM_USERNAME, STEAM_CONFIG_VDF and WORKSHOP_ITEM_ID must be defined as
+  # *environment* secrets/variables on the "workshop" environment (Settings > Environments >
+  # workshop), NOT as repository-level Actions secrets/variables. The "workshop" environment
+  # must also have a "Required reviewers" protection rule configured so this job pauses for
+  # manual approval from someone with elevated permissions before it can run and access the
+  # secrets. Moving these back to repo-level secrets silently removes the approval gate.
   workshop-upload:
     if: github.event_name == 'workflow_dispatch' && inputs.upload_to_workshop == true
     needs: publish
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: workshop
+    permissions:
+      contents: write
     steps:
       - name: Download mod artifact
         uses: actions/download-artifact@v4
@@ -81,3 +118,23 @@ jobs:
           publishedFileId: ${{ vars.WORKSHOP_ITEM_ID }}
           path: output/mods/IntoTheSpireverse
           changeNote: ${{ inputs.change_note }}
+      - name: Read mod version
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          base_version=$(jq -r '.version' output/mods/IntoTheSpireverse/IntoTheSpireverse.json)
+          if gh release view "$base_version" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            tag="${base_version}+${{ github.run_number }}"
+          else
+            tag="$base_version"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ${{ steps.version.outputs.tag }}
+          body: ${{ inputs.change_note }}
+          target_commitish: ${{ github.sha }}
+          files: output/mods/IntoTheSpireverse/*
