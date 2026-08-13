@@ -116,15 +116,12 @@ jobs:
           name: IntoTheSpireverse
           path: output/mods
           retention-days: 14
-  # IMPORTANT: STEAM_USERNAME, STEAM_PASSWORD, STEAM_SHARED_SECRET and WORKSHOP_ITEM_ID must be
-  # defined as *environment* secrets/variables on the "workshop" environment (Settings >
-  # Environments > workshop), NOT as repository-level Actions secrets/variables. The "workshop"
-  # environment must also have a "Required reviewers" protection rule configured so this job
-  # pauses for manual approval from someone with elevated permissions before it can run and
-  # access the secrets. Moving these back to repo-level secrets silently removes the approval gate.
-  # STEAM_SHARED_SECRET is the "shared_secret" from the Steam Guard mobile authenticator
-  # enrollment for this account (used to generate a live TOTP code each run instead of relying
-  # on a pre-baked, expirable session file).
+  # IMPORTANT: STEAM_USERNAME, STEAM_CONFIG_VDF and WORKSHOP_ITEM_ID must be defined as
+  # *environment* secrets/variables on the "workshop" environment (Settings > Environments >
+  # workshop), NOT as repository-level Actions secrets/variables. The "workshop" environment
+  # must also have a "Required reviewers" protection rule configured so this job pauses for
+  # manual approval from someone with elevated permissions before it can run and access the
+  # secrets. Moving these back to repo-level secrets silently removes the approval gate.
   workshop-upload:
     if: github.event_name == 'workflow_dispatch' && inputs.upload_to_workshop == true
     needs: publish
@@ -140,17 +137,11 @@ jobs:
         with:
           name: IntoTheSpireverse
           path: output/mods
-      - name: Generate Steam TOTP
-        id: steam-totp
-        uses: CyberAndrii/steam-totp@v1
-        with:
-          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
       - name: Upload to Steam Workshop
         uses: m00nl1ght-dev/steam-workshop-deploy@v4
         with:
           username: ${{ secrets.STEAM_USERNAME }}
-          password: ${{ secrets.STEAM_PASSWORD }}
-          totp: ${{ steps.steam-totp.outputs.code }}
+          configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
           appId: '2868840'
           publishedFileId: ${{ vars.WORKSHOP_ITEM_ID }}
           path: output/mods/IntoTheSpireverse
