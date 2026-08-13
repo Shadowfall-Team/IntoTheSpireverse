@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Shimmer() : ShadowSilentCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
 
@@ -26,15 +26,15 @@ public sealed class Shimmer() : ShadowSilentCard(2, CardType.Skill, CardRarity.R
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var flickers = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Flicker>(Owner))
-            .ToArray();
-        foreach (Flicker card in flickers)
+            .Select(_ => CombatState.CreateCard<Flicker>(Owner));
+        foreach (Flicker card in flickers ?? [])
         {
             CardCmd.Upgrade(card);
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(flickers, PileType.Hand, Owner);
+        await CardPileCmd.AddGeneratedCardsToCombat(flickers ?? [], PileType.Hand, Owner);
     }
     
     protected override void OnUpgrade()

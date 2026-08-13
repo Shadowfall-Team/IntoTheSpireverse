@@ -1,12 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Relics;
+﻿using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
@@ -27,7 +25,7 @@ public class VinoSerpento : ShadowSilentRelic
     }
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<PoisonPower>(1M)
+        new PowerVar<PoisonPower>(4)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -63,6 +61,7 @@ public class VinoSerpento : ShadowSilentRelic
     {
         Flash();
         WasUsedThisCombat = true;
+        Status = RelicStatus.Normal;
         return Task.CompletedTask;
     }
 }

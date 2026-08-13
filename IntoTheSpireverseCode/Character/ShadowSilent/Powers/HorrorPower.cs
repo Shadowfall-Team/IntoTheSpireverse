@@ -21,6 +21,7 @@ public class HorrorPower : ShadowPowerModel
         CardModel? cardSource,
         CardPlay? cardPlay)
     {
+        // ReSharper disable once PossibleLossOfFraction
         return target != Owner || !props.IsPoweredAttack() ? 1M : 1 + Amount / 100;
     }
 }

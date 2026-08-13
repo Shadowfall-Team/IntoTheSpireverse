@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Encore() : ShadowSilentCard(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
     private const string TriggeredKey = "HasTriggered";
@@ -30,6 +30,7 @@ public sealed class Encore() : ShadowSilentCard(0, CardType.Attack, CardRarity.R
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)

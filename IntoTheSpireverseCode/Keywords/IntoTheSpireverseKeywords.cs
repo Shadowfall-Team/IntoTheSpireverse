@@ -1,27 +1,18 @@
-using BaseLib.Extensions;
 using BaseLib.Patches.Content;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
-#if SILENT
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Powers.ShadowSilent;
-#endif
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
@@ -73,7 +64,7 @@ public static class IntoTheSpireverseKeywords
         var cards = a.Pile.Cards;
         int i = cards.IndexOf(a);
         int j = cards.IndexOf(b);
-        return i >= 0 && j >= 0 && System.Math.Abs(i - j) == 1;
+        return i >= 0 && j >= 0 && Math.Abs(i - j) == 1;
     }
 
     public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)
@@ -87,16 +78,14 @@ public static class IntoTheSpireverseKeywords
 
         if (card == null)
             return;
+        if (card.Owner.Creature.CombatState == null) return;
 
         int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
             repeats = player.PlayerCombatState.Energy;
-#if SILENT
-        repeats += card is Weight ? player.Creature.GetPowerAmount<TipTheScalesPower>() : 0;
-#endif
         await CardCmd.Discard(context, card);
         
-        foreach (var model in card.Owner.Creature.CombatState!.IterateHookListeners().ToList())
+        foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IModifyDeviousListener deviousListener)
                 repeats = deviousListener.ModifyDeviousValue(card, repeats);
@@ -134,18 +123,17 @@ public static class IntoTheSpireverseKeywords
 
     public static void ApplyMuddle(CardModel card)
     {
+        if (card.Owner.Creature.CombatState == null) return;
         if (!CanMuddle(card))
             return;
 
         int currentCost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         int newCost;
         int maxCostReduce = 0;
-#if SILENT
-        if (card.Owner.Creature.HasPower<SharpWitPower>())
+        if (card.Owner.Creature.HasPower<OathOfDevotionPower>())
         {
-            maxCostReduce = card.Owner.Creature.GetPowerAmount<SharpWitPower>();
+            maxCostReduce = card.Owner.Creature.GetPowerAmount<OathOfDevotionPower>();
         }
-#endif
 
         if (currentCost >= 0 && currentCost <= 3)
         {
@@ -160,7 +148,7 @@ public static class IntoTheSpireverseKeywords
 
         bool permanentMuddle = false;
         
-        foreach (var model in card.Owner.Creature.CombatState!.IterateHookListeners().ToList())
+        foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IShouldPermanentMuddleListener muddleListener)
                 permanentMuddle |= muddleListener.ShouldPermanentMuddle(card);
@@ -176,7 +164,7 @@ public static class IntoTheSpireverseKeywords
         if (card is IMuddleListener listener)
             listener.OnMuddled();
         
-        foreach (var model in card.Owner.Creature.CombatState!.IterateHookListeners().ToList())
+        foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is ICardMuddledListener powerListener)
                 powerListener.AfterCardMuddled(card.Owner.Creature.CombatState, card);
@@ -206,8 +194,11 @@ public static class IntoTheSpireverseKeywords
         for (int i = 0; i < count && eligible.Count > 0; i++)
         {
             var card = rng.NextItem(eligible);
-            ApplyMuddle(card);
-            eligible.Remove(card);
+            if (card != null)
+            {
+                ApplyMuddle(card);
+                eligible.Remove(card);
+            }
         }
     }
 
@@ -229,9 +220,9 @@ public static class IntoTheSpireverseKeywords
             source
         );
 
-        foreach (var card in selected)
+        foreach (var card in selected ?? [])
             ApplyMuddle(card);
 
-        return selected;
+        return selected ?? [];
     }
 }

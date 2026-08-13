@@ -1,5 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -18,6 +17,7 @@ public class CorpseExplosionPower : ShadowPowerModel
         bool wasRemovalPrevented,
         float deathAnimLength)
     {
+        if (Applier == null) return;
         if (creature != Owner || wasRemovalPrevented)
             return;
 

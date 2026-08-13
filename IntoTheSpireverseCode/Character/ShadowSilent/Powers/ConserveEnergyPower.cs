@@ -17,6 +17,7 @@ public class ConserveEnergyPower : ShadowPowerModel
     
     public override bool ShouldPlayerResetEnergy(Player player)
     {
+        if (Owner.Player == null || Owner.Player.PlayerCombatState == null) return false;
         return player != Owner.Player || Owner.Player.PlayerCombatState.TurnNumber == 1;
     }
 

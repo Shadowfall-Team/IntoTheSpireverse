@@ -7,9 +7,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Enchantments;
 using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
@@ -27,10 +25,10 @@ public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.R
         {
             CardModifier.AddModifier<SlitherModification>(cardModel);
             
-            NCardEnchantVfx child = NCardEnchantVfx.Create(cardModel);
+            var child = NCardEnchantVfx.Create(cardModel);
             if (child != null)
             {
-                NRun instance = NRun.Instance;
+                var instance = NRun.Instance;
                 if (instance != null)
                     instance.GlobalUi.CardPreviewContainer.AddChildSafely( child);
             }

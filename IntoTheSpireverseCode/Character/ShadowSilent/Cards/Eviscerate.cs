@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     
@@ -26,11 +26,6 @@ public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRari
     [
         EnergyHoverTip,
     ];
-    
-    private bool HasDiscardedThisTurn =>
-        CombatManager.Instance.History.Entries
-            .OfType<CardDiscardedEntry>()
-            .Any(e => e.HappenedThisTurn(CombatState) && e.Card.Owner == Owner);
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

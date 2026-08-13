@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Enchantment
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
 
@@ -31,11 +31,11 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner))
-            .ToArray();
-        foreach (Scale card in scales)
+            .Select(_ => CombatState.CreateCard<Scale>(Owner));
+        foreach (Scale card in scales ?? [])
         {
             CardCmd.Enchant<Armored>(card, 1M);
             if (IsUpgraded)
@@ -43,6 +43,6 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
                 CardCmd.Upgrade(card);
             }
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
+        await CardPileCmd.AddGeneratedCardsToCombat(scales ?? [], PileType.Hand, Owner);
     }
 }

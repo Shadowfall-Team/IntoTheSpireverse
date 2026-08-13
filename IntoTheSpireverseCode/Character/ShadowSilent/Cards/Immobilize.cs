@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
 {
     private const string StrengthLossKey = "StrengthLoss";
@@ -34,8 +34,8 @@ public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarit
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         
-        NPoisonImpactVfx child = NPoisonImpactVfx.Create(cardPlay.Target);
-        NCombatRoom instance = NCombatRoom.Instance;
+        var child = NPoisonImpactVfx.Create(cardPlay.Target);
+        var instance = NCombatRoom.Instance;
         if (instance != null)
             instance.CombatVfxContainer.AddChildSafely(child);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

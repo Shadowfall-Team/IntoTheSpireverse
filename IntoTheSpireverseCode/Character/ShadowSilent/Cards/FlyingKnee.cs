@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class FlyingKnee() : ShadowSilentCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -35,7 +35,7 @@ public sealed class FlyingKnee() : ShadowSilentCard(1, CardType.Attack, CardRari
 
         await PowerCmd.Apply<EnergyNextTurnPower>(
             choiceContext, Owner.Creature,
-            (decimal)DynamicVars.Energy.IntValue,
+            DynamicVars.Energy.IntValue,
             Owner.Creature, this);
     }
 

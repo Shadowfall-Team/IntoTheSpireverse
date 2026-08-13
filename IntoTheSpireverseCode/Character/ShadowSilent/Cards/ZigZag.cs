@@ -28,6 +28,7 @@ public sealed class ZigZag() : ShadowSilentCard(1, CardType.Attack, CardRarity.C
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
             DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(this, cardPlay)

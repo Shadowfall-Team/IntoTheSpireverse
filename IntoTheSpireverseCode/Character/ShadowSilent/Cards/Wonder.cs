@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Wonder() : ShadowSilentCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     private const string MuddleCountKey = "MuddleCount";
@@ -40,7 +40,7 @@ public sealed class Wonder() : ShadowSilentCard(0, CardType.Skill, CardRarity.Un
         foreach (var card in muddledCards)
             if (GetEffectiveCost(card, card.Owner) >= DynamicVars.Energy.IntValue)
             {
-                await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false);
+                await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             }
     }
 

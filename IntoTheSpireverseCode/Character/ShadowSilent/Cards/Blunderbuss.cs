@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Blunderbuss() : ShadowSilentCard(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -18,6 +18,7 @@ public sealed class Blunderbuss() : ShadowSilentCard(2, CardType.Attack, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         int energyBeforePlay = (Owner.PlayerCombatState?.Energy ?? 0)
                                + cardPlay.Resources.EnergySpent;
 

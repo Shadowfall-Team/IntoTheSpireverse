@@ -14,11 +14,11 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
 public class PowerscalePower : ShadowPowerModel
 {
-    public const string strengthAppliedKey = "StrengthApplied";
+    public const string StrengthAppliedKey = "StrengthApplied";
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType =>
-        DynamicVars[strengthAppliedKey].IntValue != 0 ? PowerStackType.Counter : PowerStackType.None;
+        DynamicVars[StrengthAppliedKey].IntValue != 0 ? PowerStackType.Counter : PowerStackType.None;
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -28,7 +28,7 @@ public class PowerscalePower : ShadowPowerModel
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<StrengthPower>(1M),
-        new DynamicVar(strengthAppliedKey, 0M)
+        new DynamicVar(StrengthAppliedKey, 0M)
     ];
     
 
@@ -38,21 +38,21 @@ public class PowerscalePower : ShadowPowerModel
     {
         if (cardPlay.Card.Owner.Creature != this.Owner)
             return Task.CompletedTask;
-        this.GetInternalData<Data>().amountsForPlayedCards.Add(cardPlay.Card, DynamicVars.Strength.IntValue);
+        this.GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, DynamicVars.Strength.IntValue);
         return Task.CompletedTask;
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int amount;
-        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().amountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
+        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
             return;
         if (cardPlay.Card is not Scale)
             return;
         Flash();
         
         await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, amount, Owner, null, true);
-        DynamicVars[strengthAppliedKey].BaseValue += DynamicVars.Strength.IntValue;
+        DynamicVars[StrengthAppliedKey].BaseValue += DynamicVars.Strength.IntValue;
         InvokeDisplayAmountChanged();
     }
     
@@ -64,11 +64,11 @@ public class PowerscalePower : ShadowPowerModel
         if (!participants.Contains(Owner))
             return;
         await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -DynamicVars["StrengthApplied"].BaseValue, Owner, null, true);
-        DynamicVars[strengthAppliedKey].BaseValue = 0;
+        DynamicVars[StrengthAppliedKey].BaseValue = 0;
     }
     
     private class Data
     {
-        public readonly Dictionary<CardModel, int> amountsForPlayedCards = new Dictionary<CardModel, int>();
+        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = new Dictionary<CardModel, int>();
     }
 }

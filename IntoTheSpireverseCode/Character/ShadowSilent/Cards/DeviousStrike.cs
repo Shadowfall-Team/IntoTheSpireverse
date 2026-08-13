@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class DeviousStrike() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     
@@ -48,7 +48,7 @@ public sealed class DeviousStrike() : ShadowSilentCard(2, CardType.Attack, CardR
         if (HasDiscardedThisTurn)
         {
             await PlayerCmd.GainEnergy(
-                (decimal)DynamicVars.Energy.IntValue, Owner);
+                DynamicVars.Energy.IntValue, Owner);
         }
     }
 

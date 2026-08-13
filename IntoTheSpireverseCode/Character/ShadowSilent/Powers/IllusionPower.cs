@@ -27,14 +27,14 @@ public class IllusionPower : ShadowPowerModel
     {
         if (cardPlay.Card.Owner.Creature != this.Owner)
             return Task.CompletedTask;
-        this.GetInternalData<Data>().amountsForPlayedCards.Add(cardPlay.Card, this.Amount);
+        this.GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, this.Amount);
         return Task.CompletedTask;
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int amount;
-        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().amountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
+        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
             return;
         await CreatureCmd.GainBlock(Owner, amount, ValueProp.Unpowered, null, true);
     }
@@ -51,6 +51,6 @@ public class IllusionPower : ShadowPowerModel
 
     private class Data
     {
-        public readonly Dictionary<CardModel, int> amountsForPlayedCards = new Dictionary<CardModel, int>();
+        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = new Dictionary<CardModel, int>();
     }
 }

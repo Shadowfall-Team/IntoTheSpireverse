@@ -25,12 +25,12 @@ public class OvercostListenerPatch
 public class BeforeEnergySpentListenerPatch
 {
     [HarmonyPrefix]
-    static void Prefix(CardModel __instance)
+    static async void Prefix(CardModel __instance)
     {
         foreach (var model in __instance.Owner.Creature.CombatState!.IterateHookListeners().ToList())
         {
             if (model is IBeforeEnergySpentListener energySpentListener)
-                energySpentListener.BeforeEnergySpent(__instance);
+                await energySpentListener.BeforeEnergySpent(__instance);
         }
     }
 }

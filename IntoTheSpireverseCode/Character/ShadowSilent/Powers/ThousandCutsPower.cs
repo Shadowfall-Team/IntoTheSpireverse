@@ -1,5 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +19,7 @@ public class ThousandCutsPower : ShadowPowerModel
     {
         if (cardPlay.Card.Owner.Creature != this.Owner)
             return Task.CompletedTask;
-        this.GetInternalData<Data>().amountsForPlayedCards.Add(cardPlay.Card, this.Amount);
+        this.GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, this.Amount);
         return Task.CompletedTask;
     }
 
@@ -29,7 +28,7 @@ public class ThousandCutsPower : ShadowPowerModel
         PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int amount;
-        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().amountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
+        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
             return;
         
         VfxCmd.PlayOnCreatureCenters(CombatState.HittableEnemies, "vfx/vfx_attack_slash");
@@ -42,6 +41,6 @@ public class ThousandCutsPower : ShadowPowerModel
 
     private class Data
     {
-        public readonly Dictionary<CardModel, int> amountsForPlayedCards = new Dictionary<CardModel, int>();
+        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = new Dictionary<CardModel, int>();
     }
 }

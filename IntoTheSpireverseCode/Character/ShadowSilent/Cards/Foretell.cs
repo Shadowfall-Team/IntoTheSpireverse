@@ -28,7 +28,7 @@ public sealed class Foretell() : ShadowSilentCard(0, CardType.Skill, CardRarity.
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
-            CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay, false));
+            CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay));
 	}
 
     protected override void OnUpgrade()

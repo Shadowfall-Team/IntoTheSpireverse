@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class MysticSlash() : ShadowSilentCard(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     
@@ -34,7 +34,7 @@ public sealed class MysticSlash() : ShadowSilentCard(3, CardType.Attack, CardRar
             .Execute(choiceContext);
 
             await PlayerCmd.GainEnergy(
-                (decimal)DynamicVars.Energy.IntValue, Owner);
+                DynamicVars.Energy.IntValue, Owner);
     }
 
     protected override void OnUpgrade()

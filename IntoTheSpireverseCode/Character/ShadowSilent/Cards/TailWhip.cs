@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
 
@@ -26,6 +26,7 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
@@ -35,8 +36,7 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
             .Execute(choiceContext);
         
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner))
-            .ToArray();
+            .Select(_ => CombatState.CreateCard<Scale>(Owner));
         
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
     }

@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class ShedSkin() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
 
@@ -26,10 +26,10 @@ public sealed class ShedSkin() : ShadowSilentCard(1, CardType.Skill, CardRarity.
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner))
-            .ToArray();
+            .Select(_ => CombatState.CreateCard<Scale>(Owner));
         
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
     }

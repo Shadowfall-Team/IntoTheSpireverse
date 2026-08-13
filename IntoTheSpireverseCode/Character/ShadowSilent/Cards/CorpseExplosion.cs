@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class CorpseExplosion() : ShadowSilentCard(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -29,8 +29,8 @@ public sealed class CorpseExplosion() : ShadowSilentCard(2, CardType.Skill, Card
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         
-        NPoisonImpactVfx child = NPoisonImpactVfx.Create(cardPlay.Target);
-        NCombatRoom instance = NCombatRoom.Instance;
+        var child = NPoisonImpactVfx.Create(cardPlay.Target);
+        var instance = NCombatRoom.Instance;
         if (instance != null)
             instance.CombatVfxContainer.AddChildSafely(child);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

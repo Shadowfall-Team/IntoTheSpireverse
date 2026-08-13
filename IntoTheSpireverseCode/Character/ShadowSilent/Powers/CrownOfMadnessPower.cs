@@ -30,8 +30,8 @@ public class CrownOfMadnessPower : ShadowPowerModel
     {
         if (player == Owner.Player)
         {
-            CardModel card = GetInternalData<Data>().selectedCard;
-            if (!card.IsInCombat)
+            var card = GetInternalData<Data>().SelectedCard;
+            if (card == null || !card.IsInCombat)
             {
                 await PowerCmd.Remove(this);
                 return;
@@ -43,12 +43,12 @@ public class CrownOfMadnessPower : ShadowPowerModel
 
     public void SetSelectedCard(CardModel card)
     {
-        GetInternalData<Data>().selectedCard = card;
+        GetInternalData<Data>().SelectedCard = card;
         ((StringVar) DynamicVars["Card"]).StringValue = card.Title;
     }
     
     private class Data
     {
-        public CardModel? selectedCard;
+        public CardModel? SelectedCard;
     }
 }

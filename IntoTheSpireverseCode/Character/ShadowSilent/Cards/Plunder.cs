@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Plunder() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     private const string CalculatedDrawKey = "CalculatedDraw";
@@ -21,7 +21,7 @@ public sealed class Plunder() : ShadowSilentCard(1, CardType.Attack, CardRarity.
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
         new CalculatedVar(CalculatedDrawKey).WithMultiplier((card, _) =>
-            (decimal)PileType.Hand.GetPile(card.Owner).Cards
+            PileType.Hand.GetPile(card.Owner).Cards
                 .Count(c => c != card && GetEffectiveCost(c, card.Owner) >= 2)),
     ];
 
@@ -54,7 +54,7 @@ public sealed class Plunder() : ShadowSilentCard(1, CardType.Attack, CardRarity.
             });
 
         if (drawCount > 0)
-            await CardPileCmd.Draw(choiceContext, (decimal)drawCount, Owner);
+            await CardPileCmd.Draw(choiceContext, drawCount, Owner);
     }
 
     protected override void OnUpgrade() =>

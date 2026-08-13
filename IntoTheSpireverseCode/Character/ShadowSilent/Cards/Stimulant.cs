@@ -8,7 +8,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class Stimulant() : ShadowSilentCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     private const string MuddleCountKey = "MuddleCount";

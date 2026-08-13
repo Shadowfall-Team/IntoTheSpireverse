@@ -1,7 +1,6 @@
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -21,7 +20,7 @@ public sealed class Dagger() : ShadowColorlessCard(1, CardType.Attack, CardRarit
         new ExtraDamageVar(4M),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
         {
-            PlayerCombatState playerCombatState = card.Owner.PlayerCombatState;
+            var playerCombatState = card.Owner.PlayerCombatState;
             return playerCombatState != null ? playerCombatState.ExhaustPile.Cards.Count(c => c is Scale) : 0;
         })
     ];

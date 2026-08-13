@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-[Pool(typeof(ShadowSilentCardPool))]
+
 public sealed class SprayOfThorns() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     
@@ -20,6 +20,7 @@ public sealed class SprayOfThorns() : ShadowSilentCard(3, CardType.Attack, CardR
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)

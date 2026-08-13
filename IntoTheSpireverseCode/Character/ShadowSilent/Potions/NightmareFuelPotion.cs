@@ -1,17 +1,11 @@
-﻿using BaseLib.Extensions;
-using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+﻿using BaseLib.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Potions;
 
@@ -31,8 +25,9 @@ public class NightmareFuelPotion : IntoTheSpireversePotion
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
+        if (target == null || target.Player == null) return;
         AssertValidForTargetedPotion(target);
-        CardModel selection = (await CardSelectCmd.FromHand(choiceContext, target.Player, new CardSelectorPrefs(SelectionScreenPrompt, 0, 1), null, this)).FirstOrDefault();
+        var selection = (await CardSelectCmd.FromHand(choiceContext, target.Player, new CardSelectorPrefs(SelectionScreenPrompt, 0, 1), null, this)).FirstOrDefault();
         if (selection != null)
         {
             for (int i = 0; i < DynamicVars.Cards.IntValue; ++i)

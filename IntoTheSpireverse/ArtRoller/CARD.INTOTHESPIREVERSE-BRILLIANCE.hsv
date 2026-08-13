@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-BRILLIANCE",
+  "hue": 0.76,
+  "saturation": 0.65,
+  "value": 1.21,
+  "red": 0.82,
+  "green": 0.78,
+  "blue": 1,
+  "contrast": 0.92,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/colorless/master_of_strategy.tres"
+}
