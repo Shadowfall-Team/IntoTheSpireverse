@@ -13,7 +13,7 @@ public class NecronomiconPower : IntoTheSpireversePower
     {
         if (Owner.Player != null)
         {
-            room.AddExtraReward(Owner.Player, new CardTransformReward(Owner.Player) {Amount = Amount, Upgrade = true});
+            room.AddExtraReward(Owner.Player, new CardTransformReward(Owner.Player) {MaxCards = Amount, Upgrade = true});
         }
         return Task.CompletedTask;
     }
