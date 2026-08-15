@@ -1,5 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
+using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
@@ -42,8 +44,7 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<Predator>(),
             ModelDb.Card<SerpentForm>(),
             ModelDb.Card<Snakebite>(),
-            ModelDb.Card<ToolsOfTheTrade>(),
-            ModelDb.Card<Concoct>(),
+            ModelDb.Card<ToolsOfTheTrade>()
         ];
     }
 }

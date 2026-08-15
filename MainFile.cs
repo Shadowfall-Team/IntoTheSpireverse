@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Modding;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.utils;
 #if DEFECT
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 #endif
@@ -33,14 +34,13 @@ public partial class MainFile : Node
 
     public static void Initialize()
     {
-        Harmony harmony = new(ModId);
-
         Directory.CreateDirectory(CardsDirectory);
         CardArtRoller.RegisterAllFromDirectory(CardsDirectory);
         Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(Assembly.GetExecutingAssembly());
-        harmony.PatchAll();
 
         ModConfigRegistry.Register(ModId, new IntoTheSpireverseConfig());
+        // Adding patches now needs to be done through the SpireversePatchManager.cs file
+        SpireversePatchManager.HarmonyPatches();
 
         CustomCharacterUtils.TryOrderCustomCharacters([
             typeof(ShadowIronclad),

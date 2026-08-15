@@ -3,11 +3,12 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergySpentListener, ICardGlowGoldListener
+public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergySpentListener, ICardGlowGoldListener, IModifyCardPlayResultLocation
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
     
@@ -76,11 +77,11 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
         return false;
     }
     
-    public override CardLocation ModifyCardPlayResultLocation(
+    public CardLocationCompatibility ModifyCardPlayResultLocationCompatibility(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        CardLocation location)
+        CardLocationCompatibility location)
     {
         if (card.Owner != Owner)
             return location;
@@ -94,9 +95,8 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
         Status = RelicStatus.Normal;
         WasUsedThisCombat = true;
         EnergyBeforePlay = 0;
-        location.pileType = PileType.Exhaust;
         
-        return location;
+        return new CardLocationCompatibility(card.Owner, PileType.Exhaust, CardPilePosition.Bottom);
     }
     
     public override Task AfterCombatEnd(CombatRoom _)
@@ -106,3 +106,5 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
         return Task.CompletedTask;
     }
 }
+
+public record struct CardLocationCompatibility(Player Player, PileType PileType, CardPilePosition Position);
