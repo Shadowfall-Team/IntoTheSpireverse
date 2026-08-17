@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 

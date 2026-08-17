@@ -35,7 +35,6 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<Burst>(),
             ModelDb.Card<DaggerThrow>(),
             ModelDb.Card<Expose>(),
-            ModelDb.Card<Flechettes>(),
             ModelDb.Card<LegSweep>(),
             ModelDb.Card<Malaise>(),
             ModelDb.Card<PoisonedStab>(),
@@ -44,6 +43,8 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<Snakebite>(),
             ModelDb.Card<ToolsOfTheTrade>(),
             ModelDb.Card<Concoct>(),
+            ModelDb.Card<Fade>(),
+            ModelDb.Card<Haze>(),
         ];
     }
 }

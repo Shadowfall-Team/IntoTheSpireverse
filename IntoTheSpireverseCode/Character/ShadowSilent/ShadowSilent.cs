@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
+using VanillaFlechettes = MegaCrit.Sts2.Core.Models.Cards.Flechettes;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
@@ -29,6 +30,11 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     public CharacterModel BaseCharacterModel => ModelDb.Character<Silent>();
     
     public override int StartingHp => 75;
+    
+    public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
+    [
+        (ModelDb.Card<Flechettes>(), ModelDb.Card<VanillaFlechettes>())
+    ];
     
     public override IEnumerable<CardModel> StartingDeck =>
     [
