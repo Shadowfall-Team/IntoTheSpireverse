@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
-public class AgentOfChaosPower : ShadowPowerModel, IModifyCardPlayResultLocation
+public class AgentOfChaosPower : ShadowPowerModel, ICardDestinationListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -60,17 +60,17 @@ public class AgentOfChaosPower : ShadowPowerModel, IModifyCardPlayResultLocation
         }
     }
     
-    public CardLocationCompatibility ModifyCardPlayResultLocationCompatibility(
+    public CardDestination ModifyCardDestination(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        CardLocationCompatibility location)
+        CardDestination destination)
     {
         if (card.Owner.Creature != Owner)
-            return location;
+            return destination;
         if (!GetInternalData<Data>().DiscardedSlyCards.Contains(card))
-            return location;
-        return new CardLocationCompatibility(card.Owner, PileType.Exhaust, CardPilePosition.Bottom);
+            return destination;
+        return destination with { PileType = PileType.Exhaust };
     }
     
     
@@ -79,5 +79,3 @@ public class AgentOfChaosPower : ShadowPowerModel, IModifyCardPlayResultLocation
         public List<CardModel> DiscardedSlyCards = new();
     }
 }
-
-public record struct CardLocationCompatibility(Player Player, PileType PileType, CardPilePosition Position);

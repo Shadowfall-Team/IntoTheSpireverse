@@ -15,7 +15,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 public class BraceForImpact() : ShadowRegentCard(2,
     CardType.Skill,
     CardRarity.Rare,
-    TargetType.Self), IModifyCardPlayResultLocation
+    TargetType.Self), ICardDestinationListener
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -33,14 +33,14 @@ public class BraceForImpact() : ShadowRegentCard(2,
     /// "Put this into Cargo if it's not there." Routing the post-play move covers both cases in
     /// one place: played from hand it lands in Cargo, auto-played from Cargo it returns there.
     /// </summary>
-    public CardLocationCompatibility ModifyCardPlayResultLocationCompatibility(
+    public CardDestination ModifyCardDestination(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        CardLocationCompatibility cardLocation)
+        CardDestination destination)
     {
-        if (card != this) return cardLocation;
-        return new CardLocationCompatibility(card.Owner, CargoCardPile.CargoPileType, CardPilePosition.Bottom);
+        if (card != this) return destination;
+        return destination with { PileType = CargoCardPile.CargoPileType };
     }
 
     /// <summary>
@@ -63,5 +63,3 @@ public class BraceForImpact() : ShadowRegentCard(2,
         DynamicVars.Block.UpgradeValueBy(2);
     }
 }
-
-public record struct CardLocationCompatibility(Player Player, PileType PileType, CardPilePosition Position);

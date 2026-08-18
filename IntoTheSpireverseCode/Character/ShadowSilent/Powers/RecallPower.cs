@@ -7,28 +7,27 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
-public class RecallPower : ShadowPowerModel, IModifyCardPlayResultLocation
+public class RecallPower : ShadowPowerModel, ICardDestinationListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public CardLocationCompatibility ModifyCardPlayResultLocationCompatibility(
+    public CardDestination ModifyCardDestination(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        CardLocationCompatibility location)
+        CardDestination destination)
     {
         if (card.Owner.Creature != Owner)
-            return location;
+            return destination;
         if (card.IsDupe)
-            return location;
-        if (card is {Type: CardType.Power})
-            return location;
-        return new CardLocationCompatibility(card.Owner, PileType.Hand, CardPilePosition.Top);
+            return destination;
+        if (destination.PileType == PileType.None)
+            return destination;
+        return destination with { PileType = PileType.Hand, Position = CardPilePosition.Top };
     }
 
-    public Task AfterModifyingCardPlayResultLocationCompatibility(
-        CardModel card, CardLocationCompatibility location)
+    public Task AfterCardDestinationModified(CardModel card, CardDestination destination)
     {
         Flash();
         PowerCmd.Decrement(this);

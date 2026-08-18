@@ -7,15 +7,12 @@ using MegaCrit.Sts2.Core.Modding;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 #if DEFECT
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 #endif
 #if NECROBINDER
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
-#endif
-#if SILENT
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 #endif
 
 namespace IntoTheSpireverse;
@@ -34,20 +31,18 @@ public partial class MainFile : Node
 
     public static void Initialize()
     {
+        Harmony harmony = new(ModId);
+
         Directory.CreateDirectory(CardsDirectory);
         CardArtRoller.RegisterAllFromDirectory(CardsDirectory);
         Godot.Bridge.ScriptManagerBridge.LookupScriptsInAssembly(Assembly.GetExecutingAssembly());
+        harmony.PatchAll();
 
         ModConfigRegistry.Register(ModId, new IntoTheSpireverseConfig());
-        // Adding patches now needs to be done through the SpireversePatchManager.cs file
-        SpireversePatchManager.HarmonyPatches();
 
         CustomCharacterUtils.TryOrderCustomCharacters([
             typeof(ShadowIronclad),
-// This stuff sucks ass
-#if SILENT
             typeof(ShadowSilent),
-#endif
             typeof(ShadowRegent),
 #if NECROBINDER
             typeof(ShadowNecrobinder),
