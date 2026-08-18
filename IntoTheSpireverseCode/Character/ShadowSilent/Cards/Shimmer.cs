@@ -22,8 +22,6 @@ public sealed class Shimmer() : ShadowSilentCard(2, CardType.Skill, CardRarity.R
         HoverTipFactory.FromCard<Flicker>(true)
     ];
     
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
