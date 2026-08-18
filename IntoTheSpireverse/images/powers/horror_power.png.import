@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://eq30rn08ejfl"
-path="res://.godot/imported/terror_power.png-8882263053bfc633d7e153cff7c36c76.ctex"
+path="res://.godot/imported/horror_power.png-a7c56861e0630a8b3e36d038fa611482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/powers/terror_power.png"
-dest_files=["res://.godot/imported/terror_power.png-8882263053bfc633d7e153cff7c36c76.ctex"]
+source_file="res://IntoTheSpireverse/images/powers/horror_power.png"
+dest_files=["res://.godot/imported/horror_power.png-a7c56861e0630a8b3e36d038fa611482.ctex"]
 
 [params]
 
