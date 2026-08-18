@@ -39,6 +39,6 @@ public sealed class ZigZag() : ShadowSilentCard(1, CardType.Attack, CardRarity.C
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }
