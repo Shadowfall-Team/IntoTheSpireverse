@@ -69,6 +69,7 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
         ModelDb.Relic<CaptainsHat>()
     ];
 
+    public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/shadowregent_icon.tscn";
     public override string CustomIconTexturePath => "character_icon_regent.png".ShadowRegentPath();
     public override string CustomCharacterSelectIconPath => "char_select_regent.png".ShadowRegentPath();
     public override string CustomArmPointingTexturePath => "multiplayer_hand_regent_point.png".ShadowRegentPath();

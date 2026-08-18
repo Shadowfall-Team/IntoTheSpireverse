@@ -67,6 +67,8 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
         override all the other methods that define those assets.
         These are just some of the simplest assets, given some placeholders to differentiate your character with.
         You don't have to, but you're suggested to rename these images. */
+    
+    public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/shadowironclad_icon.tscn";
     public override string CustomIconTexturePath => "character_icon_ironclad.png".GranitecladPath();
     public override string CustomCharacterSelectIconPath => "char_select_ironclad.png".GranitecladPath();
     public override string CustomArmPointingTexturePath => "multiplayer_hand_ironclad_point.png".GranitecladPath();

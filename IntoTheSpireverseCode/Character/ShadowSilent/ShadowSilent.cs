@@ -65,6 +65,8 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     public override string CustomArmPaperTexturePath => "multiplayer_hand_silent_paper.png".ShadowSilentPath();
     public override string CustomArmScissorsTexturePath => "multiplayer_hand_silent_scissors.png".ShadowSilentPath();
     
+    
+    public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/shadowsilent_icon.tscn";
     public override string CustomIconTexturePath => "character_icon_silent.png".ShadowSilentPath();
     public override string CustomIconOutlineTexturePath => "character_icon_silent_outline.png".ShadowSilentPath();
     public override string CustomCharacterSelectIconPath => "char_select_silent.png".ShadowSilentPath();
