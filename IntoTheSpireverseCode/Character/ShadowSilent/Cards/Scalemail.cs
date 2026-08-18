@@ -15,7 +15,7 @@ public sealed class Scalemail() : ShadowSilentCard(-1, CardType.Skill, CardRarit
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Scale>(),
+        HoverTipFactory.FromCard<Scale>(true),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -34,6 +34,7 @@ public sealed class Scalemail() : ShadowSilentCard(-1, CardType.Skill, CardRarit
         for (var i = 0; i < count; i++)
         {
             scales[i] = CombatState.CreateCard<Scale>(Owner);
+            CardCmd.Upgrade(scales[i]);
         }
 
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);

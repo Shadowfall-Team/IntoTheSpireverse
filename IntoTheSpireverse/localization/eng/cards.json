@@ -67,7 +67,7 @@
   "INTOTHESPIREVERSE-MASTERFUL_STAB.title": "Masterful Stab",
   "INTOTHESPIREVERSE-MASTERFUL_STAB.description": "Whenever you lose HP this combat, this card costs an additional {Energy:energyIcons()}.\nDeal {Damage:diff()} damage.",
   "INTOTHESPIREVERSE-SCALEMAIL.title": "Scalemail",
-  "INTOTHESPIREVERSE-SCALEMAIL.description": "Add {IfUpgraded:show:X+1|X} [gold]Scales[/gold] into your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-SCALEMAIL.description": "Add {IfUpgraded:show:X+1|X} [gold]Scales+[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-COBRAS_FLASK.title": "Cobra's Flask",
   "INTOTHESPIREVERSE-COBRAS_FLASK.description": "Apply {PoisonPower:diff()} [gold]Poison[/gold] to a random enemy.",
   "INTOTHESPIREVERSE-AMBUSH.title": "Ambush",
