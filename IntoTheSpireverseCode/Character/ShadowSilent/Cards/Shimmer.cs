@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -27,11 +28,12 @@ public sealed class Shimmer() : ShadowSilentCard(1, CardType.Skill, CardRarity.R
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var flickers = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Flicker>(Owner));
-        foreach (Flicker card in flickers ?? [])
-        {
-            CardCmd.Upgrade(card);
-        }
+            .Select(c =>
+            {
+                var card = CombatState.CreateCard<Flicker>(Owner);
+                CardCmd.Upgrade(card);
+                return card;
+            }); 
         await CardPileCmd.AddGeneratedCardsToCombat(flickers ?? [], PileType.Hand, Owner);
     }
     

@@ -28,14 +28,13 @@ public sealed class Scalemail() : ShadowSilentCard(-1, CardType.Skill, CardRarit
         {
            count += 1;
         }
-
-        var scales = new CardModel[count];
-
-        for (var i = 0; i < count; i++)
-        {
-            scales[i] = CombatState.CreateCard<Scale>(Owner);
-            CardCmd.Upgrade(scales[i]);
-        }
+        var scales = Enumerable.Range(0, count)
+            .Select(c =>
+            {
+                var card = CombatState.CreateCard<Scale>(Owner);
+                CardCmd.Upgrade(card);
+                return card;
+            }); 
 
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
     }
