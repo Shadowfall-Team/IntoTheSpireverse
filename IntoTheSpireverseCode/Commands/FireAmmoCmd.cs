@@ -1,6 +1,7 @@
 using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -81,7 +82,7 @@ public static class FireAmmoCmd
             ? combatState.HittableEnemies
             : (IEnumerable<Creature>)[pickedTarget!];
 
-        var results = await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
+        var results = await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(),
             targets, shotDamage, ValueProp.Unpowered, player.Creature, phantomCard, null);
 
         if (player.Creature.HasPower<GrapeshotPower>())
@@ -95,7 +96,7 @@ public static class FireAmmoCmd
                 {
                     await ShotHelper.CreateMissile(combatState, null, skipWait: true);
                     foreach (var t in combatState.HittableEnemies)
-                        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
+                        await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(),
                             t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
                 }
                 else
@@ -103,7 +104,7 @@ public static class FireAmmoCmd
                     var followTarget = AmmoResource.PickShotTarget(player, combatState);
                     await ShotHelper.CreateMissile(combatState, followTarget, skipWait: true);
                     if (followTarget == null) continue;
-                    await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(),
+                    await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(),
                         followTarget, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
                 }
             }
