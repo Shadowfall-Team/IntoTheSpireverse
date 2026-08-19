@@ -1,4 +1,5 @@
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -58,7 +59,7 @@ public class Hijack() : ShadowRegentCard(
 
         if (stolenBlock > 0)
         {
-            await CreatureCmd.LoseBlock(choiceContext, target, stolenBlock, Owner.Creature);
+            await CreatureCmdCompatibility.LoseBlock(choiceContext, target, stolenBlock, Owner.Creature);
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, ValueProp.Unpowered, cardPlay);
         }
 
