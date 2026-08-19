@@ -16,7 +16,7 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
     private const string _discardKey = "Discard";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(2),
+        new CardsVar(1),
         new DynamicVar(_discardKey, 1m),
     ];
     
@@ -62,6 +62,6 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

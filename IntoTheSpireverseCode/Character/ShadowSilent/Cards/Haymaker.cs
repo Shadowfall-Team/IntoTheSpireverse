@@ -11,12 +11,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
+public sealed class Haymaker() : ShadowSilentCard(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(10m, ValueProp.Move),
-        new PowerVar<WeakPower>(3m),
+        new PowerVar<WeakPower>(2m),
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
