@@ -16,7 +16,7 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
     private const string _discardKey = "Discard";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(1),
+        new CardsVar(2),
         new DynamicVar(_discardKey, 1m),
     ];
     
@@ -56,12 +56,15 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
                 repeats = deviousListener.ModifyDeviousValue(card, repeats);
         }
 
-        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue*repeats, Owner);
-        await CardCmd.Discard(choiceContext, await CardSelectCmd.FromHandForDiscard(choiceContext, Owner, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, DynamicVars[_discardKey].IntValue*repeats),  null, this));
+        if (repeats > 0)
+        {
+            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue*repeats, Owner);
+            await CardCmd.Discard(choiceContext, await CardSelectCmd.FromHandForDiscard(choiceContext, Owner, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, DynamicVars[_discardKey].IntValue*repeats),  null, this));
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
     }
 }
