@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -30,7 +31,7 @@ public sealed class StashAway() : ShadowSilentCard(1, CardType.Skill, CardRarity
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         foreach (CardModel card in await CardSelectCmd.FromHand(choiceContext, Owner, new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue), (Func<CardModel, bool>) (c => !c.Keywords.Contains(CardKeyword.Retain)), this))
-            CardCmd.ApplySingleTurnRetain(card);
+            CardCmdCompatibility.ApplySingleTurnRetain(card);
     }
 
     protected override void OnUpgrade()
