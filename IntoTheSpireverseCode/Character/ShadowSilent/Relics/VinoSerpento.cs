@@ -1,8 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Entities.Relics;
+﻿using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 
@@ -13,6 +15,7 @@ public class VinoSerpento : ShadowSilentRelic
     public override RelicRarity Rarity => RelicRarity.Common;
 
     private bool _wasUsedThisCombat;
+    private bool _wasTriggered;
     
     private bool WasUsedThisCombat
     {
@@ -21,6 +24,16 @@ public class VinoSerpento : ShadowSilentRelic
         {
             AssertMutable();
             _wasUsedThisCombat = value;
+        }
+    }
+    
+    private bool WasTriggered
+    {
+        get => _wasTriggered;
+        set
+        {
+            AssertMutable();
+            _wasTriggered = value;
         }
     }
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -37,11 +50,13 @@ public class VinoSerpento : ShadowSilentRelic
         if (!(room is CombatRoom))
             return Task.CompletedTask;
         WasUsedThisCombat = false;
+        WasTriggered = false;
         Status = RelicStatus.Active;
         return Task.CompletedTask;
     }
     public override Task AfterCombatEnd(CombatRoom _)
     {
+        WasTriggered = false;
         WasUsedThisCombat = false;
         Status = RelicStatus.Normal;
         return Task.CompletedTask;
@@ -54,14 +69,21 @@ public class VinoSerpento : ShadowSilentRelic
         Creature? target,
         CardModel? cardSource)
     {
-        return !(power is PoisonPower) || giver != Owner.Creature || WasUsedThisCombat ? 0M : DynamicVars.Poison.BaseValue;
+        return !(power is PoisonPower) || cardSource == null || giver != Owner.Creature || WasUsedThisCombat ? 0M : DynamicVars.Poison.BaseValue;
     }
 
-    public override Task AfterModifyingPowerAmountGiven(PowerModel power)
+    public override async Task AfterModifyingPowerAmountGiven(PowerModel power)
     {
         Flash();
-        WasUsedThisCombat = true;
-        Status = RelicStatus.Normal;
-        return Task.CompletedTask;
+        WasTriggered = true;
+    }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (WasTriggered && cardPlay.Player == Owner && !WasUsedThisCombat)
+        {
+            WasUsedThisCombat = true;
+            Status = RelicStatus.Normal;
+        }
     }
 }
