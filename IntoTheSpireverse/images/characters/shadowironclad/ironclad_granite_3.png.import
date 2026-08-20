@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqhru5era5krl"
-path="res://.godot/imported/ironclad_shop_3.png-3f9610f34d813c9d5bf03c4b46972383.ctex"
+uid="uid://kykgibxtxokn"
+path="res://.godot/imported/ironclad_granite_3.png-78ef8d292c5923f23515a9525cc57373.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/characters/shadowironclad/ironclad_shop_3.png"
-dest_files=["res://.godot/imported/ironclad_shop_3.png-3f9610f34d813c9d5bf03c4b46972383.ctex"]
+source_file="res://IntoTheSpireverse/images/characters/shadowironclad/ironclad_granite_3.png"
+dest_files=["res://.godot/imported/ironclad_granite_3.png-78ef8d292c5923f23515a9525cc57373.ctex"]
 
 [params]
 

@@ -1,0 +1,263 @@
+ironclad_granite.png
+size:1329,269
+filter:Linear,Linear
+scale:0.372
+back mask
+bounds:417,5,56,49
+belt
+bounds:1038,184,83,33
+rotate:90
+belt 2
+bounds:869,127,26,35
+offsets:0,1,26,36
+rotate:90
+belt 3
+bounds:575,63,27,45
+bod
+bounds:779,155,95,112
+offsets:0,0,96,112
+bottom lower arm
+bounds:505,60,48,38
+offsets:11,0,59,39
+rotate:90
+bottom upper arm
+bounds:1186,193,33,74
+bottom_hand
+bounds:1297,233,34,30
+offsets:0,0,34,32
+rotate:90
+bottom_hand_fingers
+bounds:1283,150,34,30
+offsets:0,0,34,32
+rotate:90
+collar_back
+bounds:604,63,45,18
+rotate:90
+eye glow
+bounds:816,125,28,26
+rotate:90
+hair
+bounds:545,63,28,45
+head
+bounds:624,64,44,54
+rotate:90
+hip armor right back
+bounds:680,77,18,22
+rotate:90
+hip bottom armor
+bounds:680,97,22,25
+hip top bottom
+bounds:680,65,10,15
+rotate:90
+hips
+bounds:535,2,89,56
+l foot
+bounds:906,125,56,43
+l hip armor bottom
+bounds:1242,130,67,39
+rotate:90
+l hip armor top
+bounds:1221,199,68,40
+offsets:1,0,69,40
+rotate:90
+l knee
+bounds:177,2,53,52
+offsets:0,0,54,52
+l lower leg
+bounds:323,3,51,92
+offsets:4,8,55,100
+rotate:90
+l neck armor
+bounds:844,125,23,28
+l shoulder armor bottom
+bounds:1185,145,41,34
+rotate:90
+l shoulder armor top
+bounds:1263,227,40,32
+rotate:90
+l upper leg
+bounds:954,184,82,83
+neck
+bounds:1067,129,41,53
+r foot
+bounds:136,2,36,39
+rotate:90
+r hip armor bottom
+bounds:54,2,80,36
+r hip armor top
+bounds:1073,185,82,34
+rotate:90
+r knee
+bounds:232,2,52,46
+offsets:0,0,54,46
+rotate:90
+r lower leg
+bounds:1110,125,61,73
+offsets:0,0,61,80
+rotate:90
+r neck armor
+bounds:779,125,35,28
+r shoulder armor bottom
+bounds:280,2,52,41
+offsets:0,0,54,41
+rotate:90
+r shoulder armor top
+bounds:964,126,56,32
+rotate:90
+r upper leg
+bounds:876,170,76,97
+shadow
+bounds:2,4,263,50
+offsets:6,1,270,52
+rotate:90
+shine
+bounds:1185,126,30,17
+offsets:0,1,30,19
+slash
+bounds:174,56,329,211
+offsets:0,0,341,211
+slash2
+bounds:704,2,610,120
+offsets:222,180,856,395
+sword blade
+bounds:54,40,118,227
+sword_handle
+bounds:626,4,58,76
+offsets:0,0,58,77
+rotate:90
+tired_puff
+bounds:1217,127,23,16
+top hand
+bounds:1283,186,39,34
+rotate:90
+top lower arm
+bounds:998,127,67,55
+offsets:0,1,67,56
+top mask
+bounds:475,6,48,58
+rotate:90
+top upper arm
+bounds:1109,188,79,75
+rotate:90
+zaps1
+bounds:505,110,157,129
+offsets:0,1,158,130
+rotate:90
+zaps_2
+bounds:636,124,143,141
+offsets:2,3,146,145
+rotate:90
+
+ironclad_granite_2.png
+size:142,480
+filter:Linear,Linear
+scale:0.372
+attack/bod attack
+bounds:2,389,89,98
+rotate:90
+attack/bottom hand attack
+bounds:96,2,41,37
+attack/bottom lower arm attack
+bounds:91,305,72,47
+offsets:1,0,74,50
+rotate:90
+attack/bottom upper arm attack
+bounds:2,260,75,83
+rotate:90
+attack/front arm attack
+bounds:2,183,79,75
+attack/front bracer attack
+bounds:102,379,48,38
+offsets:3,2,71,41
+rotate:90
+attack/front hand attack
+bounds:2,5,34,32
+attack/l ankle attack
+bounds:2,39,39,29
+offsets:0,0,41,29
+attack/l foot attack
+bounds:102,429,38,49
+attack/l knee attack
+bounds:87,246,57,52
+offsets:1,0,60,52
+rotate:90
+attack/l leg attack
+bounds:2,337,50,87
+offsets:2,0,52,87
+rotate:90
+attack/l neck armor attack
+bounds:38,4,33,33
+offsets:0,0,34,33
+attack/l shoulder bottom attack
+bounds:78,122,51,40
+attack/l shoulder bottom back attack
+bounds:49,39,40,45
+offsets:8,0,48,53
+rotate:90
+attack/l shoulder top attack
+bounds:83,213,57,31
+attack/r foot attack
+bounds:2,70,45,41
+attack/r knee attack
+bounds:83,164,56,47
+offsets:2,1,58,49
+attack/r lower leg attack
+bounds:2,113,68,74
+rotate:90
+attack/r neck armor attack
+bounds:49,95,16,24
+rotate:90
+attack/r shoulder bottom attack
+bounds:78,81,39,46
+offsets:13,0,52,56
+rotate:90
+attack/r shoulder top attack
+bounds:96,41,38,42
+offsets:0,1,38,44
+rotate:90
+
+ironclad_granite_3.png
+size:492,107
+filter:Linear,Linear
+scale:0.372
+death/body death
+bounds:2,2,126,103
+death/bottom shoulder death
+bounds:358,4,50,43
+offsets:1,1,51,44
+death/bracer_death
+bounds:176,60,84,45
+death/hair death
+bounds:249,6,42,53
+rotate:90
+death/hand death
+bounds:458,52,53,32
+rotate:90
+death/head death
+bounds:262,50,68,55
+offsets:0,0,69,55
+death/knee_death
+bounds:304,4,43,52
+offsets:1,0,44,52
+rotate:90
+death/lower arm_death
+bounds:332,49,66,56
+death/lower leg_death
+bounds:130,6,44,99
+offsets:1,0,45,99
+death/open hand_death
+bounds:410,17,40,42
+death/top shoulder death
+bounds:400,61,56,44
+offsets:6,6,68,55
+death/upper arm_death
+bounds:176,2,56,71
+offsets:1,0,57,71
+rotate:90
+
+ironclad_granite_4.png
+size:19,49
+filter:Linear,Linear
+scale:0.372
+slash/slash_placeholder
+bounds:2,2,15,45
