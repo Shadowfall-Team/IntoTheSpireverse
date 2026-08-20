@@ -37,13 +37,12 @@ public sealed class MasterfulStab() : ShadowSilentCard(0, CardType.Attack, CardR
             .Execute(choiceContext);
     }
 
-    public override Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
         if (!CombatManager.Instance.IsInProgress || target != Owner.Creature || result.UnblockedDamage <= 0)
-            return Task.CompletedTask;
+            return;
         EnergyCost.AddThisCombat(DynamicVars.Energy.IntValue);
-        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade()
