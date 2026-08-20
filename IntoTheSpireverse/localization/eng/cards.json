@@ -130,7 +130,7 @@
   "INTOTHESPIREVERSE-SPEARHEAD.title": "Spearhead",
   "INTOTHESPIREVERSE-SPEARHEAD.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for each other card in your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-DISGUISE.title": "Disguise",
-  "INTOTHESPIREVERSE-DISGUISE.description": "When this card is discarded, reduce its cost by {Energy:energyIcons()} this combat.\nAdd {Cards:diff()} [gold]{Cards:plural:Scale|Scales}[/gold] into your Hand.",
+  "INTOTHESPIREVERSE-DISGUISE.description": "When this card is discarded, reduce its cost by {Energy:energyIcons()} this combat.\nAdd {Cards:diff()} [gold]{Cards:plural:Scale|Scales}[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-ANOINT.title": "Anoint",
   "INTOTHESPIREVERSE-ANOINT.description": "Whenever an Attack deals unblocked damage this turn, apply {AnointPower:diff()} [gold]Poison[/gold].",
   "INTOTHESPIREVERSE-DONT_BLINK.title": "Don't Blink",
