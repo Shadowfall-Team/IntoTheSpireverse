@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cghtlla3sw0po" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_3dwrg"]
 [ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowregent/shadowregent_skel_data.tres" id="3_jb1vq"]
-[ext_resource type="Texture2D" uid="uid://bbky6h6d3y3jc" path="res://images/vfx/characters/regent_sparkle.png" id="4_2hmwe"]
-[ext_resource type="Script" uid="uid://cr0gibht34x4p" path="res://src/Core/Nodes/Vfx/NRegentVfx.cs" id="4_sn882"]
-[ext_resource type="SpineSkeletonDataResource" uid="uid://tjpvqmcen4vb" path="res://animations/characters/regent/regent_weapon_skel_data.tres" id="7_howi0"]
-[ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://themes/canvas_item_material_additive_shared.tres" id="shared_additive_mat"]
+[ext_resource type="Texture2D" uid="uid://bbky6h6d3y3jc" path="res://IntoTheSpireverse/images/vfx/regent_sparkle.png" id="4_2hmwe"]
+[ext_resource type="Script" uid="uid://cr0gibht34x4p" path="res://IntoTheSpireverseCode/utils/NRegentVfx.cs" id="4_sn882"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://tjpvqmcen4vb" path="res://IntoTheSpireverse/images/characters/shadow/shadowregent_weapon_skel_data.tres" id="7_howi0"]
+[ext_resource type="Material" uid="uid://c4ycqv0gdxvmr" path="res://IntoTheSpireverse/shaders/canvas_item_material_additive_shared.tres" id="shared_additive_mat"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_53uu0"]
 

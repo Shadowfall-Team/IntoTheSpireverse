@@ -1,5 +1,6 @@
 using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
@@ -47,6 +48,9 @@ public static class FireAmmoCmd
         {
             return false;
         }
+        string animName = player.Character is ShadowRegent ? "sovereignBladeTrigger" : "Cast";
+        float delay = player.Character is ShadowRegent ? 0.25f : player.Character.CastAnimDelay;
+        await CreatureCmd.TriggerAnim(player.Creature, animName, delay);
 
         // Doubles as the cardSource on every damage call below, which is how powers such as
         // PiercedPower tell an Ammo shot apart from other Unpowered damage.
@@ -84,6 +88,7 @@ public static class FireAmmoCmd
 
         var results = await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(),
             targets, shotDamage, ValueProp.Unpowered, player.Creature, phantomCard, null);
+        SfxCmd.Play("event:/sfx/characters/regent/regent_sovereign_blade");
 
         if (player.Creature.HasPower<GrapeshotPower>())
         {
@@ -97,7 +102,8 @@ public static class FireAmmoCmd
                     await ShotHelper.CreateMissile(combatState, null, skipWait: true);
                     foreach (var t in combatState.HittableEnemies)
                         await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(),
-                            t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
+                            t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null); 
+                    SfxCmd.Play("event:/sfx/characters/regent/regent_sovereign_blade");
                 }
                 else
                 {
@@ -106,6 +112,7 @@ public static class FireAmmoCmd
                     if (followTarget == null) continue;
                     await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(),
                         followTarget, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
+                    SfxCmd.Play("event:/sfx/characters/regent/regent_sovereign_blade");
                 }
             }
         }

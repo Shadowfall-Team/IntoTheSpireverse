@@ -2,6 +2,7 @@
 using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
+#nullable disable
 namespace IntoTheSpireverse.IntoTheSpireverseCode.utils;
 
 public partial class NIroncladVfx : Node

@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://tjpvqmcen4vb"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://u0e8t6d1wowb" path="res://IntoTheSpireverse/images/characters/shadowregent/regent_weapon.atlas" id="1_t438k"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://bitv6cp6gcvao" path="res://IntoTheSpireverse/images/characters/shadowregent/regent_weapon.skel" id="2_xhuth"]
+
+[resource]
+atlas_res = ExtResource("1_t438k")
+skeleton_file_res = ExtResource("2_xhuth")

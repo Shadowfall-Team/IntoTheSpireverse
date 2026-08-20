@@ -3,6 +3,7 @@ using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Relics;
 using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -81,5 +82,13 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override string CustomCharacterSelectBg => "res://IntoTheSpireverse/scenes/screens/char_select/shadowregent.tscn";
     public override string CustomRestSiteAnimPath => "res://IntoTheSpireverse/scenes/rest_site/shadowregent_rest_site.tscn";
     public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/shadowregent_merchant.tscn";
-
+    
+    protected override List<(AnimState, string)> AnimationStates =>
+    [
+        (new AnimState("attack"), "Attack"),
+        (new AnimState("hurt"), "Hit"),
+        (new AnimState("cast"), "Cast"),
+        (new AnimState("cast"), "PowerUp"),
+        (new AnimState("attack_sovereign"), "sovereignBladeTrigger")
+    ];
 }
