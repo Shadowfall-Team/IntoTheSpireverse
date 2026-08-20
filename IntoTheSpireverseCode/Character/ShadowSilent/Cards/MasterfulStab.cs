@@ -40,7 +40,7 @@ public sealed class MasterfulStab() : ShadowSilentCard(0, CardType.Attack, CardR
     public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
-        if (!CombatManager.Instance.IsInProgress || target != Owner.Creature || result.UnblockedDamage <= 0 || (Pile != null && Pile.IsCombatPile))
+        if (!CombatManager.Instance.IsInProgress || target != Owner.Creature || result.UnblockedDamage <= 0 || (Pile != null && !Pile.IsCombatPile))
             return;
         EnergyCost.AddThisCombat(DynamicVars.Energy.IntValue);
     }
