@@ -7,14 +7,15 @@ using MegaCrit.Sts2.Core.Modding;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 #if DEFECT
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 #endif
 #if NECROBINDER
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
 #endif
-
+#if SILENT
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
+#endif
 namespace IntoTheSpireverse;
 
 [ModInitializer(nameof(Initialize))]
@@ -42,7 +43,9 @@ public partial class MainFile : Node
 
         CustomCharacterUtils.TryOrderCustomCharacters([
             typeof(ShadowIronclad),
+#if NECROBINDER
             typeof(ShadowSilent),
+#endif
             typeof(ShadowRegent),
 #if NECROBINDER
             typeof(ShadowNecrobinder),
