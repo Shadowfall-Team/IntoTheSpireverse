@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://bitv6cp6gcvao"
+path="res://.godot/imported/regent_weapon.skel-ce811589a2f65baf2738a7d16b741240.spskel"
+
+[deps]
+
+source_file="res://IntoTheSpireverse/images/characters/shadowregent/regent_weapon.skel"
+dest_files=["res://.godot/imported/regent_weapon.skel-ce811589a2f65baf2738a7d16b741240.spskel"]
+
+[params]
+

@@ -18,7 +18,7 @@ public class AmmoTargetTracker() : CustomSingletonModel(HookType.Combat)
         if (cardPlay.Card.Type != CardType.Attack) return Task.CompletedTask;
         if (cardPlay.Target is not { Side: CombatSide.Enemy } target) return Task.CompletedTask;
 
-        AmmoResource.SetLastAttackTarget(cardPlay.Player, target);
+        AmmoResource.SetLastAttackTarget(cardPlay.Card.Owner, target);
         return Task.CompletedTask;
     }
 }

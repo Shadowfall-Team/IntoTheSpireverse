@@ -13,10 +13,10 @@ using MegaCrit.Sts2.Core.Models.Characters;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
 [SuppressMessage("Localization", "STS001:Symbol missing localization")]
-public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
+public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "silent";
-    public const string CharacterId = "IntoTheSpireverse";
+    public const string CharacterId = "silent";
 
     public static readonly Color Color = StsColors.orange;
 

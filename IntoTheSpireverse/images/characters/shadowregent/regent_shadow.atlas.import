@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://cvws0rg67k8am"
+path="res://.godot/imported/regent_shadow.atlas-efe910f86852218b7d93c50e5641b64f.spatlas"
+
+[deps]
+
+source_file="res://IntoTheSpireverse/images/characters/shadowregent/regent_shadow.atlas"
+dest_files=["res://.godot/imported/regent_shadow.atlas-efe910f86852218b7d93c50e5641b64f.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

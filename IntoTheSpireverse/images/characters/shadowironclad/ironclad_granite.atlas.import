@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://lbr0fh0sl2u"
+path="res://.godot/imported/ironclad_granite.atlas-26883cebed21c53e0c3fca875298bf6e.spatlas"
+
+[deps]
+
+source_file="res://IntoTheSpireverse/images/characters/shadowironclad/ironclad_granite.atlas"
+dest_files=["res://.godot/imported/ironclad_granite.atlas-26883cebed21c53e0c3fca875298bf6e.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

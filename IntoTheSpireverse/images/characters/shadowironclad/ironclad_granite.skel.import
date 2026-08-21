@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://bi3va33tlahgq"
+path="res://.godot/imported/ironclad_granite.skel-7bb5378d5ec84420e5a5e7e883ae395a.spskel"
+
+[deps]
+
+source_file="res://IntoTheSpireverse/images/characters/shadowironclad/ironclad_granite.skel"
+dest_files=["res://.godot/imported/ironclad_granite.skel-7bb5378d5ec84420e5a5e7e883ae395a.spskel"]
+
+[params]
+

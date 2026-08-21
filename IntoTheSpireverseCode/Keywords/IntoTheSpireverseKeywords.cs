@@ -11,8 +11,9 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
-
+#if SILENT
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
+#endif
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
@@ -130,10 +131,12 @@ public static class IntoTheSpireverseKeywords
         int currentCost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         int newCost;
         int maxCostReduce = 0;
+#if SILENT
         if (card.Owner.Creature.HasPower<OathOfDevotionPower>())
         {
             maxCostReduce = card.Owner.Creature.GetPowerAmount<OathOfDevotionPower>();
         }
+#endif
 
         if (currentCost >= 0 && currentCost <= 3)
         {
