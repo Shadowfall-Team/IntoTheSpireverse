@@ -2,43 +2,187 @@ name: Publish
 on:
   push:
     branches:
+      - production
       - main
-      - production-2chars-2
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      upload_to_workshop:
+        description: 'Upload the built mod to the Steam Workshop'
+        type: boolean
+        required: false
+        default: false
+      change_note:
+        description: 'Changelog note shown to subscribers on the Workshop'
+        type: string
+        required: false
+        default: ''
 permissions:
-  contents: write
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  MEGADOT_VERSION: 4.5.1-m.11
+  GODOT_ENGINE_VERSION: 4.5.1-stable
+  SPINE_GODOT_MAJOR: '4.2'
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
+      - name: Read mod version
+        id: version
+        run: |
+          RAW=$(jq -r '.version' IntoTheSpireverse.json)
+          VERSION="${RAW#v}"
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "IntoTheSpireverse.json version '$RAW' is not a valid vX.Y.Z semver"; exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj', 'nuget.config') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+      - name: Cache MegaDot editor
+        id: cache-megadot
+        uses: actions/cache@v4
+        with:
+          path: megadot
+          key: megadot-${{ env.MEGADOT_VERSION }}-linux-x86_64
       - name: Install MegaDot
+        if: steps.cache-megadot.outputs.cache-hit != 'true'
         run: |
-          curl -L -o megadot.zip "https://megadot.megacrit.com/4.5.1-m.11/megadot-4.5.1-m.11-linux-x86_64-editor-csharp.zip"
+          curl -fL --retry 3 --retry-delay 5 -o megadot.zip "https://megadot.megacrit.com/${MEGADOT_VERSION}/megadot-${MEGADOT_VERSION}-linux-x86_64-editor-csharp.zip"
           unzip -q megadot.zip -d megadot
           chmod +x megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64
-          echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Set GODOT_PATH
+        run: echo "GODOT_PATH=$(pwd)/megadot/MegaDot_v4.5.1-stable_mono_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Cache spine-godot extension
+        id: cache-spine
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/bin
+          key: spine-godot-${{ env.SPINE_GODOT_MAJOR }}-${{ env.GODOT_ENGINE_VERSION }}
       - name: Install spine-godot extension
+        if: steps.cache-spine.outputs.cache-hit != 'true'
         run: |
-          curl -fL --retry 3 -o spine-godot.zip \
-            "https://spine-godot.s3.eu-central-1.amazonaws.com/4.2/4.5.1-stable/spine-godot-extension-4.2-4.5.1-stable.zip"
+          curl -fL --retry 3 --retry-delay 5 -o spine-godot.zip \
+            "https://spine-godot.s3.eu-central-1.amazonaws.com/${SPINE_GODOT_MAJOR}/${GODOT_ENGINE_VERSION}/spine-godot-extension-${SPINE_GODOT_MAJOR}-${GODOT_ENGINE_VERSION}.zip"
           unzip -oq spine-godot.zip -d "${{ github.workspace }}"
+      # Cache Godot's asset import results, keyed on asset content + engine version, so
+      # unchanged images/materials/shaders don't get reimported on every run.
+      - name: Cache Godot import results
+        uses: actions/cache@v4
+        with:
+          path: .godot/imported
+          key: godot-import-${{ env.MEGADOT_VERSION }}-${{ hashFiles('**/*.png', '**/*.svg', '**/*.wav', '**/*.ogg', '**/*.spine-json', '**/*.skel', '**/*.import') }}
+          restore-keys: |
+            godot-import-${{ env.MEGADOT_VERSION }}-
       - name: Import Godot resources
         run: |
-          "$GODOT_PATH" --headless --import || true
-          "$GODOT_PATH" --headless --import
+          "$GODOT_PATH" --headless --audio-driver Dummy --import || true
+          "$GODOT_PATH" --headless --audio-driver Dummy --import
+      - name: Determine configuration
+        id: config
+        run: |
+          if [ "$GITHUB_REF_NAME" = "production" ]; then
+            echo "configuration=Production" >> "$GITHUB_OUTPUT"
+          else
+            echo "configuration=Release" >> "$GITHUB_OUTPUT"
+          fi
       - name: Publish
         run: |
           mkdir -p "${{ github.workspace }}/output/mods"
-          dotnet publish IntoTheSpireverse.csproj -c Release \
+          dotnet publish IntoTheSpireverse.csproj -c "${{ steps.config.outputs.configuration }}" \
           /p:GodotPath="$GODOT_PATH" \
-          /p:ModsPath="${{ github.workspace }}/output/mods/"
+          /p:ModsPath="${{ github.workspace }}/output/mods/" \
+          /p:Version="${{ steps.version.outputs.version }}" \
+          /p:AssemblyVersion="${{ steps.version.outputs.version }}.0" \
+          /p:FileVersion="${{ steps.version.outputs.version }}.0"
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: IntoTheSpireverse
           path: output/mods
+          retention-days: 14
+  # IMPORTANT: STEAM_USERNAME, STEAM_CONFIG_VDF and WORKSHOP_ITEM_ID must be defined as
+  # *environment* secrets/variables on the "workshop" environment (Settings > Environments >
+  # workshop), NOT as repository-level Actions secrets/variables. The "workshop" environment
+  # must also have a "Required reviewers" protection rule configured so this job pauses for
+  # manual approval from someone with elevated permissions before it can run and access the
+  # secrets. Moving these back to repo-level secrets silently removes the approval gate.
+  workshop-upload:
+    if: github.event_name == 'workflow_dispatch' && inputs.upload_to_workshop == true
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: workshop
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download mod artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: IntoTheSpireverse
+          path: output/mods
+      - name: Upload to Steam Workshop
+        uses: m00nl1ght-dev/steam-workshop-deploy@v4
+        with:
+          username: ${{ secrets.STEAM_USERNAME }}
+          configVdf: ${{ secrets.STEAM_CONFIG_VDF }}
+          appId: '2868840'
+          publishedFileId: ${{ vars.WORKSHOP_ITEM_ID }}
+          path: output/mods/IntoTheSpireverse
+          changeNote: ${{ inputs.change_note }}
+      - name: Package release zip
+        run: |
+          VERSION="${{ needs.publish.outputs.version }}"
+          test -d output/mods/IntoTheSpireverse || { echo "Built mod folder missing"; exit 1; }
+          cd output/mods
+          zip -r "../../IntoTheSpireverse-$VERSION.zip" IntoTheSpireverse
+          cd ../..
+      - name: Build compatibility banner
+        run: |
+          MIN_GAME=$(jq -r '.min_game_version' IntoTheSpireverse.json)
+          BASELIB=$(jq -r '.dependencies[] | select(.id=="BaseLib") | .min_version' IntoTheSpireverse.json)
+          {
+            echo "Works with Slay the Spire 2 version ${MIN_GAME:-unknown} or newer."
+            echo "Requires BaseLib ${BASELIB:-unknown} (not included — install it separately)."
+            echo ""
+            echo "${{ inputs.change_note }}"
+          } > banner.md
+      - name: Determine release tag
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          base_version="v${{ needs.publish.outputs.version }}"
+          if gh release view "$base_version" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            tag="${base_version}+${{ github.run_number }}"
+          else
+            tag="$base_version"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ${{ steps.version.outputs.tag }}
+          body_path: banner.md
+          generate_release_notes: true
+          target_commitish: ${{ github.sha }}
+          files: |
+            IntoTheSpireverse-${{ needs.publish.outputs.version }}.zip
+            output/mods/IntoTheSpireverse/*.pdb
