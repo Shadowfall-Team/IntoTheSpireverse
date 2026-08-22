@@ -1,15 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://1sb3yjut1s62"]
+[gd_scene load_steps=15 format=3 uid="uid://1sb3yjut1s62"]
 
 [ext_resource type="Script" uid="uid://cghtlla3sw0po" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_v62mv"]
-[ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowironclad/shadowironclad_skel_data.tres" id="2_0jedi"]
-[ext_resource type="Shader" uid="uid://dfgtak7it7exn" path="res://images/vfx/slash_shader_flat.tres" id="3_rq7c3"]
-[ext_resource type="Script" uid="uid://h351k838kpyg" path="res://src/Core/Nodes/Vfx/NIroncladVfx.cs" id="3_wdh0x"]
-[ext_resource type="Texture2D" uid="uid://ihjpxxm3o87h" path="res://images/vfx/fire/basic_fire_noise.png" id="4_x8wap"]
-[ext_resource type="Texture2D" uid="uid://bsw3nxvr118xr" path="res://images/vfx/characters/ironclad_slash_base.png" id="6_g8ov4"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://q85sn8sw4g2e" path="res://IntoTheSpireverse/images/characters/shadowironclad/shadowironclad_skel_data.tres" id="2_0jedi"]
+[ext_resource type="Shader" uid="uid://dfgtak7it7exn" path="res://IntoTheSpireverse/shaders/slash_shader_flat.tres" id="3_rq7c3"]
+[ext_resource type="Script" uid="uid://b5eutb4qttasw" path="res://IntoTheSpireverseCode/utils/NIroncladVfx.cs" id="3_wdh0x"]
+[ext_resource type="Texture2D" uid="uid://ihjpxxm3o87h" path="res://IntoTheSpireverse/images/vfx/fire/basic_fire_noise.png" id="4_x8wap"]
+[ext_resource type="Texture2D" uid="uid://bsw3nxvr118xr" path="res://IntoTheSpireverse/images/vfx/ironclad_slash_base.png" id="6_g8ov4"]
+[ext_resource type="Texture2D" uid="uid://1epaordiol6u" path="res://IntoTheSpireverse/images/vfx/fire/zigzag_fire_distortion.png" id="8_5fe08"]
+[ext_resource type="Texture2D" uid="uid://budy2d7yemg6w" path="res://IntoTheSpireverse/images/vfx/tileable_noise_1.png" id="10_kxwhb"]
+[ext_resource type="Texture2D" uid="uid://ctia3rua3hmm8" path="res://IntoTheSpireverse/images/vfx/fire/basic_fire_gradient.png" id="12_ctmrv"]
+[ext_resource type="Shader" uid="uid://dryvqo67omhm" path="res://IntoTheSpireverse/shaders/vfx_stepped_shader_fire_flat.tres" id="14_hr6i4"]
+[ext_resource type="Texture2D" uid="uid://nabb7hx4fxat" path="res://IntoTheSpireverse/images/vfx/fire/fire_bottom_mask.png" id="15_31xg7"]
+[ext_resource type="Texture2D" uid="uid://c65hcljas0pyo" path="res://IntoTheSpireverse/images/vfx/fire/triangle_noise_tile.png" id="16_5sqpu"]
+[ext_resource type="Texture2D" uid="uid://r5xwt5ebhstx" path="res://IntoTheSpireverse/images/vfx/ironclad_eye_fire_base.png" id="17_5fe08"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rq7c3"]
 shader = ExtResource("3_rq7c3")
-shader_parameter/ColorParameter = Color(0.99, 0.34319997, 0.19799998, 1)
+shader_parameter/ColorParameter = Color(0.7607843, 0.3647059, 0.3372549, 1)
 shader_parameter/step = Vector2(0, 0.02)
 shader_parameter/master_step = 1.0
 shader_parameter/shape_mask_tex = ExtResource("6_g8ov4")
@@ -22,6 +29,36 @@ shader_parameter/noise_2_panning = Vector2(-0.1, -2.2)
 shader_parameter/noise_2_tex = ExtResource("4_x8wap")
 shader_parameter/noise_2_strength = 1.0
 shader_parameter/opacity = 0.8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xlhoc"]
+shader = ExtResource("14_hr6i4")
+shader_parameter/OuterColor = Color(0.54901963, 0.11764706, 0.16078432, 1)
+shader_parameter/InnerColorStep = Vector2(0.24, 0.49)
+shader_parameter/Noise2Strength = 1.085
+shader_parameter/Noise2Scaling = Vector2(1, 1)
+shader_parameter/Noise2Panning = Vector2(0.4, 0.8)
+shader_parameter/Noise2Texture = ExtResource("10_kxwhb")
+shader_parameter/Noise1Strength = 0.435
+shader_parameter/Noise1Scaling = Vector2(0.8, 0.8)
+shader_parameter/Noise1Panning = Vector2(0.2, 1)
+shader_parameter/Noise1Texture = ExtResource("16_5sqpu")
+shader_parameter/InvertNoiseMask = false
+shader_parameter/NoiseMaskScale = Vector2(1, 1.305)
+shader_parameter/NoiseMaskOffset = Vector2(0, -0.77)
+shader_parameter/NoiseMask = ExtResource("12_ctmrv")
+shader_parameter/Distortion2Scale = Vector2(1, 1)
+shader_parameter/Distortion2Panning = Vector2(0.4, 0.4)
+shader_parameter/Distortion2Texture = ExtResource("10_kxwhb")
+shader_parameter/Distortion2Strength = 0.17
+shader_parameter/Distortion1Scale = Vector2(1, 1)
+shader_parameter/Distortion1Panning = Vector2(0, 1.5)
+shader_parameter/Distortion1Texture = ExtResource("8_5fe08")
+shader_parameter/Distortion1Strength = -0.075
+shader_parameter/DistortionMaskScale = Vector2(1, 2)
+shader_parameter/DistortionMaskOffset = Vector2(0, -0.72)
+shader_parameter/DistortionMask = ExtResource("15_31xg7")
+shader_parameter/InnerColor = Color(0.65488935, 0.28971776, 0.01632393, 1)
+shader_parameter/OuterStep = Vector2(0.07, 0.17)
 
 [node name="Ironclad" type="Node2D"]
 script = ExtResource("1_v62mv")
@@ -49,6 +86,21 @@ slot_name = "slash_mesh"
 show_behind_parent = true
 position = Vector2(1183.4478, -1660.7097)
 scale = Vector2(9.459185, 9.459185)
+
+[node name="EyeSlot" type="SpineSlotNode" parent="Visuals"]
+slot_name = "eye_attach_slot"
+show_behind_parent = true
+position = Vector2(826.2738, -609.9507)
+rotation = -0.41227365
+
+[node name="EyeFire" type="TextureRect" parent="Visuals/EyeSlot"]
+material = SubResource("ShaderMaterial_xlhoc")
+offset_left = -205.07704
+offset_top = -450.1532
+offset_right = 294.92322
+offset_bottom = 49.846893
+scale = Vector2(0.83232564, 1.1308773)
+texture = ExtResource("17_5fe08")
 
 [node name="NIroncladVfx" type="Node" parent="Visuals"]
 script = ExtResource("3_wdh0x")

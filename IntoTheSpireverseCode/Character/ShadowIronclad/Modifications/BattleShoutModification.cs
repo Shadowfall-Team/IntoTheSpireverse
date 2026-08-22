@@ -1,5 +1,6 @@
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Modifications;
+using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
@@ -10,7 +11,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Modif
 /// <summary>
 /// Applied by Battle Shout: the modified Attack deals additional damage.
 /// </summary>
-public sealed class BattleShoutModification : Modification
+public sealed class BattleShoutModification : Modification, IModifyDamageAdditive
 {
     protected override ModelId SourceCardId => ModelDb.Card<BattleShout>().Id;
 
@@ -28,12 +29,12 @@ public sealed class BattleShoutModification : Modification
     /// cardSource is set for previews as well as real plays, so the bonus shows in the card's
     /// displayed damage rather than only appearing on hit.
     /// </summary>
-    public override decimal ModifyDamageAdditive(
-        Creature? target,
-        decimal amount,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource,
+    public decimal ModifyDamageAdditiveCompability(
+        Creature? target, 
+        decimal amount, 
+        ValueProp props, 
+        Creature? dealer, 
+        CardModel? cardSource, 
         CardPlay? cardPlay) =>
         cardSource == Owner ? Amount : 0m;
 }

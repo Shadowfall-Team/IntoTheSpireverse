@@ -1,8 +1,10 @@
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
@@ -13,7 +15,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 public class BraceForImpact() : ShadowRegentCard(2,
     CardType.Skill,
     CardRarity.Rare,
-    TargetType.Self)
+    TargetType.Self), ICardDestinationListener
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -31,14 +33,14 @@ public class BraceForImpact() : ShadowRegentCard(2,
     /// "Put this into Cargo if it's not there." Routing the post-play move covers both cases in
     /// one place: played from hand it lands in Cargo, auto-played from Cargo it returns there.
     /// </summary>
-    public override CardLocation ModifyCardPlayResultLocation(
+    public CardDestination ModifyCardDestination(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        CardLocation cardLocation)
+        CardDestination destination)
     {
-        if (card != this) return cardLocation;
-        return cardLocation with { pileType = CargoCardPile.CargoPileType };
+        if (card != this) return destination;
+        return destination with { PileType = CargoCardPile.CargoPileType };
     }
 
     /// <summary>

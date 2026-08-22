@@ -1,7 +1,7 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3]
+[gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3 uid="uid://bnql2fq1i2kpa"]
 
-[ext_resource type="SpineAtlasResource" uid="uid://0pymmhq7j1s39" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.atlas" id="1_myst4"]
-[ext_resource type="SpineSkeletonFileResource" uid="uid://qhoa03v71ugaz" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.skel" id="2_m4zey"]
+[ext_resource type="SpineAtlasResource" uid="uid://ppdi7xfb4bju" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.atlas" id="1_myst4"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://c50cud55k0unv" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.skel" id="2_m4zey"]
 
 [sub_resource type="SpineAnimationMix" id="SpineAnimationMix_ej2q8"]
 from = "hurt"

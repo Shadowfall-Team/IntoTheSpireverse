@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://cxcj0w5a6grir"]
 
-[ext_resource type="Script" uid="uid://dey8fk26ksk5a" path="res://IntoTheSpireverseCode/Utils/NRegentCharacterSelectBg.cs" id="1_2cgkb"]
+[ext_resource type="Script" uid="uid://ch7g15c4d1im0" path="res://IntoTheSpireverseCode/Utils/NRegentCharacterSelectBg.cs" id="1_2cgkb"]
 [ext_resource type="SpineSkeletonDataResource" path="res://IntoTheSpireverse/images/characters/shadowregent/char_select/characterselect_shadowregent_skel_data.tres" id="1_hym5c"]
-[ext_resource type="Script" path="res://IntoTheSpireverseCode/Utils/NSpineAutoPlayer.cs" id="3_q43pu"]
-[ext_resource type="Texture2D" uid="uid://d2srbops1xqm0" path="res://IntoTheSpireverseCode/images/vfx/dot.png" id="4_q43pu"]
+[ext_resource type="Script" uid="uid://dpe1lkpxm57d7" path="res://IntoTheSpireverseCode/Utils/NSpineAutoPlayer.cs" id="3_q43pu"]
+[ext_resource type="Texture2D" uid="uid://d2srbops1xqm0" path="res://IntoTheSpireverse/images/vfx/dot.png" id="4_q43pu"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ou856"]
 
@@ -182,7 +182,6 @@ material = SubResource("CanvasItemMaterial_ou856")
 
 [node name="NSpineAutoPlayer" type="Node" parent="SpineSprite"]
 script = ExtResource("3_q43pu")
-metadata/_custom_type_script = "uid://b0oho7pjc1dtg"
 
 [node name="SphereGuardianHover" type="Control" parent="."]
 anchors_preset = 0
@@ -249,5 +248,5 @@ orbit_velocity_min = 0.05
 orbit_velocity_max = 0.05
 scale_amount_min = 0.03
 scale_amount_max = 0.12
-color = Color(0.878431, 0.498039, 0.392157, 0.611765)
+color = Color(0.7874217, 0.0021191007, 0.9644398, 0.6117647)
 color_ramp = SubResource("Gradient_xijby")

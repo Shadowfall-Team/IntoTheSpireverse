@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
@@ -6,14 +7,14 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
-public class HorrorPower : ShadowPowerModel
+public class HorrorPower : ShadowPowerModel, IModifyDamageMultiplicative
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
     
     public override int DisplayAmount => 1 + Amount / 100;
     
-    public override Decimal ModifyDamageMultiplicative(
+    public Decimal ModifyDamageMultiplicativeCompability(
         Creature? target,
         Decimal amount,
         ValueProp props,
