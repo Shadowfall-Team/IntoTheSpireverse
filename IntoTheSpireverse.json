@@ -4,7 +4,7 @@
   "author": "AnneBean, Arquebus, Autumn, Blue Guy, Book, Cany0udance, Indi, Luna, Manu.elcsm, Michael Mayhem, Opal, Pandemonium, Vex'd, zwolfiez",
   "description": "A glimpse into an alternate universe, featuring base game characters from another dimension! Currently supports 2 of 5 characters - More characters are on the way!",
   "version": "v0.1.22",
-  "min_game_version": "0.105.0",
+  "min_game_version": "0.107.0",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [{"id": "BaseLib", "min_version" : "3.1.2"}],
