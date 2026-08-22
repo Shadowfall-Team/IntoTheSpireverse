@@ -20,7 +20,7 @@
     <PropertyGroup Condition="$(Configuration.Contains('Production'))">
         <PlatformTarget>AnyCPU</PlatformTarget>
         <!-- You can add the base character names in ALL CAPS (eg: SILENT) in a ";" delimited list to test in the production env -->
-        <DefineConstants>$(DefineConstants);PRODUCTION;IRONCLAD;REGENT;SILENT</DefineConstants>
+        <DefineConstants>$(DefineConstants);PRODUCTION;IRONCLAD;REGENT</DefineConstants>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
         <InnerConfiguration>$(Configuration)</InnerConfiguration>
