@@ -107,9 +107,11 @@
     <ItemGroup Condition="$(Configuration.Contains('Production'))">
         <Compile Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
         <Compile Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
+        <Compile Remove="IntoTheSpireverseCode\Character\ShadowSilent\**"/>
         <Compile Remove="IntoTheSpireverseCode\ArtRoller\NCardLibraryVerticalSlidersPatch.cs"/>
         <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
         <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
+        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowSilent\**"/>
         <EmbeddedResource Remove="IntoTheSpireverseCode\ArtRoller\NCardLibraryVerticalSlidersPatch.cs"/>
     </ItemGroup>
 
