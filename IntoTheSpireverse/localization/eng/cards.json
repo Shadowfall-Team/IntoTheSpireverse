@@ -161,7 +161,7 @@
   "INTOTHESPIREVERSE-DRAGONSCALE.title": "Dragonscale",
   "INTOTHESPIREVERSE-DRAGONSCALE.description": "Choose another player.\nWhenever you create a [gold]Scale[/gold], add a [gold]Scale[/gold] into their [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-DIVINE_INTERVENTION.title": "Divine Intervention",
-  "INTOTHESPIREVERSE-DIVINE_INTERVENTION.description": "A random ally deals double damage this turn.",
+  "INTOTHESPIREVERSE-DIVINE_INTERVENTION.description": "A random ally deals double attack damage this turn.",
   "INTOTHESPIREVERSE-FLECHETTES.title": "Flechettes",
   "INTOTHESPIREVERSE-FLECHETTES.description": "Deal {Damage:diff()} damage for each Skill in your [gold]Hand[/gold].{InCombat:\n(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}",
   "INTOTHESPIREVERSE-PILGRIMAGE.title": "Pilgrimage",
