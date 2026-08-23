@@ -3,6 +3,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using MegaCrit.Sts2.Core.Helpers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
@@ -33,20 +34,21 @@ public static class NCreaturePatch
             ((Control?)stateDisplay ?? __instance).AddChild(indicator);
             return;
         }
-
-        if (!LocalContext.IsMe(__instance.Entity.Player!)) return;
-
+        
+        if (!__instance.Entity.IsPlayer) return;
+        
         var ammoButton = NAmmoButton.Create();
         ammoButton.Name = "AmmoButton";
         __instance.AddChild(ammoButton);
         ammoButton.Position = new Vector2(
             __instance.Hitbox.Size.X * 0.5f + 10f,
-            -400f
+            -__instance.Hitbox.Size.Y - 60f
         );
-
+            
         if (__instance.Entity.Player.BaseOrbSlotCount > 0)
         {
             ammoButton.ApplyOrbOffset(true);
         }
+
     }
 }

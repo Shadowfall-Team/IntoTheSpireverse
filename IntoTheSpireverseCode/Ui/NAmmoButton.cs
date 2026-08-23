@@ -5,6 +5,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Entities.Actions;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -15,6 +16,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
+using MegaCrit.Sts2.Core.Nodes.Orbs;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 
@@ -25,8 +27,9 @@ public partial class NAmmoButton : NButton
     private static readonly string _scenePath = IntoTheSpireverseResources.CaptainsShipScene;
 
     private Player _player = null!;
-    private bool _initialized;
+    public bool _initialized;
     private bool _hasEverHadAmmo;
+    private bool _isLocal;
     private readonly List<FireAmmoAction> _playQueue = [];
 
     private Control _shipContainer = null!;
@@ -46,7 +49,7 @@ public partial class NAmmoButton : NButton
 
     private float _bobTime;
     private bool _orbOffsetApplied;
-    private static readonly Vector2 OrbSlotOffset = new(35f, 160f);
+    private static readonly Vector2 OrbSlotOffset = new(90f, 160f);
     private const float BobAmplitude = 5f;
     private const float BobFrequency = 2f;
 
@@ -185,6 +188,7 @@ public partial class NAmmoButton : NButton
     public void Initialize(Player player)
     {
         _player = player;
+        _isLocal = LocalContext.IsMe(_player);
         _energyIcon.Texture = PreloadManager.Cache.GetAsset<Texture2D>(
             EnergyIconHelper.GetPath(_player.Character.CardPool));
         _initialized = true;
@@ -216,6 +220,15 @@ public partial class NAmmoButton : NButton
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
+        
+        _damageLabel.Visible = true;
+        _damageIcon.Visible = true;
+        if (!_isLocal)
+        {
+            _shipContainer.Modulate = Colors.White;
+            _hologramMaterial?.SetShaderParameter("opacity", 1);
+            _hologramMaterial?.SetShaderParameter("linesColorIntensity", 2);
+        }
 
         if (!_initialized) return;
 
@@ -225,6 +238,15 @@ public partial class NAmmoButton : NButton
 
     protected override void OnUnfocus()
     {
+        _damageLabel.Visible = _isLocal;
+        _damageIcon.Visible = _isLocal;
+        if (!_isLocal)
+        {
+            _shipContainer.Modulate = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            _hologramMaterial?.SetShaderParameter("opacity", 0.6);
+            _hologramMaterial?.SetShaderParameter("linesColorIntensity", 1);
+        }
+        
         UpdateFireLabel();
         NHoverTipSet.Remove(this);
         _bumpTween?.Kill();
@@ -236,6 +258,8 @@ public partial class NAmmoButton : NButton
 
     protected override void OnPress()
     {
+        if (!_isLocal) return;
+        
         base.OnPress(); // plays ClickedSfx
         UpdateFireLabel();
         _bumpTween?.Kill();
@@ -246,6 +270,7 @@ public partial class NAmmoButton : NButton
 
     protected override void OnRelease()
     {
+        if (!_isLocal) return;
         if (!CanFire) return;
 
         _bumpTween?.Kill();
@@ -288,7 +313,7 @@ public partial class NAmmoButton : NButton
 
     #region Event Handlers
 
-    private void OnAmmoChanged(PlayerCombatState pcs, int oldVal, int newVal)
+    public void OnAmmoChanged(PlayerCombatState pcs, int oldVal, int newVal)
     {
         if (!_initialized || pcs != _player.PlayerCombatState) return;
         if (!_hasEverHadAmmo && newVal > 0)
@@ -314,6 +339,21 @@ public partial class NAmmoButton : NButton
     private void AnimIn()
     {
         Visible = true;
+        
+        _fireButtonBackground.Visible = _isLocal;
+        _fireLabel.Visible = _isLocal;
+        _damageLabel.Visible = _isLocal;
+        _damageIcon.Visible = _isLocal;
+        _ammoCounter.Visible = _isLocal;
+        _energyIcon.Visible = _isLocal;
+        _energyCostLabel.Visible = _isLocal;
+        
+        if (!_isLocal)
+        {
+            _shipContainer.Modulate = new Color(0.5f, 0.5f, 0.5f);
+            _hologramMaterial?.SetShaderParameter("opacity", 0.6);
+            _hologramMaterial?.SetShaderParameter("linesColorIntensity", 1);
+        }
         _fadeTween?.Kill();
         _fadeTween = CreateTween();
         _fadeTween.TweenProperty(this, "modulate:a", 1f, 0.3f)
