@@ -19,7 +19,7 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
 #pragma warning restore STS001
 {
     public override string PlaceholderID => "regent";
-    public const string CharacterId = "regent";
+    public const string CharacterId = "IntoTheSpireverse";
 
     public static readonly Color Color = StsColors.orange;
     public override Color NameColor => Color;
