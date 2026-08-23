@@ -21,13 +21,13 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override string PlaceholderID => "regent";
     public const string CharacterId = "IntoTheSpireverse";
 
-    public static readonly Color Color = StsColors.orange;
+    public static readonly Color Color = StsColors.darkBlue;
     public override Color NameColor => Color;
     public override Color EnergyLabelOutlineColor => new("784000FF");
-    public override Color DialogueColor => new("52371D");
-    public override Color MapDrawingColor => new("935206");
-    public override Color RemoteTargetingLineColor => new("BFA270FF");
-    public override Color RemoteTargetingLineOutline => new("784000FF");
+    public override Color DialogueColor => new("2d1c51");
+    public override Color MapDrawingColor => new("180593");
+    public override Color RemoteTargetingLineColor => new("7760d6");
+    public override Color RemoteTargetingLineOutline => MapDrawingColor;
     
     public override CharacterGender Gender => CharacterGender.Masculine;
 
