@@ -16,7 +16,7 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 public partial class NCargoPile : NCombatCardPile
 {

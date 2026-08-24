@@ -2,7 +2,7 @@ using Godot;
 using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using MegaCrit.Sts2.Core.Nodes.Combat;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
 [HarmonyPatch(typeof(NEndTurnButton), "_Ready")]

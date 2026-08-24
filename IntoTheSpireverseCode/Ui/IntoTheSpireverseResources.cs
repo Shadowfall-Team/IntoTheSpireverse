@@ -1,4 +1,4 @@
-namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 internal static class IntoTheSpireverseResources
 {

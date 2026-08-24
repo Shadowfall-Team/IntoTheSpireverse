@@ -2,7 +2,7 @@ using System.Reflection.Emit;
 using BaseLib.Utils;
 using Godot;
 using HarmonyLib;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes;

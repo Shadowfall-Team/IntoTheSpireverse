@@ -1,7 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

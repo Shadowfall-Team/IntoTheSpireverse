@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 /// <summary>
 /// Crosshair pinned to an enemy's health bar while an Ammo shot would hit that enemy.

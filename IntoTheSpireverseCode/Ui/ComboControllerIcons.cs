@@ -3,7 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 public class ComboControllerIcons
 {

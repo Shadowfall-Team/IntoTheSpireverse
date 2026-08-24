@@ -3,11 +3,11 @@ using Godot;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
 #nullable disable
-namespace IntoTheSpireverse.IntoTheSpireverseCode.utils;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 public partial class NIroncladVfx : Node
 {
-    
+
   private static readonly StringName _step = new StringName("step");
   private Vector2 _slashStepBase;
   private ShaderMaterial? _slashShaderMat;

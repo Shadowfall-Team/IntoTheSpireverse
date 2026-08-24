@@ -18,7 +18,7 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 public partial class NAmmoButton : NButton
 {
