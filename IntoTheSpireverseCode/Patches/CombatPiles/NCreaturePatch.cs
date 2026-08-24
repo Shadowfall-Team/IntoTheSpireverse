@@ -35,8 +35,6 @@ public static class NCreaturePatch
             return;
         }
         
-        if (!__instance.Entity.IsPlayer) return;
-        
         var ammoButton = NAmmoButton.Create();
         ammoButton.Name = "AmmoButton";
         __instance.AddChild(ammoButton);

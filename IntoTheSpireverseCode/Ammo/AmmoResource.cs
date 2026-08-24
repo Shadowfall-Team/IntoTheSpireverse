@@ -49,8 +49,7 @@ public static class AmmoResource
             var oldVal = PlayerAmmo[player.PlayerCombatState];
             PlayerAmmo[player.PlayerCombatState] = oldVal + 1;
             
-            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-            var ammoButton = creatureNode?.GetNodeOrNull<NAmmoButton>("AmmoButton");
+            var ammoButton = getAmmoButton(player);
             if (ammoButton != null && !ammoButton._initialized) 
                 ammoButton.Initialize(player);
             
@@ -72,12 +71,17 @@ public static class AmmoResource
         if (newVal == oldVal) return;
         PlayerAmmo[player.PlayerCombatState] = newVal;
             
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        var ammoButton = creatureNode?.GetNodeOrNull<NAmmoButton>("AmmoButton");
+        var ammoButton = getAmmoButton(player);
         if (ammoButton != null && !ammoButton._initialized) 
             ammoButton.Initialize(player);
 
         AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, newVal);
+    }
+
+    private static NAmmoButton? getAmmoButton(Player player)
+    {
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        return creatureNode?.GetNodeOrNull<NAmmoButton>("AmmoButton");
     }
 
 
