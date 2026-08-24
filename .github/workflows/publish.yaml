@@ -2,14 +2,13 @@ name: Publish
 on:
   push:
     branches:
-      - production
       - main
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
       upload_to_workshop:
-        description: 'Upload the built mod to the Steam Workshop'
+        description: 'Tag the selected commit as vX.Y.Z, upload it to the Steam Workshop, and create a GitHub Release from the main branch. This requires manual approval from someone with elevated permissions on the "workshop" environment.'
         type: boolean
         required: false
         default: false
@@ -31,10 +30,20 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: read
+      actions: write
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
+      - name: Warn if releasing from a non-main ref
+        if: github.event_name == 'workflow_dispatch' && inputs.upload_to_workshop == true && github.ref != 'refs/heads/main'
+        run: |
+          MSG="Releasing from '${{ github.ref_name }}', not 'main'. This ref is released exactly as selected - double check that's intentional."
+          echo "::warning title=Non-main Release::$MSG"
+          echo "### :warning: Non-main Release" >> "$GITHUB_STEP_SUMMARY"
+          echo "$MSG" >> "$GITHUB_STEP_SUMMARY"
       - name: Read mod version
         id: version
         run: |
@@ -96,7 +105,7 @@ jobs:
       - name: Determine configuration
         id: config
         run: |
-          if [ "$GITHUB_REF_NAME" = "production" ]; then
+          if [ "${{ github.event_name == 'workflow_dispatch' && inputs.upload_to_workshop }}" = "true" ]; then
             echo "configuration=Production" >> "$GITHUB_OUTPUT"
           else
             echo "configuration=Release" >> "$GITHUB_OUTPUT"
@@ -114,8 +123,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: IntoTheSpireverse
-          path: output/mods
+          path: |
+            output/mods
+            !output/mods/**/*.pdb
           retention-days: 14
+      - name: Prune old workflow runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run list --workflow=publish.yaml --json databaseId --jq '.[].databaseId' \
+            | tail -n +11 | xargs -r -I {} gh run delete {}
   # IMPORTANT: STEAM_USERNAME, STEAM_CONFIG_VDF and WORKSHOP_ITEM_ID must be defined as
   # *environment* secrets/variables on the "workshop" environment (Settings > Environments >
   # workshop), NOT as repository-level Actions secrets/variables. The "workshop" environment
@@ -151,7 +168,7 @@ jobs:
           VERSION="${{ needs.publish.outputs.version }}"
           test -d output/mods/IntoTheSpireverse || { echo "Built mod folder missing"; exit 1; }
           cd output/mods
-          zip -r "../../IntoTheSpireverse-$VERSION.zip" IntoTheSpireverse
+          zip -r "../../IntoTheSpireverse-$VERSION.zip" IntoTheSpireverse -x "*.pdb"
           cd ../..
       - name: Build compatibility banner
         run: |
@@ -185,4 +202,3 @@ jobs:
           target_commitish: ${{ github.sha }}
           files: |
             IntoTheSpireverse-${{ needs.publish.outputs.version }}.zip
-            output/mods/IntoTheSpireverse/*.pdb
