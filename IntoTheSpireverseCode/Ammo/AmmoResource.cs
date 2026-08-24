@@ -49,8 +49,8 @@ public static class AmmoResource
             var oldVal = PlayerAmmo[player.PlayerCombatState];
             PlayerAmmo[player.PlayerCombatState] = oldVal + 1;
             
-            var ammoButton = getAmmoButton(player);
-            if (ammoButton != null && !ammoButton._initialized) 
+            var ammoButton = GetAmmoButton(player);
+            if (ammoButton is { Initialized: false }) 
                 ammoButton.Initialize(player);
             
             AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, oldVal + 1);
@@ -71,17 +71,17 @@ public static class AmmoResource
         if (newVal == oldVal) return;
         PlayerAmmo[player.PlayerCombatState] = newVal;
             
-        var ammoButton = getAmmoButton(player);
-        if (ammoButton != null && !ammoButton._initialized) 
+        var ammoButton = GetAmmoButton(player);
+        if (ammoButton != null && !ammoButton.Initialized) 
             ammoButton.Initialize(player);
 
         AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, newVal);
     }
 
-    private static NAmmoButton? getAmmoButton(Player player)
+    private static NShipDisplay? GetAmmoButton(Player player)
     {
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        return creatureNode?.GetNodeOrNull<NAmmoButton>("AmmoButton");
+        return creatureNode?.GetNodeOrNull<NShipDisplay>("AmmoButton");
     }
 
 

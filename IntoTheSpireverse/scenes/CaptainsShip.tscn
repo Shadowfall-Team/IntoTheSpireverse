@@ -1,92 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbtqxgu7bq2i7"]
+[gd_scene load_steps=7 format=3 uid="uid://dbtqxgu7bq2i7"]
 
+[ext_resource type="PackedScene" path="res://IntoTheSpireverse/scenes/ShipDisplay.tscn" id="1_shipdisp"]
 [ext_resource type="Script" uid="uid://dyoyswpu4ks3i" path="res://IntoTheSpireverseCode/Ui/NAmmoButton.cs" id="1_dh6nf"]
 [ext_resource type="Script" uid="uid://dasxyxrf7pu3w" path="res://IntoTheSpireverseCode/Ui/IntoTheSpireverseMegaLabel.cs" id="1_ruvg3"]
-[ext_resource type="Material" uid="uid://cnm3o6q6r6nbc" path="res://IntoTheSpireverse/materials/hologram_material.tres" id="2_anfaq"]
-[ext_resource type="Texture2D" uid="uid://dla5jkt2ao6b7" path="res://IntoTheSpireverse/images/combat_ui/captainship.png" id="2_nfjci"]
-[ext_resource type="Script" uid="uid://jmmg0uo5lkng" path="res://IntoTheSpireverseCode/Ui/IntoTheSpireverseMegaRichTextLabel.cs" id="4_anfaq"]
 [ext_resource type="Texture2D" uid="uid://5ris3fd14de4" path="res://IntoTheSpireverse/images/combat_ui/ammo_button.png" id="4_dc20g"]
 [ext_resource type="PackedScene" uid="uid://ddy8nki3qj363" path="res://IntoTheSpireverse/scenes/ammo_counter.tscn" id="6_2lcad"]
 [ext_resource type="Texture2D" uid="uid://d2551oo4di0rp" path="res://IntoTheSpireverse/images/relics/relic_outline.png" id="7_8knwp"]
 
-[node name="CaptainsShip" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -12.0
-offset_top = -5.0
-offset_right = 78.0
-offset_bottom = 175.0
+[node name="CaptainsShip" instance=ExtResource("1_shipdisp")]
 script = ExtResource("1_dh6nf")
 metadata/_edit_vertical_guides_ = [40.0]
 metadata/_edit_horizontal_guides_ = [160.0]
-
-[node name="ShipContainer" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -100.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="ShipIcon" type="TextureRect" parent="ShipContainer"]
-material = ExtResource("2_anfaq")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -79.0
-offset_right = 69.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("2_nfjci")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="DamageIndicator" type="Control" parent="ShipContainer"]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 8.0
-offset_top = -64.0
-offset_right = 71.99996
-mouse_filter = 2
-
-[node name="DamageIcon" type="TextureRect" parent="ShipContainer/DamageIndicator"]
-unique_name_in_owner = true
-layout_mode = 1
-offset_right = 64.0
-offset_bottom = 64.0
-mouse_filter = 2
-texture = ExtResource("7_8knwp")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="DamageLabel" type="RichTextLabel" parent="ShipContainer/DamageIndicator"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 40.0
-offset_right = 3.8146973e-05
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(1, 0.9647059, 0.8862745, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/normal_font_size = 22
-bbcode_enabled = true
-text = "14"
-scroll_active = false
-autowrap_mode = 0
-script = ExtResource("4_anfaq")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5019608)
 
 [node name="AmmoContainer" type="Control" parent="."]
 anchors_preset = 0
