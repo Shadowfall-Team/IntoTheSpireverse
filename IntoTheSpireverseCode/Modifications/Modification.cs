@@ -114,6 +114,6 @@ public abstract class Modification : CardModifier
             return;
         }
 
-        description += "\n" + loc.GetFormattedText();
+        description += "\n[blue]" + loc.GetFormattedText() + "[/blue]";
     }
 }
