@@ -34,19 +34,18 @@ public static class NCreaturePatch
             return;
         }
 
-        if (!LocalContext.IsMe(__instance.Entity.Player!)) return;
-
-        var ammoButton = NAmmoButton.Create();
-        ammoButton.Name = "AmmoButton";
-        __instance.AddChild(ammoButton);
-        ammoButton.Position = new Vector2(
+        var isLocal = LocalContext.IsMe(__instance.Entity.Player);
+        var shipUi = isLocal ? NAmmoButton.Create() : NShipDisplay.Create();
+        shipUi.Name = "AmmoButton";
+        __instance.AddChild(shipUi);
+        shipUi.Position = new Vector2(
             __instance.Hitbox.Size.X * 0.5f + 10f,
-            -400f
+            -__instance.Hitbox.Size.Y - 60f
         );
 
-        if (__instance.Entity.Player.BaseOrbSlotCount > 0)
+        if (__instance.Entity.Player is { BaseOrbSlotCount: > 0 })
         {
-            ammoButton.ApplyOrbOffset(true);
+            shipUi.ApplyOrbOffset(true);
         }
     }
 }

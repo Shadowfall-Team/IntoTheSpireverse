@@ -38,10 +38,6 @@ public static class NCombatUiActivatePatch
 
         cargoPile?.Initialize(player);
 
-        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        var ammoButton = creatureNode?.GetNodeOrNull<NAmmoButton>("AmmoButton");
-        ammoButton?.Initialize(player);
-
         var endTurnButton = NCombatRoom.Instance?.Ui.EndTurnButton;
         var ammoReminder = endTurnButton?.GetNodeOrNull<NAmmoCounterReminder>("_AmmoReminder");
         ammoReminder?.Initialize(player);

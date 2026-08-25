@@ -26,9 +26,8 @@ public static class OrbCmdSlotPatch
 
     private static void UpdateAmmoButtonPosition(Player player)
     {
-        if (!LocalContext.IsMe(player)) return;
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
-        var ammoButton = creatureNode?.GetNodeOrNull<NAmmoButton>("AmmoButton");
+        var ammoButton = creatureNode?.GetNodeOrNull<NShipDisplay>("AmmoButton");
 
         ammoButton?.ApplyOrbOffset(player.PlayerCombatState?.OrbQueue.Capacity > 0);
     }

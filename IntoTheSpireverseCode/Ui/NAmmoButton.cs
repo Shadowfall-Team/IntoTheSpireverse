@@ -1,6 +1,5 @@
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
@@ -10,64 +9,45 @@ using MegaCrit.Sts2.Core.Entities.Actions;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
-using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
-public partial class NAmmoButton : NButton
+public partial class NAmmoButton : NShipDisplay
 {
     private static readonly string _scenePath = IntoTheSpireverseResources.CaptainsShipScene;
 
-    private Player _player = null!;
-    private bool _initialized;
-    private bool _hasEverHadAmmo;
     private readonly List<FireAmmoAction> _playQueue = [];
 
-    private Control _shipContainer = null!;
-    private ShaderMaterial? _hologramMaterial;
-    private IntoTheSpireverseMegaRichTextLabel _damageLabel = null!;
     private NAmmoCounter _ammoCounter = null!;
     private IntoTheSpireverseMegaLabel _fireLabel = null!;
     private IntoTheSpireverseMegaLabel _energyCostLabel = null!;
     private TextureRect _energyIcon = null!;
-    private TextureRect _damageIcon = null!;
     private Control _fireButtonBackground = null!;
     private ComboControllerIcons _comboIcons = null!;
 
-    private Tween? _fadeTween;
     private Tween? _bumpTween;
-    private Tween? _orbTween;
-
-    private float _bobTime;
-    private bool _orbOffsetApplied;
-    private static readonly Vector2 OrbSlotOffset = new(35f, 160f);
-    private const float BobAmplitude = 5f;
-    private const float BobFrequency = 2f;
 
     protected override string? ClickedSfx => "event:/sfx/ui/clicks/ui_click";
-    protected override string? HoveredSfx => "event:/sfx/ui/clicks/ui_hover";
 
     private int AvailableAmmoCount =>
-        AmmoResource.GetAmmo(_player) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
+        AmmoResource.GetAmmo(Player) - _playQueue.Count(a => a.State == GameActionState.WaitingForExecution);
 
     private bool CanFire
     {
         get
         {
-            if (!_initialized || _player.PlayerCombatState == null ||
-                _player.Creature.CombatState?.CurrentSide != CombatSide.Player)
+            if (!_initialized || Player.PlayerCombatState == null ||
+                Player.Creature.CombatState?.CurrentSide != CombatSide.Player)
                 return false;
             if (AvailableAmmoCount <= 0) return false;
-            if (AvailableEnergy < AmmoResource.GetShotEnergyCost(_player)) return false;
+            if (AvailableEnergy < AmmoResource.GetShotEnergyCost(Player)) return false;
 
-            var hasBigGuns = _player.Creature.HasPower<MassMunitionPower>();
-            if (!hasBigGuns && !(_player.Creature.CombatState?.HittableEnemies.Any() ?? false))
+            var hasBigGuns = Player.Creature.HasPower<MassMunitionPower>();
+            if (!hasBigGuns && !(Player.Creature.CombatState?.HittableEnemies.Any() ?? false))
                 return false;
             return NCombatRoom.Instance?.Ui.Hand.CurrentMode == NPlayerHand.Mode.Play
                    && !CombatManager.Instance.IsOverOrEnding;
@@ -78,10 +58,10 @@ public partial class NAmmoButton : NButton
     {
         get
         {
-            if (_player.PlayerCombatState == null) return 0;
+            if (Player.PlayerCombatState == null) return 0;
             var pendingCost = _playQueue.Count(a => a.State == GameActionState.WaitingForExecution)
-                              * AmmoResource.GetShotEnergyCost(_player);
-            return _player.PlayerCombatState.Energy - pendingCost;
+                              * AmmoResource.GetShotEnergyCost(Player);
+            return Player.PlayerCombatState.Energy - pendingCost;
         }
     }
 
@@ -89,14 +69,12 @@ public partial class NAmmoButton : NButton
 
     public override void _Ready()
     {
-        _shipContainer = GetNode<Control>("ShipContainer");
-        _hologramMaterial = GetNode<TextureRect>("ShipContainer/ShipIcon").Material as ShaderMaterial;
-        _damageLabel = GetNode<IntoTheSpireverseMegaRichTextLabel>("%DamageLabel");
+        base._Ready();
+
         _ammoCounter = GetNode<NAmmoCounter>("AmmoContainer/AmmoCounter");
         _fireLabel = GetNode<IntoTheSpireverseMegaLabel>("%FireButtonLabel");
         _energyCostLabel = GetNode<IntoTheSpireverseMegaLabel>("%EnergyLabel");
         _energyIcon = GetNode<TextureRect>("%EnergyIcon");
-        _damageIcon = GetNode<TextureRect>("%DamageIcon");
         _fireButtonBackground = GetNode<Control>("%FireButtonBackground");
         _comboIcons = new ComboControllerIcons(
             GetNode<TextureRect>("%ControllerIcon2"), // LT
@@ -105,19 +83,13 @@ public partial class NAmmoButton : NButton
             MegaInput.select,
             GetNode<IntoTheSpireverseMegaLabel>("%AddSymbol"));
 
-        ConnectSignals();
         _comboIcons.Refresh();
-
-        Modulate = new Color(1, 1, 1, 0);
-        Visible = false;
     }
 
     public override void _EnterTree()
     {
         base._EnterTree();
-        CombatManager.Instance.StateTracker.CombatStateChanged += OnCombatStateChanged;
         RunManager.Instance.ActionQueueSet.ActionEnqueued += OnActionEnqueued;
-        AmmoResource.AmmoChanged += OnAmmoChanged;
         if (NControllerManager.Instance != null)
         {
             NControllerManager.Instance.ControllerDetected += OnControllerChanged;
@@ -132,9 +104,7 @@ public partial class NAmmoButton : NButton
     public override void _ExitTree()
     {
         base._ExitTree();
-        CombatManager.Instance.StateTracker.CombatStateChanged -= OnCombatStateChanged;
         RunManager.Instance.ActionQueueSet.ActionEnqueued -= OnActionEnqueued;
-        AmmoResource.AmmoChanged -= OnAmmoChanged;
         if (NControllerManager.Instance != null)
         {
             NControllerManager.Instance.ControllerDetected -= OnControllerChanged;
@@ -149,31 +119,17 @@ public partial class NAmmoButton : NButton
 
     private void OnControllerChanged() => _comboIcons?.Refresh(_isEnabled);
 
-    public override void _Process(double delta)
-    {
-        if (!_initialized) return;
-        _bobTime += (float)delta * BobFrequency;
-        var bobY = Mathf.Sin(_bobTime) * BobAmplitude;
-        _shipContainer.Position = new Vector2(
-            _shipContainer.Position.X,
-            bobY);
-        var containerHeight = _shipContainer.Size.Y;
-        if (containerHeight > 0f)
-            _hologramMaterial?.SetShaderParameter("uvOffsetY", bobY / containerHeight);
-    }
-
     #endregion
 
     #region Initialization
 
-    public static NAmmoButton Create()
+    public new static NAmmoButton Create()
     {
         var button = ResourceLoader.Load<PackedScene>(_scenePath).Instantiate<NAmmoButton>();
+        ApplyDamageLabelFont(button);
         var font = PreloadManager.Cache.GetAsset<Font>(IntoTheSpireverseResources.MegaLabelFont);
-        ApplyFont(button.GetNode<IntoTheSpireverseMegaRichTextLabel>("%DamageLabel"), font,
-            minSize: 22,
-            maxSize: 28);
-        button.GetNode<NAmmoCounter>("AmmoContainer/AmmoCounter").ApplyFont(font, minSize: 32, maxSize: 32);        ApplyFont(button.GetNode<IntoTheSpireverseMegaLabel>("%FireButtonLabel"),
+        button.GetNode<NAmmoCounter>("AmmoContainer/AmmoCounter").ApplyFont(font, minSize: 32, maxSize: 32);
+        ApplyFont(button.GetNode<IntoTheSpireverseMegaLabel>("%FireButtonLabel"),
             font, minSize: 20, maxSize: 20);
         ApplyFont(button.GetNode<IntoTheSpireverseMegaLabel>("%EnergyLabel"),
             font, minSize: 21, maxSize: 24);
@@ -182,11 +138,11 @@ public partial class NAmmoButton : NButton
         return button;
     }
 
-    public void Initialize(Player player)
+    public override void Initialize(Player player)
     {
-        _player = player;
+        Player = player;
         _energyIcon.Texture = PreloadManager.Cache.GetAsset<Texture2D>(
-            EnergyIconHelper.GetPath(_player.Character.CardPool));
+            EnergyIconHelper.GetPath(Player.Character.CardPool));
         _initialized = true;
         UpdateState();
     }
@@ -198,65 +154,53 @@ public partial class NAmmoButton : NButton
         label.MaxFontSize = maxSize;
     }
 
-    private static void ApplyFont(MegaRichTextLabel label, Font font, int minSize, int maxSize)
-    {
-        label.AddThemeFontOverride(ThemeConstants.RichTextLabel.NormalFont, font);
-        label.MinFontSize = minSize;
-        label.MaxFontSize = maxSize;
-    }
-
     #endregion
 
     #region Button Overrides
 
     protected override void OnFocus()
     {
-        base.OnFocus(); // plays HoveredSfx
+        PlaySfx(HoveredSfx);
+        ShowHoverTip();
         UpdateFireLabel();
-        _bumpTween?.Kill();
-        _bumpTween = CreateTween();
-        _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
-
-        if (!_initialized) return;
-
-        NHoverTipSet.CreateAndShow(this, LoadAmmoHoverTip.ForFireButton(_player))
-            ?.SetAlignment(this, HoverTipAlignment.Right);
+        BumpFireButton(scale: new Vector2(1.25f, 1.25f));
     }
 
     protected override void OnUnfocus()
     {
+        HideHoverTip();
         UpdateFireLabel();
-        NHoverTipSet.Remove(this);
-        _bumpTween?.Kill();
-        _bumpTween = CreateTween();
-        _bumpTween.SetParallel();
-        _bumpTween.TweenProperty(_fireButtonBackground, "scale", Vector2.One, 0.05);
-        _bumpTween.TweenProperty(_fireButtonBackground, "modulate", Colors.White, 0.05);
+        BumpFireButton(scale: Vector2.One, modulate: Colors.White);
     }
 
     protected override void OnPress()
     {
-        base.OnPress(); // plays ClickedSfx
+        PlaySfx(ClickedSfx);
         UpdateFireLabel();
-        _bumpTween?.Kill();
-        _bumpTween = CreateTween();
-        _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(0.9f, 0.9f), 0.05);
-        _bumpTween.TweenProperty(_fireButtonBackground, "modulate", StsColors.red, 0.05);
+        BumpFireButton(scale: new Vector2(0.9f, 0.9f), modulate: StsColors.red);
     }
 
     protected override void OnRelease()
     {
         if (!CanFire) return;
 
+        BumpFireButton(scale: new Vector2(1.25f, 1.25f), modulate: Colors.White);
+
+        var action = new FireAmmoAction(Player);
+        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(action);
+        WaitForActionComplete(action);
+    }
+    
+    private void BumpFireButton(Vector2 scale, Color? modulate = null)
+    {
         _bumpTween?.Kill();
         _bumpTween = CreateTween();
         _bumpTween.SetParallel();
-        _bumpTween.TweenProperty(_fireButtonBackground, "scale", new Vector2(1.25f, 1.25f), 0.05);
-        _bumpTween.TweenProperty(_fireButtonBackground, "modulate", Colors.White, 0.05);
-
-        var action = new FireAmmoAction(_player);
-        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(action);
-        WaitForActionComplete(action);
+        _bumpTween.TweenProperty(_fireButtonBackground, "scale", scale, 0.05);
+        if (modulate.HasValue)
+        {
+            _bumpTween.TweenProperty(_fireButtonBackground, "modulate", modulate.Value, 0.05);
+        }
     }
 
     protected override void OnEnable()
@@ -288,56 +232,37 @@ public partial class NAmmoButton : NButton
 
     #region Event Handlers
 
-    private void OnAmmoChanged(PlayerCombatState pcs, int oldVal, int newVal)
-    {
-        if (!_initialized || pcs != _player.PlayerCombatState) return;
-        if (!_hasEverHadAmmo && newVal > 0)
-        {
-            _hasEverHadAmmo = true;
-            AnimIn();
-        }
-
-        UpdateState();
-    }
-
-    private void OnCombatStateChanged(CombatState state) => UpdateState();
-
     private void OnActionEnqueued(GameAction action)
     {
         if (!_initialized) return;
         if (action is not FireAmmoAction ammoAction) return;
-        if (ammoAction.OwnerId != _player.NetId) return;
+        if (ammoAction.OwnerId != Player.NetId) return;
         _playQueue.Add(ammoAction);
         UpdateState();
     }
 
-    private void AnimIn()
+    protected override void AnimIn()
     {
         Visible = true;
-        _fadeTween?.Kill();
-        _fadeTween = CreateTween();
-        _fadeTween.TweenProperty(this, "modulate:a", 1f, 0.3f)
-            .SetEase(Tween.EaseType.Out)
-            .SetTrans(Tween.TransitionType.Sine);
+        DamageLabel.Visible = true;
+        DamageIcon.Visible = true;
+        FadeIn();
     }
 
     #endregion
 
     #region State Updates
 
-    private void UpdateState()
+    protected override void UpdateState()
     {
+        base.UpdateState();
         if (!_initialized) return;
-        if (_player.PlayerCombatState == null) return;
+        if (Player.PlayerCombatState == null) return;
 
         _ammoCounter.SetCount(AvailableAmmoCount);
+        _energyCostLabel.Text = AmmoResource.GetShotEnergyCost(Player).ToString();
 
-        var damage = (int)AmmoResource.GetShotDamage(_player);
-        _damageLabel.Text = $"{damage}";
-        _damageIcon.Texture = GetAttackIntentTexture(damage);
-        _energyCostLabel.Text = AmmoResource.GetShotEnergyCost(_player).ToString();
-
-        _shipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f);
+        ShipContainer.Modulate = CanFire ? Colors.White : new Color(0.5f, 0.5f, 0.5f);
         SetEnabled(CanFire);
         UpdateFireLabel();
     }
@@ -350,42 +275,6 @@ public partial class NAmmoButton : NButton
             _fireLabel.Modulate = StsColors.red;
         else
             _fireLabel.Modulate = StsColors.cream;
-    }
-
-    private static Texture2D GetAttackIntentTexture(int damage)
-    {
-        var tier = damage switch
-        {
-            < 5 => "1",
-            < 10 => "2",
-            < 20 => "3",
-            < 40 => "4",
-            _ => "5"
-        };
-        return PreloadManager.Cache.GetAsset<Texture2D>(
-            ImageHelper.GetImagePath($"packed/intents/attack/intent_attack_{tier}.png"));
-    }
-
-    public void ApplyOrbOffset(bool hasOrbs)
-    {
-        if (hasOrbs && !_orbOffsetApplied)
-        {
-            _orbTween?.Kill();
-            _orbTween = CreateTween();
-            _orbTween.TweenProperty(this, "position", Position + OrbSlotOffset, 0.5f)
-                .SetEase(Tween.EaseType.Out)
-                .SetTrans(Tween.TransitionType.Sine);
-            _orbOffsetApplied = true;
-        }
-        else if (!hasOrbs && _orbOffsetApplied)
-        {
-            _orbTween?.Kill();
-            _orbTween = CreateTween();
-            _orbTween.TweenProperty(this, "position", Position - OrbSlotOffset, 0.5f)
-                .SetEase(Tween.EaseType.Out)
-                .SetTrans(Tween.TransitionType.Sine);
-            _orbOffsetApplied = false;
-        }
     }
 
     #endregion

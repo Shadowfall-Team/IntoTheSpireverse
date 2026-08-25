@@ -1,4 +1,4 @@
-[gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3 uid="uid://c2mrbqct15cgx"]
+[gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3 uid="uid://skdfjh13dksjh"]
 
 [ext_resource type="SpineAtlasResource" uid="uid://cvws0rg67k8am" path="res://IntoTheSpireverse/images/characters/shadowregent/regent_shadow.atlas" id="1_86jqo"]
 [ext_resource type="SpineSkeletonFileResource" uid="uid://bqek7j256rp15" path="res://IntoTheSpireverse/images/characters/shadowregent/regent_shadow.skel" id="2_xr0sn"]

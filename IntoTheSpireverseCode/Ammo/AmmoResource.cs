@@ -2,11 +2,13 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
@@ -46,6 +48,11 @@ public static class AmmoResource
         {
             var oldVal = PlayerAmmo[player.PlayerCombatState];
             PlayerAmmo[player.PlayerCombatState] = oldVal + 1;
+            
+            var ammoButton = GetAmmoButton(player);
+            if (ammoButton is { Initialized: false }) 
+                ammoButton.Initialize(player);
+            
             AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, oldVal + 1);
 
             foreach (var model in player.Creature.CombatState.IterateHookListeners().ToList())
@@ -63,7 +70,18 @@ public static class AmmoResource
         var newVal = Math.Max(0, oldVal - amount);
         if (newVal == oldVal) return;
         PlayerAmmo[player.PlayerCombatState] = newVal;
+            
+        var ammoButton = GetAmmoButton(player);
+        if (ammoButton != null && !ammoButton.Initialized) 
+            ammoButton.Initialize(player);
+
         AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, newVal);
+    }
+
+    private static NShipDisplay? GetAmmoButton(Player player)
+    {
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(player.Creature);
+        return creatureNode?.GetNodeOrNull<NShipDisplay>("AmmoButton");
     }
 
 

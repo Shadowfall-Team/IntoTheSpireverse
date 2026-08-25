@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform vec4 baseColor: source_color = vec4(0.3058, 0.835, 0.960, 1.);
+uniform float opacity: hint_range(0.0, 1.0) = 1;
 uniform float speed: hint_range(0.0, 1.0) = 0.005;
 uniform vec4 linesColor: source_color = vec4(0.633232, 0.910156, 0.555693, 1.);
 uniform float linesColorIntensity = 5.;
@@ -35,5 +36,5 @@ void fragment() {
     hologram.a = emission.a + (1.0 - emission.a) * alpha;
     COLOR = texture(TEXTURE, UV);
     COLOR.rgb = COLOR.rgb + (1.0 - COLOR.rgb) * hologram.rgb;
-    COLOR.a = min(COLOR.a, hologram.a);
+    COLOR.a = min(min(COLOR.a, hologram.a), opacity);
 }
