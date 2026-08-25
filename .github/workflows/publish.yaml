@@ -127,13 +127,14 @@ jobs:
             output/mods
             !output/mods/**/*.pdb
           retention-days: 14
-      - name: Prune old workflow runs
+      - name: Prune old artifacts
         env:
-          GH_TOKEN: ${{ secrets.SPIREVERSE_ACTION_TOKEN || github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh run list --workflow=publish.yaml --json databaseId --jq '.[].databaseId' \
-            | tail -n +11 | xargs -r -I {} gh run delete {}
+          gh api "repos/${{ github.repository }}/actions/artifacts?per_page=100" \
+            --jq '[.artifacts[] | select(.name == "IntoTheSpireverse")] | sort_by(.created_at) | reverse | .[10:][].id' \
+            | xargs -r -I {} gh api --method DELETE "repos/${{ github.repository }}/actions/artifacts/{}"
   # IMPORTANT: STEAM_USERNAME, STEAM_CONFIG_VDF and WORKSHOP_ITEM_ID must be defined as
   # *environment* secrets/variables on the "workshop" environment (Settings > Environments >
   # workshop), NOT as repository-level Actions secrets/variables. The "workshop" environment
