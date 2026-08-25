@@ -2,7 +2,7 @@ using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
