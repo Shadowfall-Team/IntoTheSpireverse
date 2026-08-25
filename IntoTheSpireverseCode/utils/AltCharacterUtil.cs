@@ -1,18 +1,10 @@
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 public static class AltCharacterUtil
 {
-    public static bool IsAvailableAltCharacter(CharacterModel c)
-    {
-        return c is IAltCharacter
-               // && (c is not IIntoTheSpireverseDebug)
-               ;
-    }
-
     /// <summary>
     /// The "other side of the mirror" for a character: the base character if <paramref name="character"/> is an alt,
     /// otherwise every available alt built on top of it.
@@ -21,8 +13,7 @@ public static class AltCharacterUtil
     {
         if (character is IAltCharacter alt) return [alt.BaseCharacterModel];
 
-        return ModelDb.AllCharacters.Where(c =>
-            IsAvailableAltCharacter(c) && c is IAltCharacter ac && ac.BaseCharacterModel == character);
+        return ModelDb.AllCharacters.Where(c => c is IAltCharacter ac && ac.BaseCharacterModel == character);
     }
 
     public static bool HasMirrorCharacter(CharacterModel character) => GetMirrorCharacters(character).Any();
