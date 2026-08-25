@@ -39,6 +39,6 @@ public sealed class Intoxicate() : ShadowSilentCard(2, CardType.Attack, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        EnergyCost.UpgradeBy(-1);
     }
 }

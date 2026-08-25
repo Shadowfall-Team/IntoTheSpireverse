@@ -13,9 +13,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 #if NECROBINDER
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
 #endif
-#if SILENT
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
-#endif
 namespace IntoTheSpireverse;
 
 [ModInitializer(nameof(Initialize))]
@@ -43,9 +41,7 @@ public partial class MainFile : Node
 
         CustomCharacterUtils.TryOrderCustomCharacters([
             typeof(ShadowIronclad),
-#if NECROBINDER
             typeof(ShadowSilent),
-#endif
             typeof(ShadowRegent),
 #if NECROBINDER
             typeof(ShadowNecrobinder),

@@ -17,7 +17,7 @@ public sealed class Armored : IntoTheSpireverseEnchantment
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(3m, ValueProp.Move),
+        new BlockVar(1m, ValueProp.Move),
     ];
     
     public override Decimal EnchantBlockAdditive(Decimal originalBlock) => DynamicVars.Block.BaseValue;

@@ -15,7 +15,7 @@ public sealed class Anoint() : ShadowSilentCard(1, CardType.Skill, CardRarity.Un
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<AnointPower>(4m),
+        new PowerVar<AnointPower>(3m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

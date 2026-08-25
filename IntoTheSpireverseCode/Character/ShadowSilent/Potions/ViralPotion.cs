@@ -22,7 +22,7 @@ public class ViralPotion : IntoTheSpireversePotion
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<PoisonPower>(3m),
+        new PowerVar<PoisonPower>(5m),
     ];
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>

@@ -34,15 +34,16 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner));
-        foreach (Scale card in scales ?? [])
-        {
-            CardCmd.Enchant<Armored>(card, 1M);
-            if (IsUpgraded)
+            .Select(c =>
             {
-                CardCmd.Upgrade(card);
-            }
-        }
+                var card = CombatState.CreateCard<Scale>(Owner);
+                CardCmd.Enchant<Armored>(card, 1M);
+                if (IsUpgraded)
+                {
+                    CardCmd.Upgrade(card);
+                }
+                return card;
+            }); 
         await CardPileCmd.AddGeneratedCardsToCombat(scales ?? [], PileType.Hand, Owner);
     }
 }

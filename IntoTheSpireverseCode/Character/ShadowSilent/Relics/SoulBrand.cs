@@ -36,10 +36,12 @@ public class SoulBrand : ShadowSilentRelic
         Flash();
 
         var cards = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => combatState.CreateCard<Flicker>(Owner));
-        foreach (CardModel card in cards ?? [])
-            CardCmd.Upgrade(card);
-
+            .Select(c =>
+            {
+                var card = combatState.CreateCard<Flicker>(Owner);
+                CardCmd.Upgrade(card);
+                return card;
+            }); 
         await CardPileCmd.AddGeneratedCardsToCombat(cards ?? [], PileType.Hand, Owner);
     }
     

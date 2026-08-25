@@ -9,11 +9,11 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-public sealed class TalonSlash() : ShadowSilentCard(1, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
+public sealed class TalonSlash() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -39,6 +39,6 @@ public sealed class TalonSlash() : ShadowSilentCard(1, CardType.Attack, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }

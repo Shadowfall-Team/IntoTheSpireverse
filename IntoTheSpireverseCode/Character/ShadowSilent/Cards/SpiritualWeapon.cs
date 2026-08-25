@@ -19,7 +19,7 @@ public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, Car
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8m, ValueProp.Move),
-        new DynamicVar(IncreaseKey, 10m),
+        new DynamicVar(IncreaseKey, 8m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -48,7 +48,7 @@ public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, Car
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
-        DynamicVars[IncreaseKey].UpgradeValueBy(4m);
+        DynamicVars[IncreaseKey].UpgradeValueBy(3m);
     }
     
     protected override void AfterDowngraded()

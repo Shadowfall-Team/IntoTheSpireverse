@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-public sealed class DivineIntervention() : ShadowSilentCard(2, CardType.Attack, CardRarity.Rare, TargetType.AllAllies)
+public sealed class DivineIntervention() : ShadowSilentCard(3, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
 {
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
