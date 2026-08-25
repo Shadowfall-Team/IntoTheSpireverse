@@ -129,8 +129,9 @@ jobs:
           retention-days: 14
       - name: Prune old workflow runs
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.SPIREVERSE_ACTION_TOKEN || github.token }}
         run: |
+          set -euo pipefail
           gh run list --workflow=publish.yaml --json databaseId --jq '.[].databaseId' \
             | tail -n +11 | xargs -r -I {} gh run delete {}
   # IMPORTANT: STEAM_USERNAME, STEAM_CONFIG_VDF and WORKSHOP_ITEM_ID must be defined as
