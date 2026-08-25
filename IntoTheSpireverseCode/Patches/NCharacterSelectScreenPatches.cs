@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.CustomRun;
@@ -21,7 +21,7 @@ public class NCharacterSelectScreenPatches
     [HarmonyPostfix]
     public static void ReadyPostfix(NCharacterSelectScreen __instance)
     {
-        if (!ModelDb.AllCharacters.Any(AltCharacterUtil.IsAvailableAltCharacter)) return;
+        if (!ModelDb.AllCharacters.Any(c => c is IAltCharacter)) return;
 
         __instance._ascensionPanel.Position = new Vector2(__instance._ascensionPanel.Position.X,
             __instance._ascensionPanel.Position.Y - yOffset);
@@ -65,8 +65,7 @@ public class NCharacterSelectButtonPatches
         var baseChar = character is IAltCharacter alt ? alt.BaseCharacterModel : character;
 
         var altCharacters = ModelDb.AllCharacters
-            .Where(c => AltCharacterUtil.IsAvailableAltCharacter(c) &&
-                    c is IAltCharacter { BaseCharacterModel: var b } && b == baseChar)
+            .Where(c => c is IAltCharacter { BaseCharacterModel: var b } && b == baseChar)
             .ToList();
 
         if (altCharacters is []) return;

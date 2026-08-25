@@ -36,7 +36,6 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<Burst>(),
             ModelDb.Card<DaggerThrow>(),
             ModelDb.Card<Expose>(),
-            ModelDb.Card<Flechettes>(),
             ModelDb.Card<LegSweep>(),
             ModelDb.Card<Malaise>(),
             ModelDb.Card<PoisonedStab>(),
@@ -44,10 +43,12 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<SerpentForm>(),
             ModelDb.Card<Snakebite>(),
             ModelDb.Card<ToolsOfTheTrade>(),
+            ModelDb.Card<Haze>(),
         ];
 
         var sts2Assembly = typeof(ModelDb).Assembly;
         var extraCards = ModelDbCompatibility.GetCardModelsSafely([
+            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Fade"),
             sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Concoct")
         ]);
 

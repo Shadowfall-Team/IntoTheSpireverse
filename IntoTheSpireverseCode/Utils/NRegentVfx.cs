@@ -3,11 +3,11 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Helpers;
 
 #nullable disable
-namespace IntoTheSpireverse.IntoTheSpireverseCode.utils;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 public partial class NRegentVfx : Node
 {
-    
+
   private GpuParticles2D _deathParticlesArm;
   private GpuParticles2D _deathParticlesChest;
   private GpuParticles2D _deathParticlesBack;

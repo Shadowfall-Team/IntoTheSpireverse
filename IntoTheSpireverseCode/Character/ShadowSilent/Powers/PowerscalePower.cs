@@ -51,8 +51,8 @@ public class PowerscalePower : ShadowPowerModel
             return;
         Flash();
         
-        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, amount, Owner, null, true);
-        DynamicVars[StrengthAppliedKey].BaseValue += DynamicVars.Strength.IntValue;
+        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, amount*Amount, Owner, null, true);
+        DynamicVars[StrengthAppliedKey].BaseValue += DynamicVars.Strength.IntValue*Amount;
         InvokeDisplayAmountChanged();
     }
     

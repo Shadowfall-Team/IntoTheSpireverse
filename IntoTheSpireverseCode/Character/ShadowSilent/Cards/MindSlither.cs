@@ -37,12 +37,13 @@ public sealed class MindSlither() : ShadowSilentCard(1, CardType.Skill, CardRari
             if (teammate.Player != null)
             {
                 var flickers = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-                    .Select(_ => CombatState.CreateCard<Flicker>(teammate.Player));
-                foreach (Flicker card in flickers ?? [])
-                {
-                    CardCmd.RemoveKeyword(card, CardKeyword.Retain);
-                    CardCmd.ApplyKeyword(card, CardKeyword.Ethereal);
-                }
+                    .Select(c =>
+                    {
+                        var card = CombatState.CreateCard<Flicker>(teammate.Player);
+                        CardCmd.RemoveKeyword(card, CardKeyword.Retain);
+                        CardCmd.ApplyKeyword(card, CardKeyword.Ethereal);
+                        return card;
+                    }); 
                 await CardPileCmd.AddGeneratedCardsToCombat(flickers ?? [], PileType.Hand, teammate.Player);
                 await Cmd.Wait(0.1f);
             }

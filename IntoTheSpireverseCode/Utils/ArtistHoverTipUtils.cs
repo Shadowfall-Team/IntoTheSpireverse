@@ -1,5 +1,5 @@
 using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
@@ -19,7 +19,7 @@ public static class Artists
     };
 }
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.utils
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils
 {
     public sealed class ArtistInfo
     {

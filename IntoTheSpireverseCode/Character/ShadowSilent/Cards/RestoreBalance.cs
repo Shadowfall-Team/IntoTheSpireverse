@@ -17,7 +17,7 @@ public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, Card
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
         new CardsVar(2),
     ];
 
@@ -43,7 +43,7 @@ public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, Card
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
         DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }

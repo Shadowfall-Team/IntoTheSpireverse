@@ -16,7 +16,7 @@ public sealed class SneckoForm() : ShadowSilentCard(3, CardType.Power, CardRarit
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(StatKey, 3m),
+        new DynamicVar(StatKey, 2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

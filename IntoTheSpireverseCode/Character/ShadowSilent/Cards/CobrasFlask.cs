@@ -71,6 +71,6 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Poison.UpgradeValueBy(2m);
+        DynamicVars.Poison.UpgradeValueBy(1m);
     }
 }

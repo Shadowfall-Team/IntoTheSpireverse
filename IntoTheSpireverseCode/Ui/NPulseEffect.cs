@@ -1,6 +1,6 @@
 using Godot;
 
-namespace IntoTheSpireverse.IntoTheSpireverseCode.ui;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 /// <summary>
 /// Pulses the parent Control's scale and opacity while it is visible. The parent's

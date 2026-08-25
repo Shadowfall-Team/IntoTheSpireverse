@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using VanillaFlechettes = MegaCrit.Sts2.Core.Models.Cards.Flechettes;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
@@ -21,6 +23,12 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter
     public static readonly Color Color = StsColors.orange;
 
     public override Color NameColor => Color;
+    public override Color EnergyLabelOutlineColor => new("004f04FF");
+    public override Color DialogueColor => new("473D19");
+    public override VfxColor SpeechBubbleColor => VfxColor.Orange;
+    public override Color MapDrawingColor => new("904D34");
+    public override Color RemoteTargetingLineColor => new("BD6C2EFF");
+    public override Color RemoteTargetingLineOutline => new("4F1D00FF");
     public override CharacterGender Gender => CharacterGender.Feminine;
     
     public override bool HideFromVanillaCharacterSelect => true;
@@ -29,6 +37,11 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter
     public CharacterModel BaseCharacterModel => ModelDb.Character<Silent>();
     
     public override int StartingHp => 75;
+    
+    public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
+    [
+        (ModelDb.Card<Flechettes>(), ModelDb.Card<VanillaFlechettes>())
+    ];
     
     public override IEnumerable<CardModel> StartingDeck =>
     [
@@ -59,6 +72,8 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter
     public override string CustomArmPaperTexturePath => "multiplayer_hand_silent_paper.png".ShadowSilentPath();
     public override string CustomArmScissorsTexturePath => "multiplayer_hand_silent_scissors.png".ShadowSilentPath();
     
+    
+    public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/shadowsilent_icon.tscn";
     public override string CustomIconTexturePath => "character_icon_silent.png".ShadowSilentPath();
     public override string CustomIconOutlineTexturePath => "character_icon_silent_outline.png".ShadowSilentPath();
     public override string CustomCharacterSelectIconPath => "char_select_silent.png".ShadowSilentPath();
