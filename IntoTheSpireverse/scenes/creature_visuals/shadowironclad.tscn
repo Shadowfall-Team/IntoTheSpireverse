@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cghtlla3sw0po" path="res://src/Core/Nodes/Combat/NCreatureVisuals.cs" id="1_v62mv"]
 [ext_resource type="SpineSkeletonDataResource" uid="uid://q85sn8sw4g2e" path="res://IntoTheSpireverse/images/characters/shadowironclad/shadowironclad_skel_data.tres" id="2_0jedi"]
 [ext_resource type="Shader" uid="uid://dfgtak7it7exn" path="res://IntoTheSpireverse/shaders/slash_shader_flat.tres" id="3_rq7c3"]
-[ext_resource type="Script" uid="uid://b5eutb4qttasw" path="res://IntoTheSpireverseCode/utils/NIroncladVfx.cs" id="3_wdh0x"]
+[ext_resource type="Script" uid="uid://b5eutb4qttasw" path="res://IntoTheSpireverseCode/Utils/NIroncladVfx.cs" id="3_wdh0x"]
 [ext_resource type="Texture2D" uid="uid://ihjpxxm3o87h" path="res://IntoTheSpireverse/images/vfx/fire/basic_fire_noise.png" id="4_x8wap"]
 [ext_resource type="Texture2D" uid="uid://bsw3nxvr118xr" path="res://IntoTheSpireverse/images/vfx/ironclad_slash_base.png" id="6_g8ov4"]
 [ext_resource type="Texture2D" uid="uid://1epaordiol6u" path="res://IntoTheSpireverse/images/vfx/fire/zigzag_fire_distortion.png" id="8_5fe08"]
