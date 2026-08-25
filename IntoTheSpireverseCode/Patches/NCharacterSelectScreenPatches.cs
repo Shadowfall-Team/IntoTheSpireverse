@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using IntoTheSpireverse.IntoTheSpireverseCode.ui;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.CustomRun;
