@@ -1,6 +1,6 @@
 [gd_resource type="SpineSkeletonDataResource" load_steps=7 format=3 uid="uid://bnql2fq1i2kpa"]
 
-[ext_resource type="SpineAtlasResource" uid="uid://ppdi7xfb4bju" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.atlas" id="1_myst4"]
+[ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.atlas" id="1_myst4"]
 [ext_resource type="SpineSkeletonFileResource" uid="uid://c50cud55k0unv" path="res://IntoTheSpireverse/images/characters/shadowsilent/shadowsilent.skel" id="2_m4zey"]
 
 [sub_resource type="SpineAnimationMix" id="SpineAnimationMix_ej2q8"]
