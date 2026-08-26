@@ -14,7 +14,7 @@ public sealed class MysticSlash() : ShadowSilentCard(3, CardType.Attack, CardRar
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(15m, ValueProp.Move),
+        new DamageVar(18m, ValueProp.Move),
         new EnergyVar(1),
     ];
     

@@ -15,7 +15,7 @@ public sealed class NaturesDisciple() : ShadowSilentCard(1, CardType.Power, Card
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<StrengthPower>(1m),
+        new PowerVar<StrengthPower>(2m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

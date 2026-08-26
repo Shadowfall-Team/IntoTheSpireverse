@@ -16,7 +16,7 @@ public sealed class Choke() : ShadowSilentCard(2, CardType.Attack, CardRarity.Un
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(14m, ValueProp.Move),
-        new PowerVar<StranglePower>(3m),
+        new PowerVar<StranglePower>(4m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

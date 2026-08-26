@@ -13,7 +13,7 @@ public sealed class Flechettes() : ShadowSilentCard(1, CardType.Attack, CardRari
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5m, ValueProp.Move),
+        new DamageVar(6m, ValueProp.Move),
         new CalculationBaseVar(0M),
         new CalculationExtraVar(1M),
         new CalculatedVar(_calculatedHitsKey).WithMultiplier((card, _) => PileType.Hand.GetPile(card.Owner).Cards.Count(c => c.Type == CardType.Skill))
