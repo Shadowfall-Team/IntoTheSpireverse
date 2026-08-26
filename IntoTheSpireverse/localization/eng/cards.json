@@ -93,7 +93,7 @@
   "INTOTHESPIREVERSE-REPTOMANCY.title": "Reptomancy",
   "INTOTHESPIREVERSE-REPTOMANCY.description": "Transform ALL [gold]Scales[/gold] in your [gold]Hand[/gold] into {IfUpgraded:show:[gold]Daggers+[/gold]|[gold]Daggers[/gold]}.",
   "INTOTHESPIREVERSE-CORPSE_EXPLOSION.title": "Corpse Explosion",
-  "INTOTHESPIREVERSE-CORPSE_EXPLOSION.description": "Apply {PoisonPower:diff()} [gold]Poison[/gold].\nWhen the enemy dies, deal damage equal to Dis Max HP to ALL enemies.",
+  "INTOTHESPIREVERSE-CORPSE_EXPLOSION.description": "Apply {PoisonPower:diff()} [gold]Poison[/gold].\nWhen the enemy dies, deal damage equal to its Max HP to ALL enemies.",
   "INTOTHESPIREVERSE-INERT_BLADE.title": "Inert Blade",
   "INTOTHESPIREVERSE-INERT_BLADE.description": "Deal {Damage:diff()} damage.\nIf this card costs...\n1+: Draw {Cards:diff()} {Cards:plural:card|cards}.\n2+: Gain {Block:diff()} [gold]Block[/gold].\n3+: Gain {StrengthGain:diff()} [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-INTOXICATE.title": "Intoxicate",
