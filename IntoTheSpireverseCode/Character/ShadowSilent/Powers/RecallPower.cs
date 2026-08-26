@@ -22,7 +22,7 @@ public class RecallPower : ShadowPowerModel, ICardDestinationListener
             return destination;
         if (card.IsDupe)
             return destination;
-        if (destination.PileType == PileType.None)
+        if (destination.PileType == PileType.None || destination.PileType == PileType.Exhaust)
             return destination;
         return destination with { PileType = PileType.Hand, Position = CardPilePosition.Top };
     }
