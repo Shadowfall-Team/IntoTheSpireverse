@@ -15,7 +15,7 @@ public sealed class Scalemail() : ShadowSilentCard(-1, CardType.Skill, CardRarit
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Scale>(true),
+        HoverTipFactory.FromCard<Scale>(IsUpgraded),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
