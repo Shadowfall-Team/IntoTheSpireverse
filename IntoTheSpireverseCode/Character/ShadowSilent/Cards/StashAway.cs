@@ -18,7 +18,7 @@ public sealed class StashAway() : ShadowSilentCard(1, CardType.Skill, CardRarity
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(8m, ValueProp.Move),
+        new BlockVar(7m, ValueProp.Move),
         new CardsVar(1),
     ];
     
@@ -30,13 +30,13 @@ public sealed class StashAway() : ShadowSilentCard(1, CardType.Skill, CardRarity
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        foreach (CardModel card in await CardSelectCmd.FromHand(choiceContext, Owner, new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue), (Func<CardModel, bool>) (c => !c.Keywords.Contains(CardKeyword.Retain)), this))
+        foreach (CardModel card in await CardSelectCmd.FromHand(choiceContext, Owner, new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue), (Func<CardModel, bool>) (c => !c.ShouldRetainThisTurn), this))
             CardCmdCompatibility.ApplySingleTurnRetain(card);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(1m);
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

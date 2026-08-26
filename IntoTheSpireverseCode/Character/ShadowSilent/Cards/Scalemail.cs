@@ -23,16 +23,14 @@ public sealed class Scalemail() : ShadowSilentCard(-1, CardType.Skill, CardRarit
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         int count = ResolveEnergyXValue();
-        
-        if (IsUpgraded)
-        {
-           count += 1;
-        }
         var scales = Enumerable.Range(0, count)
             .Select(c =>
             {
                 var card = CombatState.CreateCard<Scale>(Owner);
-                CardCmd.Upgrade(card);
+                if (IsUpgraded)
+                {
+                    CardCmd.Upgrade(card);
+                }
                 return card;
             }); 
 

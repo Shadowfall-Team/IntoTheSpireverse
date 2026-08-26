@@ -32,7 +32,7 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(2m);
     }
     
     public static async Task<IEnumerable<CardModel>> CreateInHand(
