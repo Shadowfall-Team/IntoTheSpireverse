@@ -39,11 +39,11 @@ public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarit
         if (instance != null)
             instance.CombatVfxContainer.AddChildSafely(child);
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await PowerCmd.Apply<ImmobilizePower>(choiceContext, cardPlay.Target, 
+            DynamicVars[StrengthLossKey].BaseValue, Owner.Creature, this);
         await PowerCmd.Apply<PoisonPower>(
             choiceContext, cardPlay.Target, DynamicVars.Poison.BaseValue, 
             Owner.Creature, this);
-        await PowerCmd.Apply<ImmobilizePower>(choiceContext, cardPlay.Target, 
-            DynamicVars[StrengthLossKey].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

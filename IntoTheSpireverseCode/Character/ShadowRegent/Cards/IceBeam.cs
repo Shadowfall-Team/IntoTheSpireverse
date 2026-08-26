@@ -31,14 +31,14 @@ public class IceBeam() : ShadowRegentCard(1,
         if (CombatState == null || play.Target == null) return;
 
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        
-        await PowerCmd.Apply<WeakPower>(
-            new ThrowingPlayerChoiceContext(),play.Target, DynamicVars.Weak.BaseValue,
-            Owner.Creature, this);
 
         await PowerCmd.Apply<IceBeamPower>(
             new ThrowingPlayerChoiceContext(),play.Target,
             DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
+        
+        await PowerCmd.Apply<WeakPower>(
+            new ThrowingPlayerChoiceContext(),play.Target, DynamicVars.Weak.BaseValue,
+            Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
