@@ -14,7 +14,7 @@ public sealed class Unburden() : ShadowSilentCard(1, CardType.Skill, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(12m, ValueProp.Move)
+        new BlockVar(10m, ValueProp.Move)
     ];
 
     protected override bool IsPlayable

@@ -16,7 +16,7 @@ public sealed class Dazzle() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(7m, ValueProp.Move),
+        new BlockVar(6m, ValueProp.Move),
         new DynamicVar(MuddleCountKey, 1m),
     ];
     

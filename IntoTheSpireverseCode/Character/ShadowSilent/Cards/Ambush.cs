@@ -15,7 +15,7 @@ public sealed class Ambush() : ShadowSilentCard(2, CardType.Attack, CardRarity.U
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
+        new DamageVar(14m, ValueProp.Move),
         new EnergyVar(1),
         new PowerVar<AmbushPower>(1m),
     ];

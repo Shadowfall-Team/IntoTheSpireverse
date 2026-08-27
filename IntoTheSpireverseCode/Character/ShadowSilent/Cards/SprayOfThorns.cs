@@ -13,7 +13,7 @@ public sealed class SprayOfThorns() : ShadowSilentCard(3, CardType.Attack, CardR
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(18m, ValueProp.Move),
+        new DamageVar(19m, ValueProp.Move),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];

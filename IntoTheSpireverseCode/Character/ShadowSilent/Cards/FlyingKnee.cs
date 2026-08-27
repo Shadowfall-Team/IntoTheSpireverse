@@ -14,7 +14,7 @@ public sealed class FlyingKnee() : ShadowSilentCard(1, CardType.Attack, CardRari
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8m, ValueProp.Move),
+        new DamageVar(9m, ValueProp.Move),
         new EnergyVar(1),
     ];
     

@@ -21,7 +21,7 @@ public sealed class DeviousStrike() : ShadowSilentCard(2, CardType.Attack, CardR
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
+        new DamageVar(13m, ValueProp.Move),
         new EnergyVar(2),
     ];
     
