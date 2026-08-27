@@ -83,7 +83,7 @@
   "INTOTHESPIREVERSE-NATURES_DISCIPLE.title": "Nature's Disciple",
   "INTOTHESPIREVERSE-NATURES_DISCIPLE.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-FLICKER.title": "Flicker",
-  "INTOTHESPIREVERSE-FLICKER.description": "{IfUpgraded:show:Draw {Cards:diff()} {Cards:plural:card|cards}. \n|}[gold]Muddle[/gold] 1 card.",
+  "INTOTHESPIREVERSE-FLICKER.description": "{IfUpgraded:show:Draw {Cards:diff()} {Cards:plural:card|cards}.\n|}[gold]Muddle[/gold] 1 card.",
   "INTOTHESPIREVERSE-STIMULANT.title": "Stimulant",
   "INTOTHESPIREVERSE-STIMULANT.description": "Draw {Cards:diff()} {Cards:plural:card|cards}.\n[gold]Muddle[/gold] {MuddleCount:diff()} {MuddleCount:plural:card|cards}.",
   "INTOTHESPIREVERSE-MAD_GAMBLE.title": "Mad Gamble",
@@ -165,7 +165,7 @@
   "INTOTHESPIREVERSE-FLECHETTES.title": "Flechettes",
   "INTOTHESPIREVERSE-FLECHETTES.description": "Deal {Damage:diff()} damage for each Skill in your [gold]Hand[/gold].{InCombat:\n(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}",
   "INTOTHESPIREVERSE-PILGRIMAGE.title": "Pilgrimage",
-  "INTOTHESPIREVERSE-PILGRIMAGE.description": "Draw {Cards:diff()} {Cards:plural:card|cards}.\n Discard {Discard:diff()} {Discard:plural:card|cards}",
+  "INTOTHESPIREVERSE-PILGRIMAGE.description": "Draw {Cards:diff()} {Cards:plural:card|cards}.\nDiscard {Discard:diff()} {Discard:plural:card|cards}.",
 
   "INTOTHESPIREVERSE-DECAY.description": "[gold]Channel[/gold] 1 [gold]Entropy[/gold].\n[gold]Cycle[/gold].",
   "INTOTHESPIREVERSE-DECAY.title": "Decay",
