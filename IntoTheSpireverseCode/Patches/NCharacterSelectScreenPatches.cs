@@ -9,6 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.CustomRun;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
+using MegaCrit.Sts2.Core.Saves;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
@@ -37,11 +38,19 @@ public class NCharacterSelectButtonPatches
     private const string _shaderMaterialPath = "res://materials/vfx/hsv.tres";
 
     [HarmonyPrefix]
-    public static void InitPrefix(NCharacterSelectButton __instance, ref CharacterModel character)
+    public static void InitPrefix(NCharacterSelectButton __instance, ref CharacterModel character, out bool __state)
     {
+        __state = false;
         if (__instance.GetAncestorOfType<NCustomRunScreen>() is not null) return;
 
-        var baseName = (character is IAltCharacter alt ? alt.BaseCharacterModel : character).GetType().Name;
+        var baseChar = character is IAltCharacter alt ? alt.BaseCharacterModel : character;
+        if (!SaveManager.Instance.Progress.CharacterStats.ContainsKey(baseChar.Id))
+        {
+            __state = true;
+            return;
+        }
+
+        var baseName = baseChar.GetType().Name;
         var selectedName = IntoTheSpireverseConfig.GetSelectedAlt(baseName);
 
         if (selectedName != baseName &&
@@ -52,9 +61,9 @@ public class NCharacterSelectButtonPatches
     }
 
     [HarmonyPostfix]
-    public static void InitPostfix(NCharacterSelectButton __instance, CharacterModel character, ICharacterSelectButtonDelegate del)
+    public static void InitPostfix(NCharacterSelectButton __instance, CharacterModel character, ICharacterSelectButtonDelegate del, bool __state)
     {
-        if (__instance.GetAncestorOfType<NCustomRunScreen>() is not null) return;
+        if (__instance.GetAncestorOfType<NCustomRunScreen>() is not null || __state) return;
 
         if (__instance.GetNodeOrNull<NCharAltArrow>("CharAltArrow") is { } existingArrow)
         {
