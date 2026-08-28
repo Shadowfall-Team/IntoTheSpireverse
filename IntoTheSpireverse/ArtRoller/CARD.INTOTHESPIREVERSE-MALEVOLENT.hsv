@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-MALEVOLENT",
+  "hue": 0.44,
+  "saturation": 2,
+  "value": 0.88,
+  "red": 0.96,
+  "green": 0.86,
+  "blue": 0.94,
+  "contrast": 1.25,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/silent/flanking.tres"
+}

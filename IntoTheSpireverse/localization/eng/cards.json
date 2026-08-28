@@ -166,6 +166,8 @@
   "INTOTHESPIREVERSE-INDULGE.description": "Apply {PoisonPower:diff()} [gold]Poison[/gold] to yourself.\nGain [gold]Strength[/gold] equal to your current [gold]Poison[/gold]{IfUpgraded:show:+{StrengthGain:diff()}|}",
   "INTOTHESPIREVERSE-I_SEE_YOU.title": "I See You",
   "INTOTHESPIREVERSE-I_SEE_YOU.description": "Deal {Damage:diff()} damage.\nEnemy loses {StrengthLoss:diff()} [gold]Strength[/gold].",
+  "INTOTHESPIREVERSE-MALEVOLENT.title": "Malevolent",
+  "INTOTHESPIREVERSE-MALEVOLENT.description": "[gold]Devious[/gold] cards may discard an additional card.",
 
   "INTOTHESPIREVERSE-DECAY.description": "[gold]Channel[/gold] 1 [gold]Entropy[/gold].\n[gold]Cycle[/gold].",
   "INTOTHESPIREVERSE-DECAY.title": "Decay",
