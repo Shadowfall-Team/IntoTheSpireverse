@@ -16,7 +16,7 @@ public sealed class Plunder() : ShadowSilentCard(1, CardType.Attack, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
         new EnergyVar(2),
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),

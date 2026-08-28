@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -15,10 +16,16 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [IntoTheSpireverseKeywords.Devious];
+    
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<VulnerablePower>(1m),
+    ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<PoisonPower>(),
+        HoverTipFactory.FromPower<VulnerablePower>(),
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious)
     ];
 
@@ -34,6 +41,8 @@ public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, Car
                 {
                     var power = hittableEnemy.GetPower<PoisonPower>();
                     if (power == null) return;
+                    await PowerCmd.Apply<VulnerablePower>(choiceContext, power.Owner, DynamicVars.Vulnerable.BaseValue,
+                        cardPlay.Card.Owner.Creature, this);
                     await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), power.Owner, power.Amount, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
                     if (power.Owner.IsAlive)
                         await PowerCmd.Decrement(power);

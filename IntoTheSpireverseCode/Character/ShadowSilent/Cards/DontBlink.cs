@@ -13,8 +13,8 @@ public sealed class DontBlink() : ShadowSilentCard(3, CardType.Attack, CardRarit
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CalculationBaseVar(15M),
-        new ExtraDamageVar(4M),
+        new CalculationBaseVar(17M),
+        new ExtraDamageVar(3M),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) => CombatManager.Instance.History.CardPlaysFinished.Count(e => e.HappenedThisTurn(card.CombatState) && e.CardPlay.Card.Owner == card.Owner))
     ];
 
@@ -31,7 +31,7 @@ public sealed class DontBlink() : ShadowSilentCard(3, CardType.Attack, CardRarit
 
     protected override void OnUpgrade()
     {
-        DynamicVars.ExtraDamage.UpgradeValueBy(2m);
-        DynamicVars.CalculationBase.UpgradeValueBy(5m);
+        DynamicVars.ExtraDamage.UpgradeValueBy(1m);
+        DynamicVars.CalculationBase.UpgradeValueBy(3m);
     }
 }

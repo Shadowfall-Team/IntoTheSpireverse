@@ -1,10 +1,16 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using Godot;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
@@ -20,17 +26,19 @@ public class PestilencePower : ShadowPowerModel
     ];
     
     
-    public override async Task AfterDamageReceived(
-        PlayerChoiceContext choiceContext,
-        Creature target,
-        DamageResult _,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? __)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        if (target != Owner || dealer == null || !props.IsPoweredAttack())
-            return;
-        await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), dealer, Amount, Owner, null);
+        if (side != Owner.Side || Owner.Player == null) return;
+
+        Flash();
+        await Cmd.CustomScaledWait(0.2f, 0.4f);
+        foreach (Creature hittableEnemy in CombatState.HittableEnemies)
+        {
+            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(hittableEnemy);
+            if (creatureNode != null)
+                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGaseousImpactVfx.Create(creatureNode.VfxSpawnPosition, new Color("83eb85")));
+        }
+        await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, PileType.Hand.GetPile(Owner.Player).Cards.Count * Amount, Owner, null);
     }
 
 }
