@@ -34,26 +34,35 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
     {
         if (CombatState == null) return;
         
-        CardModel? card = (await CardSelectCmd.FromHandForDiscard(
+        int maxDiscards = 1;
+        foreach (var model in Owner.Creature.CombatState?.IterateHookListeners().ToList()!)
+        {
+            if (model is IntoTheSpireverseKeywords.IDeviousDiscardListener deviousListener)
+                maxDiscards = deviousListener.ModifyDeviousDiscard(maxDiscards);
+        }
+        
+        var cards = (await CardSelectCmd.FromHandForDiscard(
             choiceContext,
             Owner,
-            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
+            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards,1)),
             null,
-            this)).FirstOrDefault();
+            this));
 
-        if (card == null)
-            return;
-        if (card.Owner.Creature.CombatState == null) return;
-
-        int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
-        if (card.EnergyCost.CostsX && Owner.PlayerCombatState != null)
-            repeats = Owner.PlayerCombatState.Energy;
-        await CardCmd.Discard(choiceContext, card);
-        
-        foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
+        int repeats = 0;
+        foreach (CardModel card in cards)
         {
-            if (model is IntoTheSpireverseKeywords.IModifyDeviousListener deviousListener)
-                repeats = deviousListener.ModifyDeviousValue(card, repeats);
+            if (card.Owner.Creature.CombatState == null) return;
+            
+            repeats += Math.Min(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
+            if (card.EnergyCost.CostsX && Owner.PlayerCombatState != null)
+                repeats += Owner.PlayerCombatState.Energy;
+            await CardCmd.Discard(choiceContext, card);
+            
+            foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
+            {
+                if (model is IntoTheSpireverseKeywords.IModifyDeviousListener deviousListener)
+                    repeats = deviousListener.ModifyDeviousValue(card, repeats);
+            }
         }
 
         if (repeats > 0)
