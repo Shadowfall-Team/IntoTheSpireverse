@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -14,7 +13,7 @@ public sealed class Unburden() : ShadowSilentCard(1, CardType.Skill, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(10m, ValueProp.Move)
+        new BlockVar(12m, ValueProp.Move)
     ];
 
     protected override bool IsPlayable
