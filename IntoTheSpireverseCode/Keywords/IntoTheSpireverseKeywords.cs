@@ -87,9 +87,9 @@ public static class IntoTheSpireverseKeywords
         {
             if (card.Owner.Creature.CombatState == null) return;
 
-            repeats += card.EnergyCost.GetWithModifiers(CostModifiers.All);
+            repeats += Math.Min(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
             if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
-                repeats = player.PlayerCombatState.Energy;
+                repeats += player.PlayerCombatState.Energy;
             await CardCmd.Discard(context, card);
         
             foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
