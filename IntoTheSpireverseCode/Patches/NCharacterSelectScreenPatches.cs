@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
-using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.CustomRun;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
@@ -44,7 +43,7 @@ public class NCharacterSelectButtonPatches
         if (__instance.GetAncestorOfType<NCustomRunScreen>() is not null) return;
 
         var baseChar = character is IAltCharacter alt ? alt.BaseCharacterModel : character;
-        if (!SaveManager.Instance.Progress.CharacterStats.ContainsKey(baseChar.Id))
+        if (!IntoTheSpireverseConfig.AltCharactersUnlocked && !SaveManager.Instance.Progress.CharacterStats.ContainsKey(baseChar.Id))
         {
             __state = true;
             return;
