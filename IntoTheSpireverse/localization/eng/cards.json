@@ -94,8 +94,6 @@
   "INTOTHESPIREVERSE-INERT_BLADE.description": "Deal {Damage:diff()} damage.\nIf this card costs...\n1+: Draw {Cards:diff()} {Cards:plural:card|cards}.\n2+: Gain {Block:diff()} [gold]Block[/gold].\n3+: Gain {StrengthGain:diff()} [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-INTOXICATE.title": "Intoxicate",
   "INTOTHESPIREVERSE-INTOXICATE.description": "Deal {Damage:diff()} damage.\nApply [gold]Poison[/gold] equal to damage dealt.",
-  "INTOTHESPIREVERSE-HOLY_SHIELD.title": "Holy Shield",
-  "INTOTHESPIREVERSE-HOLY_SHIELD.description": "Gain {Block:diff()} [gold]Block[/gold].\nReturn this card to your [gold]Hand[/gold], then [gold]Muddle[/gold] it.",
   "INTOTHESPIREVERSE-SNAKE_EYES.title": "Snake Eyes",
   "INTOTHESPIREVERSE-SNAKE_EYES.description": "At the start of your turn, [gold]Muddle[/gold] the{IfUpgraded:show: 2|} most expensive {IfUpgraded:show:cards|card} in your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-BLUNDERSTORM.title": "Blunderstorm",
