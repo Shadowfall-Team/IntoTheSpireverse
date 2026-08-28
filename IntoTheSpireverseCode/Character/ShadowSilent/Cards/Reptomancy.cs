@@ -5,31 +5,44 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class Reptomancy() : ShadowSilentCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public sealed class Reptomancy() : ShadowSilentCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new CalculationBaseVar(12M),
+        new ExtraDamageVar(4M),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
+        {
+            var playerCombatState = card.Owner.PlayerCombatState;
+            return playerCombatState != null ? playerCombatState.ExhaustPile.Cards.Count(c => c is Scale) : 0;
+        })
+    ];
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Dagger>(IsUpgraded)
+        HoverTipFactory.FromCard<Scale>(true)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        List<CardModel> list = PileType.Hand.GetPile(Owner).Cards.Where(c => c.IsTransformable && c.Tags.Contains(IntoTheSpireverseCardTags.Scale)).ToList();
-        List<CardTransformation> transformations = new List<CardTransformation>();
-        foreach (CardModel original in list)
-        {
-            CardModel card = CombatState.CreateCard<Dagger>(Owner);
-            if (IsUpgraded)
-                CardCmd.Upgrade(card);
-            transformations.Add(new CardTransformation(original, card));
-        }
-        await CardCmd.Transform(transformations, null);
+        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
+        await DamageCmd.Attack(DynamicVars.CalculatedDamage)
+            .FromCardCompatibility(this, cardPlay)
+            .Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.ExtraDamage.UpgradeValueBy(2m);
     }
 }
