@@ -10,9 +10,11 @@ public class ShadowRegentCardPool : CustomCardPoolModel
 {
     public override string Title => "shadow_regent";
     public override string EnergyColorName => "regent";
-    public override Color DeckEntryCardColor => new("E36600");
+
     public override string CardFrameMaterialPath => "shadow_regent";
+    public override Color DeckEntryCardColor => new("E36600");
     public override Color EnergyOutlineColor => new("803D0E");
+
     public override bool IsColorless => false;
 
     protected override CardModel[] GenerateAllCards()
@@ -43,6 +45,6 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Plot")
         ]);
 
-        return cards.Concat(extraCards).ToArray<CardModel>();
+        return [.. cards, .. extraCards];
     }
 }
