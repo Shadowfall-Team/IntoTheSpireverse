@@ -22,7 +22,7 @@ public class RecallPower : ShadowPowerModel, ICardDestinationListener
     {
         if (player != Owner.Player)
             return;
-        await CardPileCmd.Add(await CardSelectCmd.FromCombatPile(choiceContext, PileType.Draw.GetPile(Owner.Player), Owner.Player, new CardSelectorPrefs(SelectionScreenPrompt, Amount)), PileType.Discard);
+        await CardPileCmd.Add(await CardSelectCmd.FromCombatPile(choiceContext, PileType.Discard.GetPile(Owner.Player), Owner.Player, new CardSelectorPrefs(SelectionScreenPrompt, Amount)), PileType.Hand);
         await PowerCmd.Remove(this);
     }
 }
