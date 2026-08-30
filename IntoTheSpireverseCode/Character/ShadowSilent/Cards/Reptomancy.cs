@@ -27,7 +27,7 @@ public sealed class Reptomancy() : ShadowSilentCard(1, CardType.Attack, CardRari
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Scale>(true)
+        HoverTipFactory.FromCard<Scale>()
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
