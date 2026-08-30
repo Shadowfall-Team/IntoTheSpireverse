@@ -30,7 +30,9 @@ public sealed class StashAway() : ShadowSilentCard(1, CardType.Skill, CardRarity
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        foreach (CardModel card in await CardSelectCmd.FromHand(choiceContext, Owner, new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue), (Func<CardModel, bool>) (c => !c.ShouldRetainThisTurn), this))
+        var selectedCards = await CardSelectCmd.FromHand(choiceContext, Owner,
+            new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue), c => !c.ShouldRetainThisTurn, this);
+        foreach (CardModel card in selectedCards)
             CardCmdCompatibility.ApplySingleTurnRetain(card);
     }
 

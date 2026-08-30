@@ -25,15 +25,15 @@ public sealed class Indulge() : ShadowSilentCard(0, CardType.Skill, CardRarity.R
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
-        var power = await PowerCmd.Apply<PoisonPower>(
+        var poisonPower = await PowerCmd.Apply<PoisonPower>(
             choiceContext, Owner.Creature,
             DynamicVars.Power<PoisonPower>().BaseValue,
             Owner.Creature, this);
       
-        if (power != null)
+        if (poisonPower != null)
             await PowerCmd.Apply<StrengthPower>(
                 choiceContext, Owner.Creature,
-                power.Amount + DynamicVars.Power<StrengthPower>().BaseValue,
+                poisonPower.Amount + DynamicVars.Power<StrengthPower>().BaseValue,
                 Owner.Creature, this);
     }
     
