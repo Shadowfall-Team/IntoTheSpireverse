@@ -147,7 +147,7 @@
   "INTOTHESPIREVERSE-HORROR.title": "Horror",
   "INTOTHESPIREVERSE-HORROR.description": "The enemy gains \u2028{StrengthPower:diff()}\u00A0[gold]Strength[/gold].\nThe enemy takes double damage from Attacks.",
   "INTOTHESPIREVERSE-CENTURION.title": "Centurion",
-  "INTOTHESPIREVERSE-CENTURION.description": "Add {Cards:diff()} Armored [gold]{Cards:plural:Scale|Scales}{IfUpgraded:show:+|}[/gold] into\u00A0your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-CENTURION.description": "Add {Cards:diff()} [purple]Armored[/purple] [gold]{Cards:plural:Scale|Scales}{IfUpgraded:show:+|}[/gold] into\u00A0your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-PESTILENCE.title": "Pestilence",
   "INTOTHESPIREVERSE-PESTILENCE.description": "Whenever you are attacked, apply {PestilencePower:diff()} [gold]Poison[/gold] back.",
   "INTOTHESPIREVERSE-STARVATION.title": "Starvation",
