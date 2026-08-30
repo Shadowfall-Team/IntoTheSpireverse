@@ -13,5 +13,7 @@
   "INTOTHESPIREVERSE-CAPTURE_CARGO_PILE_BINDING.hover.desc": "Click to rebind the keyboard shortcut that opens the Cargo Pile.\n\nDefault: Ctrl + A",
   "INTOTHESPIREVERSE-CAPTURE_FIRE_BINDING.title": "FIRE! Button",
   "INTOTHESPIREVERSE-CAPTURE_FIRE_BINDING.hover.desc": "Click to rebind the keyboard shortcut that triggers the FIRE! button.\n\nDefault: Ctrl + F",
-  "INTOTHESPIREVERSE-PRESS_A_KEY": "[press a key...]"
+  "INTOTHESPIREVERSE-PRESS_A_KEY": "[press a key...]",
+  "INTOTHESPIREVERSE-UNLOCK_ALL_ALT_CHARACTERS.title": "Unlock All Alternate Characters",
+  "INTOTHESPIREVERSE-UNLOCK_ALL_ALT_CHARACTERS_BUTTON.title": "Unlock"
 }

@@ -5,6 +5,8 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
+using MegaCrit.Sts2.Core.Nodes;
+using MegaCrit.Sts2.Core.Saves;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
@@ -48,6 +50,17 @@ internal class IntoTheSpireverseConfig : SimpleModConfig
     {
         NInputManagerPatches.StartCapture(NInputManagerPatches.CaptureTarget.Fire, button);
         KeybindConfigUi.SetListening(button);
+    }
+
+    [ConfigHideInUI]
+    public static bool AltCharactersUnlocked { get; set;}
+
+
+    [ConfigButton("UnlockAllAltCharactersButton")]
+    public static void UnlockAllAltCharacters()
+    {
+        AltCharactersUnlocked = true;
+        NGame.Instance?.ReloadMainMenu();
     }
 
     public override void SetupConfigUI(Control optionContainer)
