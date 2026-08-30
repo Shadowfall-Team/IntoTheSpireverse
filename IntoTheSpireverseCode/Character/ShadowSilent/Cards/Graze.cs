@@ -16,7 +16,7 @@ public sealed class Graze() : ShadowSilentCard(2, CardType.Skill, CardRarity.Com
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(10m, ValueProp.Move),
+        new BlockVar(11m, ValueProp.Move),
         new CardsVar(1),
     ];
     
