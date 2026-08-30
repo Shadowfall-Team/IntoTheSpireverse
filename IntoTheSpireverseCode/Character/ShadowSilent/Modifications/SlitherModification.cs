@@ -18,16 +18,16 @@ public sealed class SlitherModification : Modification
     }
 
     protected override ModelId SourceCardId => ModelDb.Card<Perplex>().Id;
-    
-    public override Task AfterCardDrawn(
+
+    public override async Task AfterCardDrawn(
         PlayerChoiceContext choiceContext,
         CardModel card,
         bool fromHandDraw)
     {
         if (card != Owner || Owner.Pile == null || Owner.Pile.Type != PileType.Hand)
-            return Task.CompletedTask;
-        IntoTheSpireverseKeywords.ApplyMuddle(Owner);
-        return Task.CompletedTask;
+            return;
+        await IntoTheSpireverseKeywords.ApplyMuddle(Owner);
+        return;
     }
 
 }

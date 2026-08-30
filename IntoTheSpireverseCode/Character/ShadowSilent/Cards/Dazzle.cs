@@ -37,8 +37,8 @@ public sealed class Dazzle() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
 
         if (targets.Count == 0)
             return;
-        
-        IntoTheSpireverseKeywords.ApplyMuddleAll(targets);
+
+        await IntoTheSpireverseKeywords.ApplyMuddleAll(targets);
     }
 
     protected override void OnUpgrade()
