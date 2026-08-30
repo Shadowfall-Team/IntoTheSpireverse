@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class Shellback() : ShadowSilentCard(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class Shellback() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
