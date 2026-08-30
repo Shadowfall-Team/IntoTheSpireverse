@@ -53,7 +53,7 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
         {
             if (card.Owner.Creature.CombatState == null) return;
             
-            repeats += Math.Min(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
+            repeats += Math.Max(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
             if (card.EnergyCost.CostsX && Owner.PlayerCombatState != null)
                 repeats += Owner.PlayerCombatState.Energy;
             await CardCmd.Discard(choiceContext, card);
