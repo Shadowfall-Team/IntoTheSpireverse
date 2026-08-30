@@ -31,7 +31,7 @@ public class BaleteRoot : ShadowSilentRelic, IntoTheSpireverseKeywords.IModifyDe
         return Task.CompletedTask;
     }
 
-    public async Task<int> ModifyDeviousValue(CardModel card, int originalValue)
+    public int ModifyDeviousValue(CardModel card, int originalValue)
     {
         return Owner != card.Owner ? originalValue : originalValue + DynamicVars[_increaseKey].IntValue;
     }

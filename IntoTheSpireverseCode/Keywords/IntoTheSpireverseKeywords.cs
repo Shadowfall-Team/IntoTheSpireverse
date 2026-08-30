@@ -87,7 +87,7 @@ public static class IntoTheSpireverseKeywords
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IModifyDeviousListener deviousListener)
-                repeats = await deviousListener.ModifyDeviousValue(card, repeats);
+                repeats = deviousListener.ModifyDeviousValue(card, repeats);
         }
 
         for (int i = 0; i < repeats; i++)
@@ -112,12 +112,12 @@ public static class IntoTheSpireverseKeywords
     
     public interface IShouldPermanentMuddleListener
     {
-        Task<bool> ShouldPermanentMuddle(CardModel card);
+        bool ShouldPermanentMuddle(CardModel card);
     }
     
     public interface IModifyDeviousListener
     {
-        Task<int> ModifyDeviousValue(CardModel card, int originalValue);
+        int ModifyDeviousValue(CardModel card, int originalValue);
     }
 
     public static async Task<CardModel?> ApplyMuddle(CardModel card)
@@ -150,7 +150,7 @@ public static class IntoTheSpireverseKeywords
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IShouldPermanentMuddleListener muddleListener)
-                permanentMuddle |= await muddleListener.ShouldPermanentMuddle(card);
+                permanentMuddle |= muddleListener.ShouldPermanentMuddle(card);
         }
         
         if (permanentMuddle)
