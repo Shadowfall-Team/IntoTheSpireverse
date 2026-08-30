@@ -36,7 +36,7 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
             .Execute(choiceContext);
         
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(c =>
+            .Select(_ =>
             {
                 var card = CombatState.CreateCard<Scale>(Owner);
                 if(IsUpgraded)

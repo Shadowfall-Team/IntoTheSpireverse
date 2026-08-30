@@ -11,8 +11,6 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class Indulge() : ShadowSilentCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    private const string _strengthKey = "StrengthGain";
-    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<PoisonPower>(),
@@ -21,7 +19,7 @@ public sealed class Indulge() : ShadowSilentCard(0, CardType.Skill, CardRarity.R
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<PoisonPower>(3m),
-        new DynamicVar(_strengthKey, 0),
+        new PowerVar<StrengthPower>(0m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -35,12 +33,12 @@ public sealed class Indulge() : ShadowSilentCard(0, CardType.Skill, CardRarity.R
         if (power != null)
             await PowerCmd.Apply<StrengthPower>(
                 choiceContext, Owner.Creature,
-                power.Amount + DynamicVars[_strengthKey].BaseValue,
+                power.Amount + DynamicVars.Power<StrengthPower>().BaseValue,
                 Owner.Creature, this);
     }
     
     protected override void OnUpgrade()
     {
-        DynamicVars[_strengthKey].UpgradeValueBy(1);
+        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);
     }
 }

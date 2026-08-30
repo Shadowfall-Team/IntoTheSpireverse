@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,12 +13,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class ISeeYou() : ShadowSilentCard(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    private const string _strengthKey = "StrengthLoss";
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(33m, ValueProp.Move),
-        new DynamicVar(_strengthKey, 2m),
+        new PowerVar<StrengthPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -37,13 +36,13 @@ public sealed class ISeeYou() : ShadowSilentCard(4, CardType.Attack, CardRarity.
 
         await PowerCmd.Apply<StrengthPower>(
             choiceContext, cardPlay.Target,
-            -DynamicVars[_strengthKey].BaseValue,
+            -DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(11m);
-        DynamicVars[_strengthKey].UpgradeValueBy(1m);
+        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1m);
     }
 }

@@ -27,6 +27,6 @@ public class SpearheadPower : ShadowPowerModel, IntoTheSpireverseKeywords.IModif
     {
         if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.Card.Keywords.Contains(IntoTheSpireverseKeywords.Devious))
             return;
-        await PowerCmd.Decrement(this);
+        await PowerCmd.Remove(this);
     }
 }
