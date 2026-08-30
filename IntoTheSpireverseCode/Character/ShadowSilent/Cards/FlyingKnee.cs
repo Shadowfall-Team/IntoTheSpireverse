@@ -41,6 +41,7 @@ public sealed class FlyingKnee() : ShadowSilentCard(1, CardType.Attack, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(1m);
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }
