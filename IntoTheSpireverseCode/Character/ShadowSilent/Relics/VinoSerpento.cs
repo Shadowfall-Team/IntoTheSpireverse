@@ -80,7 +80,10 @@ public class VinoSerpento : ShadowSilentRelic
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (WasTriggered && cardPlay.Player == Owner && !WasUsedThisCombat)
+
+        // Currently a hack to account for the main branch not having `cardPlay.Player` yet
+        // will potentially break if a card like TheBall applies poison, 
+        if (WasTriggered && cardPlay.Card.Owner == Owner && !WasUsedThisCombat)
         {
             WasUsedThisCombat = true;
             Status = RelicStatus.Normal;

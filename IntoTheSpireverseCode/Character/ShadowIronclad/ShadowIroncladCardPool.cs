@@ -11,12 +11,9 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
     public override string Title => "shadow_ironclad";
     public override string EnergyColorName => "ironclad";
 
-    public override float H => 1f;
-    public override float S => 1f;
-    public override float V => 1f;
-
     public override string CardFrameMaterialPath => "shadow_ironclad";
-    public override Color DeckEntryCardColor => new("ffffff");
+    public override Color DeckEntryCardColor => new("D62000");
+    public override Color EnergyOutlineColor => new("802020");
 
     public override bool IsColorless => false;
 
@@ -50,6 +47,6 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Outrage")
         ]);
 
-        return cards.Concat(extraCards).ToArray<CardModel>();
+        return [.. cards, .. extraCards];
     }
 }
