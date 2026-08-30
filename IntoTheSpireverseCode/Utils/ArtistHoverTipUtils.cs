@@ -33,26 +33,26 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils
     {
         public static readonly HashSet<string> ArtistTipIds = [];
 
-        private static bool IsInspectingOrInCompendium(AbstractModel model)
+        private static bool IsInspectingOrInCompendium(AbstractModel? model)
         {
+            if (model == null) return false;
             bool mainCompendium = (
-                NGame.Instance?.MainMenu?.SubmenuStack?._compendiumSubmenu?._stack._submenus ?? []
+                NGame.Instance?.MainMenu?.SubmenuStack?._compendiumSubmenu?._stack?._submenus ?? []
             ).Any(m => m is NCardLibrary or NRelicCollection or NPotionLab);
+
+            var runStack = NRun.Instance?.GlobalUi?.SubmenuStack?.Stack;
             bool runCompendium =
-                NRun.Instance?.GlobalUi?.SubmenuStack?.Stack != null
-                && (
-                    NRun.Instance.GlobalUi.SubmenuStack.Stack._cardLibrarySubmenu != null
-                    || NRun.Instance.GlobalUi.SubmenuStack.Stack._relicCollectionSubmenu != null
-                    || NRun.Instance.GlobalUi.SubmenuStack.Stack._potionLabSubmenu != null
-                );
+                runStack?._cardLibrarySubmenu != null
+                || runStack?._relicCollectionSubmenu != null
+                || runStack?._potionLabSubmenu != null;
 
             bool inspecting =
                 (NGame.Instance?.InspectCardScreen?._card?._model == model)
-                || (NGame.Instance?.InspectRelicScreen?._relics.Contains(model) == true);
+                || (NGame.Instance?.InspectRelicScreen?._relics?.Contains(model) == true);
             return inspecting || mainCompendium || runCompendium;
         }
 
-        public static IEnumerable<IHoverTip> HoverTip(this ArtistInfo info, AbstractModel model)
+        public static IEnumerable<IHoverTip> HoverTip(this ArtistInfo info, AbstractModel? model)
         {
             if (!IsInspectingOrInCompendium(model))
                 yield break;
