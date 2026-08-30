@@ -87,7 +87,7 @@ public static class IntoTheSpireverseKeywords
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IModifyDeviousListener deviousListener)
-                repeats = deviousListener.ModifyDeviousValue(card, repeats);
+                repeats = await deviousListener.ModifyDeviousValue(card, repeats);
         }
 
         for (int i = 0; i < repeats; i++)
@@ -102,7 +102,7 @@ public static class IntoTheSpireverseKeywords
     
     public interface IMuddleListener
     {
-        void OnMuddled();
+        Task OnMuddled();
     }
     
     public interface ICardMuddledListener
@@ -112,12 +112,12 @@ public static class IntoTheSpireverseKeywords
     
     public interface IShouldPermanentMuddleListener
     {
-        bool ShouldPermanentMuddle(CardModel card);
+        Task<bool> ShouldPermanentMuddle(CardModel card);
     }
     
     public interface IModifyDeviousListener
     {
-        int ModifyDeviousValue(CardModel card, int originalValue);
+        Task<int> ModifyDeviousValue(CardModel card, int originalValue);
     }
 
     public static async Task<CardModel?> ApplyMuddle(CardModel card)
@@ -150,7 +150,7 @@ public static class IntoTheSpireverseKeywords
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IShouldPermanentMuddleListener muddleListener)
-                permanentMuddle |= muddleListener.ShouldPermanentMuddle(card);
+                permanentMuddle |= await muddleListener.ShouldPermanentMuddle(card);
         }
         
         if (permanentMuddle)
@@ -161,8 +161,8 @@ public static class IntoTheSpireverseKeywords
         NCard.FindOnTable(card)?.PlayRandomizeCostAnim();
 
         if (card is IMuddleListener listener)
-            listener.OnMuddled();
-        
+            await listener.OnMuddled();
+
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is ICardMuddledListener powerListener)

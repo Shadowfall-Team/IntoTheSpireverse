@@ -22,7 +22,7 @@ public class Mithridatium : ShadowSilentRelic, IntoTheSpireverseKeywords.IShould
         Flash();
     }
 
-    public bool ShouldPermanentMuddle(CardModel card)
+    public async Task<bool> ShouldPermanentMuddle(CardModel card)
     {
         return card.Owner == Owner;
     }

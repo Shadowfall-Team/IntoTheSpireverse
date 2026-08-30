@@ -53,7 +53,7 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IntoTheSpireverseKeywords.IModifyDeviousListener deviousListener)
-                repeats = deviousListener.ModifyDeviousValue(card, repeats);
+                repeats = await deviousListener.ModifyDeviousValue(card, repeats);
         }
 
         if (repeats > 0)
