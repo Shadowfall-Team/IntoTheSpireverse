@@ -15,7 +15,7 @@ public sealed class Recall() : ShadowSilentCard(1, CardType.Attack, CardRarity.U
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8m, ValueProp.Move),
+        new DamageVar(9m, ValueProp.Move),
         new PowerVar<RecallPower>(1m),
     ];
     

@@ -13,17 +13,16 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class Shellback() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
-    private const string EnergyKey = "EnergyCost";
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ShellbackPower>(6m),
-        new DynamicVar(EnergyKey, 1m)
+        new PowerVar<ShellbackPower>(2m)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
             HoverTipFactory.FromCard<Scale>(),
+            HoverTipFactory.FromKeyword(CardKeyword.Retain),
             HoverTipFactory.Static(StaticHoverTip.Block),
         ];
 
@@ -35,9 +34,6 @@ public sealed class Shellback() : ShadowSilentCard(1, CardType.Power, CardRarity
             choiceContext, Owner.Creature,
             DynamicVars.Power<ShellbackPower>().BaseValue,
             Owner.Creature, this);
-
-        if (power != null)
-            power.AddCost(DynamicVars[EnergyKey].IntValue);
     }
     
     protected override void OnUpgrade()

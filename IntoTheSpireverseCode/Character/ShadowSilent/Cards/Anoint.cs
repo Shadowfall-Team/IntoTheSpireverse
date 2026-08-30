@@ -33,6 +33,6 @@ public sealed class Anoint() : ShadowSilentCard(0, CardType.Skill, CardRarity.Un
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Power<AnointPower>().UpgradeValueBy(1m);
+        AddKeyword(CardKeyword.Retain);
     }
 }

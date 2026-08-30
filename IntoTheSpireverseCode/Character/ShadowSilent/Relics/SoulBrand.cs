@@ -15,10 +15,12 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 public class SoulBrand : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Starter;
+    private const string _turnsKey = "Turns";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(3),
+        new CardsVar(1),
+        new DynamicVar(_turnsKey, 3M)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -32,7 +34,7 @@ public class SoulBrand : ShadowSilentRelic
         PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber != 1)
+        if (player != Owner || Owner.PlayerCombatState?.TurnNumber > DynamicVars["Turns"].BaseValue)
             return;
 
         Flash();
