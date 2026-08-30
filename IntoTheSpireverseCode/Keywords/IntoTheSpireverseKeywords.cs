@@ -120,11 +120,11 @@ public static class IntoTheSpireverseKeywords
         int ModifyDeviousValue(CardModel card, int originalValue);
     }
 
-    public static void ApplyMuddle(CardModel card)
+    public static async Task<CardModel?> ApplyMuddle(CardModel card)
     {
-        if (card.Owner.Creature.CombatState == null) return;
+        if (card.Owner.Creature.CombatState == null) return null;
         if (!CanMuddle(card))
-            return;
+            return null;
 
         int currentCost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
         int newCost;
@@ -166,39 +166,49 @@ public static class IntoTheSpireverseKeywords
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is ICardMuddledListener powerListener)
-                powerListener.AfterCardMuddled(card.Owner.Creature.CombatState, card);
+                await powerListener.AfterCardMuddled(card.Owner.Creature.CombatState, card);
         }
+        return card;
     }
 
-    public static void ApplyMuddleAll(IEnumerable<CardModel> cards)
+    public static async Task<IEnumerable<CardModel>> ApplyMuddleAll(IEnumerable<CardModel> cards)
     {
+        List<CardModel> _cards = [];
         foreach (var card in cards)
-            ApplyMuddle(card);
+        {
+            var _card = await ApplyMuddle(card);
+            if (_card is not null)
+                _cards.Add(_card);
+        }
+        return _cards.Count == 0 ? [] : (IEnumerable<CardModel>)_cards;
     }
 
-    public static void ApplyMuddleHand(Player player)
+    public static async Task<IEnumerable<CardModel>> ApplyMuddleHand(Player player)
     {
-        ApplyMuddleAll(
+        return await ApplyMuddleAll(
             PileType.Hand.GetPile(player).Cards
                 .Where(CanMuddle)
         );
     }
 
-    public static void ApplyMuddleRandom(Player player, int count, Rng rng)
+    public static async Task<IEnumerable<CardModel>> ApplyMuddleRandom(Player player, int count, Rng rng)
     {
         var eligible = PileType.Hand.GetPile(player).Cards
             .Where(CanMuddle)
             .ToList();
 
+        List<CardModel> _cards = [];
         for (int i = 0; i < count && eligible.Count > 0; i++)
         {
             var card = rng.NextItem(eligible);
             if (card != null)
             {
-                ApplyMuddle(card);
+                await ApplyMuddle(card);
+                _cards.Add(card);
                 eligible.Remove(card);
             }
         }
+        return _cards.Count == 0 ? [] : (IEnumerable<CardModel>) _cards;
     }
 
     public static async Task<IEnumerable<CardModel>> ApplyMuddleFromHandSelection(
@@ -220,7 +230,7 @@ public static class IntoTheSpireverseKeywords
         );
 
         foreach (var card in selected ?? [])
-            ApplyMuddle(card);
+            await ApplyMuddle(card);
 
         return selected ?? [];
     }

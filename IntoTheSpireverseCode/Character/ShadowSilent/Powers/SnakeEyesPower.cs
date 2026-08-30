@@ -27,6 +27,6 @@ public class SnakeEyesPower : ShadowPowerModel
             return;
 
         Flash();
-        IntoTheSpireverseKeywords.ApplyMuddleAll(targets);
+        await IntoTheSpireverseKeywords.ApplyMuddleAll(targets);
     }
 }
