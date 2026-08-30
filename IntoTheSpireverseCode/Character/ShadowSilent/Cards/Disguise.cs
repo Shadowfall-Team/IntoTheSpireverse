@@ -14,12 +14,12 @@ public sealed class Disguise() : ShadowSilentCard(2, CardType.Skill, CardRarity.
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(2),
+        new CardsVar(3),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Scale>()
+        HoverTipFactory.FromCard<Scale>(IsUpgraded)
     ];
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -27,7 +27,13 @@ public sealed class Disguise() : ShadowSilentCard(2, CardType.Skill, CardRarity.
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner));
+            .Select(c =>
+            {
+                var card = CombatState.CreateCard<Scale>(Owner);
+                if(IsUpgraded)
+                    CardCmd.Upgrade(card);
+                return card;
+            }); 
         
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
     }
