@@ -38,11 +38,12 @@ public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, Car
             .Execute(choiceContext);
     }
 
-    public void OnMuddled()
+    public Task OnMuddled()
     {
         decimal increase = DynamicVars[IncreaseKey].BaseValue;
         DynamicVars.Damage.BaseValue += increase;
         _extraDamage += increase;
+        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade()
