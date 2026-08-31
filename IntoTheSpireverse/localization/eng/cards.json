@@ -120,7 +120,7 @@
   "INTOTHESPIREVERSE-CEREMONY.title": "Ceremony",
   "INTOTHESPIREVERSE-CEREMONY.description": "Choose a card in your [gold]Hand[/gold] to Transform into [gold]Flicker[/gold].",
   "INTOTHESPIREVERSE-RECALL.title": "Recall",
-  "INTOTHESPIREVERSE-RECALL.description": "Deal {Damage:diff()} damage.\nNext turn, put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-RECALL.description": "Deal {Damage:diff()} damage.\nThe next card you play is returned to your [gold]Hand[/gold] and [gold]Muddled[/gold].",
   "INTOTHESPIREVERSE-OATH_OF_DEVOTION.title": "Oath of Devotion",
   "INTOTHESPIREVERSE-OATH_OF_DEVOTION.description": "Reduce the maximum cost of [gold]Muddled[/gold] cards by 1.",
   "INTOTHESPIREVERSE-SPEARHEAD.title": "Spearhead",
