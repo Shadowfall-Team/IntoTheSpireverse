@@ -15,16 +15,19 @@ public sealed class Disguise() : ShadowSilentCard(-1, CardType.Skill, CardRarity
     protected override bool HasEnergyCostX => true;
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(2),
+        new CardsVar(0),
     ];
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        int count = ResolveEnergyXValue();
-        await CardPileCmd.Draw(
-            choiceContext, DynamicVars.Cards.BaseValue * count, Owner);
+        int count = ResolveEnergyXValue() + DynamicVars.Cards.IntValue;
+        
+        var scales = Enumerable.Range(0, count)
+            .Select(_ => CombatState.CreateCard<Scale>(Owner)); 
+        
+        await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
     }
 
     public override async Task AfterCardDiscarded(

@@ -126,7 +126,7 @@
   "INTOTHESPIREVERSE-SPEARHEAD.title": "Spearhead",
   "INTOTHESPIREVERSE-SPEARHEAD.description": "Deal {Damage:diff()} damage.\nYour next [gold]Devious[/gold] card triggers {SpearheadPower:diff()} additional {SpearheadPower:plural:time|times}.",
   "INTOTHESPIREVERSE-DISGUISE.title": "Disguise",
-  "INTOTHESPIREVERSE-DISGUISE.description": "Draw {Cards:diff()}X cards.\nWhen this card is discarded, put it on top of your [gold]Draw Pile[/gold].",
+  "INTOTHESPIREVERSE-DISGUISE.description": "Add {IfUpgraded:show:X+1|X} [gold]Scales[/gold] into your\u00A0[gold]Hand[/gold].\nWhen this card is discarded, put it on top of your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-ANOINT.title": "Anoint",
   "INTOTHESPIREVERSE-ANOINT.description": "Whenever an Attack deals unblocked damage this turn, apply {AnointPower:diff()} [gold]Poison[/gold].",
   "INTOTHESPIREVERSE-DONT_BLINK.title": "Don't Blink",
