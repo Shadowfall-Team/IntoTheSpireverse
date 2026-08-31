@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     private const string StrengthLossKey = "StrengthLoss";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
