@@ -1,11 +1,11 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Enchantments;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -22,8 +22,10 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
     {
         get
         {
-            List<IHoverTip> items = new List<IHoverTip>();
-            items.Add(HoverTipFactory.FromCard<Scale>());
+            List<IHoverTip> items = [];
+            var card = ModelDb.Card<Scale>().ToMutable();
+            CardCmd.Enchant<Armored>(card, 1);
+            items.Add(HoverTipFactory.FromCard(card));
             items.AddRange(HoverTipFactory.FromEnchantment<Armored>());
             return items;
         }
@@ -37,7 +39,7 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
             .Select(c =>
             {
                 var card = CombatState.CreateCard<Scale>(Owner);
-                CardCmd.Enchant<Armored>(card, 1M);
+                CardCmd.Enchant<Armored>(card, 1);
                 return card;
             }); 
         await CardPileCmd.AddGeneratedCardsToCombat(scales ?? [], PileType.Hand, Owner);
