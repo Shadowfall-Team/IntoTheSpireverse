@@ -9,33 +9,22 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class Disguise() : ShadowSilentCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Disguise() : ShadowSilentCard(-1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     
+    protected override bool HasEnergyCostX => true;
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(3),
-    ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromCard<Scale>(IsUpgraded)
+        new CardsVar(2),
     ];
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(c =>
-            {
-                var card = CombatState.CreateCard<Scale>(Owner);
-                if(IsUpgraded)
-                    CardCmd.Upgrade(card);
-                return card;
-            }); 
-        
-        await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
+        int count = ResolveEnergyXValue();
+        await CardPileCmd.Draw(
+            choiceContext, DynamicVars.Cards.BaseValue * count, Owner);
     }
 
     public override async Task AfterCardDiscarded(

@@ -6,18 +6,18 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class Scalemail() : ShadowSilentCard(-1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Scalemail() : ShadowSilentCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    protected override bool HasEnergyCostX => true;
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+    public override bool GainsBlock => true;
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(1),
+        new CardsVar(2),
+        new BlockVar(3m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -29,15 +29,17 @@ public sealed class Scalemail() : ShadowSilentCard(-1, CardType.Skill, CardRarit
     {
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        int count = ResolveEnergyXValue() + DynamicVars.Cards.IntValue;
-        var scales = Enumerable.Range(0, count)
-            .Select(c =>
-            {
-                var card = CombatState.CreateCard<Scale>(Owner);
-                return card;
-            }); 
-
+        var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
+            .Select(_ => CombatState.CreateCard<Scale>(Owner)); 
+        
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
+        foreach (CardModel card in PileType.Hand.GetPile(Owner).Cards)
+        {
+            if (card is Scale)
+            {
+                await CreatureCmd.GainBlock(Owner.Creature,  DynamicVars.Block, cardPlay);
+            }
+        }
     }
     
     protected override void OnUpgrade()
