@@ -148,7 +148,7 @@
   "INTOTHESPIREVERSE-PESTILENCE.title": "Pestilence",
   "INTOTHESPIREVERSE-PESTILENCE.description": "At the end of your turn, apply {PestilencePower:diff()} [gold]Poison[/gold] to ALL enemies for each card in your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-STARVATION.title": "Starvation",
-  "INTOTHESPIREVERSE-STARVATION.description": "[gold]Devious[/gold]{IfUpgraded:show: +{Increase:diff()}|}.\nDeal {Damage:diff()} damage.\nAdd a copy of this card into your [gold]Draw Pile[/gold].",
+  "INTOTHESPIREVERSE-STARVATION.description": "[gold]Devious[/gold]+{Increase:diff()}.\nDeal {Damage:diff()} damage.\nAdd a copy of this card into your [gold]Discard Pile[/gold].",
   "INTOTHESPIREVERSE-SHIMMER.title": "Shimmer",
   "INTOTHESPIREVERSE-SHIMMER.description": "Add {Cards:diff()} [gold]{Cards:plural:Flicker+|Flickers+}[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-MIND_SLITHER.title": "Mind Slither",

@@ -15,8 +15,8 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
     private const string _deviousKey = "Devious";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
-        new DynamicVar(_deviousKey, 0m),
+        new DamageVar(10m, ValueProp.Move),
+        new DynamicVar(_deviousKey, 1m),
     ];
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
 
@@ -36,7 +36,7 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
             
-            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(CreateClone(), PileType.Draw, Owner, CardPilePosition.Random), 2.2f);
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(CreateClone(), PileType.Discard, Owner), 2.2f);
         });
     }
 
