@@ -39,6 +39,6 @@ public sealed class MysticSlash() : ShadowSilentCard(3, CardType.Attack, CardRar
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(5m);
+        DynamicVars.Damage.UpgradeValueBy(4m);
     }
 }
