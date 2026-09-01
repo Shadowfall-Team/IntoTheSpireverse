@@ -19,6 +19,9 @@ public static class IntoTheSpireverseKeywords
 {
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Devious;
+    
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword DeviousX;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Cunning;
@@ -66,28 +69,36 @@ public static class IntoTheSpireverseKeywords
         return i >= 0 && j >= 0 && Math.Abs(i - j) == 1;
     }
 
-    public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)
+    public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, int repeats, Func<Task> effect)
     {
-        CardModel? card = (await CardSelectCmd.FromHandForDiscard(
+        int maxDiscards = 1;
+        foreach (var model in player.Creature.CombatState?.IterateHookListeners().ToList()!)
+        {
+            if (model is IDeviousDiscardListener deviousListener)
+                maxDiscards = deviousListener.ModifyDeviousDiscard(maxDiscards);
+        }
+        
+        var cards = (await CardSelectCmd.FromHandForDiscard(
             context,
             player,
-            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
+            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards,1)),
             null,
-            source)).FirstOrDefault();
-
-        if (card == null)
-            return;
-        if (card.Owner.Creature.CombatState == null) return;
-
-        int repeats = card.EnergyCost.GetWithModifiers(CostModifiers.All);
-        if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
-            repeats = player.PlayerCombatState.Energy;
-        await CardCmd.Discard(context, card);
+            source));
         
-        foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
+        foreach (CardModel card in cards)
         {
-            if (model is IModifyDeviousListener deviousListener)
-                repeats = deviousListener.ModifyDeviousValue(card, repeats);
+            if (card.Owner.Creature.CombatState == null) return;
+
+            repeats += Math.Max(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
+            if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
+                repeats += Math.Max(0, player.PlayerCombatState.Energy);
+            await CardCmd.Discard(context, card);
+        
+            foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
+            {
+                if (model is IModifyDeviousListener deviousListener)
+                    repeats = deviousListener.ModifyDeviousValue(card, repeats);
+            }
         }
 
         for (int i = 0; i < repeats; i++)
@@ -118,6 +129,11 @@ public static class IntoTheSpireverseKeywords
     public interface IModifyDeviousListener
     {
         int ModifyDeviousValue(CardModel card, int originalValue);
+    }
+    
+    public interface IDeviousDiscardListener
+    {
+        int ModifyDeviousDiscard(int originalAmount);
     }
 
     public static async Task<CardModel?> ApplyMuddle(CardModel card)

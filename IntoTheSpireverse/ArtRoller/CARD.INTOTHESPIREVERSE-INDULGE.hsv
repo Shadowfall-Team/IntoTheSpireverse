@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-INDULGE",
+  "hue": 0.44,
+  "saturation": 1.39,
+  "value": 1,
+  "red": 1.3,
+  "green": 1.04,
+  "blue": 0.67,
+  "contrast": 0.88,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/token/waste_away.tres"
+}

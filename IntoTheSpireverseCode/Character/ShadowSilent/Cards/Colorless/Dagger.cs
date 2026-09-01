@@ -1,22 +1,23 @@
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 
 [Pool(typeof(TokenCardPool))]
-public sealed class Dagger() : ShadowColorlessCard(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+public sealed class Dagger() : ShadowSilentCard(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CalculationBaseVar(10M),
+        new CalculationBaseVar(12M),
         new ExtraDamageVar(4M),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
         {
@@ -24,10 +25,15 @@ public sealed class Dagger() : ShadowColorlessCard(1, CardType.Attack, CardRarit
             return playerCombatState != null ? playerCombatState.ExhaustPile.Cards.Count(c => c is Scale) : 0;
         })
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        CardKeyword.Exhaust,
+    ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromCard<Scale>(true)
+        HoverTipFactory.FromCard<Scale>()
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -1,4 +1,5 @@
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,20 +19,19 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     private readonly Color _vfxTint = new Color("83eb85");
+    private const string _deviousKey = "Devious";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<PoisonPower>(4m),
+        new PowerVar<PoisonPower>(5m),
+        new DynamicVar(_deviousKey, 0m),
     ];
+    
+    protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<PoisonPower>(),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
-    ];
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        IntoTheSpireverseKeywords.Devious,
+        IsUpgraded ? HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.DeviousX) : HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -42,7 +42,7 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
         var node = NCombatRoom.Instance.GetCreatureNode(Owner.Creature);
         if (node == null) return;
         Vector2 lastPos = node.VfxSpawnPosition;
-        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async() =>
+        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async() =>
         {
             var enemy = cardPlay.Card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
             if (enemy != null)
@@ -71,6 +71,6 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Poison.UpgradeValueBy(1m);
+        DynamicVars[_deviousKey].UpgradeValueBy(1m);
     }
 }

@@ -16,7 +16,7 @@ public sealed class MistyStep() : ShadowSilentCard(0, CardType.Skill, CardRarity
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(7m, ValueProp.Move),
+        new BlockVar(5m, ValueProp.Move),
         new DynamicVar(IncreaseKey, 4m),
         new EnergyVar(1),
     ];
@@ -34,7 +34,8 @@ public sealed class MistyStep() : ShadowSilentCard(0, CardType.Skill, CardRarity
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(2m);
+        DynamicVars[IncreaseKey].UpgradeValueBy(1m);
     }
     
     protected override void AfterDowngraded()

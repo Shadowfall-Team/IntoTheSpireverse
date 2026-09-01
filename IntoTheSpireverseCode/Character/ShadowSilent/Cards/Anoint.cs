@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-public sealed class Anoint() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Anoint() : ShadowSilentCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -33,6 +33,6 @@ public sealed class Anoint() : ShadowSilentCard(1, CardType.Skill, CardRarity.Un
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Power<AnointPower>().UpgradeValueBy(1m);
+        AddKeyword(CardKeyword.Retain);
     }
 }

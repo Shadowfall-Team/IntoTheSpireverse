@@ -11,11 +11,11 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class Pestilence() : ShadowSilentCard(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class Pestilence() : ShadowSilentCard(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<PestilencePower>(2m),
+        new PowerVar<PestilencePower>(1m),
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

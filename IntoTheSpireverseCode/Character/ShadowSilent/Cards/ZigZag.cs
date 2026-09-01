@@ -6,30 +6,29 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class ZigZag() : ShadowSilentCard(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
+    private const string _deviousKey = "Devious";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4m, ValueProp.Move),
+        new DamageVar(5m, ValueProp.Move),
+        new DynamicVar(_deviousKey, 0m),
     ];
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        IntoTheSpireverseKeywords.Devious,
-    ];
+    protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
+        IsUpgraded ? HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.DeviousX) : HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, () =>
+        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, () =>
             DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(this, cardPlay)
                 .TargetingAllOpponents(CombatState)
@@ -39,6 +38,6 @@ public sealed class ZigZag() : ShadowSilentCard(1, CardType.Attack, CardRarity.C
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars[_deviousKey].UpgradeValueBy(1m);
     }
 }

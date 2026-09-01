@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -25,7 +26,7 @@ public class BaleteRoot : ShadowSilentRelic, IntoTheSpireverseKeywords.IModifyDe
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner != Owner || !cardPlay.Card.Keywords.Contains(IntoTheSpireverseKeywords.Devious))
+        if (cardPlay.Card.Owner != Owner || !cardPlay.Card.Tags.Contains(IntoTheSpireverseCardTags.Devious))
             return Task.CompletedTask;
         Flash();
         return Task.CompletedTask;

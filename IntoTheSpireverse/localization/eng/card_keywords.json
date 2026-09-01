@@ -1,6 +1,8 @@
 {
   "INTOTHESPIREVERSE-DEVIOUS.title": "Devious",
   "INTOTHESPIREVERSE-DEVIOUS.description": "Discard a card. This card's effects trigger one time for each Cost of the discarded card.",
+  "INTOTHESPIREVERSE-DEVIOUSX.title": "Devious+X",
+  "INTOTHESPIREVERSE-DEVIOUSX.description": "Discard a card. This card's effects trigger one time for each Cost of the discarded card plus X.",
   "INTOTHESPIREVERSE-CUNNING.title": "Cunning",
   "INTOTHESPIREVERSE-CUNNING.description": "This effect triggers if it is the leftmost card when played.",
   "INTOTHESPIREVERSE-BLEED.title": "Bleed",

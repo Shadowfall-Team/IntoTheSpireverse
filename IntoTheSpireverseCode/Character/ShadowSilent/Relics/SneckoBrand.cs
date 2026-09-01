@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
@@ -27,6 +28,7 @@ public class SneckoBrand : ShadowSilentRelic
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
         HoverTipFactory.FromCard<Flicker>(),
     ];
 
@@ -35,7 +37,7 @@ public class SneckoBrand : ShadowSilentRelic
         PlayerChoiceContext choiceContext,
         ICombatState combatState)
     {
-        if (player != Owner || combatState.RoundNumber != 1)
+        if (player != Owner || Owner.PlayerCombatState?.TurnNumber != 1)
             return;
 
         Flash();

@@ -25,9 +25,6 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
             List<IHoverTip> items = [];
             var card = ModelDb.Card<Scale>().ToMutable();
             CardCmd.Enchant<Armored>(card, 1);
-            if (IsUpgraded) {
-                CardCmd.Upgrade(card);
-            }
             items.Add(HoverTipFactory.FromCard(card));
             items.AddRange(HoverTipFactory.FromEnchantment<Armored>());
             return items;
@@ -43,12 +40,11 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
             {
                 var card = CombatState.CreateCard<Scale>(Owner);
                 CardCmd.Enchant<Armored>(card, 1);
-                if (IsUpgraded)
-                {
-                    CardCmd.Upgrade(card);
-                }
                 return card;
             }); 
         await CardPileCmd.AddGeneratedCardsToCombat(scales ?? [], PileType.Hand, Owner);
     }
+
+    protected override void OnUpgrade() =>
+        EnergyCost.UpgradeBy(-1);
 }

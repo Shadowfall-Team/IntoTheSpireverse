@@ -18,6 +18,8 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
     public override bool GainsBlock => true;
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Scale];
 
+    private Decimal CurrentBlock;
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -32,7 +34,7 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(2m);
     }
     
     public static async Task<IEnumerable<CardModel>> CreateInHand(
@@ -50,5 +52,18 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
             scales.Add(combatState.CreateCard<Scale>(owner));
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, creator ?? owner);
         return scales;
+    }
+    
+    public void AddBlock(Decimal amount)
+    {
+        BlockVar block = DynamicVars.Block;
+        block.BaseValue += amount;
+        CurrentBlock += amount;
+    }
+    
+    protected override void AfterDowngraded()
+    {
+        base.AfterDowngraded();
+        DynamicVars.Block.BaseValue += CurrentBlock;
     }
 }

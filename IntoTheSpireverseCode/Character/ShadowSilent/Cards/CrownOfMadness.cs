@@ -22,7 +22,7 @@ public sealed class CrownOfMadness() : ShadowSilentCard(3, CardType.Power, CardR
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
         CardSelectorPrefs prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var selectedCard = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs,  null, this)).FirstOrDefault();
+        var selectedCard = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs,  c => c.Type is CardType.Attack or CardType.Skill, this)).FirstOrDefault();
         if (selectedCard != null)
         {
             (await PowerCmd.Apply<CrownOfMadnessPower>(

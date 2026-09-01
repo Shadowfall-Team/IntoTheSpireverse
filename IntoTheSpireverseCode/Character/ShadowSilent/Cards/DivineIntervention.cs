@@ -1,3 +1,4 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -12,27 +13,25 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class DivineIntervention() : ShadowSilentCard(3, CardType.Skill, CardRarity.Rare, TargetType.AllAllies)
 {
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
+    private const string _deviousKey = "Devious";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<DivineInterventionPower>(1),
+        new DynamicVar(_deviousKey, 0m),
     ];
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        IntoTheSpireverseKeywords.Devious,
-    ];
+    protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
+        IsUpgraded ? HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.DeviousX) : HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null)
             return;
-        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
+        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
             List<Creature> list = CombatState.GetTeammatesOf(Owner.Creature).Where(c => c.IsAlive && c.IsPlayer && c.Player != Owner).ToList();
             if (list.Count == 0)
@@ -50,6 +49,6 @@ public sealed class DivineIntervention() : ShadowSilentCard(3, CardType.Skill, C
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars[_deviousKey].UpgradeValueBy(1m);
     }
 }

@@ -7,4 +7,5 @@ public static class IntoTheSpireverseCardTags
 {
     public static readonly CardTag Rock = CustomEnums.GenerateKey<CardTag>("IntoTheSpireverse", "Rock");
     public static readonly CardTag Scale = CustomEnums.GenerateKey<CardTag>("IntoTheSpireverse", "Scale");
+    public static readonly CardTag Devious = CustomEnums.GenerateKey<CardTag>("IntoTheSpireverse", "Devious");
 }

@@ -17,7 +17,7 @@ public sealed class SquareUp() : ShadowSilentCard(1, CardType.Skill, CardRarity.
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(7m, ValueProp.Move),
+        new BlockVar(9m, ValueProp.Move),
         new PowerVar<ConserveEnergyPower>(1m),
     ];
     

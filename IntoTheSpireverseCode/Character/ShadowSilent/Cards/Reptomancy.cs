@@ -1,17 +1,25 @@
 ﻿using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
 public sealed class Reptomancy() : ShadowSilentCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new CardsVar(2),
+    ];
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Dagger>(IsUpgraded)
@@ -19,17 +27,13 @@ public sealed class Reptomancy() : ShadowSilentCard(0, CardType.Skill, CardRarit
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
+        var selection = await CardSelectCmd.FromCombatPile(choiceContext, PileType.Draw.GetPile(Owner), Owner, new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, DynamicVars.Cards.IntValue));
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        List<CardModel> list = PileType.Hand.GetPile(Owner).Cards.Where(c => c.IsTransformable && c.Tags.Contains(IntoTheSpireverseCardTags.Scale)).ToList();
-        List<CardTransformation> transformations = new List<CardTransformation>();
-        foreach (CardModel original in list)
+        foreach (CardModel toTransform in selection)
         {
-            CardModel card = CombatState.CreateCard<Dagger>(Owner);
-            if (IsUpgraded)
-                CardCmd.Upgrade(card);
-            transformations.Add(new CardTransformation(original, card));
+            CardPileAddResult? transformed = await CardCmd.TransformTo<Dagger>(toTransform);
+            if (IsUpgraded && transformed.HasValue)
+                CardCmd.Upgrade(transformed.Value.cardAdded);
         }
-        await CardCmd.Transform(transformations, null);
     }
 }

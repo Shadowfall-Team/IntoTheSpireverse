@@ -1,7 +1,12 @@
-﻿using BaseLib.Extensions;
+﻿using BaseLib.Abstracts;
+using BaseLib.Extensions;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Modifications;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Modifications;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.Modifications;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,37 +16,39 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class Shellback() : ShadowSilentCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class Shellback() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    private const string EnergyKey = "EnergyCost";
+    private const string IncreaseKey = "Increase";
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ShellbackPower>(6m),
-        new DynamicVar(EnergyKey, 1m)
+        new DynamicVar(IncreaseKey, 4m),
     ];
+    
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
-            HoverTipFactory.FromCard<Scale>(),
+            HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Modify),
             HoverTipFactory.Static(StaticHoverTip.Block),
         ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "PowerUp", Owner.Character.PowerUpAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.PowerUpAnimDelay);
 
-        var power = await PowerCmd.Apply<ShellbackPower>(
-            choiceContext, Owner.Creature,
-            DynamicVars.Power<ShellbackPower>().BaseValue,
-            Owner.Creature, this);
+        var blockCards = PileType.Hand.GetPile(Owner).Cards
+            .Where(c => c.Type == CardType.Skill && Modification.CanModify(c) && c.GainsBlock)
+            .ToList();
 
-        if (power != null)
-            power.AddCost(DynamicVars[EnergyKey].IntValue);
+        foreach (var card in blockCards)
+        {
+            CardModifier.AddModifier<ShellbackModification>(card, DynamicVars[IncreaseKey].IntValue);
+        }
     }
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Power<ShellbackPower>().UpgradeValueBy(2m);
+        DynamicVars[IncreaseKey].UpgradeValueBy(2m);
     }
 }
