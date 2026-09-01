@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class EndlessAgony() : ShadowSilentCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class EndlessAgony() : ShadowSilentCard(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
