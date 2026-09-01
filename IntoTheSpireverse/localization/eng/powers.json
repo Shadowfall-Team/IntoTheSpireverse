@@ -102,6 +102,9 @@
   "INTOTHESPIREVERSE-MALEVOLENT_POWER.description": "[gold]Devious[/gold] cards may discard an additional card.",
   "INTOTHESPIREVERSE-MALEVOLENT_POWER.smartDescription": "[gold]Devious[/gold] cards may discard an additional [blue]{Amount}[/blue] {Amount:plural:card|cards}.",
   "INTOTHESPIREVERSE-MALEVOLENT_POWER.title": "Malevolent",
+  "INTOTHESPIREVERSE-COIL_UP_POWER.description": "The next time you are attacked this turn, apply [gold]Poison[/gold] back.",
+  "INTOTHESPIREVERSE-COIL_UP_POWER.smartDescription": "The next time you are attacked this turn, apply [blue]{Amount}[/blue] [gold]Poison[/gold] back.",
+  "INTOTHESPIREVERSE-COIL_UP_POWER.title": "Coil Up",
 
   "STARBURST_POWER.description": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [gold]Shivs[/gold].",
   "STARBURST_POWER.smartDescription": "When you [gold]Evoke[/gold] an [gold]Entropy[/gold], gain [blue]{Amount}[/blue] [gold]{Amount:plural:Shiv|Shivs}[/gold].",

@@ -37,7 +37,7 @@
   "INTOTHESPIREVERSE-ZIG_ZAG.title": "Zig-Zag",
   "INTOTHESPIREVERSE-ZIG_ZAG.description": "Deal {Damage:diff()} damage to ALL\u00A0enemies.",
   "INTOTHESPIREVERSE-ENDLESS_AGONY.title": "Endless Agony",
-  "INTOTHESPIREVERSE-ENDLESS_AGONY.description": "Deal {Damage:diff()} damage.\nWhenever this card is drawn, add a copy of it into\u00A0your\u00A0[\u00A0gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-ENDLESS_AGONY.description": "Deal {Damage:diff()} damage.\nWhenever this card is drawn, add a copy of it into\u00A0your\u00A0[gold]Hand[/gold].",
   "INTOTHESPIREVERSE-HAVE_FAITH.title": "Have Faith",
   "INTOTHESPIREVERSE-HAVE_FAITH.description": "Whenever you discard a card during your turn, gain {HaveFaithPower:diff()} [gold]Block[/gold].",
   "INTOTHESPIREVERSE-BLUNDER_GUARD.title": "Blunder Guard",
@@ -164,6 +164,8 @@
   "INTOTHESPIREVERSE-INDULGE.description": "Apply {PoisonPower:diff()} [gold]Poison[/gold] to yourself.\nGain [gold]Strength[/gold] equal to your current [gold]Poison[/gold]{IfUpgraded:show:+{StrengthPower:diff()}|}",
   "INTOTHESPIREVERSE-MALEVOLENT.title": "Malevolent",
   "INTOTHESPIREVERSE-MALEVOLENT.description": "[gold]Devious[/gold] cards may discard an additional card.",
+  "INTOTHESPIREVERSE-COIL_UP.title": "Coil Up",
+  "INTOTHESPIREVERSE-COIL_UP.description": "Gain {Block:diff()} [gold]Block[/gold].\nThe next time you are attacked this turn, apply {CoilUpPower:diff()} [gold]Poison[/gold] back.",
 
   "INTOTHESPIREVERSE-DECAY.description": "[gold]Channel[/gold] 1 [gold]Entropy[/gold].\n[gold]Cycle[/gold].",
   "INTOTHESPIREVERSE-DECAY.title": "Decay",
