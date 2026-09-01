@@ -160,7 +160,7 @@
   "INTOTHESPIREVERSE-FLECHETTES.title": "Flechettes",
   "INTOTHESPIREVERSE-FLECHETTES.description": "Deal {Damage:diff()} damage for each Skill in your [gold]Hand[/gold].{InCombat:\n(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}",
   "INTOTHESPIREVERSE-PILGRIMAGE.title": "Pilgrimage",
-  "INTOTHESPIREVERSE-PILGRIMAGE.description": "[gold]Devious[/gold]{IfUpgraded:show: +{Increase:diff()}|}Draw {Cards:diff()} {Cards:plural:card|cards}.\nDiscard {Discard:diff()} {Discard:plural:card|cards}",
+  "INTOTHESPIREVERSE-PILGRIMAGE.description": "[gold]Devious[/gold]{IfUpgraded:show: +{Increase:diff()}|}.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nDiscard {Discard:diff()} {Discard:plural:card|cards}",
   "INTOTHESPIREVERSE-INDULGE.title": "Indulge",
   "INTOTHESPIREVERSE-INDULGE.description": "Apply {PoisonPower:diff()} [gold]Poison[/gold] to yourself.\nGain [gold]Strength[/gold] equal to your current [gold]Poison[/gold]{IfUpgraded:show: +{StrengthPower:diff()}|}",
   "INTOTHESPIREVERSE-MALEVOLENT.title": "Malevolent",
