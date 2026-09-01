@@ -77,7 +77,7 @@
   "INTOTHESPIREVERSE-EVISCERATE.title": "Eviscerate",
   "INTOTHESPIREVERSE-EVISCERATE.description": "Costs {Energy:energyIcons()} less for each card discarded this turn.\nDeal {Damage:diff()} damage {Repeat:diff()} times.",
   "INTOTHESPIREVERSE-SHELLBACK.title": "Shellback",
-  "INTOTHESPIREVERSE-SHELLBACK.description": "At the end of your turn, [gold]Retained Scales[/gold] gain {ShellbackPower:diff()} additional block.",
+  "INTOTHESPIREVERSE-SHELLBACK.description": "[gold]Modify[/gold] all [gold]Block[/gold] cards in hand with [blue]\"Block gained from this card is increased\u00A0by\u00A0{Increase:diff()}\"[/blue].",
   "INTOTHESPIREVERSE-NATURES_DISCIPLE.title": "Nature's Disciple",
   "INTOTHESPIREVERSE-NATURES_DISCIPLE.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-FLICKER.title": "Flicker",
