@@ -13,7 +13,7 @@ public sealed class EndlessAgony() : ShadowSilentCard(0, CardType.Attack, CardRa
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
+        new DamageVar(4m, ValueProp.Move),
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
@@ -48,6 +48,6 @@ public sealed class EndlessAgony() : ShadowSilentCard(0, CardType.Attack, CardRa
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }
