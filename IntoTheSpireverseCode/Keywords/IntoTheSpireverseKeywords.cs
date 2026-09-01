@@ -19,6 +19,9 @@ public static class IntoTheSpireverseKeywords
 {
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Devious;
+    
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
+    public static CardKeyword DeviousX;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Cunning;
@@ -66,7 +69,7 @@ public static class IntoTheSpireverseKeywords
         return i >= 0 && j >= 0 && Math.Abs(i - j) == 1;
     }
 
-    public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, Func<Task> effect)
+    public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, int repeats, Func<Task> effect)
     {
         int maxDiscards = 1;
         foreach (var model in player.Creature.CombatState?.IterateHookListeners().ToList()!)
@@ -81,15 +84,14 @@ public static class IntoTheSpireverseKeywords
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards,1)),
             null,
             source));
-
-        int repeats = 0;
+        
         foreach (CardModel card in cards)
         {
             if (card.Owner.Creature.CombatState == null) return;
 
             repeats += Math.Max(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
             if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
-                repeats += player.PlayerCombatState.Energy;
+                repeats += Math.Max(0, player.PlayerCombatState.Energy);
             await CardCmd.Discard(context, card);
         
             foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())

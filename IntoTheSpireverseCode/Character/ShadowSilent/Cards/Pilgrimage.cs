@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Models;
 
@@ -14,20 +15,18 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const string _discardKey = "Discard";
+    private const string _deviousKey = "Devious";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar(2),
         new DynamicVar(_discardKey, 1m),
+        new DynamicVar(_deviousKey, 0m),
     ];
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-    [
-        IntoTheSpireverseKeywords.Devious,
-    ];
+    protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
+        IsUpgraded ? HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.DeviousX) : HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -48,7 +47,7 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
             null,
             this));
 
-        int repeats = 0;
+        int repeats = DynamicVars[_deviousKey].IntValue;
         foreach (CardModel card in cards)
         {
             if (card.Owner.Creature.CombatState == null) return;
@@ -74,6 +73,6 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
 
     protected override void OnUpgrade()
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars[_deviousKey].UpgradeValueBy(1m);
     }
 }

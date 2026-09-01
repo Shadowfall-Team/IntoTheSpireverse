@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,25 +14,26 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
 {
+    private const string _deviousKey = "Devious";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
-        new PowerVar<WeakPower>(2m),
+        new DamageVar(14m, ValueProp.Move),
+        new PowerVar<WeakPower>(3m),
+        new DynamicVar(_deviousKey, 0m),
     ];
-
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        IntoTheSpireverseKeywords.Devious];
+    protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
+    
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<WeakPower>(),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
+        IsUpgraded ? HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.DeviousX) : HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, async () =>
+        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(this, cardPlay)
@@ -47,7 +49,6 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(6m);
-        DynamicVars.Weak.UpgradeValueBy(1m);
+        DynamicVars[_deviousKey].UpgradeValueBy(1m);
     }
 }

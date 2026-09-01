@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -25,7 +26,7 @@ public class SpearheadPower : ShadowPowerModel, IntoTheSpireverseKeywords.IModif
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext,CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.Card.Keywords.Contains(IntoTheSpireverseKeywords.Devious))
+        if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.Card.Tags.Contains(IntoTheSpireverseCardTags.Devious))
             return;
         await PowerCmd.Remove(this);
     }
