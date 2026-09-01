@@ -32,6 +32,6 @@ public sealed class DontBlink() : ShadowSilentCard(3, CardType.Attack, CardRarit
     protected override void OnUpgrade()
     {
         DynamicVars.ExtraDamage.UpgradeValueBy(1m);
-        DynamicVars.CalculationBase.UpgradeValueBy(4m);
+        DynamicVars.CalculationBase.UpgradeValueBy(5m);
     }
 }
