@@ -10,12 +10,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
-public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public sealed class Starvation() : ShadowSilentCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const string _deviousKey = "Devious";
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(10m, ValueProp.Move),
+        new DamageVar(9m, ValueProp.Move),
         new DynamicVar(_deviousKey, 1m),
     ];
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
@@ -36,6 +36,7 @@ public sealed class Starvation() : ShadowSilentCard(2, CardType.Attack, CardRari
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
             
+            await Cmd.CustomScaledWait(0.1f, 0.25f);
             CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(CreateClone(), PileType.Discard, Owner), 2.2f);
         });
     }
