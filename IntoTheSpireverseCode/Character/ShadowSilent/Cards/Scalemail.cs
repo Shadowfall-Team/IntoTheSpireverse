@@ -44,6 +44,6 @@ public sealed class Scalemail() : ShadowSilentCard(2, CardType.Skill, CardRarity
     
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1);
+        DynamicVars.Block.UpgradeValueBy(2m);
     }
 }

@@ -33,6 +33,7 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<Snakebite>(),
             ModelDb.Card<ToolsOfTheTrade>(),
             ModelDb.Card<Haze>(),
+            ModelDb.Card<CalculatedGamble>(),
         ];
 
         var sts2Assembly = typeof(ModelDb).Assembly;

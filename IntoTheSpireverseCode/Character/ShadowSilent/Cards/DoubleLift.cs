@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class DoubleLift() : ShadowSilentCard(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class DoubleLift() : ShadowSilentCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

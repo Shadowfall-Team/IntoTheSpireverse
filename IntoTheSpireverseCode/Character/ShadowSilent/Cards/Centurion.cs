@@ -25,6 +25,7 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
             List<IHoverTip> items = [];
             var card = ModelDb.Card<Scale>().ToMutable();
             CardCmd.Enchant<Armored>(card, 1);
+            card.DynamicVars.Block.BaseValue += 1;
             items.Add(HoverTipFactory.FromCard(card));
             items.AddRange(HoverTipFactory.FromEnchantment<Armored>());
             return items;

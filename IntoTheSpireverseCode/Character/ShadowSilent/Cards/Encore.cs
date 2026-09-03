@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
@@ -15,18 +16,11 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class Encore() : ShadowSilentCard(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
-    private const string TriggeredKey = "HasTriggered";
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
-        new DynamicVar(TriggeredKey,0)
+        new DamageVar(16m, ValueProp.Move),
     ];
-    
-    
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [IntoTheSpireverseKeywords.Arcane];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Arcane)];
     
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -37,32 +31,22 @@ public sealed class Encore() : ShadowSilentCard(0, CardType.Attack, CardRarity.R
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
     }
-    
-    public override async Task AfterHandEmptied(PlayerChoiceContext choiceContext, Player player)
+
+    public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
-        if (!(player.PlayerCombatState is { Phase: PlayerTurnPhase.Play }) || player != Owner)
-            return;
-
-        if (Convert.ToBoolean(DynamicVars[TriggeredKey].BaseValue))
-            return;
-
-        DynamicVars[TriggeredKey].BaseValue = 1;
-        
-        await CardPileCmd.Add(this, PileType.Hand);
+        modifiedCost = originalCost;
+        if (card != this)
+            return false;
+        int count = PileType.Hand.GetPile(card.Owner).Cards.Count;
+        count /= 2;
+        if (count <= 0)
+            return false;
+        modifiedCost = originalCost + count;
+        return true;
     }
     
-    public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
-    {
-        if (!participants.Contains(Owner.Creature))
-            return Task.CompletedTask;
-
-        DynamicVars[TriggeredKey].BaseValue = 0;
-        
-        return Task.CompletedTask;
-    }
-
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(8m);
+        DynamicVars.Damage.UpgradeValueBy(5m);
     }
 }

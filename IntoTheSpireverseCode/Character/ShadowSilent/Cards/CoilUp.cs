@@ -19,8 +19,8 @@ public sealed class CoilUp() : ShadowSilentCard(3, CardType.Skill, CardRarity.Co
     
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(14m, ValueProp.Move),
-        new PowerVar<CoilUpPower>(8)
+        new BlockVar(13m, ValueProp.Move),
+        new PowerVar<CoilUpPower>(6)
     ];
     
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

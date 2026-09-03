@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.Combat;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
-public sealed class DontBlink() : ShadowSilentCard(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public sealed class DontBlink() : ShadowSilentCard(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -32,6 +32,6 @@ public sealed class DontBlink() : ShadowSilentCard(3, CardType.Attack, CardRarit
     protected override void OnUpgrade()
     {
         DynamicVars.ExtraDamage.UpgradeValueBy(1m);
-        DynamicVars.CalculationBase.UpgradeValueBy(4m);
+        DynamicVars.CalculationBase.UpgradeValueBy(5m);
     }
 }
