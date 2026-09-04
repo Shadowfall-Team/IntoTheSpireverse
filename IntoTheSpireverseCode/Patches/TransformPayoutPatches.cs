@@ -19,7 +19,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// The engine's transform notification (<see cref="CardModel.AfterTransformedFrom"/>) is
 /// synchronous and both payouts are async, so consumed cards are queued here and settled by an
 /// async continuation chained onto <see cref="CardCmd.Transform"/>'s task. Queue-then-flush also
-/// makes batch transforms (Avalanche, Caldera) resolve correctly.
+/// makes batch transforms (Caldera, We Are Legion) resolve correctly.
 /// </summary>
 public static class TransformPayoutPatches
 {
