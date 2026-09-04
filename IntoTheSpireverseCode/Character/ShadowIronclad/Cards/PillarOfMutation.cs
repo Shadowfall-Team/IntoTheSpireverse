@@ -16,7 +16,7 @@ public sealed class PillarOfMutation() : ShadowIroncladCard(1, CardType.Power, C
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(3m, ValueProp.Unpowered),
+        new BlockVar(2m, ValueProp.Unpowered),
         new PowerVar<VigorPower>(1m),
         new PowerVar<PillarOfMutationPower>(1m)
     ];
@@ -34,5 +34,5 @@ public sealed class PillarOfMutation() : ShadowIroncladCard(1, CardType.Power, C
         )?.AddVars(DynamicVars.Block.BaseValue, DynamicVars.Power<VigorPower>().BaseValue);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars.Power<VigorPower>().UpgradeValueBy(1m);
 }

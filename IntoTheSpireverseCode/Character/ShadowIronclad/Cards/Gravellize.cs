@@ -20,10 +20,6 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
 
     ];
     
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        CardKeyword.Exhaust,
-    ];
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -48,5 +44,5 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
         }
     }
 
-    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

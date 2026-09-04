@@ -2,28 +2,30 @@
 using BaseLib.Utils;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.TestSupport;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.RandomEnemy)
+public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     private static readonly Color VfxTint = new Color("c01020");
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BloodbondPower>(2m),
-        new RepeatVar(3),
+        new HpLossVar(1m),
+        new PowerVar<BloodbondPower>(8m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -36,12 +38,11 @@ public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRari
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        for (int i = 0; i < DynamicVars.Repeat.IntValue; i++)
-        {
-            var enemy = Owner.RunState.Rng.CombatTargets
-                .NextItem<Creature>(CombatState.HittableEnemies);
-            if (enemy == null) continue;
+        // The trailing HP loss is deliberate: it triggers the Bloodbond this card just applied.
+        await LoseHp(choiceContext, cardPlay);
 
+        foreach (var enemy in CombatState.HittableEnemies.ToList())
+        {
             if (TestMode.IsOff)
             {
                 var targetNode = NCombatRoom.Instance?.GetCreatureNode(enemy);
@@ -57,7 +58,13 @@ public sealed class Bloodrain() : ShadowIroncladCard(1, CardType.Skill, CardRari
                 enemy, DynamicVars.Power<BloodbondPower>().BaseValue,
                 Owner.Creature, this);
         }
+
+        await LoseHp(choiceContext, cardPlay);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Repeat.UpgradeValueBy(1m);
+    private async Task LoseHp(PlayerChoiceContext choiceContext, CardPlay cardPlay) =>
+        await CreatureCmdCompatibility.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
+
+    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(3m);
 }
