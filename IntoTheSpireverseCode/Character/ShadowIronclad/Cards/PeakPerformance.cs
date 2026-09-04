@@ -1,4 +1,5 @@
 ﻿using BaseLib.Extensions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,7 +16,6 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     private const string RepeatKey = "Repeat";
-    private PileType? _sourcePile;
 
     public override bool GainsBlock => true;
 
@@ -29,18 +29,15 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<StrengthPower>(),
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
     ];
-
-    public override async Task AfterCardChangedPiles(CardModel card, PileType oldPile, AbstractModel? source)
-    {
-        if (card == this && Pile?.Type == PileType.Play)
-            _sourcePile = oldPile;
-    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        int times = _sourcePile != PileType.Hand ? 1 + (int)DynamicVars[RepeatKey].BaseValue : 1;
+        int times = IntoTheSpireverseKeywords.WasPlayedIndirectly(this)
+            ? 1 + (int)DynamicVars[RepeatKey].BaseValue
+            : 1;
         for (int i = 0; i < times; i++)
         {
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
@@ -49,7 +46,6 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
                 Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
                 Owner.Creature, this);
         }
-        _sourcePile = null;
     }
 
     protected override void OnUpgrade()

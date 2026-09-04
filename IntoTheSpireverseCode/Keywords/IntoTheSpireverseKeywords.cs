@@ -49,7 +49,14 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Modify;
+
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Indirectly;
     
+    /// True when the card reached the Play pile from anywhere other than Hand.
+    public static bool WasPlayedIndirectly(CardModel card) =>
+        IndirectPlayTrackingPatch.LastPileLeft.TryGetValue(card, out var pile) && pile != PileType.Hand;
+
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
 
