@@ -1,7 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,7 +21,6 @@ public sealed class Bloodstone() : ShadowIroncladCard(1, CardType.Power, CardRar
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<BloodbondPower>(),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

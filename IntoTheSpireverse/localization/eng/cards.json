@@ -486,7 +486,8 @@
   "INTOTHESPIREVERSE-SUBDUCTION.title": "Subduction",
   "INTOTHESPIREVERSE-SUBDUCTION.description": "Must be played [gold]Indirectly[/gold].\nDeal {Damage:diff()} damage to ALL enemies.",
   "INTOTHESPIREVERSE-BLOODSTONE.title": "Bloodstone",
-  "INTOTHESPIREVERSE-BLOODSTONE.description": "At the start of your turn, and whenever you play a card [gold]Indirectly[/gold], apply {BloodstonePower:diff()} [gold]Bloodbond[/gold] to ALL enemies.",
+  "INTOTHESPIREVERSE-BLOODSTONE.description": "At the start of your turn, apply {BloodstonePower:diff()} [gold]Bloodbond[/gold] to ALL enemies.",
+
   "INTOTHESPIREVERSE-SCULPT_REALITY.title": "Sculpt Reality",
   "INTOTHESPIREVERSE-SCULPT_REALITY.description": "At the start of your turn, add a random Attack with [gold]Ethereal[/gold] and [gold]Exhaust[/gold] into your [gold]Hand[/gold].\nWhen a card is created in combat, [gold]Upgrade[/gold] it.",
   "INTOTHESPIREVERSE-PAINTED_PETRA.title": "Painted Petra",
@@ -523,7 +524,8 @@
   "INTOTHESPIREVERSE-STRIKE_SHADOW_IRONCLAD.title": "Strike",
   "INTOTHESPIREVERSE-STRIKE_SHADOW_IRONCLAD.description": "Deal {Damage:diff()} damage.",
   "INTOTHESPIREVERSE-CLAY_SOLDIER.title": "Clay Soldier",
-  "INTOTHESPIREVERSE-CLAY_SOLDIER.description": "The first time you lose HP each turn, gain {StrengthPower:diff()} temporary [gold]Strength[/gold] and {Block:diff()} [gold]Block[/gold] at the start of your next turn.",
+  "INTOTHESPIREVERSE-CLAY_SOLDIER.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nWhenever you lose HP, gain {Block:diff()} [gold]Block[/gold] at the start of your next turn.",
+
 
   "INTOTHESPIREVERSE-TEMPER.title": "Temper",
   "INTOTHESPIREVERSE-TEMPER.description": "Whenever you play a Skill, gain {RetaliationAmount:diff()} [gold]Retaliation[/gold].",

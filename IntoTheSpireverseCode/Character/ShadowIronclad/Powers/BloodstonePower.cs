@@ -1,6 +1,4 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,19 +14,11 @@ public sealed class BloodstonePower : ShadowPowerModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<BloodbondPower>(),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
     ];
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player) return;
-        await ApplyToAll();
-    }
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (cardPlay.Card.Owner?.Creature != Owner) return;
-        if (!IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay.Card)) return;
         await ApplyToAll();
     }
 

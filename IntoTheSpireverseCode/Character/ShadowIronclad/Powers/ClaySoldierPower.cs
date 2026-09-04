@@ -1,5 +1,4 @@
-﻿using BaseLib.Abstracts;
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -7,47 +6,37 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
-public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
+/// <summary>
+/// Self-Forming Clay: every HP loss banks Block for the start of your next turn. Deliberately not
+/// capped per turn - each separate instance of HP loss counts.
+/// </summary>
+public sealed class ClaySoldierPower : ShadowPowerModel
 {
     private class Data
     {
-        // Damage taken during the player's turn and during the enemy's turn are tracked separately, so a
-        // hit on each side stacks up and both resolve at the start of the player's next turn.
-        public bool activatedOnPlayerTurn;
-        public bool activatedOnEnemyTurn;
+        public int PendingTriggers;
     }
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    protected override object? InitInternalData()
-    {
-        return new Data();
-    }
+    protected override object? InitInternalData() => new Data();
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<StrengthPower>(0m),
         new BlockVar(0m, ValueProp.Unpowered),
     ];
 
-    public override int DisplayAmount => DynamicVars.Strength.IntValue;
-    public string GetSecondAmount()
-    {
-        return DynamicVars.Block.IntValue.ToString();
-    }
+    public override int DisplayAmount => DynamicVars.Block.IntValue;
 
-    public void AddVars(decimal block, decimal strength)
+    public void AddVars(decimal block)
     {
         AssertMutable();
         DynamicVars.Block.BaseValue += block;
-        this.InvokeSecondAmountChanged();
-        DynamicVars.Strength.BaseValue += strength;
         InvokeDisplayAmountChanged();
     }
 
@@ -55,31 +44,23 @@ public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
         Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
         if (target != Owner || result.UnblockedDamage <= 0) return;
-
-        var data = GetInternalData<Data>();
-        if (CombatState?.CurrentSide == CombatSide.Enemy)
-            data.activatedOnEnemyTurn = true;
-        else
-            data.activatedOnPlayerTurn = true;
-        // set to flash/indicate as ready? do powers ever do that?
+        GetInternalData<Data>().PendingTriggers++;
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    public override async Task AfterSideTurnStart(
+        CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side is not CombatSide.Player) return;
 
         var data = GetInternalData<Data>();
-        var triggers = (data.activatedOnPlayerTurn ? 1 : 0) + (data.activatedOnEnemyTurn ? 1 : 0);
+        var triggers = data.PendingTriggers;
         if (triggers == 0) return;
 
-        data.activatedOnPlayerTurn = false;
-        data.activatedOnEnemyTurn = false;
+        data.PendingTriggers = 0;
 
         for (var i = 0; i < triggers; i++)
         {
             Flash();
-            await PowerCmd.Apply<ClaySoldierTemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
-                Owner, DynamicVars.Strength.BaseValue, Owner, null);
             await CreatureCmd.GainBlock(Owner, DynamicVars.Block.BaseValue, ValueProp.Unpowered, null);
         }
     }
