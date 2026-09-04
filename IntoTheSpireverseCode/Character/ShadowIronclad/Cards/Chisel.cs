@@ -11,10 +11,12 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
+    // TODO: the patch notes also call for "Scry 1(2)". Scry does not exist anywhere in StS2
+    // v0.111.0 - no card, keyword, hover tip or loc string - so it would have to be built as a
+    // Spireverse keyword first. Damage and the top-card upgrade are implemented; Scry is not.
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
-        new CardsVar(2),
+        new DamageVar(9m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -28,18 +30,13 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        foreach (var card in PileType.Hand.GetPile(Owner).Cards
-                     .Where(c => c.IsUpgradable)
-                     .TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection))
+        var top = PileType.Draw.GetPile(Owner).Cards.FirstOrDefault();
+        if (top is { IsUpgradable: true })
         {
-            CardCmd.Upgrade(card);
-            CardCmd.Preview(card);
+            CardCmd.Upgrade(top);
+            CardCmd.Preview(top);
         }
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3m);
-        DynamicVars.Cards.UpgradeValueBy(1m);
-    }
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2m);
 }

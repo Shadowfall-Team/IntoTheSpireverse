@@ -33,19 +33,19 @@ public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<StrengthPower>(0m),
-        new PowerVar<SlatePower>(0m),
+        new BlockVar(0m, ValueProp.Unpowered),
     ];
 
     public override int DisplayAmount => DynamicVars.Strength.IntValue;
     public string GetSecondAmount()
     {
-        return DynamicVars.Power<SlatePower>().IntValue.ToString();
+        return DynamicVars.Block.IntValue.ToString();
     }
 
-    public void AddVars(decimal slate, decimal strength)
+    public void AddVars(decimal block, decimal strength)
     {
         AssertMutable();
-        DynamicVars.Power<SlatePower>().BaseValue += slate;
+        DynamicVars.Block.BaseValue += block;
         this.InvokeSecondAmountChanged();
         DynamicVars.Strength.BaseValue += strength;
         InvokeDisplayAmountChanged();
@@ -80,8 +80,7 @@ public sealed class ClaySoldierPower : ShadowPowerModel, IHasSecondAmount
             Flash();
             await PowerCmd.Apply<ClaySoldierTemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
                 Owner, DynamicVars.Strength.BaseValue, Owner, null);
-            await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
-                Owner, DynamicVars.Power<SlatePower>().BaseValue, Owner, null);
+            await CreatureCmd.GainBlock(Owner, DynamicVars.Block.BaseValue, ValueProp.Unpowered, null);
         }
     }
 }

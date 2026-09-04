@@ -174,8 +174,10 @@
   "INTOTHESPIREVERSE-CLAY_SOLDIER_NEXT_TURN_STRENGTH_POWER.description": "At the start of your next turn, gain [blue]1[/blue] temporary [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-CLAY_SOLDIER_NEXT_TURN_STRENGTH_POWER.smartDescription": "At the start of your next turn, gain [blue]{Amount}[/blue] temporary [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.title": "Clay Soldier",
-  "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.description": "The first time you lose HP each turn, gain [blue]2[/blue] temporary [gold]Strength[/gold] and 1 [gold]Slate[/gold] at the start of your next turn.",
-  "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.smartDescription": "The first time you lose HP each turn, gain [blue]{StrengthPower:diff()}[/blue] temporary [gold]Strength[/gold] and [blue]{SlatePower:diff()}[/blue] [gold]Slate[/gold] at the start of your next turn.",
+  "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.description": "The first time you lose HP each turn, gain [blue]2[/blue] temporary [gold]Strength[/gold] and [blue]3[/blue] [gold]Block[/gold] at the start of your next turn.",
+
+  "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.smartDescription": "The first time you lose HP each turn, gain [blue]{StrengthPower:diff()}[/blue] temporary [gold]Strength[/gold] and [blue]{Block:diff()}[/blue] [gold]Block[/gold] at the start of your next turn.",
+
   "INTOTHESPIREVERSE-PILLAR_OF_MUTATION_POWER.title": "Pillar Of Mutation Power",
   "INTOTHESPIREVERSE-PILLAR_OF_MUTATION_POWER.description": "Whenever you create a card, gain [blue]3[/blue] [gold]Block[/gold] and [blue]1[/blue] [gold]Vigor[/gold].",
   "INTOTHESPIREVERSE-PILLAR_OF_MUTATION_POWER.smartDescription": "Whenever you create a card, gain [blue]{Block:diff()}[/blue] [gold]Block[/gold] and [blue]{VigorPower:diff()}[/blue] [gold]Vigor[/gold].",
@@ -202,6 +204,9 @@
   "INTOTHESPIREVERSE-WARCRAFT_POWER.smartDescription": "If you end a turn with at least [blue]15[/blue] [gold]Block[/gold], play the top {Amount:plural:card|[blue]{Amount}[/blue] cards} of your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-JOLT_POWER.title": "Jolt",
   "INTOTHESPIREVERSE-JOLT_POWER.description": "The first time you lose HP each turn, draw [blue]1[/blue] card.",
+  "INTOTHESPIREVERSE-MEGALITH_POWER.title": "Megalith",
+  "INTOTHESPIREVERSE-MEGALITH_POWER.description": "Immediately regain back the next HP you lose.",
+  "INTOTHESPIREVERSE-MEGALITH_POWER.smartDescription": "Immediately regain back the next [blue]{Amount}[/blue] HP you lose.",
   "INTOTHESPIREVERSE-JOLT_POWER.smartDescription": "The first time you lose HP each turn, draw [blue]{Amount}[/blue] {Amount:plural:card|cards}.",
   "INTOTHESPIREVERSE-YOUR_DOOM_IS_NIGH_POWER.description": "Whenever you draw a [purple]Curse[/purple], a random enemy loses [blue]13[/blue] HP.",
   "INTOTHESPIREVERSE-YOUR_DOOM_IS_NIGH_POWER.smartDescription": "Whenever you draw a [purple]Curse[/purple], a random enemy loses [blue]{Amount}[/blue] HP.",

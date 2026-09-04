@@ -1,39 +1,49 @@
 ﻿using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
+/// <summary>
+/// Drum of Battle in reverse: pays energy up front, refunds cards when the card leaves the deck
+/// by being Exhausted or Transformed (see TransformPayoutPatches for the latter).
+/// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Pyroclast() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        CardKeyword.Exhaust,
+        new EnergyVar(2),
+        new CardsVar(3),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<SlatePower>(),
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        var slateAmount = (decimal)Owner.Creature.GetPowerAmount<SlatePower>();
-        if (slateAmount > 0)
-        {
-            VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
-            await CreatureCmdCompatibility.Damage(choiceContext, Owner.Creature, slateAmount,
-                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
-            await PlayerCmd.GainEnergy(slateAmount, Owner);
-        }
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 
-    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
+    public override async Task AfterCardExhausted(
+        PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+    {
+        if (card == this)
+            await DrawPayout(choiceContext);
+    }
+
+    internal async Task DrawPayout(PlayerChoiceContext choiceContext)
+    {
+        if (CombatState == null) return;
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+    }
+
+    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1m);
 }

@@ -3,7 +3,9 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
@@ -11,9 +13,14 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Blitz() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<WeakPower>(),
+    ];
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HpLossVar(2m),
+        new PowerVar<WeakPower>(2m),
         new DamageVar(4m, ValueProp.Move),
         new RepeatVar(4),
     ];
@@ -21,8 +28,10 @@ public sealed class Blitz() : ShadowIroncladCard(2, CardType.Attack, CardRarity.
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await CreatureCmdCompatibility.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
+        await PowerCmd.Apply<WeakPower>(
+            new ThrowingPlayerChoiceContext(),
+            cardPlay.Target, DynamicVars.Weak.BaseValue,
+            Owner.Creature, this);
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .FromCardCompatibility(this, cardPlay)

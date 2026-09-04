@@ -412,7 +412,8 @@
   "INTOTHESPIREVERSE-BERSERKING.title": "Berserking",
   "INTOTHESPIREVERSE-BERSERKING.description": "At the start of your turn, lose 1 HP and gain {Energy:energyIcons()}.",
   "INTOTHESPIREVERSE-BLITZ.title": "Blitz",
-  "INTOTHESPIREVERSE-BLITZ.description": "Lose {HpLoss:diff()} HP.\nDeal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.",
+  "INTOTHESPIREVERSE-BLITZ.description": "Apply {WeakPower:diff()} [gold]Weak[/gold].\nDeal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.",
+
   "INTOTHESPIREVERSE-BLOODRAIN.title": "Bloodrain",
   "INTOTHESPIREVERSE-BLOODRAIN.description": "Lose {HpLoss:diff()} HP.\nApply {BloodbondPower:diff()} [gold]Bloodbond[/gold] to ALL enemies.\nLose {HpLoss:diff()} HP.",
 
@@ -427,8 +428,10 @@
 
   "INTOTHESPIREVERSE-BUM_RUSH.selectionScreenPrompt": "Choose a card to put on top of your Draw Pile.",
   "INTOTHESPIREVERSE-CALDERA.title": "Caldera",
-  "INTOTHESPIREVERSE-CALDERA.selectionScreenPrompt": "Choose up to {Cards:diff()} cards to [gold]Transform[/gold] into [gold]Bomb Rock[/gold].",
-  "INTOTHESPIREVERSE-CALDERA.description": "[gold]Transform[/gold] up to {Cards:diff()} cards in your [gold]Hand[/gold] into [gold]Bomb Rock[/gold].",
+  "INTOTHESPIREVERSE-CALDERA.selectionScreenPrompt": "Choose up to {Cards} cards to [gold]Transform[/gold] into [gold]Bomb Rock[/gold].",
+
+  "INTOTHESPIREVERSE-CALDERA.description": "[gold]Transform[/gold] up to {Cards:diff()} cards in your [gold]Discard Pile[/gold] into [gold]Bomb Rock[/gold].",
+
   "INTOTHESPIREVERSE-CARBON_COATING.title": "Carbon Coating",
   "INTOTHESPIREVERSE-CARBON_COATING.description": "Gain [gold]Slate[/gold] equal to the number of Attacks played this turn.{InCombat:\n(Gain {CalculatedSlate:diff()} [gold]Slate[/gold])|}",
   "INTOTHESPIREVERSE-CLAYMAKER.title": "Claymaker",
@@ -442,7 +445,8 @@
   "INTOTHESPIREVERSE-DEPOSIT.description": "Gain {Block:diff()} [gold]Block[/gold] and {SlatePower:diff()} [gold]Slate[/gold].",
 
   "INTOTHESPIREVERSE-DIG_DEEP.title": "Dig Deep",
-  "INTOTHESPIREVERSE-DIG_DEEP.description": "Lose {HpLoss:diff()} HP.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nThis card cannot be played again this turn.",
+  "INTOTHESPIREVERSE-DIG_DEEP.description": "Lose {HpLoss:diff()} HP.\nDraw {Cards:diff()} {Cards:plural:card|cards}.\n[gold]Exhaust[/gold] if this was played this turn.",
+
   "INTOTHESPIREVERSE-FELDSPAR.title": "Feldspar",
   "INTOTHESPIREVERSE-FELDSPAR.description": "Deal {Damage:diff()} damage.\nGain {SlatePower} [gold]Slate[/gold].",
   "INTOTHESPIREVERSE-FLAMEFIST.title": "Flamefist",
@@ -467,7 +471,8 @@
   "INTOTHESPIREVERSE-LET_LOOSE.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nPut 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-LET_LOOSE.selectionScreenPrompt": "Choose a card to put on top of your Draw Pile.",
   "INTOTHESPIREVERSE-MEGALITH.title": "Megalith",
-  "INTOTHESPIREVERSE-MEGALITH.description": "Gain {DexterityPower:diff()} [gold]Dexterity[/gold].\nGain {ThornsPower:diff()} [gold]Thorns[/gold].",
+  "INTOTHESPIREVERSE-MEGALITH.description": "Immediately regain back the next {MegalithPower:diff()} HP you lose.",
+
   "INTOTHESPIREVERSE-MUD.title": "Mud",
   "INTOTHESPIREVERSE-MUD.description": "When [gold]Transformed[/gold], gain [blue]{SlatePower}[/blue] [gold]Slate[/gold].",
   "INTOTHESPIREVERSE-PAINTED_PETRA.title": "Painted Petra",
@@ -477,7 +482,8 @@
   "INTOTHESPIREVERSE-PEBBLEFLINGER.title": "Pebbleflinger",
   "INTOTHESPIREVERSE-PEBBLEFLINGER.description": "Every 3rd Skill you play, add a [gold]Small Rock[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-PYROCLAST.title": "Pyroclast",
-  "INTOTHESPIREVERSE-PYROCLAST.description": "Gain {energyPrefix:energyIcons(1)} and lose HP equal to your [gold]Slate[/gold].",
+  "INTOTHESPIREVERSE-PYROCLAST.description": "Gain {Energy:energyIcons()}.\nWhen this card is [gold]Exhausted[/gold] or [gold]Transformed[/gold], draw {Cards:diff()} {Cards:plural:card|cards}.",
+
   "INTOTHESPIREVERSE-LANDSLIDE.title": "Landslide",
   "INTOTHESPIREVERSE-LANDSLIDE.description": "Deal {Damage:diff()} damage.\nEnemy loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn.",
   "INTOTHESPIREVERSE-QUARRY.title": "Quarry",
@@ -494,13 +500,15 @@
   "INTOTHESPIREVERSE-RUBBLEROUSER.title": "Rubblerouser",
   "INTOTHESPIREVERSE-RUBBLEROUSER.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for ALL of your Rock cards.",
   "INTOTHESPIREVERSE-CHISEL.title": "Chisel",
-  "INTOTHESPIREVERSE-CHISEL.description": "Deal {Damage:diff()} damage.\n[gold]Upgrade[/gold] {Cards:diff()} {Cards:plural:card|cards} at random.",
+  "INTOTHESPIREVERSE-CHISEL.description": "Deal {Damage:diff()} damage.\n[gold]Upgrade[/gold] the top card of your [gold]Draw Pile[/gold].",
+
   "INTOTHESPIREVERSE-SILTSONG.title": "Siltsong",
   "INTOTHESPIREVERSE-SILTSONG.description": "Draw {Cards:diff()} cards.\nGain {SlatePower:diff()} [gold]Slate[/gold].",
   "INTOTHESPIREVERSE-STRIKE_SHADOW_IRONCLAD.title": "Strike",
   "INTOTHESPIREVERSE-STRIKE_SHADOW_IRONCLAD.description": "Deal {Damage:diff()} damage.",
   "INTOTHESPIREVERSE-CLAY_SOLDIER.title": "Clay Soldier",
-  "INTOTHESPIREVERSE-CLAY_SOLDIER.description": "The first time you lose HP each turn, gain {StrengthPower:diff()} temporary [gold]Strength[/gold] and {SlatePower:diff()} [gold]Slate[/gold] at the start of your next turn.",
+  "INTOTHESPIREVERSE-CLAY_SOLDIER.description": "The first time you lose HP each turn, gain {StrengthPower:diff()} temporary [gold]Strength[/gold] and {Block:diff()} [gold]Block[/gold] at the start of your next turn.",
+
   "INTOTHESPIREVERSE-TEMPER.title": "Temper",
   "INTOTHESPIREVERSE-TEMPER.description": "Whenever you play a Skill, gain {RetaliationAmount:diff()} [gold]Retaliation[/gold].",
   "INTOTHESPIREVERSE-TERRA_FIRMA.title": "Terra Firma",
@@ -518,7 +526,8 @@
   "INTOTHESPIREVERSE-JOLT.title": "Jolt",
   "INTOTHESPIREVERSE-JOLT.description": "The first time you lose HP each turn, draw {JoltPower:diff()} {JoltPower:plural:card|cards}.",
   "INTOTHESPIREVERSE-WE_ARE_LEGION.title": "We Are Legion",
-  "INTOTHESPIREVERSE-WE_ARE_LEGION.description": "Choose an Attack card.\nTransform ALL non-Attack cards in your [gold]Hand[/gold] into copies of it.",
+  "INTOTHESPIREVERSE-WE_ARE_LEGION.description": "Choose an Attack card.\n[gold]Transform[/gold] ALL non-Attack cards in your [gold]Hand[/gold] into copies of it, then play them.",
+
   "INTOTHESPIREVERSE-WE_ARE_LEGION.selectionScreenPrompt": "Choose an Attack card.",
   "INTOTHESPIREVERSE-WOMBO_COMBO.title": "Wombo Combo",
   "INTOTHESPIREVERSE-WOMBO_COMBO.description": "Deal {Damage:diff()} damage X times.\nPlay a card from your [gold]Discard Pile[/gold] that costs X or less.",
