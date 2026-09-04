@@ -32,7 +32,7 @@ public sealed class TalonSlash() : ShadowSilentCard(2, CardType.Attack, CardRari
             DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(this, cardPlay)
                 .TargetingRandomOpponents(CombatState)
-                .WithHitFx("vfx/vfx_attack_slash")
+                .WithHitFx(VfxCmd.slashPath)
                 .Execute(choiceContext));
 	}
 

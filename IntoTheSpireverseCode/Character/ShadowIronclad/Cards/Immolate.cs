@@ -28,7 +28,7 @@ public sealed class Immolate() : ShadowIroncladCard(2, CardType.Attack, CardRari
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         var burn = CombatState.CreateCard<Burn>(Owner);

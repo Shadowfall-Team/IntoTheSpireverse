@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
@@ -38,7 +39,7 @@ public class Hijack() : ShadowRegentCard(
     {
         if (cardPlay.Target == null) return;
 
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         var target = cardPlay.Target;
 

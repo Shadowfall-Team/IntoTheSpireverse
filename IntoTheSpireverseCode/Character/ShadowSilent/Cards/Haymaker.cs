@@ -38,7 +38,7 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(this, cardPlay)
                 .Targeting(cardPlay.Target)
-                .WithHitFx("vfx/vfx_attack_blunt")
+                .WithHitFx(VfxCmd.bluntPath)
                 .Execute(choiceContext);
             await PowerCmd.Apply<WeakPower>(
                 choiceContext, cardPlay.Target, DynamicVars.Weak.BaseValue,

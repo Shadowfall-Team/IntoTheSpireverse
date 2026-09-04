@@ -39,7 +39,7 @@ public sealed class Plunder() : ShadowSilentCard(1, CardType.Attack, CardRarity.
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         int energyBeforePlay = (Owner.PlayerCombatState?.Energy ?? 0)

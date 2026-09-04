@@ -25,7 +25,7 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithAttackerAnim("Attack", Owner.Character.AttackAnimDelay + 0.25f)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         foreach (var card in PileType.Hand.GetPile(Owner).Cards

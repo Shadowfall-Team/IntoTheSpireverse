@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+﻿using MegaCrit.Sts2.Core.Animation;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,7 +30,7 @@ public class Contraband() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
         var drawPile = PileType.Draw.GetPile(Owner);

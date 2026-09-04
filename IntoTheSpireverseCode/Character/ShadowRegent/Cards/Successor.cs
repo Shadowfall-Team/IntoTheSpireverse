@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+﻿using MegaCrit.Sts2.Core.Animation;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +28,7 @@ public class Successor() : ShadowRegentCard(2, CardType.Skill, CardRarity.Rare, 
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
         var fromHandCard = (await CardSelectCmd.FromHand(choiceContext, Owner,

@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,7 +30,7 @@ public class TwinblastPowder() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         // Free shots: same resolution as the FIRE button, but no energy is required or spent,
         // and each shot deals this card's bonus damage. The bonus is passed into the volley so

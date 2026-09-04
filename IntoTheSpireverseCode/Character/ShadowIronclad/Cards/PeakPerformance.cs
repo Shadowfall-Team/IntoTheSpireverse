@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -39,7 +40,7 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         int times = _sourcePile != PileType.Hand ? 1 + (int)DynamicVars[RepeatKey].BaseValue : 1;
         for (int i = 0; i < times; i++)
         {

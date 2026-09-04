@@ -23,7 +23,7 @@ public sealed class Earthbend() : ShadowIroncladCard(0, CardType.Attack, CardRar
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt")
+            .WithHitFx(VfxCmd.bluntPath)
             .Execute(choiceContext);
 
         var rockPool = PileType.Draw.GetPile(Owner).Cards

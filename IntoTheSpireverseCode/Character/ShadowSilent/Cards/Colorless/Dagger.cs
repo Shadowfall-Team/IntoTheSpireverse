@@ -43,7 +43,7 @@ public sealed class Dagger() : ShadowSilentCard(1, CardType.Attack, CardRarity.T
         await DamageCmd.Attack(DynamicVars.CalculatedDamage)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
     }
 

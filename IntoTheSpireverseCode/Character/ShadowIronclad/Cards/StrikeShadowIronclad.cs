@@ -22,7 +22,7 @@ public sealed class StrikeShadowIronclad() : ShadowIroncladCard(1, CardType.Atta
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
     }
 

@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Abstracts;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Modifications;
@@ -42,7 +43,7 @@ public class ShadowCrystal() : ShadowRegentCard(1,
         var selected = await CardSelectCmd.FromHand(choiceContext, Owner, prefs,
             Modification.CanModify, this);
 
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
         // No NCardEnchantVfx here, unlike Perplex: that vfx reads the card's Enchantment, and a

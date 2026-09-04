@@ -39,7 +39,7 @@ public class LoadTheCannon() : ShadowRegentCard(1,
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitCount(IsUpgraded ? 2 : 1)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);

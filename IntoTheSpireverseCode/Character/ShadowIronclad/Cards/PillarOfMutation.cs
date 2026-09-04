@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -28,7 +29,7 @@ public sealed class PillarOfMutation() : ShadowIroncladCard(1, CardType.Power, C
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         (await PowerCmd.Apply<PillarOfMutationPower>(choiceContext,
             Owner.Creature, DynamicVars.Power<PillarOfMutationPower>().BaseValue, Owner.Creature, this)
         )?.AddVars(DynamicVars.Block.BaseValue, DynamicVars.Power<VigorPower>().BaseValue);

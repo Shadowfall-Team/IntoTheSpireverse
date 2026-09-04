@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Audio.Debug;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,7 +30,7 @@ public class Breach() : ShadowRegentCard(2,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
+            .WithHitFx(VfxCmd.bluntPath, null, TmpSfx.bluntAttack)
             .Execute(choiceContext);
 
         await PowerCmd.Apply<BreachPower>(

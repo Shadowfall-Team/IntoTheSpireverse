@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
@@ -31,7 +32,7 @@ public class Siege() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);

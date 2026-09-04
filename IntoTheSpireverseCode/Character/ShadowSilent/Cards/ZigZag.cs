@@ -32,7 +32,7 @@ public sealed class ZigZag() : ShadowSilentCard(1, CardType.Attack, CardRarity.C
             DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(this, cardPlay)
                 .TargetingAllOpponents(CombatState)
-                .WithHitFx("vfx/vfx_attack_slash")
+                .WithHitFx(VfxCmd.slashPath)
                 .Execute(choiceContext));
 	}
 

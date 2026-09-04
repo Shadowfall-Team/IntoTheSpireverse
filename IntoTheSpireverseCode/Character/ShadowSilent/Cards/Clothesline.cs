@@ -37,7 +37,7 @@ public sealed class Clothesline() : ShadowSilentCard(2, CardType.Attack, CardRar
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt")
+            .WithHitFx(VfxCmd.bluntPath)
             .Execute(choiceContext);
 
         await PowerCmd.Apply<WeakPower>(
