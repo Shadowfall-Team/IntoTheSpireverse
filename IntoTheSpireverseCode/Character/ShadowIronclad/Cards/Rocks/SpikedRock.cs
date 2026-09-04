@@ -14,11 +14,15 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(TokenCardPool))]
 public sealed class SpikedRock() : RockCardBase(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust
+    ];
+
     private const string RetaliationKey = "Retaliation";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(3m, ValueProp.Move),
+        new DamageVar(5m, ValueProp.Move),
         new DynamicVar(RetaliationKey, 3m),
     ];
 

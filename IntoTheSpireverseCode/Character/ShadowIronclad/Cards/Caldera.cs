@@ -1,7 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,7 +22,6 @@ public sealed class Caldera() : ShadowIroncladCard(1, CardType.Skill, CardRarity
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<BombRock>(false),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Linger),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

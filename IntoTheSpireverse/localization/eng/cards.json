@@ -519,7 +519,8 @@
   "INTOTHESPIREVERSE-WOMBO_COMBO.selectionScreenPrompt": "Choose a card to play.",
 
   "INTOTHESPIREVERSE-BOMB_ROCK.title": "Bomb Rock",
-  "INTOTHESPIREVERSE-BOMB_ROCK.description": "Deal {Damage:diff()} damage.\n[gold]Linger[/gold] - Reduce this card's cost by 1.",
+  "INTOTHESPIREVERSE-BOMB_ROCK.description": "Deal {Damage:diff()} damage.",
+
   "INTOTHESPIREVERSE-DEATHGLARE.title": "Deathglare",
   "INTOTHESPIREVERSE-DEATHGLARE.description": "Deal {Damage:diff()} damage.\n[gold]Linger[/gold] - Add a copy of this card into your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-DEEP_ROCK.title": "Deep Rock",
