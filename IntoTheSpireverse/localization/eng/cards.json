@@ -401,9 +401,6 @@
   "INTOTHESPIREVERSE-ARMOR_OF_GNEISS.description": "Gain {Block:diff()} [gold]Block[/gold].\n[gold]Block[/gold] is not removed at the start of the next {BlurPower:diff()} turns.",
   "INTOTHESPIREVERSE-ASSAULT.title": "Assault",
   "INTOTHESPIREVERSE-ASSAULT.description": "Shuffle all Attacks in your [gold]Discard Pile[/gold] into your [gold]Draw Pile[/gold] and reduce their cost by {energyPrefix:energyIcons(1)} until played.\nDraw {Cards:diff()} cards.",
-  "INTOTHESPIREVERSE-AVALANCHE.title": "Avalanche",
-  "INTOTHESPIREVERSE-AVALANCHE.description": "Deal {Damage:diff()} damage.\n[gold]Transform[/gold] any number of cards in your [gold]Hand[/gold] into random {IfUpgraded:show:Upgraded |}[gold]Rocks[/gold].",
-  "INTOTHESPIREVERSE-AVALANCHE.selectionScreenPrompt": "Choose any number of cards to [gold]Transform[/gold] into random [gold]Rocks[/gold].",
   "INTOTHESPIREVERSE-BATTLE_SHOUT.title": "Battle Shout",
   "INTOTHESPIREVERSE-BATTLE_SHOUT.description": "[gold]Modify[/gold] all Attacks in your [gold]Hand[/gold] with [blue]\"Increase damage on this card by {Increase:diff()}\"[/blue].",
   "INTOTHESPIREVERSE-BATTLE_SHOUT.modifierTip": "Increases damage on this card by [blue]{Amount}[/blue].",
@@ -525,6 +522,8 @@
   "INTOTHESPIREVERSE-STRIKE_SHADOW_IRONCLAD.description": "Deal {Damage:diff()} damage.",
   "INTOTHESPIREVERSE-CLAY_SOLDIER.title": "Clay Soldier",
   "INTOTHESPIREVERSE-CLAY_SOLDIER.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nWhenever you lose HP, gain {Block:diff()} [gold]Block[/gold] at the start of your next turn.",
+  "INTOTHESPIREVERSE-CRATON.title": "Craton",
+  "INTOTHESPIREVERSE-CRATON.description": "Gain {SlatePower:diff()} [gold]Slate[/gold].\nPlay the top card of your [gold]Discard Pile[/gold].",
 
 
   "INTOTHESPIREVERSE-TEMPER.title": "Temper",

@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy), ITranscendenceCard
+public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -25,8 +25,6 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
         HoverTipFactory.FromCard<SmallRock>(false),
     ];
     
-    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<Avalanche>();
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null || cardPlay.Target == null) return;
