@@ -49,19 +49,13 @@ public sealed class SlatePower : ShadowPowerModel
         decimal blockAmount = DynamicVars[BlockKey].BaseValue + GetRiebeckiteBonus();
         await CreatureCmd.GainBlock(Owner, blockAmount, ValueProp.Unpowered, null);
 
-        if (!IsObsidianActive())
-            await PowerCmd.Decrement(this);
+        await PowerCmd.Decrement(this);
     }
 
     private decimal GetRiebeckiteBonus()
     {
         var riebeckite = Owner.Powers.OfType<RiebeckitePower>().FirstOrDefault();
         return riebeckite != null ? (decimal)riebeckite.Amount : 0m;
-    }
-
-    private bool IsObsidianActive()
-    {
-        return Owner.Powers.Any(p => p is ObsidianPower);
     }
 
     private class Data
