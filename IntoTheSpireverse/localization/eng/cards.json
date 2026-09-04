@@ -434,6 +434,13 @@
 
   "INTOTHESPIREVERSE-CARBON_COATING.title": "Carbon Coating",
   "INTOTHESPIREVERSE-CARBON_COATING.description": "Gain [gold]Slate[/gold] equal to the number of Attacks played this turn.{InCombat:\n(Gain {CalculatedSlate:diff()} [gold]Slate[/gold])|}",
+  "INTOTHESPIREVERSE-CARVE.title": "Carve",
+  "INTOTHESPIREVERSE-CARVE.description": "Deal {Damage:diff()} damage.\nIf played [gold]Indirectly[/gold], gain {StrengthPower} [gold]Strength[/gold].",
+  "INTOTHESPIREVERSE-REFORM.title": "Reform",
+  "INTOTHESPIREVERSE-REFORM.description": "Play {Attacks:diff()} random Attacks from your [gold]Exhaust Pile[/gold].",
+  "INTOTHESPIREVERSE-TOLL.title": "Toll",
+  "INTOTHESPIREVERSE-TOLL.description": "Choose a card in your [gold]Hand[/gold].\nPlay it, then lose HP equal to its Cost{IfUpgraded:show: minus [blue]1[/blue]|}.",
+  "INTOTHESPIREVERSE-TOLL.selectionScreenPrompt": "Choose a card to play.",
   "INTOTHESPIREVERSE-CLAYMAKER.title": "Claymaker",
   "INTOTHESPIREVERSE-CLAYMAKER.description": "Deal {Damage:diff()} damage twice.\nIf played [gold]Indirectly[/gold], hits again.",
 
@@ -511,8 +518,6 @@
 
   "INTOTHESPIREVERSE-RIEBECKITE.title": "Riebeckite",
   "INTOTHESPIREVERSE-RIEBECKITE.description": "[gold]Slate[/gold] grants {RiebeckitePower:diff()} additional [gold]Block[/gold].",
-  "INTOTHESPIREVERSE-ROCK_COLLECTION.title": "Rock Collection",
-  "INTOTHESPIREVERSE-ROCK_COLLECTION.description": "Add 2 random [gold]Rocks[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-RUBBLEROUSER.title": "Rubblerouser",
   "INTOTHESPIREVERSE-RUBBLEROUSER.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for ALL of your Rock cards.",
   "INTOTHESPIREVERSE-CHISEL.title": "Chisel",
