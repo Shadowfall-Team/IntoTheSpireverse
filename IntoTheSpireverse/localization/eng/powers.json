@@ -176,9 +176,11 @@
   "INTOTHESPIREVERSE-CLAY_SOLDIER_NEXT_TURN_STRENGTH_POWER.description": "At the start of your next turn, gain [blue]1[/blue] temporary [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-CLAY_SOLDIER_NEXT_TURN_STRENGTH_POWER.smartDescription": "At the start of your next turn, gain [blue]{Amount}[/blue] temporary [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.title": "Clay Soldier",
-  "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.description": "The first time you lose HP each turn, gain [blue]2[/blue] temporary [gold]Strength[/gold] and [blue]3[/blue] [gold]Block[/gold] at the start of your next turn.",
+  "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.description": "Whenever you lose HP, gain [gold]Block[/gold] at the start of your next turn.",
 
-  "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.smartDescription": "The first time you lose HP each turn, gain [blue]{StrengthPower:diff()}[/blue] temporary [gold]Strength[/gold] and [blue]{Block:diff()}[/blue] [gold]Block[/gold] at the start of your next turn.",
+
+  "INTOTHESPIREVERSE-CLAY_SOLDIER_POWER.smartDescription": "Whenever you lose HP, gain [blue]{Block}[/blue] [gold]Block[/gold] at the start of your next turn.",
+
 
   "INTOTHESPIREVERSE-PILLAR_OF_MUTATION_POWER.title": "Pillar Of Mutation Power",
   "INTOTHESPIREVERSE-PILLAR_OF_MUTATION_POWER.description": "Whenever you create a card, gain [blue]3[/blue] [gold]Block[/gold] and [blue]1[/blue] [gold]Vigor[/gold].",
@@ -210,8 +212,10 @@
   "INTOTHESPIREVERSE-MEGALITH_POWER.description": "Immediately regain back the next HP you lose.",
   "INTOTHESPIREVERSE-MEGALITH_POWER.smartDescription": "Immediately regain back the next [blue]{Amount}[/blue] HP you lose.",
   "INTOTHESPIREVERSE-BLOODSTONE_POWER.title": "Bloodstone",
-  "INTOTHESPIREVERSE-BLOODSTONE_POWER.description": "At the start of your turn, and whenever you play a card [gold]Indirectly[/gold], apply [gold]Bloodbond[/gold] to ALL enemies.",
-  "INTOTHESPIREVERSE-BLOODSTONE_POWER.smartDescription": "At the start of your turn, and whenever you play a card [gold]Indirectly[/gold], apply [blue]{Amount}[/blue] [gold]Bloodbond[/gold] to ALL enemies.",
+  "INTOTHESPIREVERSE-BLOODSTONE_POWER.description": "At the start of your turn, apply [gold]Bloodbond[/gold] to ALL enemies.",
+
+  "INTOTHESPIREVERSE-BLOODSTONE_POWER.smartDescription": "At the start of your turn, apply [blue]{Amount}[/blue] [gold]Bloodbond[/gold] to ALL enemies.",
+
   "INTOTHESPIREVERSE-SCULPT_REALITY_POWER.title": "Sculpt Reality",
   "INTOTHESPIREVERSE-SCULPT_REALITY_POWER.description": "At the start of your turn, add a random Attack with [gold]Ethereal[/gold] and [gold]Exhaust[/gold] into your [gold]Hand[/gold].\nWhen a card is created in combat, [gold]Upgrade[/gold] it.",
   "INTOTHESPIREVERSE-SCULPT_REALITY_POWER.smartDescription": "At the start of your turn, add [blue]{Amount}[/blue] random {Amount:plural:Attack|Attacks} with [gold]Ethereal[/gold] and [gold]Exhaust[/gold] into your [gold]Hand[/gold].\nWhen a card is created in combat, [gold]Upgrade[/gold] it.",
