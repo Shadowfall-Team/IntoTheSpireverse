@@ -394,7 +394,10 @@
   "INTOTHESPIREVERSE-NECRONOMICON.description": "At the end of combat, you may [gold]Transform[/gold] and [gold]Upgrade[/gold] {Cards:plural:a card|{} cards}.",
 
   "INTOTHESPIREVERSE-ANCESTRAL_ECHO.title": "Ancestral Echo",
-  "INTOTHESPIREVERSE-ANCESTRAL_ECHO.description": "Add [gold]Replay[/gold] {Replay:diff()} to the top card of your [gold]Draw Pile[/gold].",
+  "INTOTHESPIREVERSE-ANCESTRAL_ECHO.description": "[gold]Modify[/gold] the top card of your [gold]Draw Pile[/gold] with [blue]\"Create and play {Copies:diff()} unmodified {Copies:plural:copy|copies} of this card.\"[/blue]",
+  "INTOTHESPIREVERSE-ANCESTRAL_ECHO.modifierText": "Create and play [blue]{Amount}[/blue] unmodified {Amount:plural:copy|copies} of this card.",
+  "INTOTHESPIREVERSE-ANCESTRAL_ECHO.modifierTip": "Creates and plays [blue]{Amount}[/blue] unmodified {Amount:plural:copy|copies} of this card.",
+
   "INTOTHESPIREVERSE-ANCIENT_THRALL.title": "Ancient Thrall",
   "INTOTHESPIREVERSE-ANCIENT_THRALL.description": "Lose {HpLoss:diff()} HP.\nGain {StrengthPower:diff()} [gold]Strength[/gold].\nIf this is in your [gold]Hand[/gold], it must be played before other cards.",
   "INTOTHESPIREVERSE-ARMOR_OF_GNEISS.title": "Armor of Gneiss",
