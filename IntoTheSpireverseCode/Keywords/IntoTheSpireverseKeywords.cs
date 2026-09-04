@@ -52,6 +52,9 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Indirectly;
+
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Scry;
     
     /// True when the card reached the Play pile from anywhere other than Hand.
     public static bool WasPlayedIndirectly(CardModel card) =>

@@ -1,8 +1,10 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -11,12 +13,17 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
-    // TODO: the patch notes also call for "Scry 1(2)". Scry does not exist anywhere in StS2
-    // v0.111.0 - no card, keyword, hover tip or loc string - so it would have to be built as a
-    // Spireverse keyword first. Damage and the top-card upgrade are implemented; Scry is not.
+    private const string ScryKey = "Scry";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(9m, ValueProp.Move),
+        new DynamicVar(ScryKey, 1m),
+    ];
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Scry),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -30,6 +37,8 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
+        await ScryHelper.Scry(choiceContext, Owner, DynamicVars[ScryKey].IntValue);
+
         var top = PileType.Draw.GetPile(Owner).Cards.FirstOrDefault();
         if (top is { IsUpgradable: true })
         {
@@ -38,5 +47,9 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
         }
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars[ScryKey].UpgradeValueBy(1m);
+    }
 }

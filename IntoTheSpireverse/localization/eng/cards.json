@@ -515,7 +515,8 @@
   "INTOTHESPIREVERSE-RUBBLEROUSER.title": "Rubblerouser",
   "INTOTHESPIREVERSE-RUBBLEROUSER.description": "Deal {CalculatedDamage:diff()} damage.\nDeals {ExtraDamage:diff()} additional damage for ALL of your Rock cards.",
   "INTOTHESPIREVERSE-CHISEL.title": "Chisel",
-  "INTOTHESPIREVERSE-CHISEL.description": "Deal {Damage:diff()} damage.\n[gold]Upgrade[/gold] the top card of your [gold]Draw Pile[/gold].",
+  "INTOTHESPIREVERSE-CHISEL.description": "Deal {Damage:diff()} damage.\n[gold]Scry[/gold] {Scry:diff()}.\n[gold]Upgrade[/gold] the top card of your [gold]Draw Pile[/gold].",
+
 
   "INTOTHESPIREVERSE-SILTSONG.title": "Siltsong",
   "INTOTHESPIREVERSE-SILTSONG.description": "Draw {Cards:diff()} cards.\nGain {SlatePower:diff()} [gold]Slate[/gold].",

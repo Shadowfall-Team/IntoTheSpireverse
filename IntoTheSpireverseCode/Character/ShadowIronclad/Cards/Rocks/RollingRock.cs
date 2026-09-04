@@ -11,10 +11,6 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class RollingRock() : RockCardBase(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        CardKeyword.Exhaust
-    ];
-
     private const string IncreaseKey = "Increase";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
