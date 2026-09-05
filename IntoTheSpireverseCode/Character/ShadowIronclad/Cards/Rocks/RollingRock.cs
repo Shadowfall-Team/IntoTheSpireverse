@@ -15,8 +15,8 @@ public sealed class RollingRock() : RockCardBase(1, CardType.Attack, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9m, ValueProp.Move),
-        new DynamicVar(IncreaseKey, 3m),
+        new DamageVar(8m, ValueProp.Move),
+        new DynamicVar(IncreaseKey, 4m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -30,5 +30,5 @@ public sealed class RollingRock() : RockCardBase(1, CardType.Attack, CardRarity.
         BuffFromRockPlay(DynamicVars[IncreaseKey].BaseValue);
     }
 
-    protected override void OnUpgrade() => DynamicVars[IncreaseKey].UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars[IncreaseKey].UpgradeValueBy(4m);
 }

@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using BaseLib.Extensions;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,41 +12,42 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy), ISlateSpender
 {
-    private const string StrengthLossKey = "StrengthLoss";
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(14m, ValueProp.Move),
-        new DynamicVar(StrengthLossKey, 3m),
+        new DamageVar(15m, ValueProp.Move),
+        new PowerVar<StrengthPower>(2m),
     ];
-    
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+        HoverTipFactory.FromPower<SlatePower>(),
         HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx("vfx/vfx_heavy_blunt", null, "heavy_attack.mp3")
             .Execute(choiceContext);
+    }
 
-        await PowerCmd.Apply<LandslidePower>(
+    public async Task OnSlateSpent(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await PowerCmd.Apply<StrengthPower>(
             new ThrowingPlayerChoiceContext(),
-            cardPlay.Target, DynamicVars[StrengthLossKey].BaseValue,
+            Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
-        DynamicVars[StrengthLossKey].UpgradeValueBy(1m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Power<StrengthPower>().UpgradeValueBy(1m);
     }
 }

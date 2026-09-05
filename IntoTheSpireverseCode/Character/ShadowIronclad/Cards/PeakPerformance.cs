@@ -1,56 +1,44 @@
-﻿using BaseLib.Extensions;
+﻿using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    private const string RepeatKey = "Repeat";
+    private const string ScryKey = "Scry";
 
-    public override bool GainsBlock => true;
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust
+    ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(5m, ValueProp.Move),
-        new PowerVar<StrengthPower>(1m),
-        new DynamicVar(RepeatKey, 2m),
+        new DynamicVar(ScryKey, 3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<StrengthPower>(),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
+        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Scry),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        int times = IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay)
-            ? 1 + (int)DynamicVars[RepeatKey].BaseValue
-            : 1;
-        for (int i = 0; i < times; i++)
-        {
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-            await PowerCmd.Apply<StrengthPower>(
-                new ThrowingPlayerChoiceContext(),
-                Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
-                Owner.Creature, this);
-        }
+
+        await ScryHelper.Scry(choiceContext, Owner, DynamicVars[ScryKey].IntValue);
+
+        // Read after the Scry, so discarding the top cards changes which card is copied.
+        var top = PileType.Draw.GetPile(Owner).Cards.FirstOrDefault();
+        if (top == null) return;
+
+        await CardCmd.AutoPlay(choiceContext, top.CreateClone(), null);
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Block.UpgradeValueBy(1m);
-        DynamicVars[RepeatKey].UpgradeValueBy(1m);
-    }
+    protected override void OnUpgrade() => DynamicVars[ScryKey].UpgradeValueBy(3m);
 }

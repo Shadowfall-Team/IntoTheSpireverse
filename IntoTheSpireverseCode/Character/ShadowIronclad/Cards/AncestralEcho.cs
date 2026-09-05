@@ -41,5 +41,5 @@ public sealed class AncestralEcho() : ShadowIroncladCard(2, CardType.Skill, Card
         CardCmd.Preview(top);
     }
 
-    protected override void OnUpgrade() => DynamicVars[CopiesKey].UpgradeValueBy(1m);
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

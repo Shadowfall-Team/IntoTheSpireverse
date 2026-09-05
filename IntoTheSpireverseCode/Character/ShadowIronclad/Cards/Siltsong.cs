@@ -23,6 +23,9 @@ public sealed class Siltsong() : ShadowIroncladCard(1, CardType.Skill, CardRarit
         HoverTipFactory.FromPower<SlatePower>(),
     ];
 
+    protected override bool IsPlayable =>
+        !IsCanonical && (Owner?.Creature.Powers.OfType<SlatePower>().FirstOrDefault()?.Amount ?? 0) > 0;
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);

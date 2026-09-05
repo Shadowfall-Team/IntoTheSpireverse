@@ -12,11 +12,12 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Groundswell() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class Groundswell() : ShadowIroncladCard(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<GroundswellPower>(1m),
+        new EnergyVar(1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -34,5 +35,5 @@ public sealed class Groundswell() : ShadowIroncladCard(1, CardType.Power, CardRa
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => AddKeyword(CardKeyword.Innate);
 }

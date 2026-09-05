@@ -1,5 +1,4 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -33,9 +32,5 @@ public class BloodbondPower : ShadowPowerModel
         Flash();
         await CreatureCmdCompatibility.Damage(choiceContext, Owner, Amount,
             ValueProp.Unblockable | ValueProp.Unpowered, target, null, null);
-
-        var relic = target.Player?.Relics.OfType<Buckler>().FirstOrDefault();
-        if (relic != null)
-            await relic.TryHeal();
     }
 }

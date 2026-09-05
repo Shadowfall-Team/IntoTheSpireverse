@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Models.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,16 +12,16 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Temper() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
-    private const string RetaliationAmountKey = "RetaliationAmount";
+    private const string StrengthAmountKey = "StrengthAmount";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(RetaliationAmountKey, 3m),
+        new DynamicVar(StrengthAmountKey, 2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<RetaliationPower>(),
+        HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -28,12 +29,12 @@ public sealed class Temper() : ShadowIroncladCard(1, CardType.Power, CardRarity.
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<TemperPower>(
             new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars[RetaliationAmountKey].BaseValue,
+            Owner.Creature, DynamicVars[StrengthAmountKey].BaseValue,
             Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars[RetaliationAmountKey].UpgradeValueBy(1m);
+        DynamicVars[StrengthAmountKey].UpgradeValueBy(1m);
     }
 }

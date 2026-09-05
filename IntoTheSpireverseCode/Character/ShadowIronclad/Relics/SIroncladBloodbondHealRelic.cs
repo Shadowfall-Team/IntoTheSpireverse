@@ -1,9 +1,12 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
+﻿using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
 
@@ -16,11 +19,6 @@ public class Buckler : ShadowIroncladRelic
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HealVar(4m),
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<BloodbondPower>(),
     ];
 
     private bool ActivatedThisCombat
@@ -41,10 +39,12 @@ public class Buckler : ShadowIroncladRelic
         return Task.CompletedTask;
     }
 
-    public async Task TryHeal()
+    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext,
+        Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
-        if (ActivatedThisCombat) return;
-        if (Owner.Creature.IsDead) return;
+        if (target != Owner.Creature || result.UnblockedDamage <= 0) return;
+        if (Owner.Creature.CombatState?.CurrentSide != Owner.Creature.Side) return;
+        if (ActivatedThisCombat || Owner.Creature.IsDead) return;
 
         ActivatedThisCombat = true;
         Flash();
