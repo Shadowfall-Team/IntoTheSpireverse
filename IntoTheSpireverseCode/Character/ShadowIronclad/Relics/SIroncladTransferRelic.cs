@@ -1,68 +1,29 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
+﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
 
 public class Bellows : ShadowIroncladRelic
 {
+    private const string CardsKey = "Cards";
+
     public override RelicRarity Rarity => RelicRarity.Rare;
 
-    public override async Task AfterDeath(
-        PlayerChoiceContext choiceContext,
-        Creature target,
-        bool wasRemovalPrevented,
-        float deathAnimLength)
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DynamicVar(CardsKey, 2m),
+    ];
+    
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (target.Side == Owner.Creature.Side) return;
-
-        var debuffs = target.Powers
-            .Where(p => p.TypeForCurrentAmount == PowerType.Debuff)
-            .Select(p => (PowerModel)p.ClonePreservingMutability())
-            .ToList();
-
-        if (debuffs.Count == 0) return;
-
-        var livingEnemies = Owner.Creature.CombatState?.HittableEnemies
-            .Where(c => c != target)
-            .ToList() ?? [];
-
-        if (livingEnemies.Count == 0) return;
+        if (player != Owner || Owner.PlayerCombatState?.TurnNumber > 1) return;
 
         Flash();
-
-        var recipient = Owner.RunState.Rng.CombatCardSelection.NextItem(livingEnemies);
-
-        if (recipient == null) return;
-        foreach (var debuff in debuffs)
-        {
-            var existingPower = recipient.GetPowerById(debuff.Id);
-
-            if (existingPower != null && existingPower.InstanceType == PowerInstanceType.None) // Todo check this is the same
-            {
-                DoHackyThingsForSpecificPowers(existingPower);
-                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(),
-                    existingPower, (decimal)debuff.Amount,
-                    Owner.Creature, null);
-            }
-            else
-            {
-                var power = (PowerModel)debuff.ClonePreservingMutability();
-                DoHackyThingsForSpecificPowers(power);
-                await PowerCmd.Apply(new ThrowingPlayerChoiceContext(),
-                    power, recipient, (decimal)debuff.Amount,
-                    Owner.Creature, null);
-            }
-        }
-    }
-
-    private static void DoHackyThingsForSpecificPowers(PowerModel power)
-    {
-        if (power is ITemporaryPower temporaryPower)
-            CompatibilityUtils.DoHackyThingsForSpecificPowers(temporaryPower);
+        await CardPileCmd.AutoPlayFromDrawPile(choiceContext, Owner,
+            DynamicVars[CardsKey].IntValue, CardPilePosition.Top, forceExhaust: false);
     }
 }

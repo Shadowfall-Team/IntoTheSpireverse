@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-TORMENT",
+  "hue": 0.47,
+  "saturation": 0.9,
+  "value": 1.02,
+  "red": 0.63,
+  "green": 1.36,
+  "blue": 1.25,
+  "contrast": 1.34,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/colorless/shockwave.tres"
+}

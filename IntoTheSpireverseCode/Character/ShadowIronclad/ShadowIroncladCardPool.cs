@@ -20,20 +20,20 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
     protected override CardModel[] GenerateAllCards()
     {
         CardModel[] cards = [
-            ModelDb.Card<StrikeIronclad>(),
-            ModelDb.Card<DefendIronclad>(),
+            ModelDb.Card<StrikeIronclad>(), //necessary for compendium
+            ModelDb.Card<DefendIronclad>(), //necessary for compendium
+            ModelDb.Card<Barricade>(),
+            ModelDb.Card<Pyre>(),
+            ModelDb.Card<Mangle>(),
             ModelDb.Card<PommelStrike>(),
             ModelDb.Card<Breakthrough>(),
             ModelDb.Card<Headbutt>(),
-            ModelDb.Card<Havoc>(),
             ModelDb.Card<Pillage>(),
             ModelDb.Card<SwordBoomerang>(),
-            ModelDb.Card<FightMe>(),
             ModelDb.Card<TearAsunder>(),
             ModelDb.Card<Stampede>(),
             ModelDb.Card<BloodWall>(),
             ModelDb.Card<Spite>(),
-            ModelDb.Card<Bludgeon>(),
             ModelDb.Card<DemonicShield>(),
             ModelDb.Card<StoneArmor>(),
             ModelDb.Card<Cascade>(),
@@ -41,6 +41,12 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             ModelDb.Card<CrimsonMantle>(),
             ModelDb.Card<PrimalForce>(),
             ModelDb.Card<Juggernaut>(),
+
+            //Close enough to be considered a duplicate:
+            //Erosion (Wild Strike)
+            //Geyser (Immolate)
+            //Sediment (Power Through)
+            //Fume (Havoc)
         ];
 
         var sts2Assembly = typeof(ModelDb).Assembly;

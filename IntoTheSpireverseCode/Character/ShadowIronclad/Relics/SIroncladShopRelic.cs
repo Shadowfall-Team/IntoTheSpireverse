@@ -17,7 +17,7 @@ public class CrimsonAmulet : ShadowIroncladRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BloodbondPower>(5m),
+        new PowerVar<BloodbondPower>(10m),
         new PowerVar<ThornsPower>(1m),
     ];
 
