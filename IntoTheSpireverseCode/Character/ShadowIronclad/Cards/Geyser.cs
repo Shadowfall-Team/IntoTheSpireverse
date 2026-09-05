@@ -33,7 +33,7 @@ public sealed class Geyser() : ShadowIroncladCard(2, CardType.Attack, CardRarity
             .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
             .Execute(choiceContext);
 
-        var mud = (CardModel)CombatState.CreateCard<Mud>(Owner);
+        var mud = CombatState.CreateCard<Mud>(Owner);
         await CardPileCmd.AddGeneratedCardToCombat(mud, PileType.Discard, Owner);
     }
 
