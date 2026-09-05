@@ -20,7 +20,7 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
     protected override CardModel[] GenerateAllCards()
     {
         CardModel[] cards = [
-            ModelDb.Card<BodySlam>(),
+            ModelDb.Card<PommelStrike>(),
             ModelDb.Card<Breakthrough>(),
             ModelDb.Card<Headbutt>(),
             ModelDb.Card<Havoc>(),
