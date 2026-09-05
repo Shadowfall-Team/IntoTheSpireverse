@@ -466,6 +466,8 @@
   "INTOTHESPIREVERSE-GRAPPLE.description": "Deal {Damage:diff()} damage.\nWhenever you gain [gold]Block[/gold] this turn, deal {GrappleDamage:diff()} damage to the enemy.",
   "INTOTHESPIREVERSE-GRAVELLIZE.title": "Gravellize",
   "INTOTHESPIREVERSE-GRAVELLIZE.description": "[gold]Transform[/gold] a card into [gold]Spiked Rock[/gold].\nIf it was [gold]Unplayable[/gold], add a [gold]Spiked Rock[/gold] into your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-GROUNDSWELL.title": "Groundswell",
+  "INTOTHESPIREVERSE-GROUNDSWELL.description": "Gain {GroundswellPower:diff()} [gold]Strength[/gold] whenever you play a card [gold]Indirectly[/gold].",
 
   "INTOTHESPIREVERSE-INCITE_VIOLENCE.title": "Incite Violence",
   "INTOTHESPIREVERSE-INCITE_VIOLENCE.description": "Deal {Damage:diff()} damage {Repeat} times.\nThe enemy attacks you for {Recoil} damage.",
@@ -550,8 +552,6 @@
   "INTOTHESPIREVERSE-UNRELENTING_FORM.description": "The first {UnrelentingFormPower:diff()} times each turn you play an Attack, gain {energyPrefix:energyIcons(1)} and draw 1 card.",
   "INTOTHESPIREVERSE-WARCRAFT.title": "Warcraft",
   "INTOTHESPIREVERSE-WARCRAFT.description": "If you end a turn with at least 15 [gold]Block[/gold], play the top card of your [gold]Draw Pile[/gold].",
-  "INTOTHESPIREVERSE-JOLT.title": "Jolt",
-  "INTOTHESPIREVERSE-JOLT.description": "The first time you lose HP each turn, draw {JoltPower:diff()} {JoltPower:plural:card|cards}.",
   "INTOTHESPIREVERSE-WE_ARE_LEGION.title": "We Are Legion",
   "INTOTHESPIREVERSE-WE_ARE_LEGION.description": "Choose an Attack card.\n[gold]Transform[/gold] ALL non-Attack cards in your [gold]Hand[/gold] into copies of it, then play them.",
 
