@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-SEDIMENT",
-  "hue": 0.10,
-  "saturation": 0.76,
-  "value": 1.10,
-  "red": 1.15,
-  "green": 1.05,
-  "blue": 0.86,
-  "contrast": 1.05,
+  "hue": 0.0,
+  "saturation": 1.0,
+  "value": 1.0,
+  "red": 1.0,
+  "green": 1.0,
+  "blue": 1.0,
+  "contrast": 1.0,
   "flip_h": false,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/impervious.tres"
+  "portrait_path": "res://IntoTheSpireverse/images/card_portraits/ironclad/big/power_through.png"
 }
