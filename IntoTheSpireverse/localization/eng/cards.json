@@ -438,9 +438,6 @@
   "INTOTHESPIREVERSE-CARVE.description": "Deal {Damage:diff()} damage.\nIf played [gold]Indirectly[/gold], gain {StrengthPower} [gold]Strength[/gold].",
   "INTOTHESPIREVERSE-REFORM.title": "Reform",
   "INTOTHESPIREVERSE-REFORM.description": "Play {Attacks:diff()} random Attacks from your [gold]Exhaust Pile[/gold].",
-  "INTOTHESPIREVERSE-TOLL.title": "Toll",
-  "INTOTHESPIREVERSE-TOLL.description": "Choose a card in your [gold]Hand[/gold].\nPlay it, then lose HP equal to its Cost{IfUpgraded:show: minus [blue]1[/blue]|}.",
-  "INTOTHESPIREVERSE-TOLL.selectionScreenPrompt": "Choose a card to play.",
   "INTOTHESPIREVERSE-CLAYMAKER.title": "Claymaker",
   "INTOTHESPIREVERSE-CLAYMAKER.description": "Deal {Damage:diff()} damage twice.\nIf played [gold]Indirectly[/gold], hits again.",
 
@@ -530,8 +527,11 @@
   "INTOTHESPIREVERSE-STRIKE_SHADOW_IRONCLAD.description": "Deal {Damage:diff()} damage.",
   "INTOTHESPIREVERSE-CLAY_SOLDIER.title": "Clay Soldier",
   "INTOTHESPIREVERSE-CLAY_SOLDIER.description": "Gain {StrengthPower:diff()} [gold]Strength[/gold].\nWhenever you lose HP, gain {Block:diff()} [gold]Block[/gold] at the start of your next turn.",
-  "INTOTHESPIREVERSE-CRATON.title": "Craton",
-  "INTOTHESPIREVERSE-CRATON.description": "Gain {SlatePower:diff()} [gold]Slate[/gold].\nPlay the top card of your [gold]Discard Pile[/gold].",
+  "INTOTHESPIREVERSE-DARK_BARGAIN.title": "Dark Bargain",
+  "INTOTHESPIREVERSE-DARK_BARGAIN.description": "Choose a card in your {IfUpgraded:show:[gold]Hand[/gold] or [gold]Discard Pile[/gold]|[gold]Hand[/gold]}.\nPlay it, then lose HP equal to its Cost.",
+  "INTOTHESPIREVERSE-DARK_BARGAIN.selectionScreenPrompt": "Choose a card to play.",
+  "INTOTHESPIREVERSE-THE_MOUNTAIN.title": "The Mountain",
+  "INTOTHESPIREVERSE-THE_MOUNTAIN.description": "Gain {SlatePower:diff()} [gold]Slate[/gold].\nPlay the top card of your [gold]Discard Pile[/gold].",
 
 
   "INTOTHESPIREVERSE-TEMPER.title": "Temper",
