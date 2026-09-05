@@ -11,19 +11,17 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// Terra Firma's Transcendence upgrade (Archaic Tooth). A craton is the ancient, stable core of a
-/// continent - the oldest rock there is, which is about as literal an Ancient upgrade of "solid
-/// ground" as geology offers.
+/// Terra Firma's Transcendence upgrade (Archaic Tooth).
 ///
 /// Slate is granted before the replayed card resolves, so an Attack off the Discard pile is covered
 /// by the Slate this card just gave.
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Craton() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
+public sealed class TheMountain() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SlatePower>(2m),
+        new PowerVar<SlatePower>(3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

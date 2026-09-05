@@ -14,7 +14,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class TerraFirma() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self), ITranscendenceCard
 {
-    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<Craton>();
+    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<TheMountain>();
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
