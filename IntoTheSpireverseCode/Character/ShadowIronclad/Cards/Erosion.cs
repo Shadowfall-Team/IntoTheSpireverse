@@ -16,7 +16,7 @@ public sealed class Erosion() : ShadowIroncladCard(1, CardType.Attack, CardRarit
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(14m, ValueProp.Move),
+        new DamageVar(13m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -38,5 +38,5 @@ public sealed class Erosion() : ShadowIroncladCard(1, CardType.Attack, CardRarit
         await CardPileCmd.AddGeneratedCardToCombat(mud, PileType.Draw, Owner);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(5m);
 }
