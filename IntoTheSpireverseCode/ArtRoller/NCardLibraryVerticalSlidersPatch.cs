@@ -3,6 +3,7 @@ using Godot;
 using System;
 using System.Linq;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.ArtRoller;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardLibrary;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Nodes;
@@ -258,9 +259,7 @@ public class NCardLibraryVerticalSlidersPatch
 
     private static void LoadHsvState(NCardHolder holder)
     {
-        string cardId = holder.CardModel!.Id.ToString();
-
-        var userHsv = CardArtRoller.GetCardData(cardId);
+        var userHsv = CardArtRoller.Resolve(holder.CardModel!);
         if (userHsv != null)
         {
             SetState(
@@ -272,18 +271,8 @@ public class NCardLibraryVerticalSlidersPatch
             return;
         }
 
-        var defaultHsv = CardArtRoller.GetDefaultHsvForCard(cardId);
-        if (defaultHsv != null)
-        {
-            SetState(
-                defaultHsv.Hue * 100f, defaultHsv.Saturation * 100f, defaultHsv.Value * 100f,
-                defaultHsv.Red * 100f, defaultHsv.Green * 100f, defaultHsv.Blue * 100f,
-                defaultHsv.Contrast * 100f,
-                defaultHsv.FlipH,
-                defaultHsv.PortraitPath ?? "");
-            return;
-        }
-
+        // Resolve already falls back from the user save to the packed default, and from the
+        // scoped entry to the unscoped one, so the sliders open showing whatever actually renders.
         SetState(100f, 100f, 100f, 100f, 100f, 100f, 100f, false, "");
     }
 
@@ -375,7 +364,7 @@ public class NCardLibraryVerticalSlidersPatch
     {
         if (_currentHolder == null) return;
 
-        string cardId = _currentHolder.CardModel!.Id.ToString();
+        string cardId = AltArtContext.KeyFor(_currentHolder.CardModel!);
         CardArtRoller.SaveHsvForCard(cardId, _currentH, _currentS, _currentV, _currentR, _currentG, _currentB, _currentContrast, _currentFlipH, _currentPortraitPath);
         ReloadCard();
         Log.Info($"[NCardLibraryVerticalSlidersPatch] Saved for card: {cardId}");
@@ -385,7 +374,7 @@ public class NCardLibraryVerticalSlidersPatch
     {
         if (_currentHolder == null) return;
 
-        string cardId = _currentHolder.CardModel!.Id.ToString();
+        string cardId = AltArtContext.KeyFor(_currentHolder.CardModel!);
         CardArtRoller.DeleteHsvForCard(cardId);
 
         LoadHsvState(_currentHolder);
@@ -401,7 +390,7 @@ public class NCardLibraryVerticalSlidersPatch
     {
         if (_currentHolder == null) return;
 
-        string cardId = _currentHolder.CardModel!.Id.ToString();
+        string cardId = AltArtContext.KeyFor(_currentHolder.CardModel!);
         CardArtRoller.SaveDefaultHsvForCard(cardId, _currentH, _currentS, _currentV, _currentR, _currentG, _currentB, _currentContrast, _currentFlipH, _currentPortraitPath);
         ReloadCard();
         Log.Info($"[NCardLibraryVerticalSlidersPatch] Saved default for card: {cardId}");

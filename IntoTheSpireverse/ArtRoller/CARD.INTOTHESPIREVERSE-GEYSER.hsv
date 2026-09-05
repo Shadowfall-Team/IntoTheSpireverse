@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-GEYSER",
-  "hue": 0.0,
-  "saturation": 1.0,
-  "value": 1.0,
-  "red": 1.0,
-  "green": 1.0,
-  "blue": 1.0,
-  "contrast": 1.0,
-  "flip_h": false,
+  "hue": 0.53,
+  "saturation": 0.53,
+  "value": 1.11,
+  "red": 1.08,
+  "green": 1.33,
+  "blue": 1.38,
+  "contrast": 1.23,
+  "flip_h": true,
   "portrait_path": "res://IntoTheSpireverse/images/card_portraits/ironclad/big/immolate.png"
 }

@@ -10,25 +10,16 @@ public class CardModelPortraitPatch
     [HarmonyPrefix]
     static bool OverridePortraitPath(CardModel __instance, ref string __result)
     {
-        string cardId = __instance.Id.ToString();
-
-        // 1. Check if the user has a custom path saved
-        var userHsv = CardArtRoller.GetCardData(cardId);
-        if (userHsv != null && !string.IsNullOrWhiteSpace(userHsv.PortraitPath))
+        // Resolve honours alt-character scoping, so a base game card reprinted into an alt
+        // character's pool can carry its own portrait without altering the original character's.
+        var hsv = CardArtRoller.Resolve(__instance);
+        if (hsv != null && !string.IsNullOrWhiteSpace(hsv.PortraitPath))
         {
-            __result = userHsv.PortraitPath;
+            __result = hsv.PortraitPath;
             return false; // Skip the vanilla getter entirely
         }
 
-        // 2. Check if the modder default has a custom path saved
-        var defaultHsv = CardArtRoller.GetDefaultHsvForCard(cardId);
-        if (defaultHsv != null && !string.IsNullOrWhiteSpace(defaultHsv.PortraitPath))
-        {
-            __result = defaultHsv.PortraitPath;
-            return false; // Skip the vanilla getter entirely
-        }
-
-        // 3. Otherwise, let the vanilla game run its normal path logic
-        return true; 
+        // Otherwise, let the vanilla game run its normal path logic
+        return true;
     }
 }

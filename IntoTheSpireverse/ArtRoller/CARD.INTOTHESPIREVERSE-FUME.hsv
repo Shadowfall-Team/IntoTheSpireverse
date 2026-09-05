@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-FUME",
+  "hue": 0.09,
+  "saturation": 0.41,
+  "value": 1.17,
+  "red": 1.21,
+  "green": 1.3,
+  "blue": 1.45,
+  "contrast": 1.15,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/havoc.tres"
+}

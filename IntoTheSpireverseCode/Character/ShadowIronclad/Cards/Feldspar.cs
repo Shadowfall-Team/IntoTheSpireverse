@@ -15,7 +15,7 @@ public sealed class Feldspar() : ShadowIroncladCard(1, CardType.Attack, CardRari
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
         new PowerVar<SlatePower>(1m),
     ];
 
@@ -38,5 +38,5 @@ public sealed class Feldspar() : ShadowIroncladCard(1, CardType.Attack, CardRari
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
 }

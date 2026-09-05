@@ -42,14 +42,14 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<StrikeShadowIronclad>(),
-        ModelDb.Card<StrikeShadowIronclad>(),
-        ModelDb.Card<StrikeShadowIronclad>(),
-        ModelDb.Card<StrikeShadowIronclad>(),
-        ModelDb.Card<DefendShadowIronclad>(),
-        ModelDb.Card<DefendShadowIronclad>(),
-        ModelDb.Card<DefendShadowIronclad>(),
-        ModelDb.Card<DefendShadowIronclad>(),
+        ModelDb.Card<StrikeIronclad>(),
+        ModelDb.Card<StrikeIronclad>(),
+        ModelDb.Card<StrikeIronclad>(),
+        ModelDb.Card<StrikeIronclad>(),
+        ModelDb.Card<DefendIronclad>(),
+        ModelDb.Card<DefendIronclad>(),
+        ModelDb.Card<DefendIronclad>(),
+        ModelDb.Card<DefendIronclad>(),
         ModelDb.Card<TerraFirma>(),
         ModelDb.Card<Bore>(),
     ];
