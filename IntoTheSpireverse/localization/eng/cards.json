@@ -470,7 +470,8 @@
   "INTOTHESPIREVERSE-MUD.title": "Mud",
   "INTOTHESPIREVERSE-MUD.description": "When [gold]Transformed[/gold], gain [blue]{SlatePower}[/blue] [gold]Slate[/gold].",
   "INTOTHESPIREVERSE-OBSIDIAN_STRIKE.title": "Obsidian Strike",
-  "INTOTHESPIREVERSE-OBSIDIAN_STRIKE.description": "Deal {Damage:diff()} damage.\nCreate a [blue]0[/blue]-cost copy of the next card that targets this enemy.",
+  "INTOTHESPIREVERSE-OBSIDIAN_STRIKE.description": "Deal {Damage:diff()} damage.\nPut a [blue]0[/blue]-cost copy of the next card that targets this enemy on top of your [gold]Draw Pile[/gold].",
+
   "INTOTHESPIREVERSE-EROSION.title": "Erosion",
   "INTOTHESPIREVERSE-EROSION.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Mud[/gold] into your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-FOOTHOLD.title": "Foothold",
