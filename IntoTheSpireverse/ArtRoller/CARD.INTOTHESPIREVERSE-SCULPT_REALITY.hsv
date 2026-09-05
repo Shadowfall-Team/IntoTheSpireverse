@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-SCULPT_REALITY",
+  "hue": 0.62,
+  "saturation": 1.18,
+  "value": 1.06,
+  "red": 1.10,
+  "green": 0.92,
+  "blue": 1.26,
+  "contrast": 1.15,
+  "flip_h": false,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/corruption.tres"
+}

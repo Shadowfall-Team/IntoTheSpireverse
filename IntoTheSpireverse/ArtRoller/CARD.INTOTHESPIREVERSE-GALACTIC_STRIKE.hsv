@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-GALACTIC_STRIKE",
-  "hue": 0.7,
-  "saturation": 0.64,
-  "value": 1.15,
-  "red": 1.04,
-  "green": 1.46,
-  "blue": 1.27,
-  "contrast": 0.96,
+  "hue": 0.55,
+  "saturation": 1.05,
+  "value": 1.12,
+  "red": 1.09,
+  "green": 0.94,
+  "blue": 1.22,
+  "contrast": 1.10,
   "flip_h": true,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/fight_me.tres"
+  "portrait_path": "res://images/atlases/card_atlas.sprites/regent/falling_star.tres"
 }

@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-CARVE",
+  "hue": 0.05,
+  "saturation": 1.10,
+  "value": 1.08,
+  "red": 1.22,
+  "green": 0.95,
+  "blue": 0.88,
+  "contrast": 1.12,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/pommel_strike.tres"
+}
