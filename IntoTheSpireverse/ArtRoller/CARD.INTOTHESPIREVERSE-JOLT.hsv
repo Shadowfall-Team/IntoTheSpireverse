@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-JOLT",
-  "hue": 0.14,
-  "saturation": 0.69,
-  "value": 1.18,
-  "red": 1.09,
-  "green": 1.36,
-  "blue": 0.55,
-  "contrast": 1.09,
+  "hue": 0.11,
+  "saturation": 0.63,
+  "value": 1.02,
+  "red": 1.27,
+  "green": 1.27,
+  "blue": 0.99,
+  "contrast": 1.1,
   "flip_h": true,
-  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/drum_of_battle.tres"
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/howl_from_beyond.tres"
 }

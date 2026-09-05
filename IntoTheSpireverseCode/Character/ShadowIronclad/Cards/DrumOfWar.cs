@@ -13,7 +13,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 /// by being Exhausted or Transformed (see TransformPayoutPatches for the latter).
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Pyroclast() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class DrumOfWar() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

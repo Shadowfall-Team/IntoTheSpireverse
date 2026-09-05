@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.Random;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 /// <summary>
-/// Some Tectonic cards pay out when they are Transformed away: Mud grants Slate, Pyroclast draws.
+/// Some Tectonic cards pay out when they are Transformed away: Mud grants Slate, Drum of War draws.
 /// The engine's transform notification (<see cref="CardModel.AfterTransformedFrom"/>) is
 /// synchronous and both payouts are async, so consumed cards are queued here and settled by an
 /// async continuation chained onto <see cref="CardCmd.Transform"/>'s task. Queue-then-flush also
@@ -31,7 +31,7 @@ public static class TransformPayoutPatches
         public static void Postfix(CardModel __instance)
         {
             if (!CombatManager.Instance.IsInProgress) return;
-            if (__instance is Mud or Pyroclast)
+            if (__instance is Mud or DrumOfWar)
                 Pending.Add(__instance);
         }
     }
@@ -70,8 +70,8 @@ public static class TransformPayoutPatches
                         creature, null);
                     break;
 
-                case Pyroclast pyroclast:
-                    await pyroclast.DrawPayout(new ThrowingPlayerChoiceContext());
+                case DrumOfWar drumOfWar:
+                    await drumOfWar.DrawPayout(new ThrowingPlayerChoiceContext());
                     break;
             }
         }
