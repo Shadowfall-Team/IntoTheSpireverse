@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using MegaCrit.Sts2.Core.Audio.Debug;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -33,7 +34,7 @@ public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRar
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_heavy_blunt", null, "heavy_attack.mp3")
+            .WithHitFx(VfxCmd.heavyBluntPath, null, TmpSfx.heavyAttack)
             .Execute(choiceContext);
     }
 

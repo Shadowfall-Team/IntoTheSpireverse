@@ -22,7 +22,7 @@ public sealed class BumRush() : ShadowIroncladCard(0, CardType.Attack, CardRarit
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);

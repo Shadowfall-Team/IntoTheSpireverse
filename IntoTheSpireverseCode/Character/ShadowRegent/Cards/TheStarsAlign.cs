@@ -28,7 +28,7 @@ public class TheStarsAlign() : ShadowRegentCard(
             .FromCardCompatibility(this, cardPlay)
             .TargetingRandomOpponents(CombatState)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
     }
 

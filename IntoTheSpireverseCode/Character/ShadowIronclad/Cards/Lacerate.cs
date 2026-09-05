@@ -42,7 +42,7 @@ public sealed class Lacerate() : ShadowIroncladCard(1, CardType.Attack, CardRari
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         var totalDamage = damageResponse.Results.Sum(r => r.Sum(dr => dr.TotalDamage));

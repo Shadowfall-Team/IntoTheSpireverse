@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Audio.Debug;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -32,7 +33,7 @@ public class TrickyStrike() : ShadowRegentCard(1,
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitCount(DynamicVars.Repeat.IntValue)
-            .WithHitFx("vfx/vfx_starry_impact", null, "blunt_attack.mp3")
+            .WithHitFx(VfxCmd.starryImpactVfx, null, TmpSfx.bluntAttack)
             .Execute(choiceContext);
         
     }

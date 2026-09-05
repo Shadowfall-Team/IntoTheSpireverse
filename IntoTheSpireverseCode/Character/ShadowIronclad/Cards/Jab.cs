@@ -22,7 +22,7 @@ public sealed class Jab() : ShadowIroncladCard(0, CardType.Attack, CardRarity.Ra
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt")
+            .WithHitFx(VfxCmd.bluntPath)
             .Execute(choiceContext);
     }
 

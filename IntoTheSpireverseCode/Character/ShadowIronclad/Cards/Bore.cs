@@ -1,4 +1,6 @@
-﻿using BaseLib.Abstracts;
+﻿using MegaCrit.Sts2.Core.Audio.Debug;
+using MegaCrit.Sts2.Core.Audio.Debug;
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -31,7 +33,7 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
+            .WithHitFx(VfxCmd.bluntPath, null, TmpSfx.bluntAttack)
             .Execute(choiceContext);
 
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);

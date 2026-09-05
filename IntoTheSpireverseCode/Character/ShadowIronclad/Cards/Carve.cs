@@ -33,7 +33,7 @@ public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         if (!IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay)) return;

@@ -39,7 +39,7 @@ public sealed class PureSuffering() : ShadowSilentCard(0, CardType.Attack, CardR
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(this, cardPlay)
                 .Targeting(cardPlay.Target)
-                .WithHitFx("vfx/vfx_attack_slash")
+                .WithHitFx(VfxCmd.slashPath)
                 .Execute(choiceContext);
             
             await Cmd.CustomScaledWait(0.1f, 0.25f);

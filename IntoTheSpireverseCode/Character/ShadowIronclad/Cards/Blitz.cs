@@ -29,7 +29,7 @@ public sealed class Blitz() : ShadowIroncladCard(2, CardType.Attack, CardRarity.
             .WithHitCount(DynamicVars[HitsKey].IntValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         // The chosen target is inside "ALL enemies" too, so it takes both sets of hits.
@@ -37,7 +37,7 @@ public sealed class Blitz() : ShadowIroncladCard(2, CardType.Attack, CardRarity.
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
     }
 

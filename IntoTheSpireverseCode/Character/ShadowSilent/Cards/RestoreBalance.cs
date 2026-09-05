@@ -32,7 +32,7 @@ public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, Card
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
         foreach (CardModel card2 in PileType.Draw.GetPile(Owner).Cards.Where( (c => c.IsUpgradable)).TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection))
         {

@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -31,7 +32,7 @@ public class Requisition() : ShadowRegentCard(1,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<GainAmmoNextTurnPower>(new ThrowingPlayerChoiceContext(),

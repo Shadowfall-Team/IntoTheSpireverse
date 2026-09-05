@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -33,8 +34,8 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithAttackerAnim("Attack", Owner.Character.AttackAnimDelay + 0.25f)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithAttackerAnim(CreatureAnimator.attackTrigger, Owner.Character.AttackAnimDelay + 0.25f)
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         await ScryHelper.Scry(choiceContext, Owner, DynamicVars[ScryKey].IntValue);

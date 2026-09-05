@@ -1,4 +1,5 @@
-﻿using BaseLib.Abstracts;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Abstracts;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Modifications;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
@@ -32,7 +33,7 @@ public sealed class AncestralEcho() : ShadowIroncladCard(2, CardType.Skill, Card
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         var top = PileType.Draw.GetPile(Owner).Cards.FirstOrDefault();
         if (top == null || !Modification.CanModify(top)) return;

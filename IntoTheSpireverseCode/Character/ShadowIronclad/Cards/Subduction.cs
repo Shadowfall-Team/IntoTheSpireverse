@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Audio.Debug;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -32,7 +33,7 @@ public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRa
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
-            .WithHitFx("vfx/vfx_heavy_blunt", null, "blunt_attack.mp3")
+            .WithHitFx(VfxCmd.heavyBluntPath, null, TmpSfx.bluntAttack)
             .Execute(choiceContext);
     }
 

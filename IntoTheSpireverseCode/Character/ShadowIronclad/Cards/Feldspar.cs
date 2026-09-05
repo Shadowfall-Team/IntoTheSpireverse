@@ -30,7 +30,7 @@ public sealed class Feldspar() : ShadowIroncladCard(1, CardType.Attack, CardRari
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_blunt")
+            .WithHitFx(VfxCmd.bluntPath)
             .Execute(choiceContext);
         await PowerCmd.Apply<SlatePower>(
             new ThrowingPlayerChoiceContext(),
