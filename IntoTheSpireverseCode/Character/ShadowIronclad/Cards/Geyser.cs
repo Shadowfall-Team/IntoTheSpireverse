@@ -10,7 +10,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>Immolate's replacement: same shape, Mud instead of a Burn.</summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Geyser() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {

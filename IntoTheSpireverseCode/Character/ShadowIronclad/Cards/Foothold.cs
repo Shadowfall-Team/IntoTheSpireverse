@@ -12,8 +12,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// Taunt's replacement: Block with temporary Strength rather than Vulnerable.
-///
 /// Declares and displays StrengthPower but applies FootholdTemporaryStrengthPower, matching how the
 /// base game's Setup Strike declares StrengthPower and applies SetupStrikePower.
 /// </summary>

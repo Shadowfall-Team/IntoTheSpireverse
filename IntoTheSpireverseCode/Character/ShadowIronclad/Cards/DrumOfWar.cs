@@ -8,10 +8,7 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>
-/// Drum of Battle in reverse: pays energy up front, refunds cards when the card leaves the deck
-/// by being Exhausted or Transformed (see TransformPayoutPatches for the latter).
-/// </summary>
+/// <summary>The Transform half of the refund is applied by TransformPayoutPatches, not here.</summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class DrumOfWar() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {

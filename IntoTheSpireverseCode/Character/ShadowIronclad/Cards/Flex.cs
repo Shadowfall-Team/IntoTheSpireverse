@@ -11,8 +11,6 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// Setup Strike's replacement: a free burst of Strength that also feeds Slate.
-///
 /// Declares and displays StrengthPower but applies FlexTemporaryStrengthPower, for the same reason
 /// Foothold does - see <see cref="FlexTemporaryStrengthPower"/>.
 /// </summary>

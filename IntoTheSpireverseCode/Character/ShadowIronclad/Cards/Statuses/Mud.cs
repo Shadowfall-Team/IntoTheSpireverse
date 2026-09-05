@@ -8,10 +8,9 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Statuses;
 
 /// <summary>
-/// Unplayable Status in the Wound mould, except that feeding it to the Tectonic's Transform
-/// engine pays out. The Slate grant is applied by <see cref="Patches.MudTransformPatches"/>,
-/// because <see cref="MegaCrit.Sts2.Core.Models.CardModel.AfterTransformedFrom"/> is synchronous
-/// and power application is not.
+/// The Slate grant is applied by <see cref="Patches.TransformPayoutPatches"/>, because
+/// <see cref="MegaCrit.Sts2.Core.Models.CardModel.AfterTransformedFrom"/> is synchronous and
+/// power application is not.
 /// </summary>
 [Pool(typeof(StatusCardPool))]
 public sealed class Mud() : IntoTheSpireverseCard(-1, CardType.Status, CardRarity.Status, TargetType.None, "ironclad")

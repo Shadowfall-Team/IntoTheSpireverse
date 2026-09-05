@@ -8,11 +8,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
-/// <summary>
-/// Extends the Heart of Stone idea into a card: a pool of HP that is immediately healed back as
-/// it is lost. Deliberately simpler than the relic — no death prevention, it just refunds damage
-/// until the pool runs out.
-/// </summary>
 public sealed class MegalithPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;

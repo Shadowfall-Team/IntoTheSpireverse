@@ -10,10 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
-/// <summary>
-/// Self-Forming Clay: every HP loss banks Block for the start of your next turn. Deliberately not
-/// capped per turn - each separate instance of HP loss counts.
-/// </summary>
+/// <summary>Deliberately not capped per turn - each separate instance of HP loss counts.</summary>
 public sealed class ClaySoldierPower : ShadowPowerModel
 {
     private class Data

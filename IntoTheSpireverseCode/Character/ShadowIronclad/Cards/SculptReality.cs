@@ -9,10 +9,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>
-/// Reaper's replacement. Restores the two-Ancient convention the other Shadow characters follow
-/// (one Attack or Skill, one Power) - see Haymaker/Snecko Form and Overtake/Necronomicon.
-/// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class SculptReality() : ShadowIroncladCard(2, CardType.Power, CardRarity.Ancient, TargetType.Self)
 {
