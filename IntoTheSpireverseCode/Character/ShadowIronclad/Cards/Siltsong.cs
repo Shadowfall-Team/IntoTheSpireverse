@@ -17,7 +17,7 @@ public sealed class Siltsong() : ShadowIroncladCard(1, CardType.Skill, CardRarit
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar(2),
-        new PowerVar<SlatePower>(2m),
+        new PowerVar<SlatePower>(3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
