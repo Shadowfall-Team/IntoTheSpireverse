@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-DARK_BARGAIN",
+  "hue": 0.02,
+  "saturation": 1.15,
+  "value": 0.94,
+  "red": 1.28,
+  "green": 0.82,
+  "blue": 0.86,
+  "contrast": 1.14,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/bloodletting.tres"
+}
