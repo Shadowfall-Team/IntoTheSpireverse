@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+﻿using MegaCrit.Sts2.Core.Animation;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -25,7 +26,7 @@ public class BoardingParty() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
         var xValue = ResolveEnergyXValue();

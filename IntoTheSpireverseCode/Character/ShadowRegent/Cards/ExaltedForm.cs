@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+﻿using MegaCrit.Sts2.Core.Animation;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,7 +24,7 @@ public class ExaltedForm() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
         
         await PowerCmd.Apply<ExaltedFormPower>(

@@ -32,7 +32,7 @@ public sealed class WomboCombo() : ShadowIroncladCard(0, CardType.Attack, CardRa
             .WithHitCount(xCost)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         if (CombatManager.Instance.IsOverOrEnding) return;

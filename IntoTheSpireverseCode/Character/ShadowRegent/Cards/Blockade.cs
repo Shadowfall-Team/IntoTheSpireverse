@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,7 +22,7 @@ public class Blockade() : ShadowRegentCard(2,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<AmmoStrengthPower>(
             choiceContext,

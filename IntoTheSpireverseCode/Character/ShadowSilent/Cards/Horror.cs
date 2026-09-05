@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -30,7 +31,7 @@ public sealed class Horror() : ShadowSilentCard(3, CardType.Skill, CardRarity.Ra
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<StrengthPower>(
             choiceContext, cardPlay.Target, DynamicVars.Strength.BaseValue, 
             Owner.Creature, this);

@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Audio.Debug;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
@@ -38,7 +39,7 @@ public class Supermassive() : ShadowRegentCard(1,
         await DamageCmd.Attack(DynamicVars.CalculatedDamage)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash", tmpSfx: "heavy_attack.mp3")
+            .WithHitFx(VfxCmd.slashPath, tmpSfx: TmpSfx.heavyAttack)
             .Execute(choiceContext);
     }
 

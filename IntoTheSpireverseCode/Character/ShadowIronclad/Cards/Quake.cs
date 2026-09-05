@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Audio.Debug;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -34,7 +35,7 @@ public sealed class Quake() : ShadowIroncladCard(1, CardType.Attack, CardRarity.
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
-            .WithHitFx("vfx/vfx_rock_shatter", tmpSfx: "blunt_attack.mp3")
+            .WithHitFx(VfxCmd.rockShatterPath, tmpSfx: TmpSfx.bluntAttack)
             .Execute(choiceContext);
         var drawPile = PileType.Draw.GetPile(Owner).Cards
             .OrderBy(c => c.Rarity)

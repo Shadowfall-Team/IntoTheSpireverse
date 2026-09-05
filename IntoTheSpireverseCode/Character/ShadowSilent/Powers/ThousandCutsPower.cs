@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Audio.Debug;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -31,8 +32,8 @@ public class ThousandCutsPower : ShadowPowerModel
         if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
             return;
         
-        VfxCmd.PlayOnCreatureCenters(CombatState.HittableEnemies, "vfx/vfx_attack_slash");
-        SfxCmd.Play("slash_attack.mp3");
+        VfxCmd.PlayOnCreatureCenters(CombatState.HittableEnemies, VfxCmd.slashPath);
+        SfxCmd.Play(TmpSfx.slashAttack);
 
         Flash();
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, amount, ValueProp.Unpowered, Owner);

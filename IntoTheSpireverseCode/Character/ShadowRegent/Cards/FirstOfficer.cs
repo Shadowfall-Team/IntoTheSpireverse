@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
@@ -31,7 +32,7 @@ public class FirstOfficer() : ShadowRegentCard(0,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         if (play.Target?.Player == null) return;
 
         var cardModel = CardFactory.GetDistinctForCombat(play.Target.Player,

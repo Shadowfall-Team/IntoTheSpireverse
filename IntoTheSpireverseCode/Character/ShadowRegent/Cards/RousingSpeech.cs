@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+﻿using MegaCrit.Sts2.Core.Animation;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +28,7 @@ public class RousingSpeech() : ShadowRegentCard(
     {
         if (CombatState == null) return;
 
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
         if (CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count > 0)

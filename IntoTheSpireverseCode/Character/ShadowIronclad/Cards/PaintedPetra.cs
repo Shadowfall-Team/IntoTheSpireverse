@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
@@ -27,7 +28,7 @@ public sealed class PaintedPetra() : ShadowIroncladCard(1, CardType.Skill, CardR
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<SlatePower>(
             new ThrowingPlayerChoiceContext(),

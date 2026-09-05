@@ -1,4 +1,5 @@
-﻿using BaseLib.Extensions;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
 using MegaCrit.Sts2.Core.Commands;
@@ -36,7 +37,7 @@ public class Banana() : ShadowRegentCard(1,
         CardPlay play)
     {
         if (CombatState == null) return;
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast",
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
         await CreatureCmd.Heal(Owner.Creature, DynamicVars.Heal.BaseValue);

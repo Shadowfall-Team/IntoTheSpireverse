@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -28,7 +29,7 @@ public sealed class Scalemail() : ShadowSilentCard(2, CardType.Skill, CardRarity
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
             .Select(_ => CombatState.CreateCard<Scale>(Owner)); 
         

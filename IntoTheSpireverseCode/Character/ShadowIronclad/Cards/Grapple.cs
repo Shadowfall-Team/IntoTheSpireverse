@@ -26,7 +26,7 @@ public sealed class Grapple() : ShadowIroncladCard(1, CardType.Attack, CardRarit
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            // .WithHitFx("vfx/vfx_attack_slash")
+            // .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         if (cardPlay.Target?.IsDead == true || cardPlay.Target == null)

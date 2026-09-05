@@ -25,7 +25,7 @@ public sealed class Dismember() : ShadowIroncladCard(2, CardType.Attack, CardRar
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
         await CardPileCmd.AutoPlayFromDrawPile(choiceContext, Owner, 1, CardPilePosition.Top, false);
     }

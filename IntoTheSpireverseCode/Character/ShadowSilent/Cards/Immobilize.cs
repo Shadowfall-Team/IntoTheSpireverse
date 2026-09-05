@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -38,7 +39,7 @@ public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarit
         var instance = NCombatRoom.Instance;
         if (instance != null)
             instance.CombatVfxContainer.AddChildSafely(child);
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<ImmobilizePower>(choiceContext, cardPlay.Target, 
             DynamicVars[StrengthLossKey].BaseValue, Owner.Creature, this);
         await PowerCmd.Apply<PoisonPower>(

@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
@@ -22,7 +23,7 @@ public class Commandeer() : ShadowRegentCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay play)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         var pools = Owner.UnlockState.CharacterCardPools.ToList();
         pools.Remove(Owner.Character.CardPool);

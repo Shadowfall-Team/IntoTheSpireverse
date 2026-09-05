@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
@@ -33,7 +34,7 @@ public class BigBoom() : ShadowRegentCard(
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
