@@ -12,11 +12,12 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Claymaker() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    private const int BaseHits = 2;
+    private const int Hits = 2;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(11m, ValueProp.Move),
+        new EnergyVar(2),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -28,14 +29,15 @@ public sealed class Claymaker() : ShadowIroncladCard(2, CardType.Attack, CardRar
     {
         if (CombatState == null || cardPlay.Target == null) return;
 
-        int hits = IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay) ? BaseHits + 1 : BaseHits;
-
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(hits)
+            .WithHitCount(Hits)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+
+        if (IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay))
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
