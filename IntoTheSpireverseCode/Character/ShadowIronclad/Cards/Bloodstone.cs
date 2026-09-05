@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>Inferno's replacement: a Tectonic-native Bloodbond engine.</summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Bloodstone() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {

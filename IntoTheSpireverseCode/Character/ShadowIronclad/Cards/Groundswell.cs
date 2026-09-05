@@ -11,11 +11,6 @@ using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>
-/// Replaces Jolt. Pays the Indirect archetype on a macro scale: every Indirect play across the
-/// combat builds Strength, so the reward is for the deck being built that way rather than for any
-/// single card being played Indirectly.
-/// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Groundswell() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {

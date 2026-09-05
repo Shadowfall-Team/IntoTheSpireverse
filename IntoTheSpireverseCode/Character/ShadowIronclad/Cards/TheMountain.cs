@@ -12,8 +12,6 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// Terra Firma's Transcendence upgrade (Archaic Tooth).
-///
 /// Slate is granted before the replayed card resolves, so an Attack off the Discard pile is covered
 /// by the Slate this card just gave.
 /// </summary>

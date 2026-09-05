@@ -8,11 +8,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>
-/// Replaces Rock Collection. Now that every Rock Exhausts, the Exhaust pile is where the
-/// character's spent Rocks accumulate, so this reads as Rock recursion rather than as a generic
-/// Exhaust payoff.
-/// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Reform() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {

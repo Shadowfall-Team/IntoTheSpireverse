@@ -8,9 +8,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Modifications;
 
-/// <summary>
-/// Applied by Battle Shout: the modified Attack deals additional damage.
-/// </summary>
 public sealed class BattleShoutModification : Modification, IModifyDamageAdditive
 {
     protected override ModelId SourceCardId => ModelDb.Card<BattleShout>().Id;

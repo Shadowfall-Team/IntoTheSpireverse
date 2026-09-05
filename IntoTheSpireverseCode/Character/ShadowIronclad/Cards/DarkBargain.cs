@@ -11,12 +11,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// Replaces Bloodletting, keeping its shape: HP traded for tempo. Instead of buying Energy it
-/// buys one specific card outright, paying that card's Cost in HP.
-///
-/// Upgraded, the choice widens to the Discard Pile as well. Two piles cannot be offered through
-/// FromHand, so that case goes through FromSimpleGrid over a concatenated candidate list - the
-/// same approach Invitation uses to offer Draw plus Discard in one grid.
+/// Two piles cannot be offered through FromHand, so the upgraded case goes through FromSimpleGrid
+/// over a concatenated candidate list - the same approach Invitation uses to offer Draw plus
+/// Discard in one grid.
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class DarkBargain() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)

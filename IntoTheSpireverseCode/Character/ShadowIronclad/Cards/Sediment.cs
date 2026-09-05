@@ -10,7 +10,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>Power Through's replacement: same shape, Mud instead of Wounds.</summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Sediment() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {

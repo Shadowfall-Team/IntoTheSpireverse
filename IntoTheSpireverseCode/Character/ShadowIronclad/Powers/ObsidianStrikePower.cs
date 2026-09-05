@@ -9,9 +9,6 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
 /// <summary>
-/// Obsidian Strike's mark. The next card that targets this creature is copied for free onto the top
-/// of the marked player's Draw Pile.
-///
 /// The copy goes to the Draw Pile rather than the Hand deliberately. Obsidian Strike targets an
 /// enemy itself, so a copy landing in Hand would be replayable immediately, re-arming the mark and
 /// emitting another free copy every cycle at no cost. Routing through the Draw Pile gates the loop

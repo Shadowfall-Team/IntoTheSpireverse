@@ -9,10 +9,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>
-/// Tectonic Shift's replacement slot. Unplayable from Hand by design - something else has to put
-/// it into play, which is what the Indirectly keyword exists to describe.
-/// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {

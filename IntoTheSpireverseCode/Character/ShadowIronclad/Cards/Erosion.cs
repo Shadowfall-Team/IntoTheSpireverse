@@ -10,10 +10,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>
-/// Wild Strike's replacement. The Mud lands in the Draw Pile rather than the Hand so it arrives
-/// later and can be fed to the Transform engine instead of clogging the turn it was made on.
-/// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Erosion() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
