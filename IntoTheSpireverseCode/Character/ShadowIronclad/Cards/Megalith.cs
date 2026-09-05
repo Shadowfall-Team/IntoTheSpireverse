@@ -14,22 +14,22 @@ public sealed class Megalith() : ShadowIroncladCard(2, CardType.Power, CardRarit
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<MegalithPower>(7m),
+        new PowerVar<StoneHealthPower>(7m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<MegalithPower>(),
+        HoverTipFactory.FromPower<StoneHealthPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<MegalithPower>(
+        await PowerCmd.Apply<StoneHealthPower>(
             new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars.Power<MegalithPower>().BaseValue,
+            Owner.Creature, DynamicVars.Power<StoneHealthPower>().BaseValue,
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<MegalithPower>().UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars.Power<StoneHealthPower>().UpgradeValueBy(3m);
 }
