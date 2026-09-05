@@ -462,7 +462,7 @@
   "INTOTHESPIREVERSE-LET_LOOSE.description": "Gain {Block:diff()} [gold]Block[/gold].\nDraw {Cards:diff()} {Cards:plural:card|cards}.\nPut 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-LET_LOOSE.selectionScreenPrompt": "Choose a card to put on top of your Draw Pile.",
   "INTOTHESPIREVERSE-MEGALITH.title": "Megalith",
-  "INTOTHESPIREVERSE-MEGALITH.description": "Immediately regain back the next {MegalithPower:diff()} HP you lose.",
+  "INTOTHESPIREVERSE-MEGALITH.description": "Gain {StoneHealthPower:diff()} [gold]Stone Health[/gold].",
   "INTOTHESPIREVERSE-MUD.title": "Mud",
   "INTOTHESPIREVERSE-MUD.description": "When [gold]Transformed[/gold], gain {SlatePower} [gold]Slate[/gold].",
   "INTOTHESPIREVERSE-OBSIDIAN_STRIKE.title": "Obsidian Strike",

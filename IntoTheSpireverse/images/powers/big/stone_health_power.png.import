@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8j4tgd66jova"
-path="res://.godot/imported/megalith_power.png-558cec1de87aacd3714832302bcc0216.ctex"
+uid="uid://divg6r8kh0fco"
+path="res://.godot/imported/stone_health_power.png-515f45a58204942d3479e323c974a725.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/powers/megalith_power.png"
-dest_files=["res://.godot/imported/megalith_power.png-558cec1de87aacd3714832302bcc0216.ctex"]
+source_file="res://IntoTheSpireverse/images/powers/big/stone_health_power.png"
+dest_files=["res://.godot/imported/stone_health_power.png-515f45a58204942d3479e323c974a725.ctex"]
 
 [params]
 
