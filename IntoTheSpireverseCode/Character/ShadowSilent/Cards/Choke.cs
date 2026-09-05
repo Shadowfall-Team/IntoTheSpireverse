@@ -26,7 +26,7 @@ public sealed class Choke() : ShadowSilentCard(2, CardType.Attack, CardRarity.Un
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         await PowerCmd.Apply<StranglePower>(

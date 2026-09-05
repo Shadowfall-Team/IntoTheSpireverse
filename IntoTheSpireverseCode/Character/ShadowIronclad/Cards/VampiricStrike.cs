@@ -29,7 +29,7 @@ public sealed class VampiricStrike() : ShadowIroncladCard(2, CardType.Attack, Ca
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitCount(2)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         if (IsAtOrBelowHalfHp)

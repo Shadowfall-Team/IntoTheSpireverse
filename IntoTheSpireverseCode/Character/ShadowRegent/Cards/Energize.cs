@@ -26,7 +26,7 @@ public class Energize() : ShadowRegentCard(2,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);

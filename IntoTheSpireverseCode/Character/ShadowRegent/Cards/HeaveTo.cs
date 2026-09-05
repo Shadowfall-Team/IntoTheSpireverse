@@ -34,7 +34,7 @@ public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
-            .WithHitFx("vfx/vfx_starry_impact")
+            .WithHitFx(VfxCmd.starryImpactVfx)
             .Execute(choiceContext);
 
 

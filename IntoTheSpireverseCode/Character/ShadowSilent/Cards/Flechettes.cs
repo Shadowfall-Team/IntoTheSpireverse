@@ -26,7 +26,7 @@ public sealed class Flechettes() : ShadowSilentCard(1, CardType.Attack, CardRari
             .WithHitCount((int) ((CalculatedVar) DynamicVars[_calculatedHitsKey]).Calculate(cardPlay.Target))
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash", tmpSfx: "dagger_throw.mp3")
+            .WithHitFx(VfxCmd.slashPath, tmpSfx: "dagger_throw.mp3")
             .Execute(choiceContext);
 	}
 

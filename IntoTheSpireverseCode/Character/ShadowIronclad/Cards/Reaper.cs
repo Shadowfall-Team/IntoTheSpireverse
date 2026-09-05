@@ -24,7 +24,7 @@ public sealed class Reaper() : ShadowIroncladCard(2, CardType.Attack, CardRarity
         var attack = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         int totalUnblocked = attack.Results.Sum(r => r.Sum(dr => dr.UnblockedDamage));

@@ -38,7 +38,7 @@ public sealed class Claymaker() : ShadowIroncladCard(2, CardType.Attack, CardRar
             .WithHitCount(2)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
         if (_sourcePile != PileType.Hand)
         {

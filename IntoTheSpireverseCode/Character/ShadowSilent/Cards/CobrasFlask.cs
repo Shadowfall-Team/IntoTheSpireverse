@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
@@ -38,7 +39,7 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
     {
         if (NCombatRoom.Instance == null) return;
         if (CombatState == null) return;
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         var node = NCombatRoom.Instance.GetCreatureNode(Owner.Creature);
         if (node == null) return;
         Vector2 lastPos = node.VfxSpawnPosition;

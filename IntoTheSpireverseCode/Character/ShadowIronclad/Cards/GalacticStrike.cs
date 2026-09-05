@@ -28,7 +28,7 @@ public sealed class GalacticStrike() : ShadowIroncladCard(1, CardType.Attack, Ca
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
         var topCard = PileType.Draw.GetPile(Owner).Cards.FirstOrDefault();
         if (topCard != null)

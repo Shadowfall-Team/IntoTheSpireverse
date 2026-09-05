@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Audio.Debug;
 using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -27,7 +28,7 @@ public class KinglyKick() : ShadowRegentCard(4,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash", null, "heavy_attack.mp3")
+            .WithHitFx(VfxCmd.slashPath, null, TmpSfx.heavyAttack)
             .Execute(choiceContext);
     }
 

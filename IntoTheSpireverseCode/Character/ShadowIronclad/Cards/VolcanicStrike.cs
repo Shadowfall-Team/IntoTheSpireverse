@@ -31,7 +31,7 @@ public sealed class VolcanicStrike() : ShadowIroncladCard(2, CardType.Attack, Ca
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);

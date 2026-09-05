@@ -33,7 +33,7 @@ public class SmugglersStrike() : ShadowRegentCard(0,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_giant_horizontal_slash", null, null)
+            .WithHitFx(VfxCmd.giantHorizontalSlashPath, null, null)
             .Execute(choiceContext);
     }
 

@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Abstracts;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Modifications;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
@@ -30,7 +31,7 @@ public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.U
     {
         var cardsToPerplex = (await CardSelectCmd.FromCombatPile(choiceContext, PileType.Draw.GetPile(Owner), Owner,
             new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue), CanModify));
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         foreach (CardModel card in cardsToPerplex)
             CardModifier.AddModifier<SlitherModification>(card);
     }
