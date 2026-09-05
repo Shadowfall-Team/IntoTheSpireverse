@@ -133,6 +133,12 @@
   "INTOTHESPIREVERSE-GROUNDSWELL_POWER.title": "Groundswell",
   "INTOTHESPIREVERSE-GROUNDSWELL_POWER.description": "Gain [gold]Strength[/gold] whenever you play a card [gold]Indirectly[/gold].",
   "INTOTHESPIREVERSE-GROUNDSWELL_POWER.smartDescription": "Gain [blue]{Amount}[/blue] [gold]Strength[/gold] whenever you play a card [gold]Indirectly[/gold].",
+  "INTOTHESPIREVERSE-OBSIDIAN_STRIKE_POWER.title": "Obsidian Strike",
+  "INTOTHESPIREVERSE-OBSIDIAN_STRIKE_POWER.description": "The next card that targets {OwnerName} is copied onto the top of [gold]{ApplierName}[/gold]'s [gold]Draw Pile[/gold] for [blue]0[/blue].",
+
+  "INTOTHESPIREVERSE-OBSIDIAN_STRIKE_POWER.smartDescription": "The next {Amount:plural:card|[blue]{Amount}[/blue] cards} that {Amount:plural:targets|target} {OwnerName} {Amount:plural:is|are} copied onto the top of [gold]{ApplierName}[/gold]'s [gold]Draw Pile[/gold] for [blue]0[/blue].",
+  "INTOTHESPIREVERSE-OBSIDIAN_STRIKE_POWER.remoteDescription": "The next card that targets {OwnerName} is copied onto the top of [gold]{ApplierName}[/gold]'s [gold]Draw Pile[/gold] for [blue]0[/blue].",
+
   "INTOTHESPIREVERSE-GRAPPLE_POWER.title": "Grapple",
   "INTOTHESPIREVERSE-GRAPPLE_POWER.description": "Whenever you gain [gold]Block[/gold] this turn, deal [blue]{Amount}[/blue] damage to the enemy.",
   "INTOTHESPIREVERSE-GRAPPLE_POWER.remoteDescription": "Whenever [gold]{ApplierName}[/gold] gains [gold]Block[/gold] this turn, they deal [blue]{Amount}[/blue] damage to [gold]{OwnerName}[/gold].",
