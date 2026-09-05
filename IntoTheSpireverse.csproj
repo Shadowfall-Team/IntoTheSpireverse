@@ -62,6 +62,10 @@
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._hpBarHitbox"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._creature"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._hpForeground"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._hpLabel"/>
+        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar.MaxFgWidth"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NSubmenuStack._submenus"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NSubmenu._stack"/>
         <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NMainMenuSubmenuStack._compendiumSubmenu"/>
