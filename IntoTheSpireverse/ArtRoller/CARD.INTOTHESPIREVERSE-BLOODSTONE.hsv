@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-BLOODSTONE",
-  "hue": 0.98,
-  "saturation": 1.30,
-  "value": 0.98,
-  "red": 1.34,
-  "green": 0.74,
-  "blue": 0.90,
-  "contrast": 1.16,
+  "hue": 0,
+  "saturation": 1.52,
+  "value": 1.16,
+  "red": 0.9,
+  "green": 0.77,
+  "blue": 0.97,
+  "contrast": 1.56,
   "flip_h": true,
   "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/hemokinesis.tres"
 }

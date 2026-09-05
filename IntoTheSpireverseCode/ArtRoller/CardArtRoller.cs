@@ -5,6 +5,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Godot;
 using MegaCrit.Sts2.Core.Logging;
+using IntoTheSpireverse.IntoTheSpireverseCode.ArtRoller;
+using MegaCrit.Sts2.Core.Models;
 
 public class CardArtRoller
 {
@@ -48,6 +50,34 @@ public class CardArtRoller
 
     public static CardHsvData? GetCardData(string cardId) =>
         CardHsvModifiers.TryGetValue(cardId, out var data) ? data : null;
+
+    /// <summary>
+    /// The art roll to render <paramref name="card"/> with, honouring alt-character scoping.
+    ///
+    /// A base game card reprinted into an alt character's pool keeps the base game's id, so a plain
+    /// lookup would apply one roll everywhere. When the card is being shown as an alt character,
+    /// that character's scoped entry is preferred and the unscoped entry is the fallback, which
+    /// leaves the original character's rendering untouched.
+    ///
+    /// Both the portrait override and the colour grading go through here, so the two can never
+    /// disagree about which roll applies.
+    /// </summary>
+    public static CardHsvData? Resolve(CardModel? card)
+    {
+        if (card == null) return null;
+
+        string cardId = card.Id.ToString();
+
+        var character = AltArtContext.For(card);
+        if (character != null && AltArtContext.NeedsScoping(card))
+        {
+            string scoped = AltArtContext.ScopedKey(cardId, character);
+            var scopedData = GetCardData(scoped) ?? GetDefaultHsvForCard(scoped);
+            if (scopedData != null) return scopedData;
+        }
+
+        return GetCardData(cardId) ?? GetDefaultHsvForCard(cardId);
+    }
 
     public static CardHsvData? GetDefaultHsvForCard(string cardId)
     {

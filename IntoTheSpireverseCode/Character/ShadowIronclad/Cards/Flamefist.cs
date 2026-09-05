@@ -16,7 +16,7 @@ public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRar
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
+        new DamageVar(7m, ValueProp.Move),
         new PowerVar<RetaliationPower>(5m),
     ];
 
@@ -41,7 +41,7 @@ public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRar
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
-        DynamicVars.Power<RetaliationPower>().UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Power<RetaliationPower>().UpgradeValueBy(1m);
     }
 }

@@ -24,8 +24,8 @@ public sealed class Foothold() : ShadowIroncladCard(1, CardType.Skill, CardRarit
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(7m, ValueProp.Move),
-        new PowerVar<StrengthPower>(3m),
+        new BlockVar(8m, ValueProp.Move),
+        new PowerVar<StrengthPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
