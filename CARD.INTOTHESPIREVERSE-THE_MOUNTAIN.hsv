@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-THE_MOUNTAIN",
+  "hue": 0.6,
+  "saturation": 1.44,
+  "value": 1.79,
+  "red": 1.18,
+  "green": 1.27,
+  "blue": 1.03,
+  "contrast": 1.09,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/corruption.tres"
+}
