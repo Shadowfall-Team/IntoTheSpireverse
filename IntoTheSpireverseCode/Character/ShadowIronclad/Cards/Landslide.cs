@@ -16,7 +16,7 @@ public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRar
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(15m, ValueProp.Move),
+        new DamageVar(14m, ValueProp.Move),
         new PowerVar<StrengthPower>(2m),
     ];
 
@@ -47,7 +47,7 @@ public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRar
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
         DynamicVars.Power<StrengthPower>().UpgradeValueBy(1m);
     }
 }

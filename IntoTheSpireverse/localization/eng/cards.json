@@ -533,9 +533,9 @@
   "INTOTHESPIREVERSE-WE_ARE_LEGION.title": "We Are Legion",
   "INTOTHESPIREVERSE-WE_ARE_LEGION.description": "Choose an Attack card.\nTransform ALL non-Attack cards in your [gold]Hand[/gold] into copies of it.",
   "INTOTHESPIREVERSE-WE_ARE_LEGION.selectionScreenPrompt": "Choose an Attack card.",
-  "INTOTHESPIREVERSE-WOMBO_COMBO.title": "Wombo Combo",
-  "INTOTHESPIREVERSE-WOMBO_COMBO.description": "Choose a card in your [gold]Discard Pile[/gold] that costs X or less.\nPlay it {Plays:diff()} times.",
-  "INTOTHESPIREVERSE-WOMBO_COMBO.selectionScreenPrompt": "Choose a card to play.",
+  "INTOTHESPIREVERSE-AFTERSHOCK.title": "Aftershock",
+  "INTOTHESPIREVERSE-AFTERSHOCK.description": "Choose a card in your [gold]Discard Pile[/gold] that costs X or less.\nPlay it {Plays:diff()} times.",
+  "INTOTHESPIREVERSE-AFTERSHOCK.selectionScreenPrompt": "Choose a card to play.",
 
   "INTOTHESPIREVERSE-BOMB_ROCK.title": "Bomb Rock",
   "INTOTHESPIREVERSE-BOMB_ROCK.description": "Deal {Damage:diff()} damage.",
