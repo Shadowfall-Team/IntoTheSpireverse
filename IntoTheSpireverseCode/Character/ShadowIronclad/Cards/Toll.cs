@@ -14,7 +14,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 /// buys one specific card outright, paying that card's Cost in HP.
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Toll() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class Toll() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     private const string DiscountKey = "Discount";
 
