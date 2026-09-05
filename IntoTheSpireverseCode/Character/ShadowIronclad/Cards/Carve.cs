@@ -36,7 +36,7 @@ public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        if (!IntoTheSpireverseKeywords.WasPlayedIndirectly(this)) return;
+        if (!IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay)) return;
 
         await PowerCmd.Apply<StrengthPower>(
             new ThrowingPlayerChoiceContext(),

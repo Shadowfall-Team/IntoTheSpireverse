@@ -7,8 +7,13 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 /// <summary>
-/// Records the pile each card most recently left, so a card resolving in the Play pile can tell
-/// whether it was played from Hand ("directly") or from anywhere else ("Indirectly").
+/// Records the pile each card most recently left.
+///
+/// This is the secondary half of the Indirectly check. CardPlay.IsAutoPlay is the primary signal
+/// and catches everything that routes through CardCmd.AutoPlay, which is every non-manual play the
+/// game currently has. This tracking stays behind it so a card that reaches the Play pile from
+/// somewhere other than Hand without going through AutoPlay is still treated as Indirect.
+/// See IntoTheSpireverseKeywords.WasPlayedIndirectly.
 /// </summary>
 [HarmonyPatch(typeof(CardPile), nameof(CardPile.RemoveInternal))]
 public static class IndirectPlayTrackingPatch

@@ -56,9 +56,19 @@ public static class IntoTheSpireverseKeywords
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Scry;
     
-    /// True when the card reached the Play pile from anywhere other than Hand.
-    public static bool WasPlayedIndirectly(CardModel card) =>
-        IndirectPlayTrackingPatch.LastPileLeft.TryGetValue(card, out var pile) && pile != PileType.Hand;
+    /// <summary>
+    /// True for any play that was not the player manually playing the card from their Hand.
+    ///
+    /// IsAutoPlay is the primary signal and covers everything that reaches CardCmd.AutoPlay:
+    /// Havoc and Cascade playing off the Draw pile, Stampede and Dark Bargain playing out of Hand,
+    /// Sly discards, and Vakuu taking the turn for you via Blind Fury or the relic that shares that
+    /// code. The pile check is kept behind it so a card that somehow reaches Play from another pile
+    /// without going through AutoPlay still counts.
+    /// </summary>
+    public static bool WasPlayedIndirectly(CardPlay cardPlay) =>
+        cardPlay.IsAutoPlay
+        || (IndirectPlayTrackingPatch.LastPileLeft.TryGetValue(cardPlay.Card, out var pile)
+            && pile != PileType.Hand);
 
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;

@@ -22,7 +22,7 @@ public sealed class GroundswellPower : ShadowPowerModel
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner?.Creature != Owner) return;
-        if (!IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay.Card)) return;
+        if (!IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay)) return;
 
         Flash();
         await PowerCmd.Apply<StrengthPower>(

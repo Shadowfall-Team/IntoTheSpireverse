@@ -35,7 +35,7 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        int times = IntoTheSpireverseKeywords.WasPlayedIndirectly(this)
+        int times = IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay)
             ? 1 + (int)DynamicVars[RepeatKey].BaseValue
             : 1;
         for (int i = 0; i < times; i++)
