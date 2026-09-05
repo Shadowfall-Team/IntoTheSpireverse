@@ -32,7 +32,7 @@ public sealed class Caldera() : ShadowIroncladCard(1, CardType.Skill, CardRarity
             choiceContext, PileType.Discard.GetPile(Owner), Owner, prefs);
         foreach (var original in selected.ToList())
         {
-            var rock = (CardModel)CombatState.CreateCard<BombRock>(Owner);
+            var rock = CombatState.CreateCard<BombRock>(Owner);
             await CardCmd.Transform(original, rock);
         }
     }

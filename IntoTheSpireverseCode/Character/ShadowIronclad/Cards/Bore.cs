@@ -40,7 +40,7 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
         if (original == null)
             return;
 
-        var rock = (CardModel)CombatState.CreateCard<SmallRock>(Owner);
+        var rock = CombatState.CreateCard<SmallRock>(Owner);
         await CardCmd.Transform(original, rock);
     }
 
