@@ -13,6 +13,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Config;
 [ConfigHoverTipsByDefault]
 internal class IntoTheSpireverseConfig : SimpleModConfig
 {
+    [ConfigSection("ShadowIronclad")]
+    public static bool ShowStoneHealthOnBar { get; set; } = true;
+
     [ConfigSection("ShadowRegent")]
     public static bool ShowCargoCardStack { get; set; } = true;
     public static bool ShowAmmoReminder { get; set; } = false;
