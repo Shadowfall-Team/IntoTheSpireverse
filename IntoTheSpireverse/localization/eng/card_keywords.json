@@ -24,7 +24,7 @@
   "INTOTHESPIREVERSE-ARCANE.title": "Arcane",
   "INTOTHESPIREVERSE-ARCANE.description": "Start each combat with this card in your [gold]Exhaust[/gold] pile.",
   "INTOTHESPIREVERSE-INDIRECTLY.title": "Indirectly",
-  "INTOTHESPIREVERSE-INDIRECTLY.description": "A card is played Indirectly anytime you do not play it directly from your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-INDIRECTLY.description": "A card is played Indirectly anytime you do not play it manually from your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-SCRY.title": "Scry",
   "INTOTHESPIREVERSE-SCRY.description": "Look at the top cards of your [gold]Draw Pile[/gold] and [gold]Discard[/gold] any number of them."
 }
