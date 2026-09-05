@@ -482,7 +482,8 @@
   "INTOTHESPIREVERSE-EROSION.title": "Erosion",
   "INTOTHESPIREVERSE-EROSION.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Mud[/gold] into your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-FOOTHOLD.title": "Foothold",
-  "INTOTHESPIREVERSE-FOOTHOLD.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {TemporaryStrengthPower:diff()} [gold]Strength[/gold] this turn.",
+  "INTOTHESPIREVERSE-FOOTHOLD.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {StrengthPower:diff()} [gold]Strength[/gold] this turn.",
+
   "INTOTHESPIREVERSE-SEDIMENT.title": "Sediment",
   "INTOTHESPIREVERSE-SEDIMENT.description": "Gain {Block:diff()} [gold]Block[/gold].\nAdd {MudCount} [gold]Mud[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-GEYSER.title": "Geyser",
