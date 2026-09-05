@@ -114,7 +114,8 @@
   "INTOTHESPIREVERSE-BEDROCK_POWER.smartDescription": "At the start of each turn, ALL players gain [blue]{Amount}[/blue] [gold]Slate[/gold].",
   "INTOTHESPIREVERSE-BLOODBOND_POWER.title": "Bloodbond",
   "INTOTHESPIREVERSE-BLOODBOND_POWER.description": "Whenever you lose HP during your turn, this creature loses HP.",
-  "INTOTHESPIREVERSE-BLOODBOND_POWER.smartDescription": "Whenever you lose HP during your turn, this creature loses [blue]{Amount}[/blue] HP.",
+  "INTOTHESPIREVERSE-BLOODBOND_POWER.smartDescription": "Whenever {IsMultiplayer:any player loses HP during their turn|you lose HP during your turn}, this creature loses [blue]{Amount}[/blue] HP.",
+
   "INTOTHESPIREVERSE-BERSERKING_POWER.title": "Berserking",
   "INTOTHESPIREVERSE-BERSERKING_POWER.description": "At the start of your turn, lose [blue]1[/blue] HP and gain [blue]1[/blue] Energy.",
   "INTOTHESPIREVERSE-BERSERKING_POWER.smartDescription": "At the start of your turn, lose [blue]{SelfDamage}[/blue] HP and gain {Amount:energyIcons()}.",
