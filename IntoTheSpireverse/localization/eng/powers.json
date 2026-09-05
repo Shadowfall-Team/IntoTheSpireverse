@@ -90,7 +90,8 @@
   "INTOTHESPIREVERSE-PESTILENCE_POWER.description": "At the end of your turn, apply [gold]Poison[/gold] to ALL enemies for each card in your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-PESTILENCE_POWER.smartDescription": "At the end of your turn, apply {Amount} [gold]Poison[/gold] to ALL enemies for each card in your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-PESTILENCE_POWER.title": "Pestilence",
-  "INTOTHESPIREVERSE-DRAGONSCALE_POWER.description": "Whenever {ApplierName} plays a [gold]Scale[/gold], draw a card.",
+  "INTOTHESPIREVERSE-DRAGONSCALE_POWER.description": "Whenever the player who applied this plays a [gold]Scale[/gold], draw a card.",
+
   "INTOTHESPIREVERSE-DRAGONSCALE_POWER.smartDescription": "Whenever {ApplierName} plays a [gold]Scale[/gold], draw {Amount:plural:a card|[blue]{}[/blue] cards}.",
   "INTOTHESPIREVERSE-DRAGONSCALE_POWER.title": "Dragonscale",
   "INTOTHESPIREVERSE-DIVINE_INTERVENTION_POWER.description": "This turn, your attacks deal double damage.",
