@@ -56,8 +56,10 @@ public sealed class TheMountain() : ShadowIroncladCard(1, CardType.Skill, CardRa
         var owner = Owner;
         if (owner == null) return null;
 
-        // CardPilePosition.Top resolves to index 0 for every pile.
-        return PileType.Discard.GetPile(owner)?.Cards.FirstOrDefault();
+        // Discards are appended (CardPileCmd.Add defaults to CardPilePosition.Bottom, which maps to
+        // index -1), so the most recently discarded card is the last element, not the first.
+        // CardPilePosition.Top means index 0, which is right for the Draw Pile and wrong here.
+        return PileType.Discard.GetPile(owner)?.Cards.LastOrDefault();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

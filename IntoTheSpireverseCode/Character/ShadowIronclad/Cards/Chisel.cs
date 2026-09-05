@@ -17,7 +17,7 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
         new DynamicVar(ScryKey, 1m),
     ];
 
