@@ -1,7 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Audio.Debug;
-using BaseLib.Extensions;
 using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,25 +18,20 @@ public sealed class MoltenRock() : RockCardBase(1, CardType.Attack, CardRarity.T
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8m, ValueProp.Move),
-        new PowerVar<GabbroPower>(2m),
+        new DamageVar(12m, ValueProp.Move),
+        new CardsVar(2),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.rockShatterPath, tmpSfx: TmpSfx.bluntAttack)
             .Execute(choiceContext);
-
-        await PowerCmd.Apply<GabbroPower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars.Power<GabbroPower>().BaseValue,
-            Owner.Creature, this);
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<GabbroPower>().UpgradeValueBy(2m);
+    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1m);
 }

@@ -499,8 +499,10 @@
 
   "INTOTHESPIREVERSE-SCULPT_REALITY.title": "Sculpt Reality",
   "INTOTHESPIREVERSE-SCULPT_REALITY.description": "At the start of your turn, add a random Attack with [gold]Ethereal[/gold] and [gold]Exhaust[/gold] into your [gold]Hand[/gold].\nWhen a card is created in combat, [gold]Upgrade[/gold] it.",
-  "INTOTHESPIREVERSE-PAINTED_PETRA.title": "Painted Petra",
-  "INTOTHESPIREVERSE-PAINTED_PETRA.description": "Gain {SlatePower:diff()} [gold]Slate[/gold].\nChoose 1 card in your [gold]Draw Pile[/gold] to [gold]Transform[/gold] into [gold]Tinted Rock[/gold].",
+  "INTOTHESPIREVERSE-PYROMORPH.title": "Pyromorph",
+
+  "INTOTHESPIREVERSE-PYROMORPH.description": "Gain {SlatePower:diff()} [gold]Slate[/gold].\nChoose 1 card in your [gold]Draw Pile[/gold] to [gold]Transform[/gold] into [gold]Molten Rock[/gold].",
+
   "INTOTHESPIREVERSE-PEAK_PERFORMANCE.title": "Peak Performance",
   "INTOTHESPIREVERSE-PEAK_PERFORMANCE.description": "Gain {Block:diff()} [gold]Block[/gold].\nGain {StrengthPower:diff()} [gold]Strength[/gold].\nIf played [gold]Indirectly[/gold], repeat the effects above {Repeat:diff()} times.",
   "INTOTHESPIREVERSE-PEBBLEFLINGER.title": "Pebbleflinger",
@@ -571,8 +573,6 @@
   "INTOTHESPIREVERSE-DEEP_ROCK.description": "Deal {Damage:diff()} damage.\nGain [gold]Block[/gold] equal to damage dealt.",
   "INTOTHESPIREVERSE-GHOST_ROCK.title": "Ghost Rock",
   "INTOTHESPIREVERSE-GHOST_ROCK.description": "Deal {Damage:diff()} damage.\nApply {WeakPower:diff()} [gold]Weak[/gold].",
-  "INTOTHESPIREVERSE-MOLTEN_ROCK.title": "Molten Rock",
-  "INTOTHESPIREVERSE-MOLTEN_ROCK.description": "Deal {Damage:diff()} damage.\nIncrease the damage of ALL your Rock cards by {GabbroPower:diff()} this combat.",
   "INTOTHESPIREVERSE-PALE_GAZE.title": "Pale Gaze",
   "INTOTHESPIREVERSE-PALE_GAZE.description": "Add a [gold]{IfUpgraded:show:Deathglare+|Deathglare}[/gold] into your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-ROLLING_ROCK.title": "Rolling Rock",
@@ -583,8 +583,9 @@
   "INTOTHESPIREVERSE-SPIKED_ROCK.description": "Deal {Damage:diff()} damage.\nGain {Retaliation:diff()} [gold]Retaliation[/gold].",
   "INTOTHESPIREVERSE-SOUL_STRIKE.title": "Soul Strike",
   "INTOTHESPIREVERSE-SOUL_STRIKE.description": "Deal {Damage:diff()} damage.\nDraw {Cards} card.",
-  "INTOTHESPIREVERSE-TINTED_ROCK.title": "Tinted Rock",
-  "INTOTHESPIREVERSE-TINTED_ROCK.description": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
+  "INTOTHESPIREVERSE-MOLTEN_ROCK.title": "Molten Rock",
+
+  "INTOTHESPIREVERSE-MOLTEN_ROCK.description": "Deal {Damage:diff()} damage.\nDraw {Cards:diff()} {Cards:plural:card|cards}.",
 
   "INTOTHESPIREVERSE-STRIKE_CAPTAIN.title": "Strike",
   "INTOTHESPIREVERSE-STRIKE_CAPTAIN.description": "Deal {Damage:diff()} damage.",
