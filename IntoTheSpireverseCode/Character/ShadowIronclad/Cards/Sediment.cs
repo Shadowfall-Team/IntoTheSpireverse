@@ -19,7 +19,7 @@ public sealed class Sediment() : ShadowIroncladCard(1, CardType.Skill, CardRarit
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(14m, ValueProp.Move),
+        new BlockVar(15m, ValueProp.Move),
         new DynamicVar(MudCountKey, 2m),
     ];
 
@@ -43,5 +43,5 @@ public sealed class Sediment() : ShadowIroncladCard(1, CardType.Skill, CardRarit
         await CardPileCmd.AddGeneratedCardsToCombat(mud, PileType.Hand, Owner);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(4m);
+    protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(5m);
 }
