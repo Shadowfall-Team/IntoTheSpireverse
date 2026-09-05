@@ -28,7 +28,7 @@ public sealed class Claymaker() : ShadowIroncladCard(2, CardType.Attack, CardRar
     {
         if (CombatState == null || cardPlay.Target == null) return;
 
-        int hits = IntoTheSpireverseKeywords.WasPlayedIndirectly(this) ? BaseHits + 1 : BaseHits;
+        int hits = IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay) ? BaseHits + 1 : BaseHits;
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(hits)
