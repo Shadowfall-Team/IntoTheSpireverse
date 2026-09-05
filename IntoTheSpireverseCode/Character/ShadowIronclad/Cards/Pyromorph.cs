@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class PaintedPetra() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Pyromorph() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -22,7 +22,7 @@ public sealed class PaintedPetra() : ShadowIroncladCard(1, CardType.Skill, CardR
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),
-        HoverTipFactory.FromCard<TintedRock>(false),
+        HoverTipFactory.FromCard<MoltenRock>(false),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -43,7 +43,7 @@ public sealed class PaintedPetra() : ShadowIroncladCard(1, CardType.Skill, CardR
 
         foreach (var original in selected.ToList())
         {
-            await CardCmd.TransformTo<TintedRock>(original);
+            await CardCmd.TransformTo<MoltenRock>(original);
         }
     }
 
