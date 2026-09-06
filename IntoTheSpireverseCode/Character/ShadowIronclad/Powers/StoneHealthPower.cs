@@ -1,4 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using BaseLib.Hooks;
+using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -21,6 +24,55 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Power
 /// </summary>
 public sealed class StoneHealthPower : ShadowPowerModel
 {
+    // Health bar rendering is disabled until BaseLib ships the forecast directions it needs.
+    //
+    // Stone Health used to draw its own bands by patching NHealthBar, which fought BaseLib's overlay
+    // for the same nodes (see PR 276, StoneHealthBarPatches). That patch is gone and this override
+    // replaces it, but OutwardFromCurrentHp and InwardFromMaxHp do not exist in the published BaseLib
+    // yet - they are the subject of an open PR against that project. Uncomment this block once a
+    // BaseLib release carrying them is out; the package reference floats, so a restore is all that is
+    // needed. Until then the pool has no bands on the bar and only the HP label parenthetical shows.
+    //
+    // private static readonly Color GreyColor = new("A8A8A8");
+    // private static readonly Color WhiteColor = new("FFFFFF");
+    //
+    // /// <summary>
+    // /// Draws the pool onto the health bar: grey for the part that fits below max HP, white for the
+    // /// part that overcaps it.
+    // ///
+    // /// White is emitted first and pinned to the max edge, so at full HP - where grey has nowhere to
+    // /// go - it is the only thing that shows, painting back over the red band. BaseLib clips grey to
+    // /// whatever white leaves behind, so the two never overlap and one pixel still means one HP.
+    // ///
+    // /// Neither segment affects the HP label: this is HP the player has, not damage they are about to
+    // /// take, so it must never colour the label as lethal.
+    // /// </summary>
+    // public override IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(
+    //     HealthBarForecastContext context)
+    // {
+    //     if (!IntoTheSpireverseConfig.ShowStoneHealthOnBar) yield break;
+    //     if (Amount <= 0) yield break;
+    //
+    //     var creature = context.Creature;
+    //     if (creature.CurrentHp <= 0 || creature.MaxHp <= 0) yield break;
+    //
+    //     var overflow = Math.Max(0, creature.CurrentHp + Amount - creature.MaxHp);
+    //     if (overflow > 0)
+    //     {
+    //         yield return new HealthBarForecastSegment(
+    //             overflow, WhiteColor, HealthBarForecastDirection.InwardFromMaxHp)
+    //         {
+    //             AffectsHpLabel = false,
+    //         };
+    //     }
+    //
+    //     yield return new HealthBarForecastSegment(
+    //         Amount, GreyColor, HealthBarForecastDirection.OutwardFromCurrentHp)
+    //     {
+    //         AffectsHpLabel = false,
+    //     };
+    // }
+
     private int _hpBeforeHpLoss;
     private int _finalUnblockedDamage;
 
