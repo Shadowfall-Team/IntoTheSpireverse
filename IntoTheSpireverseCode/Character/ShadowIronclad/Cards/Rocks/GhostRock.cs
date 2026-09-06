@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Audio.Debug;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,18 +16,21 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 public sealed class GhostRock() : RockCardBase(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        CardKeyword.Ethereal
+        CardKeyword.Ethereal,
+        CardKeyword.Exhaust
     ];
+
+    private const string StrengthLossKey = "StrengthLoss";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(10m, ValueProp.Move),
-        new PowerVar<WeakPower>(1m),
+        new DamageVar(11m, ValueProp.Move),
+        new DynamicVar(StrengthLossKey, 2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<WeakPower>(),
+        HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -37,11 +41,11 @@ public sealed class GhostRock() : RockCardBase(1, CardType.Attack, CardRarity.To
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.rockShatterPath, tmpSfx: TmpSfx.bluntAttack)
             .Execute(choiceContext);
-        await PowerCmd.Apply<WeakPower>(
+        await PowerCmd.Apply<GhostRockTemporaryStrengthPower>(
             new ThrowingPlayerChoiceContext(),
-            cardPlay.Target, DynamicVars.Weak.BaseValue,
+            cardPlay.Target, DynamicVars[StrengthLossKey].BaseValue,
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Weak.UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars[StrengthLossKey].UpgradeValueBy(2m);
 }

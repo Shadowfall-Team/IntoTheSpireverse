@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-EROSION",
+  "hue": 0.61,
+  "saturation": 0.6,
+  "value": 1.22,
+  "red": 1.09,
+  "green": 0.89,
+  "blue": 1.32,
+  "contrast": 1.16,
+  "flip_h": true,
+  "portrait_path": "res://IntoTheSpireverse/images/card_portraits/ironclad/big/wild_strike.png"
+}

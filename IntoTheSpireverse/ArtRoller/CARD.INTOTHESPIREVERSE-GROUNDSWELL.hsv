@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-GROUNDSWELL",
+  "hue": 0.56,
+  "saturation": 0.4,
+  "value": 0.83,
+  "red": 1.15,
+  "green": 1.37,
+  "blue": 1.83,
+  "contrast": 1,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/perfected_strike.tres"
+}

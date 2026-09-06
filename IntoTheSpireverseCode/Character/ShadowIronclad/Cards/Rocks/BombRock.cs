@@ -1,11 +1,8 @@
-﻿using MegaCrit.Sts2.Core.Audio.Debug;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -13,17 +10,10 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
 
 [Pool(typeof(TokenCardPool))]
-public sealed class BombRock() : RockCardBase(3, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+public sealed class BombRock() : RockCardBase(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        CardKeyword.Retain,
         CardKeyword.Exhaust,
-        IntoTheSpireverseKeywords.Linger,
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Linger),
     ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -39,16 +29,6 @@ public sealed class BombRock() : RockCardBase(3, CardType.Attack, CardRarity.Tok
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.rockShatterPath, tmpSfx: TmpSfx.bluntAttack)
             .Execute(choiceContext);
-    }
-
-    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
-    {
-        int triggers = LingerHelper.GetTriggerCount(this);
-        for (int i = 0; i < triggers; i++)
-        {
-            EnergyCost.AddThisCombat(-1);
-            await LingerHelper.NotifyLingerTriggered(this, choiceContext);
-        }
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(8m);

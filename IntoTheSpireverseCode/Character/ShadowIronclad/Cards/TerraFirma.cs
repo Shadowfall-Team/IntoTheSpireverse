@@ -1,4 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
@@ -7,12 +8,15 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class TerraFirma() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public sealed class TerraFirma() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Basic, TargetType.Self), ITranscendenceCard
 {
+    public CardModel GetTranscendenceTransformedCard() => ModelDb.Card<TheMountain>();
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<SlatePower>(2m),

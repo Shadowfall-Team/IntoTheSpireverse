@@ -16,15 +16,13 @@ public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRar
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5m, ValueProp.Move),
+        new DamageVar(7m, ValueProp.Move),
         new PowerVar<RetaliationPower>(5m),
-        new PowerVar<VulnerablePower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<RetaliationPower>(),
-        HoverTipFactory.FromPower<VulnerablePower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -39,15 +37,11 @@ public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRar
             new ThrowingPlayerChoiceContext(),
             Owner.Creature, DynamicVars.Power<RetaliationPower>().BaseValue,
             Owner.Creature, this);
-        await PowerCmd.Apply<VulnerablePower>(
-            new ThrowingPlayerChoiceContext(),
-            cardPlay.Target, DynamicVars.Vulnerable.BaseValue,
-            Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(2m);
-        DynamicVars.Power<RetaliationPower>().UpgradeValueBy(2m);
+        DynamicVars.Power<RetaliationPower>().UpgradeValueBy(1m);
     }
 }

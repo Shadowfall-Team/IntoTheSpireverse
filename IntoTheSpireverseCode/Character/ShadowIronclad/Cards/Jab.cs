@@ -13,7 +13,7 @@ public sealed class Jab() : ShadowIroncladCard(0, CardType.Attack, CardRarity.Ra
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4m, ValueProp.Move),
+        new DamageVar(3m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -16,14 +16,15 @@ public static class NCardPatch
         if (!__instance.IsNodeReady() || __instance.Model == null)
             return;
         
-        string cardId = __instance.Model.Id.ToString();
+        // Scoping is resolved centrally so the colour grading and the portrait override always
+        // agree about which roll applies to this card.
 
         float h = 1f, s = 1f, v = 1f;
         float r = 1f, g = 1f, b = 1f;
         float contrast = 1f;
         bool flipH = false;
 
-        var data = CardArtRoller.GetCardData(cardId) ?? CardArtRoller.GetDefaultHsvForCard(cardId);
+        var data = CardArtRoller.Resolve(__instance.Model);
         if (data != null)
         {
             h        = data.Hue;

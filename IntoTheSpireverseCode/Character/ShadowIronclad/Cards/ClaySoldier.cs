@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
@@ -16,22 +17,29 @@ public sealed class ClaySoldier() : ShadowIroncladCard(1, CardType.Power, CardRa
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<StrengthPower>(2m),
-        new PowerVar<SlatePower>(1m),
+        new PowerVar<StrengthPower>(1m),
+        new BlockVar(3m, ValueProp.Unpowered),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+        HoverTipFactory.FromPower<StrengthPower>(),
         HoverTipFactory.FromPower<ClaySoldierPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
+
+        await PowerCmd.Apply<StrengthPower>(
+            new ThrowingPlayerChoiceContext(),
+            Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
+            Owner.Creature, this);
+
         (await PowerCmd.Apply<ClaySoldierPower>(choiceContext,
             Owner.Creature, 1m, Owner.Creature, this)
-        )?.AddVars(DynamicVars.Power<SlatePower>().BaseValue, DynamicVars.Strength.BaseValue);
+        )?.AddVars(DynamicVars.Block.BaseValue);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars.Power<StrengthPower>().UpgradeValueBy(1m);
 }

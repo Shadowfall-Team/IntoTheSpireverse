@@ -46,22 +46,20 @@ public sealed class SlatePower : ShadowPowerModel
             return;
 
         Flash();
-        decimal blockAmount = DynamicVars[BlockKey].BaseValue + GetRiebeckiteBonus();
+        var riebeckite = Owner.Powers.OfType<RiebeckitePower>().FirstOrDefault();
+
+        decimal blockAmount = DynamicVars[BlockKey].BaseValue + (riebeckite?.Amount ?? 0);
         await CreatureCmd.GainBlock(Owner, blockAmount, ValueProp.Unpowered, null);
 
-        if (!IsObsidianActive())
-            await PowerCmd.Decrement(this);
-    }
+        if (riebeckite != null)
+            await PowerCmd.Apply<RetaliationPower>(
+                new ThrowingPlayerChoiceContext(),
+                Owner, riebeckite.DynamicVars[RiebeckitePower.RetaliationKey].BaseValue, Owner, null);
 
-    private decimal GetRiebeckiteBonus()
-    {
-        var riebeckite = Owner.Powers.OfType<RiebeckitePower>().FirstOrDefault();
-        return riebeckite != null ? (decimal)riebeckite.Amount : 0m;
-    }
+        await PowerCmd.Decrement(this);
 
-    private bool IsObsidianActive()
-    {
-        return Owner.Powers.Any(p => p is ObsidianPower);
+        if (cardPlay.Card is ISlateSpender spender)
+            await spender.OnSlateSpent(choiceContext, cardPlay);
     }
 
     private class Data

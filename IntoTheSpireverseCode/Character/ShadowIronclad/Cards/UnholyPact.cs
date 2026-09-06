@@ -13,12 +13,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HpLossVar(1m),
-        new PowerVar<BloodbondPower>(5m),
+        new PowerVar<BloodbondPower>(6m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -30,7 +30,7 @@ public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRar
     {
         if (cardPlay.Target == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
+        VfxCmd.PlayOnCreatureCenter(Owner.Creature, VfxCmd.bloodyImpactPath);
         await PowerCmd.Apply<BloodbondPower>(
             new ThrowingPlayerChoiceContext(),
             cardPlay.Target, DynamicVars.Power<BloodbondPower>().BaseValue,
@@ -39,5 +39,5 @@ public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRar
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(2m);
+    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(3m);
 }
