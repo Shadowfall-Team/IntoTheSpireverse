@@ -1,5 +1,4 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;

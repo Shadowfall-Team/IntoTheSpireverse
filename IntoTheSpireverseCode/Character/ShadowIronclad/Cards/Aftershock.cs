@@ -40,7 +40,6 @@ public sealed class Aftershock() : ShadowIroncladCard(0, CardType.Skill, CardRar
 
         for (var i = 0; i < DynamicVars[PlaysKey].IntValue; i++)
         {
-            if (CombatManager.Instance.IsOverOrEnding) return;
             await CardCmd.AutoPlay(choiceContext, card, null);
         }
     }

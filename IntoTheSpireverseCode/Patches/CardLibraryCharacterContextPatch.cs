@@ -32,20 +32,22 @@ public static class CardLibraryCharacterContextPatch
     [HarmonyPatch(typeof(NCardLibrary), nameof(NCardLibrary._Ready))]
     public static class Opened
     {
-        static void Postfix(NCardLibrary __instance)
+        static void Postfix(NCardLibrary __instance,
+            Dictionary<CharacterModel, NCardPoolFilter> ____cardPoolFilters)
         {
             _library = __instance;
-            Refresh(__instance);
+            Refresh(____cardPoolFilters);
         }
     }
 
     [HarmonyPatch(typeof(NCardLibrary), "UpdateCardPoolFilter")]
     public static class FilterChanged
     {
-        static void Postfix(NCardLibrary __instance)
+        static void Postfix(NCardLibrary __instance,
+            Dictionary<CharacterModel, NCardPoolFilter> ____cardPoolFilters)
         {
             _library = __instance;
-            Refresh(__instance);
+            Refresh(____cardPoolFilters);
         }
     }
 
@@ -59,20 +61,17 @@ public static class CardLibraryCharacterContextPatch
     [HarmonyPatch(typeof(NCardLibrary), nameof(NCardLibrary.OnSubmenuOpened))]
     public static class SubmenuOpened
     {
-        static void Postfix(NCardLibrary __instance)
+        static void Postfix(NCardLibrary __instance,
+            Dictionary<CharacterModel, NCardPoolFilter> ____cardPoolFilters)
         {
             _library = __instance;
-            Refresh(__instance);
+            Refresh(____cardPoolFilters);
         }
     }
 
-    private static void Refresh(NCardLibrary library)
+    private static void Refresh(Dictionary<CharacterModel, NCardPoolFilter> filters)
     {
         _viewed = null;
-
-        if (AccessTools.DeclaredField(typeof(NCardLibrary), "_cardPoolFilters")
-                ?.GetValue(library) is not Dictionary<CharacterModel, NCardPoolFilter> filters)
-            return;
 
         foreach (var (character, filter) in filters)
         {

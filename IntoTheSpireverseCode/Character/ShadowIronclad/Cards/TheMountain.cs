@@ -44,23 +44,19 @@ public sealed class TheMountain() : ShadowIroncladCard(1, CardType.Skill, CardRa
     }
 
     /// <summary>
-    /// Null whenever there is nothing meaningful to preview. Every check here is load-bearing:
+    /// Null whenever there is nothing meaningful to preview. The IsCanonical check is load-bearing:
     /// hover tips are also built for canonical cards in the compendium and card library, where
     /// there is no player and no combat, and CardModel.Owner throws CanonicalModelException rather
     /// than returning null on such an instance.
     /// </summary>
     private CardModel? TryGetTopOfDiscard()
     {
-        if (IsCanonical) return null;
-        if (CombatState == null) return null;
-
-        var owner = Owner;
-        if (owner == null) return null;
+        if (IsCanonical || CombatState == null) return null;
 
         // Discards are appended (CardPileCmd.Add defaults to CardPilePosition.Bottom, which maps to
         // index -1), so the most recently discarded card is the last element, not the first.
         // CardPilePosition.Top means index 0, which is right for the Draw Pile and wrong here.
-        return PileType.Discard.GetPile(owner)?.Cards.LastOrDefault();
+        return PileType.Discard.GetPile(Owner)?.Cards.LastOrDefault();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

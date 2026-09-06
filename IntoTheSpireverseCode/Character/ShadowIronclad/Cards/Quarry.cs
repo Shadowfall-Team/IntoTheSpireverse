@@ -1,5 +1,4 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
 using MegaCrit.Sts2.Core.Commands;
@@ -26,12 +25,10 @@ public sealed class Quarry() : ShadowIroncladCard(-1, CardType.Skill, CardRarity
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         var count = ResolveEnergyXValue() + (IsUpgraded ? 1 : 0);
-        var rocks = new CardModel[count];
 
+        var rocks = new List<CardModel>();
         for (var i = 0; i < count; i++)
-        {
-            rocks[i] = CombatState.CreateCard<MediumRock>(Owner);
-        }
+            rocks.Add(CombatState.CreateCard<MediumRock>(Owner));
 
         await CardPileCmd.AddGeneratedCardsToCombat(rocks, PileType.Hand, Owner);
     }

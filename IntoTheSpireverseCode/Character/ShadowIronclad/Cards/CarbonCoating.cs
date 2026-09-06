@@ -1,5 +1,4 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
-using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Combat;

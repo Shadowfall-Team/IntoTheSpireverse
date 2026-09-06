@@ -1,5 +1,4 @@
 ﻿using MegaCrit.Sts2.Core.Audio.Debug;
-using MegaCrit.Sts2.Core.Audio.Debug;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Commands;
