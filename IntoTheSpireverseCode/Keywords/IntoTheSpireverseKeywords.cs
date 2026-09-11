@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
+using MegaCrit.Sts2.Core.Commands.Builders;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
@@ -69,7 +70,7 @@ public static class IntoTheSpireverseKeywords
         return i >= 0 && j >= 0 && Math.Abs(i - j) == 1;
     }
 
-    public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, int repeats, Func<Task> effect)
+    public static async Task<int> GetDeviousRepeatCount(PlayerChoiceContext context, Player player, AbstractModel source, int repeats)
     {
         int maxDiscards = 1;
         foreach (var model in player.Creature.CombatState?.IterateHookListeners().ToList()!)
@@ -77,34 +78,37 @@ public static class IntoTheSpireverseKeywords
             if (model is IDeviousDiscardListener deviousListener)
                 maxDiscards = deviousListener.ModifyDeviousDiscard(maxDiscards);
         }
-        
-        var cards = (await CardSelectCmd.FromHandForDiscard(
-            context,
-            player,
+
+        var cards = await CardSelectCmd.FromHandForDiscard(context, player,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards,1)),
-            null,
-            source));
-        
+            null, source);
+
         foreach (CardModel card in cards)
         {
-            if (card.Owner.Creature.CombatState == null) return;
+            if (card.Owner.Creature.CombatState == null) continue;
 
             repeats += Math.Max(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
             if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
                 repeats += Math.Max(0, player.PlayerCombatState.Energy);
             await CardCmd.Discard(context, card);
-        
+
             foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
             {
                 if (model is IModifyDeviousListener deviousListener)
                     repeats = deviousListener.ModifyDeviousValue(card, repeats);
             }
         }
+        return repeats;
+    }
+
+    public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, int repeats, Func<Task> effect)
+    {
+        repeats = await GetDeviousRepeatCount(context, player, source, repeats);
 
         for (int i = 0; i < repeats; i++)
             await effect();
     }
-    
+
     public static bool CanMuddle(CardModel card)
     {
         return !card.Keywords.Contains(CardKeyword.Unplayable)
