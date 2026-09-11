@@ -1,5 +1,6 @@
 ﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,7 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
-public sealed class RetaliationPower : ShadowPowerModel
+public sealed class RetaliationPower : ShadowPowerModel, IModifyDamageAdditive
 {
     public override PowerType Type => PowerType.Buff;
 
@@ -27,22 +28,18 @@ public sealed class RetaliationPower : ShadowPowerModel
     {
         if (target != Owner || dealer == null || !props.IsPoweredAttack())
             return;
-        await CreatureCmdCompatibility.Damage(choiceContext, dealer, (decimal)Amount, ValueProp.Unpowered, Owner, (CardModel?)null, null);
+        await CreatureCmdCompatibility.Damage(choiceContext, dealer, Amount, ValueProp.Unpowered, Owner, null, null);
     }
 
-    public override decimal ModifyDamageAdditiveCompatibility(
-        Creature? target,
-        decimal amount,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource,
-        CardPlay? cardPlay)
+    public decimal ModifyDamageAdditiveCompability(
+        Creature? target, decimal amount, ValueProp props,
+        Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (target != Owner || !props.IsPoweredAttack()) return 0m;
 
         var relic = Owner.Player?.Relics.OfType<ToyCactus>().FirstOrDefault();
         if (relic == null) return 0m;
-        
+
         return -relic.DynamicVars["DamageReduction"].BaseValue;
     }
 
