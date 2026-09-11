@@ -12,3 +12,4 @@ packages/
 *cs.uid
 *.user
 Directory.Build.props
+*.kra
