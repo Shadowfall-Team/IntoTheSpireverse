@@ -34,6 +34,9 @@ public sealed class PureSuffering() : ShadowSilentCard(0, CardType.Attack, CardR
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
+
+        // TODO: same situation as Haymaker, this time because of regent's card Arsenal
+        // need a composite attack command that can do something else after each hit
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
