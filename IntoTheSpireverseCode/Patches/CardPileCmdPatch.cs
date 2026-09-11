@@ -1,3 +1,4 @@
+using BaseLib.Abstracts;
 using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 using MegaCrit.Sts2.Core.Commands;
@@ -6,20 +7,39 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
-[HarmonyPatch(typeof(CardPileCmd))]
+[HarmonyPatch]
 public static class CardPileCmdPatch
 {
-    public static Dictionary<Type, PileType> _cardsToModifyDiscarding = new() { {typeof(Disguise), PileType.Draw} };
+    public static Dictionary<Type, Tuple<PileType, CardPilePosition>> _cardsToModifyDiscarding =
+        new() { {typeof(Disguise), new Tuple<PileType, CardPilePosition> (PileType.Draw, CardPilePosition.Top)} };
 
-    [HarmonyPatch(nameof(CardPileCmd.Add), [typeof(CardModel), typeof(CardPile), typeof(CardPilePosition), typeof(AbstractModel), typeof(bool)])]
+    internal static readonly HashSet<CardModel> PendingRedirect = new();
+    public static bool insideDiscard;
+
+    [HarmonyPatch(typeof(CardPileCmd), nameof(CardPileCmd.Add), [typeof(CardModel), typeof(CardPile), typeof(CardPilePosition), typeof(AbstractModel), typeof(bool)])]
     [HarmonyPrefix]
-    public static void DiscardRedirectionPatch(CardModel card, ref CardPile newPile)
+    public static void DiscardRedirectionPatch(CardModel card, ref CardPile newPile, ref CardPilePosition position)
     {
-        if (newPile.Type is PileType.Discard && _cardsToModifyDiscarding.ContainsKey(card.GetType()))
+        var type = card.GetType();
+        if (newPile.Type is PileType.Discard && _cardsToModifyDiscarding.ContainsKey(type) && PendingRedirect.Contains(card))
         {
-            newPile = _cardsToModifyDiscarding[card.GetType()].GetPile(card.Owner);
+            newPile = _cardsToModifyDiscarding[type].Item1.GetPile(card.Owner);
+            position = _cardsToModifyDiscarding[type].Item2;
+            PendingRedirect.Remove(card);
+        }
+    }
+
+    [HarmonyPatch(typeof(CardCmd), nameof(CardCmd.DiscardAndDraw))]
+    [HarmonyPrefix]
+    public static void CheckForCardShouldDiscard(IEnumerable<CardModel> cardsToDiscard)
+    {
+        foreach (var card in cardsToDiscard)
+        {
+            if (!card.IsSlyThisTurn)
+            {
+                PendingRedirect.Add(card);
+            }
         }
     }
 }
-
 
