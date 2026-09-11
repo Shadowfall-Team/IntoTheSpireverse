@@ -2,6 +2,7 @@ using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -16,7 +17,7 @@ public class ShieldDrones() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(8, ValueProp.Move),
-        new PowerVar<BlockNextTurnPower>(4)
+        new BlockVar("BlockNextTurnPower", 4, ValueProp.Move)
     ];
 
     protected override bool ShouldGlowGoldInternal => HasColorlessInHand;
@@ -25,15 +26,20 @@ public class ShieldDrones() : ShadowRegentCard(1,
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
     {
+        if (CombatState == null) return;
+
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         if (!HasColorlessInHand) return;
 
+        var blockVar = (BlockVar)DynamicVars["BlockNextTurn"];
+        var blockNextTurnAmount = Hook.ModifyBlock(CombatState, Owner.Creature, blockVar.BaseValue, blockVar.Props,
+            this, cardPlay, out _);
         await PowerCmd.Apply<BlockNextTurnPower>(
             new ThrowingPlayerChoiceContext(),
             Owner.Creature,
-            DynamicVars[nameof(BlockNextTurnPower)].BaseValue,
+            blockNextTurnAmount,
             Owner.Creature,
             this);
     }
@@ -41,7 +47,7 @@ public class ShieldDrones() : ShadowRegentCard(1,
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2);
-        DynamicVars[nameof(BlockNextTurnPower)].UpgradeValueBy(1);
+        DynamicVars["BlockNextTurnPower"].UpgradeValueBy(1);
     }
 
     private bool HasColorlessInHand =>
