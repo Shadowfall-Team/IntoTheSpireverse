@@ -33,6 +33,9 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
+        // TODO: this currently doesn't respect vigour, but we don't currently have a quick way to do a
+        // multihit attack command that applies a power inbetween each hit, which is needed here since
+        // drafting Tracking from Silent isn't unreasonable
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
