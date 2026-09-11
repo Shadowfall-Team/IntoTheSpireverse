@@ -28,12 +28,13 @@ public sealed class ZigZag() : ShadowSilentCard(1, CardType.Attack, CardRarity.C
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, () =>
-            DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        var repeats = await IntoTheSpireverseKeywords.ModifyDeviousRepeatCount(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .FromCardCompatibility(this, cardPlay)
                 .TargetingAllOpponents(CombatState)
+                .WithHitCount(repeats)
                 .WithHitFx(VfxCmd.slashPath)
-                .Execute(choiceContext));
+                .Execute(choiceContext);
 	}
 
     protected override void OnUpgrade()
