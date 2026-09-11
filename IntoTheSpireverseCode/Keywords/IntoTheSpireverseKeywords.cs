@@ -70,7 +70,7 @@ public static class IntoTheSpireverseKeywords
         return i >= 0 && j >= 0 && Math.Abs(i - j) == 1;
     }
 
-    public static async Task<int> GetDeviousRepeatCount(PlayerChoiceContext context, Player player, AbstractModel source, int repeats)
+    public static async Task<int> ModifyDeviousRepeatCount(PlayerChoiceContext context, Player player, AbstractModel source, int repeats)
     {
         int maxDiscards = 1;
         foreach (var model in player.Creature.CombatState?.IterateHookListeners().ToList()!)
@@ -103,7 +103,7 @@ public static class IntoTheSpireverseKeywords
 
     public static async Task ExecuteDevious(PlayerChoiceContext context, Player player, AbstractModel source, int repeats, Func<Task> effect)
     {
-        repeats = await GetDeviousRepeatCount(context, player, source, repeats);
+        repeats = await ModifyDeviousRepeatCount(context, player, source, repeats);
 
         for (int i = 0; i < repeats; i++)
             await effect();
