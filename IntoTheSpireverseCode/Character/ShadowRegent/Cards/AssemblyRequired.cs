@@ -1,6 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -41,13 +41,15 @@ public class AssemblyRequired() : ShadowRegentCard(
         foreach (var player in players)
         {
             var tripCard = CombatState.CreateCard<Fragment>(player);
-            await CardPileCmd.AddGeneratedCardToCombat(tripCard, PileType.Draw, Owner);
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(tripCard, PileType.Draw, Owner),
+                1.5f);
         }
 
         if (IsUpgraded)
         {
             var extraTrip = CombatState.CreateCard<Fragment>(Owner);
-            await CardPileCmd.AddGeneratedCardToCombat(extraTrip, PileType.Draw, Owner);
+            CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(extraTrip, PileType.Draw, Owner),
+                1.5f);
         }
     }
 }
