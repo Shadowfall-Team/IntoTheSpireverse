@@ -44,10 +44,11 @@ public class PoweredPulse() : ShadowRegentCard(
         {
             if (CombatState == null) return;
 
+            var playCount = GetEnchantedReplayCount() + 1;
             foreach (var creature in CombatState.HittableEnemies)
             {
                 await PowerCmd.Apply<PoweredPulsePower>(choiceContext, creature,
-                    DynamicVars["StrengthLoss"].BaseValue * await GeneratePlayCount(CombatState, creature),
+                    DynamicVars["StrengthLoss"].BaseValue * playCount,
                     Owner.Creature, this);
             }
         }
