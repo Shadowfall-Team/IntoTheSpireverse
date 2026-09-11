@@ -1,4 +1,5 @@
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,12 +11,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 
-public class PiercedPower : ShadowPowerModel
+public class PiercedPower : ShadowPowerModel, IModifyDamageAdditive
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override decimal ModifyDamageAdditiveCompatibility(
+    public decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,
         ValueProp props,
