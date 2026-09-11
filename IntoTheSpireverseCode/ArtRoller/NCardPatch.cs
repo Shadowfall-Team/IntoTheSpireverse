@@ -1,21 +1,19 @@
-using BaseLib.Utils;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Logging;
-using IntoTheSpireverse;
 
-namespace IntoTheSpireverse.Patches;
+namespace IntoTheSpireverse.IntoTheSpireverseCode.ArtRoller;
 
 [HarmonyPatch(typeof(NCard), "Reload")]
+[HarmonyPriority(Priority.Last)]
 public static class NCardPatch
 {
-    static void Postfix(NCard __instance)
+    internal static void Postfix(NCard __instance)
     {
-        if (!__instance.IsNodeReady() || __instance.Model == null)
+        if (!__instance.IsNodeReady() || __instance.Model is not {} model || model.GetType().Assembly != typeof(MainFile).Assembly)
             return;
-        
+
         string cardId = __instance.Model.Id.ToString();
 
         float h = 1f, s = 1f, v = 1f;
@@ -37,7 +35,7 @@ public static class NCardPatch
         }
 
         if (__instance.Model.Rarity == CardRarity.Ancient)
-        { 
+        {
             if (__instance.GetNodeOrNull<TextureRect>("%AncientPortrait") is not {} ancientPortrait) return;
             CardShaderHelper.ApplyToPortrait(ancientPortrait, h, s, v, r, g, b, contrast);
             ancientPortrait.FlipH = flipH;
