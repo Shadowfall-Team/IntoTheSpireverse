@@ -44,10 +44,11 @@ public class PoweredBeam() : ShadowRegentCard(1,
         CardModel card, bool fromHandDraw)
     {
         if (CombatState == null || card != this) return;
-        await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue * await GeneratePlayCount(CombatState, null),
+        var playCount = GetEnchantedReplayCount() + 1;
+        await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue * playCount,
             Owner, this);
         await PowerCmd.Apply<VolleyDamagePower>(choiceContext, Owner.Creature,
-            DynamicVars.Power<VolleyDamagePower>().BaseValue * await GeneratePlayCount(CombatState, null),
+            DynamicVars.Power<VolleyDamagePower>().BaseValue * playCount,
             Owner.Creature, this);
     }
 }

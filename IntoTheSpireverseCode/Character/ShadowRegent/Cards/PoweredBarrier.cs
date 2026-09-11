@@ -34,7 +34,7 @@ public class PoweredBarrier() : ShadowRegentCard(
         CardModel card, bool fromHandDraw)
     {
         if (CombatState == null || card != this) return;
-        for (int i = 0; i < await GeneratePlayCount(CombatState, null); i++)
+        for (var i = 0; i < GetEnchantedReplayCount() + 1; i++)
         {
             await EnchantBlockWithoutCardPlayPatch.WithEnchantment(
                 Enchantment,
