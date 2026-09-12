@@ -1,7 +1,7 @@
-﻿using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -32,17 +32,20 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        if (CombatState == null) return;
 
-        // TODO: this currently doesn't respect vigour, but we don't currently have a quick way to do a
-        // multihit attack command that applies a power inbetween each hit, which is needed here since
-        // drafting Tracking from Silent isn't unreasonable
+        await using AttackContext attackContext = await AttackCommand.CreateContextAsync(CombatState, choiceContext, cardPlay);
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCardCompatibility(this, cardPlay)
-                .Targeting(cardPlay.Target)
-                .WithHitFx(VfxCmd.bluntPath)
-                .Execute(choiceContext);
+            VfxCmd.PlayOnCreatureCenter(cardPlay.Target, VfxCmd.bluntPath);
+            attackContext.AddHit(await CreatureCmd.Damage(
+                choiceContext,
+                cardPlay.Target,
+                DynamicVars.Damage,
+                Owner.Creature,
+                this,
+                cardPlay
+            ));
             await PowerCmd.Apply<WeakPower>(
                 choiceContext, cardPlay.Target, DynamicVars.Weak.BaseValue,
                 Owner.Creature, this);
