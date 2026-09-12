@@ -27,7 +27,7 @@ public sealed class Dazzle() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        
+
         var targets = PileType.Hand.GetPile(Owner).Cards
             .Where(IntoTheSpireverseKeywords.CanMuddle)
             .OrderByDescending(c => c.EnergyCost.GetWithModifiers(CostModifiers.All))
@@ -37,7 +37,7 @@ public sealed class Dazzle() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
         if (targets.Count == 0)
             return;
 
-        await IntoTheSpireverseKeywords.ApplyMuddleAll(targets);
+        await IntoTheSpireverseKeywords.ApplyMuddleAll(choiceContext, targets);
     }
 
     protected override void OnUpgrade()

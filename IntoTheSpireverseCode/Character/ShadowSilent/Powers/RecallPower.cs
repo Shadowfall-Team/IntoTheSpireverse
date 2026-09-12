@@ -50,7 +50,7 @@ public class RecallPower : ShadowPowerModel, ICardDestinationListener
             void MuddleAfterPlay()
             {
                 cardPlay.Card.Played -= MuddleAfterPlay;
-                _ = IntoTheSpireverseKeywords.ApplyMuddle(cardPlay.Card);
+                _ = IntoTheSpireverseKeywords.ApplyMuddle(choiceContext, cardPlay.Card);
             }
             cardPlay.Card.Played += MuddleAfterPlay;
             Flash();

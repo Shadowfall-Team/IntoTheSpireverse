@@ -19,7 +19,7 @@ public sealed class Undercut() : ShadowSilentCard(1, CardType.Attack, CardRarity
         new DamageVar(8m, ValueProp.Move),
         new DynamicVar(MuddleCountKey, 1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
@@ -34,13 +34,9 @@ public sealed class Undercut() : ShadowSilentCard(1, CardType.Attack, CardRarity
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        
+
         await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
-            choiceContext,
-            Owner,
-            this,
-            DynamicVars[MuddleCountKey].IntValue
-        );
+            choiceContext, Owner, this, DynamicVars[MuddleCountKey].IntValue);
     }
 
     protected override void OnUpgrade()
