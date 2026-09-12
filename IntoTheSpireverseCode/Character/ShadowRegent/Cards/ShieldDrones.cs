@@ -37,7 +37,7 @@ public class ShieldDrones() : ShadowRegentCard(1,
         var blockNextTurnAmount = Hook.ModifyBlock(CombatState, Owner.Creature, blockVar.BaseValue, blockVar.Props,
             this, cardPlay, out _);
         await PowerCmd.Apply<BlockNextTurnPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             blockNextTurnAmount,
             Owner.Creature,

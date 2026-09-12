@@ -15,7 +15,7 @@ public class ShardsNextTurnPower : ShadowPowerModel
         Player player)
     {
         if (player != Owner.Player) return;
-        await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
+        await PowerCmd.Apply<ShardsPower>(choiceContext, Owner, Amount, Owner, null);
         await PowerCmd.Remove(this);
     }
 }

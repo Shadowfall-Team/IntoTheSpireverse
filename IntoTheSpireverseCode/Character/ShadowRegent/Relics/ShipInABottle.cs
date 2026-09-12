@@ -27,7 +27,7 @@ public class ShipInABottle : ShadowRegentRelic
         Player player)
     {
         if (player != Owner) return;
-        await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<ShardsPower>(choiceContext,
             Owner.Creature,
             DynamicVars[nameof(ShardsPower)].BaseValue,
             Owner.Creature,

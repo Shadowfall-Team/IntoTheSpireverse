@@ -27,8 +27,8 @@ public sealed class BlindFury() : ShadowIroncladCard(2, CardType.Power, CardRari
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["StrengthPower"].BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<BlindFuryPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["BlindFuryPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, DynamicVars["StrengthPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<BlindFuryPower>(choiceContext, Owner.Creature, DynamicVars["BlindFuryPower"].BaseValue, Owner.Creature, this);
         PlayerCmd.EndTurn(Owner, false);
     }
 

@@ -36,7 +36,7 @@ public sealed class MoreMore() : ShadowNecrobinderCard(1, CardType.Power, CardRa
             combatRoom.AddExtraReward(Owner, new CardReward(CardCreationOptions.ForRoom(Owner, combatRoom.RoomType), 3, Owner));
         }
 
-        await PowerCmd.Apply<MoreMorePower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 1, Owner.Creature, this);
+        await PowerCmd.Apply<MoreMorePower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

@@ -33,7 +33,7 @@ public sealed class SonicBoom() : ShadowIroncladCard(1, CardType.Attack, CardRar
             .Execute(choiceContext);
 
         await PowerCmd.Apply<WeakPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             CombatState.HittableEnemies,
             DynamicVars.Weak.BaseValue,
             Owner.Creature, this);

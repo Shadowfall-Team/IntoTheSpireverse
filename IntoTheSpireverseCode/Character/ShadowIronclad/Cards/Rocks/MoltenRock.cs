@@ -31,7 +31,7 @@ public sealed class MoltenRock() : RockCardBase(1, CardType.Attack, CardRarity.T
             .Execute(choiceContext);
 
         await PowerCmd.Apply<GabbroPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<GabbroPower>().BaseValue,
             Owner.Creature, this);
     }

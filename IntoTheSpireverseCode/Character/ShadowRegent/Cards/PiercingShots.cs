@@ -32,7 +32,7 @@ public class PiercingShots() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<PiercingShotsPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             DynamicVars[nameof(PiercingShotsPower)].BaseValue,
             Owner.Creature,

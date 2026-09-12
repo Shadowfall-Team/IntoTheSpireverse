@@ -26,7 +26,7 @@ public sealed class Anoint() : ShadowSilentCard(0, CardType.Skill, CardRarity.Un
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<AnointPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<AnointPower>().BaseValue,
             Owner.Creature, this);
     }

@@ -34,11 +34,11 @@ public class IceBeam() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<IceBeamPower>(
-            new ThrowingPlayerChoiceContext(),play.Target,
+            choiceContext,play.Target,
             DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
         
         await PowerCmd.Apply<WeakPower>(
-            new ThrowingPlayerChoiceContext(),play.Target, DynamicVars.Weak.BaseValue,
+            choiceContext,play.Target, DynamicVars.Weak.BaseValue,
             Owner.Creature, this);
     }
 

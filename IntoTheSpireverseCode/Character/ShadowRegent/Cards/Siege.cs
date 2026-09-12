@@ -38,7 +38,7 @@ public class Siege() : ShadowRegentCard(
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
 
         await PowerCmd.Apply<SiegePower>(
-            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            choiceContext, Owner.Creature,
             DynamicVars[nameof(SiegePower)].BaseValue,
             Owner.Creature,
             this);

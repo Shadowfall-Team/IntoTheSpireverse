@@ -30,7 +30,7 @@ public sealed class Hubris() : ShadowNecrobinderCard(-1, CardType.Curse, CardRar
     {
         if (side != Owner.Creature.Side || Owner.PlayerCombatState?.TurnNumber > 1) return;
         await CreatureCmd.Damage(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             combatState.HittableEnemies,
             DynamicVars.Damage,
             Owner.Creature);

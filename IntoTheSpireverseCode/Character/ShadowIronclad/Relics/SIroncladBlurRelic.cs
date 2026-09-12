@@ -85,7 +85,7 @@ public class IronCestus : ShadowIroncladRelic
         return Task.CompletedTask;
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner) return;
         if (!CombatManager.Instance.IsInProgress) return;
@@ -97,7 +97,7 @@ public class IronCestus : ShadowIroncladRelic
         
         _ = TaskHelper.RunSafely(DoActivateVisuals());
         await PowerCmd.Apply<BlurPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<BlurPower>().BaseValue,
             Owner.Creature, null);
     }

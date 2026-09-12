@@ -28,7 +28,7 @@ public sealed class Temper() : ShadowIroncladCard(1, CardType.Power, CardRarity.
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<TemperPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars[RetaliationAmountKey].BaseValue,
             Owner.Creature, this);
     }

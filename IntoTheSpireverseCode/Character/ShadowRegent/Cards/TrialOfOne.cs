@@ -32,7 +32,7 @@ public class TrialOfOne() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<TrialOfOnePower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<TrialOfOnePower>(choiceContext,
             Owner.Creature,
             DynamicVars.Strength.BaseValue,
             Owner.Creature,

@@ -31,14 +31,14 @@ public class Trip() : CustomCardModel(0,
         if (IsUpgraded)
         {
             await PowerCmd.Apply<VulnerablePower>(
-                new ThrowingPlayerChoiceContext(),
+                choiceContext,
                 CombatState.HittableEnemies,
                 DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
         }
         else if (play.Target != null)
         {
             await PowerCmd.Apply<VulnerablePower>(
-                new ThrowingPlayerChoiceContext(),
+                choiceContext,
                 play.Target,
                 DynamicVars.Vulnerable.BaseValue, Owner.Creature, this);
         }

@@ -40,7 +40,7 @@ public sealed class FinalForm() : ShadowNecrobinderCard(3, CardType.Power, CardR
         if (target == null) return;
 
         await CardCmd.Exhaust(choiceContext, target);
-        var power = await PowerCmd.Apply<FinalFormPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, 5, Owner.Creature, this);
+        var power = await PowerCmd.Apply<FinalFormPower>(choiceContext, Owner.Creature, 5, Owner.Creature, this);
         power?.SetSelectedCard(target);
     }
 }

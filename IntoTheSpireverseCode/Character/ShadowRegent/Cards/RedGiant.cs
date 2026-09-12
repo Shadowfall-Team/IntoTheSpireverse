@@ -15,7 +15,7 @@ public class RedGiant() : ShadowRegentCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {
-        await PowerCmd.Apply<RedGiantRandomPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<RedGiantRandomPower>(choiceContext,
             Owner.Creature,
             1,
             Owner.Creature,

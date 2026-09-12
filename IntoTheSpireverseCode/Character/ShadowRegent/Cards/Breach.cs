@@ -34,7 +34,7 @@ public class Breach() : ShadowRegentCard(2,
             .Execute(choiceContext);
 
         await PowerCmd.Apply<BreachPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             DynamicVars["Increase"].BaseValue,
             Owner.Creature,
