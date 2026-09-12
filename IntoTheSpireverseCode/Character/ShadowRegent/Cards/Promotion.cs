@@ -31,13 +31,13 @@ public class Promotion() : ShadowRegentCard(
         }
 
         await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
+            choiceContext,Owner.Creature,
             powerAmount,
             Owner.Creature,
             this);
 
         await PowerCmd.Apply<DexterityPower>(
-            new ThrowingPlayerChoiceContext(),Owner.Creature,
+            choiceContext,Owner.Creature,
             powerAmount,
             Owner.Creature,
             this);

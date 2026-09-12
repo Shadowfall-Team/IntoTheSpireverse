@@ -30,7 +30,7 @@ public class CommBadge : ShadowRegentRelic
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
 
         await PowerCmd.Apply<VolleyDamagePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             DynamicVars[nameof(VolleyDamagePower)].BaseValue,
             Owner.Creature,

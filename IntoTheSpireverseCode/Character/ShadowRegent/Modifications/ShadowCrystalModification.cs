@@ -38,7 +38,7 @@ public sealed class ShadowCrystalModification : Modification
         var creature = Owner?.Owner?.Creature;
         if (creature == null) return;
 
-        await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<ShardsPower>(choiceContext,
             creature,
             DynamicVars[nameof(ShardsPower)].BaseValue,
             creature,

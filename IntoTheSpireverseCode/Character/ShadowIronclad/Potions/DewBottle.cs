@@ -31,7 +31,7 @@ public class DewBottle : IntoTheSpireversePotion
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
         await PowerCmd.Apply<SlatePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, null);
     }

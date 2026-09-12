@@ -17,7 +17,7 @@ public sealed class UnholyStrength() : ShadowDefectCard(0, CardType.Skill, CardR
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<SetupStrikePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             DynamicVars.Strength.BaseValue,
             Owner.Creature,

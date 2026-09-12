@@ -34,7 +34,7 @@ public sealed class Pride() : ShadowNecrobinderCard(-1, CardType.Curse, CardRari
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Creature.Side || Owner.PlayerCombatState?.TurnNumber > 1) return;
-        await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars.Dexterity.BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(choiceContext, Owner.Creature, DynamicVars.Dexterity.BaseValue, Owner.Creature, this);
     }
 }
 */

@@ -37,7 +37,7 @@ public class DefensiveCannonade() : ShadowRegentCard(
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
 
         var power = await PowerCmd.Apply<DefensiveCannonadePower>(
-            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            choiceContext, Owner.Creature,
             DynamicVars.Block.BaseValue,
             Owner.Creature,
             this);

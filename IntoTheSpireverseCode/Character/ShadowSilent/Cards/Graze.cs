@@ -29,7 +29,7 @@ public sealed class Graze() : ShadowSilentCard(2, CardType.Skill, CardRarity.Com
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<GrazePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Cards.BaseValue,
             Owner.Creature, this);
     }

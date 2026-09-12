@@ -18,7 +18,7 @@ public sealed class Jolt() : ShadowIroncladCard(2, CardType.Power, CardRarity.Un
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<JoltPower>(new ThrowingPlayerChoiceContext(), Owner.Creature, DynamicVars["JoltPower"].BaseValue, Owner.Creature, this);
+        await PowerCmd.Apply<JoltPower>(choiceContext, Owner.Creature, DynamicVars["JoltPower"].BaseValue, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

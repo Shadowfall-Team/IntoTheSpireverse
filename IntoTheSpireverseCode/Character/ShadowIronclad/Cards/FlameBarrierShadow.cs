@@ -30,7 +30,7 @@ public sealed class FlameBarrierShadow() : ShadowIroncladCard(2, CardType.Skill,
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<RetaliationPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<RetaliationPower>().BaseValue,
             Owner.Creature, this);
     }

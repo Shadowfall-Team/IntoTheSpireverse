@@ -55,7 +55,7 @@ public sealed class BloodLash() : ShadowIroncladCard(1, CardType.Attack, CardRar
             }
 
             await PowerCmd.Apply<BloodbondPower>(
-                new ThrowingPlayerChoiceContext(),
+                choiceContext,
                 cardPlay.Target, (decimal)totalDamage,
                 Owner.Creature, this);
         }

@@ -21,7 +21,7 @@ public sealed class Pebbleflinger() : ShadowIroncladCard(1, CardType.Power, Card
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<PebbleflingerPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, 1m,
             Owner.Creature, this);
     }

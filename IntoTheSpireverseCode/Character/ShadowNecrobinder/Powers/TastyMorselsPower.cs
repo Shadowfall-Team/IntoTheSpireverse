@@ -17,6 +17,6 @@ public class TastyMorselsPower : IntoTheSpireversePower
         if (card.Owner.Creature != Owner) return;
         if (!card.Keywords.Contains(CardKeyword.Ethereal)) return;
         Flash();
-        await PowerCmd.Apply<PlatingPower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
+        await PowerCmd.Apply<PlatingPower>(choiceContext, Owner, Amount, Owner, null);
     }
 }

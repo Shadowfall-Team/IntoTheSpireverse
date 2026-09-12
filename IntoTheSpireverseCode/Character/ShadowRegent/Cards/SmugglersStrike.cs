@@ -37,12 +37,11 @@ public class SmugglersStrike() : ShadowRegentCard(0,
             .Execute(choiceContext);
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext context,
-        CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card == this)
             await PowerCmd.Apply<SmugglersCargoPower>(
-                new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
+                choiceContext, Owner.Creature, 1,
                 Owner.Creature, this);
     }
 

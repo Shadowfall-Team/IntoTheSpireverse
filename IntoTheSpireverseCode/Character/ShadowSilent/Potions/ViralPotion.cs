@@ -35,7 +35,7 @@ public class ViralPotion : IntoTheSpireversePotion
         if (Owner.Creature.CombatState == null) return;
         var targets = Owner.Creature.CombatState.HittableEnemies;
         await PowerCmd.Apply<PoisonPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             targets,
             DynamicVars.Power<PoisonPower>().BaseValue,
             Owner.Creature, null);

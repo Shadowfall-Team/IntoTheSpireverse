@@ -40,7 +40,7 @@ public class BigBoom() : ShadowRegentCard(
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
 
         await PowerCmd.Apply<ShardsPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             DynamicVars[nameof(ShardsPower)].BaseValue,
             Owner.Creature,
