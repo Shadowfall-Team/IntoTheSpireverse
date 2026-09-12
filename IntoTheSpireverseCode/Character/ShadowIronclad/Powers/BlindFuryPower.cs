@@ -1,4 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -37,7 +39,7 @@ public sealed class BlindFuryPower : ShadowPowerModel
         await PlayerCmd.GainEnergy(EnergyGain, Owner.Player);
 
         bool hitLimit;
-        using (CardSelectCmd.PushSelector(new VakuuCardSelector()))
+        using (CardSelectCmdCompatibility.PushSelectorCompatibility(new VakuuCardSelector()))
         {
             int cardsPlayed = 0;
             while (cardsPlayed < MaxCardsToPlay &&
@@ -59,7 +61,7 @@ public sealed class BlindFuryPower : ShadowPowerModel
 
             if (cardsPlayed == 0)
             {
-                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1, null, null);
+                await PowerCmd.ModifyAmount(choiceContext, this, -1, null, null);
                 return;
             }
         }
@@ -70,7 +72,7 @@ public sealed class BlindFuryPower : ShadowPowerModel
                 : new LocString("relics", "WHISPERING_EARRING.approval"),
             Owner ,VfxColor.Purple);
 
-        await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1, null, null);
+        await PowerCmd.ModifyAmount(choiceContext, this, -1, null, null);
     }
 
     private Creature? GetTarget(CardModel card, ICombatState combatState)
