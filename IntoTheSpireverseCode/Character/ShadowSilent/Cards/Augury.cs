@@ -26,7 +26,7 @@ public sealed class Augury() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
         var drawn = await CardPileCmd.Draw(
             choiceContext, DynamicVars.Cards.BaseValue, Owner);
 
-        await IntoTheSpireverseKeywords.ApplyMuddleAll(drawn);
+        await IntoTheSpireverseKeywords.ApplyMuddleAll(choiceContext, drawn);
     }
 
     protected override void OnUpgrade()

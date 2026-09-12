@@ -19,15 +19,15 @@ public class FoulMiasmaPower : ShadowPowerModel, IntoTheSpireverseKeywords.ICard
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
         HoverTipFactory.FromPower<PoisonPower>(),
     ];
-    public async Task AfterCardMuddled(ICombatState combatState, CardModel cardModel)
+    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext, ICombatState combatState, CardModel cardModel)
     {
-        if (cardModel.Owner != Owner.Player) 
+        if (cardModel.Owner != Owner.Player)
             return;
         Flash();
         await Cmd.CustomScaledWait(0.2f, 0.4f);
@@ -37,7 +37,7 @@ public class FoulMiasmaPower : ShadowPowerModel, IntoTheSpireverseKeywords.ICard
           if (creatureNode != null)
             NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGaseousImpactVfx.Create(creatureNode.VfxSpawnPosition, new Color("83eb85")));
         }
-        await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, Amount, Owner, null);
-            
+        await PowerCmd.Apply<PoisonPower>(choiceContext, CombatState.HittableEnemies, Amount, Owner, null);
+
     }
 }
