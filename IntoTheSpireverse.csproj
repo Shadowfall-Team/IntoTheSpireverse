@@ -118,6 +118,30 @@
         <Error Text="Cannot copy build output to mods folder: neither '$(Sts2DataDir)' nor '$(ModsPath)' exists. Install STS2 locally or pass /p:ModsPath=... in CI."/>
     </Target>
 
+    <Target Name="UpdateBaselibVersionInManifest" BeforeTargets="BeforeBuild" Condition="Exists('$(ProjectAssetsFile)')">
+        <PropertyGroup>
+            <ManifestPath>$(MSBuildProjectDirectory)\$(MSBuildProjectName).json</ManifestPath>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="Exists('$(ManifestPath)')">
+            <NuGetData>$([System.IO.File]::ReadAllText('$(ProjectAssetsFile)'))</NuGetData>
+            <ActiveBaseLibVersion>$([System.Text.RegularExpressions.Regex]::Match($(NuGetData), '"Alchyr.Sts2.BaseLib\/([^"]*)').Result('$1'))</ActiveBaseLibVersion>
+            <OldContent>$([System.IO.File]::ReadAllText($(ManifestPath)))</OldContent>
+            <NewContent Condition="'$(ActiveBaseLibVersion)' != ''">$([System.Text.RegularExpressions.Regex]::Replace($(OldContent), '("id"\s*:\s*"BaseLib",\s*"min_version"\s*:\s*")[^"]*', '${1}$(ActiveBaseLibVersion)'))</NewContent>
+        </PropertyGroup>
+
+        <WriteLinesToFile
+                Condition="'$(ActiveBaseLibVersion)' != '' and '$(OldContent)' != '$(NewContent)'"
+                File="$(ManifestPath)"
+                Lines="$(NewContent)"
+                Overwrite="true"
+                Encoding="UTF-8" />
+
+        <Message Condition="'$(ActiveBaseLibVersion)' != '' and '$(OldContent)' != '$(NewContent)'"
+                 Text="Updated BaseLib dependency in manifest to version $(ActiveBaseLibVersion)"
+                 Importance="high" />
+    </Target>
+
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent"
         Condition="'$(IsInnerGodotExport)' != 'true'">
         <Message Text="Copying .dll .pdb and .json to mods folder." Importance="high" />
