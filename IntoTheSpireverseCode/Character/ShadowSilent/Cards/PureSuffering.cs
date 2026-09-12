@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -34,17 +35,20 @@ public sealed class PureSuffering() : ShadowSilentCard(0, CardType.Attack, CardR
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        if (CombatState == null) return;
 
-        // TODO: same situation as Haymaker, this time because of regent's card Arsenal
-        // need a composite attack command that can do something else after each hit
+        await using AttackContext attackContext = await AttackCommand.CreateContextAsync(CombatState, choiceContext, cardPlay);
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCardCompatibility(this, cardPlay)
-                .Targeting(cardPlay.Target)
-                .WithHitFx(VfxCmd.slashPath)
-                .Execute(choiceContext);
-            
+            VfxCmd.PlayOnCreatureCenter(cardPlay.Target, VfxCmd.slashPath);
+            attackContext.AddHit(await CreatureCmd.Damage(
+                choiceContext,
+                cardPlay.Target,
+                DynamicVars.Damage,
+                Owner.Creature,
+                this,
+                cardPlay
+            ));
             await Cmd.CustomScaledWait(0.1f, 0.25f);
             CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(CreateClone(), PileType.Discard, Owner), 2.2f);
         });
