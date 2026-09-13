@@ -6,9 +6,26 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.ArtRoller;
 
 [HarmonyPatch(typeof(NCard), "Reload")]
-[HarmonyPriority(Priority.Last)]
 public static class NCardPatch
 {
+    internal static void Prefix(NCard __instance)
+    {
+        if (!__instance.IsNodeReady() || __instance.Model is not {} model)
+            return;
+
+        if (model.Rarity == CardRarity.Ancient)
+        {
+            if (__instance.GetNodeOrNull<TextureRect>("%AncientPortrait") is not {} ancientPortrait) return;
+            ancientPortrait.FlipH = false;
+        }
+        else
+        {
+            if (__instance.GetNodeOrNull<TextureRect>("%Portrait") is not {} portrait) return;
+            portrait.FlipH = false;
+        }
+    }
+
+    [HarmonyPriority(Priority.Last)]
     internal static void Postfix(NCard __instance)
     {
         if (!__instance.IsNodeReady() || __instance.Model is not {} model || model.GetType().Assembly != typeof(MainFile).Assembly)
