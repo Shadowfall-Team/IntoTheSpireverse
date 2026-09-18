@@ -30,11 +30,11 @@ public sealed class BattleShoutModification : Modification, IModifyDamageAdditiv
     /// displayed damage rather than only appearing on hit.
     /// </summary>
     public decimal ModifyDamageAdditiveCompability(
-        Creature? target, 
-        decimal amount, 
-        ValueProp props, 
-        Creature? dealer, 
-        CardModel? cardSource, 
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource,
         CardPlay? cardPlay) =>
-        cardSource == Owner ? Amount : 0m;
+        cardSource == Owner && !props.HasFlag(ValueProp.Unpowered) ? Amount : 0m;
 }
