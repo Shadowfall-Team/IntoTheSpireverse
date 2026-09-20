@@ -28,13 +28,13 @@ public sealed class Obsidian() : ShadowIroncladCard(1, CardType.Skill, CardRarit
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<ObsidianPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<ObsidianPower>().BaseValue,
             Owner.Creature, this);
         if (IsUpgraded)
         {
             await PowerCmd.Apply<SlatePower>(
-                new ThrowingPlayerChoiceContext(),
+                choiceContext,
                 Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
                 Owner.Creature, this);
         }

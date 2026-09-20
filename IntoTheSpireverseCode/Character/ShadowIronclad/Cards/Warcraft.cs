@@ -21,7 +21,7 @@ public sealed class Warcraft() : ShadowIroncladCard(2, CardType.Power, CardRarit
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<WarcraftPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<WarcraftPower>().BaseValue,
             Owner.Creature, this);
     }

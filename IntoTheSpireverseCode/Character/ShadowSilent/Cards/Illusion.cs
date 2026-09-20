@@ -25,7 +25,7 @@ public sealed class Illusion() : ShadowSilentCard(0, CardType.Skill, CardRarity.
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<IllusionPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<IllusionPower>().BaseValue,
             Owner.Creature, this);
     }

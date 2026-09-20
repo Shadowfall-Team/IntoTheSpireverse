@@ -30,7 +30,7 @@ public class MassMunition() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<MassMunitionPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<MassMunitionPower>(choiceContext,
             Owner.Creature,
             DynamicVars["MassMunition"].BaseValue,
             Owner.Creature,

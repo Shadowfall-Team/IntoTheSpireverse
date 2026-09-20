@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
@@ -14,10 +15,10 @@ public class Mithridatium : ShadowSilentRelic, IntoTheSpireverseKeywords.IShould
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
     ];
-    
-    public async Task AfterCardMuddled(ICombatState combatState, CardModel card)
+
+    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext, ICombatState combatState, CardModel card)
     {
-        if (card.Owner != Owner) 
+        if (card.Owner != Owner)
             return;
         Flash();
     }

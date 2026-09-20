@@ -33,7 +33,7 @@ public class CaptainsHat : ShadowRegentRelic
     {
         if (player != Owner || player.PlayerCombatState?.TurnNumber > DynamicVars["Rounds"].IntValue) return;
         await PowerCmd.Apply<ShardsPower>(
-            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            choiceContext, Owner.Creature,
             DynamicVars.Power<ShardsPower>().BaseValue, Owner.Creature, null);
     }
 

@@ -13,7 +13,7 @@ public class SlateNextTurnPower : ShadowPowerModel
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(), Owner, Amount, Owner, null);
+        await PowerCmd.Apply<SlatePower>(choiceContext, Owner, Amount, Owner, null);
         await PowerCmd.Remove(this);
     }
 }

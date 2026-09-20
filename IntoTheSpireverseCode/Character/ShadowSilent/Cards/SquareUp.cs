@@ -30,7 +30,7 @@ public sealed class SquareUp() : ShadowSilentCard(1, CardType.Skill, CardRarity.
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<ConserveEnergyPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<ConserveEnergyPower>().BaseValue,
             Owner.Creature, this);
     }

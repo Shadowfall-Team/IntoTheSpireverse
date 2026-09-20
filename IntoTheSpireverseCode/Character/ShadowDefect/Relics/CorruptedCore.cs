@@ -39,7 +39,7 @@ public class CorruptedCore : ShadowDefectRelic
         var corruptedCore = this;
         if (side != corruptedCore.Owner.Creature.Side || Owner.PlayerCombatState?.TurnNumber > 1)
             return;
-        for (int i = 0; (Decimal) i < corruptedCore.DynamicVars["Entropy"].BaseValue; ++i)
-            await OrbCmd.Channel<EntropyOrb>((PlayerChoiceContext) new BlockingPlayerChoiceContext(), corruptedCore.Owner);
+        for (int i = 0; i < corruptedCore.DynamicVars["Entropy"].BaseValue; ++i)
+            await OrbCmd.Channel<EntropyOrb>(choiceContext, corruptedCore.Owner);
     }
 }

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
@@ -19,16 +20,16 @@ public class PrayerBeads : ShadowSilentRelic, IntoTheSpireverseKeywords.ICardMud
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
-    
-    public async Task AfterCardMuddled(ICombatState combatState, CardModel card)
+
+    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext, ICombatState combatState, CardModel card)
     {
-        if (card.Owner != Owner) 
+        if (card.Owner != Owner)
             return;
         Flash();
-        
+
         await CreatureCmd.GainBlock(Owner.Creature, GetEffectiveCost(card, Owner), ValueProp.Unpowered, null);
     }
-    
+
     private static int GetEffectiveCost(CardModel card, Player owner)
     {
         if (card.EnergyCost.CostsX)

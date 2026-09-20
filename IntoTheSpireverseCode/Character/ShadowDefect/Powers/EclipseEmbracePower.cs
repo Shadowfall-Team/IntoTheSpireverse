@@ -29,7 +29,7 @@ public sealed class EclipseEmbracePower : IntoTheSpireversePower
 			return;
 		}
 		Flash();
-		await PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount, base.Owner, null);
-		await PowerCmd.Apply<DrawCardsNextTurnPower>(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount, base.Owner, null);
+		await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
+		await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
 	}
 }

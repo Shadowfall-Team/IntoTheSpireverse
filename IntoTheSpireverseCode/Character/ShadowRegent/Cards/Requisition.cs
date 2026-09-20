@@ -35,9 +35,9 @@ public class Requisition() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<GainAmmoNextTurnPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<GainAmmoNextTurnPower>(choiceContext,
             Owner.Creature, DynamicVars.LoadAmmo.BaseValue, Owner.Creature, this);
-        await PowerCmd.Apply<EnergyNextTurnPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext,
             Owner.Creature, DynamicVars.Energy.BaseValue, Owner.Creature, this);
     }
 }

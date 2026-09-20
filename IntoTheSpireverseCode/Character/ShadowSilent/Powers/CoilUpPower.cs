@@ -14,12 +14,12 @@ public class CoilUpPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<PoisonPower>()
     ];
-    
+
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
         Creature target,
@@ -30,7 +30,7 @@ public class CoilUpPower : ShadowPowerModel
     {
         if (target != Owner || dealer == null || !props.IsPoweredAttack())
             return;
-        await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), dealer, Amount, Owner, null);
+        await PowerCmd.Apply<PoisonPower>(choiceContext, dealer, Amount, Owner, null);
         await PowerCmd.Remove(this);
     }
 

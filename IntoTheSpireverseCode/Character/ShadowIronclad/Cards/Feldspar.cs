@@ -33,7 +33,7 @@ public sealed class Feldspar() : ShadowIroncladCard(1, CardType.Attack, CardRari
             .WithHitFx(VfxCmd.bluntPath)
             .Execute(choiceContext);
         await PowerCmd.Apply<SlatePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, this);
     }

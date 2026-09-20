@@ -45,7 +45,7 @@ public class Bellows : ShadowIroncladRelic
             if (existingPower != null && existingPower.InstanceType == PowerInstanceType.None) // Todo check this is the same
             {
                 DoHackyThingsForSpecificPowers(existingPower);
-                await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(),
+                await PowerCmd.ModifyAmount(choiceContext,
                     existingPower, (decimal)debuff.Amount,
                     Owner.Creature, null);
             }
@@ -53,7 +53,7 @@ public class Bellows : ShadowIroncladRelic
             {
                 var power = (PowerModel)debuff.ClonePreservingMutability();
                 DoHackyThingsForSpecificPowers(power);
-                await PowerCmd.Apply(new ThrowingPlayerChoiceContext(),
+                await PowerCmd.Apply(choiceContext,
                     power, recipient, (decimal)debuff.Amount,
                     Owner.Creature, null);
             }

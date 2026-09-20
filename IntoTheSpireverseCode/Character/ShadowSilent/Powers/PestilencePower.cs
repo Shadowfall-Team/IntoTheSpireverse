@@ -7,11 +7,9 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
@@ -19,13 +17,12 @@ public class PestilencePower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<PoisonPower>()
     ];
-    
-    
+
     public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side || Owner.Player == null) return;
@@ -38,7 +35,7 @@ public class PestilencePower : ShadowPowerModel
             if (creatureNode != null)
                 NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGaseousImpactVfx.Create(creatureNode.VfxSpawnPosition, new Color("83eb85")));
         }
-        await PowerCmd.Apply<PoisonPower>(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, PileType.Hand.GetPile(Owner.Player).Cards.Count * Amount, Owner, null);
+        await PowerCmd.Apply<PoisonPower>(choiceContext, CombatState.HittableEnemies, PileType.Hand.GetPile(Owner.Player).Cards.Count * Amount, Owner, null);
     }
 
 }

@@ -43,7 +43,7 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
             DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
         
         await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
     }

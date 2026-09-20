@@ -15,10 +15,10 @@ public sealed class TemperPower : ShadowPowerModel
         HoverTipFactory.FromPower<RetaliationPower>(),
     ];
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner.Player || cardPlay.Card.Type != CardType.Skill) return;
         Flash();
-        await PowerCmd.Apply<RetaliationPower>(new ThrowingPlayerChoiceContext(), Owner, (decimal)Amount, Owner, null);
+        await PowerCmd.Apply<RetaliationPower>(choiceContext, Owner, Amount, Owner, null);
     }
 }

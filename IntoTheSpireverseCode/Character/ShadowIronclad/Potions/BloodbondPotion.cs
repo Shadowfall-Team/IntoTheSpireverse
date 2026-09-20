@@ -35,7 +35,7 @@ public class BloodbondPotion : IntoTheSpireversePotion
         if (Owner.Creature.CombatState == null) return;
         var targets = Owner.Creature.CombatState.HittableEnemies;
         await PowerCmd.Apply<BloodbondPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             targets,
             DynamicVars.Power<BloodbondPower>().BaseValue,
             Owner.Creature, null);

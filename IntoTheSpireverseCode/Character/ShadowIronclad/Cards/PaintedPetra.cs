@@ -31,7 +31,7 @@ public sealed class PaintedPetra() : ShadowIroncladCard(1, CardType.Skill, CardR
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<SlatePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, this);
 

@@ -38,7 +38,7 @@ public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRar
             .Execute(choiceContext);
 
         await PowerCmd.Apply<LandslidePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             cardPlay.Target, DynamicVars[StrengthLossKey].BaseValue,
             Owner.Creature, this);
     }
