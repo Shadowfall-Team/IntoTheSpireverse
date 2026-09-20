@@ -14,10 +14,12 @@ public class ShieldDrones() : ShadowRegentCard(1,
     CardRarity.Common,
     TargetType.Self)
 {
+    private const string BlockNextTurnKey = nameof(BlockNextTurnPower);
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(8, ValueProp.Move),
-        new BlockVar("BlockNextTurnPower", 4, ValueProp.Move)
+        new BlockVar(BlockNextTurnKey, 4, ValueProp.Move)
     ];
 
     protected override bool ShouldGlowGoldInternal => HasColorlessInHand;
@@ -33,7 +35,7 @@ public class ShieldDrones() : ShadowRegentCard(1,
 
         if (!HasColorlessInHand) return;
 
-        var blockVar = (BlockVar)DynamicVars["BlockNextTurn"];
+        var blockVar = (BlockVar)DynamicVars[nameof(BlockNextTurnKey)];
         var blockNextTurnAmount = Hook.ModifyBlock(CombatState, Owner.Creature, blockVar.BaseValue, blockVar.Props,
             this, cardPlay, out _);
         await PowerCmd.Apply<BlockNextTurnPower>(
@@ -47,7 +49,7 @@ public class ShieldDrones() : ShadowRegentCard(1,
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2);
-        DynamicVars["BlockNextTurnPower"].UpgradeValueBy(1);
+        DynamicVars[BlockNextTurnKey].UpgradeValueBy(1);
     }
 
     private bool HasColorlessInHand =>
