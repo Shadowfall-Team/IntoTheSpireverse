@@ -16,6 +16,8 @@ public class CardCmdCompatibility
     }
 
     // Exhaust command compat
+    // This is probably more prone to breakage than lamali's impl, but i'm not sure where it would actually break?
+    // (see https://github.com/lamali292/Downfall/blob/main/DownfallCode/Compatibility/CardCmdCompatibility.cs)
     public static async Task<CardPileAddResult?> Exhaust(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal = false, bool skipVisuals = false)
     {
         var classInfo = typeof(CardCmd);
@@ -23,19 +25,17 @@ public class CardCmdCompatibility
             [typeof(PlayerChoiceContext), typeof(CardModel), typeof(bool), typeof(bool)])
             ?? throw new MissingMethodException("CardCmd.Exhaust overload not recognised");
 
-        var returnType = exhaustMethod.ReturnType;
-        if (returnType == typeof(Task<CardPileAddResult>))
+        if (exhaustMethod.ReturnType == typeof(Task<CardPileAddResult?>))
         {
-            return await (Task<CardPileAddResult>)exhaustMethod.Invoke(null, [choiceContext, card, causedByEthereal, skipVisuals]);
+            return await (Task<CardPileAddResult?>)exhaustMethod.Invoke(null, [choiceContext, card, causedByEthereal, skipVisuals]);
         }
-        else if (returnType == typeof(Task))
+
+        if (exhaustMethod.ReturnType.IsAssignableTo(typeof(Task)))
         {
             await (Task)exhaustMethod.Invoke(null, [choiceContext, card, causedByEthereal, skipVisuals]);
             return null;
         }
-        else
-        {
-            return null;
-        }
+
+        throw new MissingMethodException($"CardCmd.Exhaust return type not expected {exhaustMethod.ReturnType}");
     }
 }
