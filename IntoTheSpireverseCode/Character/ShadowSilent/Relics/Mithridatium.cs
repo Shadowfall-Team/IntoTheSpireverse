@@ -15,7 +15,7 @@ public class Mithridatium : ShadowSilentRelic, IShouldPermanentMuddleListener
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
     ];
-    
+
     public bool ShouldPermanentMuddle(CardModel card)
     {
         return card.Owner == Owner;

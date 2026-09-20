@@ -7,5 +7,4 @@ public class ShadowIroncladRelicPool : CustomRelicPoolModel
 {
     public override string EnergyColorName => ShadowIronclad.CharacterId;
     public override Color LabOutlineColor => ShadowIronclad.Color;
-    
 }

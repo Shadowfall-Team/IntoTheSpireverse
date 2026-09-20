@@ -48,5 +48,5 @@ public class SoulBrand : ShadowSilentRelic
             }); 
         await CardPileCmd.AddGeneratedCardsToCombat(cards ?? [], PileType.Hand, Owner);
     }
-    
+
 }
