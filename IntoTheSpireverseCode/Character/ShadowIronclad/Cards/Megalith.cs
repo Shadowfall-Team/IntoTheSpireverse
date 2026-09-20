@@ -27,7 +27,7 @@ public sealed class Megalith() : ShadowIroncladCard(2, CardType.Power, CardRarit
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<StoneHealthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<StoneHealthPower>().BaseValue,
             Owner.Creature, this);
     }

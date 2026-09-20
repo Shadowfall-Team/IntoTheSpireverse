@@ -30,7 +30,7 @@ public class Armada() : ShadowRegentCard(
             await LoadAmmoCmd.LoadAmmo(1, Owner, this);
         }
 
-        await PowerCmd.Apply<ArmadaPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<ArmadaPower>(choiceContext,
             Owner.Creature,
             1,
             Owner.Creature,

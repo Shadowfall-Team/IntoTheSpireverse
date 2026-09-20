@@ -16,16 +16,9 @@ public class SpeedHarvestPower : ShadowPowerModel
         Creature target,
         DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
-        if (target == Owner)
+        if (target == Owner && result.UnblockedDamage < 1)
         {
-            if (result.UnblockedDamage < 1)
-            {
-                await PowerCmd.Apply<ShardsPower>(
-                    new ThrowingPlayerChoiceContext(),Owner,
-                    Amount,
-                    Owner,
-                    null);
-            }
+            await PowerCmd.Apply<ShardsPower>(choiceContext, Owner, Amount, Owner, null);
         }
     }
 }

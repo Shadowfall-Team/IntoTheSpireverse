@@ -42,7 +42,7 @@ public sealed class GhostRock() : RockCardBase(1, CardType.Attack, CardRarity.To
             .WithHitFx(VfxCmd.rockShatterPath, tmpSfx: TmpSfx.bluntAttack)
             .Execute(choiceContext);
         await PowerCmd.Apply<GhostRockTemporaryStrengthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             cardPlay.Target, DynamicVars[StrengthLossKey].BaseValue,
             Owner.Creature, this);
     }

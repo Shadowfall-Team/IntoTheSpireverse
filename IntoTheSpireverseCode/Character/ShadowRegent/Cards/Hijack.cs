@@ -50,9 +50,9 @@ public class Hijack() : ShadowRegentCard(
 
         if (stolenStrength > 0)
         {
-            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(),
+            await PowerCmd.Apply<StrengthPower>(choiceContext,
                 target, -stolenStrength, Owner.Creature, this);
-            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(),
+            await PowerCmd.Apply<StrengthPower>(choiceContext,
                 Owner.Creature, stolenStrength, Owner.Creature, this);
         }
 
@@ -64,7 +64,7 @@ public class Hijack() : ShadowRegentCard(
             await CreatureCmd.GainBlock(Owner.Creature, stolenBlock, ValueProp.Unpowered, cardPlay);
         }
 
-        await PowerCmd.Apply<ShardsPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<ShardsPower>(choiceContext,
             Owner.Creature, DynamicVars[nameof(ShardsPower)].BaseValue, Owner.Creature, this);
     }
 

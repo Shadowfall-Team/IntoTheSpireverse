@@ -140,33 +140,33 @@ public static class IntoTheSpireverseKeywords
         return !card.Keywords.Contains(CardKeyword.Unplayable)
                && !card.EnergyCost.CostsX;
     }
-    
+
     public interface IMuddleListener
     {
         Task OnMuddled();
     }
-    
+
     public interface ICardMuddledListener
     {
-        Task AfterCardMuddled(ICombatState combatState, CardModel cardModel);
+        Task AfterCardMuddled(PlayerChoiceContext choiceContext, ICombatState combatState, CardModel cardModel);
     }
-    
+
     public interface IShouldPermanentMuddleListener
     {
         bool ShouldPermanentMuddle(CardModel card);
     }
-    
+
     public interface IModifyDeviousListener
     {
         int ModifyDeviousValue(CardModel card, int originalValue);
     }
-    
+
     public interface IDeviousDiscardListener
     {
         int ModifyDeviousDiscard(int originalAmount);
     }
 
-    public static async Task<CardModel?> ApplyMuddle(CardModel card)
+    public static async Task<CardModel?> ApplyMuddle(PlayerChoiceContext choiceContext, CardModel card)
     {
         if (card.Owner.Creature.CombatState == null) return null;
         if (!CanMuddle(card))
@@ -192,18 +192,18 @@ public static class IntoTheSpireverseKeywords
         }
 
         bool permanentMuddle = false;
-        
+
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is IShouldPermanentMuddleListener muddleListener)
                 permanentMuddle |= muddleListener.ShouldPermanentMuddle(card);
         }
-        
+
         if (permanentMuddle)
             card.EnergyCost.SetThisCombat(newCost);
         else
             card.EnergyCost.SetThisTurnOrUntilPlayed(newCost);
-        
+
         NCard.FindOnTable(card)?.PlayRandomizeCostAnim();
 
         if (card is IMuddleListener listener)
@@ -212,32 +212,29 @@ public static class IntoTheSpireverseKeywords
         foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
         {
             if (model is ICardMuddledListener powerListener)
-                await powerListener.AfterCardMuddled(card.Owner.Creature.CombatState, card);
+                await powerListener.AfterCardMuddled(choiceContext, card.Owner.Creature.CombatState, card);
         }
         return card;
     }
 
-    public static async Task<IEnumerable<CardModel>> ApplyMuddleAll(IEnumerable<CardModel> cards)
+    public static async Task<IEnumerable<CardModel>> ApplyMuddleAll(PlayerChoiceContext choiceContext, IEnumerable<CardModel> cards)
     {
         List<CardModel> _cards = [];
         foreach (var card in cards)
         {
-            var _card = await ApplyMuddle(card);
+            var _card = await ApplyMuddle(choiceContext, card);
             if (_card is not null)
                 _cards.Add(_card);
         }
         return _cards.Count == 0 ? [] : (IEnumerable<CardModel>)_cards;
     }
 
-    public static async Task<IEnumerable<CardModel>> ApplyMuddleHand(Player player)
+    public static async Task<IEnumerable<CardModel>> ApplyMuddleHand(PlayerChoiceContext choiceContext, Player player)
     {
-        return await ApplyMuddleAll(
-            PileType.Hand.GetPile(player).Cards
-                .Where(CanMuddle)
-        );
+        return await ApplyMuddleAll(choiceContext, PileType.Hand.GetPile(player).Cards.Where(CanMuddle));
     }
 
-    public static async Task<IEnumerable<CardModel>> ApplyMuddleRandom(Player player, int count, Rng rng)
+    public static async Task<IEnumerable<CardModel>> ApplyMuddleRandom(PlayerChoiceContext choiceContext, Player player, int count, Rng rng)
     {
         var eligible = PileType.Hand.GetPile(player).Cards
             .Where(CanMuddle)
@@ -249,7 +246,7 @@ public static class IntoTheSpireverseKeywords
             var card = rng.NextItem(eligible);
             if (card != null)
             {
-                await ApplyMuddle(card);
+                await ApplyMuddle(choiceContext, card);
                 _cards.Add(card);
                 eligible.Remove(card);
             }
@@ -276,7 +273,7 @@ public static class IntoTheSpireverseKeywords
         );
 
         foreach (var card in selected ?? [])
-            await ApplyMuddle(card);
+            await ApplyMuddle(choiceContext, card);
 
         return selected ?? [];
     }

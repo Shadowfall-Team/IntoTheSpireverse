@@ -34,7 +34,7 @@ public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Attack, CardRar
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
         await PowerCmd.Apply<RetaliationPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<RetaliationPower>().BaseValue,
             Owner.Creature, this);
     }

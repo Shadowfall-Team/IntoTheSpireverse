@@ -1,5 +1,4 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,7 +19,7 @@ public sealed class Stimulant() : ShadowSilentCard(0, CardType.Skill, CardRarity
         new DynamicVar(MuddleCountKey, 1m),
     ];
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
@@ -29,17 +28,10 @@ public sealed class Stimulant() : ShadowSilentCard(0, CardType.Skill, CardRarity
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        await CardPileCmd.Draw(
-            choiceContext, 
-            DynamicVars.Cards.BaseValue, 
-            Owner);
-        
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+
         await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
-            choiceContext,
-            Owner,
-            this,
-            DynamicVars[MuddleCountKey].IntValue
-        );
+            choiceContext, Owner, this, DynamicVars[MuddleCountKey].IntValue);
     }
 
     protected override void OnUpgrade()

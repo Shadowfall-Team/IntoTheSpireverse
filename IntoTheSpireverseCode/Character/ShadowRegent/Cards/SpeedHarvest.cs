@@ -32,12 +32,12 @@ public class SpeedHarvest() : ShadowRegentCard(
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
 
-        await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), Owner.Creature,
+        await PowerCmd.Apply<DexterityPower>(choiceContext, Owner.Creature,
             DynamicVars.Dexterity.BaseValue,
             Owner.Creature,
             this);
         await PowerCmd.Apply<SpeedHarvestPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             1,
             Owner.Creature,

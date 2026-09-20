@@ -41,7 +41,7 @@ public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRar
     public async Task OnSlateSpent(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
     }

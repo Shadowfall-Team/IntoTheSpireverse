@@ -60,7 +60,7 @@ public sealed class Lacerate() : ShadowIroncladCard(1, CardType.Attack, CardRari
             }
 
             await PowerCmd.Apply<BloodbondPower>(
-                new ThrowingPlayerChoiceContext(),
+                choiceContext,
                 cardPlay.Target, (decimal)totalDamage,
                 Owner.Creature, this);
         }

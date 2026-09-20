@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Modding;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
+using IntoTheSpireverse.IntoTheSpireverseCode.Metrics;
 #if DEFECT
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 #endif
@@ -59,5 +60,7 @@ public partial class MainFile : Node
             var cursorTexture = ResourceLoader.Load<Resource>(customCursorPath);
             Input.SetCustomMouseCursor(cursorTexture, Input.CursorShape.PointingHand, customHotspot);
         }
+
+        ModManager.OnMetricsUpload += MetricsUploader.Handle;
     }
 }

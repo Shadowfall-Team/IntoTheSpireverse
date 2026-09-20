@@ -34,7 +34,7 @@ public class GabbroPotion : IntoTheSpireversePotion
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
         await PowerCmd.Apply<GabbroPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<GabbroPower>().BaseValue,
             Owner.Creature, null);
 

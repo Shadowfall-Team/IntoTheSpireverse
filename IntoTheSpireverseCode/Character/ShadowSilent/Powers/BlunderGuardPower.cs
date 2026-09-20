@@ -1,5 +1,4 @@
-﻿
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -54,7 +53,7 @@ public class BlunderGuardPower : ShadowPowerModel, IHasSecondAmount
             Owner, Amount, ValueProp.Unpowered, null);
 
         await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(), Owner,
+            choiceContext, Owner,
             DynamicVars[StrengthKey].BaseValue,
             Owner, null);
     }

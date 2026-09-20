@@ -26,7 +26,7 @@ public sealed class SlitherModification : Modification
     {
         if (card != Owner || Owner.Pile == null || Owner.Pile.Type != PileType.Hand)
             return;
-        await IntoTheSpireverseKeywords.ApplyMuddle(Owner);
+        await IntoTheSpireverseKeywords.ApplyMuddle(choiceContext, Owner);
         return;
     }
 

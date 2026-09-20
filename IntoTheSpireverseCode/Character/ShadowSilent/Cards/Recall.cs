@@ -37,7 +37,7 @@ public sealed class Recall() : ShadowSilentCard(1, CardType.Attack, CardRarity.U
             .Execute(choiceContext);
         
         await PowerCmd.Apply<RecallPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<RecallPower>().BaseValue,
             Owner.Creature, this);
     }

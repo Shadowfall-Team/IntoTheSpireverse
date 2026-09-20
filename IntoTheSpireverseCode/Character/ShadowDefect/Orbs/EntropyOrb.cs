@@ -36,9 +36,9 @@ public class EntropyOrb : PlaceholderOrbModel
             PassiveVal, ValueProp.Unpowered, Owner.Creature);
     }
 
-    public override async Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext playerChoiceContext)
+    public override async Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext choiceContext)
     {
-        await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<StrengthPower>(choiceContext,
             target: Owner.Creature, amount: EvokeVal, applier: Owner.Creature, cardSource: null);
 
         Creature[] targets = [Owner.Creature];

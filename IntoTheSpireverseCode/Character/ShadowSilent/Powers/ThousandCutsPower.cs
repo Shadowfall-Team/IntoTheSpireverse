@@ -13,7 +13,6 @@ public class ThousandCutsPower : ShadowPowerModel
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-
     protected override object InitInternalData() => new Data();
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
@@ -24,21 +23,19 @@ public class ThousandCutsPower : ShadowPowerModel
         return Task.CompletedTask;
     }
 
-
     public override async Task AfterCardPlayed(
         PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int amount;
         if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
             return;
-        
+
         VfxCmd.PlayOnCreatureCenters(CombatState.HittableEnemies, VfxCmd.slashPath);
         SfxCmd.Play(TmpSfx.slashAttack);
 
         Flash();
-        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, amount, ValueProp.Unpowered, Owner);
+        await CreatureCmd.Damage(choiceContext, CombatState.HittableEnemies, amount, ValueProp.Unpowered, Owner);
     }
-    
 
     private class Data
     {

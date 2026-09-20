@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -10,7 +9,6 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
-
 
 public sealed class Wonder() : ShadowSilentCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
@@ -23,7 +21,7 @@ public sealed class Wonder() : ShadowSilentCard(0, CardType.Skill, CardRarity.Un
         new DynamicVar(MuddleCountKey, 1m),
         new EnergyVar(2),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
@@ -32,16 +30,15 @@ public sealed class Wonder() : ShadowSilentCard(0, CardType.Skill, CardRarity.Un
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var muddledCards = await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
-            choiceContext,
-            Owner,
-            this,
-            DynamicVars[MuddleCountKey].IntValue
-        );
+            choiceContext, Owner, this, DynamicVars[MuddleCountKey].IntValue);
+
         foreach (var card in muddledCards)
+        {
             if (GetEffectiveCost(card, card.Owner) >= DynamicVars.Energy.IntValue)
             {
                 await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             }
+        }
     }
 
     private static int GetEffectiveCost(CardModel card, Player owner)
@@ -50,7 +47,7 @@ public sealed class Wonder() : ShadowSilentCard(0, CardType.Skill, CardRarity.Un
             return owner.PlayerCombatState?.Energy ?? 0;
         return card.EnergyCost.GetWithModifiers(CostModifiers.All);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2m);

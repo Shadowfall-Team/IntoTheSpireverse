@@ -24,7 +24,7 @@ public sealed class KnifesEdge() : ShadowDefectCard(0, CardType.Skill, CardRarit
     {
         if (CombatState == null) return;
         await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature,
             DynamicVars.Strength.BaseValue,
             Owner.Creature,

@@ -33,7 +33,7 @@ public class RousingSpeech() : ShadowRegentCard(
 
         if (CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count > 0)
         {
-        await PowerCmd.Apply<RousingSpeechTemporaryStrengthPower>(new ThrowingPlayerChoiceContext(),
+        await PowerCmd.Apply<RousingSpeechTemporaryStrengthPower>(choiceContext,
             Owner.Creature,
             CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count,
             Owner.Creature,

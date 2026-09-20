@@ -55,7 +55,7 @@ public sealed class Torment() : ShadowIroncladCard(2, CardType.Skill, CardRarity
             }
 
             await PowerCmd.Apply<BloodbondPower>(
-                new ThrowingPlayerChoiceContext(),
+                choiceContext,
                 enemy, DynamicVars.Power<BloodbondPower>().BaseValue,
                 Owner.Creature, this);
         }

@@ -25,7 +25,7 @@ public class Grapeshot() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<GrapeshotPower>(
-            new ThrowingPlayerChoiceContext(), Owner.Creature,
+            choiceContext, Owner.Creature,
             1,
             Owner.Creature,
             this);
