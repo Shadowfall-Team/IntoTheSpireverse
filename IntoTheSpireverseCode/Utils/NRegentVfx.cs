@@ -116,7 +116,7 @@ public partial class NRegentVfx : Node
       _weaponAnimState2?.SetAnimation("attack2", false);
       _curWeapon = 1;
     }
-  }
+}
 
   /// <summary>
   /// Check if we want to make sure we turn off any vfx between animations. We have to do this if the animation that

@@ -27,5 +27,5 @@ public class ConserveEnergyPower : ShadowPowerModel
             return;
         await PowerCmd.TickDownDuration(this);
     }
-    
+
 }
