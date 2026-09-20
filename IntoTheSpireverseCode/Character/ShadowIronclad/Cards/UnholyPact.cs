@@ -30,7 +30,7 @@ public sealed class UnholyPact() : ShadowIroncladCard(1, CardType.Skill, CardRar
     {
         if (cardPlay.Target == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        VfxCmd.PlayOnCreatureCenter(Owner.Creature, "vfx/vfx_bloody_impact");
+        VfxCmd.PlayOnCreatureCenter(Owner.Creature, VfxCmd.bloodyImpactPath);
         await PowerCmd.Apply<BloodbondPower>(
             new ThrowingPlayerChoiceContext(),
             cardPlay.Target, DynamicVars.Power<BloodbondPower>().BaseValue,

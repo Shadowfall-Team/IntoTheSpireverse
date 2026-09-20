@@ -1,3 +1,4 @@
+using MegaCrit.Sts2.Core.Audio.Debug;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -40,7 +41,7 @@ public sealed class Hammer() : ShadowIroncladCard(3, CardType.Attack, CardRarity
             .Targeting(cardPlay.Target)
             .WithAttackerAnim(Ironclad.GetHeavyAnimIfApplicable(Owner.Character),
                 Ironclad.GetHeavyAttackDelayIfApplicable(Owner.Character))
-            .WithHitFx("vfx/vfx_heavy_blunt", null, "heavy_attack.mp3")
+            .WithHitFx(VfxCmd.heavyBluntPath, null, TmpSfx.heavyAttack)
             .WithHitVfxSpawnedAtBase()
             .Execute(choiceContext);
     }

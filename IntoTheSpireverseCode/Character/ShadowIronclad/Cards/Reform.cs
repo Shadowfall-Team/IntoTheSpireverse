@@ -1,4 +1,5 @@
-﻿using BaseLib.Utils;
+﻿using MegaCrit.Sts2.Core.Animation;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
@@ -31,7 +32,7 @@ public sealed class Reform() : ShadowIroncladCard(1, CardType.Skill, CardRarity.
     {
         if (CombatState == null) return;
 
-        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         // Snapshot first: each play mutates the Exhaust pile as cards leave and re-enter it.
         var attacks = PileType.Exhaust.GetPile(Owner).Cards

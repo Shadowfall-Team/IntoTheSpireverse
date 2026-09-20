@@ -28,6 +28,5 @@ public sealed class GroundswellPower : ShadowPowerModel
         await PowerCmd.Apply<StrengthPower>(
             new ThrowingPlayerChoiceContext(),
             Owner, Amount, Owner, null);
-        await PlayerCmd.GainEnergy(Amount, Owner.Player);
     }
 }

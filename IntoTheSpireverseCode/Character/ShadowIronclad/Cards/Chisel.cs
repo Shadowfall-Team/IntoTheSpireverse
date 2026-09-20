@@ -34,12 +34,12 @@ public sealed class Chisel() : ShadowIroncladCard(1, CardType.Attack, CardRarity
 
         await ScryCmd.Execute(choiceContext, this);
 
+        // Deliberately not previewed. The top card of the Draw Pile is hidden information, and
+        // CardCmd.Preview would flash it on screen, telling the player exactly what they are about
+        // to draw. The upgrade still lands; they just find out when they draw it.
         var top = PileType.Draw.GetPile(Owner).Cards.FirstOrDefault();
         if (top is { IsUpgradable: true })
-        {
             CardCmd.Upgrade(top);
-            CardCmd.Preview(top);
-        }
     }
 
     protected override void OnUpgrade()
