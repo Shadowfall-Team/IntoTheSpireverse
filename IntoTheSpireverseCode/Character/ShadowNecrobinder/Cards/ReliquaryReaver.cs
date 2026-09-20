@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -52,7 +53,7 @@ public sealed class ReliquaryReaver() : ShadowNecrobinderCard(2, CardType.Attack
         {
             await CardPileCmd.RemoveFromDeck(DeckVersion);
         }
-        await CardCmd.Exhaust(choiceContext, this);
+        await CardCmdCompatibility.Exhaust(choiceContext, this);
     }
 
     protected override void OnUpgrade() { }

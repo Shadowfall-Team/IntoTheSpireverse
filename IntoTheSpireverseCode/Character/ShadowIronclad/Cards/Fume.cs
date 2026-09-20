@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
@@ -26,7 +27,7 @@ public sealed class Fume() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Co
         if (topCard == null) return;
 
         var topCardCost = topCard.EnergyCost.GetResolved();
-        await CardCmd.Exhaust(choiceContext, topCard);
+        await CardCmdCompatibility.Exhaust(choiceContext, topCard);
 
         await PowerCmd.Apply<StrengthPower>(
                 choiceContext,

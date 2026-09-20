@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -32,7 +33,7 @@ public sealed class TheEndIsComing() : ShadowNecrobinderCard(1, CardType.Attack,
                 .TargetingAllOpponents(CombatState)
                 .WithHitFx("vfx/vfx_giant_horizontal_slash")
                 .Execute(choiceContext);
-            await CardCmd.Exhaust(choiceContext, this);
+            await CardCmdCompatibility.Exhaust(choiceContext, this);
         }
     }
 

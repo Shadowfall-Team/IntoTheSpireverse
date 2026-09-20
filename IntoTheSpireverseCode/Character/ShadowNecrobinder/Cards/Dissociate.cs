@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -35,7 +36,7 @@ public sealed class Dissociate() : ShadowNecrobinderCard(1, CardType.Skill, Card
                 new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1)))
             .FirstOrDefault();
         if (card == null) return;
-        await CardCmd.Exhaust(choiceContext, card);
+        await CardCmdCompatibility.Exhaust(choiceContext, card);
     }
 
     protected override void OnUpgrade()

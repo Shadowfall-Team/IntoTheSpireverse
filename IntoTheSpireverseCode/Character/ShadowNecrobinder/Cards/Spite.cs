@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -36,7 +37,7 @@ public sealed class Spite() : ShadowNecrobinderCard(0, CardType.Skill, CardRarit
             .ToList();
         foreach (var card in unplayables)
         {
-            await CardCmd.Exhaust(choiceContext, card);
+            await CardCmdCompatibility.Exhaust(choiceContext, card);
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
         }

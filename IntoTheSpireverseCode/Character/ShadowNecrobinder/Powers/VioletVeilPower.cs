@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -30,7 +31,7 @@ public class VioletVeilPower : IntoTheSpireversePower
         if (card == null) return;
 
         Flash();
-        await CardCmd.Exhaust(choiceContext, card);
+        await CardCmdCompatibility.Exhaust(choiceContext, card);
 
         if (card.Type == CardType.Curse)
         {
