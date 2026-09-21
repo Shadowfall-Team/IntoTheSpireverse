@@ -1,3 +1,4 @@
+using System.Reflection;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -9,6 +10,13 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 public static class AttackContextCompatibility
 {
+
+    private static readonly MethodInfo _mainMethod = AccessTools.Method(typeof(AttackCommand), nameof(AttackCommand.CreateContextAsync),
+        [typeof(ICombatState), typeof(PlayerChoiceContext), typeof(CardModel)]);
+
+    private static readonly MethodInfo _betaMethod = AccessTools.Method(typeof(AttackCommand), nameof(AttackCommand.CreateContextAsync),
+        [typeof(ICombatState), typeof(PlayerChoiceContext), typeof(CardPlay)]);
+
     /// <summary>
     /// Compatibility wrapper for main/beta branch methods.
     /// Third param <paramref name="cardPlay"/> is <see cref="CardModel"/> cardSource on main branch,
@@ -16,19 +24,14 @@ public static class AttackContextCompatibility
     /// </summary>
     public static async Task<AttackContext> CreateContextAsync(ICombatState combatState, PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var mainMethod = AccessTools.Method(typeof(AttackCommand), nameof(AttackCommand.CreateContextAsync),
-            [typeof(ICombatState), typeof(PlayerChoiceContext), typeof(CardModel)]);
-        var betaMethod = AccessTools.Method(typeof(AttackCommand), nameof(AttackCommand.CreateContextAsync),
-            [typeof(ICombatState), typeof(PlayerChoiceContext), typeof(CardPlay)]);
-
-        if (mainMethod != null)
+        if (_mainMethod != null)
         {
-            return await (Task<AttackContext>)mainMethod.Invoke(null, [combatState, choiceContext, cardPlay.Card]);
+            return await (Task<AttackContext>)_mainMethod.Invoke(null, [combatState, choiceContext, cardPlay.Card]);
         }
 
-        if (betaMethod != null)
+        if (_betaMethod != null)
         {
-            return await (Task<AttackContext>)betaMethod.Invoke(null, [combatState, choiceContext, cardPlay]);
+            return await (Task<AttackContext>)_betaMethod.Invoke(null, [combatState, choiceContext, cardPlay]);
         }
 
         throw new MissingMethodException("AttackCommand.CreateContextAsync overload not recognised");
