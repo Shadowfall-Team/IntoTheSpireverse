@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Groundswell() : ShadowIroncladCard(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class Groundswell() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -30,7 +30,7 @@ public sealed class Groundswell() : ShadowIroncladCard(0, CardType.Power, CardRa
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<GroundswellPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<GroundswellPower>().BaseValue,
             Owner.Creature, this);
     }

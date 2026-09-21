@@ -28,7 +28,7 @@ public sealed class SculptReality() : ShadowIroncladCard(2, CardType.Power, Card
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<SculptRealityPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<SculptRealityPower>().BaseValue,
             Owner.Creature, this);
     }

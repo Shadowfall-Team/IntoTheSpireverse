@@ -35,7 +35,7 @@ public sealed class ObsidianStrike() : ShadowIroncladCard(1, CardType.Attack, Ca
             .Execute(choiceContext);
 
         await PowerCmd.Apply<ObsidianStrikePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             cardPlay.Target, DynamicVars.Power<ObsidianStrikePower>().BaseValue,
             Owner.Creature, this);
     }

@@ -1,76 +1,43 @@
-﻿using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
 /// <summary>
-/// The copy goes to the Draw Pile rather than the Hand deliberately. Obsidian Strike targets an
-/// enemy itself, so a copy landing in Hand would be replayable immediately, re-arming the mark and
-/// emitting another free copy every cycle at no cost. Routing through the Draw Pile gates the loop
-/// behind card draw, which turns a degenerate engine into a draw-engine combo.
+/// The marked card is played twice rather than copied, so the repeat is a Replay: it resolves
+/// inside the same play, keeps the card's own target, and counts as Indirect for everything that
+/// keys off that.
+///
+/// The count is raised through ModifyCardPlayCount, which the engine calls once per play in
+/// CardModel.OnPlayWrapper before the play loop starts. That timing also settles two things the
+/// old copy-to-pile version needed explicit guards for: the Obsidian Strike that applies this mark
+/// does so during its own OnPlay, which is after its play count was generated, so it can never
+/// trigger its own mark; and the repeat is part of the same play rather than a fresh one, so it
+/// cannot re-enter this hook and consume the next stack.
 /// </summary>
 public sealed class ObsidianStrikePower : ShadowPowerModel
 {
-    private class Data
-    {
-        /// <summary>The card that applied this mark, so its own play does not immediately consume it.</summary>
-        public CardModel? AppliedBy;
-
-        /// <summary>Whoever played Obsidian Strike always receives the copy, even in co-op where
-        /// another player may be the one who triggers the mark.</summary>
-        public Player? Beneficiary;
-    }
-
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     /// <summary>
-    /// Each source needs its own instance, because the instance is what remembers who receives the
-    /// copy. Two players marking the same enemy must not collapse into one stack, or the second
-    /// application would redirect the first player's copies. Repeat applications from the same
-    /// player still stack onto that player's own instance, which is exactly what this mode does.
+    /// Only an explicitly targeted card counts. Cards that hit ALL enemies carry no Target, so
+    /// they are not played "against this enemy".
     /// </summary>
-    public override PowerInstanceType InstanceType => PowerInstanceType.InstancedPerApplier;
-
-    protected override object InitInternalData() => new Data();
-
-    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
+    public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
     {
-        var data = GetInternalData<Data>();
-        data.AppliedBy = cardSource;
-        data.Beneficiary = applier?.Player ?? cardSource?.Owner;
-        return Task.CompletedTask;
+        if (target != Owner) return playCount;
+        if (IntoTheSpireverseKeywords.WillBePlayedIndirectly(card)) return playCount;
+
+        return playCount + 1;
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    public override async Task AfterModifyingCardPlayCount(CardModel card)
     {
-        var data = GetInternalData<Data>();
-
-        // The Obsidian Strike that applied this mark targets the enemy too; skip its own play.
-        if (data.AppliedBy == cardPlay.Card)
-        {
-            data.AppliedBy = null;
-            return;
-        }
-
-        // Explicit single-target only. Cards hitting ALL enemies carry no Target and do not count
-        // as targeting this enemy.
-        if (cardPlay.Target != Owner) return;
-
-        var beneficiary = data.Beneficiary;
-        if (beneficiary == null || Owner.CombatState == null) return;
-
         Flash();
-
-        var copy = cardPlay.Card.CreateCloneForPlayer(beneficiary);
-        copy.SetToFreeThisCombat();
-        await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Draw, beneficiary, CardPilePosition.Top);
-
         await PowerCmd.Decrement(this);
     }
 }

@@ -77,6 +77,19 @@ public static class IntoTheSpireverseKeywords
         || (IndirectPlayTracker.TryGetLastPileLeft(cardPlay.Card, out var pile)
             && pile != PileType.Hand);
 
+    /// <summary>
+    /// The same question as WasPlayedIndirectly, asked before the play's CardPlay objects exist.
+    ///
+    /// ModifyCardPlayCount runs earlier in CardModel.OnPlayWrapper than the play loop that builds
+    /// them, so the two signals have to come from elsewhere: AutoPlayFlagPatch for the isAutoPlay
+    /// argument, and the pile tracker for a play that reached Play from somewhere other than Hand.
+    /// The replay half of WasPlayedIndirectly has no counterpart here and needs none - the play
+    /// count is generated once per play, before any repeat exists.
+    /// </summary>
+    public static bool WillBePlayedIndirectly(CardModel card) =>
+        AutoPlayFlagPatch.IsCurrentPlayAuto(card)
+        || (IndirectPlayTracker.TryGetLastPileLeft(card, out var pile) && pile != PileType.Hand);
+
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
 

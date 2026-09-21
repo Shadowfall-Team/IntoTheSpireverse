@@ -53,7 +53,7 @@ public sealed class SlatePower : ShadowPowerModel
 
         if (riebeckite != null)
             await PowerCmd.Apply<RetaliationPower>(
-                new ThrowingPlayerChoiceContext(),
+                choiceContext,
                 Owner, riebeckite.DynamicVars[RiebeckitePower.RetaliationKey].BaseValue, Owner, null);
 
         await PowerCmd.Decrement(this);

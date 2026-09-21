@@ -26,7 +26,7 @@ public sealed class GroundswellPower : ShadowPowerModel
 
         Flash();
         await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner, Amount, Owner, null);
     }
 }

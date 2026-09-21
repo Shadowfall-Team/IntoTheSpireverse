@@ -38,7 +38,7 @@ public sealed class Foothold() : ShadowIroncladCard(1, CardType.Skill, CardRarit
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<FootholdTemporaryStrengthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
     }

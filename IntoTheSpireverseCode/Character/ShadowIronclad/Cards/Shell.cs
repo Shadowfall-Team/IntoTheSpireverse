@@ -16,7 +16,7 @@ public sealed class Shell() : ShadowIroncladCard(0, CardType.Skill, CardRarity.C
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<SlatePower>(1m),
-        new PowerVar<RetaliationPower>(3m),
+        new PowerVar<RetaliationPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -29,11 +29,11 @@ public sealed class Shell() : ShadowIroncladCard(0, CardType.Skill, CardRarity.C
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<SlatePower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
             Owner.Creature, this);
         await PowerCmd.Apply<RetaliationPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<RetaliationPower>().BaseValue,
             Owner.Creature, this);
     }

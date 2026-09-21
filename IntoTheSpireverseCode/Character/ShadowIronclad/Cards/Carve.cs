@@ -19,8 +19,8 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     private const string IncreaseKey = "Increase";
-    private const int BaseDamage = 6;
-    private const int UpgradedBaseDamage = 8;
+    private const int BaseDamage = 8;
+    private const int UpgradedBaseDamage = 10;
 
     private int _currentDamage = BaseDamage;
     private int _increasedDamage;
@@ -53,7 +53,7 @@ public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(CurrentDamage, ValueProp.Move),
-        new IntVar(IncreaseKey, 3m),
+        new IntVar(IncreaseKey, 4m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

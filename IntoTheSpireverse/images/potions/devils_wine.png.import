@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yh4j65jhxofi"
-path="res://.godot/imported/gabbro_potion.png-c90ea135d95bf3f74f978f1caa746c4c.ctex"
+uid="uid://cry7e5lauahoi"
+path="res://.godot/imported/devils_wine.png-aeaa5a7b52dee334d97518ff86e1dbb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/potions/gabbro_potion.png"
-dest_files=["res://.godot/imported/gabbro_potion.png-c90ea135d95bf3f74f978f1caa746c4c.ctex"]
+source_file="res://IntoTheSpireverse/images/potions/devils_wine.png"
+dest_files=["res://.godot/imported/devils_wine.png-aeaa5a7b52dee334d97518ff86e1dbb5.ctex"]
 
 [params]
 

@@ -2,20 +2,23 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Bloodstone() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class Bloodbond() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BloodstonePower>(3m),
+        new HpLossVar(1m),
+        new PowerVar<BloodbondPower>(6m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -25,12 +28,16 @@ public sealed class Bloodstone() : ShadowIroncladCard(1, CardType.Power, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<BloodstonePower>(
-            new ThrowingPlayerChoiceContext(),
-            Owner.Creature, DynamicVars.Power<BloodstonePower>().BaseValue,
+        VfxCmd.PlayOnCreatureCenter(Owner.Creature, VfxCmd.bloodyImpactPath);
+        await PowerCmd.Apply<BloodbondPower>(
+            choiceContext,
+            cardPlay.Target, DynamicVars.Power<BloodbondPower>().BaseValue,
             Owner.Creature, this);
+        await CreatureCmdCompatibility.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<BloodstonePower>().UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(3m);
 }

@@ -39,7 +39,7 @@ public sealed class Fume() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Co
         if (!wasUnplayable) return;
 
         await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
     }

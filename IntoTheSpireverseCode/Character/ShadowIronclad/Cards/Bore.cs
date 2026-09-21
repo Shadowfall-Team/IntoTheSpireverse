@@ -18,7 +18,7 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(10m, ValueProp.Move),
+        new DamageVar(11m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

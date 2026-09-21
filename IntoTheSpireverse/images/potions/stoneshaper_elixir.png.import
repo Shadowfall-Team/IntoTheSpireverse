@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xuqq6qn2tfnf"
-path="res://.godot/imported/bloodstone_power.png-9b0d256769b92b37104e936111b586d0.ctex"
+uid="uid://yh4j65jhxofi"
+path="res://.godot/imported/stoneshaper_elixir.png-31fd29a2bc6d646406eeee2962a56bc2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/powers/bloodstone_power.png"
-dest_files=["res://.godot/imported/bloodstone_power.png-9b0d256769b92b37104e936111b586d0.ctex"]
+source_file="res://IntoTheSpireverse/images/potions/stoneshaper_elixir.png"
+dest_files=["res://.godot/imported/stoneshaper_elixir.png-31fd29a2bc6d646406eeee2962a56bc2.ctex"]
 
 [params]
 

@@ -8,36 +8,38 @@ using MegaCrit.Sts2.Core.Entities.Potions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Potions;
 
 [Pool(typeof(ShadowIroncladPotionPool))]
-public class BloodbondPotion : IntoTheSpireversePotion
+public class StoneshaperElixir : IntoTheSpireversePotion
 {
-    public override PotionRarity Rarity => PotionRarity.Common;
+    public override PotionRarity Rarity => PotionRarity.Uncommon;
 
     public override PotionUsage Usage => PotionUsage.CombatOnly;
 
-    public override TargetType TargetType => TargetType.AllEnemies;
+    public override TargetType TargetType => TargetType.Self;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BloodbondPower>(8m),
+        new PowerVar<GabbroPower>(6m),
     ];
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<BloodbondPower>(),
+        HoverTipFactory.FromCard<PrimalForce>(),
     ];
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
-        if (Owner.Creature.CombatState == null) return;
-        var targets = Owner.Creature.CombatState.HittableEnemies;
-        await PowerCmd.Apply<BloodbondPower>(
+        await PowerCmd.Apply<GabbroPower>(
             choiceContext,
-            targets,
-            DynamicVars.Power<BloodbondPower>().BaseValue,
+            Owner.Creature, DynamicVars.Power<GabbroPower>().BaseValue,
             Owner.Creature, null);
+
+        var card = Owner.Creature.CombatState?.CreateCard<PrimalForce>(Owner);
+        if (card == null) return;
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }
 }

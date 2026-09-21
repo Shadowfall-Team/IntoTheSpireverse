@@ -22,7 +22,6 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
         CardModel[] cards = [
             ModelDb.Card<StrikeIronclad>(), //necessary for compendium
             ModelDb.Card<DefendIronclad>(), //necessary for compendium
-            ModelDb.Card<Barricade>(),
             ModelDb.Card<Pyre>(),
             ModelDb.Card<Mangle>(),
             ModelDb.Card<PommelStrike>(),
@@ -41,6 +40,7 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             ModelDb.Card<CrimsonMantle>(),
             ModelDb.Card<PrimalForce>(),
             ModelDb.Card<Juggernaut>(),
+            ModelDb.Card<Inferno>(),
 
             //Close enough to be considered a duplicate:
             //Erosion (Wild Strike)

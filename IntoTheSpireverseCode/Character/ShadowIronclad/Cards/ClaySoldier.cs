@@ -32,7 +32,7 @@ public sealed class ClaySoldier() : ShadowIroncladCard(1, CardType.Power, CardRa
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<StrengthPower>(
-            new ThrowingPlayerChoiceContext(),
+            choiceContext,
             Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,
             Owner.Creature, this);
 

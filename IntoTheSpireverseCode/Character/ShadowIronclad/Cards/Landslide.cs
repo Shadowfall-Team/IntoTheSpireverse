@@ -13,7 +13,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy), ISlateSpender
+public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies), ISlateSpender
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -29,11 +29,11 @@ public sealed class Landslide() : ShadowIroncladCard(2, CardType.Attack, CardRar
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        if (CombatState == null) return;
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
-            .Targeting(cardPlay.Target)
+            .TargetingAllOpponents(CombatState)
             .WithHitFx(VfxCmd.heavyBluntPath, null, TmpSfx.heavyAttack)
             .Execute(choiceContext);
     }
