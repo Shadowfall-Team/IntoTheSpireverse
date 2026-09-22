@@ -35,7 +35,7 @@ public class ShieldDrones() : ShadowRegentCard(1,
 
         if (!HasColorlessInHand) return;
 
-        var blockVar = (BlockVar)DynamicVars[nameof(BlockNextTurnKey)];
+        var blockVar = (BlockVar)DynamicVars[BlockNextTurnKey];
         var blockNextTurnAmount = Hook.ModifyBlock(CombatState, Owner.Creature, blockVar.BaseValue, blockVar.Props,
             this, cardPlay, out _);
         await PowerCmd.Apply<BlockNextTurnPower>(
