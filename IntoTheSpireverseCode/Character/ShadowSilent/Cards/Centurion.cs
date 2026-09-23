@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Enchantments;
 using MegaCrit.Sts2.Core.Models;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -23,13 +24,14 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
     {
         get
         {
-            List<IHoverTip> items = [];
             var card = ModelDb.Card<Scale>().ToMutable();
             CardCmd.Enchant<Armored>(card, 1);
-            card.DynamicVars.Block.BaseValue += 1;
-            items.Add(HoverTipFactory.FromCard(card));
-            items.AddRange(HoverTipFactory.FromEnchantment<Armored>());
-            return items;
+            card.ApplyEnchantmentStatsToPreview();
+
+            List<IHoverTip> tips = [HoverTipFactory.FromCard(card)];
+            tips.AddRange(HoverTipFactory.FromEnchantment<Armored>());
+
+            return tips;
         }
     }
     
