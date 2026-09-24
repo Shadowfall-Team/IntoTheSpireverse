@@ -1,3 +1,4 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -43,7 +44,7 @@ public sealed class Altar : ShadowDefectCard
 			return;
 
 		bool wasVoid = selected is Void;
-		await CardCmd.Exhaust(choiceContext, selected);
+		await CardCmdCompatibility.Exhaust(choiceContext, selected);
 
 		if (wasVoid)
 			await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);

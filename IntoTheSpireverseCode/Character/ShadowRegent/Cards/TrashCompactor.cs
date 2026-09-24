@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
@@ -43,7 +44,7 @@ public class TrashCompactor() : ShadowRegentCard(0,
 
         foreach (var cardModel in selection)
         {
-            await CardCmd.Exhaust(choiceContext, cardModel);
+            await CardCmdCompatibility.Exhaust(choiceContext, cardModel);
         }
     }
 

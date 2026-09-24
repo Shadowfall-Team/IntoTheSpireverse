@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -52,7 +53,7 @@ public class AgentOfChaosPower : ShadowPowerModel, ICardDestinationListener
         Flash();
         if (!card.Keywords.Contains(CardKeyword.Sly))
         {
-            await CardCmd.Exhaust(choiceContext, card);
+            await CardCmdCompatibility.Exhaust(choiceContext, card);
         }
         else
         {

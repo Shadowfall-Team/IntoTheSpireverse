@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -34,7 +35,7 @@ public class SNecroCurseExhaust : ShadowNecrobinderRelic
             var curse = Owner.RunState.Rng.CombatCardSelection.NextItem(curses);
             if (curse == null) continue;
             curses.Remove(curse);
-            await CardCmd.Exhaust(choiceContext, curse);
+            await CardCmdCompatibility.Exhaust(choiceContext, curse);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -39,7 +40,7 @@ public sealed class FinalForm() : ShadowNecrobinderCard(3, CardType.Power, CardR
 
         if (target == null) return;
 
-        await CardCmd.Exhaust(choiceContext, target);
+        await CardCmdCompatibility.Exhaust(choiceContext, target);
         var power = await PowerCmd.Apply<FinalFormPower>(choiceContext, Owner.Creature, 5, Owner.Creature, this);
         power?.SetSelectedCard(target);
     }

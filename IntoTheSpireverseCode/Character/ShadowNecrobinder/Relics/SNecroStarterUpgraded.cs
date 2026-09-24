@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -54,7 +55,7 @@ public class SNecroStarterUpgraded : ShadowNecrobinderRelic
 
         UsedThisTurn = true;
         Flash();
-        await CardCmd.Exhaust(choiceContext, card);
+        await CardCmdCompatibility.Exhaust(choiceContext, card);
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
