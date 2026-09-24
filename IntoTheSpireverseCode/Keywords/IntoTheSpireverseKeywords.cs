@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
+using IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands.Builders;
 
@@ -50,7 +51,45 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Modify;
-    
+
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Indirectly;
+
+    /// <summary>
+    /// True for any play that was not the player manually playing the card from their Hand.
+    ///
+    /// IsAutoPlay is the primary signal and covers everything that reaches CardCmd.AutoPlay:
+    /// Havoc and Cascade playing off the Draw pile, Stampede and Dark Bargain playing out of Hand,
+    /// Sly discards, and Vakuu taking the turn for you via Blind Fury or the relic that shares that
+    /// code.
+    ///
+    /// Repeats from Replay are the second signal. Replay is not a separate play: CardModel's play
+    /// wrapper resolves playCount once and loops in place, copying the original IsAutoPlay onto every
+    /// CardPlay and never moving the card between piles, so neither other check sees it. PlayIndex is
+    /// what distinguishes them, and only the first play in a series is the one the player made.
+    ///
+    /// The pile check is kept behind both so a card that somehow reaches Play from another pile
+    /// without going through AutoPlay still counts.
+    /// </summary>
+    public static bool WasPlayedIndirectly(CardPlay cardPlay) =>
+        cardPlay.IsAutoPlay
+        || !cardPlay.IsFirstInSeries
+        || (IndirectPlayTracker.TryGetLastPileLeft(cardPlay.Card, out var pile)
+            && pile != PileType.Hand);
+
+    /// <summary>
+    /// The same question as WasPlayedIndirectly, asked before the play's CardPlay objects exist.
+    ///
+    /// ModifyCardPlayCount runs earlier in CardModel.OnPlayWrapper than the play loop that builds
+    /// them, so the two signals have to come from elsewhere: AutoPlayFlagPatch for the isAutoPlay
+    /// argument, and the pile tracker for a play that reached Play from somewhere other than Hand.
+    /// The replay half of WasPlayedIndirectly has no counterpart here and needs none - the play
+    /// count is generated once per play, before any repeat exists.
+    /// </summary>
+    public static bool WillBePlayedIndirectly(CardModel card) =>
+        AutoPlayFlagPatch.IsCurrentPlayAuto(card)
+        || (IndirectPlayTracker.TryGetLastPileLeft(card, out var pile) && pile != PileType.Hand);
+
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
 

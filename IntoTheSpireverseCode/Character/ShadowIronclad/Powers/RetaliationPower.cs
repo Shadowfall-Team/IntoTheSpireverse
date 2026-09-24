@@ -47,8 +47,15 @@ public sealed class RetaliationPower : ShadowPowerModel, IModifyDamageAdditive
     {
         if (Owner.Side == side)
             return;
-        if (Owner.HasPower<RevengePower>())
+
+        // Revenge spends a charge to save this Retaliation instead of ticking down every turn.
+        var revenge = Owner.Powers.OfType<RevengePower>().FirstOrDefault();
+        if (revenge != null)
+        {
+            await PowerCmd.Decrement(revenge);
             return;
+        }
+
         await PowerCmd.Remove(this);
     }
 }

@@ -14,25 +14,25 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Potio
 [Pool(typeof(ShadowIroncladPotionPool))]
 public class DewBottle : IntoTheSpireversePotion
 {
-    public override PotionRarity Rarity => PotionRarity.Uncommon;
+    public override PotionRarity Rarity => PotionRarity.Common;
     public override PotionUsage Usage => PotionUsage.CombatOnly;
     public override TargetType TargetType => TargetType.Self;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SlatePower>(4m),
+        new PowerVar<StoneHealthPower>(15m),
     ];
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<SlatePower>(),
+        HoverTipFactory.FromPower<StoneHealthPower>(),
     ];
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)
     {
-        await PowerCmd.Apply<SlatePower>(
+        await PowerCmd.Apply<StoneHealthPower>(
             choiceContext,
-            Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
+            Owner.Creature, DynamicVars.Power<StoneHealthPower>().BaseValue,
             Owner.Creature, null);
     }
 }

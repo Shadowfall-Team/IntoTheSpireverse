@@ -1,7 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,7 +22,6 @@ public sealed class Caldera() : ShadowIroncladCard(1, CardType.Skill, CardRarity
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<BombRock>(false),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Linger),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -31,11 +29,11 @@ public sealed class Caldera() : ShadowIroncladCard(1, CardType.Skill, CardRarity
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, DynamicVars.Cards.IntValue);
-        var selected = await CardSelectCmd.FromHand(choiceContext, Owner, prefs,
-            c => c.IsTransformable, this);
+        var selected = await CardSelectCmd.FromCombatPile(
+            choiceContext, PileType.Discard.GetPile(Owner), Owner, prefs);
         foreach (var original in selected.ToList())
         {
-            var rock = (CardModel)CombatState.CreateCard<BombRock>(Owner);
+            var rock = CombatState.CreateCard<BombRock>(Owner);
             await CardCmd.Transform(original, rock);
         }
     }

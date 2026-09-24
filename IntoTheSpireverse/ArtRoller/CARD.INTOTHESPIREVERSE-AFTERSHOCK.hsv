@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.INTOTHESPIREVERSE-AFTERSHOCK",
+  "hue": 0.39,
+  "saturation": 0.4,
+  "value": 1,
+  "red": 1.18,
+  "green": 1.17,
+  "blue": 1.18,
+  "contrast": 1.18,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/thrash.tres"
+}

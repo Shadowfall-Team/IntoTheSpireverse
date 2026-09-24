@@ -1,5 +1,8 @@
 {
   "INTOTHESPIREVERSE-mod_title": "Into the Spireverse",
+  "INTOTHESPIREVERSE-SHADOW_IRONCLAD.title": "The Tectonic",
+  "INTOTHESPIREVERSE-SHOW_STONE_HEALTH_ON_BAR.title": "Show Stone Health on bar",
+  "INTOTHESPIREVERSE-SHOW_STONE_HEALTH_ON_BAR.hover.desc": "Show Stone Health on the health bar as a grey band after your current HP, and include it in the health text.",
   "INTOTHESPIREVERSE-SHADOW_REGENT.title": "The Captain",
   "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.title": "Show Cargo pile card preview",
   "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.hover.desc": "Show a preview of the top 3 cards of the cargo pile, in order.",

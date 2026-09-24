@@ -16,13 +16,16 @@ public sealed class Siltsong() : ShadowIroncladCard(1, CardType.Skill, CardRarit
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar(2),
-        new PowerVar<SlatePower>(2m),
+        new PowerVar<SlatePower>(3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),
     ];
+
+    protected override bool IsPlayable =>
+        !IsCanonical && (Owner?.Creature.Powers.OfType<SlatePower>().FirstOrDefault()?.Amount ?? 0) > 0;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
