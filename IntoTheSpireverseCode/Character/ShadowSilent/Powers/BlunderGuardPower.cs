@@ -44,7 +44,7 @@ public class BlunderGuardPower : ShadowPowerModel, IHasSecondAmount
     {
         if (cardPlay.Card.Owner.Creature != Owner)
             return;
-        if (cardPlay.Card.EnergyCost.GetResolved() < 3)
+        if (cardPlay.Resources.EnergySpent < 3)
             return;
 
         Flash();
