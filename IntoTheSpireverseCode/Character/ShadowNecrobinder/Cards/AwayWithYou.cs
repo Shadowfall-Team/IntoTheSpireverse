@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.CardSelection;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,7 +22,7 @@ public sealed class AwayWithYou() : ShadowNecrobinderCard(1, CardType.Skill, Car
         var card = selected.FirstOrDefault();
         if (card == null) return;
 
-        await CardCmd.Exhaust(choiceContext, card);
+        await CardCmdCompatibility.Exhaust(choiceContext, card);
 
         if (card.DeckVersion != null && card.DeckVersion.Pile?.Type == PileType.Deck)
         {

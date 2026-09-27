@@ -1,5 +1,6 @@
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
@@ -37,14 +38,15 @@ public sealed class PureSuffering() : ShadowSilentCard(0, CardType.Attack, CardR
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         if (CombatState == null) return;
 
-        await using AttackContext attackContext = await AttackCommand.CreateContextAsync(CombatState, choiceContext, cardPlay);
+        await using AttackContext attackContext = await AttackContextCompatibility.CreateContextAsync(CombatState, choiceContext, cardPlay);
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
             VfxCmd.PlayOnCreatureCenter(cardPlay.Target, VfxCmd.slashPath);
-            attackContext.AddHit(await CreatureCmd.Damage(
+            attackContext.AddHit(await CreatureCmdCompatibility.Damage(
                 choiceContext,
                 cardPlay.Target,
-                DynamicVars.Damage,
+                DynamicVars.Damage.BaseValue,
+                DynamicVars.Damage.Props,
                 Owner.Creature,
                 this,
                 cardPlay

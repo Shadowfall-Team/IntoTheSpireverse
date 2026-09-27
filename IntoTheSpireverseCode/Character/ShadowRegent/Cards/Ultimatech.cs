@@ -1,3 +1,4 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -49,14 +50,14 @@ public class Ultimatech() : ShadowRegentCard(
             var isBasicStrike = card.Rarity == CardRarity.Basic && card.Tags.Contains(CardTag.Strike);
             var isBasicDefend = card.Rarity == CardRarity.Basic && card.Tags.Contains(CardTag.Defend);
 
-            await CardCmd.Exhaust(choiceContext, card);
+            await CardCmdCompatibility.Exhaust(choiceContext, card);
 
             if (!isBasicStrike && !isBasicDefend) continue;
 
             CardModel ultimate = isBasicStrike
                 ? CombatState.CreateCard<UltimateStrike>(Owner)
                 : CombatState.CreateCard<UltimateDefend>(Owner);
-            
+
             if (card.IsUpgraded) CardCmd.Upgrade(ultimate);
 
             await CardPileCmd.AddGeneratedCardToCombat(ultimate, PileType.Hand, Owner);

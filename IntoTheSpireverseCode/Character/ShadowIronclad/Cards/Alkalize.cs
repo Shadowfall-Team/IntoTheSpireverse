@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Potions;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
@@ -32,7 +33,7 @@ public sealed class Alkalize() : ShadowIroncladCard(1, CardType.Skill, CardRarit
         if (original == null) return;
 
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        await CardCmd.Exhaust(choiceContext, original);
+        await CardCmdCompatibility.Exhaust(choiceContext, original);
         await PotionCmd.TryToProcure<PotionShapedRock>(Owner);
     }
 
