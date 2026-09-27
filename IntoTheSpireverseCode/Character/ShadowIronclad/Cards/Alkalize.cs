@@ -11,11 +11,8 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// Worded as a Transform even though the card is Exhausted and a potion is procured, because the
-/// wording is what makes the card cost something. "Exhaust a card in your Hand. Procure a
-/// Potion-Shaped Rock" would still hand over the potion when Alkalize is the last card in Hand,
-/// with nothing spent; naming the card as the thing that becomes the rock says there has to be
-/// one.
+/// Worded as a Transform so it needs a card to consume. "Exhaust a card, procure a potion" would
+/// still hand over the potion from an otherwise empty Hand.
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Alkalize() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)

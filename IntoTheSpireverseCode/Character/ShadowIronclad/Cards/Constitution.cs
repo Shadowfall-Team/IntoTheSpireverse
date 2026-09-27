@@ -11,28 +11,38 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Constitution() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class Constitution() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
+        new PowerVar<SlatePower>(2m),
         new PowerVar<ConstitutionPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+        HoverTipFactory.FromPower<SlatePower>(),
         HoverTipFactory.FromPower<ConstitutionPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
+        await PowerCmd.Apply<SlatePower>(
+            choiceContext,
+            Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,
+            Owner.Creature, this);
         await PowerCmd.Apply<ConstitutionPower>(
             choiceContext,
             Owner.Creature, DynamicVars.Power<ConstitutionPower>().BaseValue,
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<ConstitutionPower>().UpgradeValueBy(1m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Power<SlatePower>().UpgradeValueBy(1m);
+        DynamicVars.Power<ConstitutionPower>().UpgradeValueBy(1m);
+    }
 }

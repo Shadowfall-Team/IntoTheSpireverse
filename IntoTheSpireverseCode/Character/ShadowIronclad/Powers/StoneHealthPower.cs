@@ -12,38 +12,19 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
 /// <summary>
-/// A pool of HP that is refunded as it is lost, and that counts toward surviving a lethal hit.
-///
-/// Every source of the effect stacks into this one power rather than tracking its own pool. Two
-/// separate pools each absorbing the same hit would refund it twice, so a 3 damage hit against 5+5
-/// would have healed for 6.
-///
-/// AfterDamageReceived never runs on a lethal hit, so the pool has to be counted as effective HP
-/// before the death check: ModifyHpLostAfterOstyLate captures the incoming loss, ShouldDieLate
-/// compares it against HP plus the pool, and AfterPreventingDeath settles the survivor's HP.
+/// Every source stacks into this one power, since separate pools would each refund the same hit.
+/// AfterDamageReceived never runs on a lethal hit, so ShouldDieLate counts the pool as HP before
+/// the death check.
 /// </summary>
 public sealed class StoneHealthPower : ShadowPowerModel
 {
-    // Stone Health used to draw its own bands by patching NHealthBar, which fought BaseLib's overlay
-    // for the same nodes (see PR 276, StoneHealthBarPatches). That patch is gone; BaseLib draws the
-    // bands from the segments below, and only the HP label parenthetical is still patched locally.
-
     private static readonly Color GreyColor = new("A8A8A8");
     private static readonly Color WhiteColor = new("FFFFFF");
 
     /// <summary>
-    /// Draws the pool onto the health bar: grey for the part that fits below max HP, white for the
-    /// part that overcaps it.
-    ///
-    /// White is emitted first and pinned to the max edge, so at full HP - where grey has nowhere to
-    /// go - it is the only thing that shows, painting back over the red band. BaseLib clips grey to
-    /// whatever white leaves behind, so the two never overlap and one pixel still means one HP.
-    ///
-    /// Neither segment affects the HP label: this is HP the player has, not damage they are about to
-    /// take, so it must never colour the label as lethal.
-    ///
-    /// Gated on the same config option as the label parenthetical, so turning the option off leaves
-    /// the bar entirely vanilla rather than half-dressed.
+    /// Grey for the pool below max HP, white for the overcap. White is emitted first and pinned to
+    /// the max edge so it still shows at full HP; BaseLib clips grey to what is left. Neither tints
+    /// the HP label, because this is HP the player has, not damage incoming.
     /// </summary>
     public override IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(
         HealthBarForecastContext context)

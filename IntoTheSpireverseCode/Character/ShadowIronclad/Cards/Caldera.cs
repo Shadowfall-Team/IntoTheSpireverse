@@ -16,7 +16,7 @@ public sealed class Caldera() : ShadowIroncladCard(1, CardType.Skill, CardRarity
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(2),
+        new CardsVar(3),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

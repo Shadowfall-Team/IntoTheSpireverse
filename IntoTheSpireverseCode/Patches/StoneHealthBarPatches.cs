@@ -7,14 +7,9 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 /// <summary>
-/// Adds the Stone Health total to the health bar's HP label.
-///
-/// The bands themselves are drawn by BaseLib from the segments StoneHealthPower reports through
-/// IHealthBarForecastSource - see StoneHealthPower.GetHealthBarForecastSegments. Only the label is
-/// left here, because the forecast API renders bars and does not touch the text.
-///
-/// This writes the label's text while BaseLib's own RefreshText postfix writes its colour theme
-/// overrides, so the two compose regardless of which Harmony postfix runs first.
+/// Adds the Stone Health total to the HP label. BaseLib draws the bands from StoneHealthPower's
+/// forecast segments but never touches the text. This writes only text, so it composes with
+/// BaseLib's colour postfix in either order.
 /// </summary>
 [HarmonyPatch]
 public static class StoneHealthBarPatches

@@ -35,7 +35,7 @@ public sealed class Erosion() : ShadowIroncladCard(1, CardType.Attack, CardRarit
             .Execute(choiceContext);
 
         var mud = CombatState.CreateCard<Mud>(Owner);
-        await CardPileCmd.AddGeneratedCardToCombat(mud, PileType.Draw, Owner);
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(mud, PileType.Draw, Owner));
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);

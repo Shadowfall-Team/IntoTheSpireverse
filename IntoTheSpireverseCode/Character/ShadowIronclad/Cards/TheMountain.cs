@@ -12,24 +12,15 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>
-/// Slate is granted before the replayed card resolves, so an Attack off the Discard pile is covered
-/// by the Slate this card just gave.
-/// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class TheMountain() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SlatePower>(3m),
+        new PowerVar<SlatePower>(2m),
     ];
 
-    /// <summary>
-    /// "The top card of your Discard Pile" is not something the player can see, so the card it is
-    /// about to play is previewed on hover, the way Rock-making cards preview the Rock they create.
-    /// CardModel.HoverTips rebuilds this list on every access rather than caching it, so the
-    /// preview tracks the pile as it changes.
-    /// </summary>
+    // Previews the card it will play. Rebuilt on every access, so it tracks the pile.
     protected override IEnumerable<IHoverTip> ExtraHoverTips
     {
         get
@@ -43,19 +34,12 @@ public sealed class TheMountain() : ShadowIroncladCard(1, CardType.Skill, CardRa
         }
     }
 
-    /// <summary>
-    /// Null whenever there is nothing meaningful to preview. The IsCanonical check is load-bearing:
-    /// hover tips are also built for canonical cards in the compendium and card library, where
-    /// there is no player and no combat, and CardModel.Owner throws CanonicalModelException rather
-    /// than returning null on such an instance.
-    /// </summary>
+    // IsCanonical first: hover tips are built for compendium cards too, where Owner throws.
     private CardModel? TryGetTopOfDiscard()
     {
         if (IsCanonical || CombatState == null) return null;
 
-        // Discards are appended (CardPileCmd.Add defaults to CardPilePosition.Bottom, which maps to
-        // index -1), so the most recently discarded card is the last element, not the first.
-        // CardPilePosition.Top means index 0, which is right for the Draw Pile and wrong here.
+        // Discards are appended, so the most recent is last (unlike the Draw Pile's top at index 0).
         return PileType.Discard.GetPile(Owner)?.Cards.LastOrDefault();
     }
 
@@ -63,6 +47,7 @@ public sealed class TheMountain() : ShadowIroncladCard(1, CardType.Skill, CardRa
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
+        // Slate first, so a replayed Attack is covered by it.
         await PowerCmd.Apply<SlatePower>(
             choiceContext,
             Owner.Creature, DynamicVars.Power<SlatePower>().BaseValue,

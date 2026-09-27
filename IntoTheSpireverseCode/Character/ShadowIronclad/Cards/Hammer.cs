@@ -14,9 +14,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// Slate is spent as it is used, so the discount has to track the current amount rather than
-/// accumulate like Stomp's or Midnight's. Only the delta since the last sync is applied, which keeps
-/// the net local modifier equal to the Slate on the board at any moment.
+/// The discount tracks current Slate rather than accumulating like Stomp's, so each sync applies
+/// only the change since the last one.
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Hammer() : ShadowIroncladCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)

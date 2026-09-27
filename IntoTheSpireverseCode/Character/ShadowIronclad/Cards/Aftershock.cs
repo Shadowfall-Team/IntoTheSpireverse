@@ -23,8 +23,7 @@ public sealed class Aftershock() : ShadowIroncladCard(0, CardType.Skill, CardRar
     {
         if (CombatManager.Instance.IsOverOrEnding) return;
 
-        // X-1 unupgraded, X upgraded. An X of 0 leaves the threshold at -1, below the cheapest card
-        // the player can name, so a 0-energy Aftershock offers nothing at all.
+        // X-1 unupgraded, X upgraded.
         var xCost = ResolveEnergyXValue() - (IsUpgraded ? 0 : 1);
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var card = (await CardSelectCmd.FromSimpleGrid(
@@ -35,14 +34,8 @@ public sealed class Aftershock() : ShadowIroncladCard(0, CardType.Skill, CardRar
 
         if (card == null) return;
 
-        // Replay rather than two AutoPlay calls. A Power leaves the Play pile for the player's power
-        // list as soon as it resolves, and an Exhaust card goes to the Exhaust pile, so a second
-        // AutoPlay on the same card finds it somewhere it cannot be played from and silently does
-        // nothing. Replay resolves the card repeatedly inside one play, which is how Echo Form and
-        // the Replay keyword get the same wording to work.
-        //
-        // BaseReplayCount is normally a permanent property, so it is restored afterwards to avoid
-        // leaving the card replaying itself for the rest of the run.
+        // Replay, not a second AutoPlay: once resolved, a Power or Exhaust card is no longer
+        // somewhere it can be played from. BaseReplayCount persists, so it is restored after.
         var replayCountBefore = card.BaseReplayCount;
         try
         {
@@ -55,14 +48,7 @@ public sealed class Aftershock() : ShadowIroncladCard(0, CardType.Skill, CardRar
         }
     }
 
-    /// <summary>
-    /// The cost to compare against the threshold, as the player understands it.
-    ///
-    /// An X-cost card is worth 0 here: the least X can be is 0, so that is the cheapest the card can
-    /// ever be played for. CardEnergyCost.GetResolved is the wrong question to ask one of these,
-    /// because for an X-cost card it returns CapturedXValue, which describes whatever X was the last
-    /// time the card happened to be played rather than anything about the card sitting in the pile.
-    /// </summary>
+    // X-cost cards count as 0. GetResolved would return the X captured on their last play.
     private static int SelectableCost(CardModel card) =>
         card.EnergyCost.CostsX ? 0 : card.EnergyCost.GetResolved();
 }

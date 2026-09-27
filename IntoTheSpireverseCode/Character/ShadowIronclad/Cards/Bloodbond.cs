@@ -6,7 +6,6 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -18,12 +17,7 @@ public sealed class Bloodbond() : ShadowIroncladCard(1, CardType.Skill, CardRari
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HpLossVar(1m),
-        new PowerVar<BloodbondPower>(6m),
-    ];
-
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<BloodbondPower>(),
+        new PowerVar<BloodbondPower>(8m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -39,5 +33,5 @@ public sealed class Bloodbond() : ShadowIroncladCard(1, CardType.Skill, CardRari
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars.Power<BloodbondPower>().UpgradeValueBy(4m);
 }

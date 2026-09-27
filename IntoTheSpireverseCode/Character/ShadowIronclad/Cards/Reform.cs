@@ -44,5 +44,5 @@ public sealed class Reform() : ShadowIroncladCard(1, CardType.Skill, CardRarity.
             await CardCmd.AutoPlay(choiceContext, attack, null);
     }
 
-    protected override void OnUpgrade() => DynamicVars[AttacksKey].UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars[AttacksKey].UpgradeValueBy(2m);
 }

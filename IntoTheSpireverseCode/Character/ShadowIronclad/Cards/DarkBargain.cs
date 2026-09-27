@@ -11,9 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// Two piles cannot be offered through FromHand, so the upgraded case goes through FromSimpleGrid
-/// over a concatenated candidate list - the same approach Invitation uses to offer Draw plus
-/// Discard in one grid.
+/// FromHand cannot offer two piles, so the upgrade uses FromSimpleGrid over both, as Invitation does.
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class DarkBargain() : ShadowIroncladCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)

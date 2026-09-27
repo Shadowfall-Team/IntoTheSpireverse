@@ -46,7 +46,6 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             //Erosion (Wild Strike)
             //Geyser (Immolate)
             //Sediment (Power Through)
-            //Fume (Havoc)
         ];
 
         var sts2Assembly = typeof(ModelDb).Assembly;

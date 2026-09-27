@@ -7,17 +7,9 @@ using MegaCrit.Sts2.Core.Rooms;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 
 /// <summary>
-/// Records the pile each card most recently left.
-///
-/// This is the secondary half of the Indirectly check. CardPlay.IsAutoPlay is the primary signal
-/// and catches everything that routes through CardCmd.AutoPlay, which is every non-manual play the
-/// game currently has. This tracking stays behind it so a card that reaches the Play pile from
-/// somewhere other than Hand without going through AutoPlay is still treated as Indirect.
-/// See IntoTheSpireverseKeywords.WasPlayedIndirectly.
-///
-/// Both play paths dispatch AfterCardChangedPiles before OnPlay runs - the manual one at the end of
-/// CardPileCmd.AddDuringManualCardPlay, the autoplay one at the end of CardPileCmd.Add - so the
-/// entry is always current by the time a card asks about itself.
+/// The pile each card last left, for the pile check in
+/// <see cref="Keywords.IntoTheSpireverseKeywords.WasPlayedIndirectly"/>. Both play paths fire
+/// AfterCardChangedPiles before OnPlay, so the entry is current when a card checks itself.
 /// </summary>
 public class IndirectPlayTracker() : CustomSingletonModel(HookType.Combat)
 {
@@ -36,6 +28,15 @@ public class IndirectPlayTracker() : CustomSingletonModel(HookType.Combat)
     {
         LastPileLeft.Clear();
         AutoPlayFlagPatch.Clear();
+        TransformPayoutPatches.Clear();
+        return Task.CompletedTask;
+    }
+
+    // Also cleared on the way in: a run lost mid-play leaves a play task that never completes, and
+    // its unreleased depth would otherwise hold every later Mud payout forever.
+    public override Task BeforeCombatStart()
+    {
+        TransformPayoutPatches.Clear();
         return Task.CompletedTask;
     }
 }

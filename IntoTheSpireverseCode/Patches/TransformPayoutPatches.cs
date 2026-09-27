@@ -9,29 +9,33 @@ using MegaCrit.Sts2.Core.Random;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
-/// <summary>
-/// Implemented by cards that pay out when they are Transformed away.
-///
-/// The engine's transform notification (<see cref="CardModel.AfterTransformedFrom"/>) is synchronous
-/// and these payouts are not, so <see cref="TransformPayoutPatches"/> queues implementors as they are
-/// consumed and calls this once <see cref="CardCmd.Transform"/>'s task has settled.
-/// </summary>
 public interface ITransformPayout
 {
     Task OnTransformedAway(PlayerChoiceContext choiceContext);
+
+    // Defer the payout until the current card play has resolved, so an Attack that transforms Mud
+    // cannot spend the Slate it just granted.
+    bool WaitsForCardPlay => false;
 }
 
 /// <summary>
-/// Settles <see cref="ITransformPayout"/> for cards that were Transformed away.
-///
-/// The engine's transform notification (<see cref="CardModel.AfterTransformedFrom"/>) is
-/// synchronous and the payouts are async, so consumed cards are queued here and settled by an
-/// async continuation chained onto <see cref="CardCmd.Transform"/>'s task. Queue-then-flush also
-/// makes batch transforms (Caldera, We Are Legion) resolve correctly.
+/// <see cref="CardModel.AfterTransformedFrom"/> is synchronous and payouts are async, so consumed
+/// cards are queued and paid out once <see cref="CardCmd.Transform"/>'s task settles.
 /// </summary>
 public static class TransformPayoutPatches
 {
     private static readonly List<CardModel> Pending = [];
+    private static readonly List<CardModel> AwaitingCardPlay = [];
+
+    // Plays nest (Havoc, autoplays), so deferred payouts wait for the outermost one.
+    private static int _cardPlayDepth;
+
+    public static void Clear()
+    {
+        Pending.Clear();
+        AwaitingCardPlay.Clear();
+        _cardPlayDepth = 0;
+    }
 
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedFrom))]
     public static class TransformedFromPatch
@@ -54,6 +58,17 @@ public static class TransformPayoutPatches
         }
     }
 
+    [HarmonyPatch(typeof(CardModel), nameof(CardModel.OnPlayWrapper))]
+    public static class CardPlayDepthPatch
+    {
+        public static void Prefix() => _cardPlayDepth++;
+
+        public static void Postfix(ref Task __result)
+        {
+            __result = SettleAfterCardPlay(__result);
+        }
+    }
+
     private static async Task<IEnumerable<CardPileAddResult>> SettlePending(
         Task<IEnumerable<CardPileAddResult>> inner)
     {
@@ -66,14 +81,40 @@ public static class TransformPayoutPatches
 
         foreach (var card in settled)
         {
-            // Owner rather than the card's own CombatState: that property is derived from the card's
-            // current pile, and a Transformed card has already left its pile by the time we get here.
-            if (card.Owner?.Creature.CombatState == null) continue;
-
-            if (card is ITransformPayout payout)
-                await payout.OnTransformedAway(new ThrowingPlayerChoiceContext());
+            if (_cardPlayDepth > 0 && card is ITransformPayout { WaitsForCardPlay: true })
+                AwaitingCardPlay.Add(card);
+            else
+                await PayOut(card);
         }
 
         return results;
+    }
+
+    private static async Task SettleAfterCardPlay(Task inner)
+    {
+        try
+        {
+            await inner;
+        }
+        finally
+        {
+            _cardPlayDepth--;
+        }
+
+        if (_cardPlayDepth > 0 || AwaitingCardPlay.Count == 0) return;
+
+        var settled = AwaitingCardPlay.ToList();
+        AwaitingCardPlay.Clear();
+
+        foreach (var card in settled)
+            await PayOut(card);
+    }
+
+    private static async Task PayOut(CardModel card)
+    {
+        if (card.Owner?.Creature.CombatState == null) return;
+
+        if (card is ITransformPayout payout)
+            await payout.OnTransformedAway(new ThrowingPlayerChoiceContext());
     }
 }

@@ -12,17 +12,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// The Replay is granted through ModifyCardPlayCount rather than written onto BaseReplayCount.
-///
-/// BaseReplayCount asserts the model is mutable, and ModelDb builds every canonical card as
-/// immutable, so setting it from the constructor throws CanonicalModelException at startup. Doing
-/// it later, once a mutable copy exists, would work for played cards but would leave the canonical
-/// model - the one the compendium and the card library render - printing no Replay at all.
-///
-/// Going through the hook keeps the count off the model entirely. The cost is that the engine's
-/// automatic "Replay N." line only reads BaseReplayCount, so the text and the hover tip are
-/// declared here instead. In exchange the number carries an upgrade diff, which the engine's own
-/// line does not.
+/// Replay goes through ModifyCardPlayCount because BaseReplayCount cannot be set on the immutable
+/// canonical card, so the compendium would show no Replay. The engine's "Replay N." line reads only
+/// BaseReplayCount, so the text and hover tip are declared here instead.
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Lacerate() : ShadowIroncladCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)

@@ -11,11 +11,6 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Statuses;
 
-/// <summary>
-/// The Slate grant is settled by <see cref="Patches.TransformPayoutPatches"/> rather than inline,
-/// because <see cref="MegaCrit.Sts2.Core.Models.CardModel.AfterTransformedFrom"/> is synchronous and
-/// power application is not.
-/// </summary>
 [Pool(typeof(StatusCardPool))]
 public sealed class Mud() : IntoTheSpireverseCard(-1, CardType.Status, CardRarity.Status, TargetType.None, "ironclad"),
     ITransformPayout
@@ -35,6 +30,8 @@ public sealed class Mud() : IntoTheSpireverseCard(-1, CardType.Status, CardRarit
     [
         HoverTipFactory.FromPower<SlatePower>(),
     ];
+
+    public bool WaitsForCardPlay => true;
 
     public async Task OnTransformedAway(PlayerChoiceContext choiceContext)
     {

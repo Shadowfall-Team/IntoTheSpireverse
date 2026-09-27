@@ -4,18 +4,9 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 /// <summary>
-/// Records whether the play currently starting is an auto-play, for the window before the card's
-/// CardPlay objects exist.
-///
-/// IntoTheSpireverseKeywords.WasPlayedIndirectly answers the same question from a CardPlay, but
-/// CardModel.OnPlayWrapper builds those only once it is inside the play loop. Anything that has to
-/// decide before then - ModifyCardPlayCount in particular, which runs earlier in the same method -
-/// has nothing but the card itself to go on. OnPlayWrapper's isAutoPlay argument is that missing
-/// bit, so it is captured on the way in.
-///
-/// The entry is only meaningful while that wrapper call is on the stack. It is left behind
-/// afterwards rather than cleared, because the next play of the same card overwrites it and the
-/// whole table is dropped at the end of combat.
+/// Captures OnPlayWrapper's isAutoPlay for <see cref="Keywords.IntoTheSpireverseKeywords.WillBePlayedIndirectly"/>,
+/// which runs before any CardPlay exists. Entries are only valid during that call; the next play
+/// overwrites them and combat end clears them.
 /// </summary>
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.OnPlayWrapper))]
 public static class AutoPlayFlagPatch

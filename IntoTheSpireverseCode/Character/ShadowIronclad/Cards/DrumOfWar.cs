@@ -10,7 +10,6 @@ using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
-/// <summary>The Transform half of the refund is settled by TransformPayoutPatches, not inline.</summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class DrumOfWar() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self),
     ITransformPayout
@@ -41,12 +40,7 @@ public sealed class DrumOfWar() : ShadowIroncladCard(1, CardType.Skill, CardRari
 
     public Task OnTransformedAway(PlayerChoiceContext choiceContext) => DrawPayout(choiceContext);
 
-    /// <summary>
-    /// Guards on the owner rather than CombatState: that property is derived from the card's current
-    /// pile, and a Transformed card has already left its pile by the time the payout settles, so it
-    /// reads null and the draw would be skipped. Exhaust keeps the card in a combat pile, which is
-    /// why only the Transform half was affected.
-    /// </summary>
+    // Guards on Owner, not CombatState: a Transformed card has left its pile, so CombatState is null.
     private async Task DrawPayout(PlayerChoiceContext choiceContext)
     {
         var owner = Owner;

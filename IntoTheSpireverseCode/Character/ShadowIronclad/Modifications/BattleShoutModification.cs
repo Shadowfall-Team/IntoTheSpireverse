@@ -12,20 +12,11 @@ public sealed class BattleShoutModification : Modification, IModifyDamageAdditiv
 {
     protected override ModelId SourceCardId => ModelDb.Card<BattleShout>().Id;
 
-    // The damage preview already folds this bonus into the card's printed number, so a line
-    // saying "deals N additional damage" would read as a second bonus on top of it. The hover
-    // tip still carries that text.
+    // The printed damage already includes the bonus; appended text would read as a second one.
     protected override bool AppendsTextToCardDescription => false;
 
-    /// <summary>
-    /// The game's own damage hook rather than CardModifier.ModifyBaseDamageAdditive, which
-    /// BaseLib marks "NOT YET FULLY FUNCTIONAL". Modifiers receive normal combat hooks
-    /// (ShouldReceiveCombatHooks defers to the card they are attached to), so this works the
-    /// same way PiercedPower does - keyed on cardSource being the card we are attached to.
-    ///
-    /// cardSource is set for previews as well as real plays, so the bonus shows in the card's
-    /// displayed damage rather than only appearing on hit.
-    /// </summary>
+    // The game's damage hook, since BaseLib marks CardModifier.ModifyBaseDamageAdditive unfinished.
+    // cardSource is set for previews too, so the printed damage includes the bonus.
     public decimal ModifyDamageAdditiveCompability(
         Creature? target,
         decimal amount,

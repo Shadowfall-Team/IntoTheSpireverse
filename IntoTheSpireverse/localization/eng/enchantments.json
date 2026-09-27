@@ -3,5 +3,7 @@
   "INTOTHESPIREVERSE-POLISHED.description": "This card gains [gold]Retain[/gold] and deals [blue]{Damage}[/blue] additional damage.",
   "INTOTHESPIREVERSE-ARMORED.title": "Armored",
   "INTOTHESPIREVERSE-ARMORED.description": "This card gains [blue]{Block}[/blue] additional [gold]Block[/gold] and gives {Amount:energyIcons()}.",
-  "INTOTHESPIREVERSE-ARMORED.extraCardText": "Gain {Amount:energyIcons()}."
+  "INTOTHESPIREVERSE-ARMORED.extraCardText": "Gain {Amount:energyIcons()}.",
+  "INTOTHESPIREVERSE-HOLLOW.title": "Hollow",
+  "INTOTHESPIREVERSE-HOLLOW.description": "This card gains [gold]Ethereal[/gold] and [gold]Exhaust[/gold], and loses [gold]Retain[/gold]."
 }

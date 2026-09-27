@@ -24,9 +24,8 @@ public sealed class Fume() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Co
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // Shuffle first so the peek sees the card AutoPlayFromDrawPile will actually take: with an
-        // empty Draw Pile it shuffles the Discard back in before picking, and peeking ahead of that
-        // would read nothing and miss the Unplayable case.
+        // Shuffle first: AutoPlayFromDrawPile reshuffles an empty Draw Pile before picking, and the
+        // peek must see that card.
         await CardPileCmd.ShuffleIfNecessary(choiceContext, Owner);
 
         var top = PileType.Draw.GetPile(Owner).Cards.FirstOrDefault();

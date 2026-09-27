@@ -15,7 +15,7 @@ public sealed class Megalith() : ShadowIroncladCard(2, CardType.Power, CardRarit
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<StoneHealthPower>(7m),
+        new PowerVar<StoneHealthPower>(10m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -32,5 +32,5 @@ public sealed class Megalith() : ShadowIroncladCard(2, CardType.Power, CardRarit
             Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<StoneHealthPower>().UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars.Power<StoneHealthPower>().UpgradeValueBy(4m);
 }

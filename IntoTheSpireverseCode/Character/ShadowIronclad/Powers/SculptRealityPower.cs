@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.Enchantments;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -29,8 +30,7 @@ public sealed class SculptRealityPower : ShadowPowerModel
 
             if (card == null) continue;
 
-            card.AddKeyword(CardKeyword.Ethereal);
-            card.AddKeyword(CardKeyword.Exhaust);
+            CardCmd.Enchant<Hollow>(card, 1m);
 
             Flash();
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner.Player);

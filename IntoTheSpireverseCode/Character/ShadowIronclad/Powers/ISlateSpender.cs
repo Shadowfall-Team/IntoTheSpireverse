@@ -4,9 +4,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
 /// <summary>
-/// Implemented by cards that pay off when playing them spends Slate. SlatePower decrements in
-/// AfterCardPlayed, after the card's own OnPlay has finished, so a card cannot observe its own spend;
-/// SlatePower calls this instead once the decrement has actually happened.
+/// SlatePower decrements after the card's OnPlay, so a card cannot see its own spend there.
+/// SlatePower calls this once the decrement has happened.
 /// </summary>
 public interface ISlateSpender
 {

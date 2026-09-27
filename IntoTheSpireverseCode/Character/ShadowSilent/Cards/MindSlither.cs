@@ -1,5 +1,6 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.Enchantments;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,7 +24,7 @@ public sealed class MindSlither() : ShadowSilentCard(1, CardType.Skill, CardRari
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Flicker>(),
-        HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
+        .. HoverTipFactory.FromEnchantment<Hollow>(),
     ];
     
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
@@ -41,8 +42,7 @@ public sealed class MindSlither() : ShadowSilentCard(1, CardType.Skill, CardRari
                     .Select(c =>
                     {
                         var card = CombatState.CreateCard<Flicker>(teammate.Player);
-                        CardCmd.RemoveKeyword(card, CardKeyword.Retain);
-                        CardCmd.ApplyKeyword(card, CardKeyword.Ethereal);
+                        CardCmd.Enchant<Hollow>(card, 1m);
                         return card;
                     }); 
                 await CardPileCmd.AddGeneratedCardsToCombat(flickers ?? [], PileType.Hand, teammate.Player);

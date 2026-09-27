@@ -11,9 +11,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 /// <summary>
-/// The damage increase is permanent for the run, so it follows the same shape as The Scythe and
-/// The Law: the running total is a SavedProperty, and every play buffs the DeckVersion as well as
-/// the combat copy so the deck entry carries the growth out of combat.
+/// Growth lasts the run, as with The Scythe: it is a SavedProperty and is mirrored onto DeckVersion.
 /// </summary>
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
@@ -78,23 +76,15 @@ public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.
         (DeckVersion as Carve)?.BuffFromPlay(increase);
     }
 
-    /// <summary>
-    /// The upgrade has to go through UpdateDamage rather than DynamicVars.Damage.UpgradeValueBy,
-    /// because that writes straight into BaseValue and the CurrentDamage setter writes the same
-    /// field: whichever ran last would erase the other. Folding the upgrade into the same
-    /// calculation keeps CurrentDamage the single source. CurrentUpgradeLevel is incremented before
-    /// OnUpgrade runs, so IsUpgraded is already true here.
-    /// </summary>
+    // Through UpdateDamage, not UpgradeValueBy: both write Damage.BaseValue and the later write
+    // would erase the other. IsUpgraded is already true here.
     protected override void OnUpgrade()
     {
         DynamicVars[IncreaseKey].UpgradeValueBy(1m);
         UpdateDamage();
     }
 
-    /// <summary>
-    /// CanonicalVars rebuilds Damage from the constants, so the accumulated growth has to be
-    /// reapplied after a downgrade or it would be silently lost.
-    /// </summary>
+    // A downgrade rebuilds Damage from the constants, dropping the growth.
     protected override void AfterDowngraded() => UpdateDamage();
 
     private void BuffFromPlay(int extraDamage)

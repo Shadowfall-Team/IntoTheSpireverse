@@ -16,6 +16,16 @@ public sealed class GabbroPower : ShadowPowerModel, IModifyDamageAdditive
     
     private bool _potionRockResolving;
 
+    /// <summary>
+    /// The damage Gabbro adds to a Potion-Shaped Rock, for PotionShapedRockTooltipPatch. Must match
+    /// the potion branch of ModifyDamageAdditiveCompability below.
+    /// </summary>
+    public static decimal PotionRockBonus(PotionModel potion)
+    {
+        if (potion is not PotionShapedRock || !potion.IsMutable) return 0m;
+        return potion.Owner?.Creature.Powers.OfType<GabbroPower>().FirstOrDefault()?.Amount ?? 0m;
+    }
+
     public override Task BeforePotionUsed(PotionModel potion, Creature? target)
     {
         _potionRockResolving = potion is PotionShapedRock && potion.Owner == Owner.Player;

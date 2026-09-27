@@ -2,6 +2,7 @@
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.Enchantments;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -20,8 +21,7 @@ public sealed class SculptReality() : ShadowIroncladCard(2, CardType.Power, Card
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(CardKeyword.Ethereal),
-        HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
+        .. HoverTipFactory.FromEnchantment<Hollow>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
