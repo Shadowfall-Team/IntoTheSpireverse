@@ -28,5 +28,5 @@ public sealed class Assault() : ShadowIroncladCard(2, CardType.Skill, CardRarity
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1);
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

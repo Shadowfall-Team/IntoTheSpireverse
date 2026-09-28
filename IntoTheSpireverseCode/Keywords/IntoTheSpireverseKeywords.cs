@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
+using IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands.Builders;
 
@@ -50,7 +51,21 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Modify;
-    
+
+    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
+    public static CardKeyword Indirectly;
+
+    /// <summary>
+    /// True for any play other than the player playing the card from Hand. Replay repeats copy the
+    /// original IsAutoPlay and never change piles, so IsFirstInSeries is the only way to catch them.
+    /// The pile check covers a card reaching Play from another pile without going through AutoPlay.
+    /// </summary>
+    public static bool WasPlayedIndirectly(CardPlay cardPlay) =>
+        cardPlay.IsAutoPlay
+        || !cardPlay.IsFirstInSeries
+        || (IndirectPlayTracker.TryGetLastPileLeft(cardPlay.Card, out var pile)
+            && pile != PileType.Hand);
+
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
 

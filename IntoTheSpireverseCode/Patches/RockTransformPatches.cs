@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Enchantments;
@@ -12,11 +13,11 @@ public class RockTransformPatches
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedFrom))]
     public static class RockTransformFromPatch
     {
-        public static bool RockWasTransformedFrom;
+        public static bool StatusWasTransformedFrom;
 
         public static void Postfix(CardModel __instance)
         {
-            RockWasTransformedFrom = __instance.Tags.Contains(IntoTheSpireverseCardTags.Rock);
+            StatusWasTransformedFrom = __instance.Type == CardType.Status;
         }
     }
 
@@ -25,8 +26,8 @@ public class RockTransformPatches
     {
         public static void Postfix(CardModel __instance)
         {
-            if (!RockTransformFromPatch.RockWasTransformedFrom) return;
-            RockTransformFromPatch.RockWasTransformedFrom = false;
+            if (!RockTransformFromPatch.StatusWasTransformedFrom) return;
+            RockTransformFromPatch.StatusWasTransformedFrom = false;
 
             if (!__instance.Tags.Contains(IntoTheSpireverseCardTags.Rock)) return;
 

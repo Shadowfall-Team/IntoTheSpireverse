@@ -9,15 +9,15 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
 
-[Pool(typeof(TokenCardPool))]
-public sealed class RollingRock() : RockCardBase(1, CardType.Attack, CardRarity.Token, TargetType.AllEnemies)
+[Pool(typeof(ShadowIroncladCardPool))]
+public sealed class RollingRock() : RockCardBase(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     private const string IncreaseKey = "Increase";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(9m, ValueProp.Move),
-        new DynamicVar(IncreaseKey, 3m),
+        new DamageVar(8m, ValueProp.Move),
+        new DynamicVar(IncreaseKey, 4m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -31,5 +31,5 @@ public sealed class RollingRock() : RockCardBase(1, CardType.Attack, CardRarity.
         BuffFromRockPlay(DynamicVars[IncreaseKey].BaseValue);
     }
 
-    protected override void OnUpgrade() => DynamicVars[IncreaseKey].UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars[IncreaseKey].UpgradeValueBy(4m);
 }

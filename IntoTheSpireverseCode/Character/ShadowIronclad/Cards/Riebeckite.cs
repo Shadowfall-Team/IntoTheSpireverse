@@ -21,6 +21,7 @@ public sealed class Riebeckite() : ShadowIroncladCard(1, CardType.Power, CardRar
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),
+        HoverTipFactory.FromPower<RetaliationPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

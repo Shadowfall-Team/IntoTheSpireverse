@@ -9,11 +9,11 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class BumRush() : ShadowIroncladCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class BumRush() : ShadowIroncladCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(20m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -32,5 +32,5 @@ public sealed class BumRush() : ShadowIroncladCard(2, CardType.Attack, CardRarit
         await CardPileCmd.Add(selected, PileType.Draw, CardPilePosition.Top);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(6m);
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
 }

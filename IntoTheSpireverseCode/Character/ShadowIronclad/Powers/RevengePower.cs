@@ -16,9 +16,6 @@ public sealed class RevengePower : ShadowPowerModel
         HoverTipFactory.FromPower<RetaliationPower>(),
     ];
 
-    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
-    {
-        if (side != CombatSide.Player) return;
-        await PowerCmd.Decrement(this);
-    }
+    // No longer ticks down on its own. RetaliationPower consumes a charge only on a turn where
+    // Retaliation would actually have been lost, so Revenge persists across quiet turns.
 }

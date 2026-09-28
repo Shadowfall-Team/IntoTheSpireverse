@@ -22,5 +22,7 @@
   "INTOTHESPIREVERSE-MODIFY.title": "Modify",
   "INTOTHESPIREVERSE-MODIFY.description": "Changes a card for the rest of combat. A Modified card cannot be Modified again.",
   "INTOTHESPIREVERSE-ARCANE.title": "Arcane",
-  "INTOTHESPIREVERSE-ARCANE.description": "Start each combat with this card in your [gold]Exhaust[/gold] pile."
+  "INTOTHESPIREVERSE-ARCANE.description": "Start each combat with this card in your [gold]Exhaust[/gold] pile.",
+  "INTOTHESPIREVERSE-INDIRECTLY.title": "Indirectly",
+  "INTOTHESPIREVERSE-INDIRECTLY.description": "A card is played Indirectly anytime you do not play it manually from your [gold]Hand[/gold]. (Replays are Indirect.)"
 }

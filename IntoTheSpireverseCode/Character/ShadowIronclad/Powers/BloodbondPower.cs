@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
+﻿using BaseLib.Hooks;
+using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -11,9 +12,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Power
 
 public class BloodbondPower : ShadowPowerModel
 {
+
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     // Make this instanced a la GrapplePower to have this not be affected by other players
     // But then it doesn't stack and looks all weird
 
@@ -30,12 +32,11 @@ public class BloodbondPower : ShadowPowerModel
         if (CombatState?.CurrentSide != target.Side) return;
         if (damageResult.UnblockedDamage <= 0) return;
 
+        // A Bloodbond on the damaged creature itself would retrigger on its own damage until it died.
+        if (target == Owner) return;
+
         Flash();
         await CreatureCmdCompatibility.Damage(choiceContext, Owner, Amount,
             ValueProp.Unblockable | ValueProp.Unpowered, target, null, null);
-
-        var relic = target.Player?.Relics.OfType<Buckler>().FirstOrDefault();
-        if (relic != null)
-            await relic.TryHeal();
     }
 }

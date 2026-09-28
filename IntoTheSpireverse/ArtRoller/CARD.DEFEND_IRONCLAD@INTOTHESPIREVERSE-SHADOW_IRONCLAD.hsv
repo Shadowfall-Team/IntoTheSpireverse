@@ -1,0 +1,12 @@
+{
+  "card_id": "CARD.DEFEND_IRONCLAD@INTOTHESPIREVERSE-SHADOW_IRONCLAD",
+  "hue": 0.55,
+  "saturation": 0.49,
+  "value": 1.21,
+  "red": 1.21,
+  "green": 0.86,
+  "blue": 1.01,
+  "contrast": 1.24,
+  "flip_h": true,
+  "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/defend_ironclad.tres"
+}

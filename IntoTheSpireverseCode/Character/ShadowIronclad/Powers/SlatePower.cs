@@ -27,45 +27,39 @@ public sealed class SlatePower : ShadowPowerModel
 
     protected override object InitInternalData() => new Data();
 
-    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
+    // Only plays that began with Slate already present can spend it, so an Attack that grants Slate
+    // mid-play (itself, or via a transformed Mud) cannot consume it. A set, because plays nest.
+    public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        GetInternalData<Data>().AppliedBy = cardSource;
+        if (cardPlay.Card.Owner?.Creature == Owner && cardPlay.Card.Type == CardType.Attack)
+            GetInternalData<Data>().ArmedPlays.Add(cardPlay);
         return Task.CompletedTask;
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var data = GetInternalData<Data>();
-        if (data.AppliedBy == cardPlay.Card)
-        {
-            data.AppliedBy = null;
-            return;
-        }
-
-        if (cardPlay.Card.Owner?.Creature != Owner || cardPlay.Card.Type != CardType.Attack)
+        if (!GetInternalData<Data>().ArmedPlays.Remove(cardPlay))
             return;
 
         Flash();
-        decimal blockAmount = DynamicVars[BlockKey].BaseValue + GetRiebeckiteBonus();
+        var riebeckite = Owner.Powers.OfType<RiebeckitePower>().FirstOrDefault();
+
+        decimal blockAmount = DynamicVars[BlockKey].BaseValue + (riebeckite?.Amount ?? 0);
         await CreatureCmd.GainBlock(Owner, blockAmount, ValueProp.Unpowered, null);
 
-        if (!IsObsidianActive())
-            await PowerCmd.Decrement(this);
-    }
+        if (riebeckite != null)
+            await PowerCmd.Apply<RetaliationPower>(
+                choiceContext,
+                Owner, riebeckite.DynamicVars[RiebeckitePower.RetaliationKey].BaseValue, Owner, null);
 
-    private decimal GetRiebeckiteBonus()
-    {
-        var riebeckite = Owner.Powers.OfType<RiebeckitePower>().FirstOrDefault();
-        return riebeckite != null ? (decimal)riebeckite.Amount : 0m;
-    }
+        await PowerCmd.Decrement(this);
 
-    private bool IsObsidianActive()
-    {
-        return Owner.Powers.Any(p => p is ObsidianPower);
+        if (cardPlay.Card is ISlateSpender spender)
+            await spender.OnSlateSpent(choiceContext, cardPlay);
     }
 
     private class Data
     {
-        public CardModel? AppliedBy;
+        public readonly HashSet<CardPlay> ArmedPlays = [];
     }
 }

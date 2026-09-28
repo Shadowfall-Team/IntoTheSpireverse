@@ -1,12 +1,12 @@
 {
   "card_id": "CARD.INTOTHESPIREVERSE-PEAK_PERFORMANCE",
-  "hue": 0.96,
-  "saturation": 0.57,
-  "value": 1.09,
-  "red": 1.15,
+  "hue": 0.55,
+  "saturation": 0.42,
+  "value": 0.88,
+  "red": 1.27,
   "green": 1.07,
-  "blue": 1.33,
-  "contrast": 1.23,
+  "blue": 1.7,
+  "contrast": 1.15,
   "flip_h": true,
   "portrait_path": "res://images/atlases/card_atlas.sprites/ironclad/juggling.tres"
 }

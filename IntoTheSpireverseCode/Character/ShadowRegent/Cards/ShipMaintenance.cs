@@ -1,4 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Animation;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.Enchantments;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,25 +17,13 @@ public class ShipMaintenance() : ShadowRegentCard(
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
     
-    protected override IEnumerable<IHoverTip> ExtraHoverTips
-    {
-        get
-        {
-            var automation = (CardModel)ModelDb.Card<Automation>().MutableClone();
-            automation.AddKeyword(CardKeyword.Ethereal);
-            var prowess = (CardModel)ModelDb.Card<Prowess>().MutableClone();
-            prowess.AddKeyword(CardKeyword.Ethereal);
-            var stratagem = (CardModel)ModelDb.Card<Stratagem>().MutableClone();
-            stratagem.AddKeyword(CardKeyword.Ethereal);
-            return
-            [
-                HoverTipFactory.FromCard(automation),
-                HoverTipFactory.FromCard(prowess),
-                HoverTipFactory.FromCard(stratagem),
-                HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
-            ];
-        }
-    }
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromCard<Automation>(),
+        HoverTipFactory.FromCard<Prowess>(),
+        HoverTipFactory.FromCard<Stratagem>(),
+        .. HoverTipFactory.FromEnchantment<Hollow>(),
+    ];
 
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
@@ -50,14 +39,16 @@ public class ShipMaintenance() : ShadowRegentCard(
 
         if (CombatState != null)
         {
-            var automation = CombatState.CreateCard<Automation>(Owner);
-            automation.AddKeyword(CardKeyword.Ethereal);
-            var prowess = CombatState.CreateCard<Prowess>(Owner);
-            prowess.AddKeyword(CardKeyword.Ethereal);
-            var stratagem = CombatState.CreateCard<Stratagem>(Owner);
-            stratagem.AddKeyword(CardKeyword.Ethereal);
+            CardModel[] cards =
+            [
+                CombatState.CreateCard<Automation>(Owner),
+                CombatState.CreateCard<Prowess>(Owner),
+                CombatState.CreateCard<Stratagem>(Owner),
+            ];
+            foreach (var card in cards)
+                CardCmd.Enchant<Hollow>(card, 1m);
 
-            await CardPileCmd.AddGeneratedCardsToCombat([automation, prowess, stratagem], PileType.Hand, Owner);
+            await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, Owner);
         }
     }
 

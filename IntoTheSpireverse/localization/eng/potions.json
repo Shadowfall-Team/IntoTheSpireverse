@@ -1,10 +1,13 @@
 ﻿{
-  "INTOTHESPIREVERSE-BLOODBOND_POTION.title": "Devil's Wine",
-  "INTOTHESPIREVERSE-BLOODBOND_POTION.description": "Apply [blue]{BloodbondPower}[/blue] [gold]Bloodbond[/gold] to ALL enemies.",
+  "INTOTHESPIREVERSE-DEVILS_WINE.title": "Devil's Wine",
+  "INTOTHESPIREVERSE-DEVILS_WINE.description": "Choose a card in your [gold]Hand[/gold]. It gains [gold]Replay[/gold] [blue]{Replay}[/blue] and \"Lose [blue]{HpLoss}[/blue] HP\".",
+  "INTOTHESPIREVERSE-DEVILS_WINE.selectionScreenPrompt": "Choose a card to Modify.",
+  "INTOTHESPIREVERSE-DEVILS_WINE.modifierText": "Lose {Amount} HP.",
+  "INTOTHESPIREVERSE-DEVILS_WINE.modifierTip": "Card gains \"Lose [blue]{Amount}[/blue] HP\".",
   "INTOTHESPIREVERSE-DEW_BOTTLE.title": "Dew Bottle",
-  "INTOTHESPIREVERSE-DEW_BOTTLE.description": "Gain [blue]{SlatePower}[/blue] [gold]Slate[/gold].",
-  "INTOTHESPIREVERSE-GABBRO_POTION.title": "Stoneshaper Elixir",
-  "INTOTHESPIREVERSE-GABBRO_POTION.description": "Rocks deal [blue]{GabbroPower}[/blue] additional damage this combat. Add [gold]Primal Force[/gold] into your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-DEW_BOTTLE.description": "Gain [blue]{StoneHealthPower}[/blue] [gold]Stone Health[/gold].",
+  "INTOTHESPIREVERSE-STONESHAPER_ELIXIR.title": "Stoneshaper Elixir",
+  "INTOTHESPIREVERSE-STONESHAPER_ELIXIR.description": "Rocks deal [blue]{GabbroPower}[/blue] additional damage this combat. Add [gold]Primal Force[/gold] into your [gold]Hand[/gold].",
   
   "INTOTHESPIREVERSE-S_NECRO_SOUL_STRIKE_POTION.title": "Shadow Necrobinder Soul Strike Potion (PLACEHOLDER NAME)",
   "INTOTHESPIREVERSE-S_NECRO_SOUL_STRIKE_POTION.description": "Add [blue]{Cards}[/blue] [gold]{Cards:plural:Soul Strike|Soul Strikes}[/gold] into your [gold]Hand[/gold].",

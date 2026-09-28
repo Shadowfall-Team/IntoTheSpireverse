@@ -1,4 +1,5 @@
 ﻿using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -12,13 +13,13 @@ public sealed class TemperPower : ShadowPowerModel
     public override PowerStackType StackType => PowerStackType.Counter;
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromPower<RetaliationPower>(),
+        HoverTipFactory.FromPower<StrengthPower>(),
     ];
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner.Player || cardPlay.Card.Type != CardType.Skill) return;
         Flash();
-        await PowerCmd.Apply<RetaliationPower>(choiceContext, Owner, Amount, Owner, null);
+        await PowerCmd.Apply<TemperTemporaryStrengthPower>(choiceContext, Owner, (decimal)Amount, Owner, null);
     }
 }
