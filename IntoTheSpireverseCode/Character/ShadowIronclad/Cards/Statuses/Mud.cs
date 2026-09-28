@@ -31,8 +31,6 @@ public sealed class Mud() : IntoTheSpireverseCard(-1, CardType.Status, CardRarit
         HoverTipFactory.FromPower<SlatePower>(),
     ];
 
-    public bool WaitsForCardPlay => true;
-
     public async Task OnTransformedAway(PlayerChoiceContext choiceContext)
     {
         await PowerCmd.Apply<SlatePower>(

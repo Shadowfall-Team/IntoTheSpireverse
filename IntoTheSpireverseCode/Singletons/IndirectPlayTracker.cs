@@ -31,12 +31,4 @@ public class IndirectPlayTracker() : CustomSingletonModel(HookType.Combat)
         TransformPayoutPatches.Clear();
         return Task.CompletedTask;
     }
-
-    // Also cleared on the way in: a run lost mid-play leaves a play task that never completes, and
-    // its unreleased depth would otherwise hold every later Mud payout forever.
-    public override Task BeforeCombatStart()
-    {
-        TransformPayoutPatches.Clear();
-        return Task.CompletedTask;
-    }
 }

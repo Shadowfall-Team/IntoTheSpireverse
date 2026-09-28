@@ -12,10 +12,6 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 public interface ITransformPayout
 {
     Task OnTransformedAway(PlayerChoiceContext choiceContext);
-
-    // Defer the payout until the current card play has resolved, so an Attack that transforms Mud
-    // cannot spend the Slate it just granted.
-    bool WaitsForCardPlay => false;
 }
 
 /// <summary>
@@ -25,17 +21,8 @@ public interface ITransformPayout
 public static class TransformPayoutPatches
 {
     private static readonly List<CardModel> Pending = [];
-    private static readonly List<CardModel> AwaitingCardPlay = [];
 
-    // Plays nest (Havoc, autoplays), so deferred payouts wait for the outermost one.
-    private static int _cardPlayDepth;
-
-    public static void Clear()
-    {
-        Pending.Clear();
-        AwaitingCardPlay.Clear();
-        _cardPlayDepth = 0;
-    }
+    public static void Clear() => Pending.Clear();
 
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedFrom))]
     public static class TransformedFromPatch
@@ -58,17 +45,6 @@ public static class TransformPayoutPatches
         }
     }
 
-    [HarmonyPatch(typeof(CardModel), nameof(CardModel.OnPlayWrapper))]
-    public static class CardPlayDepthPatch
-    {
-        public static void Prefix() => _cardPlayDepth++;
-
-        public static void Postfix(ref Task __result)
-        {
-            __result = SettleAfterCardPlay(__result);
-        }
-    }
-
     private static async Task<IEnumerable<CardPileAddResult>> SettlePending(
         Task<IEnumerable<CardPileAddResult>> inner)
     {
@@ -80,34 +56,9 @@ public static class TransformPayoutPatches
         Pending.Clear();
 
         foreach (var card in settled)
-        {
-            if (_cardPlayDepth > 0 && card is ITransformPayout { WaitsForCardPlay: true })
-                AwaitingCardPlay.Add(card);
-            else
-                await PayOut(card);
-        }
+            await PayOut(card);
 
         return results;
-    }
-
-    private static async Task SettleAfterCardPlay(Task inner)
-    {
-        try
-        {
-            await inner;
-        }
-        finally
-        {
-            _cardPlayDepth--;
-        }
-
-        if (_cardPlayDepth > 0 || AwaitingCardPlay.Count == 0) return;
-
-        var settled = AwaitingCardPlay.ToList();
-        AwaitingCardPlay.Clear();
-
-        foreach (var card in settled)
-            await PayOut(card);
     }
 
     private static async Task PayOut(CardModel card)

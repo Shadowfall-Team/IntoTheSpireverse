@@ -14,28 +14,13 @@ public sealed class GabbroPower : ShadowPowerModel, IModifyDamageAdditive
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     
-    private bool _potionRockResolving;
-
     /// <summary>
-    /// The damage Gabbro adds to a Potion-Shaped Rock, for PotionShapedRockTooltipPatch. Must match
-    /// the potion branch of ModifyDamageAdditiveCompability below.
+    /// The damage Gabbro adds to a Potion-Shaped Rock, for PotionShapedRockPatches.
     /// </summary>
     public static decimal PotionRockBonus(PotionModel potion)
     {
         if (potion is not PotionShapedRock || !potion.IsMutable) return 0m;
         return potion.Owner?.Creature.Powers.OfType<GabbroPower>().FirstOrDefault()?.Amount ?? 0m;
-    }
-
-    public override Task BeforePotionUsed(PotionModel potion, Creature? target)
-    {
-        _potionRockResolving = potion is PotionShapedRock && potion.Owner == Owner.Player;
-        return Task.CompletedTask;
-    }
-
-    public override Task AfterPotionUsed(PotionModel potion, Creature? target)
-    {
-        _potionRockResolving = false;
-        return Task.CompletedTask;
     }
 
     public decimal ModifyDamageAdditiveCompability(
@@ -46,10 +31,7 @@ public sealed class GabbroPower : ShadowPowerModel, IModifyDamageAdditive
         CardModel? cardSource,
         CardPlay? cardPlay)
     {
-        if (dealer != Owner) return 0m;
-
-        if (cardSource == null) return _potionRockResolving ? Amount : 0m;
-
+        if (dealer != Owner || cardSource == null) return 0m;
         if (!props.IsPoweredAttack()) return 0m;
         if (!cardSource.Tags.Contains(IntoTheSpireverseCardTags.Rock)) return 0m;
         return Amount;
