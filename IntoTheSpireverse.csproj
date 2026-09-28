@@ -101,6 +101,11 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Compile Remove="**/*.cs.uid"/>
+        <None Remove="**/*.cs.uid"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
         <None Include=".gitignore"/>
         <None Include="IntoTheSpireverse.json"/>
