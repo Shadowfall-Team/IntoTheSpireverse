@@ -28,7 +28,6 @@ public class IndirectPlayTracker() : CustomSingletonModel(HookType.Combat)
     {
         LastPileLeft.Clear();
         AutoPlayFlagPatch.Clear();
-        TransformPayoutPatches.Clear();
         return Task.CompletedTask;
     }
 }

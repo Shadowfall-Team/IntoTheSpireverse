@@ -15,57 +15,43 @@ public interface ITransformPayout
 }
 
 /// <summary>
-/// <see cref="CardModel.AfterTransformedFrom"/> is synchronous and payouts are async, so consumed
-/// cards are queued and paid out once <see cref="CardCmd.Transform"/>'s task settles.
+/// <see cref="CardModel.AfterTransformedFrom"/> is synchronous and payouts are async, so cards
+/// that pay out when transformed are settled once their <see cref="CardCmd.Transform"/> task ends.
 /// </summary>
 public static class TransformPayoutPatches
 {
-    private static readonly List<CardModel> Pending = [];
-
-    public static void Clear() => Pending.Clear();
-
-    [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedFrom))]
-    public static class TransformedFromPatch
-    {
-        public static void Postfix(CardModel __instance)
-        {
-            if (!CombatManager.Instance.IsInProgress) return;
-            if (__instance is ITransformPayout)
-                Pending.Add(__instance);
-        }
-    }
-
     [HarmonyPatch(typeof(CardCmd), nameof(CardCmd.Transform),
         [typeof(IEnumerable<CardTransformation>), typeof(Rng), typeof(CardPreviewStyle)])]
     public static class TransformPayoutPatch
     {
-        public static void Postfix(ref Task<IEnumerable<CardPileAddResult>> __result)
+        public static void Prefix(ref IEnumerable<CardTransformation> transformations,
+            out List<ITransformPayout> __state)
         {
-            __result = SettlePending(__result);
+            __state = CombatManager.Instance.IsInProgress
+                ? transformations.Select(t => t.Original).OfType<ITransformPayout>().ToList()
+                : [];
+        }
+
+        public static void Postfix(ref Task<IEnumerable<CardPileAddResult>> __result,
+            List<ITransformPayout> __state)
+        {
+            __result = SettlePayouts(__result, __state);
         }
     }
 
-    private static async Task<IEnumerable<CardPileAddResult>> SettlePending(
-        Task<IEnumerable<CardPileAddResult>> inner)
+    private static async Task<IEnumerable<CardPileAddResult>> SettlePayouts(
+        Task<IEnumerable<CardPileAddResult>> inner, List<ITransformPayout> payouts)
     {
         var results = await inner;
 
-        if (Pending.Count == 0) return results;
+        foreach (var payout in payouts)
+        {
+            if (payout is not CardModel card || card.Owner?.Creature.CombatState == null)
+                continue;
 
-        var settled = Pending.ToList();
-        Pending.Clear();
-
-        foreach (var card in settled)
-            await PayOut(card);
+            await payout.OnTransformedAway(new ThrowingPlayerChoiceContext());
+        }
 
         return results;
-    }
-
-    private static async Task PayOut(CardModel card)
-    {
-        if (card.Owner?.Creature.CombatState == null) return;
-
-        if (card is ITransformPayout payout)
-            await payout.OnTransformedAway(new ThrowingPlayerChoiceContext());
     }
 }
