@@ -24,7 +24,6 @@ public sealed class ClaySoldier() : ShadowIroncladCard(1, CardType.Power, CardRa
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<StrengthPower>(),
-        HoverTipFactory.FromPower<ClaySoldierPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -1,13 +1,16 @@
 ﻿using BaseLib.Extensions;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
 
@@ -17,13 +20,12 @@ public class CrimsonAmulet : ShadowIroncladRelic
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<BloodbondPower>(10m),
+        new HpLossVar(10m),
         new PowerVar<ThornsPower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<BloodbondPower>(),
         HoverTipFactory.FromPower<ThornsPower>(),
     ];
 
@@ -37,31 +39,32 @@ public class CrimsonAmulet : ShadowIroncladRelic
 
         Flash();
 
-        await PowerCmd.Apply<BloodbondPower>(
-            new ThrowingPlayerChoiceContext(),
-            targets, DynamicVars.Power<BloodbondPower>().BaseValue,
-            null, null);
-
         await PowerCmd.Apply<ThornsPower>(
             new ThrowingPlayerChoiceContext(),
             targets, DynamicVars.Power<ThornsPower>().BaseValue,
             null, null);
     }
 
-    public override async Task AfterCreatureAddedToCombat(Creature creature)
+    // Done by the relic rather than by applying Bloodbond, so enemies summoned mid-combat are hit too.
+    public override async Task AfterDamageReceived(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        DamageResult result,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource)
     {
-        if (creature.Side == Owner.Creature.Side) return;
+        if (target != Owner.Creature) return;
+        if (target.CombatState?.CurrentSide != target.Side) return;
+        if (result.UnblockedDamage <= 0) return;
+
+        var enemies = target.CombatState
+            .GetOpponentsOf(target)
+            .Where(c => c.IsAlive).ToList();
+        if (enemies.Count == 0) return;
 
         Flash();
-
-        await PowerCmd.Apply<BloodbondPower>(
-            new ThrowingPlayerChoiceContext(),
-            creature, DynamicVars.Power<BloodbondPower>().BaseValue,
-            null, null);
-
-        await PowerCmd.Apply<ThornsPower>(
-            new ThrowingPlayerChoiceContext(),
-            creature, DynamicVars.Power<ThornsPower>().BaseValue,
-            null, null);
+        await CreatureCmdCompatibility.Damage(choiceContext, enemies, DynamicVars.HpLoss.BaseValue,
+            ValueProp.Unblockable | ValueProp.Unpowered, target, null, null);
     }
 }

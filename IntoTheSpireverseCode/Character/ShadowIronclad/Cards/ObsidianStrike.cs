@@ -19,11 +19,6 @@ public sealed class ObsidianStrike() : ShadowIroncladCard(1, CardType.Attack, Ca
         new PowerVar<ObsidianStrikePower>(1m),
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<ObsidianStrikePower>(),
-    ];
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);

@@ -24,7 +24,6 @@ public sealed class Constitution() : ShadowIroncladCard(1, CardType.Skill, CardR
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),
-        HoverTipFactory.FromPower<ConstitutionPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

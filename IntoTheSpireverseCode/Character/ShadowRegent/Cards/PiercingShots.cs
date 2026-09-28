@@ -19,11 +19,6 @@ public class PiercingShots() : ShadowRegentCard(
         new PowerVar<PiercingShotsPower>(4),
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        HoverTipFactory.FromPower<PiercedPower>()
-    ];
-
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay play)
