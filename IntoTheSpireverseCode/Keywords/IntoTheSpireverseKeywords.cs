@@ -66,14 +66,6 @@ public static class IntoTheSpireverseKeywords
         || (IndirectPlayTracker.TryGetLastPileLeft(cardPlay.Card, out var pile)
             && pile != PileType.Hand);
 
-    /// <summary>
-    /// WasPlayedIndirectly for ModifyCardPlayCount, which runs before any CardPlay exists. Replays
-    /// need no check here, since the play count is decided before any repeat.
-    /// </summary>
-    public static bool WillBePlayedIndirectly(CardModel card) =>
-        AutoPlayFlagPatch.IsCurrentPlayAuto(card)
-        || (IndirectPlayTracker.TryGetLastPileLeft(card, out var pile) && pile != PileType.Hand);
-
     public static bool WasRightmostWhenPlayed(CardModel card) =>
         HandPositionTrackingPatch.WasRightmostInHand.TryGetValue(card, out bool val) && val;
 

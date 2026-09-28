@@ -27,7 +27,6 @@ public class IndirectPlayTracker() : CustomSingletonModel(HookType.Combat)
     public override Task AfterCombatEnd(CombatRoom room)
     {
         LastPileLeft.Clear();
-        AutoPlayFlagPatch.Clear();
         return Task.CompletedTask;
     }
 }

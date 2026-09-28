@@ -1,5 +1,6 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Models;
@@ -10,20 +11,25 @@ public sealed class ObsidianStrikePower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
-    /// Only an explicitly targeted card counts. Cards that hit ALL enemies carry no Target, so
-    /// they are not played "against this enemy".
-    public override int ModifyCardPlayCount(CardModel card, Creature? target, int playCount)
-    {
-        if (target != Owner) return playCount;
-        if (IntoTheSpireverseKeywords.WillBePlayedIndirectly(card)) return playCount;
 
+    public static async Task<int> AdjustPlayCount(Task<int> basePlayCountTask, CardModel card,
+        Creature? target, bool isAutoPlay)
+    {
+        var playCount = await basePlayCountTask;
+        if (target == null || isAutoPlay ||
+            (IndirectPlayTracker.TryGetLastPileLeft(card, out var pile) && pile != PileType.Hand))
+        {
+            return playCount;
+        }
+
+        var power = target.Powers.OfType<ObsidianStrikePower>().FirstOrDefault();
+        if (power == null)
+        {
+            return playCount;
+        }
+
+        power.Flash();
+        await PowerCmd.Decrement(power);
         return playCount + 1;
-    }
-
-    public override async Task AfterModifyingCardPlayCount(CardModel card)
-    {
-        Flash();
-        await PowerCmd.Decrement(this);
     }
 }
