@@ -165,9 +165,11 @@ jobs:
         run: |
           MIN_GAME=$(jq -r '.min_game_version' IntoTheSpireverse.json)
           BASELIB=$(jq -r '.dependencies[] | select(.id=="BaseLib") | .min_version' IntoTheSpireverse.json)
+          ARTROLLER=$(jq -r '.dependencies[] | select(.id=="ArtRoller") | .min_version' IntoTheSpireverse.json)
           {
             echo "Works with Slay the Spire 2 version ${MIN_GAME:-unknown} or newer."
             echo "Requires BaseLib ${BASELIB:-unknown} (not included — install it separately)."
+            echo "Requires Art Roller ${ARTROLLER:-unknown} (not included — install it separately)."
             echo ""
             echo "${{ inputs.change_note }}"
           } > banner.md

@@ -41,6 +41,12 @@
         <PackageReference Include="Book.StS2.RefLib" Version="*-*" PrivateAssets="all"/>
     </ItemGroup>
 
+    <!-- Art Roller is a separate mod (github.com/mikemayhemdev/ArtRoller). Compile-time only: players
+         get ArtRoller.dll from the mod itself, so it must not ship in this build. -->
+    <ItemGroup>
+        <PackageReference Include="Shadowfall.Sts2.ArtRoller" Version="1.0.0" PrivateAssets="All" ExcludeAssets="runtime" />
+    </ItemGroup>
+
     <PropertyGroup>
         <PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
     </PropertyGroup>
@@ -116,10 +122,8 @@
     <ItemGroup Condition="$(Configuration.Contains('Production'))">
         <Compile Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
         <Compile Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
-        <Compile Remove="IntoTheSpireverseCode\ArtRoller\NCardLibraryVerticalSlidersPatch.cs"/>
         <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
         <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
-        <EmbeddedResource Remove="IntoTheSpireverseCode\ArtRoller\NCardLibraryVerticalSlidersPatch.cs"/>
     </ItemGroup>
 
     <Target Name="CheckSts2DataDirForCopy" BeforeTargets="CopyToModsFolderOnBuild"

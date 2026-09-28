@@ -1,3 +1,4 @@
+using ArtRoller.Patches;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
@@ -28,7 +29,7 @@ public static class VisualCardPoolPatches
             // is why upgraded reprints used to fall back to the Ironclad's frame. The Card Library's
             // selected pool filter answers it for both: browsing the Tectonic's tab should show its
             // reprints in the Tectonic's frame, upgraded or not, matching how they look in a run.
-            if (CardLibraryCharacterContextPatch.ViewedCharacter is IAltCharacter and CharacterModel viewedModel
+            if (CardLibraryContext.ViewedCharacter is IAltCharacter and CharacterModel viewedModel
                 && viewedModel.CardPool.AllCardIds.Contains(__instance.Id))
             {
                 __result = viewedModel.CardPool;
