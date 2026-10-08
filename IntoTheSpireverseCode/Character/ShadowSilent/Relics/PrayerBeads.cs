@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -11,7 +12,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class PrayerBeads : ShadowSilentRelic, IntoTheSpireverseKeywords.ICardMuddledListener
+public class PrayerBeads : ShadowSilentRelic, IAfterCardMuddled
 {
     public override RelicRarity Rarity => RelicRarity.Uncommon;
 
@@ -21,7 +22,7 @@ public class PrayerBeads : ShadowSilentRelic, IntoTheSpireverseKeywords.ICardMud
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
-    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext, ICombatState combatState, CardModel card)
+    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext , CardModel card)
     {
         if (card.Owner != Owner)
             return;

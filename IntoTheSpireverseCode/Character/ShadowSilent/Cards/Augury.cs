@@ -1,4 +1,4 @@
-﻿using BaseLib.Utils;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,7 +26,7 @@ public sealed class Augury() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
         var drawn = await CardPileCmd.Draw(
             choiceContext, DynamicVars.Cards.BaseValue, Owner);
 
-        await IntoTheSpireverseKeywords.ApplyMuddleAll(choiceContext, drawn);
+        await MuddleCmd.ApplyMuddleAll(choiceContext, drawn);
     }
 
     protected override void OnUpgrade()

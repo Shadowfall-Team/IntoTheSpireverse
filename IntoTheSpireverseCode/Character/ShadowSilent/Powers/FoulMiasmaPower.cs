@@ -1,7 +1,7 @@
 ﻿
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -15,7 +15,7 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
-public class FoulMiasmaPower : ShadowPowerModel, IntoTheSpireverseKeywords.ICardMuddledListener
+public class FoulMiasmaPower : ShadowPowerModel, IAfterCardMuddled
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -25,7 +25,8 @@ public class FoulMiasmaPower : ShadowPowerModel, IntoTheSpireverseKeywords.ICard
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
         HoverTipFactory.FromPower<PoisonPower>(),
     ];
-    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext, ICombatState combatState, CardModel cardModel)
+
+    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext, CardModel cardModel)
     {
         if (cardModel.Owner != Owner.Player)
             return;
@@ -33,11 +34,10 @@ public class FoulMiasmaPower : ShadowPowerModel, IntoTheSpireverseKeywords.ICard
         await Cmd.CustomScaledWait(0.2f, 0.4f);
         foreach (Creature hittableEnemy in CombatState.HittableEnemies)
         {
-          var creatureNode = NCombatRoom.Instance?.GetCreatureNode(hittableEnemy);
-          if (creatureNode != null)
-            NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGaseousImpactVfx.Create(creatureNode.VfxSpawnPosition, new Color("83eb85")));
+            var creatureNode = NCombatRoom.Instance?.GetCreatureNode(hittableEnemy);
+            if (creatureNode != null)
+                NCombatRoom.Instance?.CombatVfxContainer.AddChildSafely(NGaseousImpactVfx.Create(creatureNode.VfxSpawnPosition, new Color("83eb85")));
         }
         await PowerCmd.Apply<PoisonPower>(choiceContext, CombatState.HittableEnemies, Amount, Owner, null);
-
     }
 }

@@ -1,6 +1,7 @@
 using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Abstracts;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Modifications;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Modifications;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -38,7 +39,7 @@ public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.U
 
     private static bool CanModify(CardModel card)
     {
-        return Modification.CanModify(card) && IntoTheSpireverseKeywords.CanMuddle(card);
+        return Modification.CanModify(card) && MuddleCmd.CanMuddle(card);
     }
 
     protected override void OnUpgrade()

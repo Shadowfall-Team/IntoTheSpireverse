@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -29,7 +30,7 @@ public sealed class Dazzle() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         var targets = PileType.Hand.GetPile(Owner).Cards
-            .Where(IntoTheSpireverseKeywords.CanMuddle)
+            .Where(MuddleCmd.CanMuddle)
             .OrderByDescending(c => c.EnergyCost.GetWithModifiers(CostModifiers.All))
             .Take(DynamicVars[MuddleCountKey].IntValue)
             .ToList();
@@ -37,7 +38,7 @@ public sealed class Dazzle() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
         if (targets.Count == 0)
             return;
 
-        await IntoTheSpireverseKeywords.ApplyMuddleAll(choiceContext, targets);
+        await MuddleCmd.ApplyMuddleAll(choiceContext, targets);
     }
 
     protected override void OnUpgrade()

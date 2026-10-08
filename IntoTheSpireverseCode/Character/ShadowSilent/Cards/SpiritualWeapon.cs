@@ -1,17 +1,19 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
 public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy),
-    IntoTheSpireverseKeywords.IMuddleListener
+    IAfterCardMuddled
 {
     private const string IncreaseKey = "Increase";
     private decimal _extraDamage;
@@ -38,14 +40,15 @@ public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, Car
             .Execute(choiceContext);
     }
 
-    public Task OnMuddled()
+    public Task AfterCardMuddled(PlayerChoiceContext choiceContext, CardModel cardModel)
     {
-        decimal increase = DynamicVars[IncreaseKey].BaseValue;
+        if (cardModel != this) return Task.CompletedTask;
+        var increase = DynamicVars[IncreaseKey].BaseValue;
         DynamicVars.Damage.BaseValue += increase;
         _extraDamage += increase;
         return Task.CompletedTask;
     }
-
+    
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
@@ -57,4 +60,6 @@ public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, Car
         base.AfterDowngraded();
         DynamicVars.Damage.BaseValue += _extraDamage;
     }
+
+   
 }

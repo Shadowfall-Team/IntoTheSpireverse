@@ -124,26 +124,9 @@ public static class IntoTheSpireverseKeywords
             await effect();
     }
 
-    public static bool CanMuddle(CardModel card)
-    {
-        return !card.Keywords.Contains(CardKeyword.Unplayable)
-               && !card.EnergyCost.CostsX;
-    }
+   
 
-    public interface IMuddleListener
-    {
-        Task OnMuddled();
-    }
 
-    public interface ICardMuddledListener
-    {
-        Task AfterCardMuddled(PlayerChoiceContext choiceContext, ICombatState combatState, CardModel cardModel);
-    }
-
-    public interface IShouldPermanentMuddleListener
-    {
-        bool ShouldPermanentMuddle(CardModel card);
-    }
 
     public interface IModifyDeviousListener
     {
@@ -155,115 +138,5 @@ public static class IntoTheSpireverseKeywords
         int ModifyDeviousDiscard(int originalAmount);
     }
 
-    public static async Task<CardModel?> ApplyMuddle(PlayerChoiceContext choiceContext, CardModel card)
-    {
-        if (card.Owner.Creature.CombatState == null) return null;
-        if (!CanMuddle(card))
-            return null;
-
-        int currentCost = card.EnergyCost.GetWithModifiers(CostModifiers.All);
-        int newCost;
-        int maxCostReduce = 0;
-        if (card.Owner.Creature.HasPower<OathOfDevotionPower>())
-        {
-            maxCostReduce = card.Owner.Creature.GetPowerAmount<OathOfDevotionPower>();
-        }
-
-        if (currentCost >= 0 && currentCost <= 3)
-        {
-            newCost = card.Owner.RunState.Rng.CombatEnergyCosts.NextInt(Math.Max(1,3 - maxCostReduce));
-            if (newCost >= currentCost && maxCostReduce < 3)
-                newCost++;
-        }
-        else
-        {
-            newCost = card.Owner.RunState.Rng.CombatEnergyCosts.NextInt(Math.Max(1,4 - maxCostReduce));
-        }
-
-        bool permanentMuddle = false;
-
-        foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
-        {
-            if (model is IShouldPermanentMuddleListener muddleListener)
-                permanentMuddle |= muddleListener.ShouldPermanentMuddle(card);
-        }
-
-        if (permanentMuddle)
-            card.EnergyCost.SetThisCombat(newCost);
-        else
-            card.EnergyCost.SetThisTurnOrUntilPlayed(newCost);
-
-        NCard.FindOnTable(card)?.PlayRandomizeCostAnim();
-
-        if (card is IMuddleListener listener)
-            await listener.OnMuddled();
-
-        foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
-        {
-            if (model is ICardMuddledListener powerListener)
-                await powerListener.AfterCardMuddled(choiceContext, card.Owner.Creature.CombatState, card);
-        }
-        return card;
-    }
-
-    public static async Task<IEnumerable<CardModel>> ApplyMuddleAll(PlayerChoiceContext choiceContext, IEnumerable<CardModel> cards)
-    {
-        List<CardModel> _cards = [];
-        foreach (var card in cards)
-        {
-            var _card = await ApplyMuddle(choiceContext, card);
-            if (_card is not null)
-                _cards.Add(_card);
-        }
-        return _cards.Count == 0 ? [] : (IEnumerable<CardModel>)_cards;
-    }
-
-    public static async Task<IEnumerable<CardModel>> ApplyMuddleHand(PlayerChoiceContext choiceContext, Player player)
-    {
-        return await ApplyMuddleAll(choiceContext, PileType.Hand.GetPile(player).Cards.Where(CanMuddle));
-    }
-
-    public static async Task<IEnumerable<CardModel>> ApplyMuddleRandom(PlayerChoiceContext choiceContext, Player player, int count, Rng rng)
-    {
-        var eligible = PileType.Hand.GetPile(player).Cards
-            .Where(CanMuddle)
-            .ToList();
-
-        List<CardModel> _cards = [];
-        for (int i = 0; i < count && eligible.Count > 0; i++)
-        {
-            var card = rng.NextItem(eligible);
-            if (card != null)
-            {
-                await ApplyMuddle(choiceContext, card);
-                _cards.Add(card);
-                eligible.Remove(card);
-            }
-        }
-        return _cards.Count == 0 ? [] : (IEnumerable<CardModel>) _cards;
-    }
-
-    public static async Task<IEnumerable<CardModel>> ApplyMuddleFromHandSelection(
-        PlayerChoiceContext choiceContext,
-        Player player,
-        AbstractModel source,
-        int count = 1)
-    {
-        var selected = await CardSelectCmd.FromHand(
-            choiceContext,
-            player,
-            new CardSelectorPrefs(
-                new LocString("card_selection", "INTOTHESPIREVERSE-MUDDLE_PROMPT"),
-                count,
-                count
-            ),
-            CanMuddle,
-            source
-        );
-
-        foreach (var card in selected ?? [])
-            await ApplyMuddle(choiceContext, card);
-
-        return selected ?? [];
-    }
+  
 }

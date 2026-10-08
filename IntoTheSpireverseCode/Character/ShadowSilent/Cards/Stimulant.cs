@@ -1,4 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -30,7 +31,7 @@ public sealed class Stimulant() : ShadowSilentCard(0, CardType.Skill, CardRarity
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
 
-        await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
+        await MuddleCmd.ApplyMuddleFromHandSelection(
             choiceContext, Owner, this, DynamicVars[MuddleCountKey].IntValue);
     }
 
