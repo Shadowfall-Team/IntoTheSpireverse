@@ -27,6 +27,7 @@
   "INTOTHESPIREVERSE-SHADOW_NECROBINDER.pronounSubject": "he/she/it",
   "INTOTHESPIREVERSE-SHADOW_NECROBINDER.title": "The Shadow Necrobinder",
   "INTOTHESPIREVERSE-SHADOW_NECROBINDER.titleObject": "The Shadow Necrobinder",
+
   "INTOTHESPIREVERSE-SHADOW_SILENT.aromaPrinciple": "Confusion is a blessing. My mind will guide the way.",
   "INTOTHESPIREVERSE-SHADOW_SILENT.banter.alive.endTurnPing": "My patience runs thin...",
   "INTOTHESPIREVERSE-SHADOW_SILENT.banter.dead.endTurnPing": "...",
@@ -41,6 +42,7 @@
   "INTOTHESPIREVERSE-SHADOW_SILENT.pronounSubject": "she",
   "INTOTHESPIREVERSE-SHADOW_SILENT.title": "The Acolyte",
   "INTOTHESPIREVERSE-SHADOW_SILENT.titleObject": "The Acolyte",
+
   "INTOTHESPIREVERSE-SHADOW_IRONCLAD.aromaPrinciple": "Lore",
   "INTOTHESPIREVERSE-SHADOW_IRONCLAD.banter.alive.endTurnPing": "Dost thou wisheth to gather moss?",
   "INTOTHESPIREVERSE-SHADOW_IRONCLAD.banter.dead.endTurnPing": "...",
@@ -55,6 +57,7 @@
   "INTOTHESPIREVERSE-SHADOW_IRONCLAD.pronounSubject": "he",
   "INTOTHESPIREVERSE-SHADOW_IRONCLAD.title": "The Tectonic",
   "INTOTHESPIREVERSE-SHADOW_IRONCLAD.titleObject": "The Tectonic",
+ 
   "INTOTHESPIREVERSE-SHADOW_REGENT.aromaPrinciple": "Lore",
   "INTOTHESPIREVERSE-SHADOW_REGENT.banter.alive.endTurnPing": "I'm no waiter, and this isn't the galley.",
   "INTOTHESPIREVERSE-SHADOW_REGENT.banter.dead.endTurnPing": "...",
