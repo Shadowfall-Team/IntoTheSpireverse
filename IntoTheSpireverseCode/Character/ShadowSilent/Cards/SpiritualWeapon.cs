@@ -1,5 +1,5 @@
-﻿using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
+using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

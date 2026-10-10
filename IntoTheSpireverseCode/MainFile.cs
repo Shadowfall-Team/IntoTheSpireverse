@@ -9,7 +9,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Metrics;
 using MegaCrit.Sts2.Core.Localization;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 
 #if DEFECT
@@ -37,6 +37,7 @@ public partial class MainFile : Node
         harmony.PatchAll();
 
         ModConfigRegistry.Register(ModId, new IntoTheSpireverseConfig());
+        MuddleListenerRegistry.Register("Snecko.SneckoCode.Core");
 
         CustomCharacterUtils.TryOrderCustomCharacters([
             typeof(ShadowIronclad),
@@ -60,15 +61,5 @@ public partial class MainFile : Node
         }
 
         ModManager.OnMetricsUpload += MetricsUploader.Handle;
-    }
-}
-
-[HarmonyPatch(typeof(LocManager), nameof(LocManager.Initialize))]
-public static class AfterModLoadPatches
-{
-    [HarmonyPrefix]
-    public static void PrepCrossmodCompat()
-    {
-        MuddleCmd.TryFindDownfallMuddleListeners();
     }
 }
