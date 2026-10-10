@@ -8,6 +8,10 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Metrics;
+using MegaCrit.Sts2.Core.Localization;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+
+
 #if DEFECT
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 #endif
@@ -56,5 +60,15 @@ public partial class MainFile : Node
         }
 
         ModManager.OnMetricsUpload += MetricsUploader.Handle;
+    }
+}
+
+[HarmonyPatch(typeof(LocManager), nameof(LocManager.Initialize))]
+public static class AfterModLoadPatches
+{
+    [HarmonyPrefix]
+    public static void PrepCrossmodCompat()
+    {
+        MuddleCmd.TryFindDownfallMuddleListeners();
     }
 }
