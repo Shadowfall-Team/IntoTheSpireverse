@@ -8,6 +8,10 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Metrics;
+using MegaCrit.Sts2.Core.Localization;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
+
+
 #if DEFECT
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 #endif
@@ -33,6 +37,7 @@ public partial class MainFile : Node
         harmony.PatchAll();
 
         ModConfigRegistry.Register(ModId, new IntoTheSpireverseConfig());
+        MuddleListenerRegistry.Register("Snecko.SneckoCode.Core");
 
         CustomCharacterUtils.TryOrderCustomCharacters([
             typeof(ShadowIronclad),

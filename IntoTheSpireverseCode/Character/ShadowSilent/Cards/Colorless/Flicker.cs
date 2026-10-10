@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -32,7 +33,7 @@ public sealed class Flicker() : ShadowColorlessCard(0, CardType.Skill, CardRarit
     {
         if (IsUpgraded)
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
-        await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
+        await MuddleCmd.ApplyMuddleFromHandSelection(
             choiceContext, Owner, this);
     }
 }

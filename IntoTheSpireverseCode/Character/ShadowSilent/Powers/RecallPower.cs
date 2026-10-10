@@ -1,10 +1,8 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -50,7 +48,7 @@ public class RecallPower : ShadowPowerModel, ICardDestinationListener
             void MuddleAfterPlay()
             {
                 cardPlay.Card.Played -= MuddleAfterPlay;
-                _ = IntoTheSpireverseKeywords.ApplyMuddle(choiceContext, cardPlay.Card);
+                _ = MuddleCmd.ApplyMuddle(choiceContext, cardPlay.Card);
             }
             cardPlay.Card.Played += MuddleAfterPlay;
             Flash();

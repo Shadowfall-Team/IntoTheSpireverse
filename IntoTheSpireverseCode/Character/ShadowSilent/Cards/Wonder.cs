@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -29,7 +30,7 @@ public sealed class Wonder() : ShadowSilentCard(0, CardType.Skill, CardRarity.Un
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var muddledCards = await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
+        var muddledCards = await MuddleCmd.ApplyMuddleFromHandSelection(
             choiceContext, Owner, this, DynamicVars[MuddleCountKey].IntValue);
 
         foreach (var card in muddledCards)
