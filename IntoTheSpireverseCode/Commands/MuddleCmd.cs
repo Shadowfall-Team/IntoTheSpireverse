@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
+using BaseLib.Extensions;
 using BaseLib.Utils;
 using BaseLib.Utils.ModInterop;
+using GodotPlugins.Game;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -59,24 +61,34 @@ public static class MuddleCmd
     /// </summary>
     internal static void TryFindDownfallMuddleListeners()
     {
-        var snecko = ModManager.GetLoadedMods().FirstOrDefault(m => m.manifest?.id == "Downfall");
-        if (snecko is null)
+        var downfall = ModManager.GetLoadedMods().FirstOrDefault(m => m.manifest?.id == "Downfall");
+        if (downfall is null)
         {
             MainFile.Logger.Info("Downfall not found in mod list, skipping Muddle compatabality registration");
             return;
         }
+        MainFile.Logger.Warn($"{downfall.assemblies.AsReadable("\n")}");
 
         IsDownfallLoaded = true;
+        // var sneckoAssembly = AccessTools.AllAssemblies()
 
-        MainFile.Logger.Info($"Downfall mod assembly is: {snecko.assemblies.ConvertAll(a => a.FullName)}");
-        Downfall_AfterMuddleListener = snecko.GetType().Assembly.GetType(_DownfallAfterMuddleListenerName);
+        foreach (var m in ModManager.GetLoadedMods())
+        {
+            MainFile.Logger.Info($"Mod is {m.manifest.name}");
+            MainFile.Logger.Warn(m.assemblies.AsReadable("\n"));
+            // foreach (var a in m.assemblies.ConvertAll(a => a.FullName))
+            // {
+            //     MainFile.Logger.Info($"{m.manifest.name} assembly: {a}");
+            // }
+        }
+        Downfall_AfterMuddleListener = downfall.GetType().Assembly.GetType(_DownfallAfterMuddleListenerName);
         Downfall_AfterCardMuddledMethod = Downfall_AfterMuddleListener?.GetMethod(nameof(IAfterCardMuddled.AfterCardMuddled));
 
-        Downfall_MaxMuddleCostListener = snecko.GetType().Assembly.GetType(_DownfallMaxMuddleCostListenerName);
+        Downfall_MaxMuddleCostListener = downfall.GetType().Assembly.GetType(_DownfallMaxMuddleCostListenerName);
         Downfall_ModifyMaxMuddleCostMethod = Downfall_AfterMuddleListener?.GetMethod(nameof(IMaxMuddleCost.AfterModifyingMaxMuddleCost));
         Downfall_AfterModifyingMaxMuddleCostMethod = Downfall_MaxMuddleCostListener?.GetMethod(nameof(IMaxMuddleCost.AfterModifyingMaxMuddleCost));
 
-        Downfall_ShouldPermanentMuddleListener = snecko.GetType().Assembly.GetType(_DownfallShouldPermanentMuddleListenerName);
+        Downfall_ShouldPermanentMuddleListener = downfall.GetType().Assembly.GetType(_DownfallShouldPermanentMuddleListenerName);
         Downfall_ShouldPermanentMuddleMethod = Downfall_ShouldPermanentMuddleListener?.GetMethod(nameof(IShouldPermanentMuddleListener.ShouldPermanentMuddle));
         Downfall_AfterShouldPermanentMuddleMethod = Downfall_ShouldPermanentMuddleListener?.GetMethod(nameof(IShouldPermanentMuddleListener.AfterShouldPermanentMuddle));
     }
