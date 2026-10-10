@@ -21,18 +21,6 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 public static class MuddleCmd
 {
     // Downfall Muddle compatability
-    // [ModInterop("Snecko", "Snecko.SneckoCode.Core")]
-    // public static class SneckoCompat
-    // {
-    //     [InteropTarget(nameof(IMaxMuddleCost))]
-    //     public class SneckoMaxMuddleCostListener : InteropClassWrapper
-    //     {
-    //
-    //     }
-    //
-    //     [InteropTarget(nameof(IMaxMuddleCost.ModifyMaxMuddleCost))]
-    //     public static 
-    // }
     /// <summary>
     /// Ease of access cache of call `ModManager.GetLoadedMods().FirstOrDefault(m => m.manifest?.id == "Downfall");`
     /// </summary>
