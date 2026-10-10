@@ -55,31 +55,27 @@ public static class MuddleCmd
             MainFile.Logger.Info("Downfall not found in mod list, skipping Muddle compatabality registration");
             return;
         }
-        MainFile.Logger.Warn($"{downfall.assemblies.AsReadable("\n")}");
 
         IsDownfallLoaded = true;
-        // var sneckoAssembly = AccessTools.AllAssemblies()
-
-        foreach (var m in ModManager.GetLoadedMods())
+        var sneckoAssembly = downfall.assemblies.FirstOrDefault(a => a.FullName.Contains("snecko", StringComparison.OrdinalIgnoreCase));
+        if (sneckoAssembly is null)
         {
-            MainFile.Logger.Info($"Mod is {m.manifest.name}");
-            MainFile.Logger.Warn(m.assemblies.AsReadable("\n"));
-            // foreach (var a in m.assemblies.ConvertAll(a => a.FullName))
-            // {
-            //     MainFile.Logger.Info($"{m.manifest.name} assembly: {a}");
-            // }
+            MainFile.Logger.Info("Snecko is turned off, skipping Muddle compatabality registration");
+            return;
         }
-        Downfall_AfterMuddleListener = downfall.GetType().Assembly.GetType(_DownfallAfterMuddleListenerName);
+
+        Downfall_AfterMuddleListener = sneckoAssembly.GetType(_DownfallAfterMuddleListenerName);
         Downfall_AfterCardMuddledMethod = Downfall_AfterMuddleListener?.GetMethod(nameof(IAfterCardMuddled.AfterCardMuddled));
 
-        Downfall_MaxMuddleCostListener = downfall.GetType().Assembly.GetType(_DownfallMaxMuddleCostListenerName);
+        Downfall_MaxMuddleCostListener = sneckoAssembly.GetType(_DownfallMaxMuddleCostListenerName);
         Downfall_ModifyMaxMuddleCostMethod = Downfall_AfterMuddleListener?.GetMethod(nameof(IMaxMuddleCost.AfterModifyingMaxMuddleCost));
         Downfall_AfterModifyingMaxMuddleCostMethod = Downfall_MaxMuddleCostListener?.GetMethod(nameof(IMaxMuddleCost.AfterModifyingMaxMuddleCost));
 
-        Downfall_ShouldPermanentMuddleListener = downfall.GetType().Assembly.GetType(_DownfallShouldPermanentMuddleListenerName);
+        Downfall_ShouldPermanentMuddleListener = sneckoAssembly.GetType(_DownfallShouldPermanentMuddleListenerName);
         Downfall_ShouldPermanentMuddleMethod = Downfall_ShouldPermanentMuddleListener?.GetMethod(nameof(IShouldPermanentMuddleListener.ShouldPermanentMuddle));
         Downfall_AfterShouldPermanentMuddleMethod = Downfall_ShouldPermanentMuddleListener?.GetMethod(nameof(IShouldPermanentMuddleListener.AfterShouldPermanentMuddle));
     }
+
 
     public static bool CanMuddle(CardModel card)
     {
@@ -89,22 +85,8 @@ public static class MuddleCmd
 
     private const int MaxMuddleCost = 3;
 
-    private static async Task<int> GetMaxMuddleCost(ICombatState cs, PlayerChoiceContext ctx, CardModel card)
-    {
-        var a = HookUtils.Modify<IMaxMuddleCost, int>(cs, MaxMuddleCost,
-            (m, i) => m.ModifyMaxMuddleCost(card, i), out var modifiers);
-        await HookUtils.AfterModifying(cs, modifiers, m => m.AfterModifyingMaxMuddleCost(ctx, card));
-        return a;
-    }
-
-    private static async Task<bool> ShouldPermanentMuddle(ICombatState cs, PlayerChoiceContext ctx, CardModel card)
-    {
-        var permanentMuddle = HookUtils.Any<IShouldPermanentMuddleListener>(
-            cs, e => e.ShouldPermanentMuddle(card), out var matches);
-        await HookUtils.AfterModifying(cs, matches, e => e.AfterShouldPermanentMuddle(ctx, card));
-        return permanentMuddle;
-    }
-
+    // TODO: All of this really wants to use the baselib helper syntax, but it needs an overload to accept a
+    // generic type to check against, and i'm not up for that right now
     private static async Task AfterCardMuddled(ICombatState cs, PlayerChoiceContext ctx, CardModel card )
     {
         foreach (var model in cs.IterateHookListeners())
@@ -112,9 +94,11 @@ public static class MuddleCmd
             if (model is IAfterCardMuddled muddleModel)
             {
                 await muddleModel.AfterCardMuddled(ctx, card);
+                continue;
             }
-            if (model.GetType().IsAssignableTo(Downfall_AfterMuddleListener))
+            if (IsDownfallLoaded && model.GetType().IsAssignableTo(Downfall_AfterMuddleListener))
             {
+                MainFile.Logger.Debug($"model {model.GetType().Name} is {Downfall_AfterMuddleListener.Name}, attempting to call hook");
                 if (Downfall_AfterCardMuddledMethod is not null)
                 {
                     await (Task)Downfall_AfterCardMuddledMethod.Invoke(model, [ctx, card]);
@@ -123,6 +107,105 @@ public static class MuddleCmd
         }
     }
 
+    private static async Task<int> GetMaxMuddleCost(ICombatState cs, PlayerChoiceContext ctx, CardModel card)
+    {
+        // just here to reduce typo chance
+        var listenerType = Downfall_MaxMuddleCostListener;
+        var listenerMethod = Downfall_ModifyMaxMuddleCostMethod;
+        var listenerMethodAfter = Downfall_AfterModifyingMaxMuddleCostMethod;
+
+        int cost = MaxMuddleCost;
+        var hl = cs.IterateHookListeners();
+        foreach (var model in hl)
+        {
+            if (model is IMaxMuddleCost maxCostModel)
+            {
+                cost = maxCostModel.ModifyMaxMuddleCost(card, cost);
+                continue;
+            }
+            if (IsDownfallLoaded && model.GetType().IsAssignableTo(listenerType))
+            {
+                MainFile.Logger.Debug($"model {model.GetType().Name} is {listenerType.Name}, attempting to call hook");
+                if (listenerMethod is not null)
+                {
+                    cost = await (Task<int>)listenerMethod.Invoke(model, [card, cost]);
+                }
+            }
+        }
+
+        foreach (var model in hl)
+        {
+            if (model is IMaxMuddleCost maxCostModel)
+            {
+                await maxCostModel.AfterModifyingMaxMuddleCost(ctx, card);
+                model.InvokeExecutionFinished();
+                continue;
+            }
+            if (IsDownfallLoaded && model.GetType().IsAssignableTo(listenerType))
+            {
+                MainFile.Logger.Debug($"model {model.GetType().Name} is Downfall_AfterMuddleListener, attempting to call hook");
+                if (listenerMethodAfter is not null)
+                {
+                    await (Task)listenerMethodAfter.Invoke(model, [card, cost]);
+                    model.InvokeExecutionFinished();
+                }
+            }
+        }
+        // var a = HookUtils.Modify<IMaxMuddleCost, int>(cs, MaxMuddleCost,
+        //     (m, i) => m.ModifyMaxMuddleCost(card, i), out var modifiers);
+        // await HookUtils.AfterModifying(cs, modifiers, m => m.AfterModifyingMaxMuddleCost(ctx, card));
+        return cost;
+    }
+
+    private static async Task<bool> ShouldPermanentMuddle(ICombatState cs, PlayerChoiceContext ctx, CardModel card)
+    {
+        // just here to reduce typo chance
+        var listenerType = Downfall_ShouldPermanentMuddleListener;
+        var listenerMethod = Downfall_ShouldPermanentMuddleMethod;
+        var listenerMethodAfter = Downfall_AfterShouldPermanentMuddleMethod;
+
+        bool shouldPermanentMuddle = false;
+        var hl = cs.IterateHookListeners();
+        foreach (var model in hl)
+        {
+            if (model is IShouldPermanentMuddleListener permanentMuddleModel)
+            {
+                shouldPermanentMuddle |= permanentMuddleModel.ShouldPermanentMuddle(card);
+                continue;
+            }
+            if (IsDownfallLoaded && model.GetType().IsAssignableTo(listenerType))
+            {
+                MainFile.Logger.Debug($"model {model.GetType().Name} is {listenerType.Name}, attempting to call hook");
+                if (listenerMethod is not null)
+                {
+                    shouldPermanentMuddle |= await (Task<bool>)listenerMethod.Invoke(model, [card]);
+                }
+            }
+        }
+
+        foreach (var model in hl)
+        {
+            if (model is IShouldPermanentMuddleListener permanentMuddleModel)
+            {
+                await permanentMuddleModel.AfterShouldPermanentMuddle(ctx, card);
+                model.InvokeExecutionFinished();
+                continue;
+            }
+            if (IsDownfallLoaded && model.GetType().IsAssignableTo(listenerType))
+            {
+                MainFile.Logger.Debug($"model {model.GetType().Name} is {listenerType.Name}, attempting to call hook");
+                if (listenerMethodAfter is not null)
+                {
+                    await (Task)listenerMethodAfter.Invoke(model, [ctx, card]);
+                    model.InvokeExecutionFinished();
+                }
+            }
+        }
+        // var permanentMuddle = HookUtils.Any<IShouldPermanentMuddleListener>(
+        //     cs, e => e.ShouldPermanentMuddle(card), out var matches);
+        // await HookUtils.AfterModifying(cs, matches, e => e.AfterShouldPermanentMuddle(ctx, card));
+        return shouldPermanentMuddle;
+    }
 
     private static int RollMuddleCost(int maxCost, int currentCost, Rng rng)
     {
