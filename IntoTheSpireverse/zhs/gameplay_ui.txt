@@ -1,3 +1,0 @@
-{
-  "INTOTHESPIREVERSE-CARGO_PILE_INFO": "这些牌在货物里。"
-}
