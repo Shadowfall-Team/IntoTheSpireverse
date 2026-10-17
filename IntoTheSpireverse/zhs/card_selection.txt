@@ -1,5 +1,0 @@
-{
-  "INTOTHESPIREVERSE-FROM_CARGO": "选择[blue]{Amount}[/blue]张牌移出[gold]货物[/gold]。",
-  "INTOTHESPIREVERSE-MUDDLE_PROMPT": "选择[blue]{Amount}[/blue]张牌[gold]迷乱[/gold]。",
-  "INTOTHESPIREVERSE-TO_CARGO": "选择[blue]{Amount}[/blue]张牌放入[gold]货物[/gold]。"
-}

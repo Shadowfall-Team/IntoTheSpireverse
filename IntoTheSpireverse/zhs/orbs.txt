@@ -1,5 +1,0 @@
-{
-  "INTOTHESPIREVERSE-ENTROPY_ORB.description": "充能球：每丢弃一张牌，对最前方的敌人造成伤害。激发时获得力量。",
-  "INTOTHESPIREVERSE-ENTROPY_ORB.smartDescription": "[gold]被动[/gold]：每丢弃一张牌，对最前方的敌人造成[blue]{Passive}[/blue]点伤害。\n[gold]激发[/gold]：获得[blue]{Evoke}[/blue]点力量。",
-  "INTOTHESPIREVERSE-ENTROPY_ORB.title": "熵"
-}
