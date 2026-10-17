@@ -1,0 +1,3 @@
+{
+  "OPEN_EMPTY_CARGO": "我的货物堆是[red]空的[/red]。"
+}

@@ -1,0 +1,9 @@
+{
+  "CARGO_PILE.description": "你的回合开始时，额外从这里抽一张牌。\n点击查看货物堆中的牌（按顺序）。",
+  "CARGO_PILE.title": "货物堆",
+  "INTOTHESPIREVERSE-AMMO_BUTTON.description": "消耗1发[gold]炮弹[/gold]，对你攻击的最后一个敌人造成{Damage}点伤害。\n这不计作打出卡牌。",
+  "INTOTHESPIREVERSE-AMMO_BUTTON.title": "开火！",
+  "INTOTHESPIREVERSE-ARTIST_HOVER_TIP.title": "由{ArtistName}绘制",
+  "INTOTHESPIREVERSE-LOAD_AMMO.description": "[gold]炮弹[/gold]可随时发射，对你攻击的最后一个敌人造成{Damage}点伤害。",
+  "INTOTHESPIREVERSE-LOAD_AMMO.title": "炮弹"
+}

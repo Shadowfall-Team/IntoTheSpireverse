@@ -1,0 +1,9 @@
+{
+  "INTOTHESPIREVERSE-ARMORED.description": "这张牌额外提供[blue]{Block}[/blue]点[gold]格挡[/gold]和{Amount:energyIcons()}。",
+  "INTOTHESPIREVERSE-ARMORED.extraCardText": "获得 {Amount:energyIcons()}。",
+  "INTOTHESPIREVERSE-ARMORED.title": "装甲",
+  "INTOTHESPIREVERSE-HOLLOW.description": "这张牌获得[gold]虚无[/gold]和[gold]消耗[/gold]，并失去[gold]保留[/gold]。",
+  "INTOTHESPIREVERSE-HOLLOW.title": "空洞",
+  "INTOTHESPIREVERSE-POLISHED.description": "这张牌获得[gold]保留[/gold]，并额外造成[blue]{Damage}[/blue]点伤害。",
+  "INTOTHESPIREVERSE-POLISHED.title": "抛光"
+}
