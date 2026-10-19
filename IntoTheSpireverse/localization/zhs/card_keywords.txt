@@ -17,7 +17,7 @@
   "INTOTHESPIREVERSE-INSTINCT.title": "凶性",
   "INTOTHESPIREVERSE-LINGER.description": "如果你的回合结束时这张牌在[gold]手牌[gold]中，触发此效果。",
   "INTOTHESPIREVERSE-LINGER.title": "滞留",
-  "INTOTHESPIREVERSE-MODIFY.description": "在本场战斗内修改一张卡牌的效果（附魔）。已被改造的卡牌无法再次被改造。",
+  "INTOTHESPIREVERSE-MODIFY.description": "在本场战斗内修改一张牌的效果。已被改造的卡牌无法再次被改造。",
   "INTOTHESPIREVERSE-MODIFY.title": "改造",
   "INTOTHESPIREVERSE-MUDDLE.description": "在一回合内，将卡牌的耗能随机变为[blue]0[/blue]到[blue]3[/blue]。",
   "INTOTHESPIREVERSE-MUDDLE.title": "迷乱",
