@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.Entities.Actions;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Localization.Fonts;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
@@ -24,6 +26,7 @@ public partial class NAmmoButton : NShipDisplay
 
     private NAmmoCounter _ammoCounter = null!;
     private IntoTheSpireverseMegaLabel _fireLabel = null!;
+    private LocString? _fireLabelLocString = null;
     private IntoTheSpireverseMegaLabel _energyCostLabel = null!;
     private TextureRect _energyIcon = null!;
     private Control _fireButtonBackground = null!;
@@ -73,6 +76,7 @@ public partial class NAmmoButton : NShipDisplay
 
         _ammoCounter = GetNode<NAmmoCounter>("AmmoContainer/AmmoCounter");
         _fireLabel = GetNode<IntoTheSpireverseMegaLabel>("%FireButtonLabel");
+        SetLabelLocalization(_fireLabel, "INTOTHESPIREVERSE-AMMO_BUTTON.title");
         _energyCostLabel = GetNode<IntoTheSpireverseMegaLabel>("%EnergyLabel");
         _energyIcon = GetNode<TextureRect>("%EnergyIcon");
         _fireButtonBackground = GetNode<Control>("%FireButtonBackground");
@@ -85,6 +89,24 @@ public partial class NAmmoButton : NShipDisplay
 
         _comboIcons.Refresh();
     }
+
+
+    public void SetLabelLocalization(MegaLabel label, string locKey)
+    {
+        var _locString = new LocString("static_hover_tips", locKey);
+        RefreshLabel(label, _locString);
+    }
+
+
+    private void RefreshLabel(MegaLabel label, LocString locString)
+    {
+        if (label != null && locString != null)
+        {
+            label.Text = locString.GetFormattedText();
+            label.ApplyLocaleFontSubstitution(FontType.Regular, ThemeConstants.Label.Font);
+        }
+    }
+
 
     public override void _EnterTree()
     {
@@ -190,7 +212,7 @@ public partial class NAmmoButton : NShipDisplay
         RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(action);
         WaitForActionComplete(action);
     }
-    
+
     private void BumpFireButton(Vector2 scale, Color? modulate = null)
     {
         _bumpTween?.Kill();
