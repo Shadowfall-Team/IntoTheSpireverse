@@ -5,7 +5,7 @@
   "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.INITIAL.options.GAIN_MAX_HP.title": "欣赏你的倒影",
   "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.description": "获得[gold]平行石[/gold]。",
   "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.INITIAL.options.REPLACE_CHARACTER.title": "触摸镜面",
-  "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.description": "从你[gold]平行自我[/gold]的[blue]{TakeCardsSelect}[/blue]张牌中选择[blue]{TakeCardsCount}[/blue]张加入牌组。",
+  "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.description": "从你[gold]平行自我[/gold]的[blue]{TakeCardsCount}[/blue]张牌中选择[blue]{TakeCardsSelect}[/blue]张加入牌组。",
   "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.INITIAL.options.TAKE_CARDS.title": "观察另一个自己",
   "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.REPLACED_CHARACTER.description": "你触摸镜面，脑海中涌入了另一段人生的记忆。转瞬之间，镜中的倒影与你心目中的自己完全吻合。然而，此刻它却突然变得陌生……这真的是你一直以来的样子吗？",
   "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.TAKE_CARDS.selectionScreenPrompt": "从你的平行自我那里拿走[blue]{Amount}[/blue]张牌。",
