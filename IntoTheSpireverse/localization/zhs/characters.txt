@@ -60,7 +60,7 @@
   "INTOTHESPIREVERSE-SHADOW_SILENT.banter.dead.endTurnPing": "...",
   "INTOTHESPIREVERSE-SHADOW_SILENT.cardsModifierDescription": "蛇之侍僧的卡牌现在会出现在奖励和商店中。",
   "INTOTHESPIREVERSE-SHADOW_SILENT.cardsModifierTitle": "蛇之侍僧卡牌",
-  "INTOTHESPIREVERSE-SHADOW_SILENT.description": "远古异蛇教团的一名弟子。\n将迷雾之地的传承与秘术融为一体。",
+  "INTOTHESPIREVERSE-SHADOW_SILENT.description": "远古异蛇教团的一名门徒。\n将迷雾之地的传承与秘术融为一体。",
   "INTOTHESPIREVERSE-SHADOW_SILENT.eventDeathPrevention": "必须有人去引导迷途之人。",
   "INTOTHESPIREVERSE-SHADOW_SILENT.goldMonologue": "为我们的庞大宝库增添财富…",
   "INTOTHESPIREVERSE-SHADOW_SILENT.possessiveAdjective": "她",
