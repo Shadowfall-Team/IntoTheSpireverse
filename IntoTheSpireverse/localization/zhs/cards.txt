@@ -557,7 +557,7 @@
   "INTOTHESPIREVERSE-SHELL.title": "石壳",
   "INTOTHESPIREVERSE-SHELLBACK.description": "[gold]改造[/gold]你[gold]手牌[/gold]中的所有[gold]格挡[/gold]牌，使其获得[blue]格挡值增加{Increase:diff()}点[/blue]。",
   "INTOTHESPIREVERSE-SHELLBACK.modifierTip": "格挡值增加[blue]{Amount}[/blue]点",
-  "INTOTHESPIREVERSE-SHELLBACK.title": "背甲",
+  "INTOTHESPIREVERSE-SHELLBACK.title": "背壳",
   "INTOTHESPIREVERSE-SHIELD_DRONES.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n如果[gold]手牌[/gold]中有[gold]无色[/gold]牌，下回合获得{BlockNextTurnPower:diff()}点[gold]格挡[/gold]。",
   "INTOTHESPIREVERSE-SHIELD_DRONES.title": "护盾无人机",
   "INTOTHESPIREVERSE-SHIMMER.description": "将{Cards:diff()}张[gold]闪烁+[/gold]加入[gold]手牌[/gold]。",
