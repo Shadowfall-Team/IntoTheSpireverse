@@ -22,7 +22,7 @@
   "INTOTHESPIREVERSE-ARMADA.title": "无敌舰队",
   "INTOTHESPIREVERSE-ARMOR_OF_GNEISS.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n你的下{BlurPower:diff()}回合开始时，[gold]格挡[/gold]不会消失。",
   "INTOTHESPIREVERSE-ARMOR_OF_GNEISS.title": "片麻岩之铠",
-  "INTOTHESPIREVERSE-ASSAULT.description": "将[gold]弃牌堆[/gold]中的所有攻击牌洗入[gold]抽牌堆[/gold]，其耗能在被打出前降低{energyPrefix:energyIcons(1)}。\n抽{Cards:diff()}张牌。",
+  "INTOTHESPIREVERSE-ASSAULT.description": "将[gold]弃牌堆[/gold]中的所有攻击牌洗入[gold]抽牌堆[/gold]，其耗能在被打出前降低1{energyPrefix:energyIcons(1)}。\n抽{Cards:diff()}张牌。",
   "INTOTHESPIREVERSE-ASSAULT.title": "突袭",
   "INTOTHESPIREVERSE-ASSEMBLY_REQUIRED.description": "将一张[gold]碎晶体[/gold]加入每位玩家的[gold]抽牌堆[/gold]。{IfUpgraded:show:\n额外向你自己的抽牌堆加入一张。|}",
   "INTOTHESPIREVERSE-ASSEMBLY_REQUIRED.title": "散件发货",
