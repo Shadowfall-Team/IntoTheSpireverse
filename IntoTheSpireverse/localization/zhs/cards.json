@@ -161,7 +161,7 @@
   "INTOTHESPIREVERSE-DAGGER.title": "匕首",
   "INTOTHESPIREVERSE-DARKBLADES.description": "将{Cards:diff()}张[gold]灵魂打击[/gold]加入所有玩家的[gold]抽牌堆[/gold]。",
   "INTOTHESPIREVERSE-DARKBLADES.title": "暗刃",
-  "INTOTHESPIREVERSE-DARK_BARGAIN.description": "选择{IfUpgraded:show:[gold]手牌[/gold]或[gold]弃牌堆[/gold]|[gold]手牌[/gold]}中的一张牌。\n将其打出，然后失去等同于其耗能的生命。",
+  "INTOTHESPIREVERSE-DARK_BARGAIN.description": "选择{IfUpgraded:show:[gold]手牌[/gold]或[gold]弃牌堆[/gold]|[gold]手牌[/gold]}中的一张牌。\n将此牌打出，然后失去等同于其耗能的生命。",
   "INTOTHESPIREVERSE-DARK_BARGAIN.selectionScreenPrompt": "选择一张牌打出。",
   "INTOTHESPIREVERSE-DARK_BARGAIN.title": "黑暗交易",
   "INTOTHESPIREVERSE-DARK_BOOST.description": "获得{Block:diff()}[gold]格挡[/gold]。\n将一张[gold]虚空[/gold]加入[gold]抽牌堆[/gold]顶部。",
