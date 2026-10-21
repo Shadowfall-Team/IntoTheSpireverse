@@ -11,7 +11,7 @@
   "INTOTHESPIREVERSE-SHOW_AMMO_REMINDER.hover.desc": "有可用子弹时，在“结束回合”按钮旁显示子弹计数器。",
   "INTOTHESPIREVERSE-SHOW_AMMO_REMINDER.title": "显示子弹数提醒",
   "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.hover.desc": "按顺序显示货物堆顶部3张牌的预览",
-  "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.title": "显示货物堆卡片预览",
+  "INTOTHESPIREVERSE-SHOW_CARGO_CARD_STACK.title": "显示货物堆卡牌预览",
   "INTOTHESPIREVERSE-SHOW_STONE_HEALTH_ON_BAR.hover.desc": "在生命条上以灰色条带显示石质生命，位于当前生命值之后，并将其包含在生命值文本中。",
   "INTOTHESPIREVERSE-SHOW_STONE_HEALTH_ON_BAR.title": "在生命条上显示石质生命",
   "INTOTHESPIREVERSE-SHOW_WIP_CONTENT.hover.desc": "显示并使用正在开发中的未完成内容。",
