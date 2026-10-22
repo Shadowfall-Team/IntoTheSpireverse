@@ -1,4 +1,4 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 
-public class Mithridatium : ShadowSilentRelic, IntoTheSpireverseKeywords.IShouldPermanentMuddleListener, IntoTheSpireverseKeywords.ICardMuddledListener
+public class Mithridatium : ShadowSilentRelic, IShouldPermanentMuddleListener
 {
     public override RelicRarity Rarity => RelicRarity.Shop;
 
@@ -15,16 +15,15 @@ public class Mithridatium : ShadowSilentRelic, IntoTheSpireverseKeywords.IShould
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
     ];
-
-    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext, ICombatState combatState, CardModel card)
-    {
-        if (card.Owner != Owner)
-            return;
-        Flash();
-    }
-
+    
     public bool ShouldPermanentMuddle(CardModel card)
     {
         return card.Owner == Owner;
+    }
+
+    public Task AfterShouldPermanentMuddle(PlayerChoiceContext choiceContext,CardModel card)
+    {
+        Flash();
+        return Task.CompletedTask;
     }
 }

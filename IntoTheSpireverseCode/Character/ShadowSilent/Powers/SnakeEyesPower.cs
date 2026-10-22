@@ -1,4 +1,5 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -18,7 +19,7 @@ public class SnakeEyesPower : ShadowPowerModel
             return;
 
         var targets = PileType.Hand.GetPile(player).Cards
-            .Where(IntoTheSpireverseKeywords.CanMuddle)
+            .Where(MuddleCmd.CanMuddle)
             .OrderByDescending(c => c.EnergyCost.GetWithModifiers(CostModifiers.All))
             .Take(Amount)
             .ToList();
@@ -27,6 +28,6 @@ public class SnakeEyesPower : ShadowPowerModel
             return;
 
         Flash();
-        await IntoTheSpireverseKeywords.ApplyMuddleAll(choiceContext, targets);
+        await MuddleCmd.ApplyMuddleAll(choiceContext, targets);
     }
 }

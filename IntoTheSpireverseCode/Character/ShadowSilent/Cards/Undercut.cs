@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -35,7 +36,7 @@ public sealed class Undercut() : ShadowSilentCard(1, CardType.Attack, CardRarity
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
-        await IntoTheSpireverseKeywords.ApplyMuddleFromHandSelection(
+        await MuddleCmd.ApplyMuddleFromHandSelection(
             choiceContext, Owner, this, DynamicVars[MuddleCountKey].IntValue);
     }
 

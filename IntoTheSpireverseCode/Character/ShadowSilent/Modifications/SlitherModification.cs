@@ -1,4 +1,5 @@
 ﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Modifications;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,7 +27,7 @@ public sealed class SlitherModification : Modification
     {
         if (card != Owner || Owner.Pile == null || Owner.Pile.Type != PileType.Hand)
             return;
-        await IntoTheSpireverseKeywords.ApplyMuddle(choiceContext, Owner);
+        await MuddleCmd.ApplyMuddle(choiceContext, Owner);
         return;
     }
 
