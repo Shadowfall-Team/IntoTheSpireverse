@@ -19,7 +19,7 @@ public sealed class DoubleLift() : ShadowSilentCard(0, CardType.Attack, CardRari
         new DamageVar(4m, ValueProp.Move),
         new EnergyVar(3)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         EnergyHoverTip,
@@ -34,7 +34,7 @@ public sealed class DoubleLift() : ShadowSilentCard(0, CardType.Attack, CardRari
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        
+
         CardSelectorPrefs prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var card = (await CardSelectCmd.FromCombatPile(choiceContext, PileType.Discard.GetPile(Owner), Owner, prefs)).FirstOrDefault();
         if (card == null)

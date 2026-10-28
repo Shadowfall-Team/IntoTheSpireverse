@@ -12,9 +12,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Ca
 
 public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
-    
+
     // Rarity and the upgrade were not specified in the draft document, so consider them placeholder
-    
+
     private const string _increaseKey = "Increase";
     private Decimal _extraDamageFromLinger;
 
@@ -23,17 +23,17 @@ public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRa
         new DamageVar(8m, ValueProp.Move),
         new DynamicVar(_increaseKey, 3m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Linger)
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         IntoTheSpireverseKeywords.Linger
     ];
-    
+
     private Decimal ExtraDamageFromLinger
     {
         get => _extraDamageFromLinger;
@@ -43,7 +43,7 @@ public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRa
             _extraDamageFromLinger = value;
         }
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -53,13 +53,13 @@ public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRa
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
         DynamicVars[_increaseKey].UpgradeValueBy(1m);
     }
-    
+
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();

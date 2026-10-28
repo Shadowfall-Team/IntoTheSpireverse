@@ -20,14 +20,14 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class Shellback() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     private const string IncreaseKey = "Increase";
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DynamicVar(IncreaseKey, 4m),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
             HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Modify),
@@ -47,7 +47,7 @@ public sealed class Shellback() : ShadowSilentCard(1, CardType.Skill, CardRarity
             CardModifier.AddModifier<ShellbackModification>(card, DynamicVars[IncreaseKey].IntValue);
         }
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars[IncreaseKey].UpgradeValueBy(2m);

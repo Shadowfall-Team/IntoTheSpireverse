@@ -24,7 +24,7 @@ public sealed class Blunderstorm() : ShadowSilentCard(2, CardType.Power, CardRar
             DynamicVars.Power<BlunderstormPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);

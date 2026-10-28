@@ -19,7 +19,7 @@ public class MalevolentPower : ShadowPowerModel, IntoTheSpireverseKeywords.IDevi
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),

@@ -19,9 +19,9 @@ public sealed class Armored : IntoTheSpireverseEnchantment
     [
         new BlockVar(1m, ValueProp.Move),
     ];
-    
+
     public override Decimal EnchantBlockAdditive(Decimal originalBlock) => DynamicVars.Block.BaseValue;
-    
+
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
         await PlayerCmd.GainEnergy(Amount, Card.Owner);

@@ -17,7 +17,7 @@ public class DilithiumCrystal : ShadowRegentRelic
     [
         new BlockVar(5, ValueProp.Unpowered)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Warp>(),

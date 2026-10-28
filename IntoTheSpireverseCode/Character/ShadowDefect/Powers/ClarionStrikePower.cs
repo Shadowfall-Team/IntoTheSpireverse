@@ -14,9 +14,9 @@ public class ClarionStrikePower : IntoTheSpireversePower
     public override async Task AfterCardDrawn(PlayerChoiceContext choiceContext, CardModel card, bool fromHandDraw)
     {
         if (card is not Void) return;
-        
+
         var power = this;
-        
+
         await PlayerCmd.GainEnergy(Amount, power.Owner.Player!);
         await PowerCmd.Remove<InfectedShotPower>(power.Owner);
     }

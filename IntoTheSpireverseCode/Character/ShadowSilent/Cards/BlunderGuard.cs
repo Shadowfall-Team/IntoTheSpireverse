@@ -14,7 +14,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class BlunderGuard() : ShadowSilentCard(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     private const string StrengthKey = "StrengthGain";
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block),
@@ -39,7 +39,7 @@ public sealed class BlunderGuard() : ShadowSilentCard(0, CardType.Power, CardRar
         if (power != null)
             power.AddStrength(DynamicVars[StrengthKey].IntValue);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<BlunderGuardPower>().UpgradeValueBy(2m);

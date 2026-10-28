@@ -16,7 +16,7 @@ public class HeartOfStone : ShadowIroncladRelic
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar(AbsorbKey, 8)];
-    
+
     public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<HeartOfTheMountain>();
 
     public override async Task AfterRoomEntered(AbstractRoom room)

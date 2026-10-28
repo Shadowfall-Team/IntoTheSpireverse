@@ -26,7 +26,7 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
         new PowerVar<PoisonPower>(5m),
         new DynamicVar(_deviousKey, 0m),
     ];
-    
+
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -64,7 +64,7 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
                          NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
                              NGaseousImpactVfx.Create(targetNode.VfxSpawnPosition, _vfxTint));
                      }
-                 } 
+                 }
                  await PowerCmd.Apply<PoisonPower>(choiceContext, enemy, DynamicVars.Poison.BaseValue, cardPlay.Card.Owner.Creature, this);
             }
         });

@@ -25,7 +25,7 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
     [
         HoverTipFactory.FromCard<SmallRock>(false),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null || cardPlay.Target == null) return;

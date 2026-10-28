@@ -15,15 +15,15 @@ public class AgentOfChaosPower : ShadowPowerModel, ICardDestinationListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(CardKeyword.Sly),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
-    ];  
-    
+    ];
+
     protected override object InitInternalData() => new Data();
-    
+
 
     public override Task AfterCardEnteredCombat(CardModel card)
     {
@@ -40,7 +40,7 @@ public class AgentOfChaosPower : ShadowPowerModel, ICardDestinationListener
             CardCmd.ApplyKeyword(card, CardKeyword.Sly);
         return Task.CompletedTask;
     }
-    
+
     public override async Task AfterCardDiscarded(
         PlayerChoiceContext choiceContext, CardModel card)
     {
@@ -60,7 +60,7 @@ public class AgentOfChaosPower : ShadowPowerModel, ICardDestinationListener
             GetInternalData<Data>().DiscardedSlyCards.Add(card);
         }
     }
-    
+
     public CardDestination ModifyCardDestination(
         CardModel card,
         bool isAutoPlay,
@@ -73,8 +73,8 @@ public class AgentOfChaosPower : ShadowPowerModel, ICardDestinationListener
             return destination;
         return destination with { PileType = PileType.Exhaust };
     }
-    
-    
+
+
     private class Data
     {
         public List<CardModel> DiscardedSlyCards = new();

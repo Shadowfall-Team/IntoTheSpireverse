@@ -15,7 +15,7 @@ public sealed class Gigabeam() : ShadowDefectCard(2, CardType.Attack, CardRarity
     {
         new DamageVar(26M, ValueProp.Move),
     };
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
     {
         HoverTipFactory.FromCard<Void>(),

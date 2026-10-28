@@ -18,7 +18,7 @@ public sealed class AncestralEcho() : ShadowIroncladCard(2, CardType.Skill, Card
         CardKeyword.Exhaust
     ];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DynamicVar(_replayKey, 1m)
     ];

@@ -30,7 +30,7 @@ public sealed class CarbonCoating() : ShadowIroncladCard(0, CardType.Skill, Card
     [
         HoverTipFactory.FromPower<SlatePower>(),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
         CardKeyword.Exhaust
     ];
@@ -48,6 +48,5 @@ public sealed class CarbonCoating() : ShadowIroncladCard(0, CardType.Skill, Card
         }
     }
 
-    
     protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
 }

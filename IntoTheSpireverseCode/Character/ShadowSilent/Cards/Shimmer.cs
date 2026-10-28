@@ -23,7 +23,7 @@ public sealed class Shimmer() : ShadowSilentCard(1, CardType.Skill, CardRarity.R
     [
         HoverTipFactory.FromCard<Flicker>(true)
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -34,10 +34,10 @@ public sealed class Shimmer() : ShadowSilentCard(1, CardType.Skill, CardRarity.R
                 var card = CombatState.CreateCard<Flicker>(Owner);
                 CardCmd.Upgrade(card);
                 return card;
-            }); 
+            });
         await CardPileCmd.AddGeneratedCardsToCombat(flickers ?? [], PileType.Hand, Owner);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Cards.UpgradeValueBy(1m);

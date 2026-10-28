@@ -16,7 +16,7 @@ public sealed class Malevolent() : ShadowSilentCard(2, CardType.Power, CardRarit
     [
         new PowerVar<MalevolentPower>(1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious)
@@ -30,7 +30,7 @@ public sealed class Malevolent() : ShadowSilentCard(2, CardType.Power, CardRarit
             DynamicVars.Power<MalevolentPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);

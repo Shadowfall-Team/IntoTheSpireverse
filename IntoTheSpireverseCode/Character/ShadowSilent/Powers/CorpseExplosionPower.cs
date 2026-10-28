@@ -10,7 +10,7 @@ public class CorpseExplosionPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     public override async Task AfterDeath(
         PlayerChoiceContext choiceContext,
         Creature creature,

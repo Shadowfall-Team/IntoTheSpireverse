@@ -18,7 +18,7 @@ public sealed class Clothesline() : ShadowSilentCard(2, CardType.Attack, CardRar
     {
         return ModelDb.Card<Haymaker>();
     }
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8m, ValueProp.Move),

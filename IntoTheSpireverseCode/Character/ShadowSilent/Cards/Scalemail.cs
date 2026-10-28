@@ -31,8 +31,8 @@ public sealed class Scalemail() : ShadowSilentCard(2, CardType.Skill, CardRarity
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner)); 
-        
+            .Select(_ => CombatState.CreateCard<Scale>(Owner));
+
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
         foreach (CardModel card in PileType.Hand.GetPile(Owner).Cards)
         {
@@ -42,7 +42,7 @@ public sealed class Scalemail() : ShadowSilentCard(2, CardType.Skill, CardRarity
             }
         }
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2m);

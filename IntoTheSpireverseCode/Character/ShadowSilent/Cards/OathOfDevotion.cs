@@ -17,7 +17,7 @@ public sealed class OathOfDevotion() : ShadowSilentCard(1, CardType.Power, CardR
     [
         new PowerVar<OathOfDevotionPower>(1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
@@ -31,7 +31,7 @@ public sealed class OathOfDevotion() : ShadowSilentCard(1, CardType.Power, CardR
             DynamicVars.Power<OathOfDevotionPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);

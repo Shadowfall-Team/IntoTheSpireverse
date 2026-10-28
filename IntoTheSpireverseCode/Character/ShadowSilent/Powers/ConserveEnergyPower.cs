@@ -9,12 +9,12 @@ public class ConserveEnergyPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.ForEnergy(this)
     ];
-    
+
     public override bool ShouldPlayerResetEnergy(Player player)
     {
         if (Owner.Player == null || Owner.Player.PlayerCombatState == null) return false;

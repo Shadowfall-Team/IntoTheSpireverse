@@ -34,7 +34,7 @@ public class Broadside() : ShadowRegentCard(2,
             .WithHitFx(VfxCmd.bluntPath, null, TmpSfx.heavyAttack)
             .Execute(choiceContext);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(2);

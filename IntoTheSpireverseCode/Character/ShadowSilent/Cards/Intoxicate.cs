@@ -31,7 +31,7 @@ public sealed class Intoxicate() : ShadowSilentCard(2, CardType.Attack, CardRari
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext)).Results.SelectMany(r => r).Sum(r => r.TotalDamage);
-        
+
         await PowerCmd.Apply<PoisonPower>(
             choiceContext, cardPlay.Target, poisonAmount,
             Owner.Creature, this);

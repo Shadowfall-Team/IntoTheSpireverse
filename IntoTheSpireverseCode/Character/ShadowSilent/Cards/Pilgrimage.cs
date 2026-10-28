@@ -32,14 +32,14 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        
+
         int maxDiscards = 1;
         foreach (var model in Owner.Creature.CombatState?.IterateHookListeners().ToList()!)
         {
             if (model is IntoTheSpireverseKeywords.IDeviousDiscardListener deviousListener)
                 maxDiscards = deviousListener.ModifyDeviousDiscard(maxDiscards);
         }
-        
+
         var cards = (await CardSelectCmd.FromHandForDiscard(
             choiceContext,
             Owner,
@@ -51,12 +51,12 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
         foreach (CardModel card in cards)
         {
             if (card.Owner.Creature.CombatState == null) return;
-            
+
             repeats += Math.Max(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
             if (card.EnergyCost.CostsX && Owner.PlayerCombatState != null)
                 repeats += Owner.PlayerCombatState.Energy;
             await CardCmd.Discard(choiceContext, card);
-            
+
             foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
             {
                 if (model is IntoTheSpireverseKeywords.IModifyDeviousListener deviousListener)

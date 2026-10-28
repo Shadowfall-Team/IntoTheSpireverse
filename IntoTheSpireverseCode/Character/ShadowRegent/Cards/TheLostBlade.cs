@@ -22,7 +22,7 @@ public class TheLostBlade() : ShadowRegentCard(
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
 
     protected override bool IsPlayable => PileType.Hand.GetPile(Owner).Cards.Count == 10;
-    
+
     protected override bool ShouldGlowGoldInternal => IsPlayable;
 
     protected override async Task OnPlay(

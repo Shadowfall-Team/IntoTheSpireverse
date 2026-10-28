@@ -11,9 +11,9 @@ public class HorrorPower : ShadowPowerModel, IModifyDamageMultiplicative
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     public override int DisplayAmount => 1 + Amount / 100;
-    
+
     public Decimal ModifyDamageMultiplicativeCompability(
         Creature? target,
         Decimal amount,

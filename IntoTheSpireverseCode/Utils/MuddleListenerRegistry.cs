@@ -49,7 +49,7 @@ public static class MuddleListenerRegistry
         List<MuddleListener> listeners = [];
         if (CombatManager.Instance.IsOverOrEnding && !CombatManager.Instance.IsStarting)
             return listeners;
-        
+
         foreach (var model in cs.IterateHookListeners())
         {
             var listener = new MuddleListener(model);
@@ -116,7 +116,7 @@ public static class MuddleListenerRegistry
             var afterMuddled = AccessTools.TypeByName($"{ns}.IAfterCardMuddled");
             var permanent = AccessTools.TypeByName($"{ns}.IShouldPermanentMuddleListener");
             if (maxCost == null || afterMuddled == null || permanent == null) return null;
-            
+
             if (maxCost.Assembly == typeof(MuddleListenerRegistry).Assembly) return null;
 
             var modify = maxCost.GetMethod("ModifyMaxMuddleCost");
