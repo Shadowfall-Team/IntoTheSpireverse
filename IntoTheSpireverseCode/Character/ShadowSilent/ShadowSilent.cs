@@ -14,7 +14,6 @@ using VanillaFlechettes = MegaCrit.Sts2.Core.Models.Cards.Flechettes;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
-[SuppressMessage("Localization", "STS001:Symbol missing localization")]
 public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "silent";

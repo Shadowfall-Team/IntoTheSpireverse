@@ -14,9 +14,7 @@ using VanillaSupermassive = MegaCrit.Sts2.Core.Models.Cards.Supermassive;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
-#pragma warning disable STS001
 public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
-#pragma warning restore STS001
 {
     public override string PlaceholderID => "regent";
     public const string CharacterId = "IntoTheSpireverse";

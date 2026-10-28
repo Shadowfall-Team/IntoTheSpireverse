@@ -11,9 +11,7 @@ using MegaCrit.Sts2.Core.Models.Characters;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 
-#pragma warning disable STS001
 public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
-#pragma warning restore STS001
 {
     public override string PlaceholderID => "ironclad";
     public const string CharacterId = "IntoTheSpireverse";
