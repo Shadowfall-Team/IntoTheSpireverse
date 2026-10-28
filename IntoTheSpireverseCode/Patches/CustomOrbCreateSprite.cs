@@ -1,11 +1,11 @@
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using Godot;
+using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Logging;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.Patches;
 

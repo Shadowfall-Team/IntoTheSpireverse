@@ -1,7 +1,7 @@
 ﻿
-using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;

@@ -1,5 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;

@@ -1,4 +1,3 @@
-using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;

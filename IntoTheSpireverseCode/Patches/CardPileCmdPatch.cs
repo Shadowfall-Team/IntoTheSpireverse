@@ -1,4 +1,3 @@
-using BaseLib.Abstracts;
 using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 using MegaCrit.Sts2.Core.Commands;

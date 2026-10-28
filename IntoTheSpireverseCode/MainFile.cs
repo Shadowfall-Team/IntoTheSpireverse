@@ -8,7 +8,6 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Metrics;
-using MegaCrit.Sts2.Core.Localization;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 
 

@@ -1,12 +1,12 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Relics;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using Decay = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards.Decay;
 using Invoke = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards.Invoke;
 

@@ -1,13 +1,8 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Modifications;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+﻿using BaseLib.Abstracts;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Modifications;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Modifications;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
