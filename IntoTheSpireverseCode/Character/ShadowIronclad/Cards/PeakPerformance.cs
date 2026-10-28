@@ -1,8 +1,8 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Cards.Variables;
+﻿using BaseLib.Cards.Variables;
 using BaseLib.Commands;
 using BaseLib.Extensions;
 using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

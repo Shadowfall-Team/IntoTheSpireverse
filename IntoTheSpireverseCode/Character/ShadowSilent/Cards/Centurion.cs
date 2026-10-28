@@ -1,13 +1,13 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Enchantments;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Enchantments;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 

@@ -1,8 +1,5 @@
 ﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Orbs;
-using MegaCrit.Sts2.Core.Helpers;
-using Godot;
 
 namespace IntoTheSpireverse.Patches;
 

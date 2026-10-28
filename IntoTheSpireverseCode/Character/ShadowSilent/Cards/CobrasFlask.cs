@@ -1,7 +1,7 @@
-using MegaCrit.Sts2.Core.Animation;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

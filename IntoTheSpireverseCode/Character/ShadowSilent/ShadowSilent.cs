@@ -1,9 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using BaseLib.Abstracts;
+﻿using BaseLib.Abstracts;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
