@@ -1,0 +1,28 @@
+# top-most config file :)
+root = true
+
+# Unix line endings
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# C# project files
+[*.{csproj,sln,props}]
+indent_size = 2
+indent_style = space
+
+# C# configs yay
+[*.cs]
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+trim_trailing_whitespace = true
+
+### DotNet stuff
+dotnet_separate_import_directive_groups = false
+dotnet_sort_system_directives_first = true
+
+csharp_style_var_for_built_in_types = false
+csharp_style_var_when_type_is_apparent = true
+
