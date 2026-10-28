@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Enchantments;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Enchantments;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 

@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using MegaCrit.Sts2.Core.Runs.Metrics;
 using MegaCrit.Sts2.GameInfo;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Metrics;

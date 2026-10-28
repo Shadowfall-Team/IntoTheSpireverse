@@ -1,8 +1,8 @@
 using Godot;
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Combat;
-using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
