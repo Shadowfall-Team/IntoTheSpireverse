@@ -14,7 +14,6 @@ using VanillaFlechettes = MegaCrit.Sts2.Core.Models.Cards.Flechettes;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
-[SuppressMessage("Localization", "STS001:Symbol missing localization")]
 public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IParallelStoneCharacter
 {
     public override string PlaceholderID => "silent";
@@ -36,7 +35,7 @@ public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter, IParallelS
 
     public CharacterModel BaseCharacterModel => ModelDb.Character<Silent>();
     public int ParallelStoneMaxHpChange => -5;
-    
+
     public override int StartingHp => 75;
 
     public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
