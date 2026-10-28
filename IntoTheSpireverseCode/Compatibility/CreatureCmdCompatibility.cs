@@ -79,16 +79,16 @@ public static class CreatureCmdCompatibility
         var call = Expression.Call(method, callArgs.Cast<Expression>());
         return Expression.Lambda<TDelegate>(call, lambdaParams).Compile();
     }
-    
-    
+
+
     // For Hijack compatibility
     private static readonly LoseBlockDel LoseBlockImpl = BuildLoseBlock();
-    
+
     public static Task LoseBlock(PlayerChoiceContext choiceContext, Creature target, Decimal amount, Creature? remover)
     {
         return LoseBlockImpl(choiceContext, target, amount, remover);
     }
-    
+
     private static LoseBlockDel BuildLoseBlock()
     {
         // New: LoseBlock(PlayerChoiceContext, Creature, decimal, Creature?)
@@ -117,7 +117,7 @@ public static class CreatureCmdCompatibility
 
         return Expression.Lambda<LoseBlockDel>(call, ctx, target, amount, remover).Compile();
     }
-    
+
     private delegate Task LoseBlockDel(
         PlayerChoiceContext ctx, Creature target, decimal amount, Creature? remover);
 }

@@ -8,7 +8,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relic
 public class ToyCactus : ShadowIroncladRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<RetaliationPower>(),

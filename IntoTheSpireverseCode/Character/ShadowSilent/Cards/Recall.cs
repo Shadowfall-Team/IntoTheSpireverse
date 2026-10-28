@@ -14,18 +14,18 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class Recall() : ShadowSilentCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(9m, ValueProp.Move),
         new PowerVar<RecallPower>(1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
@@ -35,7 +35,7 @@ public sealed class Recall() : ShadowSilentCard(1, CardType.Attack, CardRarity.U
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        
+
         await PowerCmd.Apply<RecallPower>(
             choiceContext,
             Owner.Creature, DynamicVars.Power<RecallPower>().BaseValue,

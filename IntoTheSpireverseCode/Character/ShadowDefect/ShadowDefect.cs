@@ -21,14 +21,14 @@ public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Neutral;
-    
+
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
-    
+
     public CharacterModel BaseCharacterModel => ModelDb.Character<Defect>();
-    
+
     public override int StartingHp => 75;
-    
+
     public override IEnumerable<CardModel> StartingDeck =>
     [
         ModelDb.Card<StrikeDefect>(),

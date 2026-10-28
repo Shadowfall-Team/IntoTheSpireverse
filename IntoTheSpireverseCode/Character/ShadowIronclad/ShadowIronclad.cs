@@ -27,10 +27,10 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     public override Color RemoteTargetingLineOutline => MapDrawingColor;
 
     public override CharacterGender Gender => CharacterGender.Masculine;
-    
+
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
-    
+
     public CharacterModel BaseCharacterModel => ModelDb.Character<Ironclad>();
 
     public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
@@ -39,7 +39,7 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     ];
 
     public override int StartingHp => 80;
-    
+
     public override IEnumerable<CardModel> StartingDeck =>
     [
         ModelDb.Card<StrikeIronclad>(),
@@ -58,7 +58,7 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     [
         ModelDb.Relic<HeartOfStone>()
     ];
-    
+
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowIroncladCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ShadowIroncladRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ShadowIroncladPotionPool>();
@@ -67,7 +67,7 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
         override all the other methods that define those assets.
         These are just some of the simplest assets, given some placeholders to differentiate your character with.
         You don't have to, but you're suggested to rename these images. */
-    
+
     public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/shadowironclad_icon.tscn";
     public override string CustomIconTexturePath => "character_icon_ironclad.png".GranitecladPath();
     public override string CustomCharacterSelectIconPath => "char_select_ironclad.png".GranitecladPath();

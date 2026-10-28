@@ -17,7 +17,7 @@ public class BoardingParty() : ShadowRegentCard(
     protected override bool HasEnergyCostX => true;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromCard<MinionDiveBomb>()
     ];
@@ -30,11 +30,11 @@ public class BoardingParty() : ShadowRegentCard(
             Owner.Character.CastAnimDelay);
 
         var xValue = ResolveEnergyXValue();
-        
+
         await CardPileCmd.AddToCombatAndPreview<MinionDiveBomb>(
             Owner.Creature,
             PileType.Hand, xValue, Owner);
-        
+
         if (IsUpgraded)
         {
             await CardPileCmd.AddToCombatAndPreview<MinionDiveBomb>(

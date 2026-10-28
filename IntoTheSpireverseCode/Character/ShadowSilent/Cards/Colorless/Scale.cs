@@ -36,7 +36,7 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
     {
         DynamicVars.Block.UpgradeValueBy(2m);
     }
-    
+
     public static async Task<IEnumerable<CardModel>> CreateInHand(
         Player owner,
         int count,
@@ -53,14 +53,14 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, creator ?? owner);
         return scales;
     }
-    
+
     public void AddBlock(Decimal amount)
     {
         BlockVar block = DynamicVars.Block;
         block.BaseValue += amount;
         CurrentBlock += amount;
     }
-    
+
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();

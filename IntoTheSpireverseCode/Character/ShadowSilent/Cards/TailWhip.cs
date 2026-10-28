@@ -18,7 +18,7 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
         new DamageVar(7m, ValueProp.Move),
         new CardsVar(1),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Scale>(IsUpgraded)
@@ -34,7 +34,7 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        
+
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
             .Select(_ =>
             {
@@ -42,8 +42,8 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
                 if(IsUpgraded)
                     CardCmd.Upgrade(card);
                 return card;
-            }); 
-        
+            });
+
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
     }
 

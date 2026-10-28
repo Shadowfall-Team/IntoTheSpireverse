@@ -15,7 +15,7 @@ public sealed class ShellbackModification : Modification
     protected override bool AppendsTextToCardDescription => false;
 
     protected override ModelId SourceCardId => ModelDb.Card<Shellback>().Id;
-    
+
     public override Decimal ModifyBlockAdditive(
         Creature target,
         Decimal block,

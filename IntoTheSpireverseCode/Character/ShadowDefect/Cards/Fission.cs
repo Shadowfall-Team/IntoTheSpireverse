@@ -9,7 +9,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 public class Fission() : ShadowDefectCard (0, CardType.Skill,CardRarity.Ancient, TargetType.None)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
- 
+
     public override OrbEvokeType OrbEvokeType => OrbEvokeType.All;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(0)];
@@ -18,11 +18,11 @@ public class Fission() : ShadowDefectCard (0, CardType.Skill,CardRarity.Ancient,
     {
         if (Owner.PlayerCombatState == null) return;
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
- 
+
         int orbCount = Owner.PlayerCombatState.OrbQueue.Orbs.Count;
         if (orbCount == 0)
             return;
- 
+
         if (IsUpgraded)
         {
             // Evoke all orbs (each EvokeNext with dequeue:true evokes and removes the front orb)
@@ -42,7 +42,7 @@ public class Fission() : ShadowDefectCard (0, CardType.Skill,CardRarity.Ancient,
                 orb.RemoveInternal();
             }
         }
- 
+
         for (int i = 0; i < orbCount; i++)
         {
             await PlayerCmd.GainEnergy(1, base.Owner);

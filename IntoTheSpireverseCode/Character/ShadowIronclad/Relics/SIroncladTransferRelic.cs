@@ -17,7 +17,7 @@ public class Bellows : ShadowIroncladRelic
     [
         new DynamicVar(CardsKey, 2m),
     ];
-    
+
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner || Owner.PlayerCombatState?.TurnNumber > 1) return;

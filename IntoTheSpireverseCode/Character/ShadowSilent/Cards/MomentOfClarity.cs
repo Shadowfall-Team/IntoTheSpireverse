@@ -17,12 +17,12 @@ public sealed class MomentOfClarity() : ShadowSilentCard(1, CardType.Skill, Card
         new EnergyVar(2),
         new DynamicVar(EnergyCostKey, 1),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         EnergyHoverTip,
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         int cost = EnergyCost.GetWithModifiers(CostModifiers.All);
@@ -30,9 +30,9 @@ public sealed class MomentOfClarity() : ShadowSilentCard(1, CardType.Skill, Card
         await PlayerCmd.GainEnergy(
             DynamicVars.Energy.IntValue*cost, Owner);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Energy.UpgradeValueBy(1);
-    }   
+    }
 }

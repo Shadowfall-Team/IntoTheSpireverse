@@ -26,8 +26,8 @@ public sealed class TheLaw : ShadowDefectCard
 			base.DynamicVars.Cards.BaseValue = _clawCount;
 		}
 	}
-	
-	
+
+
 	[SavedProperty]
 	public int ExtraCount
 	{
@@ -38,7 +38,7 @@ public sealed class TheLaw : ShadowDefectCard
 			this._extraCount = value;
 		}
 	}
-	
+
 	public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
 
 	protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]

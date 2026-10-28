@@ -13,23 +13,23 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class DeviousStrike() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
-    
+
     protected override bool ShouldGlowGoldInternal =>
         HasDiscardedThisTurn;
-    
+
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(13m, ValueProp.Move),
         new EnergyVar(2),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         EnergyHoverTip,
     ];
-    
+
     private bool HasDiscardedThisTurn =>
         CombatManager.Instance.History.Entries
             .OfType<CardDiscardedEntry>()

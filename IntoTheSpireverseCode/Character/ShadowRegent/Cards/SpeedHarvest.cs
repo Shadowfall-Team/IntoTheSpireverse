@@ -19,7 +19,7 @@ public class SpeedHarvest() : ShadowRegentCard(
     [
         new PowerVar<DexterityPower>(1)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),
         HoverTipFactory.FromPower<DexterityPower>(),

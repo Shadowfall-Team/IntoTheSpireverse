@@ -22,7 +22,7 @@ public sealed class Bedrock() : ShadowIroncladCard(1, CardType.Power, CardRarity
     [
         HoverTipFactory.FromPower<SlatePower>(),
     ];
-    
+
     public override CardMultiplayerConstraint MultiplayerConstraint
         => CardMultiplayerConstraint.MultiplayerOnly;
 

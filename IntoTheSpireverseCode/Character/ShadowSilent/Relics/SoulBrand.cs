@@ -45,7 +45,7 @@ public class SoulBrand : ShadowSilentRelic
                 var card = combatState.CreateCard<Flicker>(Owner);
                 CardCmd.Upgrade(card);
                 return card;
-            }); 
+            });
         await CardPileCmd.AddGeneratedCardsToCombat(cards ?? [], PileType.Hand, Owner);
     }
 

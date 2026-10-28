@@ -28,14 +28,14 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override Color MapDrawingColor => new("180593");
     public override Color RemoteTargetingLineColor => new("7760d6");
     public override Color RemoteTargetingLineOutline => MapDrawingColor;
-    
+
     public override CharacterGender Gender => CharacterGender.Masculine;
 
     // public override string? CustomCharacterSelectIconPath => "IntoTheSpireverse/images/charui/char_select_char_name.png";
 
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
-    
+
     public CharacterModel BaseCharacterModel => ModelDb.Character<Regent>();
 
     public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
@@ -46,11 +46,11 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     ];
 
     public override int StartingHp => 75;
-    
+
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowRegentCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ShadowRegentRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ShadowRegentPotionPool>();
-    
+
     public override IEnumerable<CardModel> StartingDeck =>
     [
         ModelDb.Card<StrikeCaptain>(),
@@ -64,7 +64,7 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
         ModelDb.Card<StarCharts>(),
         ModelDb.Card<LoadTheCannon>(),
     ];
-    
+
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
         ModelDb.Relic<CaptainsHat>()
@@ -83,7 +83,7 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override string CustomCharacterSelectBg => "res://IntoTheSpireverse/scenes/screens/char_select/shadowregent.tscn";
     public override string CustomRestSiteAnimPath => "res://IntoTheSpireverse/scenes/rest_site/shadowregent_rest_site.tscn";
     public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/shadowregent_merchant.tscn";
-    
+
     protected override List<(AnimState, string)> AnimationStates =>
     [
         (new AnimState("attack"), "Attack"),

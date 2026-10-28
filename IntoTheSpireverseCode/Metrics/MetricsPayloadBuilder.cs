@@ -115,7 +115,7 @@ internal static class MetricsPayloadBuilder
             PotionDiscards = history.SelectMany(e => e.GetEntry(localPlayerId).PotionDiscarded).Select(p => p.Entry).ToList(),
         };
     }
-    
+
     public static string BuildPayloadJson(RunMetrics metrics)
     {
         var runMetrics = JsonSerializer.Serialize(metrics, MetricsPayloadSerializerContext.Default.RunMetrics);

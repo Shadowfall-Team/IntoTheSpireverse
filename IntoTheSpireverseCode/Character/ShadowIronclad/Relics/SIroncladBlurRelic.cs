@@ -94,7 +94,7 @@ public class IronCestus : ShadowIroncladRelic
         AttacksPlayedThisTurn++;
 
         if (AttacksPlayedThisTurn % DynamicVars.Cards.IntValue != 0) return;
-        
+
         _ = TaskHelper.RunSafely(DoActivateVisuals());
         await PowerCmd.Apply<BlurPower>(
             choiceContext,

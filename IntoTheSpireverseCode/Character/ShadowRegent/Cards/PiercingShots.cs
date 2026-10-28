@@ -33,7 +33,7 @@ public class PiercingShots() : ShadowRegentCard(
             Owner.Creature,
             this);
     }
-        
+
     protected override void OnUpgrade()
     {
         AddKeyword(CardKeyword.Retain);

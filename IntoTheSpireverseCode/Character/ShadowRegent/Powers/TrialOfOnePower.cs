@@ -13,12 +13,12 @@ public class TrialOfOnePower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("EnergySpentThisTurn", 0)
     ];
-    
+
     public override Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side)
@@ -53,14 +53,14 @@ public class TrialOfOnePower : ShadowPowerModel
                         Amount,
                         Owner,
                         null);
-                    
+
                     await PowerCmd.Apply<IntangiblePower>(
                         new ThrowingPlayerChoiceContext(),
                         Owner,
                         1,
                         Owner,
                         null);
-                    
+
                     await PowerCmd.Remove(this);
                 }
             }

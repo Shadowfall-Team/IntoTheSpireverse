@@ -30,7 +30,7 @@ public sealed class Dagger() : ShadowSilentCard(1, CardType.Attack, CardRarity.T
     [
         CardKeyword.Exhaust,
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Scale>()

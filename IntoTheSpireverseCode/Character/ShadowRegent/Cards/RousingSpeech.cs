@@ -42,10 +42,10 @@ public class RousingSpeech() : ShadowRegentCard(
 
 
 }
-    
+
     protected override void OnUpgrade()
     {
         AddKeyword(CardKeyword.Retain);
     }
-    
+
 }

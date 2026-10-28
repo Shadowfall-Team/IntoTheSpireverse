@@ -20,7 +20,7 @@ public class Jettison() : ShadowRegentCard(2,
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
@@ -39,9 +39,9 @@ public class Jettison() : ShadowRegentCard(2,
             new CardSelectorPrefs(SelectionScreenPrompt, 0, 999999),
             null,
             this)).ToList();
-        
+
         await CardPileCmd.Add(cargoedCards, CargoCardPile.CargoPileType);
-        
+
         if (cargoedCards.Count != 0)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
@@ -52,7 +52,7 @@ public class Jettison() : ShadowRegentCard(2,
                 .Execute(choiceContext);
         }
     }
-    
+
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Exhaust);

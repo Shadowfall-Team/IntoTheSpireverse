@@ -18,7 +18,7 @@ public class BaleteRoot : ShadowSilentRelic, IntoTheSpireverseKeywords.IModifyDe
     [
         new DynamicVar(_increaseKey, 1M)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),

@@ -19,7 +19,7 @@ public class TrialOfOne() : ShadowRegentCard(
     [
         new PowerVar<StrengthPower>(1)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<StrengthPower>(),
         HoverTipFactory.FromPower<IntangiblePower>()

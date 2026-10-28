@@ -17,7 +17,7 @@ public partial class NSpineAutoPlayer : Node
             animState.SetAnimation(animationNames[0]);
         }));
     }
-  
+
     public override void _Process(double delta)
     {
     }

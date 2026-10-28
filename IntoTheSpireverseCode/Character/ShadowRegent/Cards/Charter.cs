@@ -19,7 +19,7 @@ public class Charter() : ShadowRegentCard(
     [
         new CardsVar(2),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
         HoverTipFactory.FromCard<MinionStrike>()

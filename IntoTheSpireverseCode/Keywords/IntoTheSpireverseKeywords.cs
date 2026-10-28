@@ -21,7 +21,7 @@ public static class IntoTheSpireverseKeywords
 {
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Devious;
-    
+
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword DeviousX;
 
@@ -33,19 +33,19 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Linger;
-    
+
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Startup;
-    
+
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Muddle;
-    
+
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Pickup;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Cargo;
-    
+
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Arcane;
 
@@ -124,7 +124,6 @@ public static class IntoTheSpireverseKeywords
             await effect();
     }
 
-   
 
 
 
@@ -138,5 +137,4 @@ public static class IntoTheSpireverseKeywords
         int ModifyDeviousDiscard(int originalAmount);
     }
 
-  
 }

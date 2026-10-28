@@ -16,7 +16,7 @@ public class VinoSerpento : ShadowSilentRelic
 
     private bool _wasUsedThisCombat;
     private bool _wasTriggered;
-    
+
     private bool WasUsedThisCombat
     {
         get => _wasUsedThisCombat;
@@ -26,7 +26,7 @@ public class VinoSerpento : ShadowSilentRelic
             _wasUsedThisCombat = value;
         }
     }
-    
+
     private bool WasTriggered
     {
         get => _wasTriggered;
@@ -61,7 +61,7 @@ public class VinoSerpento : ShadowSilentRelic
         Status = RelicStatus.Normal;
         return Task.CompletedTask;
     }
-    
+
     public override Decimal ModifyPowerAmountGivenAdditive(
         PowerModel power,
         Creature giver,
@@ -82,7 +82,7 @@ public class VinoSerpento : ShadowSilentRelic
     {
 
         // Currently a hack to account for the main branch not having `cardPlay.Player` yet
-        // will potentially break if a card like TheBall applies poison, 
+        // will potentially break if a card like TheBall applies poison,
         if (WasTriggered && cardPlay.Card.Owner == Owner && !WasUsedThisCombat)
         {
             WasUsedThisCombat = true;

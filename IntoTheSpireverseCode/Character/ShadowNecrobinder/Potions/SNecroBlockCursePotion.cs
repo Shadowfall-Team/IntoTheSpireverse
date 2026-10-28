@@ -23,14 +23,14 @@ public class SNecroBlockCursePotion : ShadowNecrobinderPotion
         new BlockVar(5m, ValueProp.Unpowered),
         new DynamicVar("TotalBlock", 5m),
     ];
-    
+
     // TODO make it so when you are not in possession of the potion it still shows the correct values
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block),
     ];
-    
+
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         if (room is not CombatRoom) return Task.CompletedTask;
@@ -45,7 +45,7 @@ public class SNecroBlockCursePotion : ShadowNecrobinderPotion
         UpdateTotalBlock();
         return Task.CompletedTask;
     }
-    
+
     public override Task AfterPotionProcured(PotionModel potion)
     {
         if (potion != this) return Task.CompletedTask;

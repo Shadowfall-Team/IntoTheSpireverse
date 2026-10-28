@@ -23,7 +23,7 @@ public class SpacePirate() : ShadowRegentCard(
     [
         new DamageVar(10, ValueProp.Move)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips
     {
         get
