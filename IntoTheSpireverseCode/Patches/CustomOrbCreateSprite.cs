@@ -18,14 +18,14 @@ internal class CustomOrbCreateSprite
         if (!(__instance is CustomOrbModel customOrbModel))
             return true;
 
-        string spritePath = customOrbModel.CustomSpritePath ?? 
+        string spritePath = customOrbModel.CustomSpritePath ??
             $"orbs/orb_visuals/{__instance.Id.Entry.ToLowerInvariant()}";
 
         Log.Info("SPRITE PATHH CREATION: " + spritePath);
         Node2D sprite = PreloadManager.Cache.GetScene(
             MegaCrit.Sts2.Core.Helpers.SceneHelper.GetScenePath(spritePath)
         ).Instantiate<Node2D>();
-        
+
         new MegaSprite((Variant)(GodotObject)sprite.GetNode((NodePath)"SpineSkeleton"))
             .GetAnimationState()
             .SetAnimationCompat("idle_loop");

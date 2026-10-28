@@ -23,7 +23,7 @@ public class Misdirection() : ShadowRegentCard(
         new DamageVar(9, ValueProp.Move),
         new CardsVar(1)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];

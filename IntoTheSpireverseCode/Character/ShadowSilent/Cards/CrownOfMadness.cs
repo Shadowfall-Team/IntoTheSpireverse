@@ -31,7 +31,7 @@ public sealed class CrownOfMadness() : ShadowSilentCard(3, CardType.Power, CardR
                 Owner.Creature, this))?.SetSelectedCard(selectedCard);
         }
     }
-    
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);

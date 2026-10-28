@@ -20,7 +20,7 @@ public sealed class Reptomancy() : ShadowSilentCard(0, CardType.Skill, CardRarit
     [
         new CardsVar(2),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Dagger>(IsUpgraded)

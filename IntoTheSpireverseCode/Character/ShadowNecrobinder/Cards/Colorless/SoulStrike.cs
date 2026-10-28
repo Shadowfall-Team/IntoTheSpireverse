@@ -20,7 +20,7 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
         new DamageVar(5m, ValueProp.Move),
         new CardsVar(1),
     ];
-    
+
     protected override HashSet<CardTag> CanonicalTags
     {
         get => new HashSet<CardTag>() { CardTag.Strike };
@@ -30,7 +30,7 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
     [
         CardKeyword.Exhaust
     ];
-    
+
     public static IEnumerable<SoulStrike> Create(Player owner, int amount, ICombatState combatState)
     {
         List<SoulStrike> list = new List<SoulStrike>();
@@ -38,7 +38,7 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
             list.Add(combatState.CreateCard<SoulStrike>(owner));
         return list;
     }
-    
+
     public static async Task<IEnumerable<SoulStrike>> CreateInHand(Player owner, int amount, ICombatState combatState)
     {
         var soulStrikes = SoulStrike.Create(owner, amount, combatState).ToList();

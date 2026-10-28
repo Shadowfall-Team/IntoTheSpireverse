@@ -20,7 +20,7 @@ public sealed class Gravellize() : ShadowIroncladCard(1, CardType.Skill, CardRar
         HoverTipFactory.FromPower<RetaliationPower>(),
 
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;

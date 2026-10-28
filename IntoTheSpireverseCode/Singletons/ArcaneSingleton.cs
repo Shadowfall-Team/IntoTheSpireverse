@@ -13,7 +13,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 
 public class ArcaneSingleton() : CustomSingletonModel(HookType.Combat)
 {
-    
+
     public override async Task BeforeHandDraw(
         Player player,
         PlayerChoiceContext choiceContext,
@@ -21,7 +21,7 @@ public class ArcaneSingleton() : CustomSingletonModel(HookType.Combat)
     {
         if (combatState.RoundNumber != 1)
             return;
-        foreach (CardPile pile in player.Piles) 
+        foreach (CardPile pile in player.Piles)
         {
             if (pile.Type == PileType.Draw)
             {
@@ -32,7 +32,7 @@ public class ArcaneSingleton() : CustomSingletonModel(HookType.Combat)
                         await CardPileCmd.Add(card, PileType.Exhaust);
                     }
                 }
-                
+
             }
         }
     }

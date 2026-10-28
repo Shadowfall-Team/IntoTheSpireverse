@@ -17,7 +17,7 @@ public sealed class Pestilence() : ShadowSilentCard(2, CardType.Power, CardRarit
     [
         new PowerVar<PestilencePower>(1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<PoisonPower>(),
@@ -31,7 +31,7 @@ public sealed class Pestilence() : ShadowSilentCard(2, CardType.Power, CardRarit
             DynamicVars.Power<PestilencePower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<PestilencePower>().UpgradeValueBy(1m);

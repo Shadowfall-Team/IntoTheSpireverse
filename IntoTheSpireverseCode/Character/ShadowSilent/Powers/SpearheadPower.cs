@@ -13,12 +13,12 @@ public class SpearheadPower : ShadowPowerModel, IntoTheSpireverseKeywords.IModif
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious)
-    ]; 
-    
+    ];
+
     public int ModifyDeviousValue(CardModel card, int originalValue)
     {
         return Owner != card.Owner.Creature ? originalValue : originalValue + Amount;

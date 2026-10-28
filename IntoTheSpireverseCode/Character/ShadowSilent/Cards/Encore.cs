@@ -21,7 +21,7 @@ public sealed class Encore() : ShadowSilentCard(0, CardType.Attack, CardRarity.R
     [
         new DamageVar(16m, ValueProp.Move),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -44,7 +44,7 @@ public sealed class Encore() : ShadowSilentCard(0, CardType.Attack, CardRarity.R
         modifiedCost = originalCost + count;
         return true;
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(5m);

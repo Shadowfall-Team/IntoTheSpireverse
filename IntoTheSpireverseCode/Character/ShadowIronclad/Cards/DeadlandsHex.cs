@@ -21,7 +21,7 @@ public sealed class DeadlandsHex() : ShadowIroncladCard(1, CardType.Skill, CardR
     [
         HoverTipFactory.FromCard<GhostRock>(false),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);

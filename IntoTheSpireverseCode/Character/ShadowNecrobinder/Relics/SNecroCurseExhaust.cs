@@ -16,7 +16,7 @@ public class SNecroCurseExhaust : ShadowNecrobinderRelic
     [
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
     ];
-    
+
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner) return;

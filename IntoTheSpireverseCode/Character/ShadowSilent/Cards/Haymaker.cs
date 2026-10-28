@@ -23,7 +23,7 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
         new DynamicVar(_deviousKey, 0m),
     ];
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<WeakPower>(),

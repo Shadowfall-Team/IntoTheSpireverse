@@ -120,7 +120,7 @@ internal static class MetricsPayloadBuilder
         RunMetricsCompat.AddGameMode(metrics, run);
         return metrics;
     }
-    
+
     public static string BuildPayloadJson(RunMetrics metrics)
     {
         var runMetrics = JsonSerializer.Serialize(metrics, MetricsSerializerContext.Default.RunMetrics);

@@ -13,7 +13,7 @@ public class Promotion() : ShadowRegentCard(
     TargetType.Self)
 {
     protected override bool HasEnergyCostX => true;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<StrengthPower>(),
         HoverTipFactory.FromPower<DexterityPower>(),

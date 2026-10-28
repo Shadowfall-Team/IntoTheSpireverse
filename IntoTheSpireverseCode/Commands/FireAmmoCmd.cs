@@ -102,7 +102,7 @@ public static class FireAmmoCmd
                     await ShotHelper.CreateMissile(combatState, null, skipWait: true);
                     foreach (var t in combatState.HittableEnemies)
                         await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(),
-                            t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null); 
+                            t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
                     SfxCmd.Play("event:/sfx/characters/regent/regent_sovereign_blade");
                 }
                 else

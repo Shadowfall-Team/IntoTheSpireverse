@@ -19,12 +19,12 @@ public class ShellbackPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Scale>(),
         HoverTipFactory.FromKeyword(CardKeyword.Retain)
-    ];  
+    ];
 
     public override async Task AfterFlush(
         PlayerChoiceContext choiceContext,

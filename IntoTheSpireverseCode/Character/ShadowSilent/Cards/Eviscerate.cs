@@ -15,14 +15,14 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(7m, ValueProp.Move),
         new SpireverseHitCountVar(3),
         new EnergyVar(1),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         EnergyHoverTip,
@@ -48,7 +48,7 @@ public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRari
             return;
         ReduceCostBy(DynamicVars.Energy.IntValue);
     }
-    
+
     public override Task AfterCardEnteredCombat(CardModel card)
     {
         if (card != this || this.IsClone )

@@ -21,11 +21,11 @@ public sealed class Deposit() : ShadowIroncladCard(2, CardType.Skill, CardRarity
         new BlockVar(10m, ValueProp.Move),
         new PowerVar<SlatePower>(3m),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
         CardKeyword.Exhaust
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),

@@ -12,7 +12,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 public class ArmoredCore : ShadowSilentRelic
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
-    
+
     private const string RetaliationKey = "Retaliation";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -24,7 +24,7 @@ public class ArmoredCore : ShadowSilentRelic
     [
         HoverTipFactory.FromPower<RetaliationPower>(),
     ];
-    
+
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner || !cardPlay.Card.Tags.Contains(IntoTheSpireverseCardTags.Scale))

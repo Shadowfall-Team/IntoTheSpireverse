@@ -18,7 +18,7 @@ public class SingleMind() : ShadowDefectCard(1, CardType.Skill, CardRarity.Rare,
         var orbs = Owner.PlayerCombatState.OrbQueue.Orbs;
         if (orbs.Count == 0) return;
         var first = orbs.First();
-        
+
         if (Owner.PlayerCombatState.OrbQueue.Orbs.All(x => x.GetType() == first.GetType()))
         {
             await PowerCmd.Apply<FocusPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);

@@ -5,7 +5,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 public static class CompatibilityUtils
 {
-    
+
     private static readonly Dictionary<Type, MethodInfo?> IgnoreNextInstanceCache = [];
     internal static void DoHackyThingsForSpecificPowers(ITemporaryPower power)
     {

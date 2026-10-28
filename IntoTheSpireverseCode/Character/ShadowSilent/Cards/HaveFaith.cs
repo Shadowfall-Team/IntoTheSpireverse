@@ -16,7 +16,7 @@ public sealed class HaveFaith() : ShadowSilentCard(1, CardType.Power, CardRarity
     [
         new PowerVar<HaveFaithPower>(2m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block)
@@ -30,7 +30,7 @@ public sealed class HaveFaith() : ShadowSilentCard(1, CardType.Power, CardRarity
             DynamicVars.Power<HaveFaithPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<HaveFaithPower>().UpgradeValueBy(1m);

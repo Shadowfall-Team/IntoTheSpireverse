@@ -19,7 +19,7 @@ public class IceBeam() : ShadowRegentCard(1,
         new PowerVar<WeakPower>(1),
         new("StrengthLoss", 2)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<WeakPower>(),
         HoverTipFactory.FromPower<StrengthPower>(),
@@ -36,7 +36,7 @@ public class IceBeam() : ShadowRegentCard(1,
         await PowerCmd.Apply<IceBeamPower>(
             choiceContext,play.Target,
             DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
-        
+
         await PowerCmd.Apply<WeakPower>(
             choiceContext,play.Target, DynamicVars.Weak.BaseValue,
             Owner.Creature, this);

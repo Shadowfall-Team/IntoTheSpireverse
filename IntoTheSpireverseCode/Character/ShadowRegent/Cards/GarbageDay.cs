@@ -43,5 +43,5 @@ public class GarbageDay() : ShadowRegentCard(
         var cardPileAddResult = await CardPileCmd.AddGeneratedCardToCombat(bury, CargoCardPile.CargoPileType, Owner);
         CardCmd.PreviewCardPileAdd(cardPileAddResult);
     }
-    
+
 }

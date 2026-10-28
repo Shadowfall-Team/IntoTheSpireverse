@@ -16,12 +16,12 @@ public sealed class Illusion() : ShadowSilentCard(0, CardType.Skill, CardRarity.
     [
         new PowerVar<IllusionPower>(2m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<IllusionPower>(

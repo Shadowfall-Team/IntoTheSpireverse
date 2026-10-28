@@ -43,6 +43,6 @@ public class Construct() : ShadowRegentCard(
 
     protected override void OnUpgrade()
     {
-        
+
     }
 }

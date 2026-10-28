@@ -22,7 +22,7 @@ public sealed class GrimoireOfSouls() : ShadowNecrobinderCard(2, CardType.Power,
         HoverTipFactory.FromCard<Clumsy>(),
         HoverTipFactory.FromCard<SoulStrike>(),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;

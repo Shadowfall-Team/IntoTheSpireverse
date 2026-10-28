@@ -36,9 +36,9 @@ public class TrickyStrike() : ShadowRegentCard(1,
             .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .WithHitFx(VfxCmd.starryImpactVfx, null, TmpSfx.bluntAttack)
             .Execute(choiceContext);
-        
+
     }
-    
+
     public override async Task AfterAutoPostPlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)
     {
         if (Pile != null && Pile.Type == CargoCardPile.CargoPileType)

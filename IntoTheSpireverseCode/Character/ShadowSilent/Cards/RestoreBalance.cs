@@ -14,7 +14,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
 {
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(11m, ValueProp.Move),

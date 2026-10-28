@@ -14,7 +14,7 @@ public class BlackIce() : ShadowDefectCard(1, CardType.Power, CardRarity.Uncommo
     [
         new PowerVar<BlackIcePower>(2),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromOrb<DarkOrb>(),

@@ -22,7 +22,7 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
         new HpLossVar(2m),
         new PowerVar<StrengthPower>(2m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<StrengthPower>(),
@@ -43,7 +43,7 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
     {
         await CreatureCmdCompatibility.Damage(choiceContext, Owner.Creature,
             DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
-        
+
         await PowerCmd.Apply<StrengthPower>(
             choiceContext,
             Owner.Creature, DynamicVars.Power<StrengthPower>().BaseValue,

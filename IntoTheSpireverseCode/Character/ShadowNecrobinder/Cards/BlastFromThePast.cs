@@ -15,7 +15,7 @@ public sealed class BlastFromThePast() : ShadowNecrobinderCard(0, CardType.Skill
 {
     // Could make this function in multiplayer down the line
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.SingleplayerOnly;
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar(1),
