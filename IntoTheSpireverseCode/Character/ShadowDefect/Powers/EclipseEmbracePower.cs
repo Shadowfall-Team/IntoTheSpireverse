@@ -11,25 +11,25 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Powers;
 
 public sealed class EclipseEmbracePower : IntoTheSpireversePower
 {
-	public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
-		HoverTipFactory.FromCard<Void>(),
-		HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
-		HoverTipFactory.ForEnergy(this)
-	};
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    {
+        HoverTipFactory.FromCard<Void>(),
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
+        HoverTipFactory.ForEnergy(this)
+    };
 
-	public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool _)
-	{
-		if (card.Owner.Creature != base.Owner || card is not Void)
-		{
-			return;
-		}
-		Flash();
-		await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
-		await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
-	}
+    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool _)
+    {
+        if (card.Owner.Creature != base.Owner || card is not Void)
+        {
+            return;
+        }
+        Flash();
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
+    }
 }

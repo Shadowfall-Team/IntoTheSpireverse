@@ -20,7 +20,7 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     public override Color NameColor => Color;
     public override Color EnergyLabelOutlineColor => new("801212");
     public override Color DialogueColor => new("2F0E10");
-    public override Color MapDrawingColor => new ("4A1518");
+    public override Color MapDrawingColor => new("4A1518");
     public override Color RemoteTargetingLineColor => new("99000a");
     public override Color RemoteTargetingLineOutline => MapDrawingColor;
 

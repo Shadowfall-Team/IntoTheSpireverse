@@ -10,28 +10,28 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class EclipseEmbrace : ShadowDefectCard
 {
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
-		base.EnergyHoverTip,
-		HoverTipFactory.FromCard<Void>(),
-		HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
-	};
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    {
+        base.EnergyHoverTip,
+        HoverTipFactory.FromCard<Void>(),
+        HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
+    };
 
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(0)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(0)];
 
-	public EclipseEmbrace()
-		: base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
-	{
-	}
+    public EclipseEmbrace()
+        : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
+    {
+    }
 
-	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-	{
-		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		await PowerCmd.Apply<EclipseEmbracePower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature, this);
-	}
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        await PowerCmd.Apply<EclipseEmbracePower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature, this);
+    }
 
-	protected override void OnUpgrade()
-	{
-		base.EnergyCost.UpgradeBy(-1);
-	}
+    protected override void OnUpgrade()
+    {
+        base.EnergyCost.UpgradeBy(-1);
+    }
 }

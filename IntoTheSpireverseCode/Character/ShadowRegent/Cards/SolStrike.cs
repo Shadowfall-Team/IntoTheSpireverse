@@ -39,7 +39,7 @@ public class SolStrike() : ShadowRegentCard(1,
 
         await PowerCmd.Apply<ShardsPower>(
             choiceContext,
-            Owner.Creature,DynamicVars[nameof(ShardsPower)].BaseValue,
+            Owner.Creature, DynamicVars[nameof(ShardsPower)].BaseValue,
             Owner.Creature,
             this);
     }

@@ -50,7 +50,7 @@ public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRari
 
     public override Task AfterCardEnteredCombat(CardModel card)
     {
-        if (card != this || this.IsClone )
+        if (card != this || this.IsClone)
             return Task.CompletedTask;
         ReduceCostBy(CombatManager.Instance.History.Entries.OfType<CardDiscardedEntry>().Count(e => e.HappenedThisTurn(CombatState) && e.Card.Owner == Owner));
         return Task.CompletedTask;

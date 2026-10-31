@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
-public class Fission() : ShadowDefectCard (0, CardType.Skill,CardRarity.Ancient, TargetType.None)
+public class Fission() : ShadowDefectCard(0, CardType.Skill, CardRarity.Ancient, TargetType.None)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
 

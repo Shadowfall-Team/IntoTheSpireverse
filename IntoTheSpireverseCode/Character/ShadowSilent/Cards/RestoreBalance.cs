@@ -34,7 +34,7 @@ public sealed class RestoreBalance() : ShadowSilentCard(2, CardType.Attack, Card
             .TargetingAllOpponents(CombatState)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        foreach (CardModel card2 in PileType.Draw.GetPile(Owner).Cards.Where( (c => c.IsUpgradable)).TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection))
+        foreach (CardModel card2 in PileType.Draw.GetPile(Owner).Cards.Where((c => c.IsUpgradable)).TakeRandom(DynamicVars.Cards.IntValue, Owner.RunState.Rng.CombatCardSelection))
         {
             CardCmd.Upgrade(card2);
             CardCmd.Preview(card2);

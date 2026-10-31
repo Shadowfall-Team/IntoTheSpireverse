@@ -37,7 +37,7 @@ public sealed class Scalemail() : ShadowSilentCard(2, CardType.Skill, CardRarity
         {
             if (card is Scale)
             {
-                await CreatureCmd.GainBlock(Owner.Creature,  DynamicVars.Block, cardPlay);
+                await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             }
         }
     }

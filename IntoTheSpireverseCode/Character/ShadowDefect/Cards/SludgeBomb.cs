@@ -11,43 +11,43 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class SludgeBomb : ShadowDefectCard
 {
-	protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-	{
-		new DamageVar(18m, ValueProp.Move)
-	};
+    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
+    {
+        new DamageVar(18m, ValueProp.Move)
+    };
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
-		HoverTipFactory.FromCard<Void>()
-	};
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    {
+        HoverTipFactory.FromCard<Void>()
+    };
 
-	protected override bool IsPlayable =>
-		PileType.Exhaust.GetPile(base.Owner).Cards.Any(c => c is Void);
+    protected override bool IsPlayable =>
+        PileType.Exhaust.GetPile(base.Owner).Cards.Any(c => c is Void);
 
-	public SludgeBomb()
-		: base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
-	{
-	}
+    public SludgeBomb()
+        : base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+    {
+    }
 
-	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-	{
-		if (CombatState == null) return;
-		var voidCard = PileType.Exhaust.GetPile(base.Owner).Cards
-			.FirstOrDefault(c => c is Void);
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (CombatState == null) return;
+        var voidCard = PileType.Exhaust.GetPile(base.Owner).Cards
+            .FirstOrDefault(c => c is Void);
 
-		if (voidCard == null)
-			return;
+        if (voidCard == null)
+            return;
 
-		await CardPileCmd.RemoveFromCombat(voidCard);
+        await CardPileCmd.RemoveFromCombat(voidCard);
 
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCardCompatibility(this, cardPlay)
-			.TargetingAllOpponents(base.CombatState)
-			.WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
-			.Execute(choiceContext);
-	}
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCardCompatibility(this, cardPlay)
+            .TargetingAllOpponents(base.CombatState)
+            .WithHitFx("vfx/vfx_attack_blunt", null, "blunt_attack.mp3")
+            .Execute(choiceContext);
+    }
 
-	protected override void OnUpgrade()
-	{
-		base.DynamicVars.Damage.UpgradeValueBy(6m);
-	}
+    protected override void OnUpgrade()
+    {
+        base.DynamicVars.Damage.UpgradeValueBy(6m);
+    }
 }

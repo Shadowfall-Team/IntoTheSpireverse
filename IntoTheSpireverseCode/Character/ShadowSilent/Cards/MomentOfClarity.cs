@@ -27,7 +27,7 @@ public sealed class MomentOfClarity() : ShadowSilentCard(1, CardType.Skill, Card
         int cost = EnergyCost.GetWithModifiers(CostModifiers.All);
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PlayerCmd.GainEnergy(
-            DynamicVars.Energy.IntValue*cost, Owner);
+            DynamicVars.Energy.IntValue * cost, Owner);
     }
 
     protected override void OnUpgrade()

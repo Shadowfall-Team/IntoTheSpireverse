@@ -41,7 +41,7 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
         var cards = (await CardSelectCmd.FromHandForDiscard(
             choiceContext,
             Owner,
-            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards,1)),
+            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards, 1)),
             null,
             this));
 
@@ -64,8 +64,8 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
 
         if (repeats > 0)
         {
-            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue*repeats, Owner);
-            await CardCmd.Discard(choiceContext, await CardSelectCmd.FromHandForDiscard(choiceContext, Owner, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, DynamicVars[_discardKey].IntValue*repeats),  null, this));
+            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue * repeats, Owner);
+            await CardCmd.Discard(choiceContext, await CardSelectCmd.FromHandForDiscard(choiceContext, Owner, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, DynamicVars[_discardKey].IntValue * repeats), null, this));
         }
     }
 

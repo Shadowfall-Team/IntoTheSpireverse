@@ -9,7 +9,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class StrikeShadowSilent() : ShadowSilentCard(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
-	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Strike };
+    protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Strike };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -18,11 +18,11 @@ public sealed class StrikeShadowSilent() : ShadowSilentCard(1, CardType.Attack, 
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-	    if (cardPlay.Target == null) return;
-		await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCardCompatibility(this, cardPlay).Targeting(cardPlay.Target)
-			.WithHitFx(VfxCmd.slashPath)
-			.Execute(choiceContext);
-	}
+        if (cardPlay.Target == null) return;
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCardCompatibility(this, cardPlay).Targeting(cardPlay.Target)
+            .WithHitFx(VfxCmd.slashPath)
+            .Execute(choiceContext);
+    }
 
     protected override void OnUpgrade()
     {

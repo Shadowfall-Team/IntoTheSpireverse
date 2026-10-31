@@ -19,7 +19,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Events;
 public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 {
     public override string CustomInitialPortraitPath => "res://IntoTheSpireverse/images/events/mirror_mirror.png";
-    public override string CustomVfxPath =>"res://scenes/vfx/events/doors_of_light_and_dark_vfx.tscn";
+    public override string CustomVfxPath => "res://scenes/vfx/events/doors_of_light_and_dark_vfx.tscn";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

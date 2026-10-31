@@ -18,7 +18,7 @@ public class InfectedShotPower : IntoTheSpireversePower
         if (card is not Void) return;
 
         var power = this;
-        await CreatureCmdCompatibility.Damage(choiceContext, power.Owner, (Decimal) power.Amount, ValueProp.Unblockable | ValueProp.Unpowered,  null, null, null);
+        await CreatureCmdCompatibility.Damage(choiceContext, power.Owner, (Decimal)power.Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null, null);
         await PowerCmd.Remove<InfectedShotPower>(power.Owner);
     }
 }

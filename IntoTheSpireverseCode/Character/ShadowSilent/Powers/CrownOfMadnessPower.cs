@@ -44,7 +44,7 @@ public class CrownOfMadnessPower : ShadowPowerModel
     public void SetSelectedCard(CardModel card)
     {
         GetInternalData<Data>().SelectedCard = card;
-        ((StringVar) DynamicVars["Card"]).StringValue = card.Title;
+        ((StringVar)DynamicVars["Card"]).StringValue = card.Title;
     }
 
     private class Data

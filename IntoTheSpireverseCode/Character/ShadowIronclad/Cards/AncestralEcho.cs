@@ -23,19 +23,19 @@ public sealed class AncestralEcho() : ShadowIroncladCard(2, CardType.Skill, Card
         new DynamicVar(_replayKey, 1m)
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.ReplayStatic)] ;
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.Static(StaticHoverTip.ReplayStatic)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         IReadOnlyList<CardModel> cards = PileType.Draw.GetPile(Owner).Cards;
-		CardModel? cardModel = cards.FirstOrDefault();
-		if (cardModel != null)
-		{
-			cardModel.BaseReplayCount += DynamicVars[_replayKey].IntValue;
+        CardModel? cardModel = cards.FirstOrDefault();
+        if (cardModel != null)
+        {
+            cardModel.BaseReplayCount += DynamicVars[_replayKey].IntValue;
             CardCmd.Preview(cardModel);
-		}
+        }
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

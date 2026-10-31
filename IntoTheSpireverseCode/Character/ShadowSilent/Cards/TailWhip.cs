@@ -39,7 +39,7 @@ public sealed class TailWhip() : ShadowSilentCard(1, CardType.Attack, CardRarity
             .Select(_ =>
             {
                 var card = CombatState.CreateCard<Scale>(Owner);
-                if(IsUpgraded)
+                if (IsUpgraded)
                     CardCmd.Upgrade(card);
                 return card;
             });

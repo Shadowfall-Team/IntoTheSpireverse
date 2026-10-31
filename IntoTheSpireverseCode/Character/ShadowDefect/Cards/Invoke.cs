@@ -13,7 +13,7 @@ public sealed class Invoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.Ba
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        foreach (OrbModel orb in (IEnumerable<OrbModel>) source.Owner.PlayerCombatState!.OrbQueue.Orbs)
+        foreach (OrbModel orb in (IEnumerable<OrbModel>)source.Owner.PlayerCombatState!.OrbQueue.Orbs)
         {
             await OrbCmd.Passive(choiceContext, orb, null);
             await Cmd.Wait(0.1f);

@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
-public class GuidingShot(): ShadowRegentCard(1,
+public class GuidingShot() : ShadowRegentCard(1,
     CardType.Attack,
     CardRarity.Common,
     TargetType.AnyEnemy)
