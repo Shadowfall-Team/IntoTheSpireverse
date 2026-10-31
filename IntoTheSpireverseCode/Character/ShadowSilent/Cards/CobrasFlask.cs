@@ -43,29 +43,29 @@ public sealed class CobrasFlask() : ShadowSilentCard(2, CardType.Skill, CardRari
         var node = NCombatRoom.Instance.GetCreatureNode(Owner.Creature);
         if (node == null) return;
         Vector2 lastPos = node.VfxSpawnPosition;
-        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async() =>
+        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
             var enemy = cardPlay.Card.Owner.RunState.Rng.CombatTargets.NextItem(CombatState.HittableEnemies);
             if (enemy != null)
             {
-                 if (TestMode.IsOff)
-                 {
-                     var targetNode = NCombatRoom.Instance.GetCreatureNode(enemy);
-                     if (targetNode != null)
-                     {
-                         NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(NItemThrowVfx.Create(lastPos,
-                             targetNode.GetBottomOfHitbox(), ModelDb.Potion<PoisonPotion>().Image));
-                         lastPos = targetNode.VfxSpawnPosition;
-                         await Cmd.Wait(0.5f);
-                         NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
-                             NSplashVfx.Create(targetNode.VfxSpawnPosition, _vfxTint));
-                         NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
-                             NLiquidOverlayVfx.Create(enemy, _vfxTint));
-                         NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
-                             NGaseousImpactVfx.Create(targetNode.VfxSpawnPosition, _vfxTint));
-                     }
-                 }
-                 await PowerCmd.Apply<PoisonPower>(choiceContext, enemy, DynamicVars.Poison.BaseValue, cardPlay.Card.Owner.Creature, this);
+                if (TestMode.IsOff)
+                {
+                    var targetNode = NCombatRoom.Instance.GetCreatureNode(enemy);
+                    if (targetNode != null)
+                    {
+                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(NItemThrowVfx.Create(lastPos,
+                            targetNode.GetBottomOfHitbox(), ModelDb.Potion<PoisonPotion>().Image));
+                        lastPos = targetNode.VfxSpawnPosition;
+                        await Cmd.Wait(0.5f);
+                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
+                            NSplashVfx.Create(targetNode.VfxSpawnPosition, _vfxTint));
+                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
+                            NLiquidOverlayVfx.Create(enemy, _vfxTint));
+                        NCombatRoom.Instance.CombatVfxContainer.AddChildSafely(
+                            NGaseousImpactVfx.Create(targetNode.VfxSpawnPosition, _vfxTint));
+                    }
+                }
+                await PowerCmd.Apply<PoisonPower>(choiceContext, enemy, DynamicVars.Poison.BaseValue, cardPlay.Card.Owner.Creature, this);
             }
         });
     }

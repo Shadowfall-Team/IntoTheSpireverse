@@ -10,7 +10,7 @@ public class OvercostListenerPatch
     [HarmonyPostfix]
     static void Postfix(CardModel card, ref bool __result)
     {
-        if(!__result)
+        if (!__result)
         {
             foreach (var model in card.Owner.Creature.CombatState!.IterateHookListeners().ToList())
             {

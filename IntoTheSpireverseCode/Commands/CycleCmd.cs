@@ -13,7 +13,7 @@ public static class CycleCmd
         if (amount <= 0) return;
         var hand = PileType.Hand.GetPile(player);
 
-        List<CardModel> cardsToDiscard = new ();
+        List<CardModel> cardsToDiscard = new();
 
         for (int i = 0; i < amount; i++)
         {

@@ -44,9 +44,12 @@ public class Starseeker() : ShadowRegentCard(
             await CardSelectCmd.FromSimpleGrid(choiceContext, drawPile, Owner,
                 cardSelectorPrefs);
 
-        if (noChoice) {
+        if (noChoice)
+        {
             await CardPileCmdExtras.TransferPileAndPreview(results, PileType.Draw, CargoCardPile.CargoPileType);
-        } else {
+        }
+        else
+        {
             await CardPileCmd.Add(results, CargoCardPile.CargoPileType);
         }
     }

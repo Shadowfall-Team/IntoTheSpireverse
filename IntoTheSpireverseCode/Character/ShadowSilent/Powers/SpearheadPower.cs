@@ -24,7 +24,7 @@ public class SpearheadPower : ShadowPowerModel, IntoTheSpireverseKeywords.IModif
         return Owner != card.Owner.Creature ? originalValue : originalValue + Amount;
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext,CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.Card.Tags.Contains(IntoTheSpireverseCardTags.Devious))
             return;

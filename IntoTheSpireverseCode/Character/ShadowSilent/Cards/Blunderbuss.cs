@@ -32,7 +32,7 @@ public sealed class Blunderbuss() : ShadowSilentCard(2, CardType.Attack, CardRar
         {
             if (card.EnergyCost.CostsX && energyBeforePlay >= 3)
                 await CardCmd.AutoPlay(choiceContext, card, null);
-            if (card.EnergyCost.GetWithModifiers(CostModifiers.All) >=3)
+            if (card.EnergyCost.GetWithModifiers(CostModifiers.All) >= 3)
                 await CardCmd.AutoPlay(choiceContext, card, null);
         }
     }

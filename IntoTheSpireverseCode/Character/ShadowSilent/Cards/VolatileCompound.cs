@@ -36,7 +36,7 @@ public sealed class VolatileCompound() : ShadowSilentCard(1, CardType.Skill, Car
     {
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async() =>
+        await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
             foreach (Creature hittableEnemy in CombatState.HittableEnemies)
             {
