@@ -10,7 +10,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 public static class CardPileCmdPatch
 {
     public static Dictionary<Type, Tuple<PileType, CardPilePosition>> _cardsToModifyDiscarding =
-        new() { {typeof(Disguise), new Tuple<PileType, CardPilePosition> (PileType.Draw, CardPilePosition.Top)} };
+        new() { { typeof(Disguise), new Tuple<PileType, CardPilePosition>(PileType.Draw, CardPilePosition.Top) } };
 
     internal static readonly HashSet<CardModel> PendingRedirect = new();
     public static bool insideDiscard;

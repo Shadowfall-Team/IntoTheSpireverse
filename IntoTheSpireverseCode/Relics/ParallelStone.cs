@@ -80,7 +80,8 @@ public class ParallelStone : CustomRelicModel
 
         options = options.WithCardPools(options.CardPools.Union(mirrorPools));
 
-        if (bannedIds.Count > 0) {
+        if (bannedIds.Count > 0)
+        {
             var existingFilter = options.CardPoolFilter;
             options = options.WithFilter(c => !bannedIds.Contains(c.Id) && (existingFilter == null || existingFilter(c)));
         }

@@ -26,7 +26,7 @@ public class AgentOfChaosPower : ShadowPowerModel, ICardDestinationListener
 
     public override Task AfterCardEnteredCombat(CardModel card)
     {
-        if (card.Type != CardType.Attack  || card.Owner != this.Owner.Player)
+        if (card.Type != CardType.Attack || card.Owner != this.Owner.Player)
             return Task.CompletedTask;
         CardCmd.ApplyKeyword(card, CardKeyword.Sly);
         return Task.CompletedTask;

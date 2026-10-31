@@ -21,7 +21,7 @@ public class Mithridatium : ShadowSilentRelic, IShouldPermanentMuddleListener
         return card.Owner == Owner;
     }
 
-    public Task AfterShouldPermanentMuddle(PlayerChoiceContext choiceContext,CardModel card)
+    public Task AfterShouldPermanentMuddle(PlayerChoiceContext choiceContext, CardModel card)
     {
         Flash();
         return Task.CompletedTask;

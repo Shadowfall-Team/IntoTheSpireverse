@@ -72,7 +72,7 @@ public sealed class BlindFuryPower : ShadowPowerModel
             hitLimit
                 ? new LocString("relics", "WHISPERING_EARRING.warning")
                 : new LocString("relics", "WHISPERING_EARRING.approval"),
-            Owner ,VfxColor.Purple);
+            Owner, VfxColor.Purple);
 
         BlindFuryPlayedSingleton.DidBlindFuryPlayCardsThisTurn.Set(Owner.Player?.PlayerCombatState, true);
         foreach (var relic in player.Relics.OfType<PaelsEye>())

@@ -13,6 +13,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 public static class IntoTheSpireverseKeywords
 {
+#pragma warning disable IDE0055 // disable annotations being on new lines
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword Devious;
 
@@ -48,6 +49,7 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Indirectly;
+#pragma warning restore IDE0055
 
     /// <summary>
     /// True for any play other than the player playing the card from Hand. Replay repeats copy the
@@ -89,7 +91,7 @@ public static class IntoTheSpireverseKeywords
         }
 
         var cards = await CardSelectCmd.FromHandForDiscard(context, player,
-            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards,1)),
+            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards, 1)),
             null, source);
 
         foreach (CardModel card in cards)
@@ -117,9 +119,6 @@ public static class IntoTheSpireverseKeywords
         for (int i = 0; i < repeats; i++)
             await effect();
     }
-
-
-
 
     public interface IModifyDeviousListener
     {

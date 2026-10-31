@@ -118,7 +118,7 @@ public static class AmmoResource
     {
         var damage = BaseDamage;
 
-        if(player.HasPower<AmmoStrengthPower>())
+        if (player.HasPower<AmmoStrengthPower>())
             damage += player.Creature.GetPowerAmount<StrengthPower>();
 
         // Firepower, Volley, and any future IModifiesAmmoShotDamage powers

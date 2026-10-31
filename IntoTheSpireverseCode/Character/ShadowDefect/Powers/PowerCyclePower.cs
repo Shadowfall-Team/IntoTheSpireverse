@@ -11,7 +11,7 @@ public sealed class PowerCyclePower : IntoTheSpireversePower
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    protected override object InitInternalData() => (object) new PowerCyclePower.Data();
+    protected override object InitInternalData() => (object)new PowerCyclePower.Data();
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {

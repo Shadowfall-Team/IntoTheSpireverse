@@ -142,7 +142,7 @@ public static class CardPileCmdExtensions
             if (drawsRequested == 0) { return result; }
 
             int freeHandSpaces = Math.Max(0, CardPile.MaxCardsInHand - hand.Cards.Count);
-            if (freeHandSpaces <= 0 )
+            if (freeHandSpaces <= 0)
             {
                 // TODO
                 // CheckIfDrawIsPossibleFromPileAndShowThoughtBubbleIfNot(pileType, player);

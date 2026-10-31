@@ -35,7 +35,7 @@ public sealed class ZigZag() : ShadowSilentCard(1, CardType.Attack, CardRarity.C
                 .WithHitCount(repeats)
                 .WithHitFx(VfxCmd.slashPath)
                 .Execute(choiceContext);
-	}
+    }
 
     protected override void OnUpgrade()
     {

@@ -55,7 +55,7 @@ internal class IntoTheSpireverseConfig : SimpleModConfig
     }
 
     [ConfigHideInUI]
-    public static bool AltCharactersUnlocked { get; set;}
+    public static bool AltCharactersUnlocked { get; set; }
 
 
     [ConfigButton("UnlockAllAltCharactersButton")]

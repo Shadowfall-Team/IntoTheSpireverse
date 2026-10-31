@@ -21,7 +21,7 @@ public class PrayerBeads : ShadowSilentRelic, IAfterCardMuddled
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 
-    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext , CardModel card)
+    public async Task AfterCardMuddled(PlayerChoiceContext choiceContext, CardModel card)
     {
         if (card.Owner != Owner)
             return;

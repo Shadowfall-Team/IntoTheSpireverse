@@ -27,7 +27,7 @@ public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IParallelS
 
     public CharacterModel BaseCharacterModel => ModelDb.Character<Defect>();
     public int ParallelStoneMaxHpChange => -5;
-    
+
     public override int StartingHp => 75;
 
     public override IEnumerable<CardModel> StartingDeck =>

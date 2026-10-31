@@ -20,7 +20,7 @@ public sealed class Ceremony() : ShadowSilentCard(1, CardType.Skill, CardRarity.
     {
         if (CombatState == null) return;
         CardSelectorPrefs prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
-        var original = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs,  null, this)).FirstOrDefault();
+        var original = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this)).FirstOrDefault();
         if (original == null)
             return;
         CardModel card = CombatState.CreateCard<Flicker>(Owner);
