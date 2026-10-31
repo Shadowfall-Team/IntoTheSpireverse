@@ -1,9 +1,8 @@
-﻿using MegaCrit.Sts2.Core.Entities.Cards;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
@@ -11,11 +10,11 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Relics;
 public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergySpentListener, ICardGlowGoldListener, ICardDestinationListener
 {
     public override RelicRarity Rarity => RelicRarity.Rare;
-    
+
     private bool _wasUsedThisCombat;
-    
+
     private int _energyBeforePlay;
-    
+
     private bool WasUsedThisCombat
     {
         get => _wasUsedThisCombat;
@@ -25,7 +24,7 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
             _wasUsedThisCombat = value;
         }
     }
-    
+
     private int EnergyBeforePlay
     {
         get => _energyBeforePlay;
@@ -47,7 +46,7 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
             return false;
         return true;
     }
-    
+
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         if (!(room is CombatRoom))
@@ -57,7 +56,7 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
         Status = RelicStatus.Active;
         return Task.CompletedTask;
     }
-    
+
     public async Task BeforeEnergySpent(CardModel card)
     {
         if (card.Owner.PlayerCombatState == null) return;
@@ -65,7 +64,7 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
             return;
         EnergyBeforePlay = card.Owner.PlayerCombatState.Energy;
     }
-    
+
     public bool ShouldCardGlowGold(CardModel card)
     {
         if (card.Owner != Owner || WasUsedThisCombat || card.Owner.PlayerCombatState == null)
@@ -76,7 +75,7 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
         }
         return false;
     }
-    
+
     public CardDestination ModifyCardDestination(
         CardModel card,
         bool isAutoPlay,
@@ -89,16 +88,16 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
             return destination;
         if (isAutoPlay)
             return destination;
-        
+
         Flash();
-        
+
         Status = RelicStatus.Normal;
         WasUsedThisCombat = true;
         EnergyBeforePlay = 0;
-        
+
         return destination with { PileType = PileType.Exhaust };
     }
-    
+
     public override Task AfterCombatEnd(CombatRoom _)
     {
         WasUsedThisCombat = false;

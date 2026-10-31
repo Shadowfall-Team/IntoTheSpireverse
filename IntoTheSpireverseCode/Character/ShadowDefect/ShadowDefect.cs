@@ -1,12 +1,12 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Relics;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Characters;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using Decay = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards.Decay;
 using Invoke = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards.Invoke;
 
@@ -21,14 +21,14 @@ public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Neutral;
-    
+
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
-    
+
     public CharacterModel BaseCharacterModel => ModelDb.Character<Defect>();
-    
+
     public override int StartingHp => 75;
-    
+
     public override IEnumerable<CardModel> StartingDeck =>
     [
         ModelDb.Card<StrikeDefect>(),

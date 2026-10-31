@@ -13,21 +13,21 @@ public class GrazePower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Scale>()
     ];
-    
+
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         if (player != Owner.Player)
             return;
         Flash();
-        
+
         var scales = Enumerable.Range(0, Amount)
             .Select(_ => CombatState.CreateCard<Scale>(Owner.Player));
-        
+
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner.Player);
         await PowerCmd.Remove(this);
     }

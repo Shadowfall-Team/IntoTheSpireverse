@@ -11,11 +11,11 @@ public sealed class Decay() : ShadowDefectCard(1, CardType.Skill, CardRarity.Bas
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var source = this;
-        
+
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
         await OrbCmd.Channel<EntropyOrb>(choiceContext, source.Owner);
         await CycleCmd.Cycle(choiceContext, source.Owner);
     }
-    
+
     protected override void OnUpgrade() => this.EnergyCost.UpgradeBy(-1);
 }

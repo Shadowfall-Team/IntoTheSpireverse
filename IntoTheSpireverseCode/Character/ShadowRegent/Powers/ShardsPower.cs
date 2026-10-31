@@ -13,7 +13,7 @@ public class ShardsPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromCard<Warp>()
     ];
@@ -40,8 +40,8 @@ public class ShardsPower : ShadowPowerModel
         var warp = CombatState.CreateCard<Warp>(Owner.Player);
         await CardPileCmd.AddGeneratedCardToCombat(warp, PileType.Hand, Owner.Player);
 
-        SetAmount(Amount-6);
-        if(Amount >= 6)
+        SetAmount(Amount - 6);
+        if (Amount >= 6)
             await AddWarpToHand();
     }
 }

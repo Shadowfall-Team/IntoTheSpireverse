@@ -20,7 +20,7 @@ public sealed class Doppelganger() : ShadowNecrobinderCard(0, CardType.Skill, Ca
     [
         EnergyHoverTip
     ];
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new EnergyVar(1),

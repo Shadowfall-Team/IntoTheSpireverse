@@ -20,13 +20,13 @@ public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter, IInto
 
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Feminine;
-    
+
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
-    
+
     public CharacterModel BaseCharacterModel => ModelDb.Character<Necrobinder>();
     public override int StartingHp => 66;
-    
+
     public override IEnumerable<CardModel> StartingDeck =>
     [
         ModelDb.Card<StrikeShadowNecrobinder>(),

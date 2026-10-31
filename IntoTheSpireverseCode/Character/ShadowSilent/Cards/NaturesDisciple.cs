@@ -1,5 +1,4 @@
 using BaseLib.Extensions;
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -21,9 +20,9 @@ public sealed class NaturesDisciple() : ShadowSilentCard(1, CardType.Power, Card
         new PowerVar<StrengthPower>(1m),
         new DynamicVar(_deviousKey, 0m),
     ];
-    
+
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         IsUpgraded ? HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.DeviousX) : HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
@@ -40,7 +39,7 @@ public sealed class NaturesDisciple() : ShadowSilentCard(1, CardType.Power, Card
                 Owner.Creature, this)
         );
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars[_deviousKey].UpgradeValueBy(1m);

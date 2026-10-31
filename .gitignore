@@ -1,15 +1,37 @@
+# Godot mono
 .godot/
-bin/
+.mono/
 /android/
-.git/
+
+# Godot spine plugin
+bin/
+
+# IDE cache files
 .idea/
 .vs/
 .run/
-publish/
+
+# c# project cache files
 Properties/
 packages/
-.editorconfig
-*cs.uid
-*.user
+
+# project specific files
 Directory.Build.props
+
+# redundant .godot uid files
+# I think that .cs.uid files are still used for actually referencing Nodes by class? maybe?
+*.cs.uid
+!/IntoTheSpireverseCode/**/N[A-Z]*.cs.uid
+# Patches targeting Node files
+/IntoTheSpireverseCode/Patches/**/*.cs.uid
+
+*.user
+
+# Art source files
+# (Should we include these as a source control thing and then exclude from the build?)
 *.kra
+
+# krita backup files
+*.kra~
+*.png~
+*.jpg~

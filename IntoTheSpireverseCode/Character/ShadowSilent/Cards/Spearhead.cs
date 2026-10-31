@@ -27,7 +27,7 @@ public sealed class Spearhead() : ShadowSilentCard(2, CardType.Attack, CardRarit
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        
+
         await PowerCmd.Apply<SpearheadPower>(
             choiceContext, Owner.Creature,
             DynamicVars.Power<SpearheadPower>().BaseValue,

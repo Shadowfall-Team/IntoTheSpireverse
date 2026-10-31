@@ -17,7 +17,7 @@ public sealed class FlyingKnee() : ShadowSilentCard(1, CardType.Attack, CardRari
         new DamageVar(6m, ValueProp.Move),
         new EnergyVar(1),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         EnergyHoverTip,

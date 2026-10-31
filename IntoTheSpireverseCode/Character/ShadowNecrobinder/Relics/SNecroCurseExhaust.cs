@@ -1,5 +1,4 @@
 ﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -16,7 +15,7 @@ public class SNecroCurseExhaust : ShadowNecrobinderRelic
     [
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
     ];
-    
+
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner) return;

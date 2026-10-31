@@ -6,10 +6,8 @@ using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Platform;
 using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Runs.Metrics;
 using MegaCrit.Sts2.Core.Saves;
-using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Metrics;
 
@@ -115,7 +113,7 @@ internal static class MetricsPayloadBuilder
             PotionDiscards = history.SelectMany(e => e.GetEntry(localPlayerId).PotionDiscarded).Select(p => p.Entry).ToList(),
         };
     }
-    
+
     public static string BuildPayloadJson(RunMetrics metrics)
     {
         var runMetrics = JsonSerializer.Serialize(metrics, MetricsPayloadSerializerContext.Default.RunMetrics);

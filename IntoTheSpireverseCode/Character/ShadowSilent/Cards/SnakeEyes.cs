@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +16,7 @@ public sealed class SnakeEyes() : ShadowSilentCard(1, CardType.Power, CardRarity
     [
         new PowerVar<SnakeEyesPower>(1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
@@ -31,7 +30,7 @@ public sealed class SnakeEyes() : ShadowSilentCard(1, CardType.Power, CardRarity
             DynamicVars.Power<SnakeEyesPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<SnakeEyesPower>().UpgradeValueBy(1m);

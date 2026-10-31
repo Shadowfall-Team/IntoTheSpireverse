@@ -14,12 +14,12 @@ public class RecallPower : ShadowPowerModel, ICardDestinationListener
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
     ];
-    
+
     protected override object InitInternalData() => new Data();
 
     public CardDestination ModifyCardDestination(
@@ -38,7 +38,7 @@ public class RecallPower : ShadowPowerModel, ICardDestinationListener
         var internalData = GetInternalData<Data>();
         internalData.wasTriggered = true;
     }
-    
+
     public override async Task AfterCardPlayedLate(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var internalData = GetInternalData<Data>();
@@ -55,7 +55,7 @@ public class RecallPower : ShadowPowerModel, ICardDestinationListener
             await PowerCmd.Decrement(this);
         }
     }
-    
+
     private class Data
     {
         public bool wasTriggered;

@@ -6,9 +6,9 @@ namespace IntoTheSpireverse;
 
 public static class AttackCommandExtensions
 {
-    
+
     // Class exists so Incite Violence's recoil damage only targets the attacker and not ALL players
-    
+
     private static readonly FieldInfo SourceTypeField =
         typeof(AttackCommand).GetField("_sourceType", BindingFlags.NonPublic | BindingFlags.Instance)
         ?? throw new MissingFieldException("AttackCommand._sourceType not found — game update changed internals.");

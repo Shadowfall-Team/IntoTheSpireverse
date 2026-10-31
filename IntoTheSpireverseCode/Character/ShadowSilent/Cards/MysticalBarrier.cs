@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +16,7 @@ public sealed class MysticalBarrier() : ShadowSilentCard(2, CardType.Power, Card
     [
         new PowerVar<MysticalBarrierPower>(1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Scale>()
@@ -31,7 +30,7 @@ public sealed class MysticalBarrier() : ShadowSilentCard(2, CardType.Power, Card
             DynamicVars.Power<MysticalBarrierPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);

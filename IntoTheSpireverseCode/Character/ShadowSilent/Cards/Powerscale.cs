@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -18,7 +17,7 @@ public sealed class Powerscale() : ShadowSilentCard(2, CardType.Power, CardRarit
     [
         new PowerVar<PowerscalePower>(3m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Scale>(),
@@ -33,7 +32,7 @@ public sealed class Powerscale() : ShadowSilentCard(2, CardType.Power, CardRarit
             DynamicVars.Power<PowerscalePower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<PowerscalePower>().UpgradeValueBy(1m);

@@ -10,7 +10,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 public class RousingSpeechTemporaryStrengthPower : TemporaryStrengthPower, ICustomPower
 {
     public override AbstractModel OriginModel => ModelDb.Card<RousingSpeech>();
-    
+
     string? ICustomPower.CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
     string? ICustomPower.CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigPowerImagePath();
 

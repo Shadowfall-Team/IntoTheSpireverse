@@ -32,7 +32,7 @@ public partial class NCharAltArrow : NGoldArrowButton
     public bool DoPress()
     {
         if (GetParent() is not NCharacterSelectButton parent) return true;
-        if (ClickDelegate is null) return true;  
+        if (ClickDelegate is null) return true;
         _currentAltIndex = (_currentAltIndex + 1) % Characters.Count;
         var character = Characters[_currentAltIndex];
 

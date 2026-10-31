@@ -11,9 +11,7 @@ using MegaCrit.Sts2.Core.Models.Characters;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 
-#pragma warning disable STS001
 public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
-#pragma warning restore STS001
 {
     public override string PlaceholderID => "ironclad";
     public const string CharacterId = "IntoTheSpireverse";
@@ -22,15 +20,15 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     public override Color NameColor => Color;
     public override Color EnergyLabelOutlineColor => new("801212");
     public override Color DialogueColor => new("2F0E10");
-    public override Color MapDrawingColor => new ("4A1518");
+    public override Color MapDrawingColor => new("4A1518");
     public override Color RemoteTargetingLineColor => new("99000a");
     public override Color RemoteTargetingLineOutline => MapDrawingColor;
 
     public override CharacterGender Gender => CharacterGender.Masculine;
-    
+
     public override bool HideFromVanillaCharacterSelect => true;
     public override bool AllowInVanillaRandomCharacterSelect => true;
-    
+
     public CharacterModel BaseCharacterModel => ModelDb.Character<Ironclad>();
 
     public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
@@ -39,7 +37,7 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     ];
 
     public override int StartingHp => 80;
-    
+
     public override IEnumerable<CardModel> StartingDeck =>
     [
         ModelDb.Card<StrikeIronclad>(),
@@ -58,7 +56,7 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     [
         ModelDb.Relic<HeartOfStone>()
     ];
-    
+
     public override CardPoolModel CardPool => ModelDb.CardPool<ShadowIroncladCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<ShadowIroncladRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<ShadowIroncladPotionPool>();
@@ -67,7 +65,7 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
         override all the other methods that define those assets.
         These are just some of the simplest assets, given some placeholders to differentiate your character with.
         You don't have to, but you're suggested to rename these images. */
-    
+
     public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/shadowironclad_icon.tscn";
     public override string CustomIconTexturePath => "character_icon_ironclad.png".GranitecladPath();
     public override string CustomCharacterSelectIconPath => "char_select_ironclad.png".GranitecladPath();

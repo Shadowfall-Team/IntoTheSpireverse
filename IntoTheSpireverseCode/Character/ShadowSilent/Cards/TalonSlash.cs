@@ -35,7 +35,7 @@ public sealed class TalonSlash() : ShadowSilentCard(2, CardType.Attack, CardRari
                 .WithHitCount(repeats)
                 .WithHitFx(VfxCmd.slashPath)
                 .Execute(choiceContext);
-	}
+    }
 
     protected override void OnUpgrade()
     {

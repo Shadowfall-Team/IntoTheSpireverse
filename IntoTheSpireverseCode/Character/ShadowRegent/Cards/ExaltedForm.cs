@@ -1,9 +1,10 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
@@ -14,10 +15,18 @@ public class ExaltedForm() : ShadowRegentCard(
     CardRarity.Rare,
     TargetType.Self)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<Discovery>(),
-    ];
-    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    {
+        get
+        {
+            var card = ModelDb.Card<Discovery>().ToMutable();
+            card.SetToFreeThisCombat();
+            return [
+                HoverTipFactory.FromCard(card)
+            ];
+        }
+    }
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
 
     protected override async Task OnPlay(
@@ -26,9 +35,9 @@ public class ExaltedForm() : ShadowRegentCard(
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger,
             Owner.Character.CastAnimDelay);
-        
+
         await PowerCmd.Apply<ExaltedFormPower>(
-            choiceContext,Owner.Creature,
+            choiceContext, Owner.Creature,
             1,
             Owner.Creature,
             this);

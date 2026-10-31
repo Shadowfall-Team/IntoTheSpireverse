@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -13,14 +12,14 @@ public sealed class MistyStep() : ShadowSilentCard(0, CardType.Skill, CardRarity
     public override bool GainsBlock => true;
     private const string IncreaseKey = "BlockIncrease";
     private decimal _extraBlock;
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(5m, ValueProp.Move),
         new DynamicVar(IncreaseKey, 4m),
         new EnergyVar(1),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
@@ -37,7 +36,7 @@ public sealed class MistyStep() : ShadowSilentCard(0, CardType.Skill, CardRarity
         DynamicVars.Block.UpgradeValueBy(2m);
         DynamicVars[IncreaseKey].UpgradeValueBy(1m);
     }
-    
+
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();

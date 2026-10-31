@@ -3,8 +3,8 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -32,7 +32,7 @@ public sealed class Blunderbuss() : ShadowSilentCard(2, CardType.Attack, CardRar
         {
             if (card.EnergyCost.CostsX && energyBeforePlay >= 3)
                 await CardCmd.AutoPlay(choiceContext, card, null);
-            if (card.EnergyCost.GetWithModifiers(CostModifiers.All) >=3)
+            if (card.EnergyCost.GetWithModifiers(CostModifiers.All) >= 3)
                 await CardCmd.AutoPlay(choiceContext, card, null);
         }
     }

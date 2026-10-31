@@ -1,7 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Extensions;
-using BaseLib.Utils;
+﻿using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -24,18 +23,18 @@ public sealed class Horror() : ShadowSilentCard(3, CardType.Skill, CardRarity.Ra
     [
         HoverTipFactory.FromPower<StrengthPower>()
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        
+
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<StrengthPower>(
-            choiceContext, cardPlay.Target, DynamicVars.Strength.BaseValue, 
+            choiceContext, cardPlay.Target, DynamicVars.Strength.BaseValue,
             Owner.Creature, this);
-        await PowerCmd.Apply<HorrorPower>(choiceContext, cardPlay.Target, 
+        await PowerCmd.Apply<HorrorPower>(choiceContext, cardPlay.Target,
             DynamicVars.Power<HorrorPower>().BaseValue, Owner.Creature, this);
     }
 
