@@ -8,10 +8,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
 public class ShadowRegentCardPool : CustomCardPoolModel
 {
-    public override string Title => "shadow_regent";
-    public override string EnergyColorName => "regent";
+    public override string Title => ShadowRegent.CharacterId;
+    public override string EnergyColorName => ShadowRegent.CharacterId;
 
-    public override string CardFrameMaterialPath => "shadow_regent";
+    public override string CardFrameMaterialPath => ShadowRegent.CharacterId;
     public override Color DeckEntryCardColor => new("E36600");
     public override Color EnergyOutlineColor => new("803D0E");
 

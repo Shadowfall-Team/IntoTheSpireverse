@@ -7,10 +7,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 
 public class ShadowDefectCardPool : CustomCardPoolModel
 {
-    public override string Title => "shadow_defect";
-    public override string EnergyColorName => "defect";
+    public override string Title => ShadowDefect.CharacterId;
+    public override string EnergyColorName => ShadowDefect.CharacterId;
 
-    public override string CardFrameMaterialPath => "shadow_defect";
+    public override string CardFrameMaterialPath => ShadowDefect.CharacterId;
     public override Color DeckEntryCardColor => new("3EB3ED");
     public override Color EnergyOutlineColor => new("1D5673");
 

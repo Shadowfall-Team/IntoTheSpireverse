@@ -13,8 +13,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
 public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
 {
     public override string PlaceholderID => "necrobinder";
-    // public const string CharacterId = "IntoTheSpireverse";
-    public const string CharacterId = "necrobinder"; // temp fix for the energy icon in the character select screen
+    public const string CharacterId = "shadow_necrobinder"; // temp fix for the energy icon in the character select screen
 
     public static readonly Color Color = StsColors.purple;
 

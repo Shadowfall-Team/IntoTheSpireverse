@@ -15,7 +15,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
 {
     public override string PlaceholderID => "defect";
-    public const string CharacterId = "IntoTheSpireverse";
+    public const string CharacterId = "shadow_defect";
 
     public static readonly Color Color = StsColors.blue;
 

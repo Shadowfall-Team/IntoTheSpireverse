@@ -7,10 +7,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
 
 public class ShadowNecrobinderCardPool : CustomCardPoolModel
 {
-    public override string Title => "shadow_necrobinder";
-    public override string EnergyColorName => "necrobinder"; // may need to be copied to fix relics?
+    public override string Title => ShadowNecrobinder.CharacterId;
+    public override string EnergyColorName => ShadowNecrobinder.CharacterId; // may need to be copied to fix relics?
 
-    public override string CardFrameMaterialPath => "shadow_necrobinder";
+    public override string CardFrameMaterialPath => ShadowNecrobinder.CharacterId;
     public override Color DeckEntryCardColor => new("6B4658");
     public override Color EnergyOutlineColor => new("702D6F");
 

@@ -8,10 +8,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 
 public class ShadowSilentCardPool : CustomCardPoolModel
 {
-    public override string Title => "shadow_silent";
-    public override string EnergyColorName => "silent";
+    public override string Title => ShadowSilent.CharacterId;
+    public override string EnergyColorName => ShadowSilent.CharacterId;
 
-    public override string CardFrameMaterialPath => "shadow_silent";
+    public override string CardFrameMaterialPath => ShadowSilent.CharacterId;
     public override Color DeckEntryCardColor => new("5EBD00");
     public override Color EnergyOutlineColor => new("1A6625");
 

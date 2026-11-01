@@ -17,7 +17,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "regent";
-    public const string CharacterId = "IntoTheSpireverse";
+    public const string CharacterId = "captain";
 
     public static readonly Color Color = StsColors.darkBlue;
     public override Color NameColor => Color;

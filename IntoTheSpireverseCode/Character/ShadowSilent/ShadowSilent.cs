@@ -15,7 +15,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 public class ShadowSilent : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "silent";
-    public const string CharacterId = "silent";
+    public const string CharacterId = "acolyte";
 
     public static readonly Color Color = StsColors.orange;
 

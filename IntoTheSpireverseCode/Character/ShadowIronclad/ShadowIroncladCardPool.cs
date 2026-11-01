@@ -8,10 +8,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 
 public class ShadowIroncladCardPool : CustomCardPoolModel
 {
-    public override string Title => "shadow_ironclad";
-    public override string EnergyColorName => "ironclad";
+    public override string Title => ShadowIronclad.CharacterId;
+    public override string EnergyColorName => ShadowIronclad.CharacterId;
 
-    public override string CardFrameMaterialPath => "shadow_ironclad";
+    public override string CardFrameMaterialPath => ShadowIronclad.CharacterId;
     public override Color DeckEntryCardColor => new("D62000");
     public override Color EnergyOutlineColor => new("802020");
 

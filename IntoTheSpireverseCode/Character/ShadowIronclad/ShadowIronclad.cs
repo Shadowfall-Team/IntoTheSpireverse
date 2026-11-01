@@ -14,7 +14,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
 {
     public override string PlaceholderID => "ironclad";
-    public const string CharacterId = "IntoTheSpireverse";
+    public const string CharacterId = "tectonic";
 
     public static readonly Color Color = StsColors.red;
     public override Color NameColor => Color;
