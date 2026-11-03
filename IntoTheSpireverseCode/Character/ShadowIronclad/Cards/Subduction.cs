@@ -15,7 +15,8 @@ public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRa
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(30m, ValueProp.Move),
+        new DamageVar(5m, ValueProp.Move),
+        new RepeatVar(5),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -23,19 +24,19 @@ public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRa
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
     ];
 
-    // Cannot be played from Hand; only an Indirect play resolves it.
-    protected override bool IsPlayable => false;
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
 
+        var hits = IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay) ? DynamicVars.Repeat.IntValue : 1;
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .WithHitCount(hits)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithHitFx(VfxCmd.heavyBluntPath, null, TmpSfx.bluntAttack)
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(10m);
+    protected override void OnUpgrade() => DynamicVars.Repeat.UpgradeValueBy(2m);
 }

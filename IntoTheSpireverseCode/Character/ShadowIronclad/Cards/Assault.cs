@@ -8,9 +8,9 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
 [Pool(typeof(ShadowIroncladCardPool))]
-public sealed class Assault() : ShadowIroncladCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public sealed class Assault() : ShadowIroncladCard(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -28,5 +28,5 @@ public sealed class Assault() : ShadowIroncladCard(2, CardType.Skill, CardRarity
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
 
-    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => DynamicVars.Cards.UpgradeValueBy(1m);
 }

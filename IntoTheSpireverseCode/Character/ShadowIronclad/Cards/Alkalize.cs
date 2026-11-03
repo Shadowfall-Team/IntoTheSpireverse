@@ -6,7 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Potions;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
@@ -25,12 +25,12 @@ public sealed class Alkalize() : ShadowIroncladCard(1, CardType.Skill, CardRarit
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
-        var original = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this))
+        var original = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, c => c.IsTransformable, this))
             .FirstOrDefault();
         if (original == null) return;
 
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        await CardCmdCompatibility.Exhaust(choiceContext, original);
+        await TransformPayoutPatches.TransformAway(choiceContext, original);
         await PotionCmd.TryToProcure<PotionShapedRock>(Owner);
     }
 

@@ -24,7 +24,7 @@ public sealed class ArmorOfGneiss() : ShadowIroncladCard(2, CardType.Skill, Card
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(14, ValueProp.Move),
+        new BlockVar(12, ValueProp.Move),
         new PowerVar<BlurPower>(2),
     ];
 

@@ -17,7 +17,7 @@ public sealed class Flamefist() : ShadowIroncladCard(1, CardType.Skill, CardRari
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<StrengthPower>(4m),
-        new PowerVar<RetaliationPower>(5m),
+        new PowerVar<RetaliationPower>(6m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

@@ -17,7 +17,7 @@ public sealed class Temper() : ShadowIroncladCard(1, CardType.Power, CardRarity.
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar(StrengthAmountKey, 2m),
+        new DynamicVar(StrengthAmountKey, 3m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

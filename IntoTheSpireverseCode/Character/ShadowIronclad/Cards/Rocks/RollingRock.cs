@@ -31,5 +31,9 @@ public sealed class RollingRock() : RockCardBase(1, CardType.Attack, CardRarity.
         BuffFromRockPlay(DynamicVars[IncreaseKey].BaseValue);
     }
 
-    protected override void OnUpgrade() => DynamicVars[IncreaseKey].UpgradeValueBy(4m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars[IncreaseKey].UpgradeValueBy(1m);
+    }
 }

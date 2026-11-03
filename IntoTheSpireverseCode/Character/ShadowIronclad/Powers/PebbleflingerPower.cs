@@ -9,7 +9,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Power
 
 public sealed class PebbleflingerPower : ShadowPowerModel
 {
-    private const int EnergyPerRock = 3;
+    private const int EnergyPerRock = 4;
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;

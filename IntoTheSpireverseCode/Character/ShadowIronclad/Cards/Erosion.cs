@@ -16,7 +16,7 @@ public sealed class Erosion() : ShadowIroncladCard(1, CardType.Attack, CardRarit
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(14m, ValueProp.Move),
+        new DamageVar(16m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

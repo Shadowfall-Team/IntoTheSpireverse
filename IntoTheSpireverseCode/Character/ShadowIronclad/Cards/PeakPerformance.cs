@@ -19,7 +19,7 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new ScryVar(3m),
+        new ScryVar(2m),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -35,5 +35,5 @@ public sealed class PeakPerformance() : ShadowIroncladCard(1, CardType.Skill, Ca
         await CardCmd.AutoPlay(choiceContext, top.CreateClone(), null);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Scry().UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars.Scry().UpgradeValueBy(2m);
 }

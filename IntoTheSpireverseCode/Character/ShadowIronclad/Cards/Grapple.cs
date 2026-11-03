@@ -15,7 +15,7 @@ public sealed class Grapple() : ShadowIroncladCard(1, CardType.Attack, CardRarit
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
         new DynamicVar(GrappleDamageKey, 5m),
     ];
 

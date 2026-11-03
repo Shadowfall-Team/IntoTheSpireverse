@@ -8,7 +8,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Runs;
+using ShadowIroncladCharacter = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.ShadowIronclad;
+using ShadowSilentCharacter = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.ShadowSilent;
+using ShadowDefectCharacter = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.ShadowDefect;
+using ShadowNecrobinderCharacter = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.ShadowNecrobinder;
+using ShadowRegentCharacter = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Relics;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
@@ -23,15 +29,17 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("TakeCardsSelect", 3),
-        new IntVar("TakeCardsCount", 18),
+        new IntVar("TakeCardsSelect", 2),
+        new IntVar("TakeCardsCount", 12),
+        new MaxHpVar(0m),
 
         new CardsVar(1)
     ];
 
     public override bool IsAllowed(IRunState runState)
     {
-        return runState.Players.All(p => AltCharacterUtil.HasMirrorCharacter(p.Character));
+        return runState.CurrentActIndex < 2
+               && runState.Players.All(p => AltCharacterUtil.HasMirrorCharacter(p.Character));
     }
 
     private async Task TakeCards()
@@ -44,14 +52,16 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         SetEventFinished(PageDescription("TOOK_CARDS"));
     }
 
-    private async Task ReplaceCharacter()
+    private async Task TakeParallelStone()
     {
         if (Owner != null)
         {
+            await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                DynamicVars.MaxHp.BaseValue, isFromCard: false);
             await RelicCmd.Obtain<ParallelStone>(Owner);
         }
 
-        SetEventFinished(PageDescription("REPLACED_CHARACTER"));
+        SetEventFinished(PageDescription("TOOK_PARALLEL_STONE"));
     }
 
     private async Task TakeCards(int cardSelectCount, int cardCreateCount, string action = "TAKE_CARDS")
@@ -99,7 +109,7 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
             }
         }
 
-        SetEventFinished(PageDescription("GAINED_MAX_HP"));
+        SetEventFinished(PageDescription("UPGRADED_CARD"));
     }
 
     private CharacterModel? _mirrorCharacterModel;
@@ -111,15 +121,30 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         _mirrorCharacterModel = Owner.Character is IAltCharacter ownerAltCharacter
             ? ownerAltCharacter.BaseCharacterModel
             : Owner.RunState.Rng.CombatCardSelection.NextItem(AltCharacterUtil.GetMirrorCharacters(Owner.Character));
+
+        DynamicVars.MaxHp.BaseValue = GetParallelStoneMaxHpLoss(Owner.Character);
+
         return
         [
             Option(TakeCards),
-            Option(ReplaceCharacter, HoverTipFactory.FromRelic<ParallelStone>()),
-            // The loc key no longer matches the method name, so build the option explicitly.
-            new EventOption(this, UpgradeCard, OptionLocKey("GAIN_MAX_HP"))
+            Option(TakeParallelStone, HoverTipFactory.FromRelic<ParallelStone>())
+                .ThatDecreasesMaxHp(DynamicVars.MaxHp.BaseValue),
+            Option(UpgradeCard)
         ];
     }
 
-    // EventModel.InitialOptionKey slugifies the class name, which drops the mod prefix that custom events need.
-    private string OptionLocKey(string optionName) => $"{Id.Entry}.pages.INITIAL.options.{optionName}";
+    private static int GetParallelStoneMaxHpLoss(CharacterModel character) => character switch
+    {
+        Ironclad => 10,
+        ShadowIroncladCharacter => 10,
+        Silent => 6,
+        ShadowSilentCharacter => 6,
+        Defect => 8,
+        ShadowDefectCharacter => 8,
+        Necrobinder => 6,
+        ShadowNecrobinderCharacter => 6,
+        Regent => 2,
+        ShadowRegentCharacter => 2,
+        _ => 6,
+    };
 }

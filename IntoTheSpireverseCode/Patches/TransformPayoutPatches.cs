@@ -39,6 +39,17 @@ public static class TransformPayoutPatches
         }
     }
 
+    /// <summary>
+    /// A Transform with no actual replacement card, specifically a hook for Tectonic's Alkalize.
+    /// </summary>
+    public static async Task TransformAway(PlayerChoiceContext choiceContext, CardModel card)
+    {
+        await CardPileCmd.RemoveFromCombat(card);
+        card.AfterTransformedFrom();
+        if (card is ITransformPayout payout)
+            await payout.OnTransformedAway(choiceContext);
+    }
+
     private static async Task<IEnumerable<CardPileAddResult>> SettlePayouts(
         Task<IEnumerable<CardPileAddResult>> inner, List<ITransformPayout> payouts)
     {

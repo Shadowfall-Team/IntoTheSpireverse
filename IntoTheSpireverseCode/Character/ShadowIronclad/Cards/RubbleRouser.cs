@@ -34,6 +34,6 @@ public sealed class Rubblerouser() : ShadowIroncladCard(1, CardType.Attack, Card
     protected override void OnUpgrade()
     {
         DynamicVars.CalculationBase.UpgradeValueBy(1m);
-        DynamicVars.ExtraDamage.UpgradeValueBy(2m);
+        DynamicVars.ExtraDamage.UpgradeValueBy(1m);
     }
 }

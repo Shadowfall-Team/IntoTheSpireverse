@@ -1,10 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
@@ -33,6 +35,8 @@ public sealed class UnrelentingFormPower : ShadowPowerModel
         ) return;
 
         Flash();
+        await CreatureCmdCompatibility.Damage(choiceContext, Owner, 1m,
+            ValueProp.Unblockable | ValueProp.Unpowered, null, null, null);
         await PlayerCmd.GainEnergy(1, Owner.Player);
         await CardPileCmd.Draw(choiceContext, 1, Owner.Player);
     }
