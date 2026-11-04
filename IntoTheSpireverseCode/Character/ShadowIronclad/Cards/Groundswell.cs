@@ -23,7 +23,7 @@ public sealed class Groundswell() : ShadowIroncladCard(1, CardType.Power, CardRa
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<StrengthPower>(),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Indirectly),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -23,7 +23,7 @@ public sealed class Claymaker() : ShadowIroncladCard(2, CardType.Attack, CardRar
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Indirectly),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

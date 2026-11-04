@@ -16,7 +16,7 @@ public sealed class GroundswellPower : ShadowPowerModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<StrengthPower>(),
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Indirectly),
     ];
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -25,9 +25,6 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Pickup;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
-    public static CardKeyword Indirectly;
 #pragma warning restore IDE0055
 
     /// <summary>

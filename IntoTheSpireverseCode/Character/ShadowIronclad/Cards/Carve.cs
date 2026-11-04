@@ -56,7 +56,7 @@ public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Indirectly),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

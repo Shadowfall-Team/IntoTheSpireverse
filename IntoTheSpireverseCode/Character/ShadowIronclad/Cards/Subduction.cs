@@ -20,7 +20,7 @@ public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRa
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Indirectly),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Indirectly),
     ];
 
     // Cannot be played from Hand; only an Indirect play resolves it.
