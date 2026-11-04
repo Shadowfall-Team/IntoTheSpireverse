@@ -20,7 +20,7 @@ public class Successor() : ShadowRegentCard(2, CardType.Skill, CardRarity.Rare, 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo),
         HoverTipFactory.Static(StaticHoverTip.ReplayStatic)
     ];
 

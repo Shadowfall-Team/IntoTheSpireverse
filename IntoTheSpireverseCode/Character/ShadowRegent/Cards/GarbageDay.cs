@@ -17,7 +17,7 @@ public class GarbageDay() : ShadowRegentCard(
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo),
         HoverTipFactory.FromCard<Debris>(),
         HoverTipFactory.FromCard<BuryCaptain>(IsUpgraded)
     ];

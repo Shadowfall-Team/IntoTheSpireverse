@@ -36,7 +36,7 @@ public class SpacePirate() : ShadowRegentCard(
             theBomb.AddKeyword(CardKeyword.Exhaust);
             return
             [
-                HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+                HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo),
                 HoverTipFactory.FromCard(flashOfSteel, IsUpgraded),
                 HoverTipFactory.FromCard(fisticuffs, IsUpgraded),
                 HoverTipFactory.FromCard(theBomb, IsUpgraded)

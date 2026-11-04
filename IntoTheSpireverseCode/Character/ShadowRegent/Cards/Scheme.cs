@@ -22,7 +22,7 @@ public class Scheme() : ShadowRegentCard(1,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo)
     ];
 
     protected override async Task OnPlay(

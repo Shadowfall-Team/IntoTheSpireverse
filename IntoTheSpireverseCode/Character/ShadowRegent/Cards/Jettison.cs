@@ -22,7 +22,7 @@ public class Jettison() : ShadowRegentCard(2,
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo)
     ];
     public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
     {

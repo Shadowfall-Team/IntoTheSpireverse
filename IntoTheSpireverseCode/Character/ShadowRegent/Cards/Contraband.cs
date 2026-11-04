@@ -23,7 +23,7 @@ public class Contraband() : ShadowRegentCard(
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo)
     ];
 
     protected override async Task OnPlay(

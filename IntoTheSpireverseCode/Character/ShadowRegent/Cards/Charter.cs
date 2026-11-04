@@ -21,7 +21,7 @@ public class Charter() : ShadowRegentCard(
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo),
         HoverTipFactory.FromCard<MinionStrike>()
     ];
 

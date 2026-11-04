@@ -22,7 +22,7 @@ public class Starseeker() : ShadowRegentCard(
         new BlockVar(8, ValueProp.Move)
     ];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo)
     ];
 
     protected override async Task OnPlay(

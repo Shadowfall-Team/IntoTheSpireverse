@@ -14,7 +14,7 @@ public class TradeRoutes() : ShadowRegentCard(
     TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo)
     ];
 
     protected override async Task OnPlay(

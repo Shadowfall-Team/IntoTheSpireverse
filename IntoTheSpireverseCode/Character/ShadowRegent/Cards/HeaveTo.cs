@@ -23,7 +23,7 @@ public class HeaveTo() : ShadowRegentCard(1, CardType.Attack, CardRarity.Common,
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext,

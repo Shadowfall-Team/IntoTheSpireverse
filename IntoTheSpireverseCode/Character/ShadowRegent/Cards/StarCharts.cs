@@ -32,7 +32,7 @@ public class StarCharts() : ShadowRegentCard(
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo),
         ..Artists.AnneBean.HoverTip(this)
     ];
 

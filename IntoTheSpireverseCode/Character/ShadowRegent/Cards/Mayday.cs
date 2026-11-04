@@ -19,7 +19,7 @@ public class Mayday() : ShadowRegentCard(
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo),
         HoverTipFactory.FromCard<PanicButton>(IsUpgraded),
         HoverTipFactory.FromCard<Shockwave>(IsUpgraded),
         HoverTipFactory.FromCard<Catastrophe>(IsUpgraded)

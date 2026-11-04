@@ -18,7 +18,7 @@ public class SpaceDustPotion : ShadowRegentPotion
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo)
     ];
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)

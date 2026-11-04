@@ -25,7 +25,7 @@ public class Bobblehead : ShadowRegentRelic
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Cargo),
         HoverTipFactory.FromPower<StrengthPower>()
     ];
 
