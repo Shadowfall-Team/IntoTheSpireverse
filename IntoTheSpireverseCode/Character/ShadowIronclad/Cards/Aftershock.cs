@@ -28,7 +28,7 @@ public sealed class Aftershock() : ShadowIroncladCard(0, CardType.Skill, CardRar
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var card = (await CardSelectCmd.FromSimpleGrid(
             choiceContext,
-            [.. PileType.Discard.GetPile(Owner).Cards.Where(c => SelectableCost(c) <= xCost)],
+            [.. PileType.Discard.GetPile(Owner).Cards.Where(c => c.Type == CardType.Attack && SelectableCost(c) <= xCost)],
             Owner,
             prefs)).FirstOrDefault();
 

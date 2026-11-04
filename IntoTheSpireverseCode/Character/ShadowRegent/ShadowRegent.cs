@@ -15,7 +15,7 @@ using VanillaSupermassive = MegaCrit.Sts2.Core.Models.Cards.Supermassive;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 
 #pragma warning disable STS001
-public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
+public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter, IParallelStoneCharacter
 #pragma warning restore STS001
 {
     public override string PlaceholderID => "regent";
@@ -37,6 +37,7 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
     public CharacterModel BaseCharacterModel => ModelDb.Character<Regent>();
+    public int ParallelStoneMaxHpChange => 5;
 
     public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
     [

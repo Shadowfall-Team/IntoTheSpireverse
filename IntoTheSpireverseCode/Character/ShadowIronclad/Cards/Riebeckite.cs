@@ -15,7 +15,7 @@ public sealed class Riebeckite() : ShadowIroncladCard(1, CardType.Power, CardRar
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<RiebeckitePower>(2m),
+        new PowerVar<RiebeckitePower>(1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

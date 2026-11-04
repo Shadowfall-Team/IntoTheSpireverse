@@ -38,5 +38,9 @@ public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRa
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Repeat.UpgradeValueBy(2m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(1m);
+        DynamicVars.Repeat.UpgradeValueBy(1m);
+    }
 }
