@@ -25,7 +25,7 @@ public sealed class Perplex() : ShadowSilentCard(1, CardType.Skill, CardRarity.U
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Modify)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Modify)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

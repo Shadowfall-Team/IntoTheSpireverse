@@ -34,7 +34,7 @@ public class DevilsWine : IntoTheSpireversePotion
 
     public override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Modify),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Modify),
     ];
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)

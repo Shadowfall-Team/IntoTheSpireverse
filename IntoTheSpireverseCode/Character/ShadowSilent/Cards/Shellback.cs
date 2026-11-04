@@ -25,7 +25,7 @@ public sealed class Shellback() : ShadowSilentCard(1, CardType.Skill, CardRarity
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         [
-            HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Modify),
+            HoverTipFactory.Static(IntoTheSpireverseHoverTips.Modify),
             HoverTipFactory.Static(StaticHoverTip.Block),
         ];
 

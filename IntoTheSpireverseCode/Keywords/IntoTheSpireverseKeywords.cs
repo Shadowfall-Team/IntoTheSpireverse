@@ -45,9 +45,6 @@ public static class IntoTheSpireverseKeywords
     public static CardKeyword Arcane;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
-    public static CardKeyword Modify;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Indirectly;
 #pragma warning restore IDE0055
 

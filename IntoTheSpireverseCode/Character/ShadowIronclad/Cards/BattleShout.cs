@@ -24,7 +24,7 @@ public sealed class BattleShout() : ShadowIroncladCard(1, CardType.Skill, CardRa
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Modify)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Modify)
     ];
 
     protected override Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

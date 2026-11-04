@@ -27,7 +27,7 @@ public class ShadowCrystal() : ShadowRegentCard(1,
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Modify),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Modify),
         HoverTipFactory.FromPower<ShardsPower>()
     ];
 
