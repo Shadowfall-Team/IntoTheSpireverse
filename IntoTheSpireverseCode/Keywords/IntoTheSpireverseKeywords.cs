@@ -20,17 +20,8 @@ public static class IntoTheSpireverseKeywords
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
     public static CardKeyword DeviousX;
 
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
-    public static CardKeyword Cunning;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.After)]
-    public static CardKeyword Instinct;
-
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Linger;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
-    public static CardKeyword Startup;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Muddle;
@@ -40,9 +31,6 @@ public static class IntoTheSpireverseKeywords
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Cargo;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.Before)]
-    public static CardKeyword Arcane;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Indirectly;

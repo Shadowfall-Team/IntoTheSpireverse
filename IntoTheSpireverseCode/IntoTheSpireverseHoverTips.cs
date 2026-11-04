@@ -12,8 +12,6 @@ public enum IntoTheSpireverseHoverTips
     None,
     Cargo,
     Muddle,
-    Instinct,
-    Cunning,
     Indirectly,
     Modify,
     Pickup,
