@@ -492,7 +492,7 @@
   "INTOTHESPIREVERSE-PEAK_PERFORMANCE.title": "Peak Performance",
   "INTOTHESPIREVERSE-PEAK_PERFORMANCE.description": "[gold]Scry[/gold] {Scry:diff()}.\nPlay a copy of the top card of your [gold]Draw Pile[/gold].",
   "INTOTHESPIREVERSE-PEBBLEFLINGER.title": "Pebbleflinger",
-  "INTOTHESPIREVERSE-PEBBLEFLINGER.description": "Every 4 {energyPrefix:energyIcons(1)} spent, add a [gold]Small Rock[/gold] into your [gold]Hand[/gold].",
+  "INTOTHESPIREVERSE-PEBBLEFLINGER.description": "Every {energyPrefix:energyIcons(4)} you spend, add a [gold]Small Rock[/gold] into your [gold]Hand[/gold].",
   "INTOTHESPIREVERSE-DRUM_OF_WAR.title": "Drum of War",
   "INTOTHESPIREVERSE-DRUM_OF_WAR.description": "Gain {Energy:energyIcons()}.\nWhen this card is [gold]Exhausted[/gold] or [gold]Transformed[/gold], draw {Cards:diff()} {Cards:plural:card|cards}.",
   "INTOTHESPIREVERSE-QUARRY.title": "Quarry",
