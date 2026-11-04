@@ -6,15 +6,14 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 namespace IntoTheSpireverse.IntoTheSpireverseCode;
 
 // the baselib custom enum for this seems excessive
-// and there's that one uncommon bug where custom enums don't work right?
+// and there's that one uncommon bug where custom enums don't work right and the loc breaks?
 public enum IntoTheSpireverseHoverTips
 {
-    None,
+    None, // just here for parity with vanilla
     Cargo,
     Muddle,
     Indirectly,
     Modify,
-    Pickup,
 }
 
 public static class HoverTipExtensions

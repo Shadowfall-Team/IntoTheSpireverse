@@ -6,5 +6,7 @@
   "INTOTHESPIREVERSE-BLEED.title": "Bleed",
   "INTOTHESPIREVERSE-BLEED.description": "Whenever a card is Exhausted, Bleeding characters lose 6 HP and Bleed decreases by 1.",
   "INTOTHESPIREVERSE-LINGER.title": "Linger",
+  "INTOTHESPIREVERSE-PICKUP.title": "Pickup",
+  "INTOTHESPIREVERSE-PICKUP.description": "Effect triggers when this card is added to your [gold]Deck[/gold].",
   "INTOTHESPIREVERSE-LINGER.description": "If this card is in your hand at the end of your turn, Trigger this effect."
 }
