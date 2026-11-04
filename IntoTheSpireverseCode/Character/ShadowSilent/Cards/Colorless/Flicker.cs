@@ -26,7 +26,7 @@ public sealed class Flicker() : ShadowColorlessCard(0, CardType.Skill, CardRarit
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

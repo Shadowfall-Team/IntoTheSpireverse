@@ -28,7 +28,7 @@ public sealed class InertBlade() : ShadowSilentCard(0, CardType.Attack, CardRari
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
         HoverTipFactory.FromPower<StrengthPower>(),
     ];
 

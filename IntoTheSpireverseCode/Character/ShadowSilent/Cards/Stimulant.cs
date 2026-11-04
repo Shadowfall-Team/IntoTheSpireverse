@@ -23,7 +23,7 @@ public sealed class Stimulant() : ShadowSilentCard(0, CardType.Skill, CardRarity
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

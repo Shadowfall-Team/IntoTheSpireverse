@@ -26,7 +26,7 @@ public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, Car
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

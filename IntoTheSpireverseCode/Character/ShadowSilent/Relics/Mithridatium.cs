@@ -13,7 +13,7 @@ public class Mithridatium : ShadowSilentRelic, IShouldPermanentMuddleListener
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
     ];
 
     public bool ShouldPermanentMuddle(CardModel card)

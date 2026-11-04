@@ -19,7 +19,7 @@ public sealed class OathOfDevotion() : ShadowSilentCard(1, CardType.Power, CardR
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

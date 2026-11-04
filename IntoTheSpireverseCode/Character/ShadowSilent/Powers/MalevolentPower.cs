@@ -11,7 +11,7 @@ public class MalevolentPower : ShadowPowerModel, IntoTheSpireverseKeywords.IDevi
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
     ];
 
     public int ModifyDeviousDiscard(int originalAmount)

@@ -15,7 +15,7 @@ public sealed class SlitherModification : Modification
     public override void AddTips(List<IHoverTip> tips)
     {
         base.AddTips(tips);
-        tips.Add(HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle));
+        tips.Add(HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle));
     }
 
     protected override ModelId SourceCardId => ModelDb.Card<Perplex>().Id;

@@ -23,7 +23,7 @@ public sealed class Undercut() : ShadowSilentCard(1, CardType.Attack, CardRarity
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

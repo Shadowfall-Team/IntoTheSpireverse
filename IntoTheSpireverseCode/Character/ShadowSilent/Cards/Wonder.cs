@@ -25,7 +25,7 @@ public sealed class Wonder() : ShadowSilentCard(0, CardType.Skill, CardRarity.Un
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

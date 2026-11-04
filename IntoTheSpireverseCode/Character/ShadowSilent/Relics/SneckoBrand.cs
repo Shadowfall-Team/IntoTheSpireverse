@@ -28,7 +28,7 @@ public class SneckoBrand : ShadowSilentRelic
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
         HoverTipFactory.FromCard<Flicker>(),
     ];
 

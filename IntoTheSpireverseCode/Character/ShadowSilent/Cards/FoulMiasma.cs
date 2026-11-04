@@ -20,7 +20,7 @@ public sealed class FoulMiasma() : ShadowSilentCard(1, CardType.Power, CardRarit
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
         HoverTipFactory.FromPower<PoisonPower>(),
     ];
 

@@ -24,7 +24,7 @@ public class SoulBrand : ShadowSilentRelic
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
         HoverTipFactory.FromCard<Flicker>(true),
     ];
 

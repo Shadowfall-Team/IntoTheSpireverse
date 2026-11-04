@@ -17,7 +17,7 @@ public class RecallPower : ShadowPowerModel, ICardDestinationListener
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
     ];
 
     protected override object InitInternalData() => new Data();

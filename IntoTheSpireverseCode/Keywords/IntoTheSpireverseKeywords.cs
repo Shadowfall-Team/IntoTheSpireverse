@@ -24,9 +24,6 @@ public static class IntoTheSpireverseKeywords
     public static CardKeyword Linger;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
-    public static CardKeyword Muddle;
-
-    [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]
     public static CardKeyword Pickup;
 
     [CustomEnum] [KeywordProperties(AutoKeywordPosition.None)]

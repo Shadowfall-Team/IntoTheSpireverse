@@ -22,7 +22,7 @@ public class FoulMiasmaPower : ShadowPowerModel, IAfterCardMuddled
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
         HoverTipFactory.FromPower<PoisonPower>(),
     ];
 

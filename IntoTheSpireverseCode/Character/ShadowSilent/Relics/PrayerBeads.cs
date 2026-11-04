@@ -17,7 +17,7 @@ public class PrayerBeads : ShadowSilentRelic, IAfterCardMuddled
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle),
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
 

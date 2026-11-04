@@ -14,7 +14,7 @@ public class OathOfDevotionPower : ShadowPowerModel, IMaxMuddleCost
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)
+        HoverTipFactory.Static(IntoTheSpireverseHoverTips.Muddle)
     ];
 
     public int ModifyMaxMuddleCost(CardModel card, int i)
