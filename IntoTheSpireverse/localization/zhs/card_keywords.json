@@ -3,7 +3,7 @@
   "INTOTHESPIREVERSE-ARCANE.title": "奥术",
   "INTOTHESPIREVERSE-BLEED.description": "每有一张牌被消耗，流血的单位失去6点生命，并使流血层数减少1。",
   "INTOTHESPIREVERSE-BLEED.title": "流血",
-  "INTOTHESPIREVERSE-CARGO.description": "你的回合开始时，从[gold]货物[/gold]中按顺序抽1张牌。",
+  "INTOTHESPIREVERSE-CARGO.description": "你的回合开始时，先从[gold]货物[/gold]中按顺序抽1张牌。",
   "INTOTHESPIREVERSE-CARGO.title": "货物",
   "INTOTHESPIREVERSE-CUNNING.description": "如果本牌位于最左侧时被打出，触发此效果。",
   "INTOTHESPIREVERSE-CUNNING.title": "狡黠",
