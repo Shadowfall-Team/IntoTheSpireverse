@@ -159,7 +159,8 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
     ///    (it's reasonable to assume based on our first 3 characters that most of the time, the right tuning value is either equal
     ///    to or close to the same)
     /// 3. Otherwise a base-game character uses the table below.
-    /// 4. Otherwise (only would theoretically trigger if a new base-game character is added), use the final fallback constant.
+    /// 4. Otherwise (only would theoretically trigger if someone debug activates this event as a character with no alts),
+    /// use the final fallback constant.
     /// </summary>
     public static int GetParallelStoneMaxHpChange(CharacterModel character) => character switch
     {
