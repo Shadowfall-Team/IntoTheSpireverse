@@ -7,20 +7,14 @@
   "INTOTHESPIREVERSE-AMMO_BUTTON.description": "Spend 1 [gold]Ammo[/gold] and deal {Damage} damage to the last enemy you Attacked.\nThis does not count as playing a card.",
   "INTOTHESPIREVERSE-ARTIST_HOVER_TIP.title": "Art by {ArtistName}",
 
-  "INTOTHESPIREVERSE-CUNNING.title": "Cunning",
-  "INTOTHESPIREVERSE-CUNNING.description": "This effect triggers if it is the leftmost card when played.",
-  "INTOTHESPIREVERSE-INSTINCT.title": "Instinct",
-  "INTOTHESPIREVERSE-INSTINCT.description": "Increases the HP loss caused by Bleed.",
-  "INTOTHESPIREVERSE-STARTUP.title": "Startup",
-  "INTOTHESPIREVERSE-STARTUP.description": "Effect triggers at the start of each combat if this card is in your [gold]Deck[/gold].",
   "INTOTHESPIREVERSE-CARGO.title": "Cargo",
   "INTOTHESPIREVERSE-CARGO.description": "At the start of your turn, draw 1 card from your [gold]Cargo[/gold].",
-  "INTOTHESPIREVERSE-MUDDLE.title": "Muddle",
-  "INTOTHESPIREVERSE-MUDDLE.description": "Randomize a card's cost between [blue]0[/blue] and [blue]3[/blue] this turn.",
+  "INTOTHESPIREVERSE-INDIRECTLY.title": "Indirectly",
+  "INTOTHESPIREVERSE-INDIRECTLY.description": "A card is played Indirectly anytime you do not play it manually from your [gold]Hand[/gold]. (Replays are Indirect.)",
+  "INTOTHESPIREVERSE-INSTINCT.title": "Instinct",
+  "INTOTHESPIREVERSE-INSTINCT.description": "Increases the HP loss caused by Bleed.",
   "INTOTHESPIREVERSE-MODIFY.title": "Modify",
   "INTOTHESPIREVERSE-MODIFY.description": "Changes a card for the rest of combat. A Modified card cannot be Modified again.",
-  "INTOTHESPIREVERSE-ARCANE.title": "Arcane",
-  "INTOTHESPIREVERSE-ARCANE.description": "Start each combat with this card in your [gold]Exhaust[/gold] pile.",
-  "INTOTHESPIREVERSE-INDIRECTLY.title": "Indirectly",
-  "INTOTHESPIREVERSE-INDIRECTLY.description": "A card is played Indirectly anytime you do not play it manually from your [gold]Hand[/gold]. (Replays are Indirect.)"
+  "INTOTHESPIREVERSE-MUDDLE.title": "Muddle",
+  "INTOTHESPIREVERSE-MUDDLE.description": "Randomize a card's cost between [blue]0[/blue] and [blue]3[/blue] this turn."
 }

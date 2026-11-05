@@ -5,5 +5,16 @@
   "INTOTHESPIREVERSE-AMMO_BUTTON.title": "开火！",
   "INTOTHESPIREVERSE-ARTIST_HOVER_TIP.title": "由{ArtistName}绘制",
   "INTOTHESPIREVERSE-LOAD_AMMO.description": "[gold]炮弹[/gold]可随时发射，对你攻击的最后一个敌人造成{Damage}点伤害。",
-  "INTOTHESPIREVERSE-LOAD_AMMO.title": "炮弹"
+  "INTOTHESPIREVERSE-LOAD_AMMO.title": "炮弹",
+
+  "INTOTHESPIREVERSE-CARGO.description": "你的回合开始时，从[gold]货物[/gold]中按顺序抽1张牌。",
+  "INTOTHESPIREVERSE-CARGO.title": "货物",
+  "INTOTHESPIREVERSE-INDIRECTLY.description": "通过其他卡牌、能力及任意特殊效果打出的卡牌，被视为“间接”打出。（重放视为间接打出）",
+  "INTOTHESPIREVERSE-INDIRECTLY.title": "间接",
+  "INTOTHESPIREVERSE-INSTINCT.description": "增加流血效果造成的生命值损失。",
+  "INTOTHESPIREVERSE-INSTINCT.title": "凶性",
+  "INTOTHESPIREVERSE-MODIFY.description": "在本场战斗内修改一张牌的效果。已被改造的卡牌无法再次被改造。",
+  "INTOTHESPIREVERSE-MODIFY.title": "改造",
+  "INTOTHESPIREVERSE-MUDDLE.description": "在一回合内，将卡牌的耗能随机变为[blue]0[/blue]到[blue]3[/blue]。",
+  "INTOTHESPIREVERSE-MUDDLE.title": "迷乱"
 }
