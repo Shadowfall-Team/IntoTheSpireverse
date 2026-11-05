@@ -17,7 +17,7 @@ public sealed class TheEndIsComing() : ShadowNecrobinderCard(1, CardType.Attack,
         new DamageVar(50m, ValueProp.Move),
         new DynamicVar("PlayCount", 0m),
     ];
-    
+
     protected override bool ShouldGlowGoldInternal => _timesPlayed == 2;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

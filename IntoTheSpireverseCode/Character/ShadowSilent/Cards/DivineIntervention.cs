@@ -39,7 +39,7 @@ public sealed class DivineIntervention() : ShadowSilentCard(3, CardType.Skill, C
             Creature? target = Owner.RunState.Rng.CombatTargets.NextItem(list)?.Player?.Creature;
             if (target != null)
             {
-                if (target.HasPower<DivineInterventionPower>()) 
+                if (target.HasPower<DivineInterventionPower>())
                     await PowerCmd.Apply<DivineInterventionPower>(choiceContext, target, DynamicVars["DivineInterventionPower"].BaseValue, Owner.Creature, this);
                 else
                     await PowerCmd.Apply<DivineInterventionPower>(choiceContext, target, DynamicVars["DivineInterventionPower"].BaseValue + 1, Owner.Creature, this);

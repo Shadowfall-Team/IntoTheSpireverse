@@ -1,7 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Extensions;
+﻿using BaseLib.Extensions;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,11 +21,11 @@ public sealed class Deposit() : ShadowIroncladCard(2, CardType.Skill, CardRarity
         new BlockVar(10m, ValueProp.Move),
         new PowerVar<SlatePower>(3m),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
         CardKeyword.Exhaust
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<SlatePower>(),

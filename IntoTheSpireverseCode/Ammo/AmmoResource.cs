@@ -48,11 +48,11 @@ public static class AmmoResource
         {
             var oldVal = PlayerAmmo[player.PlayerCombatState];
             PlayerAmmo[player.PlayerCombatState] = oldVal + 1;
-            
+
             var ammoButton = GetAmmoButton(player);
-            if (ammoButton is { Initialized: false }) 
+            if (ammoButton is { Initialized: false })
                 ammoButton.Initialize(player);
-            
+
             AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, oldVal + 1);
 
             foreach (var model in player.Creature.CombatState.IterateHookListeners().ToList())
@@ -70,9 +70,9 @@ public static class AmmoResource
         var newVal = Math.Max(0, oldVal - amount);
         if (newVal == oldVal) return;
         PlayerAmmo[player.PlayerCombatState] = newVal;
-            
+
         var ammoButton = GetAmmoButton(player);
-        if (ammoButton != null && !ammoButton.Initialized) 
+        if (ammoButton != null && !ammoButton.Initialized)
             ammoButton.Initialize(player);
 
         AmmoChanged?.Invoke(player.PlayerCombatState, oldVal, newVal);
@@ -118,7 +118,7 @@ public static class AmmoResource
     {
         var damage = BaseDamage;
 
-        if(player.HasPower<AmmoStrengthPower>())
+        if (player.HasPower<AmmoStrengthPower>())
             damage += player.Creature.GetPowerAmount<StrengthPower>();
 
         // Firepower, Volley, and any future IModifiesAmmoShotDamage powers

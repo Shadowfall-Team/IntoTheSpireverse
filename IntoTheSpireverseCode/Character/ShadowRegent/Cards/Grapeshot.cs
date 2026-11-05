@@ -1,6 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

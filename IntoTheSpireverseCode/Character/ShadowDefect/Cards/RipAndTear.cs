@@ -18,7 +18,7 @@ public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (CombatState ==  null) return;
+        if (CombatState == null) return;
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(3)
@@ -32,7 +32,7 @@ public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRari
             Owner,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
             null,
-            (AbstractModel) this)).FirstOrDefault<CardModel>()!;
+            (AbstractModel)this)).FirstOrDefault<CardModel>()!;
 
         if (card == null)
             return;

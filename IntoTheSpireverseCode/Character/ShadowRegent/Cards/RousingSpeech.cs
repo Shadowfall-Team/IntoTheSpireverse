@@ -1,7 +1,7 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -33,19 +33,19 @@ public class RousingSpeech() : ShadowRegentCard(
 
         if (CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count > 0)
         {
-        await PowerCmd.Apply<RousingSpeechTemporaryStrengthPower>(choiceContext,
-            Owner.Creature,
-            CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count,
-            Owner.Creature,
-            this);
+            await PowerCmd.Apply<RousingSpeechTemporaryStrengthPower>(choiceContext,
+                Owner.Creature,
+                CargoCardPile.CargoPileType.GetPile(Owner).Cards.Count,
+                Owner.Creature,
+                this);
         }
 
 
-}
-    
+    }
+
     protected override void OnUpgrade()
     {
         AddKeyword(CardKeyword.Retain);
     }
-    
+
 }

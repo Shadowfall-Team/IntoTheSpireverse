@@ -1,8 +1,8 @@
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Models;
 using Godot;
+using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.Patches;
 

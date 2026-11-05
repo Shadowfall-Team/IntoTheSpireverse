@@ -29,14 +29,14 @@ public sealed class Indulge() : ShadowSilentCard(0, CardType.Skill, CardRarity.R
             choiceContext, Owner.Creature,
             DynamicVars.Power<PoisonPower>().BaseValue,
             Owner.Creature, this);
-      
+
         if (poisonPower != null)
             await PowerCmd.Apply<StrengthPower>(
                 choiceContext, Owner.Creature,
                 poisonPower.Amount + DynamicVars.Power<StrengthPower>().BaseValue,
                 Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<StrengthPower>().UpgradeValueBy(1);

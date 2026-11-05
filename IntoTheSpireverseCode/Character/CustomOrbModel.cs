@@ -30,7 +30,7 @@ public abstract class CustomOrbModel : OrbModel, ICustomModel
         {
             if (!string.IsNullOrEmpty(this.CustomSpritePath))
                 return this.CustomSpritePath;
-            
+
             return SceneHelper.GetScenePath("orbs/orb_visuals/" + this.Id.Entry.ToLowerInvariant());
         }
     }
@@ -44,7 +44,7 @@ public abstract class CustomOrbModel : OrbModel, ICustomModel
         {
             if (!string.IsNullOrEmpty(this.CustomIconPath))
                 return this.CustomIconPath;
-            
+
             return ImageHelper.GetImagePath($"orbs/{this.Id.Entry.ToLowerInvariant()}.png");
         }
     }

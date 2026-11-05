@@ -1,6 +1,6 @@
-﻿using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,13 +17,13 @@ public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, Car
 {
     private const string IncreaseKey = "Increase";
     private decimal _extraDamage;
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8m, ValueProp.Move),
         new DynamicVar(IncreaseKey, 8m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle),
@@ -48,18 +48,17 @@ public sealed class SpiritualWeapon() : ShadowSilentCard(1, CardType.Attack, Car
         _extraDamage += increase;
         return Task.CompletedTask;
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
         DynamicVars[IncreaseKey].UpgradeValueBy(3m);
     }
-    
+
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
         DynamicVars.Damage.BaseValue += _extraDamage;
     }
 
-   
 }

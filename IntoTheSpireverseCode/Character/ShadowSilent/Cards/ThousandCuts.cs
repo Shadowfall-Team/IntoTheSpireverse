@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,7 +14,7 @@ public sealed class ThousandCuts() : ShadowSilentCard(2, CardType.Power, CardRar
     [
         new PowerVar<ThousandCutsPower>(1m),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Innate];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -26,7 +25,7 @@ public sealed class ThousandCuts() : ShadowSilentCard(2, CardType.Power, CardRar
             DynamicVars.Power<ThousandCutsPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<ThousandCutsPower>().UpgradeValueBy(1m);

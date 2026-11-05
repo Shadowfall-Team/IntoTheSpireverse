@@ -23,9 +23,9 @@ public class SolStrike() : ShadowRegentCard(1,
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>()
     ];
-    
+
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-    
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay)
@@ -36,11 +36,11 @@ public class SolStrike() : ShadowRegentCard(1,
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        
+
         await PowerCmd.Apply<ShardsPower>(
             choiceContext,
-            Owner.Creature,DynamicVars[nameof(ShardsPower)].BaseValue, 
-            Owner.Creature, 
+            Owner.Creature, DynamicVars[nameof(ShardsPower)].BaseValue,
+            Owner.Creature,
             this);
     }
 

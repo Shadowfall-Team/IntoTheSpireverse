@@ -1,11 +1,10 @@
-using MegaCrit.Sts2.Core.Animation;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
@@ -15,11 +14,11 @@ public class Gleam() : ShadowRegentCard(1,
     TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        
+
         new PowerVar<ShardsPower>(2),
         new CardsVar(2)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),
     ];
@@ -29,16 +28,16 @@ public class Gleam() : ShadowRegentCard(1,
         CardPlay play)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        
+
         await PowerCmd.Apply<ShardsPower>(
             choiceContext,
-            Owner.Creature,DynamicVars[nameof(ShardsPower)].BaseValue, 
-            Owner.Creature, 
+            Owner.Creature, DynamicVars[nameof(ShardsPower)].BaseValue,
+            Owner.Creature,
             this);
-        
+
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars[nameof(ShardsPower)].UpgradeValueBy(1);

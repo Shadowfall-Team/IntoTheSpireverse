@@ -19,7 +19,7 @@ public class PowerscalePower : ShadowPowerModel
 
     public override PowerStackType StackType =>
         DynamicVars[StrengthAppliedKey].IntValue != 0 ? PowerStackType.Counter : PowerStackType.None;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<StrengthPower>()
@@ -30,7 +30,7 @@ public class PowerscalePower : ShadowPowerModel
         new PowerVar<StrengthPower>(1M),
         new DynamicVar(StrengthAppliedKey, 0M)
     ];
-    
+
 
     protected override object InitInternalData() => new Data();
 
@@ -50,12 +50,12 @@ public class PowerscalePower : ShadowPowerModel
         if (cardPlay.Card is not Scale)
             return;
         Flash();
-        
-        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, amount*Amount, Owner, null, true);
-        DynamicVars[StrengthAppliedKey].BaseValue += DynamicVars.Strength.IntValue*Amount;
+
+        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, amount * Amount, Owner, null, true);
+        DynamicVars[StrengthAppliedKey].BaseValue += DynamicVars.Strength.IntValue * Amount;
         InvokeDisplayAmountChanged();
     }
-    
+
     public override async Task AfterSideTurnEnd(
         PlayerChoiceContext choiceContext,
         CombatSide side,
@@ -66,7 +66,7 @@ public class PowerscalePower : ShadowPowerModel
         await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -DynamicVars["StrengthApplied"].BaseValue, Owner, null, true);
         DynamicVars[StrengthAppliedKey].BaseValue = 0;
     }
-    
+
     private class Data
     {
         public readonly Dictionary<CardModel, int> AmountsForPlayedCards = new Dictionary<CardModel, int>();

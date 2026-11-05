@@ -14,12 +14,12 @@ public class IllusionPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
-    
+
 
     protected override object InitInternalData() => new Data();
 
@@ -38,7 +38,7 @@ public class IllusionPower : ShadowPowerModel
             return;
         await CreatureCmd.GainBlock(Owner, amount, ValueProp.Unpowered, null, true);
     }
-    
+
     public override async Task AfterSideTurnEnd(
         PlayerChoiceContext choiceContext,
         CombatSide side,

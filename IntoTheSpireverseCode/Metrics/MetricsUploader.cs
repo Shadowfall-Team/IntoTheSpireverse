@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-using System.Text;
-using MegaCrit.Sts2.Core.Modding;
+﻿using System.Text;
 using MegaCrit.Sts2.Core.Saves;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Metrics;

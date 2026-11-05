@@ -1,6 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -31,18 +30,18 @@ public sealed class Scalemail() : ShadowSilentCard(2, CardType.Skill, CardRarity
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         var scales = Enumerable.Range(0, DynamicVars.Cards.IntValue)
-            .Select(_ => CombatState.CreateCard<Scale>(Owner)); 
-        
+            .Select(_ => CombatState.CreateCard<Scale>(Owner));
+
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, Owner);
         foreach (CardModel card in PileType.Hand.GetPile(Owner).Cards)
         {
             if (card is Scale)
             {
-                await CreatureCmd.GainBlock(Owner.Creature,  DynamicVars.Block, cardPlay);
+                await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             }
         }
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2m);

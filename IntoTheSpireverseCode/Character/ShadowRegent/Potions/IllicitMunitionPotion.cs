@@ -1,8 +1,7 @@
 ﻿using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
-using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;

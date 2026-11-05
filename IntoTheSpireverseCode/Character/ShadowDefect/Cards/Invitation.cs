@@ -11,48 +11,48 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Invitation : ShadowDefectCard
 {
-	public override bool GainsBlock => true;
+    public override bool GainsBlock => true;
 
-	protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-	{
-		new BlockVar(3m, ValueProp.Move),
-		new CardsVar(1)
-	};
+    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
+    {
+        new BlockVar(3m, ValueProp.Move),
+        new CardsVar(1)
+    };
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
-		HoverTipFactory.Static(StaticHoverTip.Block)
-	};
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    {
+        HoverTipFactory.Static(StaticHoverTip.Block)
+    };
 
-	public Invitation()
-		: base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
-	{
-	}
+    public Invitation()
+        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    {
+    }
 
-	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-	{
-		await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
 
-		List<CardModel> candidates = PileType.Draw.GetPile(base.Owner).Cards
-			.Concat(PileType.Discard.GetPile(base.Owner).Cards)
-			.Where(c => c.Type == CardType.Status || c.Type == CardType.Curse)
-			.ToList();
+        List<CardModel> candidates = PileType.Draw.GetPile(base.Owner).Cards
+            .Concat(PileType.Discard.GetPile(base.Owner).Cards)
+            .Where(c => c.Type == CardType.Status || c.Type == CardType.Curse)
+            .ToList();
 
-		if (candidates.Count == 0)
-			return;
+        if (candidates.Count == 0)
+            return;
 
-		IEnumerable<CardModel> selected = await CardSelectCmd.FromSimpleGrid(
-			choiceContext,
-			candidates,
-			base.Owner,
-			new CardSelectorPrefs(base.SelectionScreenPrompt, base.DynamicVars.Cards.IntValue));
+        IEnumerable<CardModel> selected = await CardSelectCmd.FromSimpleGrid(
+            choiceContext,
+            candidates,
+            base.Owner,
+            new CardSelectorPrefs(base.SelectionScreenPrompt, base.DynamicVars.Cards.IntValue));
 
-		await CardPileCmd.Add(selected, PileType.Hand);
-	}
+        await CardPileCmd.Add(selected, PileType.Hand);
+    }
 
-	protected override void OnUpgrade()
-	{
-		base.DynamicVars.Block.UpgradeValueBy(1m);
-		base.DynamicVars.Cards.UpgradeValueBy(1m);
-	}
+    protected override void OnUpgrade()
+    {
+        base.DynamicVars.Block.UpgradeValueBy(1m);
+        base.DynamicVars.Cards.UpgradeValueBy(1m);
+    }
 }

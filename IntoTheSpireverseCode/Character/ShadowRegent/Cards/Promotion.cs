@@ -13,7 +13,7 @@ public class Promotion() : ShadowRegentCard(
     TargetType.Self)
 {
     protected override bool HasEnergyCostX => true;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<StrengthPower>(),
         HoverTipFactory.FromPower<DexterityPower>(),
@@ -31,13 +31,13 @@ public class Promotion() : ShadowRegentCard(
         }
 
         await PowerCmd.Apply<StrengthPower>(
-            choiceContext,Owner.Creature,
+            choiceContext, Owner.Creature,
             powerAmount,
             Owner.Creature,
             this);
 
         await PowerCmd.Apply<DexterityPower>(
-            choiceContext,Owner.Creature,
+            choiceContext, Owner.Creature,
             powerAmount,
             Owner.Creature,
             this);

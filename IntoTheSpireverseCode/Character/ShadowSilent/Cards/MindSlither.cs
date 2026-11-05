@@ -1,7 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.Enchantments;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.Enchantments;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -26,14 +25,14 @@ public sealed class MindSlither() : ShadowSilentCard(1, CardType.Skill, CardRari
         HoverTipFactory.FromCard<Flicker>(),
         .. HoverTipFactory.FromEnchantment<Hollow>(),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        
+
         foreach (Creature teammate in CombatState.GetTeammatesOf(Owner.Creature).Where((c => c.IsAlive && c.IsPlayer)))
         {
             if (teammate.Player != null)
@@ -44,13 +43,13 @@ public sealed class MindSlither() : ShadowSilentCard(1, CardType.Skill, CardRari
                         var card = CombatState.CreateCard<Flicker>(teammate.Player);
                         CardCmd.Enchant<Hollow>(card, 1m);
                         return card;
-                    }); 
+                    });
                 await CardPileCmd.AddGeneratedCardsToCombat(flickers ?? [], PileType.Hand, teammate.Player);
                 await Cmd.Wait(0.1f);
             }
         }
     }
-    
+
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Exhaust);

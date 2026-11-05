@@ -6,7 +6,6 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Nodes;
-using MegaCrit.Sts2.Core.Saves;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
@@ -56,7 +55,7 @@ internal class IntoTheSpireverseConfig : SimpleModConfig
     }
 
     [ConfigHideInUI]
-    public static bool AltCharactersUnlocked { get; set;}
+    public static bool AltCharactersUnlocked { get; set; }
 
 
     [ConfigButton("UnlockAllAltCharactersButton")]

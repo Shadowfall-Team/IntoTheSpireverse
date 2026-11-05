@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,7 +15,7 @@ public sealed class HaveFaith() : ShadowSilentCard(1, CardType.Power, CardRarity
     [
         new PowerVar<HaveFaithPower>(2m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block)
@@ -30,7 +29,7 @@ public sealed class HaveFaith() : ShadowSilentCard(1, CardType.Power, CardRarity
             DynamicVars.Power<HaveFaithPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<HaveFaithPower>().UpgradeValueBy(1m);

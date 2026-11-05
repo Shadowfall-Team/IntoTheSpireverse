@@ -82,26 +82,32 @@ public class ParallelStone : CustomRelicModel
         // at double odds. WithFilter overwrites, so keep whatever filter was already there.
         var bannedIds = AltCharacterUtil.GetBannedCardIds(player.Character);
 
-        if (onBeta) {
+        if (onBeta)
+        {
             var WithPoolsMethod = options.GetType().GetMethod("WithCardPools", [typeof(IEnumerable<CardPoolModel>)]);
             var WithFilterMethod = options.GetType().GetMethod("WithFilter", [typeof(Func<CardModel, bool>)]);
 
-            if (WithPoolsMethod != null) {
+            if (WithPoolsMethod != null)
+            {
                 options = (CardCreationOptions)WithPoolsMethod.Invoke(options, [options.CardPools.Union(mirrorPools)])!;
             }
 
-            if (bannedIds.Count > 0 && WithFilterMethod != null) {
+            if (bannedIds.Count > 0 && WithFilterMethod != null)
+            {
                 var existingFilter = options.CardPoolFilter;
                 Func<CardModel, bool> newFilter = c => !bannedIds.Contains(c.Id) && (existingFilter == null || existingFilter(c));
                 options = (CardCreationOptions)WithFilterMethod.Invoke(options, [newFilter])!;
             }
-        } else {
+        }
+        else
+        {
             var cardPool = options.CardPools.Union(mirrorPools).SelectMany(pool =>
                     pool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint))
                     .Where(c => !bannedIds.Contains(c.Id))
                     .ToArray();
 
-            if (cardPool.Length == 0) {
+            if (cardPool.Length == 0)
+            {
                 cardPool = player.Character.CardPool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
                     .Where(c => !bannedIds.Contains(c.Id)).ToArray();
             }

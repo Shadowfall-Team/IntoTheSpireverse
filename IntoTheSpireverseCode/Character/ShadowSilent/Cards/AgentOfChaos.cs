@@ -1,11 +1,10 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -15,12 +14,12 @@ public sealed class AgentOfChaos() : ShadowSilentCard(2, CardType.Power, CardRar
     [
         new PowerVar<AgentOfChaosPower>(1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(CardKeyword.Sly),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
-    ];  
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -30,7 +29,7 @@ public sealed class AgentOfChaos() : ShadowSilentCard(2, CardType.Power, CardRar
             DynamicVars.Power<AgentOfChaosPower>().BaseValue,
             Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);

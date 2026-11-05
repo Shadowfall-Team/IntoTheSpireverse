@@ -31,7 +31,7 @@ public sealed class ConstitutionPower : ShadowPowerModel
 
         if (target != Owner) return false;
         if (canonicalPower is not (WeakPower or VulnerablePower or FrailPower)) return false;
-        
+
         if (canonicalPower.GetTypeForAmount(amount) != PowerType.Debuff) return false;
 
         modifiedAmount = 0m;

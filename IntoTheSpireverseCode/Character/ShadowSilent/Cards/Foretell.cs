@@ -28,7 +28,7 @@ public sealed class Foretell() : ShadowSilentCard(0, CardType.Skill, CardRarity.
     {
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, () =>
             CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay));
-	}
+    }
 
     protected override void OnUpgrade()
     {

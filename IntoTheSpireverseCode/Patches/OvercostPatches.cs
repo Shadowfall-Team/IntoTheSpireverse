@@ -1,6 +1,6 @@
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
@@ -10,7 +10,7 @@ public class OvercostListenerPatch
     [HarmonyPostfix]
     static void Postfix(CardModel card, ref bool __result)
     {
-        if(!__result)
+        if (!__result)
         {
             foreach (var model in card.Owner.Creature.CombatState!.IterateHookListeners().ToList())
             {

@@ -23,9 +23,9 @@ public sealed class Unburden() : ShadowSilentCard(1, CardType.Skill, CardRarity.
             return CardPile.GetCards(Owner, PileType.Hand).All(c => c.Type == CardType.Skill);
         }
     }
-    
+
     protected override bool ShouldGlowGoldInternal => IsPlayable;
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
