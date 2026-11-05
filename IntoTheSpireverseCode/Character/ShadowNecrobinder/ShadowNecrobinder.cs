@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.Models.Characters;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
 
-public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
+public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter, IParallelStoneCharacter, IIntoTheSpireverseDebug
 {
     public override string PlaceholderID => "necrobinder";
     // public const string CharacterId = "IntoTheSpireverse";
@@ -25,6 +25,7 @@ public class ShadowNecrobinder : PlaceholderCharacterModel, IAltCharacter, IInto
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
     public CharacterModel BaseCharacterModel => ModelDb.Character<Necrobinder>();
+    public int ParallelStoneMaxHpChange => -5;
     public override int StartingHp => 66;
     
     public override IEnumerable<CardModel> StartingDeck =>

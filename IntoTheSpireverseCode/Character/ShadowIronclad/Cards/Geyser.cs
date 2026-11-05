@@ -16,7 +16,7 @@ public sealed class Geyser() : ShadowIroncladCard(2, CardType.Attack, CardRarity
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(22m, ValueProp.Move),
+        new DamageVar(26m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

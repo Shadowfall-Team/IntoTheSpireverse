@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Models.Characters;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad;
 
 #pragma warning disable STS001
-public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
+public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter, IParallelStoneCharacter
 #pragma warning restore STS001
 {
     public override string PlaceholderID => "ironclad";
@@ -32,6 +32,7 @@ public class ShadowIronclad : PlaceholderCharacterModel, IAltCharacter
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
     public CharacterModel BaseCharacterModel => ModelDb.Character<Ironclad>();
+    public int ParallelStoneMaxHpChange => -15;
 
     public IEnumerable<(CardModel Own, CardModel BaseGame)> DuplicateCardPairs =>
     [

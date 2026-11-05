@@ -24,7 +24,7 @@ public sealed class Hammer() : ShadowIroncladCard(3, CardType.Attack, CardRarity
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(22m, ValueProp.Move),
+        new DamageVar(24m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

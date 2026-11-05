@@ -17,8 +17,8 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     private const string IncreaseKey = "Increase";
-    private const int BaseDamage = 8;
-    private const int UpgradedBaseDamage = 10;
+    private const int BaseDamage = 10;
+    private const int UpgradedBaseDamage = 15;
 
     private int _currentDamage = BaseDamage;
     private int _increasedDamage;
@@ -51,7 +51,7 @@ public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(CurrentDamage, ValueProp.Move),
-        new IntVar(IncreaseKey, 4m),
+        new IntVar(IncreaseKey, 5m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -78,11 +78,7 @@ public sealed class Carve() : ShadowIroncladCard(0, CardType.Attack, CardRarity.
 
     // Through UpdateDamage, not UpgradeValueBy: both write Damage.BaseValue and the later write
     // would erase the other. IsUpgraded is already true here.
-    protected override void OnUpgrade()
-    {
-        DynamicVars[IncreaseKey].UpgradeValueBy(1m);
-        UpdateDamage();
-    }
+    protected override void OnUpgrade() => UpdateDamage();
 
     // A downgrade rebuilds Damage from the constants, dropping the growth.
     protected override void AfterDowngraded() => UpdateDamage();

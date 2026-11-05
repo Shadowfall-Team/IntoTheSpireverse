@@ -59,5 +59,5 @@ public sealed class TheMountain() : ShadowIroncladCard(1, CardType.Skill, CardRa
         await CardCmd.AutoPlay(choiceContext, top, null);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(2m);
+    protected override void OnUpgrade() => DynamicVars.Power<SlatePower>().UpgradeValueBy(1m);
 }

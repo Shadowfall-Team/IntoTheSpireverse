@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Runs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Relics;
@@ -23,15 +24,17 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("TakeCardsSelect", 3),
-        new IntVar("TakeCardsCount", 18),
+        new IntVar("TakeCardsSelect", 2),
+        new IntVar("TakeCardsCount", 12),
+        new MaxHpVar(0m),
 
         new CardsVar(1)
     ];
 
     public override bool IsAllowed(IRunState runState)
     {
-        return runState.Players.All(p => AltCharacterUtil.HasMirrorCharacter(p.Character));
+        return runState.CurrentActIndex < 2
+               && runState.Players.All(p => AltCharacterUtil.HasMirrorCharacter(p.Character));
     }
 
     private async Task TakeCards()
@@ -44,14 +47,20 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         SetEventFinished(PageDescription("TOOK_CARDS"));
     }
 
-    private async Task ReplaceCharacter()
+    private async Task TakeParallelStone()
     {
         if (Owner != null)
         {
+            if (_parallelStoneMaxHpChange < 0)
+                await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                    -_parallelStoneMaxHpChange, isFromCard: false);
+            else if (_parallelStoneMaxHpChange > 0)
+                await CreatureCmd.GainMaxHp(Owner.Creature, _parallelStoneMaxHpChange);
+
             await RelicCmd.Obtain<ParallelStone>(Owner);
         }
 
-        SetEventFinished(PageDescription("REPLACED_CHARACTER"));
+        SetEventFinished(PageDescription("TOOK_PARALLEL_STONE"));
     }
 
     private async Task TakeCards(int cardSelectCount, int cardCreateCount, string action = "TAKE_CARDS")
@@ -99,10 +108,11 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
             }
         }
 
-        SetEventFinished(PageDescription("GAINED_MAX_HP"));
+        SetEventFinished(PageDescription("UPGRADED_CARD"));
     }
 
     private CharacterModel? _mirrorCharacterModel;
+    private int _parallelStoneMaxHpChange;
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {
@@ -111,15 +121,56 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         _mirrorCharacterModel = Owner.Character is IAltCharacter ownerAltCharacter
             ? ownerAltCharacter.BaseCharacterModel
             : Owner.RunState.Rng.CombatCardSelection.NextItem(AltCharacterUtil.GetMirrorCharacters(Owner.Character));
+
+        // The sign picks lose/gain wording (see ParallelStoneOption); the text itself only shows the size.
+        _parallelStoneMaxHpChange = GetParallelStoneMaxHpChange(Owner.Character);
+        DynamicVars.MaxHp.BaseValue = Math.Abs(_parallelStoneMaxHpChange);
+
         return
         [
             Option(TakeCards),
-            Option(ReplaceCharacter, HoverTipFactory.FromRelic<ParallelStone>()),
-            // The loc key no longer matches the method name, so build the option explicitly.
-            new EventOption(this, UpgradeCard, OptionLocKey("GAIN_MAX_HP"))
+            ParallelStoneOption(),
+            Option(UpgradeCard)
         ];
     }
 
-    // EventModel.InitialOptionKey slugifies the class name, which drops the mod prefix that custom events need.
-    private string OptionLocKey(string optionName) => $"{Id.Entry}.pages.INITIAL.options.{optionName}";
+    // Selects between one of three possible descriptions (lose, gain, or no Max HP change).
+    private EventOption ParallelStoneOption()
+    {
+        const string key = "INTOTHESPIREVERSE-MIRROR_MIRROR.pages.INITIAL.options.TAKE_PARALLEL_STONE";
+        var descriptionKey = _parallelStoneMaxHpChange switch
+        {
+            < 0 => $"{key}_LOSE_MAX_HP",
+            > 0 => $"{key}_GAIN_MAX_HP",
+            _ => key,
+        };
+
+        var option = new EventOption(this, TakeParallelStone, GetOptionTitle(key)!, GetOptionDescription(descriptionKey)!,
+            key, HoverTipFactory.FromRelic<ParallelStone>());
+
+        // Only a loss gets the usual "this will kill you" red warning (as seen in other max HP reduction events)
+        return _parallelStoneMaxHpChange < 0 ? option.ThatDecreasesMaxHp(-_parallelStoneMaxHpChange) : option;
+    }
+
+    /// <summary>
+    /// Negative loses Max HP, positive gains it, zero does neither. Checked in order:
+    /// 1. A character that implements IParallelStoneCharacter uses its own value. We use this method for our own alts.
+    /// 2. Otherwise an alt uses its base character's value. This is only a safety net for other modded alts such as the farmer Defect.
+    ///    (it's reasonable to assume based on our first 3 characters that most of the time, the right tuning value is either equal
+    ///    to or close to the same)
+    /// 3. Otherwise a base-game character uses the table below.
+    /// 4. Otherwise (only would theoretically trigger if someone debug activates this event as a character with no alts),
+    /// use the final fallback constant.
+    /// </summary>
+    public static int GetParallelStoneMaxHpChange(CharacterModel character) => character switch
+    {
+        IParallelStoneCharacter declared => declared.ParallelStoneMaxHpChange,
+        IAltCharacter alt => GetParallelStoneMaxHpChange(alt.BaseCharacterModel),
+        Ironclad => -15,
+        Silent => -5,
+        Defect => -5,
+        Necrobinder => -5,
+        Regent => 5,
+        _ => -5, //final fallback constant
+    };
 }

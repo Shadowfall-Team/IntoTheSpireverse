@@ -17,10 +17,13 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7m, ValueProp.Move),
+        new DamageVar(8m, ValueProp.Move),
         new RepeatVar(2),
         new DynamicVar(RecoilKey, 1m),
+        new DynamicVar(RecoilHitsKey, 2m),
     ];
+
+    private const string RecoilHitsKey = "RecoilHits";
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -38,6 +41,7 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
 
         InciteViolencePatch.IsIncitedAttack = true;
         var recoilResult = await DamageCmd.Attack(DynamicVars[RecoilKey].BaseValue)
+            .WithHitCount(DynamicVars[RecoilHitsKey].IntValue)
             .FromMonsterSingleTarget(cardPlay.Target.Monster)
             .Targeting(Owner.Creature)
             .WithNoAttackerAnim()
@@ -45,19 +49,13 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
             .Execute(choiceContext);
         InciteViolencePatch.IsIncitedAttack = false;
 
-        foreach (var resultList in recoilResult.Results)
+        // Multiple fully blocked hits must still only stun once.
+        var anyFullyBlocked = recoilResult.Results.Any(resultList => resultList.Any(r => r.WasFullyBlocked));
+        if (anyFullyBlocked && cardPlay.Target.Monster.Creature.Powers.OfType<ImbalancedPower>().Any())
         {
-            foreach (var result in resultList)
-            {
-                if (!result.WasFullyBlocked) continue;
-                var imbalanced = cardPlay.Target.Monster.Creature.Powers
-                    .OfType<ImbalancedPower>()
-                    .FirstOrDefault();
-                if (imbalanced == null) continue;
-                await CreatureCmd.Stun(cardPlay.Target.Monster.Creature);
-                if (cardPlay.Target.Monster is BowlbugRock bowlbug)
-                    bowlbug.IsOffBalance = false;
-            }
+            await CreatureCmd.Stun(cardPlay.Target.Monster.Creature);
+            if (cardPlay.Target.Monster is BowlbugRock bowlbug)
+                bowlbug.IsOffBalance = false;
         }
     }
 

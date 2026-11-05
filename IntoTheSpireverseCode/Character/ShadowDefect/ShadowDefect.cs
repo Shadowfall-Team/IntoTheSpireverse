@@ -12,7 +12,7 @@ using Invoke = IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Ca
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 
-public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IIntoTheSpireverseDebug
+public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IParallelStoneCharacter, IIntoTheSpireverseDebug
 {
     public override string PlaceholderID => "defect";
     public const string CharacterId = "IntoTheSpireverse";
@@ -26,6 +26,7 @@ public class ShadowDefect : PlaceholderCharacterModel, IAltCharacter, IIntoTheSp
     public override bool AllowInVanillaRandomCharacterSelect => true;
     
     public CharacterModel BaseCharacterModel => ModelDb.Character<Defect>();
+    public int ParallelStoneMaxHpChange => -5;
     
     public override int StartingHp => 75;
     
