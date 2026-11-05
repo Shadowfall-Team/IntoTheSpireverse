@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
@@ -14,10 +15,18 @@ public class ExaltedForm() : ShadowRegentCard(
     CardRarity.Rare,
     TargetType.Self)
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [
-        HoverTipFactory.FromCard<Discovery>(),
-    ];
-    
+    protected override IEnumerable<IHoverTip> ExtraHoverTips
+    {
+        get
+        {
+            var card = ModelDb.Card<Discovery>().ToMutable();
+            card.SetToFreeThisCombat();
+            return [
+                HoverTipFactory.FromCard(card)
+            ];
+        }
+    }
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Ethereal];
 
     protected override async Task OnPlay(
