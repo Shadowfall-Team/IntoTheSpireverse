@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
@@ -87,13 +86,12 @@ public static class CardPileCmdExtensions
                 return [];
             }
 
-            // 
-            // if (IntoTheSpireverseHook.ShouldDrawFromPile(combatState, player, pileType, startOfTurnDraw, out preventer))
-            // {
-            //     // should this be a new hook?
-            //     await Hook.AfterPreventingDraw(combatState, preventer!);
-            //     return [];
-            // }
+            if (!IntoTheSpireverseHook.ShouldDrawFromPile(combatState, player, pileType, startOfTurnDraw, out preventer))
+            {
+                // should this be a new hook?
+                await Hook.AfterPreventingDraw(combatState, preventer!);
+                return [];
+            }
 
             List<CardModel> result = [];
             var hand = PileType.Hand.GetPile(player);
@@ -116,12 +114,15 @@ public static class CardPileCmdExtensions
                 {
                     break;
                 }
-                // await ShufflePileIfNecessary(choiceContext, player);
+                // await ShufflePileIfNecessary(choiceContext, pile, player);
                 // if (!CheckIfDrawIsPossibleFromPileAndShowThoughtBubbleIfNot(pileType, player)) { break ; }
                 var card = pileToDrawFrom.Cards.FirstOrDefault();
                 if (card == null || hand.Cards.Count >= CardPile.MaxCardsInHand) { break; }
+
                 result.Add(card);
-                // CombatManager.Instance.History.CardDrawnFromPile(combatState, card, pileToDrawFrom, startOfTurnDraw);
+                await CardPileCmd.Add(card, hand);
+                CombatManager.Instance.History.CardDrawnFromPile(combatState, card, pileType, startOfTurnDraw);
+                // TODO: May need to make another hook for this that passes the pile it was drawn from
                 await Hook.AfterCardDrawn(combatState, choiceContext, card, startOfTurnDraw);
                 card.InvokeDrawn();
                 NDebugAudioManager.Instance?.Play(TmpSfx.cardDeal, 0.25f, PitchVariance.Small);
