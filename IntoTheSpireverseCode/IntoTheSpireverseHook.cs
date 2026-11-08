@@ -38,6 +38,8 @@ public static class IntoTheSpireverseHook
             foreach (var modifier in Hook.IterateCombatHookListeners(combatState).OfType<IDrawFromPileModifier>())
             {
                 var model = (AbstractModel)modifier;
+                if (!_modifiers.ContainsKey(model)) { _modifiers[model] = []; }
+
                 var lastCount = currentCardCount;
                 currentCardCount = modifier.ModifyStartOfTurnDrawFromPile(pileType, player, currentCardCount);
                 if (lastCount != currentCardCount)
