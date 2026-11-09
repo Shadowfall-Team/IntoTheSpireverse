@@ -103,6 +103,7 @@ public static class CardPileCmdExtensions
             int freeHandSpaces = Math.Max(0, CardPile.MaxCardsInHand - hand.Cards.Count);
             if (freeHandSpaces <= 0 )
             {
+                // TODO
                 // CheckIfDrawIsPossibleFromPileAndShowThoughtBubbleIfNot(pileType, player);
                 return result;
             }
@@ -114,6 +115,7 @@ public static class CardPileCmdExtensions
                 {
                     break;
                 }
+                // TODO: ("needs" to be generic per pile type and the "shuffle" function should be register-able)
                 // await ShufflePileIfNecessary(choiceContext, pile, player);
                 // if (!CheckIfDrawIsPossibleFromPileAndShowThoughtBubbleIfNot(pileType, player)) { break ; }
                 var card = pileToDrawFrom.Cards.FirstOrDefault();
@@ -122,7 +124,7 @@ public static class CardPileCmdExtensions
                 result.Add(card);
                 await CardPileCmd.Add(card, hand);
                 CombatManager.Instance.History.CardDrawnFromPile(combatState, card, pileType, startOfTurnDraw);
-                // TODO: May need to make another hook for this that passes the pile it was drawn from
+                // TODO: May need to make another hook for this that passes the pile it was drawn from?
                 await Hook.AfterCardDrawn(combatState, choiceContext, card, startOfTurnDraw);
                 card.InvokeDrawn();
                 NDebugAudioManager.Instance?.Play(TmpSfx.cardDeal, 0.25f, PitchVariance.Small);
