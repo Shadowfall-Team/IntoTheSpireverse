@@ -15,6 +15,8 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class ClaySoldier() : ShadowIroncladCard(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
+    public override bool GainsBlock => false;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<StrengthPower>(1m),

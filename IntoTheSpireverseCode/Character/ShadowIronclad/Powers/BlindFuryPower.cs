@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using BaseLib.Abstracts;
+using BaseLib.Utils;
+using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -72,6 +74,11 @@ public sealed class BlindFuryPower : ShadowPowerModel
                 : new LocString("relics", "WHISPERING_EARRING.approval"),
             Owner ,VfxColor.Purple);
 
+        BlindFuryPlayedSingleton.DidBlindFuryPlayCardsThisTurn.Set(Owner.Player?.PlayerCombatState, true);
+        foreach (var relic in player.Relics.OfType<PaelsEye>())
+        {
+            relic.Status = MegaCrit.Sts2.Core.Entities.Relics.RelicStatus.Normal;
+        }
         await PowerCmd.ModifyAmount(choiceContext, this, -1, null, null);
     }
 
@@ -87,5 +94,30 @@ public sealed class BlindFuryPower : ShadowPowerModel
                 .Where(c => c is { IsAlive: true, IsPlayer: true } && c != Owner)),
             _ => null
         };
+    }
+}
+
+[HarmonyPatch]
+static class PaelsEyeCardsPlayedPatch
+{
+    [HarmonyPatch(typeof(PaelsEye), "AnyCardsPlayedThisTurn")]
+    [HarmonyPostfix]
+    static void AnyCardsPlayedThisTurn(PaelsEye __instance, ref bool __result)
+    {
+        if (BlindFuryPlayedSingleton.DidBlindFuryPlayCardsThisTurn.Get(__instance.Owner.PlayerCombatState))
+        {
+            __result = true;
+        }
+    }
+}
+
+public class BlindFuryPlayedSingleton() : CustomSingletonModel(HookType.Combat)
+{
+    public static readonly SpireField<PlayerCombatState, bool> DidBlindFuryPlayCardsThisTurn = new(() => false);
+
+    public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    {
+        BlindFuryPlayedSingleton.DidBlindFuryPlayCardsThisTurn.Set(player.PlayerCombatState, false);
+        return Task.CompletedTask;
     }
 }

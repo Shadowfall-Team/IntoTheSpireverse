@@ -1,5 +1,6 @@
 ﻿using BaseLib.Extensions;
 using BaseLib.Utils;
+using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -32,7 +34,7 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
     {
         if (card.Owner != Owner) return true;
         if (Pile?.Type != PileType.Hand) return true;
-        if (card is AncientThrall) return true;
+        if (card is AncientThrall or Enthralled) return true;
         if (autoPlayType != AutoPlayType.None) return true;
         return false;
     }
@@ -49,4 +51,18 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
     }
 
     protected override void OnUpgrade() => DynamicVars.Strength.UpgradeValueBy(1m);
+}
+
+[HarmonyPatch]
+static class EnthralledPatch
+{
+    [HarmonyPatch(typeof(Enthralled), nameof(Enthralled.ShouldPlay))]
+    [HarmonyPostfix]
+    public static void ShouldPlay(CardModel card, ref bool __result)
+    {
+        if (!__result && card is AncientThrall)
+        {
+            __result = true;
+        }
+    }
 }
