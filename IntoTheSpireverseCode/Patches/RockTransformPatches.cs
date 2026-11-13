@@ -10,7 +10,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 public class RockTransformPatches
 {
-    [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedFrom))]
+    // 107/111 = AfterTransformedFrom
+    // 113     = AfterThisWasTransformedFrom
+    // [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedFrom))]
     public static class RockTransformFromPatch
     {
         public static bool StatusWasTransformedFrom;
@@ -21,7 +23,9 @@ public class RockTransformPatches
         }
     }
 
-    [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedTo))]
+    // 107/111 = AfterTransformedTo
+    // 113     = AfterThisWasTransformedInto / AfterThisWasTransformedIntoInternal (virtual)
+    // [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedTo))]
     public static class RockTransformToPatch
     {
         public static void Postfix(CardModel __instance)
