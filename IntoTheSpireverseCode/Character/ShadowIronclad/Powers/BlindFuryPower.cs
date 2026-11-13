@@ -39,7 +39,7 @@ public sealed class BlindFuryPower : ShadowPowerModel
         await PlayerCmd.GainEnergy(EnergyGain, Owner.Player);
 
         bool hitLimit;
-        using (CardSelectCmdCompatibility.PushSelectorCompatibility(new VakuuCardSelector()))
+        using (CardSelectCmdCompatibility.PushSelectorCompatibility(player, new VakuuCardSelector()))
         {
             int cardsPlayed = 0;
             while (cardsPlayed < MaxCardsToPlay &&
