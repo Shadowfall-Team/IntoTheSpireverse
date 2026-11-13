@@ -45,7 +45,10 @@ public static class TransformPayoutPatches
     public static async Task TransformAway(PlayerChoiceContext choiceContext, CardModel card)
     {
         await CardPileCmd.RemoveFromCombat(card);
-        card.AfterTransformedFrom();
+        // 107/111 = AfterTransformedFrom
+        // 113     = AfterThisWasTransformedFrom
+        // TODO: Add compat call
+        card.AfterThisWasTransformedFrom(card);
         if (card is ITransformPayout payout)
             await payout.OnTransformedAway(choiceContext);
     }

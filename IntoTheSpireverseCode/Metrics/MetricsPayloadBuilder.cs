@@ -90,6 +90,7 @@ internal static class MetricsPayloadBuilder
             BuildId = ReleaseInfoManager.Instance.ReleaseInfo?.Version ?? "NON-RELEASE-VERSION",
             BuildType = PlatformUtil.GetPlatformBranch().ToName(),
             PlayerId = progress.UniqueId,
+            GameMode = MetricUtilities.GetGameModeString(run.GameMode),
             Character = localPlayer.CharacterId!,
             NumPlayers = run.Players.Count,
             Team = run.Players.Count > 1 ? run.Players.Select(p => p.CharacterId!).ToList() : [],

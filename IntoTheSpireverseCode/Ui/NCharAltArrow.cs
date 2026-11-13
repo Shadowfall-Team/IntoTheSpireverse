@@ -47,7 +47,10 @@ public partial class NCharAltArrow : NGoldArrowButton
 
         if (parent.IsSelected)
         {
-            ClickDelegate.SelectCharacter(parent, character);
+            // 107/111 = (NCharacterSelectButton, CharacterModel)
+            // 113     = (NCharacterSelectButton)
+            // TODO: Add compat call
+            ClickDelegate.SelectCharacter(parent);
         }
 
         return false;

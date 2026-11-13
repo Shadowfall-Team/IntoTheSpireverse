@@ -52,8 +52,13 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         if (Owner != null)
         {
             if (_parallelStoneMaxHpChange < 0)
+            {
+                // 107/111 = (PlayerChoiceContext, Creature, decimal, bool)
+                // 113     = (PlayerChoiceContext, Creature, decimal, CardModel?)
+                // TODO: Compat method
                 await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), Owner.Creature,
-                    -_parallelStoneMaxHpChange, isFromCard: false);
+                    -_parallelStoneMaxHpChange, null);
+            }
             else if (_parallelStoneMaxHpChange > 0)
                 await CreatureCmd.GainMaxHp(Owner.Creature, _parallelStoneMaxHpChange);
 

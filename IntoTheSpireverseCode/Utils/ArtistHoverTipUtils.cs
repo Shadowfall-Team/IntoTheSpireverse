@@ -68,11 +68,22 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils
             );
             HoverTip tip = new(locString, info.Description, icon)
             {
-                Id = $"{MainFile.ModId}-{info.Name}",
+                // TODO: get Indi to touch this :pleading:
+                // Id = $"{MainFile.ModId}-{info.Name}",
             };
             ArtistTipIds.Add(tip.Id);
 
             yield return tip;
         }
+    }
+
+    // Probably use a class like this so we can just define the ID prop
+    public class ArtistHoverTip : IHoverTip
+    {
+        public string Id => throw new NotImplementedException();
+        public bool IsSmart => false;
+        public bool IsDebuff => false;
+        public bool IsInstanced => false;
+        public AbstractModel? CanonicalModel => null;
     }
 }
