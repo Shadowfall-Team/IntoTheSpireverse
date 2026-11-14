@@ -12,6 +12,7 @@ public class RockTransformPatches
 {
     // 107/111 = AfterTransformedFrom
     // 113     = AfterThisWasTransformedFrom
+    // TODO: add compat TargetMethods call
     // [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedFrom))]
     public static class RockTransformFromPatch
     {
@@ -25,6 +26,7 @@ public class RockTransformPatches
 
     // 107/111 = AfterTransformedTo
     // 113     = AfterThisWasTransformedInto / AfterThisWasTransformedIntoInternal (virtual)
+    // TODO: add compat TargetMethods call
     // [HarmonyPatch(typeof(CardModel), nameof(CardModel.AfterTransformedTo))]
     public static class RockTransformToPatch
     {
