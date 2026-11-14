@@ -27,8 +27,7 @@ public sealed class AwayWithYou() : ShadowNecrobinderCard(1, CardType.Skill, Car
         if (card.DeckVersion != null && card.DeckVersion.Pile?.Type == PileType.Deck)
         {
             await CardPileCmd.RemoveFromDeck(card.DeckVersion);
-            // TODO: LoseMaxHp compat method (bool / CardModel?)
-            await CreatureCmd.LoseMaxHp(choiceContext, Owner.Creature, 5m, this);
+            await CreatureCmdCompatibility.LoseMaxHp(choiceContext, Owner.Creature, 5m, this);
         }
     }
 

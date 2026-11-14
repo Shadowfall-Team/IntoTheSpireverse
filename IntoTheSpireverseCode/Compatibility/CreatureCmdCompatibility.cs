@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -11,6 +12,35 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 public static class CreatureCmdCompatibility
 {
+    // LoseMaxHp compat (111 / 113)
+    private static readonly MethodInfo? v111LoseMaxHp;
+    private static readonly MethodInfo? v113LoseMaxHp;
+    static CreatureCmdCompatibility()
+    {
+        v111LoseMaxHp = AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp),
+            parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(bool)]);
+        v113LoseMaxHp = AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp),
+            parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(CardModel)]);
+        if ((v111LoseMaxHp ?? v113LoseMaxHp) is null)
+        {
+            throw new MethodAccessException("No recognised signature found for CreatureCmd.LoseMaxHp");
+        }
+    }
+
+    public static Task LoseMaxHp(PlayerChoiceContext choiceContext, Creature creature, decimal amount, CardModel? cardSource)
+    {
+        if (v111LoseMaxHp is not null)
+        {
+            return (Task)v111LoseMaxHp.Invoke(null, [choiceContext, creature, amount, (cardSource is not null)]);
+        }
+        else if (v113LoseMaxHp is not null)
+        {
+            return (Task)v113LoseMaxHp.Invoke(null, [choiceContext, creature, amount, cardSource]);
+        }
+        else { throw new MethodAccessException("No recognised signature found for CreatureCmd.LoseMaxHp"); }
+    }
+
+
     // --- public API, identical on both game versions ---
 
     public static Task<IEnumerable<DamageResult>> Damage(
@@ -61,6 +91,7 @@ public static class CreatureCmdCompatibility
     /// </summary>
     private static TDelegate Build<TDelegate>(params Type[] baseParams) where TDelegate : Delegate
     {
+        // TODO: update to lamali's fixed impl https://github.com/lamali292/Downfall/commit/f8ec04cfd670dd92aa3b63fe9c81e957c4d312c6
         var withPlay = baseParams.Append(typeof(CardPlay)).ToArray();
 
         var method = typeof(CreatureCmd).GetMethod("Damage",
