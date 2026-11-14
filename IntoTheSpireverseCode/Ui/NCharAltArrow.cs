@@ -1,4 +1,6 @@
+using System.Reflection;
 using Godot;
+using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -8,6 +10,21 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 public partial class NCharAltArrow : NGoldArrowButton
 {
+    private static readonly MethodInfo? v111SelectCharacter;
+    private static readonly MethodInfo? v113SelectCharacter;
+    static NCharAltArrow()
+    {
+        v111SelectCharacter = AccessTools.Method(typeof(ICharacterSelectButtonDelegate), nameof(ICharacterSelectButtonDelegate.SelectCharacter),
+            parameters: [typeof(NCharacterSelectButton), typeof(CharacterModel)]);
+        v113SelectCharacter = AccessTools.Method(typeof(ICharacterSelectButtonDelegate), nameof(ICharacterSelectButtonDelegate.SelectCharacter),
+            parameters: [typeof(NCharacterSelectButton)]);
+
+        if ((v111SelectCharacter ?? v113SelectCharacter) is null)
+        {
+            throw new MethodAccessException($"Unexpected signature found for {nameof(ICharacterSelectButtonDelegate.SelectCharacter)}");
+        }
+    }
+
     public ICharacterSelectButtonDelegate? ClickDelegate;
 
     public List<CharacterModel> Characters = new();
@@ -47,10 +64,14 @@ public partial class NCharAltArrow : NGoldArrowButton
 
         if (parent.IsSelected)
         {
-            // 107/111 = (NCharacterSelectButton, CharacterModel)
-            // 113     = (NCharacterSelectButton)
-            // TODO: Add compat call
-            ClickDelegate.SelectCharacter(parent);
+            if (v111SelectCharacter is not null)
+            {
+                v111SelectCharacter.Invoke(ClickDelegate, [parent, character]);
+            }
+            else if (v113SelectCharacter is not null)
+            {
+                v113SelectCharacter.Invoke(ClickDelegate, [parent]);
+            }
         }
 
         return false;
