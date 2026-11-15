@@ -20,11 +20,17 @@ public static class CreatureCmdCompatibility
 
     static CreatureCmdCompatibility()
     {
-        v111LoseMaxHp = AccessTools.MethodDelegate<v111Struct>(AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp),
-            parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(bool)]));
+        var v111method = AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp), parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(bool)]);
+        if (v111method is not null)
+        {
+            v111LoseMaxHp = AccessTools.MethodDelegate<v111Struct>(v111method);
+        }
 
-        v113LoseMaxHp = AccessTools.MethodDelegate<v113Struct>(AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp),
-            parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(CardModel)]));
+        var v113method = AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp), parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(CardModel)]);
+        if (v113method is not null)
+        {
+            v113LoseMaxHp = AccessTools.MethodDelegate<v113Struct>(v113method);
+        }
 
         if (v111LoseMaxHp is null && v113LoseMaxHp is null)
         {
