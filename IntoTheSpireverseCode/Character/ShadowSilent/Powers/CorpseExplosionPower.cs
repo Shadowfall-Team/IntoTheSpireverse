@@ -1,13 +1,16 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using BaseLib.Abstracts;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 
-public class CorpseExplosionPower : ShadowPowerModel
+public class CorpseExplosionPower : ShadowPowerModel, IAfterDeathCompat
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -17,7 +20,7 @@ public class CorpseExplosionPower : ShadowPowerModel
     //
     // 113     = (PlayerChoiceContext, Creature, CardModel?, bool, float)
     // TODO: add compat hook call
-    public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,
+    public async Task AfterDeathCompat(PlayerChoiceContext choiceContext, Creature creature,
         CardModel? source, bool wasRemovalPrevented, float deathAnimLength)
     {
         if (Applier == null) return;
