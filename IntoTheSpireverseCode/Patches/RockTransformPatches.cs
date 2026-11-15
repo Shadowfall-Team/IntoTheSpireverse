@@ -13,7 +13,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// <summary>
 /// v113 changed the method names, and they now include the new card, or the previous card respectively
 /// AfterThisWasTransformedFrom is overridden on <see cref="RockCardBase"/>, which should handle it without any patches.
-/// The TargetMethod methods still return the new method so the game doesn't error on load (until the name/signiature changes again)
+/// The TargetMethod methods still return the new method (The names were swapped between versions,
+/// so "Into" is now called where the "From" method was befor, and vice versa) so the game doesn't error
+/// on load (until the name/signiature changes again)
 /// </summary>
 [HarmonyPatch]
 public static class RockTransformPatches
@@ -25,7 +27,7 @@ public static class RockTransformPatches
         static MethodInfo TargetMethod()
         {
             return AccessTools.Method(typeof(CardModel), "AfterTransformedFrom")
-                ?? AccessTools.Method(typeof(CardModel), nameof(CardModel.AfterThisWasTransformedFrom), [typeof(CardModel)])
+                ?? AccessTools.Method(typeof(CardModel), nameof(CardModel.AfterThisWasTransformedInto), [typeof(CardModel)])
                 ?? throw new MethodAccessException("Neither CardModel.AfterTransformedFrom or a known CardModel.AfterThisWasTransformedFrom signature found!");
         }
 
@@ -46,7 +48,7 @@ public static class RockTransformPatches
         static MethodInfo TargetMethod()
         {
             return AccessTools.Method(typeof(CardModel), "AfterTransformedTo")
-                ?? AccessTools.Method(typeof(CardModel), nameof(CardModel.AfterThisWasTransformedInto), [typeof(CardModel)])
+                ?? AccessTools.Method(typeof(CardModel), nameof(CardModel.AfterThisWasTransformedFrom), [typeof(CardModel)])
                 ?? throw new MethodAccessException("Neither CardModel.AfterTransformedTo or a known CardModel.AfterThisWasTransformedInto signature found!");
         }
 
