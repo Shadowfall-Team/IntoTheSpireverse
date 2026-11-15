@@ -13,15 +13,20 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 public static class CreatureCmdCompatibility
 {
     // LoseMaxHp compat (111 / 113)
-    private static readonly MethodInfo? v111LoseMaxHp;
-    private static readonly MethodInfo? v113LoseMaxHp;
+    private delegate Task v111Struct(PlayerChoiceContext choiceContext, Creature creature, decimal amount, bool isFromCard);
+    private delegate Task v113Struct(PlayerChoiceContext choiceContext, Creature creature, decimal amount, CardModel? cardSource);
+    private static readonly v111Struct? v111LoseMaxHp;
+    private static readonly v113Struct? v113LoseMaxHp;
+
     static CreatureCmdCompatibility()
     {
-        v111LoseMaxHp = AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp),
-            parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(bool)]);
-        v113LoseMaxHp = AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp),
-            parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(CardModel)]);
-        if ((v111LoseMaxHp ?? v113LoseMaxHp) is null)
+        v111LoseMaxHp = AccessTools.MethodDelegate<v111Struct>(AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp),
+            parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(bool)]));
+
+        v113LoseMaxHp = AccessTools.MethodDelegate<v113Struct>(AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp),
+            parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(CardModel)]));
+
+        if (v111LoseMaxHp is null && v113LoseMaxHp is null)
         {
             throw new MethodAccessException("No recognised signature found for CreatureCmd.LoseMaxHp");
         }
@@ -31,11 +36,11 @@ public static class CreatureCmdCompatibility
     {
         if (v111LoseMaxHp is not null)
         {
-            return (Task)v111LoseMaxHp.Invoke(null, [choiceContext, creature, amount, (cardSource is not null)]);
+            return v111LoseMaxHp(choiceContext, creature, amount, cardSource is not null);
         }
         else if (v113LoseMaxHp is not null)
         {
-            return (Task)v113LoseMaxHp.Invoke(null, [choiceContext, creature, amount, cardSource]);
+            return v113LoseMaxHp(choiceContext, creature, amount, cardSource);
         }
         else { throw new MethodAccessException("No recognised signature found for CreatureCmd.LoseMaxHp"); }
     }
