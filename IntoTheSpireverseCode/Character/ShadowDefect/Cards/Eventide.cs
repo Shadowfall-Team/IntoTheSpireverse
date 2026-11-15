@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
@@ -14,7 +15,7 @@ public sealed class Eventide() : ShadowDefectCard(1, CardType.Attack, CardRarity
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(8M, ValueProp.Move),
-        new RepeatVar(2)
+        new SpireverseHitCountVar(2)
     };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
@@ -27,7 +28,7 @@ public sealed class Eventide() : ShadowDefectCard(1, CardType.Attack, CardRarity
         if (CombatState == null) return;
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .TargetingRandomOpponents(CombatState)

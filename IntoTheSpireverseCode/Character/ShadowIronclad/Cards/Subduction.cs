@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
@@ -16,7 +17,7 @@ public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRa
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(5m, ValueProp.Move),
-        new RepeatVar(5),
+        new SpireverseHitCountVar(5),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -28,7 +29,7 @@ public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRa
     {
         if (CombatState == null) return;
 
-        var hits = IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay) ? DynamicVars.Repeat.IntValue : 1;
+        var hits = IntoTheSpireverseKeywords.WasPlayedIndirectly(cardPlay) ? DynamicVars.SpireverseHitCount.IntValue : 1;
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(hits)
@@ -41,6 +42,6 @@ public sealed class Subduction() : ShadowIroncladCard(0, CardType.Attack, CardRa
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(1m);
-        DynamicVars.Repeat.UpgradeValueBy(1m);
+        DynamicVars.SpireverseHitCount.UpgradeValueBy(1m);
     }
 }

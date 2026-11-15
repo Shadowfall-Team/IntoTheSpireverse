@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
@@ -18,7 +19,7 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8m, ValueProp.Move),
-        new RepeatVar(2),
+        new SpireverseHitCountVar(2),
         new DynamicVar(RecoilKey, 1m),
         new DynamicVar(RecoilHitsKey, 2m),
     ];
@@ -30,7 +31,7 @@ public sealed class InciteViolence() : ShadowIroncladCard(1, CardType.Attack, Ca
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
@@ -16,7 +17,7 @@ public class TheStarsAlign() : ShadowRegentCard(
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(7, ValueProp.Move),
-        new RepeatVar(7)
+        new SpireverseHitCountVar(7)
     ];
 
     protected override async Task OnPlay(
@@ -27,7 +28,7 @@ public class TheStarsAlign() : ShadowRegentCard(
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingRandomOpponents(CombatState)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
     }

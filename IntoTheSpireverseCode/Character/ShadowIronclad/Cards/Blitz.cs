@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
@@ -15,10 +16,8 @@ public sealed class Blitz() : ShadowIroncladCard(2, CardType.Attack, CardRarity.
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(4m, ValueProp.Move),
-        // Single-target hits are fixed; the sweep is what the upgrade improves, so it uses the
-        // Repeat var and carries the :diff() marker on the card.
-        new DynamicVar(HitsKey, 2m),
-        new RepeatVar(2),
+        new SpireverseHitCountVar(HitsKey, 2),
+        new SpireverseHitCountVar(2),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -34,12 +33,12 @@ public sealed class Blitz() : ShadowIroncladCard(2, CardType.Attack, CardRarity.
 
         // The chosen target is inside "ALL enemies" too, so it takes both sets of hits.
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Repeat.UpgradeValueBy(1m);
+    protected override void OnUpgrade() => DynamicVars.SpireverseHitCount.UpgradeValueBy(1m);
 }

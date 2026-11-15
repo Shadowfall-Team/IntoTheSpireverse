@@ -2,6 +2,7 @@ using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -21,7 +22,8 @@ public class LoadTheCannon() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new LoadAmmoVar(1),
-        new DamageVar(3, ValueProp.Move)
+        new DamageVar(3, ValueProp.Move),
+        new SpireverseHitCountVar(1)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
@@ -38,10 +40,15 @@ public class LoadTheCannon() : ShadowRegentCard(1,
             .Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitCount(IsUpgraded ? 2 : 1)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
         await LoadAmmoCmd.LoadAmmo(DynamicVars.LoadAmmo.BaseValue, Owner, this);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.SpireverseHitCount.UpgradeValueBy(1m);
     }
 }

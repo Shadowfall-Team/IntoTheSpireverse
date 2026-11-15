@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +18,7 @@ public sealed class FlickerJab() : ShadowNecrobinderCard(1, CardType.Attack, Car
         new DamageVar(4m, ValueProp.Move),
         new CalculationBaseVar(1m),
         new CalculationExtraVar(1m),
-        new CalculatedVar(_calculatedHitsKey).WithMultiplier((card, _) =>
+        new SpireverseCalculatedHitCountVar(_calculatedHitsKey).WithMultiplier((card, _) =>
             CombatManager.Instance.History.CardPlaysFinished
                 .Count(e => e.HappenedThisTurn(card.CombatState)
                             && e.CardPlay.Card.Type == CardType.Attack

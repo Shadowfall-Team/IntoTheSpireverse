@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +15,7 @@ public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRari
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(6M, ValueProp.Move),
+        new SpireverseHitCountVar(3)
     };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -21,7 +23,7 @@ public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRari
         if (CombatState ==  null) return;
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(3)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")
             .TargetingRandomOpponents(CombatState)

@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Cards;
 
@@ -14,7 +15,7 @@ public sealed class Handclap() : ShadowNecrobinderCard(2, CardType.Attack, CardR
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(9m, ValueProp.Move),
-        new RepeatVar(2),
+        new SpireverseHitCountVar(2),
         new DynamicVar(_curseThresholdKey, 3m),
     ];
 
@@ -27,7 +28,7 @@ public sealed class Handclap() : ShadowNecrobinderCard(2, CardType.Attack, CardR
     {
         if (CombatState == null) return;
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_blunt");
 

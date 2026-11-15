@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Cards;
 
@@ -17,7 +18,7 @@ public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, C
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(2m, ValueProp.Move),
-        new RepeatVar(4),
+        new SpireverseHitCountVar(4),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -44,7 +45,7 @@ public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, C
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
@@ -53,13 +54,13 @@ public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, C
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Repeat.UpgradeValueBy(2m);
+        DynamicVars.SpireverseHitCount.UpgradeValueBy(2m);
     }
 
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
-        DynamicVars.Repeat.BaseValue += AdditionalHits;
+        DynamicVars.SpireverseHitCount.BaseValue += AdditionalHits;
     }
 
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
@@ -67,7 +68,7 @@ public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, C
         int triggers = LingerHelper.GetTriggerCount(this);
         for (int i = 0; i < triggers; i++)
         {
-            DynamicVars.Repeat.BaseValue += 2m;
+            DynamicVars.SpireverseHitCount.BaseValue += 2m;
             AdditionalHits += 2m;
             await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }

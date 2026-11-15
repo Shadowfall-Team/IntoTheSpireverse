@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Cards;
 
@@ -18,7 +19,7 @@ public class TrickyStrike() : ShadowRegentCard(1,
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(4, ValueProp.Move),
-        new RepeatVar(2),
+        new SpireverseHitCountVar(2),
         new("Increase", 1)
     ];
 
@@ -32,7 +33,7 @@ public class TrickyStrike() : ShadowRegentCard(1,
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .WithHitFx(VfxCmd.starryImpactVfx, null, TmpSfx.bluntAttack)
             .Execute(choiceContext);
         
@@ -50,6 +51,6 @@ public class TrickyStrike() : ShadowRegentCard(1,
     }
     protected override void OnUpgrade()
     {
-        DynamicVars.Repeat.UpgradeValueBy(1M);
+        DynamicVars.SpireverseHitCount.UpgradeValueBy(1M);
     }
 }
