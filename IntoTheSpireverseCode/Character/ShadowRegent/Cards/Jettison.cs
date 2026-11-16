@@ -1,7 +1,7 @@
-using MegaCrit.Sts2.Core.Audio.Debug;
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -20,7 +20,7 @@ public class Jettison() : ShadowRegentCard(2,
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new DamageVar(6, ValueProp.Move)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
@@ -39,9 +39,9 @@ public class Jettison() : ShadowRegentCard(2,
             new CardSelectorPrefs(SelectionScreenPrompt, 0, 999999),
             null,
             this)).ToList();
-        
+
         await CardPileCmd.Add(cargoedCards, CargoCardPile.CargoPileType);
-        
+
         if (cargoedCards.Count != 0)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
@@ -52,7 +52,7 @@ public class Jettison() : ShadowRegentCard(2,
                 .Execute(choiceContext);
         }
     }
-    
+
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Exhaust);

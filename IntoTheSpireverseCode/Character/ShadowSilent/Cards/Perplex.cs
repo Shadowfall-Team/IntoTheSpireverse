@@ -1,9 +1,9 @@
-using MegaCrit.Sts2.Core.Animation;
 using BaseLib.Abstracts;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Modifications;
 using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Modifications;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;

@@ -11,21 +11,21 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Powers;
 
 public sealed class SongOfSorrowPower : IntoTheSpireversePower
 {
-	public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
-		HoverTipFactory.FromCard<Void>()
-	};
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    {
+        HoverTipFactory.FromCard<Void>()
+    };
 
-	public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
-	{
-		if (creator == card.Owner && card is Void)
-		{
-			Flash();
-			await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), base.CombatState.HittableEnemies, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null, null);
-		}
-	}
+    public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
+    {
+        if (creator == card.Owner && card is Void)
+        {
+            Flash();
+            await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), base.CombatState.HittableEnemies, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null, null);
+        }
+    }
 }

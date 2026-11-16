@@ -1,9 +1,9 @@
+using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.DevConsole;
 using MegaCrit.Sts2.Core.DevConsole.ConsoleCommands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Runs;
-using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 

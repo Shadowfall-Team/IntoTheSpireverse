@@ -1,5 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -10,9 +10,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards
 [Pool(typeof(ShadowIroncladCardPool))]
 public sealed class Titanic() : ShadowIroncladCard(3, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
-    
+
     public override bool CanBeGeneratedInCombat => false;
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new MaxHpVar(3m),

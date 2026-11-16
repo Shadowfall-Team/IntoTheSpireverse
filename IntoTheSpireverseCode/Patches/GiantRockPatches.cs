@@ -1,9 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 

@@ -1,6 +1,5 @@
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
@@ -10,7 +9,7 @@ public class CardGlowGoldListenerPatch
     [HarmonyPostfix]
     static void Postfix(CardModel __instance, ref bool __result)
     {
-        if(!__result)
+        if (!__result)
         {
             foreach (var model in __instance.Owner.Creature.CombatState!.IterateHookListeners().ToList())
             {

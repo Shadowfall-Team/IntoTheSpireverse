@@ -1,5 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Audio.Debug;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -22,7 +22,7 @@ public class TheLostBlade() : ShadowRegentCard(
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
 
     protected override bool IsPlayable => PileType.Hand.GetPile(Owner).Cards.Count == 10;
-    
+
     protected override bool ShouldGlowGoldInternal => IsPlayable;
 
     protected override async Task OnPlay(

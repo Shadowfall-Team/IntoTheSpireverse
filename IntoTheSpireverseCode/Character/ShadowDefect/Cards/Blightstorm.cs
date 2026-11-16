@@ -8,31 +8,31 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Blightstorm : ShadowDefectCard
 {
-	public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
-		HoverTipFactory.Static(StaticHoverTip.Evoke)
-	};
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
+    {
+        HoverTipFactory.Static(StaticHoverTip.Evoke)
+    };
 
-	public Blightstorm()
-		: base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
-	{
-	}
+    public Blightstorm()
+        : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    {
+    }
 
-	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-	{
-		if (Owner.PlayerCombatState == null) return;
-		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		foreach (OrbModel orb in base.Owner.PlayerCombatState.OrbQueue.Orbs.ToList())
-		{
-			await orb.Evoke(choiceContext);
-			await Cmd.CustomScaledWait(0.1f, 0.25f);
-		}
-	}
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (Owner.PlayerCombatState == null) return;
+        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        foreach (OrbModel orb in base.Owner.PlayerCombatState.OrbQueue.Orbs.ToList())
+        {
+            await orb.Evoke(choiceContext);
+            await Cmd.CustomScaledWait(0.1f, 0.25f);
+        }
+    }
 
-	protected override void OnUpgrade()
-	{
-		RemoveKeyword(CardKeyword.Exhaust);
-	}
+    protected override void OnUpgrade()
+    {
+        RemoveKeyword(CardKeyword.Exhaust);
+    }
 }

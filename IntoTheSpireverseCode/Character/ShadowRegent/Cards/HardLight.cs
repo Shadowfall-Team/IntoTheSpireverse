@@ -18,7 +18,7 @@ public class HardLight() : ShadowRegentCard(1,
         new BlockVar(7, ValueProp.Move),
         new PowerVar<ShardsPower>(2)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<ShardsPower>(),
     ];

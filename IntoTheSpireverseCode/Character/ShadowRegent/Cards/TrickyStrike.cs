@@ -1,6 +1,6 @@
-﻿using MegaCrit.Sts2.Core.Audio.Debug;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -35,9 +35,9 @@ public class TrickyStrike() : ShadowRegentCard(1,
             .WithHitCount(DynamicVars.Repeat.IntValue)
             .WithHitFx(VfxCmd.starryImpactVfx, null, TmpSfx.bluntAttack)
             .Execute(choiceContext);
-        
+
     }
-    
+
     public override async Task AfterAutoPostPlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)
     {
         if (Pile != null && Pile.Type == CargoCardPile.CargoPileType)

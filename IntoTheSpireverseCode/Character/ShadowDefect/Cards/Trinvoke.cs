@@ -10,10 +10,10 @@ public sealed class Trinvoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var source = this;
-        
+
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
-        
-        foreach (OrbModel orb in (IEnumerable<OrbModel>) source.Owner.PlayerCombatState!.OrbQueue.Orbs)
+
+        foreach (OrbModel orb in (IEnumerable<OrbModel>)source.Owner.PlayerCombatState!.OrbQueue.Orbs)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -22,6 +22,6 @@ public sealed class Trinvoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.
             }
         }
     }
-    
+
     protected override void OnUpgrade() => this.EnergyCost.UpgradeBy(-1);
 }

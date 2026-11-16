@@ -10,9 +10,9 @@ public sealed class PowerCyclePower : IntoTheSpireversePower
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
-    protected override object InitInternalData() => (object) new PowerCyclePower.Data();
-    
+
+    protected override object InitInternalData() => (object)new PowerCyclePower.Data();
+
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != this.Owner.Player || cardPlay.Card.Type != CardType.Power)
@@ -29,7 +29,7 @@ public sealed class PowerCyclePower : IntoTheSpireversePower
         Flash();
         await CycleCmd.Cycle(context, cardPlay.Card.Owner, cycleCount);
     }
-    
+
     private class Data
     {
         public readonly Dictionary<CardModel, int> amountsForPlayedCards = new Dictionary<CardModel, int>();

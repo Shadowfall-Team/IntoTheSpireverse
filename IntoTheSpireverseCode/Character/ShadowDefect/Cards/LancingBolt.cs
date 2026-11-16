@@ -26,8 +26,8 @@ public sealed class LancingBolt() : ShadowDefectCard(1, CardType.Attack, CardRar
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-       await CycleCmd.Cycle(choiceContext, Owner);
-       await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        await CycleCmd.Cycle(choiceContext, Owner);
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
     }
 
     protected override void OnUpgrade()

@@ -1,9 +1,9 @@
 ﻿using Godot;
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using MegaCrit.Sts2.Core.ControllerInput;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
-using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
 

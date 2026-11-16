@@ -10,25 +10,25 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Powers;
 
 public sealed class CosmicFormPower : IntoTheSpireversePower
 {
-	public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Buff;
 
-	public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.ForEnergy(this)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.ForEnergy(this)];
 
-	public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-	{
-		if (player != base.Owner.Player)
-		{
-			return;
-		}
-		Flash();
-		await PlayerCmd.GainEnergy(base.Amount, player);
-		await CardPileCmd.Draw(choiceContext, Amount, player);
-		List<CardModel> list = (await CardSelectCmd.FromHandForDiscard(choiceContext, player, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, Amount), null, this)).ToList();
-		if (list.Count != 0)
-		{
-			await CardCmd.Discard(choiceContext, list);
-		}
-	}
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    {
+        if (player != base.Owner.Player)
+        {
+            return;
+        }
+        Flash();
+        await PlayerCmd.GainEnergy(base.Amount, player);
+        await CardPileCmd.Draw(choiceContext, Amount, player);
+        List<CardModel> list = (await CardSelectCmd.FromHandForDiscard(choiceContext, player, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, Amount), null, this)).ToList();
+        if (list.Count != 0)
+        {
+            await CardCmd.Discard(choiceContext, list);
+        }
+    }
 }

@@ -16,7 +16,7 @@ public class ShipInABottle : ShadowRegentRelic
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new PowerVar<ShardsPower>(1)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<ShardsPower>(),

@@ -9,7 +9,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relic
 [Pool(typeof(ShadowIroncladRelicPool))]
 public abstract class ShadowIroncladRelic : CustomRelicModel
 {
-     public override string PackedIconPath
+    public override string PackedIconPath
     {
         get
         {

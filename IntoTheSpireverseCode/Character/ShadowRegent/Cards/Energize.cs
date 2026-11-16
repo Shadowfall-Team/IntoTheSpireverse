@@ -39,7 +39,7 @@ public class Energize() : ShadowRegentCard(2,
             EnergyCost.SetThisTurn(0);
         }
     }
-    
+
     //protected override bool ShouldGlowGoldInternal => TODO
 
     protected override void OnUpgrade()

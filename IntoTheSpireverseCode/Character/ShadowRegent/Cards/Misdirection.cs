@@ -22,7 +22,7 @@ public class Misdirection() : ShadowRegentCard(
         new DamageVar(9, ValueProp.Move),
         new CardsVar(1)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Cargo)
     ];
@@ -37,7 +37,7 @@ public class Misdirection() : ShadowRegentCard(
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        
+
         var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner);
         if (!cargoPile.IsEmpty)
         {
@@ -49,7 +49,7 @@ public class Misdirection() : ShadowRegentCard(
                 await Hook.AfterCardDrawn(Owner.Creature.CombatState, choiceContext, cardModel, true);
             }
         }
-        
+
     }
 
     protected override void OnUpgrade()

@@ -1,6 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,22 +27,22 @@ public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarit
         HoverTipFactory.FromPower<PoisonPower>(),
         HoverTipFactory.FromPower<StrengthPower>(),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        
+
         var child = NPoisonImpactVfx.Create(cardPlay.Target);
         var instance = NCombatRoom.Instance;
         if (instance != null)
             instance.CombatVfxContainer.AddChildSafely(child);
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<ImmobilizePower>(choiceContext, cardPlay.Target, 
+        await PowerCmd.Apply<ImmobilizePower>(choiceContext, cardPlay.Target,
             DynamicVars[StrengthLossKey].BaseValue, Owner.Creature, this);
         await PowerCmd.Apply<PoisonPower>(
-            choiceContext, cardPlay.Target, DynamicVars.Poison.BaseValue, 
+            choiceContext, cardPlay.Target, DynamicVars.Poison.BaseValue,
             Owner.Creature, this);
     }
 

@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -70,7 +69,7 @@ public sealed class BlindFuryPower : ShadowPowerModel
             hitLimit
                 ? new LocString("relics", "WHISPERING_EARRING.warning")
                 : new LocString("relics", "WHISPERING_EARRING.approval"),
-            Owner ,VfxColor.Purple);
+            Owner, VfxColor.Purple);
 
         await PowerCmd.ModifyAmount(choiceContext, this, -1, null, null);
     }

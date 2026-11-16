@@ -41,9 +41,12 @@ public class Scheme() : ShadowRegentCard(1,
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var selection = await CardSelectCmd.FromSimpleGrid(choiceContext, discardPile, Owner, prefs);
 
-        if (noChoice) {
+        if (noChoice)
+        {
             await CardPileCmdExtras.TransferPileAndPreview(selection, PileType.Discard, CargoCardPile.CargoPileType);
-        } else {
+        }
+        else
+        {
             await CardPileCmd.Add(selection, CargoCardPile.CargoPileType);
         }
     }
