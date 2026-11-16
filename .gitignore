@@ -21,9 +21,9 @@ Directory.Build.props
 # redundant .godot uid files
 # I think that .cs.uid files are still used for actually referencing Nodes by class? maybe?
 *.cs.uid
-!/IntoTheSpireverseCode/**/N[A-Z]*.cs.uid
+# !/IntoTheSpireverseCode/**/N[A-Z]*.cs.uid
 # Patches targeting Node files
-/IntoTheSpireverseCode/Patches/**/*.cs.uid
+# /IntoTheSpireverseCode/Patches/**/*.cs.uid
 
 *.user
 
