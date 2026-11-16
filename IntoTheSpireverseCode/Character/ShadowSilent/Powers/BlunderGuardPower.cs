@@ -21,6 +21,7 @@ public class BlunderGuardPower : ShadowPowerModel, IHasSecondAmount
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DynamicVar(StrengthKey, 0m),
+        new EnergyVar(3)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -39,12 +40,11 @@ public class BlunderGuardPower : ShadowPowerModel, IHasSecondAmount
         this.InvokeSecondAmountChanged();
     }
 
-    public override async Task AfterCardPlayed(
-        PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    public override async Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner)
             return;
-        if (cardPlay.Resources.EnergySpent < 3)
+        if (cardPlay.Card.EnergyCost.GetResolved() < DynamicVars.Energy.IntValue)
             return;
 
         Flash();
@@ -52,8 +52,9 @@ public class BlunderGuardPower : ShadowPowerModel, IHasSecondAmount
         await CreatureCmd.GainBlock(
             Owner, Amount, ValueProp.Unpowered, null);
 
+        // TODO: Replace this with HookPlayerChoiceContext when i bug pikcube enough
         await PowerCmd.Apply<StrengthPower>(
-            choiceContext, Owner,
+            new BlockingPlayerChoiceContext(), Owner,
             DynamicVars[StrengthKey].BaseValue,
             Owner, null);
     }

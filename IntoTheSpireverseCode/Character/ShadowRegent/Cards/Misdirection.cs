@@ -1,5 +1,6 @@
 ﻿using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -37,19 +38,8 @@ public class Misdirection() : ShadowRegentCard(
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
-        
-        var cargoPile = CargoCardPile.CargoPileType.GetPile(Owner);
-        if (!cargoPile.IsEmpty)
-        {
-            var cardModels = cargoPile.Cards.Take((int)DynamicVars.Cards.BaseValue).ToList();
-            foreach (var cardModel in cardModels)
-            {
-                await CardPileCmd.Add(cardModel, PileType.Hand);
-                if (Owner.Creature.CombatState == null) continue;
-                await Hook.AfterCardDrawn(Owner.Creature.CombatState, choiceContext, cardModel, true);
-            }
-        }
-        
+
+        await CardPileCmd.DrawFromPile(choiceContext, CargoCardPile.CargoPileType, DynamicVars.Cards.BaseValue, Owner);
     }
 
     protected override void OnUpgrade()
