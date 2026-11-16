@@ -16,12 +16,17 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 public static class CardPileCmdExtensions
 {
+    // BranchingPlayerChoiceContext doesn't exist on 107
     private readonly static ConstructorInvoker? v111BranchingContextConstructor;
     private readonly static ConstructorInvoker? v113BranchingContextConstructor;
+    private readonly static MethodInfo? BranchingContextAssignTaskAndWaitForPauseOrCompletion;
     static CardPileCmdExtensions()
     {
-        var v111constructor = AccessTools.Constructor(typeof(BranchingPlayerChoiceContext), [typeof(AbstractModel), typeof(ulong), typeof(GameActionType), typeof(PlayerChoiceContext)]);
-        var v113constructor = AccessTools.Constructor(typeof(BranchingPlayerChoiceContext), [typeof(AbstractModel), typeof(ulong), typeof(PlayerChoiceContext)]);
+        var branchingPlayerChoiceContextType = AccessTools.TypeByName("BranchingPlayerChoiceContext");
+        if (branchingPlayerChoiceContextType is null) { return; }
+        var v111constructor = AccessTools.Constructor(branchingPlayerChoiceContextType, [typeof(AbstractModel), typeof(ulong), typeof(GameActionType), typeof(PlayerChoiceContext)]);
+        var v113constructor = AccessTools.Constructor(branchingPlayerChoiceContextType, [typeof(AbstractModel), typeof(ulong), typeof(PlayerChoiceContext)]);
+        BranchingContextAssignTaskAndWaitForPauseOrCompletion = AccessTools.Method(branchingPlayerChoiceContextType, "AssignTaskAndWaitForPauseOrCompletion");
 
         if (v111constructor is not null)
         {
@@ -45,7 +50,7 @@ public static class CardPileCmdExtensions
         /// <param name="pileType">The pile to draw from.</param>
         /// <param name="player">Player who the hand and draw pile belongs to.</param>
         /// <returns>Card that was drawn, or null if no cards were drawn.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when used with <see cref="PileType.Draw"/>,
+        /// <exception cref="InvalidOperationException">Thrown when used with a non-combat pile, or <see cref="PileType.Draw"/>,
         /// use the regular <see cref="CardPileCmd.Draw(PlayerChoiceContext, Player)"/> command instead </exception>
         public static async Task<CardModel?> DrawFromPile(PlayerChoiceContext choiceContext, PileType pileType, Player player)
         {
@@ -63,7 +68,7 @@ public static class CardPileCmdExtensions
         /// <param name="player">Player who the hand and draw pile belongs to.</param>
         /// <param name="startOfTurnDraw">If this draw happened as part of the initial card draws at the start of your turn.</param>
         /// <returns>Cards that were drawn.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when used with <see cref="PileType.Draw"/>,
+        /// <exception cref="InvalidOperationException">Thrown when used with a non-combat pile, or <see cref="PileType.Draw"/>,
         /// use the regular <see cref="CardPileCmd.Draw(PlayerChoiceContext, decimal, Player, bool)"/> command instead </exception>
         public static Task<IEnumerable<CardModel>> DrawFromPile(PlayerChoiceContext choiceContext, PileType pileType, decimal count, Player player, bool startOfTurnDraw = false)
         {
@@ -81,24 +86,29 @@ public static class CardPileCmdExtensions
         /// <param name="player">Player who the hand and draw pile belongs to.</param>
         /// <param name="source">The source that is causing the draw.</param>
         /// <param name="fromHandDraw">If this draw happened as part of the initial card draws at the start of your turn.</param>
-        /// <exception cref="InvalidOperationException">Thrown when used with <see cref="PileType.Draw"/>,
+        /// <exception cref="InvalidOperationException">Thrown when used with a non-combat pile, or <see cref="PileType.Draw"/>,
         /// use the regular <see cref="CardPileCmd.DrawWithoutBlockingOnOtherPlayers(PlayerChoiceContext, decimal, Player, CardModel, bool)"/> command instead </exception>
         public static Task DrawFromPileWithoutBlockingOnOtherPlayers(PlayerChoiceContext choiceContext, PileType pileType, decimal count, Player player, CardModel source, bool fromHandDraw = false)
         {
             if (pileType is PileType.Draw) { throw new InvalidOperationException($"Don't use {nameof(DrawFromPileWithoutBlockingOnOtherPlayers)} with {nameof(PileType.Draw)}."); }
             if (!pileType.IsCombatPile()) { throw new InvalidOperationException($"PileType {CustomEnums.EnumName<PileType>((int)pileType)} is not a combat pile! Don't draw from it!"); }
-            BranchingPlayerChoiceContext? branchingPlayerChoiceContext = null;
+            PlayerChoiceContext? branchingPlayerChoiceContext = null;
 
             if (v111BranchingContextConstructor is not null)
-                branchingPlayerChoiceContext = (BranchingPlayerChoiceContext)v111BranchingContextConstructor.Invoke(source, LocalContext.NetId.Value, GameActionType.Combat, choiceContext);
+                branchingPlayerChoiceContext = (PlayerChoiceContext)v111BranchingContextConstructor.Invoke([source, LocalContext.NetId.Value, GameActionType.Combat, choiceContext]);
 
             else if (v113BranchingContextConstructor is not null)
-                branchingPlayerChoiceContext = (BranchingPlayerChoiceContext)v113BranchingContextConstructor.Invoke(source, LocalContext.NetId.Value, choiceContext);
+                branchingPlayerChoiceContext = (PlayerChoiceContext)v113BranchingContextConstructor.Invoke([source, LocalContext.NetId.Value, choiceContext]);
 
-            if (branchingPlayerChoiceContext is null) { throw new MethodAccessException("Did not find a known BranchingPlayerChoiceContext constructor!"); }
+            else
+                branchingPlayerChoiceContext = choiceContext;
 
             Task<IEnumerable<CardModel>> task = DrawFromPile(branchingPlayerChoiceContext, pileType, count, player, fromHandDraw);
-            return branchingPlayerChoiceContext.AssignTaskAndWaitForPauseOrCompletion(task);
+
+            if ((v111BranchingContextConstructor ?? v113BranchingContextConstructor) is not null)
+                return (Task)BranchingContextAssignTaskAndWaitForPauseOrCompletion.Invoke(branchingPlayerChoiceContext, [task]);
+            else
+                return task;
         }
 
         // This may also work better as a harmony Reverse Patch that we run a transpiler on
