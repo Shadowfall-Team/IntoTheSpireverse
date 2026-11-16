@@ -19,8 +19,10 @@ public sealed class UnrelentingFormPower : ShadowPowerModel
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        // TODO: this will not activate if this card is played after more attacks than the amount it gains were played
+        // ie: shiv, shiv, UnrelentingForm, shiv (will not trigger)
         var player = cardPlay.Card.Owner;
-        if (!(player.PlayerCombatState is { Phase: PlayerTurnPhase.Play })
+        if (!(player.PlayerCombatState is { Phase: PlayerTurnPhase.Play or PlayerTurnPhase.AutoPrePlay }) // AutoPrePlay is for Whispering Earring / Blind Fury
             || player != Owner.Player
             || cardPlay.Card.Type != CardType.Attack
             // The history is shared across players, so the tally has to be filtered to the

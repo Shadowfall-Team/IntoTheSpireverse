@@ -1,3 +1,4 @@
+using System.Reflection;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -9,11 +10,24 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 public static class CardSelectCmdCompatibility
 {
+    private readonly static MethodInfo? v107SelectorMethod;
+    private readonly static MethodInfo? v111SelectorMethod;
+    private readonly static MethodInfo? v113SelectorMethod;
+    private readonly static MethodInfo? v113RunManagerCardSelectorStack;
+    static CardSelectCmdCompatibility()
+    {
+        var cardSelectorStackType = AccessTools.TypeByName("CardSelectorStack");
+        v107SelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectorStack.PushSelector), parameters: [typeof(ICardSelector)]);
+        v111SelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectorStack.PushSelector), parameters: [typeof(ICardSelector), typeof(bool)]);
+        if (cardSelectorStackType is not null)
+        {
+            v113SelectorMethod = AccessTools.Method(cardSelectorStackType, nameof(CardSelectorStack.PushSelector), parameters: [typeof(Player), typeof(ICardSelector)]);
+            v113RunManagerCardSelectorStack = AccessTools.PropertyGetter(typeof(RunManager), nameof(CardSelectorStack));
+        }
+    }
+
     public static IDisposable? PushSelectorCompatibility(Player player, ICardSelector selector, bool isLocalOnly = false)
     {
-        var v107SelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectorStack.PushSelector), parameters: [typeof(ICardSelector)]);
-        var v111SelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectorStack.PushSelector), parameters: [typeof(ICardSelector), typeof(bool)]);
-        var v113SelectorMethod = AccessTools.Method(typeof(CardSelectorStack), nameof(CardSelectorStack.PushSelector), parameters: [typeof(Player), typeof(ICardSelector)]);
         if ((v107SelectorMethod ?? v111SelectorMethod ?? v113SelectorMethod) is null)
         {
             MainFile.Logger.Error("Method Signiature for CardSelectCmd.PushSelector not recognised");
@@ -28,11 +42,10 @@ public static class CardSelectCmdCompatibility
         {
             return v111SelectorMethod.Invoke(null, [selector, isLocalOnly]) as IDisposable;
         }
-        else
+        else if (v113SelectorMethod is not null)
         {
-            return v113SelectorMethod.Invoke(RunManager.Instance.CardSelectorStack, [player, selector]) as IDisposable;
+            return v113SelectorMethod.Invoke(v113RunManagerCardSelectorStack.Invoke(RunManager.Instance, []), [player, selector]) as IDisposable;
         }
+        throw new InvalidOperationException();
     }
 }
-
-
