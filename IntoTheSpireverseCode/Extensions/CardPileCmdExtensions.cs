@@ -8,11 +8,34 @@ using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
+using System.Reflection;
+using HarmonyLib;
+using BaseLib.Patches.Content;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 public static class CardPileCmdExtensions
 {
+    private readonly static ConstructorInvoker? v111BranchingContextConstructor;
+    private readonly static ConstructorInvoker? v113BranchingContextConstructor;
+    static CardPileCmdExtensions()
+    {
+        var v111constructor = AccessTools.Constructor(typeof(BranchingPlayerChoiceContext), [typeof(AbstractModel), typeof(ulong), typeof(GameActionType), typeof(PlayerChoiceContext)]);
+        var v113constructor = AccessTools.Constructor(typeof(BranchingPlayerChoiceContext), [typeof(AbstractModel), typeof(ulong), typeof(PlayerChoiceContext)]);
+
+        if (v111constructor is not null)
+        {
+            v111BranchingContextConstructor = ConstructorInvoker.Create(v111constructor);
+        }
+
+        if (v113constructor is not null)
+        {
+            v113BranchingContextConstructor = ConstructorInvoker.Create(v113constructor);
+        }
+    }
+
+    // IMPORTANT: Keep an eye on this incase the game updates to make the draw command normally accept a pile
+    // also need to test this fairly extensively for crossmod compat
     extension(CardPileCmd)
     {
         /// <summary>
@@ -27,6 +50,7 @@ public static class CardPileCmdExtensions
         public static async Task<CardModel?> DrawFromPile(PlayerChoiceContext choiceContext, PileType pileType, Player player)
         {
             if (pileType is PileType.Draw) { throw new InvalidOperationException($"Don't use {nameof(DrawFromPile)} with {nameof(PileType.Draw)}."); }
+            if (!pileType.IsCombatPile()) { throw new InvalidOperationException($"PileType {CustomEnums.EnumName<PileType>((int)pileType)} is not a combat pile! Don't draw from it!"); }
             return (await DrawFromPile(choiceContext, pileType, 1, player)).FirstOrDefault();
         }
 
@@ -44,6 +68,7 @@ public static class CardPileCmdExtensions
         public static Task<IEnumerable<CardModel>> DrawFromPile(PlayerChoiceContext choiceContext, PileType pileType, decimal count, Player player, bool startOfTurnDraw = false)
         {
             if (pileType is PileType.Draw) { throw new InvalidOperationException($"Don't use {nameof(DrawFromPile)} with {nameof(PileType.Draw)}."); }
+            if (!pileType.IsCombatPile()) { throw new InvalidOperationException($"PileType {CustomEnums.EnumName<PileType>((int)pileType)} is not a combat pile! Don't draw from it!"); }
             return DrawFromPileInternal(choiceContext, pileType, count, player, startOfTurnDraw);
         }
 
@@ -61,15 +86,21 @@ public static class CardPileCmdExtensions
         public static Task DrawFromPileWithoutBlockingOnOtherPlayers(PlayerChoiceContext choiceContext, PileType pileType, decimal count, Player player, CardModel source, bool fromHandDraw = false)
         {
             if (pileType is PileType.Draw) { throw new InvalidOperationException($"Don't use {nameof(DrawFromPileWithoutBlockingOnOtherPlayers)} with {nameof(PileType.Draw)}."); }
-            BranchingPlayerChoiceContext branchingPlayerChoiceContext = new BranchingPlayerChoiceContext(source, LocalContext.NetId.Value, GameActionType.Combat, choiceContext);
+            if (!pileType.IsCombatPile()) { throw new InvalidOperationException($"PileType {CustomEnums.EnumName<PileType>((int)pileType)} is not a combat pile! Don't draw from it!"); }
+            BranchingPlayerChoiceContext? branchingPlayerChoiceContext = null;
+
+            if (v111BranchingContextConstructor is not null)
+                branchingPlayerChoiceContext = (BranchingPlayerChoiceContext)v111BranchingContextConstructor.Invoke(source, LocalContext.NetId.Value, GameActionType.Combat, choiceContext);
+
+            else if (v113BranchingContextConstructor is not null)
+                branchingPlayerChoiceContext = (BranchingPlayerChoiceContext)v113BranchingContextConstructor.Invoke(source, LocalContext.NetId.Value, choiceContext);
+
+            if (branchingPlayerChoiceContext is null) { throw new MethodAccessException("Did not find a known BranchingPlayerChoiceContext constructor!"); }
+
             Task<IEnumerable<CardModel>> task = DrawFromPile(branchingPlayerChoiceContext, pileType, count, player, fromHandDraw);
             return branchingPlayerChoiceContext.AssignTaskAndWaitForPauseOrCompletion(task);
         }
 
-
-        // TODO: Keep an eye on this incase the game updates to make the draw command normally accept a pile
-        // also need to test this fairly extensively for crossmod compat
-        //
         // This may also work better as a harmony Reverse Patch that we run a transpiler on
         // to include the "ShouldDrawFromPile" hook call, so it, in theory, will update with versions
         private static async Task<IEnumerable<CardModel>> DrawFromPileInternal(PlayerChoiceContext choiceContext, PileType pileType, decimal count, Player player, bool startOfTurnDraw = false)
