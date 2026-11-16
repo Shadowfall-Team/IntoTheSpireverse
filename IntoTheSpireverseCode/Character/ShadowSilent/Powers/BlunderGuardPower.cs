@@ -40,22 +40,35 @@ public class BlunderGuardPower : ShadowPowerModel, IHasSecondAmount
         this.InvokeSecondAmountChanged();
     }
 
-    public override async Task BeforeCardPlayed(CardPlay cardPlay)
+    private readonly Dictionary<CardPlay, int> ResolvedCardCosts = [];
+
+    public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner)
-            return;
+            return Task.CompletedTask;
         if (cardPlay.Card.EnergyCost.GetResolved() < DynamicVars.Energy.IntValue)
-            return;
+            return Task.CompletedTask;
+
+        ResolvedCardCosts[cardPlay] = cardPlay.Card.EnergyCost.GetResolved();
+
+        return Task.CompletedTask;
+    }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (!ResolvedCardCosts.ContainsKey(cardPlay)) { return; }
 
         Flash();
 
-        await CreatureCmd.GainBlock(
-            Owner, Amount, ValueProp.Unpowered, null);
-
-        // TODO: Replace this with HookPlayerChoiceContext when i bug pikcube enough
+        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
         await PowerCmd.Apply<StrengthPower>(
-            new BlockingPlayerChoiceContext(), Owner,
+            choiceContext, Owner,
             DynamicVars[StrengthKey].BaseValue,
             Owner, null);
+
+        if (cardPlay.IsLastInSeries)
+        {
+            ResolvedCardCosts.Remove(cardPlay);
+        }
     }
 }
