@@ -24,7 +24,7 @@ public sealed class Bloodbond() : ShadowIroncladCard(1, CardType.Skill, CardRari
     {
         if (cardPlay.Target == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
-        VfxCmd.PlayOnCreatureCenter(Owner.Creature, VfxCmd.bloodyImpactPath);
+        VfxCmdCompatibility.PlayOnCreatureCenter(Owner.Creature, VfxCmd.bloodyImpactPath);
         await PowerCmd.Apply<BloodbondPower>(
             choiceContext,
             cardPlay.Target, DynamicVars.Power<BloodbondPower>().BaseValue,
