@@ -2,11 +2,11 @@
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Commands.Builders;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+using MegaCrit.Sts2.Core.Animation;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 
@@ -26,6 +26,7 @@ public sealed class Blitz() : ShadowIroncladCard(2, CardType.Attack, CardRarity.
     {
         if (CombatState == null || cardPlay.Target == null) return;
 
+        await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.attackTrigger, Owner.Character.AttackAnimDelay);
         await using var context = await AttackCommand.CreateContextAsync(CombatState, choiceContext, cardPlay);
 
         for (int i = 0; i < DynamicVars[HitsKey].IntValue; i++)
