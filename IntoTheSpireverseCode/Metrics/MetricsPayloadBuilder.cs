@@ -165,12 +165,11 @@ public class RunMetricsCompat() : RunMetrics
 
     internal static void AddGameMode(RunMetricsCompat metrics, SerializableRun run)
     {
-        MainFile.Logger.Info("Add Game Mode called");
+        MainFile.Logger.Debug("Add Game Mode called");
         if (GameModeProp == null) { return; }
 
         var modeName = SerializableRunGameMode?.GetValue(run)?.ToString()?.ToUpperInvariant() ?? "STANDARD";
-        MainFile.Logger.Info($"Mode Name is {modeName}");
+        MainFile.Logger.Debug($"Mode Name is {modeName}");
         GameModeProp.SetValue(metrics, modeName);
-        MainFile.Logger.Info("Add Game Mode finished");
     }
 }
