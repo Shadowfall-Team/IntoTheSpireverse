@@ -10,14 +10,12 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 public static class CardSelectCmdCompatibility
 {
-    private readonly static MethodInfo? v107SelectorMethod;
     private readonly static MethodInfo? v111SelectorMethod;
     private readonly static MethodInfo? v113SelectorMethod;
     private readonly static MethodInfo? v113RunManagerCardSelectorStack;
     static CardSelectCmdCompatibility()
     {
         var cardSelectorStackType = AccessTools.TypeByName("CardSelectorStack");
-        v107SelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectorStack.PushSelector), parameters: [typeof(ICardSelector)]);
         v111SelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectorStack.PushSelector), parameters: [typeof(ICardSelector), typeof(bool)]);
         if (cardSelectorStackType is not null)
         {
@@ -28,23 +26,19 @@ public static class CardSelectCmdCompatibility
 
     public static IDisposable? PushSelectorCompatibility(Player player, ICardSelector selector, bool isLocalOnly = false)
     {
-        if ((v107SelectorMethod ?? v111SelectorMethod ?? v113SelectorMethod) is null)
+        if ((v111SelectorMethod ?? v113SelectorMethod) is null)
         {
             MainFile.Logger.Error("Method Signiature for CardSelectCmd.PushSelector not recognised");
             return null;
         }
 
-        if (v107SelectorMethod is not null)
-        {
-            return v107SelectorMethod.Invoke(null, [selector]) as IDisposable;
-        }
-        else if (v111SelectorMethod is not null)
+        if (v111SelectorMethod is not null)
         {
             return v111SelectorMethod.Invoke(null, [selector, isLocalOnly]) as IDisposable;
         }
         else if (v113SelectorMethod is not null)
         {
-            return v113SelectorMethod.Invoke(v113RunManagerCardSelectorStack.Invoke(RunManager.Instance, []), [player, selector]) as IDisposable;
+            return v113SelectorMethod.Invoke(v113RunManagerCardSelectorStack?.Invoke(RunManager.Instance, []), [player, selector]) as IDisposable;
         }
         throw new InvalidOperationException();
     }
