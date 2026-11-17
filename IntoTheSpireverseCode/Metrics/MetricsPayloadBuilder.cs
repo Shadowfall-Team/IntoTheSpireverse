@@ -1,4 +1,9 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using GodotPlugins.Game;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Debug;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Map;
@@ -6,10 +11,8 @@ using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Platform;
 using MegaCrit.Sts2.Core.Rooms;
-using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Runs.Metrics;
 using MegaCrit.Sts2.Core.Saves;
-using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Metrics;
 
@@ -81,7 +84,7 @@ internal static class MetricsPayloadBuilder
 
         var progress = SaveManager.Instance.Progress;
 
-        return new RunMetrics
+        var metrics = new RunMetricsCompat()
         {
             Ascension = run.Ascension,
             TotalPlaytime = progress.TotalPlaytime,
@@ -90,7 +93,6 @@ internal static class MetricsPayloadBuilder
             BuildId = ReleaseInfoManager.Instance.ReleaseInfo?.Version ?? "NON-RELEASE-VERSION",
             BuildType = PlatformUtil.GetPlatformBranch().ToName(),
             PlayerId = progress.UniqueId,
-            GameMode = MetricUtilities.GetGameModeString(run.GameMode),
             Character = localPlayer.CharacterId!,
             NumPlayers = run.Players.Count,
             Team = run.Players.Count > 1 ? run.Players.Select(p => p.CharacterId!).ToList() : [],
@@ -115,16 +117,19 @@ internal static class MetricsPayloadBuilder
             ColorlessBuys = history.SelectMany(e => e.GetEntry(localPlayerId).BoughtColorless).Select(c => c.Entry).ToList(),
             PotionDiscards = history.SelectMany(e => e.GetEntry(localPlayerId).PotionDiscarded).Select(p => p.Entry).ToList(),
         };
+        RunMetricsCompat.AddGameMode(metrics, run);
+        return metrics;
     }
     
     public static string BuildPayloadJson(RunMetrics metrics)
     {
-        var runMetrics = JsonSerializer.Serialize(metrics, MetricsPayloadSerializerContext.Default.RunMetrics);
+        var runMetrics = JsonSerializer.Serialize(metrics, MetricsSerializerContext.Default.RunMetrics);
         using var runMetricsJson = JsonDocument.Parse(runMetrics);
 
         var envelope = new MetricsPayload
         {
-            SchemaVersion = 1,
+            // should be 2 on v113 and 1 on v111?
+            SchemaVersion = RunMetricsCompat.GameModeProp != null ? 2 : 1,
             Environment = MetricsConfig.Environment,
             ModVersion = ResolveModVersion(),
             Data = runMetricsJson.RootElement.Clone(),
@@ -144,5 +149,28 @@ internal static class MetricsPayloadBuilder
         }
 
         return "unknown";
+    }
+}
+
+[method: SetsRequiredMembers]
+public class RunMetricsCompat() : RunMetrics
+{
+    internal static readonly PropertyInfo? GameModeProp;
+    private static readonly PropertyInfo? SerializableRunGameMode;
+    static RunMetricsCompat()
+    {
+        GameModeProp = AccessTools.Property(typeof(RunMetrics), "GameMode");
+        SerializableRunGameMode = AccessTools.Property(typeof(SerializableRun), "GameMode");
+    }
+
+    internal static void AddGameMode(RunMetricsCompat metrics, SerializableRun run)
+    {
+        MainFile.Logger.Info("Add Game Mode called");
+        if (GameModeProp == null) { return; }
+
+        var modeName = SerializableRunGameMode?.GetValue(run)?.ToString()?.ToUpperInvariant() ?? "STANDARD";
+        MainFile.Logger.Info($"Mode Name is {modeName}");
+        GameModeProp.SetValue(metrics, modeName);
+        MainFile.Logger.Info("Add Game Mode finished");
     }
 }
