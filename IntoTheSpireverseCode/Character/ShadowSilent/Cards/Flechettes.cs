@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +17,7 @@ public sealed class Flechettes() : ShadowSilentCard(1, CardType.Attack, CardRari
         new DamageVar(6m, ValueProp.Move),
         new CalculationBaseVar(0M),
         new CalculationExtraVar(1M),
-        new CalculatedVar(_calculatedHitsKey).WithMultiplier((card, _) => PileType.Hand.GetPile(card.Owner).Cards.Count(c => c.Type == CardType.Skill))
+        new SpireverseCalculatedHitCountVar(_calculatedHitsKey).WithMultiplier((card, _) => PileType.Hand.GetPile(card.Owner).Cards.Count(c => c.Type == CardType.Skill))
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

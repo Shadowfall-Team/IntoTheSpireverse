@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Runs;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using IntoTheSpireverse.IntoTheSpireverseCode.Relics;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Events;
 
@@ -52,8 +53,10 @@ public sealed class MirrorMirror() : CustomEventModel(autoAdd: true)
         if (Owner != null)
         {
             if (_parallelStoneMaxHpChange < 0)
-                await CreatureCmd.LoseMaxHp(new ThrowingPlayerChoiceContext(), Owner.Creature,
-                    -_parallelStoneMaxHpChange, isFromCard: false);
+            {
+                await CreatureCmdCompatibility.LoseMaxHp(new ThrowingPlayerChoiceContext(), Owner.Creature,
+                    -_parallelStoneMaxHpChange, null);
+            }
             else if (_parallelStoneMaxHpChange > 0)
                 await CreatureCmd.GainMaxHp(Owner.Creature, _parallelStoneMaxHpChange);
 

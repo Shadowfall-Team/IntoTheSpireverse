@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -11,6 +12,47 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 public static class CreatureCmdCompatibility
 {
+    // LoseMaxHp compat (111 / 113)
+    private delegate Task v111Struct(PlayerChoiceContext choiceContext, Creature creature, decimal amount, bool isFromCard);
+    private delegate Task v113Struct(PlayerChoiceContext choiceContext, Creature creature, decimal amount, CardModel? cardSource);
+    private static readonly v111Struct? v111LoseMaxHp;
+    private static readonly v113Struct? v113LoseMaxHp;
+
+    static CreatureCmdCompatibility()
+    {
+        var v111method = AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp), parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(bool)]);
+        if (v111method is not null)
+        {
+            v111LoseMaxHp = AccessTools.MethodDelegate<v111Struct>(v111method);
+        }
+
+        var v113method = AccessTools.Method(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp), parameters: [typeof(PlayerChoiceContext), typeof(Creature), typeof(decimal), typeof(CardModel)]);
+        if (v113method is not null)
+        {
+            v113LoseMaxHp = AccessTools.MethodDelegate<v113Struct>(v113method);
+        }
+
+        if (v111LoseMaxHp is null && v113LoseMaxHp is null)
+        {
+            throw new MethodAccessException("No recognised signature found for CreatureCmd.LoseMaxHp");
+        }
+    }
+
+    public static Task LoseMaxHp(PlayerChoiceContext choiceContext, Creature creature, decimal amount, CardModel? cardSource)
+    {
+        if (v111LoseMaxHp is not null)
+        {
+            return v111LoseMaxHp(choiceContext, creature, amount, cardSource is not null);
+        }
+        else if (v113LoseMaxHp is not null)
+        {
+            return v113LoseMaxHp(choiceContext, creature, amount, cardSource);
+        }
+        else { throw new MethodAccessException("No recognised signature found for CreatureCmd.LoseMaxHp"); }
+    }
+
+
+    // Lamali's compat for Damage and LoseBlock
     // --- public API, identical on both game versions ---
 
     public static Task<IEnumerable<DamageResult>> Damage(
@@ -65,22 +107,40 @@ public static class CreatureCmdCompatibility
 
         var method = typeof(CreatureCmd).GetMethod("Damage",
                          BindingFlags.Public | BindingFlags.Static, null, withPlay, null)
+                     ?? FindWithTrailingOptionals(withPlay)
                      ?? typeof(CreatureCmd).GetMethod("Damage",
                          BindingFlags.Public | BindingFlags.Static, null, baseParams, null)
                      ?? throw new MissingMethodException(
                          $"CreatureCmd.Damage({string.Join(", ", baseParams.Select(t => t.Name))}) not found");
 
-        bool hasPlay = method.GetParameters().Length == withPlay.Length;
+        var methodParams = method.GetParameters();
+        var hasPlay = methodParams.Length >= withPlay.Length && methodParams[withPlay.Length - 1].ParameterType == typeof(CardPlay);
 
         // Lambda parameters always follow the *new* signature (incl. CardPlay).
         var lambdaParams = withPlay.Select((t, i) => Expression.Parameter(t, $"p{i}")).ToArray();
-        var callArgs = hasPlay ? lambdaParams : lambdaParams[..^1];
+        var callArgs = (hasPlay ? lambdaParams : lambdaParams[..^1]).Cast<Expression>().ToList();
+        // Newer builds append optional parameters (e.g. ModifyDamageHookType); fill them with their defaults.
+        callArgs.AddRange(methodParams.Skip(callArgs.Count)
+            .Select(p => Expression.Constant(p.DefaultValue, p.ParameterType)));
 
-        var call = Expression.Call(method, callArgs.Cast<Expression>());
+        var call = Expression.Call(method, callArgs);
         return Expression.Lambda<TDelegate>(call, lambdaParams).Compile();
     }
-    
-    
+
+    /// <summary>A `Damage` overload whose leading parameters are exactly <paramref name="leading"/>, followed only by optional ones.</summary>
+    private static MethodInfo? FindWithTrailingOptionals(Type[] leading)
+    {
+        return typeof(CreatureCmd).GetMethods(BindingFlags.Public | BindingFlags.Static)
+            .FirstOrDefault(m =>
+            {
+                if (m.Name != "Damage") return false;
+                var ps = m.GetParameters();
+                return ps.Length > leading.Length
+                       && ps.Take(leading.Length).Select(p => p.ParameterType).SequenceEqual(leading)
+                       && ps.Skip(leading.Length).All(p => p.IsOptional);
+            });
+    }
+
     // For Hijack compatibility
     private static readonly LoseBlockDel LoseBlockImpl = BuildLoseBlock();
     

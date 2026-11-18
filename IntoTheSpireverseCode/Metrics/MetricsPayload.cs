@@ -22,5 +22,4 @@ internal sealed class MetricsPayload
     UseStringEnumConverter = true,
     Converters = [typeof(ModelIdMetricsConverter)])]
 [JsonSerializable(typeof(MetricsPayload))]
-[JsonSerializable(typeof(RunMetrics))]
 internal partial class MetricsPayloadSerializerContext : JsonSerializerContext;

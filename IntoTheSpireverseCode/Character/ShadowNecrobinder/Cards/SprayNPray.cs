@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Cards;
 
@@ -14,7 +15,7 @@ public sealed class SprayNPray() : ShadowNecrobinderCard(1, CardType.Attack, Car
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(4m, ValueProp.Move),
-        new RepeatVar(3),
+        new SpireverseHitCountVar(3),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -26,7 +27,7 @@ public sealed class SprayNPray() : ShadowNecrobinderCard(1, CardType.Attack, Car
     {
         if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingRandomOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash")
@@ -37,6 +38,6 @@ public sealed class SprayNPray() : ShadowNecrobinderCard(1, CardType.Attack, Car
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Repeat.UpgradeValueBy(1m);
+        DynamicVars.SpireverseHitCount.UpgradeValueBy(1m);
     }
 }

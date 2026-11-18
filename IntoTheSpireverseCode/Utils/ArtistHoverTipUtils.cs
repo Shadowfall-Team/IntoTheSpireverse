@@ -1,4 +1,6 @@
+using System.Runtime.CompilerServices;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -33,6 +35,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils
     {
         public static readonly HashSet<string> ArtistTipIds = [];
 
+        [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "<Id>k__BackingField")]
+        private static extern ref string IdBackingField(ref HoverTip tip);
+
         private static bool IsInspectingOrInCompendium(AbstractModel? model)
         {
             if (model == null) return false;
@@ -63,13 +68,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Utils
             );
             locString.Add(new StringVar("ArtistName", info.Name));
 
-            var icon = PreloadManager.Cache.GetAsset<Texture2D>(
-                "res://images/atlases/ui_atlas.sprites/cursor_pencil.tres"
-            );
-            HoverTip tip = new(locString, info.Description, icon)
-            {
-                Id = $"{MainFile.ModId}-{info.Name}",
-            };
+            var icon = PreloadManager.Cache.GetAsset<Texture2D>("ui/pencil.png".ImagePath());
+            HoverTip tip = new(locString, info.Description, icon);
+            IdBackingField(ref tip) = $"{MainFile.ModId}-{info.Name}";
             ArtistTipIds.Add(tip.Id);
 
             yield return tip;

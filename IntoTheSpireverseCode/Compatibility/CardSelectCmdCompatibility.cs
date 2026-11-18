@@ -1,29 +1,45 @@
+using System.Reflection;
 using HarmonyLib;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.TestSupport;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 public static class CardSelectCmdCompatibility
 {
-    public static IDisposable? PushSelectorCompatibility(ICardSelector selector, bool isLocalOnly = false)
+    private readonly static MethodInfo? v111SelectorMethod;
+    private readonly static MethodInfo? v113SelectorMethod;
+    private readonly static MethodInfo? v113RunManagerCardSelectorStack;
+    static CardSelectCmdCompatibility()
     {
-        var mainSelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectCmd.PushSelector), parameters: [typeof(ICardSelector)]);
-        var betaSelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectCmd.PushSelector), parameters: [typeof(ICardSelector), typeof(bool)]);
-        if ((mainSelectorMethod ?? betaSelectorMethod) is null)
+        var cardSelectorStackType = AccessTools.TypeByName("CardSelectorStack");
+        v111SelectorMethod = AccessTools.Method(typeof(CardSelectCmd), nameof(CardSelectorStack.PushSelector), parameters: [typeof(ICardSelector), typeof(bool)]);
+        if (cardSelectorStackType is not null)
+        {
+            v113SelectorMethod = AccessTools.Method(cardSelectorStackType, nameof(CardSelectorStack.PushSelector), parameters: [typeof(Player), typeof(ICardSelector)]);
+            v113RunManagerCardSelectorStack = AccessTools.PropertyGetter(typeof(RunManager), nameof(CardSelectorStack));
+        }
+    }
+
+    public static IDisposable? PushSelectorCompatibility(Player player, ICardSelector selector, bool isLocalOnly = false)
+    {
+        if ((v111SelectorMethod ?? v113SelectorMethod) is null)
         {
             MainFile.Logger.Error("Method Signiature for CardSelectCmd.PushSelector not recognised");
             return null;
         }
-        if (mainSelectorMethod is not null)
+
+        if (v111SelectorMethod is not null)
         {
-            return mainSelectorMethod.Invoke(null, [selector]) as IDisposable;
+            return v111SelectorMethod.Invoke(null, [selector, isLocalOnly]) as IDisposable;
         }
-        else
+        else if (v113SelectorMethod is not null)
         {
-            return betaSelectorMethod.Invoke(null, [selector, isLocalOnly]) as IDisposable;
+            return v113SelectorMethod.Invoke(v113RunManagerCardSelectorStack?.Invoke(RunManager.Instance, []), [player, selector]) as IDisposable;
         }
+        throw new InvalidOperationException();
     }
 }
-
-

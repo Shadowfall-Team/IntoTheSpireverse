@@ -21,6 +21,7 @@ public class BlunderGuardPower : ShadowPowerModel, IHasSecondAmount
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DynamicVar(StrengthKey, 0m),
+        new EnergyVar(3)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -39,22 +40,35 @@ public class BlunderGuardPower : ShadowPowerModel, IHasSecondAmount
         this.InvokeSecondAmountChanged();
     }
 
-    public override async Task AfterCardPlayed(
-        PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    private readonly Dictionary<CardPlay, int> ResolvedCardCosts = [];
+
+    public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner)
-            return;
-        if (cardPlay.Resources.EnergySpent < 3)
-            return;
+            return Task.CompletedTask;
+        if (cardPlay.Card.EnergyCost.GetResolved() < DynamicVars.Energy.IntValue)
+            return Task.CompletedTask;
+
+        ResolvedCardCosts[cardPlay] = cardPlay.Card.EnergyCost.GetResolved();
+
+        return Task.CompletedTask;
+    }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (!ResolvedCardCosts.ContainsKey(cardPlay)) { return; }
 
         Flash();
 
-        await CreatureCmd.GainBlock(
-            Owner, Amount, ValueProp.Unpowered, null);
-
+        await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
         await PowerCmd.Apply<StrengthPower>(
             choiceContext, Owner,
             DynamicVars[StrengthKey].BaseValue,
             Owner, null);
+
+        if (cardPlay.IsLastInSeries)
+        {
+            ResolvedCardCosts.Remove(cardPlay);
+        }
     }
 }

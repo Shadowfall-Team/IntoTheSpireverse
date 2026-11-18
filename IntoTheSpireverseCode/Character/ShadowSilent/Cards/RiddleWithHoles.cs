@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -14,7 +15,7 @@ public sealed class RiddleWithHoles() : ShadowSilentCard(2, CardType.Attack, Car
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(3m, ValueProp.Move),
-        new RepeatVar(5),
+        new SpireverseHitCountVar(5),
     ];
     
 
@@ -24,13 +25,13 @@ public sealed class RiddleWithHoles() : ShadowSilentCard(2, CardType.Attack, Car
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Repeat.UpgradeValueBy(2);
+        DynamicVars.SpireverseHitCount.UpgradeValueBy(2);
     }
 }

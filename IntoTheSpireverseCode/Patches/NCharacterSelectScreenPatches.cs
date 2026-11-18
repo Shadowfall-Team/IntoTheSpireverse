@@ -40,7 +40,11 @@ public class NCharacterSelectButtonPatches
     public static void InitPrefix(NCharacterSelectButton __instance, ref CharacterModel character, out bool __state)
     {
         __state = false;
-        if (__instance.GetAncestorOfType<NCustomRunScreen>() is not null) return;
+        if (__instance.GetAncestorOfType<NCharacterSelectScreen>() is null)
+        {
+            __state = true;
+            return;
+        }
 
         var baseChar = character is IAltCharacter alt ? alt.BaseCharacterModel : character;
         if (!IntoTheSpireverseConfig.AltCharactersUnlocked && !SaveManager.Instance.Progress.CharacterStats.ContainsKey(baseChar.Id))
@@ -62,7 +66,7 @@ public class NCharacterSelectButtonPatches
     [HarmonyPostfix]
     public static void InitPostfix(NCharacterSelectButton __instance, CharacterModel character, ICharacterSelectButtonDelegate del, bool __state)
     {
-        if (__instance.GetAncestorOfType<NCustomRunScreen>() is not null || __state) return;
+        if (__state) return;
 
         if (__instance.GetNodeOrNull<NCharAltArrow>("CharAltArrow") is { } existingArrow)
         {

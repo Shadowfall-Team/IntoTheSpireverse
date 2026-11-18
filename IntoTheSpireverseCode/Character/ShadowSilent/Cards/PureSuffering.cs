@@ -41,7 +41,7 @@ public sealed class PureSuffering() : ShadowSilentCard(0, CardType.Attack, CardR
         await using AttackContext attackContext = await AttackContextCompatibility.CreateContextAsync(CombatState, choiceContext, cardPlay);
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
-            VfxCmd.PlayOnCreatureCenter(cardPlay.Target, VfxCmd.slashPath);
+            VfxCmdCompatibility.PlayOnCreatureCenter(cardPlay.Target, VfxCmd.slashPath);
             attackContext.AddHit(await CreatureCmdCompatibility.Damage(
                 choiceContext,
                 cardPlay.Target,

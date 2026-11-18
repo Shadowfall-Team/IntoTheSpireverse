@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +16,8 @@ public sealed class BoneStorm() : ShadowNecrobinderCard(3, CardType.Attack, Card
         new CalculationBaseVar(8m),
         new ExtraDamageVar(1m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
-            (decimal)PileType.Exhaust.GetPile(card.Owner).Cards.Count)
+            (decimal)PileType.Exhaust.GetPile(card.Owner).Cards.Count),
+        new SpireverseHitCountVar(2)
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -27,7 +29,7 @@ public sealed class BoneStorm() : ShadowNecrobinderCard(3, CardType.Attack, Card
     {
         if (CombatState == null) return;
         await DamageCmd.Attack(DynamicVars.CalculatedDamage)
-            .WithHitCount(2)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .FromCardCompatibility(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash")

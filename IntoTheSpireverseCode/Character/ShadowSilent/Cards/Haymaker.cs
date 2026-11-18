@@ -38,7 +38,7 @@ public sealed class Haymaker() : ShadowSilentCard(1, CardType.Attack, CardRarity
         await using AttackContext attackContext = await AttackContextCompatibility.CreateContextAsync(CombatState, choiceContext, cardPlay);
         await IntoTheSpireverseKeywords.ExecuteDevious(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue, async () =>
         {
-            VfxCmd.PlayOnCreatureCenter(cardPlay.Target, VfxCmd.bluntPath);
+            VfxCmdCompatibility.PlayOnCreatureCenter(cardPlay.Target, VfxCmd.bluntPath);
             attackContext.AddHit(await CreatureCmdCompatibility.Damage(
                 choiceContext,
                 cardPlay.Target,

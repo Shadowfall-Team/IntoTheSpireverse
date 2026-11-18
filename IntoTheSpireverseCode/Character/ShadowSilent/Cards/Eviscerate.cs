@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -18,7 +19,7 @@ public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRari
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(7m, ValueProp.Move),
-        new RepeatVar(3),
+        new SpireverseHitCountVar(3),
         new EnergyVar(1),
     ];
     
@@ -34,7 +35,7 @@ public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRari
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCardCompatibility(this, cardPlay)
             .Targeting(cardPlay.Target)
-            .WithHitCount(DynamicVars.Repeat.IntValue)
+            .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
     }
