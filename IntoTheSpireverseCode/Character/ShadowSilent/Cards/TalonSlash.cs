@@ -1,6 +1,7 @@
 using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
+using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,32 +14,26 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class TalonSlash() : ShadowSilentCard(2, CardType.Attack, CardRarity.Common, TargetType.RandomEnemy)
 {
     private const string _deviousKey = "Devious";
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(9m, ValueProp.Move),
-        new DynamicVar(_deviousKey, 0m),
-    ];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9, ValueProp.Move), new (_deviousKey, 0)];
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Devious];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-        IsUpgraded ? HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.DeviousX) : HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious),
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(IsUpgraded ? IntoTheSpireverseKeywords.DeviousX : IntoTheSpireverseKeywords.Devious)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (CombatState == null) return;
-        var repeats = await IntoTheSpireverseKeywords.ModifyDeviousRepeatCount(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCardCompatibility(this, cardPlay)
-                .TargetingRandomOpponents(CombatState)
-                .WithHitCount(repeats)
-                .WithHitFx(VfxCmd.slashPath)
-                .Execute(choiceContext);
-	}
+        if (CombatState is null) return;
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars[_deviousKey].UpgradeValueBy(1m);
+        var state = DeviousEffectLoopTracker.GetState(cardPlay);
+        if (!state.Initialized)
+        {
+            state.RepeatCount = Math.Max(0, await IntoTheSpireverseKeywords.ModifyDeviousRepeatCount(choiceContext, Owner, this, DynamicVars[_deviousKey].IntValue));
+            state.Initialized = true;
+        }
+
+        if (state.Iteration is not 0 || state.RepeatCount <= 0) return;
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCardCompatibility(this, cardPlay).TargetingRandomOpponents(CombatState).WithHitCount(state.RepeatCount).WithHitFx(VfxCmd.slashPath).Execute(choiceContext);
     }
+
+    protected override void OnUpgrade() => DynamicVars[_deviousKey].UpgradeValueBy(1);
 }
