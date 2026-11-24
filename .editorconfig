@@ -25,6 +25,8 @@ dotnet_style_qualification_for_property = false
 dotnet_style_qualification_for_method = false
 dotnet_style_qualification_for_event = false
 
+csharp_style_inlined_variable_declaration = true
+
 ### DotNet stuff
 dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first = true

@@ -23,8 +23,7 @@ public sealed class PowerCyclePower : IntoTheSpireversePower
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        int cycleCount;
-        if (cardPlay.Card.Owner != Owner.Player || !GetInternalData<Data>().amountsForPlayedCards.Remove(cardPlay.Card, out cycleCount) || cycleCount <= 0)
+        if (cardPlay.Card.Owner != Owner.Player || !GetInternalData<Data>().amountsForPlayedCards.Remove(cardPlay.Card, out int cycleCount) || cycleCount <= 0)
             return;
         Flash();
         await CycleCmd.Cycle(context, cardPlay.Card.Owner, cycleCount);

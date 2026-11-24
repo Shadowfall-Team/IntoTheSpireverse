@@ -33,8 +33,7 @@ public class IllusionPower : ShadowPowerModel
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int amount;
-        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
+        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out int amount) || amount <= 0)
             return;
         await CreatureCmd.GainBlock(Owner, amount, ValueProp.Unpowered, null, true);
     }
