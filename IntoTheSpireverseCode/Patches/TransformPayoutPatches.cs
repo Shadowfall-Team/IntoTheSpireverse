@@ -21,7 +21,7 @@ public interface ITransformPayout
 /// <see cref="CardModel.AfterTransformedFrom"/> is synchronous and payouts are async, so cards
 /// that pay out when transformed are settled once their <see cref="CardCmd.Transform"/> task ends.
 /// </summary>
-public static class TransformPayoutPatches
+internal static class TransformPayoutPatches
 {
     static readonly MethodInfo? v111AfterTransformedFrom;
     static readonly MethodInfo? v113AfterThisWasTransformedInto;
@@ -37,7 +37,7 @@ public static class TransformPayoutPatches
 
     [HarmonyPatch(typeof(CardCmd), nameof(CardCmd.Transform),
         [typeof(IEnumerable<CardTransformation>), typeof(Rng), typeof(CardPreviewStyle)])]
-    public static class TransformPayoutPatch
+    internal static class TransformPayoutPatch
     {
         public static void Prefix(ref IEnumerable<CardTransformation> transformations,
             out List<ITransformPayout> __state)
@@ -67,7 +67,7 @@ public static class TransformPayoutPatches
         else if (v113AfterThisWasTransformedInto is not null)
         {
             // TODO: Keep an eye out for if this breaks anything
-            v113AfterThisWasTransformedInto.Invoke(card, [card]);// this isn't accurate since its "transformed" into a potion, not a card. 
+            v113AfterThisWasTransformedInto.Invoke(card, [card]);// this isn't accurate since its "transformed" into a potion, not a card.
         }
         if (card is ITransformPayout payout)
             await payout.OnTransformedAway(choiceContext);

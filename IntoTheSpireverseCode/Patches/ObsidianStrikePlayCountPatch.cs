@@ -15,7 +15,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// the future ModifyCardPlayCount is changed to only apply to direct plays, this patch can be removed.
 /// </summary>
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.OnPlayWrapper), MethodType.Async)]
-public static class ObsidianStrikePlayCountPatch
+internal static class ObsidianStrikePlayCountPatch
 {
     private static readonly MethodInfo GeneratePlayCount = AccessTools.Method(typeof(CardModel), "GeneratePlayCount",
         [typeof(ICombatState), typeof(Creature)]);
@@ -32,7 +32,7 @@ public static class ObsidianStrikePlayCountPatch
     private static readonly FieldInfo TargetField = AccessTools.Field(StateMachine, "target");
     private static readonly FieldInfo AutoPlayField = AccessTools.Field(StateMachine, "isAutoPlay");
 
-    private static IEnumerable<CodeInstruction> Transpiler(
+    internal static IEnumerable<CodeInstruction> Transpiler(
         IEnumerable<CodeInstruction> instructions)
     {
         foreach (var instruction in instructions)

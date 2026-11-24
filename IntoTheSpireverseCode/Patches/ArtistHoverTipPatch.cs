@@ -12,7 +12,7 @@ using MegaCrit.Sts2.Core.Platform;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches
 {
     [HarmonyPatch(typeof(NHoverTipSet), "Init")]
-    public static class ArtHoverTipColorPatch
+    internal static class ArtHoverTipColorPatch
     {
         private static readonly ShaderMaterial ArtistHoverTipMaterial = ShaderUtils.GenerateHsv(0.2f, 1.35f, 0.9f);
 
@@ -59,7 +59,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches
         }
 
         [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> Transpiler(
+        internal static IEnumerable<CodeInstruction> Transpiler(
             IEnumerable<CodeInstruction> instructions
         )
         {

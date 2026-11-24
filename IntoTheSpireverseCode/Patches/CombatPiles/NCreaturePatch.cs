@@ -7,10 +7,10 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
 [HarmonyPatch(typeof(NCreature), "_Ready")]
-public static class NCreaturePatch
+internal static class NCreaturePatch
 {
     [HarmonyPostfix]
-    public static void Postfix(NCreature __instance)
+    internal static void Postfix(NCreature __instance)
     {
         if (!__instance.Entity.IsPlayer)
         {

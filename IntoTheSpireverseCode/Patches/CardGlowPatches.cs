@@ -4,10 +4,10 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.ShouldGlowGold), MethodType.Getter)]
-public class CardGlowGoldListenerPatch
+internal static class CardGlowGoldListenerPatch
 {
     [HarmonyPostfix]
-    static void Postfix(CardModel __instance, ref bool __result)
+    internal static void Postfix(CardModel __instance, ref bool __result)
     {
         if (!__result)
         {

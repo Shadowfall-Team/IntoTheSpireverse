@@ -18,10 +18,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// on load (until the name/signiature changes again)
 /// </summary>
 [HarmonyPatch]
-public static class RockTransformPatches
+internal static class RockTransformPatches
 {
     [HarmonyPatch(typeof(CardModel))]
-    public static class RockTransformFromPatch
+    internal static class RockTransformFromPatch
     {
         [HarmonyTargetMethod]
         static MethodInfo TargetMethod()
@@ -42,7 +42,7 @@ public static class RockTransformPatches
     }
 
     [HarmonyPatch(typeof(CardModel))]
-    public static class RockTransformToPatch
+    internal static class RockTransformToPatch
     {
         [HarmonyTargetMethod]
         static MethodInfo TargetMethod()

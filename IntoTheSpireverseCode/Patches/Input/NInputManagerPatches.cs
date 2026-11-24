@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
 
 [HarmonyPatch(typeof(NInputManager), nameof(NInputManager._UnhandledKeyInput))]
-public static class NInputManagerPatches
+internal static class NInputManagerPatches
 {
     public enum CaptureTarget
     {
@@ -40,7 +40,7 @@ public static class NInputManagerPatches
     };
 
     [HarmonyPrefix]
-    public static bool UnhandledKeyInputPrefix(InputEvent inputEvent)
+    internal static bool UnhandledKeyInputPrefix(InputEvent inputEvent)
     {
         var key = inputEvent as InputEventKey;
         if (key == null || key.IsEcho() || !key.Pressed)

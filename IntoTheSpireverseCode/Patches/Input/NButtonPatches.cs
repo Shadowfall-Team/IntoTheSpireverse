@@ -8,10 +8,10 @@ using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
 
 [HarmonyPatch(typeof(NButton), "_Input")]
-public static class NButtonPatches
+internal static class NButtonPatches
 {
     [HarmonyPrefix]
-    public static bool InputPrefix(NButton __instance, InputEvent inputEvent)
+    internal static bool InputPrefix(NButton __instance, InputEvent inputEvent)
     {
         if (__instance is not NCharacterSelectButton nCharacterSelectButton) return true;
         if (!__instance.IsVisibleInTree()) return true;

@@ -23,9 +23,9 @@ public static class GiantRockBuffTracker
 }
 
 [HarmonyPatch(typeof(CardModel), "CanonicalTags", MethodType.Getter)]
-public static class GiantRockPatches
+internal static class GiantRockPatches
 {
-    public static void Postfix(CardModel __instance, ref HashSet<CardTag> __result)
+    internal static void Postfix(CardModel __instance, ref HashSet<CardTag> __result)
     {
         if (__instance is GiantRock)
             __result.Add(IntoTheSpireverseCardTags.Rock);
@@ -33,9 +33,9 @@ public static class GiantRockPatches
 }
 
 [HarmonyPatch(typeof(CardModel), "AfterDowngraded")]
-public static class GiantRockDowngradePatch
+internal static class GiantRockDowngradePatch
 {
-    public static void Postfix(CardModel __instance)
+    internal static void Postfix(CardModel __instance)
     {
         if (__instance is GiantRock giant)
             giant.DynamicVars.Damage.BaseValue += GiantRockBuffTracker.Get(giant);

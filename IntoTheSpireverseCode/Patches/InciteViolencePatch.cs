@@ -5,12 +5,12 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch(typeof(Hook), nameof(Hook.ModifyDamage))]
-public static class InciteViolencePatch
+internal static class InciteViolencePatch
 {
     [ThreadStatic]
     public static bool IsIncitedAttack;
 
-    public static bool Prefix(decimal damage, ref decimal __result, out IEnumerable<AbstractModel> modifiers)
+    internal static bool Prefix(decimal damage, ref decimal __result, out IEnumerable<AbstractModel> modifiers)
     {
         if (!IsIncitedAttack)
         {

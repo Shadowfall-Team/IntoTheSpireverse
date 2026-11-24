@@ -5,10 +5,10 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch(typeof(PlayerCombatState), nameof(PlayerCombatState.HasEnoughResourcesFor))]
-public class OvercostListenerPatch
+internal static class OvercostListenerPatch
 {
     [HarmonyPostfix]
-    static void Postfix(CardModel card, ref bool __result)
+    internal static void Postfix(CardModel card, ref bool __result)
     {
         if (!__result)
         {
@@ -22,10 +22,10 @@ public class OvercostListenerPatch
 }
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.SpendResources))]
-public class BeforeEnergySpentListenerPatch
+internal static class BeforeEnergySpentListenerPatch
 {
     [HarmonyPrefix]
-    static async void Prefix(CardModel __instance)
+    internal static async void Prefix(CardModel __instance)
     {
         foreach (var model in __instance.Owner.Creature.CombatState!.IterateHookListeners().ToList())
         {

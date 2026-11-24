@@ -7,18 +7,18 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch(typeof(OrbCmd))]
-public static class OrbCmdSlotPatch
+internal static class OrbCmdSlotPatch
 {
     [HarmonyPostfix]
     [HarmonyPatch(nameof(OrbCmd.AddSlots))]
-    public static void AddSlotsPostfix(Player player)
+    internal static void AddSlotsPostfix(Player player)
     {
         UpdateAmmoButtonPosition(player);
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(nameof(OrbCmd.RemoveSlots))]
-    public static void RemoveSlotsPostfix(Player player)
+    internal static void RemoveSlotsPostfix(Player player)
     {
         UpdateAmmoButtonPosition(player);
     }

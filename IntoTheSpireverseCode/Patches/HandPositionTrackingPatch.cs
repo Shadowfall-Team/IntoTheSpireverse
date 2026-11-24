@@ -7,14 +7,14 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch(typeof(CardPile), nameof(CardPile.RemoveInternal))]
-public static class HandPositionTrackingPatch
+internal static class HandPositionTrackingPatch
 {
     // TODO remove extra logic once design is finalized
     internal static readonly Dictionary<CardModel, bool> WasLeftmostInHand = new();
     internal static readonly Dictionary<CardModel, bool> WasRightmostInHand = new();
     internal static readonly Dictionary<CardModel, List<CardModel>> AdjacentCards = new();
 
-    static void Prefix(CardPile __instance, CardModel card)
+    internal static void Prefix(CardPile __instance, CardModel card)
     {
         if (__instance.Type != PileType.Hand)
             return;
@@ -32,7 +32,7 @@ public static class HandPositionTrackingPatch
 }
 
 [HarmonyPatch(typeof(Hook), nameof(Hook.AfterCombatEnd))]
-public static class HandPositionTrackingCleanupPatch
+internal static class HandPositionTrackingCleanupPatch
 {
     static void Prefix()
     {

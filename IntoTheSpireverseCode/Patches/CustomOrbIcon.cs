@@ -7,10 +7,10 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.Patches;
 
 [HarmonyPatch(typeof(OrbModel), "Icon", MethodType.Getter)]
-internal class CustomOrbIcon
+internal static class CustomOrbIcon
 {
     [HarmonyPrefix]
-    private static bool UseCustomIcon(OrbModel __instance, ref CompressedTexture2D __result)
+    internal static bool UseCustomIcon(OrbModel __instance, ref CompressedTexture2D __result)
     {
         if (!(__instance is CustomOrbModel customOrbModel))
             return true;

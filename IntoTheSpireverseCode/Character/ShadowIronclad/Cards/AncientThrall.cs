@@ -54,11 +54,11 @@ public sealed class AncientThrall() : ShadowIroncladCard(0, CardType.Skill, Card
 }
 
 [HarmonyPatch]
-static class EnthralledPatch
+internal static class EnthralledPatch
 {
     [HarmonyPatch(typeof(Enthralled), nameof(Enthralled.ShouldPlay))]
     [HarmonyPostfix]
-    public static void ShouldPlay(CardModel card, ref bool __result)
+    internal static void ShouldPlay(CardModel card, ref bool __result)
     {
         if (!__result && card is AncientThrall)
         {

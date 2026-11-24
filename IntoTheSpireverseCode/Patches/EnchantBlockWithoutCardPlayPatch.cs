@@ -12,7 +12,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// Allows <c>EnchantBlockAdditive</c> and <c>EnchantBlockMultiplicative</c> to apply without a card source.
 /// Call <c>CreatureCmd.GainBlock</c> inside <see cref="WithEnchantment"/>.
 /// </summary>
-public static class EnchantBlockWithoutCardPlayPatch
+internal static class EnchantBlockWithoutCardPlayPatch
 {
     private static readonly SpireField<PlayerCombatState, EnchantmentModel> Enchantment = new(() =>
         null
@@ -67,9 +67,9 @@ public static class EnchantBlockWithoutCardPlayPatch
     }
 
     [HarmonyPatch(typeof(Hook), nameof(Hook.ModifyBlock))]
-    private static class Patch
+    internal static class Patch
     {
-        public static IEnumerable<CodeInstruction> Transpiler(
+        internal static IEnumerable<CodeInstruction> Transpiler(
             IEnumerable<CodeInstruction> instructions
         )
         {

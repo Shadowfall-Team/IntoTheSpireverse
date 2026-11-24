@@ -6,10 +6,10 @@ using MegaCrit.Sts2.Core.Nodes.Screens;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
 [HarmonyPatch(typeof(NCardPileScreen), "_Ready")]
-public static class NCardPileScreenReadyPatch
+internal static class NCardPileScreenReadyPatch
 {
     [HarmonyPostfix]
-    public static void ReadyPrefix(NCardPileScreen __instance)
+    internal static void ReadyPrefix(NCardPileScreen __instance)
     {
         if (__instance.Pile.Type != CargoCardPile.CargoPileType) return;
 

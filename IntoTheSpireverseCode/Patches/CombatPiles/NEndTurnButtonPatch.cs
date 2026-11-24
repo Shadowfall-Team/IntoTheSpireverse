@@ -6,10 +6,10 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
 [HarmonyPatch(typeof(NEndTurnButton), "_Ready")]
-public static class NEndTurnButtonPatch
+internal static class NEndTurnButtonPatch
 {
     [HarmonyPostfix]
-    public static void Postfix(NEndTurnButton __instance)
+    internal static void Postfix(NEndTurnButton __instance)
     {
         if (!IntoTheSpireverseConfig.ShowAmmoReminder) return;
 

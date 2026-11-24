@@ -10,10 +10,10 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.Patches;
 
 [HarmonyPatch(typeof(OrbModel), nameof(OrbModel.CreateSprite))]
-internal class CustomOrbCreateSprite
+internal static class CustomOrbCreateSprite
 {
     [HarmonyPrefix]
-    private static bool UseCustomCreateSprite(OrbModel __instance, ref Node2D __result)
+    internal static bool UseCustomCreateSprite(OrbModel __instance, ref Node2D __result)
     {
         if (!(__instance is CustomOrbModel customOrbModel))
             return true;

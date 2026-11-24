@@ -98,11 +98,11 @@ public sealed class BlindFuryPower : ShadowPowerModel
 }
 
 [HarmonyPatch]
-static class PaelsEyeCardsPlayedPatch
+internal static class PaelsEyeCardsPlayedPatch
 {
     [HarmonyPatch(typeof(PaelsEye), "AnyCardsPlayedThisTurn")]
     [HarmonyPostfix]
-    static void AnyCardsPlayedThisTurn(PaelsEye __instance, ref bool __result)
+    internal static void AnyCardsPlayedThisTurn(PaelsEye __instance, ref bool __result)
     {
         if (BlindFuryPlayedSingleton.DidBlindFuryPlayCardsThisTurn.Get(__instance.Owner.PlayerCombatState))
         {
