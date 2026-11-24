@@ -35,8 +35,7 @@ public sealed class BlunderGuard() : ShadowSilentCard(0, CardType.Power, CardRar
             DynamicVars.Power<BlunderGuardPower>().BaseValue,
             Owner.Creature, this);
 
-        if (power != null)
-            power.AddStrength(DynamicVars[StrengthKey].IntValue);
+        power?.AddStrength(DynamicVars[StrengthKey].IntValue);
     }
 
     protected override void OnUpgrade()

@@ -36,8 +36,7 @@ public sealed class Immobilize() : ShadowSilentCard(3, CardType.Skill, CardRarit
 
         var child = NPoisonImpactVfx.Create(cardPlay.Target);
         var instance = NCombatRoom.Instance;
-        if (instance != null)
-            instance.CombatVfxContainer.AddChildSafely(child);
+        instance?.CombatVfxContainer.AddChildSafely(child);
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<ImmobilizePower>(choiceContext, cardPlay.Target,
             DynamicVars[StrengthLossKey].BaseValue, Owner.Creature, this);

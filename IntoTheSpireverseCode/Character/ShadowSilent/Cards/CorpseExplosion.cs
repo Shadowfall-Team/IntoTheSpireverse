@@ -31,8 +31,7 @@ public sealed class CorpseExplosion() : ShadowSilentCard(2, CardType.Skill, Card
 
         var child = NPoisonImpactVfx.Create(cardPlay.Target);
         var instance = NCombatRoom.Instance;
-        if (instance != null)
-            instance.CombatVfxContainer.AddChildSafely(child);
+        instance?.CombatVfxContainer.AddChildSafely(child);
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
         await PowerCmd.Apply<PoisonPower>(
             choiceContext, cardPlay.Target, DynamicVars.Poison.BaseValue,

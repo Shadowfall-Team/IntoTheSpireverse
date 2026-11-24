@@ -68,9 +68,9 @@ public partial class NCharAltArrow : NGoldArrowButton
             {
                 v111SelectCharacter.Invoke(ClickDelegate, [parent, character]);
             }
-            else if (v113SelectCharacter is not null)
+            else
             {
-                v113SelectCharacter.Invoke(ClickDelegate, [parent]);
+                v113SelectCharacter?.Invoke(ClickDelegate, [parent]);
             }
         }
 

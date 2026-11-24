@@ -53,7 +53,7 @@ internal static class NCardModificationFlagPatch
 
         if (!Modification.IsModified(__instance.Model))
         {
-            if (flag != null) flag.Visible = false;
+            flag?.Visible = false;
             return;
         }
 

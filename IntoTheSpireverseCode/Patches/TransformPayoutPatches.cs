@@ -64,10 +64,10 @@ internal static class TransformPayoutPatches
         {
             v111AfterTransformedFrom.Invoke(card, []);
         }
-        else if (v113AfterThisWasTransformedInto is not null)
+        else
         {
             // TODO: Keep an eye out for if this breaks anything
-            v113AfterThisWasTransformedInto.Invoke(card, [card]);// this isn't accurate since its "transformed" into a potion, not a card.
+            v113AfterThisWasTransformedInto?.Invoke(card, [card]);// this isn't accurate since its "transformed" into a potion, not a card.
         }
         if (card is ITransformPayout payout)
             await payout.OnTransformedAway(choiceContext);
