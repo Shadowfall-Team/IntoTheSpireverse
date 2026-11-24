@@ -101,13 +101,13 @@ internal static class NInputManagerPatches
         if (key.Keycode == Key.Escape)
         {
             var (modifier, k) = binding.Get();
-            _capturingButton?.GetNodeOrNull<Label>("Label")!.Text = KeybindConfigUi.BindingLabel(modifier, k);
+            _capturingButton?.GetNodeOrNull<Label>("Label").Text = KeybindConfigUi.BindingLabel(modifier, k);
         }
         else
         {
             var newModifier = ModifierFromEvent(key);
             binding.Set((newModifier, key.Keycode));
-            _capturingButton?.GetNodeOrNull<Label>("Label")!.Text = KeybindConfigUi.BindingLabel(newModifier, key.Keycode);
+            _capturingButton?.GetNodeOrNull<Label>("Label").Text = KeybindConfigUi.BindingLabel(newModifier, key.Keycode);
         }
 
         _currentlyCapturing = CaptureTarget.None;
