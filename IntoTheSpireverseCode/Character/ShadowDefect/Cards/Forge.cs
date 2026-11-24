@@ -27,7 +27,7 @@ public sealed class Forge() : ShadowDefectCard(0, CardType.Skill, CardRarity.Com
             Owner,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
             null,
-            (AbstractModel)this)).FirstOrDefault<CardModel>();
+            this)).FirstOrDefault();
 
         if (discarded == null)
             return;

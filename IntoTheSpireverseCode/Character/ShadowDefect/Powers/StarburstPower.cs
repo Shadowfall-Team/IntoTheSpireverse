@@ -24,10 +24,10 @@ public sealed class StarburstPower : IntoTheSpireversePower
 
     public override async Task AfterOrbEvoked(PlayerChoiceContext choiceContext, OrbModel orb, IEnumerable<Creature> targets)
     {
-        if (orb.Owner == base.Owner.Player && orb is EntropyOrb)
+        if (orb.Owner == Owner.Player && orb is EntropyOrb)
         {
             Flash();
-            await Shiv.CreateInHand(base.Owner.Player, base.Amount, base.CombatState);
+            await Shiv.CreateInHand(Owner.Player, Amount, CombatState);
         }
     }
 }

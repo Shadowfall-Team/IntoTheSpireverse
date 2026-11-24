@@ -27,13 +27,13 @@ public sealed class Expansion : ShadowDefectCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-        await OrbCmd.AddSlots(base.Owner, base.DynamicVars.Repeat.IntValue);
-        await OrbCmd.Channel<EntropyOrb>(choiceContext, base.Owner);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await OrbCmd.AddSlots(Owner, DynamicVars.Repeat.IntValue);
+        await OrbCmd.Channel<EntropyOrb>(choiceContext, Owner);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Repeat.UpgradeValueBy(1m);
+        DynamicVars.Repeat.UpgradeValueBy(1m);
     }
 }

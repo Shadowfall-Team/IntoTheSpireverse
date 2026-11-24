@@ -11,13 +11,13 @@ public sealed class PowerCyclePower : IntoTheSpireversePower
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    protected override object InitInternalData() => (object)new PowerCyclePower.Data();
+    protected override object InitInternalData() => new Data();
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner != this.Owner.Player || cardPlay.Card.Type != CardType.Power)
+        if (cardPlay.Card.Owner != Owner.Player || cardPlay.Card.Type != CardType.Power)
             return Task.CompletedTask;
-        this.GetInternalData<PowerCyclePower.Data>().amountsForPlayedCards.Add(cardPlay.Card, this.Amount);
+        GetInternalData<Data>().amountsForPlayedCards.Add(cardPlay.Card, Amount);
         return Task.CompletedTask;
     }
 

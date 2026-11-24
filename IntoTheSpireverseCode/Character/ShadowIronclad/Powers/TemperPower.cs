@@ -30,6 +30,6 @@ public sealed class TemperPower : ShadowPowerModel
         if (skillsThisTurn > 1) return;
 
         Flash();
-        await PowerCmd.Apply<TemperTemporaryStrengthPower>(choiceContext, Owner, (decimal)Amount, Owner, null);
+        await PowerCmd.Apply<TemperTemporaryStrengthPower>(choiceContext, Owner, Amount, Owner, null);
     }
 }

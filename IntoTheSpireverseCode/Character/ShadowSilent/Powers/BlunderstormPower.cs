@@ -23,7 +23,7 @@ public class BlunderstormPower : ShadowPowerModel
 
     public override Task AfterModifyingCardPlayCount(CardModel card)
     {
-        this.Flash();
+        Flash();
         return Task.CompletedTask;
     }
 }

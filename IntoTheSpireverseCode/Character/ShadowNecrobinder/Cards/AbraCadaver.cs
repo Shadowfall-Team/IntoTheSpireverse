@@ -28,7 +28,7 @@ public sealed class AbraCadaver() : ShadowNecrobinderCard(0, CardType.Skill, Car
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
-        Decimal amount = ((CalculatedVar)DynamicVars[_calculatedStrKey]).Calculate(null);
+        decimal amount = ((CalculatedVar)DynamicVars[_calculatedStrKey]).Calculate(null);
         await PowerCmd.Apply<AbraCadaverPower>(choiceContext, Owner.Creature, amount, Owner.Creature, this);
     }
 

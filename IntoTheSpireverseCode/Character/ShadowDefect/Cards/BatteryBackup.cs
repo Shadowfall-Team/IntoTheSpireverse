@@ -17,7 +17,7 @@ public sealed class BatteryBackup : ShadowDefectCard
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
     {
-        base.EnergyHoverTip
+        EnergyHoverTip
     };
 
     public BatteryBackup()
@@ -27,20 +27,20 @@ public sealed class BatteryBackup : ShadowDefectCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         // TODO: confirm the property name for max energy per turn on Owner or PlayerCombatState
-        int maxEnergy = base.Owner.MaxEnergy;
-        int currentEnergy = base.Owner.PlayerCombatState?.Energy ?? 0;
-        int bonusEnergy = base.IsUpgraded ? base.DynamicVars.Energy.IntValue : 0;
+        int maxEnergy = Owner.MaxEnergy;
+        int currentEnergy = Owner.PlayerCombatState?.Energy ?? 0;
+        int bonusEnergy = IsUpgraded ? DynamicVars.Energy.IntValue : 0;
 
         int toGain = (maxEnergy - currentEnergy) + bonusEnergy;
         if (toGain > 0)
-            await PlayerCmd.GainEnergy(toGain, base.Owner);
+            await PlayerCmd.GainEnergy(toGain, Owner);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Energy.UpgradeValueBy(1m);
+        DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }

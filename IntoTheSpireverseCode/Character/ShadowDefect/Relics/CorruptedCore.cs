@@ -18,7 +18,7 @@ public class CorruptedCore : ShadowDefectRelic
     {
         get
         {
-            return (IEnumerable<DynamicVar>)[new DynamicVar("Entropy", 1M)];
+            return [new DynamicVar("Entropy", 1M)];
         }
     }
 
@@ -26,7 +26,7 @@ public class CorruptedCore : ShadowDefectRelic
     {
         get
         {
-            return (IEnumerable<IHoverTip>)new IHoverTip[2]
+            return new IHoverTip[2]
             {
                 HoverTipFactory.Static(StaticHoverTip.Channeling),
                 HoverTipFactory.FromOrb<EntropyOrb>()

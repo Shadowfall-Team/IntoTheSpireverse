@@ -22,7 +22,7 @@ public sealed class DevilsWineModification : Modification
     public override LocString GetLoc(string subKey = CardTextSubKey)
     {
         var loc = new LocString("potions", $"{SourceCardId.Entry}.{subKey}");
-        loc.Add("Amount", (decimal)Amount);
+        loc.Add("Amount", Amount);
         DynamicVars.AddTo(loc);
         return loc;
     }
@@ -31,7 +31,7 @@ public sealed class DevilsWineModification : Modification
     {
         if (cardPlay.Card != Owner) return;
 
-        await CreatureCmdCompatibility.Damage(choiceContext, Owner.Owner.Creature, (decimal)Amount,
+        await CreatureCmdCompatibility.Damage(choiceContext, Owner.Owner.Creature, Amount,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, Owner, cardPlay);
     }
 }

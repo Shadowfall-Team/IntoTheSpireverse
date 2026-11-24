@@ -18,15 +18,15 @@ public sealed class Process() : ShadowDefectCard(1, CardType.Skill, CardRarity.R
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        List<CardModel> cards = PileType.Draw.GetPile(base.Owner).Cards.ToList();
+        List<CardModel> cards = PileType.Draw.GetPile(Owner).Cards.ToList();
 
         CardModel? selected = (await CardSelectCmd.FromSimpleGrid(
             choiceContext,
             cards,
-            base.Owner,
-            new CardSelectorPrefs(base.SelectionScreenPrompt, 1))).FirstOrDefault();
+            Owner,
+            new CardSelectorPrefs(SelectionScreenPrompt, 1))).FirstOrDefault();
 
         if (selected == null)
             return;
@@ -37,13 +37,13 @@ public sealed class Process() : ShadowDefectCard(1, CardType.Skill, CardRarity.R
 
         for (int i = 0; i < cost; i++)
         {
-            CardModel voidCard = base.CombatState.CreateCard<Void>(base.Owner);
+            CardModel voidCard = CombatState.CreateCard<Void>(Owner);
             CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(voidCard, PileType.Discard, Owner));
         }
     }
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        EnergyCost.UpgradeBy(-1);
     }
 }

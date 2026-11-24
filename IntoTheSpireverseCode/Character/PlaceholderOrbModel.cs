@@ -15,7 +15,7 @@ public abstract class PlaceholderOrbModel : CustomOrbModel
     /// </summary>
     public override string? CustomSpritePath
     {
-        get => "orbs/orb_visuals/" + this.PlaceholderID;
+        get => "orbs/orb_visuals/" + PlaceholderID;
     }
 
     /// <summary>
@@ -23,6 +23,6 @@ public abstract class PlaceholderOrbModel : CustomOrbModel
     /// </summary>
     public override string? CustomIconPath
     {
-        get => ImageHelper.GetImagePath($"orbs/{this.PlaceholderID}.png");
+        get => ImageHelper.GetImagePath($"orbs/{PlaceholderID}.png");
     }
 }

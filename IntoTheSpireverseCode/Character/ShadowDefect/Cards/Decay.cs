@@ -17,5 +17,5 @@ public sealed class Decay() : ShadowDefectCard(1, CardType.Skill, CardRarity.Bas
         await CycleCmd.Cycle(choiceContext, source.Owner);
     }
 
-    protected override void OnUpgrade() => this.EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

@@ -14,9 +14,9 @@ public class HorrorPower : ShadowPowerModel, IModifyDamageMultiplicative
 
     public override int DisplayAmount => 1 + Amount / 100;
 
-    public Decimal ModifyDamageMultiplicativeCompability(
+    public decimal ModifyDamageMultiplicativeCompability(
         Creature? target,
-        Decimal amount,
+        decimal amount,
         ValueProp props,
         Creature? dealer,
         CardModel? cardSource,

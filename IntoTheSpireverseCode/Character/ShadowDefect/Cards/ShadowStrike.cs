@@ -24,10 +24,10 @@ public sealed class ShadowStrike : ShadowDefectCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        List<CardModel> hand = PileType.Hand.GetPile(base.Owner).Cards.ToList();
+        List<CardModel> hand = PileType.Hand.GetPile(Owner).Cards.ToList();
         IEnumerable<CardModel> selected = await CardSelectCmd.FromHandForDiscard(
             choiceContext,
-            base.Owner,
+            Owner,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, minCount: 0, hand.Count),
             null,
             this);
@@ -41,10 +41,10 @@ public sealed class ShadowStrike : ShadowDefectCard
 
         if (discarded > 0)
         {
-            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .WithHitCount(discarded)
                 .FromCardCompatibility(this, cardPlay)
-                .TargetingRandomOpponents(base.CombatState)
+                .TargetingRandomOpponents(CombatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);
         }
@@ -52,6 +52,6 @@ public sealed class ShadowStrike : ShadowDefectCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }

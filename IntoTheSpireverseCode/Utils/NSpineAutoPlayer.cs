@@ -8,8 +8,8 @@ public partial class NSpineAutoPlayer : Node
 {
     public override void _Ready()
     {
-        MegaSprite sprite = new MegaSprite((Variant)(GodotObject)this.GetParent());
-        this.RunWhenSpineReady(sprite, (Action<MegaAnimationState>)(animState =>
+        MegaSprite sprite = new MegaSprite((Variant)GetParent());
+        this.RunWhenSpineReady(sprite, (animState =>
         {
             IReadOnlyList<string> animationNames = sprite.GetSkeleton().GetData().GetAnimationNames();
             if (animationNames.Count != 1)

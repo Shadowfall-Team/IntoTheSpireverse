@@ -74,7 +74,7 @@ public abstract class Modification : CardModifier
     public override LocString GetLoc(string subKey = CardTextSubKey)
     {
         var loc = new LocString("cards", $"{SourceCardId.Entry}.{subKey}");
-        loc.Add("Amount", (decimal)Amount);
+        loc.Add("Amount", Amount);
         DynamicVars.AddTo(loc);
         return loc;
     }

@@ -41,7 +41,7 @@ public class ShadowRegent : PlaceholderCharacterModel, IAltCharacter, IParallelS
     [
         (ModelDb.Card<KinglyKick>(), ModelDb.Card<VanillaKinglyKick>()),
         (ModelDb.Card<KinglyPunch>(), ModelDb.Card<VanillaKinglyPunch>()),
-        (ModelDb.Card<Cards.Supermassive>(), ModelDb.Card<VanillaSupermassive>())
+        (ModelDb.Card<Supermassive>(), ModelDb.Card<VanillaSupermassive>())
     ];
 
     public override int StartingHp => 75;

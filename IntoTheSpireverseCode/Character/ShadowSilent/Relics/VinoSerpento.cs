@@ -62,10 +62,10 @@ public class VinoSerpento : ShadowSilentRelic
         return Task.CompletedTask;
     }
 
-    public override Decimal ModifyPowerAmountGivenAdditive(
+    public override decimal ModifyPowerAmountGivenAdditive(
         PowerModel power,
         Creature giver,
-        Decimal amount,
+        decimal amount,
         Creature? target,
         CardModel? cardSource)
     {

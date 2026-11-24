@@ -24,12 +24,12 @@ public sealed class EclipseEmbracePower : IntoTheSpireversePower
 
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool _)
     {
-        if (card.Owner.Creature != base.Owner || card is not Void)
+        if (card.Owner.Creature != Owner || card is not Void)
         {
             return;
         }
         Flash();
-        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, base.Owner, base.Amount, base.Owner, null);
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner, Amount, Owner, null);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, Owner, Amount, Owner, null);
     }
 }

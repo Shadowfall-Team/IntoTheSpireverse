@@ -35,21 +35,21 @@ public sealed class ColdWinds : ShadowDefectCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (Owner.PlayerCombatState == null) return;
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        List<OrbModel> toEvoke = base.Owner.PlayerCombatState.OrbQueue.Orbs
+        List<OrbModel> toEvoke = Owner.PlayerCombatState.OrbQueue.Orbs
             .Where(o => o is not FrostOrb)
             .ToList();
 
         foreach (OrbModel orb in toEvoke)
         {
-            await EvokeOrb(choiceContext, base.Owner, orb, dequeue: true);
+            await EvokeOrb(choiceContext, Owner, orb, dequeue: true);
             await Cmd.CustomScaledWait(0.1f, 0.25f);
         }
 
         int frostCount = toEvoke.Count + 1;
         for (int i = 0; i < frostCount; i++)
-            await OrbCmd.Channel<FrostOrb>(choiceContext, base.Owner);
+            await OrbCmd.Channel<FrostOrb>(choiceContext, Owner);
     }
 
     protected override void OnUpgrade()

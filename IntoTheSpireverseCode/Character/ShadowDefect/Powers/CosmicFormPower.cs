@@ -18,12 +18,12 @@ public sealed class CosmicFormPower : IntoTheSpireversePower
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player != base.Owner.Player)
+        if (player != Owner.Player)
         {
             return;
         }
         Flash();
-        await PlayerCmd.GainEnergy(base.Amount, player);
+        await PlayerCmd.GainEnergy(Amount, player);
         await CardPileCmd.Draw(choiceContext, Amount, player);
         List<CardModel> list = (await CardSelectCmd.FromHandForDiscard(choiceContext, player, new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, Amount), null, this)).ToList();
         if (list.Count != 0)

@@ -12,7 +12,7 @@ public sealed class EclipseEmbrace : ShadowDefectCard
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
     {
-        base.EnergyHoverTip,
+        EnergyHoverTip,
         HoverTipFactory.FromCard<Void>(),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     };
@@ -26,12 +26,12 @@ public sealed class EclipseEmbrace : ShadowDefectCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<EclipseEmbracePower>(choiceContext, base.Owner.Creature, 1m, base.Owner.Creature, this);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        await PowerCmd.Apply<EclipseEmbracePower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        EnergyCost.UpgradeBy(-1);
     }
 }

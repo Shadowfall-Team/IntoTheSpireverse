@@ -19,10 +19,10 @@ public partial class NIroncladVfx : Node
     public override void _Ready()
     {
         _parent = GetParent<Node2D>();
-        _slashShaderMat = new MegaSlotNode((Variant)(GodotObject)_parent.GetNode((NodePath)"SlashVfxSlot")).GetNormalMaterial() as ShaderMaterial;
+        _slashShaderMat = new MegaSlotNode((Variant)_parent.GetNode((NodePath)"SlashVfxSlot")).GetNormalMaterial() as ShaderMaterial;
         if (_slashShaderMat != null) _slashStepBase = (Vector2)_slashShaderMat.GetShaderParameter(_step);
         _eyeFireTex = _parent.GetNode<TextureRect>((NodePath)"EyeSlot/EyeFire");
-        _megaSprite = new MegaSprite((Variant)(GodotObject)_parent);
+        _megaSprite = new MegaSprite((Variant)_parent);
         _megaSprite.ConnectAnimationEvent(Callable.From(new Action<GodotObject, GodotObject, GodotObject, GodotObject>(OnAnimationEvent)));
         _megaSprite.ConnectAnimationStarted(Callable.From(new Action<GodotObject, GodotObject, GodotObject>(OnAnimationStart)));
         OnClearVfx();

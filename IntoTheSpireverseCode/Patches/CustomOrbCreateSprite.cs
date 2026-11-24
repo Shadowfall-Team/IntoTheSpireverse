@@ -26,7 +26,7 @@ internal class CustomOrbCreateSprite
             MegaCrit.Sts2.Core.Helpers.SceneHelper.GetScenePath(spritePath)
         ).Instantiate<Node2D>();
 
-        new MegaSprite((Variant)(GodotObject)sprite.GetNode((NodePath)"SpineSkeleton"))
+        new MegaSprite((Variant)sprite.GetNode((NodePath)"SpineSkeleton"))
             .GetAnimationState()
             .SetAnimationCompat("idle_loop");
 

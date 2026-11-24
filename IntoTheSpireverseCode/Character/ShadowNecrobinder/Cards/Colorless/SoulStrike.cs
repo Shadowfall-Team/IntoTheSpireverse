@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 
@@ -42,7 +41,7 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
     public static async Task<IEnumerable<SoulStrike>> CreateInHand(Player owner, int amount, ICombatState combatState)
     {
         var soulStrikes = SoulStrike.Create(owner, amount, combatState).ToList();
-        await CardPileCmd.AddGeneratedCardsToCombat((IEnumerable<CardModel>)soulStrikes, PileType.Hand, owner);
+        await CardPileCmd.AddGeneratedCardsToCombat(soulStrikes, PileType.Hand, owner);
         return soulStrikes;
     }
 

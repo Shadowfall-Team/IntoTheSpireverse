@@ -23,5 +23,5 @@ public sealed class Trinvoke() : ShadowDefectCard(1, CardType.Skill, CardRarity.
         }
     }
 
-    protected override void OnUpgrade() => this.EnergyCost.UpgradeBy(-1);
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

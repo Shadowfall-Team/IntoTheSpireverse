@@ -13,7 +13,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Ca
 
 public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    private Decimal _additionalHits;
+    private decimal _additionalHits;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -31,7 +31,7 @@ public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, C
         IntoTheSpireverseKeywords.Linger
     ];
 
-    private Decimal AdditionalHits
+    private decimal AdditionalHits
     {
         get => _additionalHits;
         set

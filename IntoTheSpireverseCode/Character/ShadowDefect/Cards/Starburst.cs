@@ -30,9 +30,9 @@ public sealed class Starburst : ShadowDefectCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-        if (base.IsUpgraded)
-            await OrbCmd.Channel<EntropyOrb>(choiceContext, base.Owner);
-        await PowerCmd.Apply<StarburstPower>(choiceContext, base.Owner.Creature, base.DynamicVars.Cards.BaseValue, base.Owner.Creature, this);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        if (IsUpgraded)
+            await OrbCmd.Channel<EntropyOrb>(choiceContext, Owner);
+        await PowerCmd.Apply<StarburstPower>(choiceContext, Owner.Creature, DynamicVars.Cards.BaseValue, Owner.Creature, this);
     }
 }

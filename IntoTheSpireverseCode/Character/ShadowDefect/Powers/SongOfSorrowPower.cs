@@ -25,7 +25,7 @@ public sealed class SongOfSorrowPower : IntoTheSpireversePower
         if (creator == card.Owner && card is Void)
         {
             Flash();
-            await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), base.CombatState.HittableEnemies, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null, null);
+            await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(), CombatState.HittableEnemies, Amount, ValueProp.Unblockable | ValueProp.Unpowered, Owner, null, null);
         }
     }
 }

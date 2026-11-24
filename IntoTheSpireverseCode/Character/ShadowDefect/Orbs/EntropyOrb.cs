@@ -17,8 +17,8 @@ public class EntropyOrb : PlaceholderOrbModel
 
     public override Color DarkenedColor => new Color("796606");
 
-    public override Decimal PassiveVal => this.ModifyOrbValue(5M);
-    public override Decimal EvokeVal => this.ModifyOrbValue(1M);
+    public override decimal PassiveVal => ModifyOrbValue(5M);
+    public override decimal EvokeVal => ModifyOrbValue(1M);
 
     public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
     {

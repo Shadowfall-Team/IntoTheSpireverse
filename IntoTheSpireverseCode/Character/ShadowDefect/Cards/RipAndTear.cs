@@ -34,7 +34,7 @@ public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRari
             Owner,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
             null,
-            (AbstractModel)this)).FirstOrDefault<CardModel>()!;
+            this)).FirstOrDefault()!;
 
         if (card == null)
             return;

@@ -19,7 +19,7 @@ public sealed class Altar : ShadowDefectCard
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
     {
-        base.EnergyHoverTip,
+        EnergyHoverTip,
         HoverTipFactory.FromCard<Void>(),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
     };
@@ -31,11 +31,11 @@ public sealed class Altar : ShadowDefectCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         CardModel? selected = (await CardSelectCmd.FromHand(
             context: choiceContext,
-            player: base.Owner,
+            player: Owner,
             prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1),
             filter: null,
             source: this)).FirstOrDefault();
@@ -47,11 +47,11 @@ public sealed class Altar : ShadowDefectCard
         await CardCmdCompatibility.Exhaust(choiceContext, selected);
 
         if (wasVoid)
-            await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Energy.UpgradeValueBy(1m);
+        DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }

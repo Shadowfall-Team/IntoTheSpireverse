@@ -13,9 +13,9 @@ public sealed class ShellbackModification : Modification
 
     protected override ModelId SourceCardId => ModelDb.Card<Shellback>().Id;
 
-    public override Decimal ModifyBlockAdditive(
+    public override decimal ModifyBlockAdditive(
         Creature target,
-        Decimal block,
+        decimal block,
         ValueProp props,
         CardModel? cardSource,
         CardPlay? cardPlay) =>

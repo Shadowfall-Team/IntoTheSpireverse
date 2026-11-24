@@ -12,7 +12,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Ca
 public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const string _lingerBlockKey = "LingerBlock";
-    private Decimal _blockReduction;
+    private decimal _blockReduction;
 
     public override bool GainsBlock => true;
 
@@ -32,7 +32,7 @@ public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRa
         IntoTheSpireverseKeywords.Linger
     ];
 
-    private Decimal BlockReduction
+    private decimal BlockReduction
     {
         get => _blockReduction;
         set

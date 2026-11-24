@@ -16,7 +16,7 @@ public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRa
     // Rarity and the upgrade were not specified in the draft document, so consider them placeholder
 
     private const string _increaseKey = "Increase";
-    private Decimal _extraDamageFromLinger;
+    private decimal _extraDamageFromLinger;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -34,7 +34,7 @@ public sealed class Harvest() : ShadowNecrobinderCard(1, CardType.Attack, CardRa
         IntoTheSpireverseKeywords.Linger
     ];
 
-    private Decimal ExtraDamageFromLinger
+    private decimal ExtraDamageFromLinger
     {
         get => _extraDamageFromLinger;
         set

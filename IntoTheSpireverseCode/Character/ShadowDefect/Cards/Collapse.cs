@@ -18,7 +18,7 @@ public sealed class Collapse() : ShadowDefectCard(0, CardType.Skill, CardRarity.
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        int numOfOrbs = this.ResolveEnergyXValue();
+        int numOfOrbs = ResolveEnergyXValue();
         if (IsUpgraded)
             ++numOfOrbs;
 

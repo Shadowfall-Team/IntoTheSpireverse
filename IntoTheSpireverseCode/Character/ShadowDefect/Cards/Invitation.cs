@@ -31,10 +31,10 @@ public sealed class Invitation : ShadowDefectCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-        List<CardModel> candidates = PileType.Draw.GetPile(base.Owner).Cards
-            .Concat(PileType.Discard.GetPile(base.Owner).Cards)
+        List<CardModel> candidates = PileType.Draw.GetPile(Owner).Cards
+            .Concat(PileType.Discard.GetPile(Owner).Cards)
             .Where(c => c.Type == CardType.Status || c.Type == CardType.Curse)
             .ToList();
 
@@ -44,15 +44,15 @@ public sealed class Invitation : ShadowDefectCard
         IEnumerable<CardModel> selected = await CardSelectCmd.FromSimpleGrid(
             choiceContext,
             candidates,
-            base.Owner,
-            new CardSelectorPrefs(base.SelectionScreenPrompt, base.DynamicVars.Cards.IntValue));
+            Owner,
+            new CardSelectorPrefs(SelectionScreenPrompt, DynamicVars.Cards.IntValue));
 
         await CardPileCmd.Add(selected, PileType.Hand);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Block.UpgradeValueBy(1m);
-        base.DynamicVars.Cards.UpgradeValueBy(1m);
+        DynamicVars.Block.UpgradeValueBy(1m);
+        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }

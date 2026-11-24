@@ -17,9 +17,9 @@ public class ThousandCutsPower : ShadowPowerModel
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != this.Owner)
+        if (cardPlay.Card.Owner.Creature != Owner)
             return Task.CompletedTask;
-        this.GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, this.Amount);
+        GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, Amount);
         return Task.CompletedTask;
     }
 

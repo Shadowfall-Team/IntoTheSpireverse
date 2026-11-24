@@ -23,7 +23,7 @@ public sealed class TheLaw : ShadowDefectCard
         {
             AssertMutable();
             _clawCount = value;
-            base.DynamicVars.Cards.BaseValue = _clawCount;
+            DynamicVars.Cards.BaseValue = _clawCount;
         }
     }
 
@@ -31,11 +31,11 @@ public sealed class TheLaw : ShadowDefectCard
     [SavedProperty]
     public int ExtraCount
     {
-        get => this._extraCount;
+        get => _extraCount;
         set
         {
-            this.AssertMutable();
-            this._extraCount = value;
+            AssertMutable();
+            _extraCount = value;
         }
     }
 
@@ -44,12 +44,12 @@ public sealed class TheLaw : ShadowDefectCard
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new CardsVar(ClawCount),
-        (DynamicVar) new IntVar("Increase", 1M)
+        new IntVar("Increase", 1M)
     };
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
     {
-        HoverTipFactory.FromCard<Claw>(this.IsUpgraded)
+        HoverTipFactory.FromCard<Claw>(IsUpgraded)
     };
 
     public TheLaw()
@@ -60,12 +60,12 @@ public sealed class TheLaw : ShadowDefectCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
         List<CardModel> generated = new List<CardModel>();
         for (int i = 0; i < ClawCount; i++)
         {
-            CardModel claw = base.CombatState.CreateCard<Claw>(base.Owner);
+            CardModel claw = CombatState.CreateCard<Claw>(Owner);
             await CardPileCmd.AddGeneratedCardToCombat(claw, PileType.Hand, Owner);
             generated.Add(claw);
         }
@@ -76,7 +76,7 @@ public sealed class TheLaw : ShadowDefectCard
             CardCmd.Upgrade(card);
 
         BuffFromPlay();
-        if (!(this.DeckVersion is TheLaw deckVersion))
+        if (!(DeckVersion is TheLaw deckVersion))
             return;
         deckVersion.BuffFromPlay();
     }

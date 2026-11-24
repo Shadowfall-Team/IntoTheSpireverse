@@ -18,7 +18,7 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
     public override bool GainsBlock => true;
     protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Scale];
 
-    private Decimal CurrentBlock;
+    private decimal CurrentBlock;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust, CardKeyword.Retain];
 
@@ -54,7 +54,7 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
         return scales;
     }
 
-    public void AddBlock(Decimal amount)
+    public void AddBlock(decimal amount)
     {
         BlockVar block = DynamicVars.Block;
         block.BaseValue += amount;

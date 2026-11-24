@@ -144,7 +144,7 @@ public static class CreatureCmdCompatibility
     // For Hijack compatibility
     private static readonly LoseBlockDel LoseBlockImpl = BuildLoseBlock();
 
-    public static Task LoseBlock(PlayerChoiceContext choiceContext, Creature target, Decimal amount, Creature? remover)
+    public static Task LoseBlock(PlayerChoiceContext choiceContext, Creature target, decimal amount, Creature? remover)
     {
         return LoseBlockImpl(choiceContext, target, amount, remover);
     }

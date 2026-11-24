@@ -10,7 +10,7 @@ public static class InciteViolencePatch
     [ThreadStatic]
     public static bool IsIncitedAttack;
 
-    public static bool Prefix(Decimal damage, ref Decimal __result, out IEnumerable<AbstractModel> modifiers)
+    public static bool Prefix(decimal damage, ref decimal __result, out IEnumerable<AbstractModel> modifiers)
     {
         if (!IsIncitedAttack)
         {

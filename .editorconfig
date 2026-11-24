@@ -19,6 +19,12 @@ tab_width = 4
 
 trim_trailing_whitespace = true
 
+# Don't use unnecessssssary this./base. prefixes
+dotnet_style_qualification_for_field = false
+dotnet_style_qualification_for_property = false
+dotnet_style_qualification_for_method = false
+dotnet_style_qualification_for_event = false
+
 ### DotNet stuff
 dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first = true

@@ -28,7 +28,7 @@ public partial class NRegentVfx : Node
     public override void _Ready()
     {
         _parent = GetParent<Node2D>();
-        _animController = new MegaSprite((Variant)(GodotObject)_parent);
+        _animController = new MegaSprite((Variant)_parent);
         _animController.ConnectAnimationEvent(Callable.From(new Action<GodotObject, GodotObject, GodotObject, GodotObject>(OnAnimationEvent)));
         _animController.ConnectAnimationStarted(Callable.From(new Action<GodotObject, GodotObject, GodotObject>(OnAnimationStart)));
         _deathParticlesArm = _parent.GetNode<GpuParticles2D>("SpineArmBone/Particles");

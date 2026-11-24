@@ -37,6 +37,6 @@ public sealed class WhiteHole() : ShadowDefectCard(0, CardType.Skill, CardRarity
         await Cmd.Wait(0.5f);
     }
 
-    protected override void OnUpgrade() => this.RemoveKeyword(CardKeyword.Exhaust);
+    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
 }
 

@@ -28,17 +28,17 @@ public sealed class ColdFront : ShadowDefectCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         IEnumerable<CardModel> selected = await CardSelectCmd.FromHandForDiscard(
             choiceContext,
-            base.Owner,
-            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, minCount: 0, base.DynamicVars.Cards.IntValue),
+            Owner,
+            new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, minCount: 0, DynamicVars.Cards.IntValue),
             null,
             this);
         foreach (CardModel card in selected)
         {
             await CardCmd.Discard(choiceContext, card);
-            await OrbCmd.Channel<FrostOrb>(choiceContext, base.Owner);
+            await OrbCmd.Channel<FrostOrb>(choiceContext, Owner);
         }
     }
 

@@ -18,28 +18,28 @@ public partial class NRegentCharacterSelectBg : Control
 
     public override void _Ready()
     {
-        _spineController = new MegaSprite((Variant)(GodotObject)GetNode((NodePath)"SpineSprite"));
+        _spineController = new MegaSprite((Variant)GetNode((NodePath)"SpineSprite"));
         _sphereGuardianHover = GetNode<Control>((NodePath)"SphereGuardianHover");
-        _sphereGuardianHover.Connect(Control.SignalName.MouseEntered, Callable.From((Action)(() => SetSkin("spheric guardian constellation"))));
-        _sphereGuardianHover.Connect(Control.SignalName.MouseExited, Callable.From((Action)(() => SetSkin("normal"))));
+        _sphereGuardianHover.Connect(Control.SignalName.MouseEntered, Callable.From(() => SetSkin("spheric guardian constellation")));
+        _sphereGuardianHover.Connect(Control.SignalName.MouseExited, Callable.From(() => SetSkin("normal")));
         _decaHover = GetNode<Control>((NodePath)"DecaHover");
-        _decaHover.Connect(Control.SignalName.MouseEntered, Callable.From((Action)(() => SetSkin("deca outline"))));
-        _decaHover.Connect(Control.SignalName.MouseExited, Callable.From((Action)(() => SetSkin("normal"))));
+        _decaHover.Connect(Control.SignalName.MouseEntered, Callable.From(() => SetSkin("deca outline")));
+        _decaHover.Connect(Control.SignalName.MouseExited, Callable.From(() => SetSkin("normal")));
         _sentryHover = GetNode<Control>((NodePath)"SentryHover");
-        _sentryHover.Connect(Control.SignalName.MouseEntered, Callable.From((Action)(() => SetSkin("sentry constellation"))));
-        _sentryHover.Connect(Control.SignalName.MouseExited, Callable.From((Action)(() => SetSkin("normal"))));
+        _sentryHover.Connect(Control.SignalName.MouseEntered, Callable.From(() => SetSkin("sentry constellation")));
+        _sentryHover.Connect(Control.SignalName.MouseExited, Callable.From(() => SetSkin("normal")));
         _sneckoHover = GetNode<Control>((NodePath)"SneckoHover");
-        _sneckoHover.Connect(Control.SignalName.MouseEntered, Callable.From((Action)(() => SetSkin("snecko constellation"))));
-        _sneckoHover.Connect(Control.SignalName.MouseExited, Callable.From((Action)(() => SetSkin("normal"))));
+        _sneckoHover.Connect(Control.SignalName.MouseEntered, Callable.From(() => SetSkin("snecko constellation")));
+        _sneckoHover.Connect(Control.SignalName.MouseExited, Callable.From(() => SetSkin("normal")));
         _cultistHover = GetNode<Control>((NodePath)"CultistHover");
-        _cultistHover.Connect(Control.SignalName.MouseEntered, Callable.From((Action)(() => SetSkin("cultist constellation"))));
-        _cultistHover.Connect(Control.SignalName.MouseExited, Callable.From((Action)(() => SetSkin("normal"))));
+        _cultistHover.Connect(Control.SignalName.MouseEntered, Callable.From(() => SetSkin("cultist constellation")));
+        _cultistHover.Connect(Control.SignalName.MouseExited, Callable.From(() => SetSkin("normal")));
         _shapesHover = GetNode<Control>((NodePath)"ShapesHover");
-        _shapesHover.Connect(Control.SignalName.MouseEntered, Callable.From((Action)(() => SetSkin("shapes constellation"))));
-        _shapesHover.Connect(Control.SignalName.MouseExited, Callable.From((Action)(() => SetSkin("normal"))));
+        _shapesHover.Connect(Control.SignalName.MouseEntered, Callable.From(() => SetSkin("shapes constellation")));
+        _shapesHover.Connect(Control.SignalName.MouseExited, Callable.From(() => SetSkin("normal")));
         _amogusHover = GetNode<Control>((NodePath)"AmogusHover");
-        _amogusHover.Connect(Control.SignalName.MouseEntered, Callable.From((Action)(() => SetSkin("amogus constellation"))));
-        _amogusHover.Connect(Control.SignalName.MouseExited, Callable.From((Action)(() => SetSkin("normal"))));
+        _amogusHover.Connect(Control.SignalName.MouseEntered, Callable.From(() => SetSkin("amogus constellation")));
+        _amogusHover.Connect(Control.SignalName.MouseExited, Callable.From(() => SetSkin("normal")));
     }
 
     private void SetSkin(string skinName)
