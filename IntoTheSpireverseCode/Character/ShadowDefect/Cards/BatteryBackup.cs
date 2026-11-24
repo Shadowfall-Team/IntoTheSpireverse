@@ -34,7 +34,7 @@ public sealed class BatteryBackup : ShadowDefectCard
         int currentEnergy = Owner.PlayerCombatState?.Energy ?? 0;
         int bonusEnergy = IsUpgraded ? DynamicVars.Energy.IntValue : 0;
 
-        int toGain = (maxEnergy - currentEnergy) + bonusEnergy;
+        int toGain = maxEnergy - currentEnergy + bonusEnergy;
         if (toGain > 0)
             await PlayerCmd.GainEnergy(toGain, Owner);
     }

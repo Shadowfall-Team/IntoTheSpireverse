@@ -38,12 +38,12 @@ public sealed class Pilgrimage() : ShadowSilentCard(1, CardType.Skill, CardRarit
                 maxDiscards = deviousListener.ModifyDeviousDiscard(maxDiscards);
         }
 
-        var cards = (await CardSelectCmd.FromHandForDiscard(
+        var cards = await CardSelectCmd.FromHandForDiscard(
             choiceContext,
             Owner,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards, 1)),
             null,
-            this));
+            this);
 
         int repeats = DynamicVars[_deviousKey].IntValue;
         foreach (CardModel card in cards)

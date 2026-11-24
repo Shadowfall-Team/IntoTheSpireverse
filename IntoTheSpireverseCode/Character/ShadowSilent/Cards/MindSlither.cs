@@ -33,7 +33,7 @@ public sealed class MindSlither() : ShadowSilentCard(1, CardType.Skill, CardRari
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
-        foreach (Creature teammate in CombatState.GetTeammatesOf(Owner.Creature).Where((c => c.IsAlive && c.IsPlayer)))
+        foreach (Creature teammate in CombatState.GetTeammatesOf(Owner.Creature).Where(c => c.IsAlive && c.IsPlayer))
         {
             if (teammate.Player != null)
             {

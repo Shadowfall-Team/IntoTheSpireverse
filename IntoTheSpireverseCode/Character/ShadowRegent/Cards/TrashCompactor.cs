@@ -40,7 +40,7 @@ public class TrashCompactor() : ShadowRegentCard(0,
             .Cards.OrderBy(c => c.Rarity)
             .ThenBy(c => c.Id).ToList();
         var cardSelectorPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, ResolveEnergyXValue());
-        var selection = (await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, cardSelectorPrefs));
+        var selection = await CardSelectCmd.FromSimpleGrid(choiceContext, cargoPile, Owner, cardSelectorPrefs);
 
         foreach (var cardModel in selection)
         {
