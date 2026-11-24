@@ -49,7 +49,7 @@ public class Spectrobinder : PlaceholderCharacterModel, IAltCharacter, IParallel
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<SpectrobinderRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<SpectrobinderPotionPool>();
 
-    // public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/spectrobinder_icon.tscn";
+    public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/spectrobinder_icon.tscn";
     public override string CustomIconTexturePath => "character_icon_spectrobinder.png".SpectrobinderPath();
     public override string CustomCharacterSelectIconPath => "char_select_spectrobinder.png".SpectrobinderPath();
     public override string CustomArmPointingTexturePath => "multiplayer_hand_spectrobinder_point.png".SpectrobinderPath();
@@ -58,17 +58,8 @@ public class Spectrobinder : PlaceholderCharacterModel, IAltCharacter, IParallel
     public override string CustomArmScissorsTexturePath => "multiplayer_hand_spectrobinder_scissors.png".SpectrobinderPath();
     public override string CustomMapMarkerPath => "map_marker_spectrobinder.png".SpectrobinderPath();
 
-    // public override string CustomVisualPath => "res://IntoTheSpireverse/scenes/creature_visuals/spectrobinder.tscn";
-    // public override string CustomCharacterSelectBg => "res://IntoTheSpireverse/scenes/screens/char_select/spectrobinder.tscn";
-    // public override string CustomRestSiteAnimPath => "res://IntoTheSpireverse/scenes/rest_site/spectrobinder_rest_site.tscn";
-    // public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/spectrobinder_merchant.tscn";
-
-    /*  PlaceholderCharacterModel will utilize placeholder basegame assets for most of your character assets until you
-        override all the other methods that define those assets.
-        These are just some of the simplest assets, given some placeholders to differentiate your character with.
-        You don't have to, but you're suggested to rename these images. */
-    // public override string CustomIconTexturePath => "character_icon_char_name.png".CharacterUiPath();
-    // public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
-    // public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
-    // public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
+    public override string CustomVisualPath => "res://IntoTheSpireverse/scenes/creature_visuals/spectrobinder.tscn";
+    public override string CustomCharacterSelectBg => "res://IntoTheSpireverse/scenes/screens/char_select/spectrobinder.tscn";
+    public override string CustomRestSiteAnimPath => "res://IntoTheSpireverse/scenes/rest_site/spectrobinder_rest_site.tscn";
+    public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/spectrobinder_merchant.tscn";
 }
