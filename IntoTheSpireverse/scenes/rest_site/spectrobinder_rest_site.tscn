@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" path="res://IntoTheSpireverse/images/characters/spectrobinder/eye_flame_mask.png" id="7_eyemask"]
 [ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/spectrobinder/rest_site/restsite_spectrobinder.spatlas" id="2_atlas"]
 [ext_resource type="SpineSkeletonFileResource" path="res://animations/rest_site/necrobinder/restsite_necrobinder.skel" id="3_skel"]
-[ext_resource type="Material" path="res://IntoTheSpireverse/materials/flame_eyes.tres" id="10_eyemat"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_rest"]
 atlas_res = ExtResource("2_atlas")
@@ -22,7 +21,6 @@ visible = false
 [node name="FlameEyes" type="Node2D" parent="Necro/SpineBoneNode"]
 
 [node name="FlameEye0" type="TextureRect" parent="Necro/SpineBoneNode/FlameEyes"]
-material = ExtResource("10_eyemat")
 offset_left = 5.5
 offset_top = -112
 offset_right = 33.5
@@ -35,7 +33,6 @@ expand_mode = 1
 metadata/keep_colors = true
 
 [node name="FlameEye1" type="TextureRect" parent="Necro/SpineBoneNode/FlameEyes"]
-material = ExtResource("10_eyemat")
 offset_left = 23.1
 offset_top = -118.1
 offset_right = 51.1
