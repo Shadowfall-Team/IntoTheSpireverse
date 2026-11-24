@@ -1,6 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
@@ -19,7 +18,7 @@ public class ShadowSilentCardPool : CustomCardPoolModel
 
     protected override CardModel[] GenerateAllCards()
     {
-        CardModel[] cards =
+        return
         [
             ModelDb.Card<BulletTime>(),
             ModelDb.Card<Burst>(),
@@ -34,14 +33,10 @@ public class ShadowSilentCardPool : CustomCardPoolModel
             ModelDb.Card<ToolsOfTheTrade>(),
             ModelDb.Card<Haze>(),
             ModelDb.Card<CalculatedGamble>(),
+
+            // Multiplayer Cards
+            ModelDb.Card<Fade>(),
+            ModelDb.Card<Concoct>(),
         ];
-
-        var sts2Assembly = typeof(ModelDb).Assembly;
-        var extraCards = ModelDbCompatibility.GetCardModelsSafely([
-            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Fade"),
-            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Concoct")
-        ]);
-
-        return [.. cards, .. extraCards];
     }
 }

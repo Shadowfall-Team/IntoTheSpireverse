@@ -1,6 +1,5 @@
 using BaseLib.Abstracts;
 using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
@@ -19,7 +18,8 @@ public class ShadowRegentCardPool : CustomCardPoolModel
 
     protected override CardModel[] GenerateAllCards()
     {
-        CardModel[] cards = [
+        return
+        [
             ModelDb.Card<CelestialMight>(),
             ModelDb.Card<CollisionCourse>(),
             ModelDb.Card<KnowThyPlace>(),
@@ -37,14 +37,10 @@ public class ShadowRegentCardPool : CustomCardPoolModel
             //Solar Strike
             //Glow
             //Gather Light
+
+            // Multiplayer cards
+            ModelDb.Card<Tutor>(),
+            ModelDb.Card<Plot>(),
         ];
-
-        var sts2Assembly = typeof(ModelDb).Assembly;
-        CardModel[] extraCards = ModelDbCompatibility.GetCardModelsSafely([
-            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Tutor"),
-            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Plot")
-        ]);
-
-        return [.. cards, .. extraCards];
     }
 }

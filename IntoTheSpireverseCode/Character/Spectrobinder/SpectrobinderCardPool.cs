@@ -20,28 +20,28 @@ public class SpectrobinderCardPool : CustomCardPoolModel
     {
         return
         [
-            ModelDb.Card<CallOfTheVoid>(),
-            ModelDb.Card<DanseMacabre>(),
+            ModelDb.Card<StrikeNecrobinder>(),
+            ModelDb.Card<DefendNecrobinder>(),
+
             ModelDb.Card<DeathMarch>(),
-            ModelDb.Card<Debilitate>(),
-            ModelDb.Card<Defile>(),
-            ModelDb.Card<Defy>(),
             ModelDb.Card<Delay>(),
-            ModelDb.Card<Demesne>(),
-            ModelDb.Card<DrainPower>(),
-            ModelDb.Card<Dredge>(),
-            ModelDb.Card<EnfeeblingTouch>(),
-            ModelDb.Card<Fear>(),
+            ModelDb.Card<Eradicate>(),
             ModelDb.Card<Friendship>(),
             ModelDb.Card<Graveblast>(),
-            ModelDb.Card<Lethality>(),
-            ModelDb.Card<PullFromBelow>(),
+            ModelDb.Card<GraveWarden>(),
+            ModelDb.Card<Haunt>(),
+            ModelDb.Card<Melancholy>(),
+            ModelDb.Card<Neurosurge>(),
             ModelDb.Card<Putrefy>(),
-            ModelDb.Card<SculptingStrike>(),
-            ModelDb.Card<SpiritOfAsh>(),
-            ModelDb.Card<Transfigure>(),
+            ModelDb.Card<Reave>(),
+            ModelDb.Card<Severance>(),
+            ModelDb.Card<SoulStorm>(),
             ModelDb.Card<Undeath>(),
-            ModelDb.Card<Wisp>()
+
+            // Multiplayer cards
+            ModelDb.Card<Cacophony>(),
+            ModelDb.Card<GlimpseBeyond>(),
+            ModelDb.Card<Soulbound>(),
         ];
     }
 }

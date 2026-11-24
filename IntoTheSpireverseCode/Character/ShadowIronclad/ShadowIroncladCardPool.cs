@@ -1,6 +1,5 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 
@@ -19,7 +18,8 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
 
     protected override CardModel[] GenerateAllCards()
     {
-        CardModel[] cards = [
+        return
+        [
             ModelDb.Card<StrikeIronclad>(), //necessary for compendium
             ModelDb.Card<DefendIronclad>(), //necessary for compendium
             ModelDb.Card<Pyre>(),
@@ -46,15 +46,11 @@ public class ShadowIroncladCardPool : CustomCardPoolModel
             //Erosion (Wild Strike)
             //Geyser (Immolate)
             //Sediment (Power Through)
+
+            // Multiplayer Cards
+            ModelDb.Card<Midnight>(),
+            ModelDb.Card<Blaze>(),
+            ModelDb.Card<Outrage>(),
         ];
-
-        var sts2Assembly = typeof(ModelDb).Assembly;
-        CardModel[] extraCards = ModelDbCompatibility.GetCardModelsSafely([
-            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Midnight"),
-            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Blaze"),
-            sts2Assembly.GetType("MegaCrit.Sts2.Core.Models.Cards.Outrage")
-        ]);
-
-        return [.. cards, .. extraCards];
     }
 }
