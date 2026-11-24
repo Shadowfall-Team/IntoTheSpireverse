@@ -9,11 +9,11 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Cmbr : ShadowDefectCard
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<WhiteNoise>(),
         HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
-    };
+    ];
 
     public Cmbr()
         : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)

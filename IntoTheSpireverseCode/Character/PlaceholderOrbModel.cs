@@ -13,16 +13,10 @@ public abstract class PlaceholderOrbModel : CustomOrbModel
     /// <summary>
     /// Gets the custom sprite path using the placeholder ID.
     /// </summary>
-    public override string? CustomSpritePath
-    {
-        get => "orbs/orb_visuals/" + PlaceholderID;
-    }
+    public override string? CustomSpritePath => "orbs/orb_visuals/" + PlaceholderID;
 
     /// <summary>
     /// Gets the custom icon path using the placeholder ID.
     /// </summary>
-    public override string? CustomIconPath
-    {
-        get => ImageHelper.GetImagePath($"orbs/{PlaceholderID}.png");
-    }
+    public override string? CustomIconPath => ImageHelper.GetImagePath($"orbs/{PlaceholderID}.png");
 }

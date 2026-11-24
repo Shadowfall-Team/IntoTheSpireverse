@@ -11,10 +11,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class ShadowStrike : ShadowDefectCard
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(5m, ValueProp.Move)
-    };
+    ];
 
     public ShadowStrike()
         : base(0, CardType.Attack, CardRarity.Rare, TargetType.RandomEnemy)

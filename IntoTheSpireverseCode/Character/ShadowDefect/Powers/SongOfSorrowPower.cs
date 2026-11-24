@@ -15,10 +15,10 @@ public sealed class SongOfSorrowPower : IntoTheSpireversePower
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Void>()
-    };
+    ];
 
     public override async Task AfterCardGeneratedForCombat(CardModel card, Player? creator)
     {

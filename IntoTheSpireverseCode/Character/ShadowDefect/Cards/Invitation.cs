@@ -13,16 +13,16 @@ public sealed class Invitation : ShadowDefectCard
 {
     public override bool GainsBlock => true;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new BlockVar(3m, ValueProp.Move),
         new CardsVar(1)
-    };
+    ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.Static(StaticHoverTip.Block)
-    };
+    ];
 
     public Invitation()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)

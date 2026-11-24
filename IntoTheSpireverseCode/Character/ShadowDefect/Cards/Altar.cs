@@ -12,17 +12,17 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Altar : ShadowDefectCard
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new EnergyVar(2)
-    };
+    ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         EnergyHoverTip,
         HoverTipFactory.FromCard<Void>(),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
-    };
+    ];
 
     public Altar()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)

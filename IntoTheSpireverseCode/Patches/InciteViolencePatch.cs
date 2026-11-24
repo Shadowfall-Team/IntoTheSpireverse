@@ -18,7 +18,7 @@ internal static class InciteViolencePatch
             return true;
         }
 
-        modifiers = Enumerable.Empty<AbstractModel>();
+        modifiers = [];
         __result = Math.Max(0m, damage);
         return false;
     }

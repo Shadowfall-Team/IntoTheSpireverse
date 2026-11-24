@@ -31,6 +31,6 @@ public sealed class PowerCyclePower : IntoTheSpireversePower
 
     private class Data
     {
-        public readonly Dictionary<CardModel, int> amountsForPlayedCards = new Dictionary<CardModel, int>();
+        public readonly Dictionary<CardModel, int> amountsForPlayedCards = [];
     }
 }

@@ -15,12 +15,12 @@ public sealed class EclipseEmbracePower : IntoTheSpireversePower
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Void>(),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
         HoverTipFactory.ForEnergy(this)
-    };
+    ];
 
     public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool _)
     {

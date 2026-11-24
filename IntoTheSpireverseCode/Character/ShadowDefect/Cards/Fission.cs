@@ -8,7 +8,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public class Fission() : ShadowDefectCard(0, CardType.Skill, CardRarity.Ancient, TargetType.None)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     public override OrbEvokeType OrbEvokeType => OrbEvokeType.All;
 

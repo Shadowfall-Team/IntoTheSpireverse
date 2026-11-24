@@ -26,11 +26,11 @@ public class CorruptedCore : ShadowDefectRelic
     {
         get
         {
-            return new IHoverTip[2]
-            {
+            return
+            [
                 HoverTipFactory.Static(StaticHoverTip.Channeling),
                 HoverTipFactory.FromOrb<EntropyOrb>()
-            };
+            ];
         }
     }
 

@@ -13,14 +13,14 @@ public sealed class ColdWinds : ShadowDefectCard
     private static readonly MethodInfo _evokeMethod = typeof(OrbCmd).GetMethod(
         "Evoke",
         BindingFlags.NonPublic | BindingFlags.Static,
-        new[] { typeof(PlayerChoiceContext), typeof(MegaCrit.Sts2.Core.Entities.Players.Player), typeof(OrbModel), typeof(bool) })!;
+        [typeof(PlayerChoiceContext), typeof(MegaCrit.Sts2.Core.Entities.Players.Player), typeof(OrbModel), typeof(bool)])!;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.Static(StaticHoverTip.Evoke),
         HoverTipFactory.Static(StaticHoverTip.Channeling),
         HoverTipFactory.FromOrb<FrostOrb>()
-    };
+    ];
 
     public ColdWinds()
         : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
@@ -29,7 +29,7 @@ public sealed class ColdWinds : ShadowDefectCard
 
     private static Task EvokeOrb(PlayerChoiceContext choiceContext, MegaCrit.Sts2.Core.Entities.Players.Player player, OrbModel orb, bool dequeue = true)
     {
-        return (Task)_evokeMethod.Invoke(null, new object[] { choiceContext, player, orb, dequeue })!;
+        return (Task)_evokeMethod.Invoke(null, [choiceContext, player, orb, dequeue])!;
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

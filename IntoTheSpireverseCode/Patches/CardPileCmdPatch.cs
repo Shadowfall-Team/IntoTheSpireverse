@@ -12,7 +12,7 @@ internal static class CardPileCmdPatch
     public static Dictionary<Type, Tuple<PileType, CardPilePosition>> _cardsToModifyDiscarding =
         new() { { typeof(Disguise), new Tuple<PileType, CardPilePosition>(PileType.Draw, CardPilePosition.Top) } };
 
-    internal static readonly HashSet<CardModel> PendingRedirect = new();
+    internal static readonly HashSet<CardModel> PendingRedirect = [];
     public static bool insideDiscard;
 
     [HarmonyPatch(typeof(CardPileCmd), nameof(CardPileCmd.Add), [typeof(CardModel), typeof(CardPile), typeof(CardPilePosition), typeof(AbstractModel), typeof(bool)])]

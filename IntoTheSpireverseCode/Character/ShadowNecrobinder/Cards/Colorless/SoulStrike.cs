@@ -20,10 +20,7 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
         new CardsVar(1),
     ];
 
-    protected override HashSet<CardTag> CanonicalTags
-    {
-        get => new HashSet<CardTag>() { CardTag.Strike };
-    }
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
@@ -32,7 +29,7 @@ public sealed class SoulStrike() : CustomCardModel(0, CardType.Attack, CardRarit
 
     public static IEnumerable<SoulStrike> Create(Player owner, int amount, ICombatState combatState)
     {
-        List<SoulStrike> list = new List<SoulStrike>();
+        List<SoulStrike> list = [];
         for (int i = 0; i < amount; i++)
             list.Add(combatState.CreateCard<SoulStrike>(owner));
         return list;

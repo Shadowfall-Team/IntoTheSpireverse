@@ -39,18 +39,18 @@ public sealed class TheLaw : ShadowDefectCard
         }
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new CardsVar(ClawCount),
         new IntVar("Increase", 1M)
-    };
+    ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Claw>(IsUpgraded)
-    };
+    ];
 
     public TheLaw()
         : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
@@ -62,7 +62,7 @@ public sealed class TheLaw : ShadowDefectCard
         if (CombatState == null) return;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        List<CardModel> generated = new List<CardModel>();
+        List<CardModel> generated = [];
         for (int i = 0; i < ClawCount; i++)
         {
             CardModel claw = CombatState.CreateCard<Claw>(Owner);

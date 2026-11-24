@@ -44,10 +44,10 @@ public sealed class Scale() : ShadowColorlessCard(0, CardType.Skill, CardRarity.
         Player? creator = null)
     {
         if (count == 0)
-            return Array.Empty<CardModel>();
+            return [];
         if (CombatManager.Instance.IsOverOrEnding)
-            return Array.Empty<CardModel>();
-        List<CardModel> scales = new List<CardModel>();
+            return [];
+        List<CardModel> scales = [];
         for (int index = 0; index < count; ++index)
             scales.Add(combatState.CreateCard<Scale>(owner));
         await CardPileCmd.AddGeneratedCardsToCombat(scales, PileType.Hand, creator ?? owner);

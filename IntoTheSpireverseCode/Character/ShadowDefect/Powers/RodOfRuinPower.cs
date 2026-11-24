@@ -13,10 +13,10 @@ public sealed class RodOfRuinPower : IntoTheSpireversePower
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromOrb<DarkOrb>()
-    };
+    ];
 
     public override async Task AfterEnergyReset(Player player)
     {

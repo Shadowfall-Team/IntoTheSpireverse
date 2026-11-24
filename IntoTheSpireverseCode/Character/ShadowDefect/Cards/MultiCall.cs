@@ -9,10 +9,10 @@ public sealed class MultiCall() : ShadowDefectCard(0, CardType.Skill, CardRarity
 {
     protected override bool HasEnergyCostX => true;
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
-    {
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
         CardKeyword.Exhaust,
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

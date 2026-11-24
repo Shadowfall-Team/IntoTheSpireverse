@@ -11,17 +11,17 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Starburst : ShadowDefectCard
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new CardsVar(2)
-    };
+    ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.Static(StaticHoverTip.Evoke),
         HoverTipFactory.FromOrb<EntropyOrb>(),
         HoverTipFactory.FromCard<Shiv>()
-    };
+    ];
 
     public Starburst()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)

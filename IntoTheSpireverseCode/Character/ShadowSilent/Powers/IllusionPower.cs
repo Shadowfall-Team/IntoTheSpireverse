@@ -50,6 +50,6 @@ public class IllusionPower : ShadowPowerModel
 
     private class Data
     {
-        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = new Dictionary<CardModel, int>();
+        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = [];
     }
 }

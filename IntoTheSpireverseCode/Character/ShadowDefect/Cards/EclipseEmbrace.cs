@@ -10,12 +10,12 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class EclipseEmbrace : ShadowDefectCard
 {
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         EnergyHoverTip,
         HoverTipFactory.FromCard<Void>(),
         HoverTipFactory.FromKeyword(CardKeyword.Exhaust)
-    };
+    ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(0)];
 

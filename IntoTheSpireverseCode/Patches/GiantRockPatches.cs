@@ -9,7 +9,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 public static class GiantRockBuffTracker
 {
-    private static readonly ConditionalWeakTable<GiantRock, StrongBox<decimal>> ExtraDamage = new();
+    private static readonly ConditionalWeakTable<GiantRock, StrongBox<decimal>> ExtraDamage = [];
 
     public static decimal Get(GiantRock card) =>
         ExtraDamage.GetValue(card, _ => new StrongBox<decimal>(0m)).Value;

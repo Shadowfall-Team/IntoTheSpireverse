@@ -11,18 +11,18 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class OnyxDrill : ShadowDefectCard
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new CalculationBaseVar(0),
         new ExtraDamageVar(5M),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(
             static (card, _) => card.Owner.PlayerCombatState?.AllCards.Count(c => c is Void) ?? 0)
-    };
+    ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Void>(IsUpgraded)
-    };
+    ];
 
     public OnyxDrill()
         : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)

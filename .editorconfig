@@ -34,6 +34,8 @@ csharp_style_inlined_variable_declaration = true
 
 dotnet_style_null_propagation = true
 
+dotnet_style_prefer_collection_expression = true
+
 ### DotNet stuff
 dotnet_separate_import_directive_groups = false
 dotnet_sort_system_directives_first = true

@@ -76,6 +76,6 @@ public class AgentOfChaosPower : ShadowPowerModel, ICardDestinationListener
 
     private class Data
     {
-        public List<CardModel> DiscardedSlyCards = new();
+        public List<CardModel> DiscardedSlyCards = [];
     }
 }

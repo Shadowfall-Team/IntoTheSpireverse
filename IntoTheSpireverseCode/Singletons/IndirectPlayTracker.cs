@@ -12,7 +12,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Singletons;
 /// </summary>
 public class IndirectPlayTracker() : CustomSingletonModel(HookType.Combat)
 {
-    private static readonly Dictionary<CardModel, PileType> LastPileLeft = new();
+    private static readonly Dictionary<CardModel, PileType> LastPileLeft = [];
 
     public static bool TryGetLastPileLeft(CardModel card, out PileType pile) =>
         LastPileLeft.TryGetValue(card, out pile);

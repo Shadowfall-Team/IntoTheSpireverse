@@ -27,7 +27,7 @@ internal static class LingerHasTurnEndPatch
 }
 
 [HarmonyPatch(typeof(CardPileCmd), nameof(CardPileCmd.Add),
-    new[] { typeof(CardModel), typeof(CardPile), typeof(CardPilePosition), typeof(AbstractModel), typeof(bool) })]
+    [typeof(CardModel), typeof(CardPile), typeof(CardPilePosition), typeof(AbstractModel), typeof(bool)])]
 internal static class LingerDiscardRedirectPatch
 {
     [HarmonyPrefix]
@@ -60,7 +60,7 @@ internal static class LingerDiscardRedirectPatch
 
 public static class LingerHelper
 {
-    internal static readonly HashSet<CardModel> PendingLingerRedirect = new();
+    internal static readonly HashSet<CardModel> PendingLingerRedirect = [];
     public static event Func<CardModel, PlayerChoiceContext, Task>? OnLingerTriggered;
     public static int GetTriggerCount(CardModel card)
     {

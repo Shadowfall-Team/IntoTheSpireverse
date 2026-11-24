@@ -27,7 +27,7 @@ public partial class NCharAltArrow : NGoldArrowButton
 
     public ICharacterSelectButtonDelegate? ClickDelegate;
 
-    public List<CharacterModel> Characters = new();
+    public List<CharacterModel> Characters = [];
 
     private int _currentAltIndex = -1;
     private Tween? _portraitTween;

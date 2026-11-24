@@ -10,9 +10,9 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 internal static class HandPositionTrackingPatch
 {
     // TODO remove extra logic once design is finalized
-    internal static readonly Dictionary<CardModel, bool> WasLeftmostInHand = new();
-    internal static readonly Dictionary<CardModel, bool> WasRightmostInHand = new();
-    internal static readonly Dictionary<CardModel, List<CardModel>> AdjacentCards = new();
+    internal static readonly Dictionary<CardModel, bool> WasLeftmostInHand = [];
+    internal static readonly Dictionary<CardModel, bool> WasRightmostInHand = [];
+    internal static readonly Dictionary<CardModel, List<CardModel>> AdjacentCards = [];
 
     internal static void Prefix(CardPile __instance, CardModel card)
     {
