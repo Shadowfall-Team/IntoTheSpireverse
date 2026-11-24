@@ -1,6 +1,7 @@
 ﻿using BaseLib.Abstracts;
 using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Config;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -47,6 +48,20 @@ public class Spectrobinder : PlaceholderCharacterModel, IAltCharacter, IParallel
     public override CardPoolModel CardPool => ModelDb.CardPool<SpectrobinderCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<SpectrobinderRelicPool>();
     public override PotionPoolModel PotionPool => ModelDb.PotionPool<SpectrobinderPotionPool>();
+
+    // public override string CustomIconPath => "res://IntoTheSpireverse/scenes/character_icons/spectrobinder_icon.tscn";
+    public override string CustomIconTexturePath => "character_icon_spectrobinder.png".SpectrobinderPath();
+    public override string CustomCharacterSelectIconPath => "char_select_spectrobinder.png".SpectrobinderPath();
+    public override string CustomArmPointingTexturePath => "multiplayer_hand_spectrobinder_point.png".SpectrobinderPath();
+    public override string CustomArmRockTexturePath => "multiplayer_hand_spectrobinder_rock.png".SpectrobinderPath();
+    public override string CustomArmPaperTexturePath => "multiplayer_hand_spectrobinder_paper.png".SpectrobinderPath();
+    public override string CustomArmScissorsTexturePath => "multiplayer_hand_spectrobinder_scissors.png".SpectrobinderPath();
+    public override string CustomMapMarkerPath => "map_marker_spectrobinder.png".SpectrobinderPath();
+
+    // public override string CustomVisualPath => "res://IntoTheSpireverse/scenes/creature_visuals/spectrobinder.tscn";
+    // public override string CustomCharacterSelectBg => "res://IntoTheSpireverse/scenes/screens/char_select/spectrobinder.tscn";
+    // public override string CustomRestSiteAnimPath => "res://IntoTheSpireverse/scenes/rest_site/spectrobinder_rest_site.tscn";
+    // public override string CustomMerchantAnimPath => "res://IntoTheSpireverse/scenes/merchant/spectrobinder_merchant.tscn";
 
     /*  PlaceholderCharacterModel will utilize placeholder basegame assets for most of your character assets until you
         override all the other methods that define those assets.

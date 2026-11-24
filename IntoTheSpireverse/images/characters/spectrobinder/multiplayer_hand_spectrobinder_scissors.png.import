@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5w1hjhk4akyx"
-path="res://.godot/imported/multiplayer_hand_necrobinder_scissors.png-b82d313af91c3254d72eef1899e61dcc.ctex"
+path="res://.godot/imported/multiplayer_hand_spectrobinder_scissors.png-da264b471d2076c3af5b857ee5a8606f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/characters/shadownecrobinder/multiplayer_hand_necrobinder_scissors.png"
-dest_files=["res://.godot/imported/multiplayer_hand_necrobinder_scissors.png-b82d313af91c3254d72eef1899e61dcc.ctex"]
+source_file="res://IntoTheSpireverse/images/characters/spectrobinder/multiplayer_hand_spectrobinder_scissors.png"
+dest_files=["res://.godot/imported/multiplayer_hand_spectrobinder_scissors.png-da264b471d2076c3af5b857ee5a8606f.ctex"]
 
 [params]
 

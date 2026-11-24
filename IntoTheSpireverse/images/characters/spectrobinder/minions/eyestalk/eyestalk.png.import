@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b23rnsfgiodv8"
-path="res://.godot/imported/eyestalk.png-749f956e609d9c73841c502b2f3c8704.ctex"
+path="res://.godot/imported/eyestalk.png-c9f132ff83008ca7866bfcdb6f399c73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/characters/shadownecrobinder/minions/eyestalk/eyestalk.png"
-dest_files=["res://.godot/imported/eyestalk.png-749f956e609d9c73841c502b2f3c8704.ctex"]
+source_file="res://IntoTheSpireverse/images/characters/spectrobinder/minions/eyestalk/eyestalk.png"
+dest_files=["res://.godot/imported/eyestalk.png-c9f132ff83008ca7866bfcdb6f399c73.ctex"]
 
 [params]
 

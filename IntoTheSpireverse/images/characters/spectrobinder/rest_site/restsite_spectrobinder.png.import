@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7mrxyk0ahssl"
-path="res://.godot/imported/restsite_necrobinder.png-226c302b4bd6eb0afbcc3801069a8c1b.ctex"
+path="res://.godot/imported/restsite_spectrobinder.png-5620db09f3fff7a450d3b3de0747dcda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/characters/shadownecrobinder/rest_site/restsite_necrobinder.png"
-dest_files=["res://.godot/imported/restsite_necrobinder.png-226c302b4bd6eb0afbcc3801069a8c1b.ctex"]
+source_file="res://IntoTheSpireverse/images/characters/spectrobinder/rest_site/restsite_spectrobinder.png"
+dest_files=["res://.godot/imported/restsite_spectrobinder.png-5620db09f3fff7a450d3b3de0747dcda.ctex"]
 
 [params]
 

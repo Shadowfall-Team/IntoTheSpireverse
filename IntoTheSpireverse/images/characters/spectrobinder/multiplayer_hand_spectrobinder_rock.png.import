@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drm0sn2pdkh3e"
-path="res://.godot/imported/multiplayer_hand_necrobinder_rock.png-f3a7d14c7996b388694a2d76d74f23c8.ctex"
+path="res://.godot/imported/multiplayer_hand_spectrobinder_rock.png-1ac61e22795da34eb5dd5ad783f85a0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/characters/shadownecrobinder/multiplayer_hand_necrobinder_rock.png"
-dest_files=["res://.godot/imported/multiplayer_hand_necrobinder_rock.png-f3a7d14c7996b388694a2d76d74f23c8.ctex"]
+source_file="res://IntoTheSpireverse/images/characters/spectrobinder/multiplayer_hand_spectrobinder_rock.png"
+dest_files=["res://.godot/imported/multiplayer_hand_spectrobinder_rock.png-1ac61e22795da34eb5dd5ad783f85a0b.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwl2khc7ydi50"
-path="res://.godot/imported/eye_flame_mask_select.png-ebb036ada4280b8ac03c81c5ee43f7ce.ctex"
+path="res://.godot/imported/eye_flame_mask_select.png-62846a3dd1b53bd2f7c2acab703c65ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://IntoTheSpireverse/images/characters/shadownecrobinder/char_select/eye_flame_mask_select.png"
-dest_files=["res://.godot/imported/eye_flame_mask_select.png-ebb036ada4280b8ac03c81c5ee43f7ce.ctex"]
+source_file="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/eye_flame_mask_select.png"
+dest_files=["res://.godot/imported/eye_flame_mask_select.png-62846a3dd1b53bd2f7c2acab703c65ea.ctex"]
 
 [params]
 
