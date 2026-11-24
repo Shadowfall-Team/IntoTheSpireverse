@@ -1,0 +1,48 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/rest_site/characters/necrobinder_rest_site.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://IntoTheSpireverse/images/characters/spectrobinder/eye_flame_mask.png" id="7_eyemask"]
+[ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/spectrobinder/rest_site/restsite_spectrobinder.spatlas" id="2_atlas"]
+[ext_resource type="SpineSkeletonFileResource" path="res://animations/rest_site/necrobinder/restsite_necrobinder.skel" id="3_skel"]
+[ext_resource type="Material" path="res://IntoTheSpireverse/materials/flame_eyes.tres" id="10_eyemat"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_rest"]
+atlas_res = ExtResource("2_atlas")
+skeleton_file_res = ExtResource("3_skel")
+default_mix = 0.2
+
+[node name="SpectrobinderRestSite" instance=ExtResource("1_base")]
+
+[node name="Necro" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_rest")
+
+[node name="Osty" parent="." index="2"]
+visible = false
+
+[node name="FlameEyes" type="Node2D" parent="Necro/SpineBoneNode"]
+
+[node name="FlameEye0" type="TextureRect" parent="Necro/SpineBoneNode/FlameEyes"]
+material = ExtResource("10_eyemat")
+offset_left = 5.5
+offset_top = -112
+offset_right = 33.5
+offset_bottom = -63.8
+rotation = 0.383972
+pivot_offset = Vector2(14, 24.1)
+mouse_filter = 2
+texture = ExtResource("7_eyemask")
+expand_mode = 1
+metadata/keep_colors = true
+
+[node name="FlameEye1" type="TextureRect" parent="Necro/SpineBoneNode/FlameEyes"]
+material = ExtResource("10_eyemat")
+offset_left = 23.1
+offset_top = -118.1
+offset_right = 51.1
+offset_bottom = -69.9
+rotation = -0.244346
+pivot_offset = Vector2(14, 24.1)
+mouse_filter = 2
+texture = ExtResource("7_eyemask")
+expand_mode = 1
+metadata/keep_colors = true

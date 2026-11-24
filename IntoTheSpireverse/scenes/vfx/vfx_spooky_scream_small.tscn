@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/vfx/vfx_spooky_scream.tscn" id="1_base"]
+
+[node name="vfx_spooky_scream_small" instance=ExtResource("1_base")]
+scale = Vector2(0.5, 0.5)
+
+[node name="vfx_scream_squiggly_ring_polar" parent="."]
+local_coords = true
+
+[node name="vfx_scream_squiggly_streaks" parent="."]
+local_coords = true
+
+[node name="vfx_scream_squiggly_streaks_burst" parent="."]
+local_coords = true
+
+[node name="vfx_common_glow" parent="."]
+local_coords = true
+
+[node name="vfx_scream_squiggly_distortion_polar" parent="BackBufferCopy"]
+local_coords = true

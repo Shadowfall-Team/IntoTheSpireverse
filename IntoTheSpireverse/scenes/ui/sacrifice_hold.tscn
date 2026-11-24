@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://IntoTheSpireverse/images/vfx/sacrifice/sacrifice_dagger.png" id="2_dagger"]
+[ext_resource type="Material" path="res://IntoTheSpireverse/shaders/canvas_item_material_additive_shared.tres" id="3_additive"]
+
+[node name="SacrificeHold" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_hold")
+
+[node name="Bar" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = ExtResource("3_additive")
+offset_left = -36.0
+offset_top = -36.0
+offset_right = -36.0
+offset_bottom = -30.0
+mouse_filter = 2
+color = Color(0, 0.6, 0.6, 1)
+
+[node name="BarOutline" type="ColorRect" parent="Bar"]
+modulate = Color(0, 0, 0, 0.501961)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 4.0
+mouse_filter = 2
+
+[node name="Dagger" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2625, 0.2625)
+texture = ExtResource("2_dagger")
+centered = false
+offset = Vector2(-32, -242)

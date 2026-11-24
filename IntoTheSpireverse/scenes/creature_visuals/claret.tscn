@@ -1,0 +1,51 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/creature_visuals/inklet.tscn" id="1_base"]
+[ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/spectrobinder/minions/claret/claret.spatlas" id="2_atlas"]
+[ext_resource type="SpineSkeletonFileResource" path="res://animations/monsters/inklet/inklet.skel" id="3_skel"]
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_5rbsi"]
+from = "attack"
+to = "die"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_sq538"]
+from = "attack"
+to = "attack"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_nai3c"]
+from = "hurt"
+to = "hurt"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_8732l"]
+from = "hurt"
+to = "die"
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_8llln"]
+from = "hurt"
+to = "idle_loop"
+mix = 0.1
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_020b6"]
+from = "attack_fast"
+to = "attack_fast"
+mix = 0.02
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_71d8j"]
+from = "idle_loop"
+to = "attack_fast"
+mix = 0.02
+
+[sub_resource type="SpineAnimationMix" id="SpineAnimationMix_vba5o"]
+from = "idle_loop"
+to = "die"
+mix = 0.02
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_claret"]
+atlas_res = ExtResource("2_atlas")
+skeleton_file_res = ExtResource("3_skel")
+default_mix = 0.05
+animation_mixes = [SubResource("SpineAnimationMix_5rbsi"), SubResource("SpineAnimationMix_sq538"), SubResource("SpineAnimationMix_nai3c"), SubResource("SpineAnimationMix_8732l"), SubResource("SpineAnimationMix_8llln"), SubResource("SpineAnimationMix_020b6"), SubResource("SpineAnimationMix_71d8j"), SubResource("SpineAnimationMix_vba5o")]
+
+[node name="Claret" instance=ExtResource("1_base")]
+
+[node name="Visuals" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_claret")

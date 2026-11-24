@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/creature_visuals/eye_with_teeth.tscn" id="1_base"]
+[ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/spectrobinder/minions/eyestalk/eyestalk.spatlas" id="2_atlas"]
+[ext_resource type="SpineSkeletonFileResource" path="res://animations/monsters/eye_with_teeth/eye_with_teeth.skel" id="3_skel"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_eyestalk"]
+atlas_res = ExtResource("2_atlas")
+skeleton_file_res = ExtResource("3_skel")
+
+[node name="Eyestalk" instance=ExtResource("1_base")]
+
+[node name="Visuals" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_eyestalk")

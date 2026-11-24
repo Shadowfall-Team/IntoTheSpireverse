@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/screens/char_select/char_select_bg_necrobinder.tscn" id="1_base"]
+[ext_resource type="Texture2D" uid="uid://bwl2khc7ydi50" path="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/eye_flame_mask_select.png" id="7_eyemask"]
+[ext_resource type="Texture2D" path="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/character_select_spectrobinder_bg.png" id="2_bg"]
+[ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/characterselect_spectrobinder.spatlas" id="3_atlas"]
+[ext_resource type="SpineSkeletonFileResource" path="res://animations/character_select/necrobinder/characterselect_necrobinder.skel" id="5_skel"]
+[ext_resource type="Material" path="res://IntoTheSpireverse/materials/flame_eyes.tres" id="10_eyemat"]
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_body"]
+atlas_res = ExtResource("3_atlas")
+skeleton_file_res = ExtResource("5_skel")
+
+[node name="SpectrobinderBg" instance=ExtResource("1_base")]
+
+[node name="TextureRect" parent="."]
+texture = ExtResource("2_bg")
+
+[node name="SpineSprite" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_body")
+
+[node name="OstyFireSlot" parent="SpineSprite"]
+visible = false
+
+[node name="FlameEyes" type="Node2D" parent="SpineSprite/HeadFireSlot"]
+
+[node name="FlameEye0" type="TextureRect" parent="SpineSprite/HeadFireSlot/FlameEyes"]
+material = ExtResource("10_eyemat")
+offset_left = -224.5
+offset_top = -151.1
+offset_right = -96.5
+offset_bottom = 68.9
+rotation = 0.314159
+pivot_offset = Vector2(64, 110)
+mouse_filter = 2
+texture = ExtResource("7_eyemask")
+expand_mode = 1
+metadata/keep_colors = true
+
+[node name="FlameEye1" type="TextureRect" parent="SpineSprite/HeadFireSlot/FlameEyes"]
+material = ExtResource("10_eyemat")
+offset_left = -58.9
+offset_top = -186.2
+offset_right = 69.1
+offset_bottom = 33.8
+rotation = -0.314159
+pivot_offset = Vector2(64, 110)
+mouse_filter = 2
+texture = ExtResource("7_eyemask")
+expand_mode = 1
+metadata/keep_colors = true
