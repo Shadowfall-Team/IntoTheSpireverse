@@ -16,7 +16,7 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect;
 #endif
 #if NECROBINDER
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.Spectrobinder;
 #endif
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent;
 namespace IntoTheSpireverse;
@@ -44,7 +44,7 @@ public partial class MainFile : Node
             typeof(ShadowSilent),
             typeof(ShadowRegent),
 #if NECROBINDER
-            typeof(ShadowNecrobinder),
+            typeof(Spectrobinder),
 #endif
 #if DEFECT
             typeof(ShadowDefect),

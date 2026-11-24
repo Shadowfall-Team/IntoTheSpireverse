@@ -125,9 +125,9 @@
     </ItemGroup>
 
     <ItemGroup Condition="$(Configuration.Contains('Production'))">
-        <Compile Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
+        <Compile Remove="IntoTheSpireverseCode\Character\Spectrobinder\**"/>
         <Compile Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
-        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
+        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\Spectrobinder\**"/>
         <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
     </ItemGroup>
 

@@ -54,5 +54,20 @@
   "INTOTHESPIREVERSE-SHADOW_SILENT.pronounPossessive": "她的",
   "INTOTHESPIREVERSE-SHADOW_SILENT.pronounSubject": "她",
   "INTOTHESPIREVERSE-SHADOW_SILENT.title": "蛇之侍僧",
-  "INTOTHESPIREVERSE-SHADOW_SILENT.titleObject": "蛇之侍僧"
+  "INTOTHESPIREVERSE-SHADOW_SILENT.titleObject": "蛇之侍僧",
+
+  "INTOTHESPIREVERSE-SPECTROBINDER.aromaPrinciple": "Lore",
+  "INTOTHESPIREVERSE-SPECTROBINDER.banter.alive.endTurnPing": "Co-op hurry up end turn ping message",
+  "INTOTHESPIREVERSE-SPECTROBINDER.banter.dead.endTurnPing": "...",
+  "INTOTHESPIREVERSE-SPECTROBINDER.cardsModifierDescription": "Spectrobinder cards will now appear in rewards and shops.",
+  "INTOTHESPIREVERSE-SPECTROBINDER.cardsModifierTitle": "Spectrobinder Cards",
+  "INTOTHESPIREVERSE-SPECTROBINDER.description": "Character Selection\nScreen Description",
+  "INTOTHESPIREVERSE-SPECTROBINDER.eventDeathPrevention": "Co-op survival line",
+  "INTOTHESPIREVERSE-SPECTROBINDER.goldMonologue": "Line spoken when obtaining a large amount of gold",
+  "INTOTHESPIREVERSE-SPECTROBINDER.possessiveAdjective": "her",
+  "INTOTHESPIREVERSE-SPECTROBINDER.pronounObject": "her",
+  "INTOTHESPIREVERSE-SPECTROBINDER.pronounPossessive": "hers",
+  "INTOTHESPIREVERSE-SPECTROBINDER.pronounSubject": "she",
+  "INTOTHESPIREVERSE-SPECTROBINDER.title": "The Spectrobinder",
+  "INTOTHESPIREVERSE-SPECTROBINDER.titleObject": "The Spectrobinder"
 }

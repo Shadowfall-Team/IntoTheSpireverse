@@ -57,5 +57,20 @@
   "INTOTHESPIREVERSE-SHADOW_REGENT.pronounPossessive": "his",
   "INTOTHESPIREVERSE-SHADOW_REGENT.pronounSubject": "he",
   "INTOTHESPIREVERSE-SHADOW_REGENT.title": "The Captain",
-  "INTOTHESPIREVERSE-SHADOW_REGENT.titleObject": "The Captain"
+  "INTOTHESPIREVERSE-SHADOW_REGENT.titleObject": "The Captain",
+
+  "INTOTHESPIREVERSE-SPECTROBINDER.aromaPrinciple": "Lore",
+  "INTOTHESPIREVERSE-SPECTROBINDER.banter.alive.endTurnPing": "Co-op hurry up end turn ping message",
+  "INTOTHESPIREVERSE-SPECTROBINDER.banter.dead.endTurnPing": "...",
+  "INTOTHESPIREVERSE-SPECTROBINDER.cardsModifierDescription": "Spectrobinder cards will now appear in rewards and shops.",
+  "INTOTHESPIREVERSE-SPECTROBINDER.cardsModifierTitle": "Spectrobinder Cards",
+  "INTOTHESPIREVERSE-SPECTROBINDER.description": "Character Selection\nScreen Description",
+  "INTOTHESPIREVERSE-SPECTROBINDER.eventDeathPrevention": "Co-op survival line",
+  "INTOTHESPIREVERSE-SPECTROBINDER.goldMonologue": "Line spoken when obtaining a large amount of gold",
+  "INTOTHESPIREVERSE-SPECTROBINDER.possessiveAdjective": "her",
+  "INTOTHESPIREVERSE-SPECTROBINDER.pronounObject": "her",
+  "INTOTHESPIREVERSE-SPECTROBINDER.pronounPossessive": "hers",
+  "INTOTHESPIREVERSE-SPECTROBINDER.pronounSubject": "she",
+  "INTOTHESPIREVERSE-SPECTROBINDER.title": "The Spectrobinder",
+  "INTOTHESPIREVERSE-SPECTROBINDER.titleObject": "The Spectrobinder"
 }

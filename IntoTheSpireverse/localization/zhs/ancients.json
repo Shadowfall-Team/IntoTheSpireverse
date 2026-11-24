@@ -176,5 +176,10 @@
   "VAKUU.talk.INTOTHESPIREVERSE-SHADOW_SILENT.2-0.next": "回答",
   "VAKUU.talk.INTOTHESPIREVERSE-SHADOW_SILENT.2-1.char": "别害怕，瓦库，你很快就会亲眼看到的。",
   "VAKUU.talk.INTOTHESPIREVERSE-SHADOW_SILENT.2-1.next": "继续",
-  "VAKUU.talk.INTOTHESPIREVERSE-SHADOW_SILENT.2-2.ancient": "不打算说，是吧？一个人想保住自己的生意，也怪不得谁。"
+  "VAKUU.talk.INTOTHESPIREVERSE-SHADOW_SILENT.2-2.ancient": "不打算说，是吧？一个人想保住自己的生意，也怪不得谁。",
+
+  "THE_ARCHITECT.talk.INTOTHESPIREVERSE-SPECTROBINDER.0-0r.char": "I am angry at the architect",
+  "THE_ARCHITECT.talk.INTOTHESPIREVERSE-SPECTROBINDER.0-0r.next": "Continue",
+  "THE_ARCHITECT.talk.INTOTHESPIREVERSE-SPECTROBINDER.0-1r.ancient": "You die",
+  "THE_ARCHITECT.talk.INTOTHESPIREVERSE-SPECTROBINDER.0-attack": "Both"
 }
