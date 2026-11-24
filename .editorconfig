@@ -25,6 +25,11 @@ dotnet_style_qualification_for_property = false
 dotnet_style_qualification_for_method = false
 dotnet_style_qualification_for_event = false
 
+# Prefer pattern matching
+csharp_style_prefer_pattern_matching = true
+csharp_style_pattern_matching_over_as_with_null_check = true
+csharp_style_pattern_matching_over_is_with_cast_check = true
+
 csharp_style_inlined_variable_declaration = true
 
 ### DotNet stuff

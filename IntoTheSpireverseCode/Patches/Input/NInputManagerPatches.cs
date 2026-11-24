@@ -42,8 +42,7 @@ internal static class NInputManagerPatches
     [HarmonyPrefix]
     internal static bool UnhandledKeyInputPrefix(InputEvent inputEvent)
     {
-        var key = inputEvent as InputEventKey;
-        if (key == null || key.IsEcho() || !key.Pressed)
+        if (inputEvent is not InputEventKey key || key.IsEcho() || !key.Pressed)
         {
             return _currentlyCapturing == CaptureTarget.None;
         }

@@ -76,7 +76,7 @@ public sealed class TheLaw : ShadowDefectCard
             CardCmd.Upgrade(card);
 
         BuffFromPlay();
-        if (!(DeckVersion is TheLaw deckVersion))
+        if (DeckVersion is not TheLaw deckVersion)
             return;
         deckVersion.BuffFromPlay();
     }

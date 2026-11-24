@@ -47,7 +47,7 @@ public class VinoSerpento : ShadowSilentRelic
     ];
     public override Task AfterRoomEntered(AbstractRoom room)
     {
-        if (!(room is CombatRoom))
+        if (room is not CombatRoom)
             return Task.CompletedTask;
         WasUsedThisCombat = false;
         WasTriggered = false;
@@ -69,7 +69,7 @@ public class VinoSerpento : ShadowSilentRelic
         Creature? target,
         CardModel? cardSource)
     {
-        return !(power is PoisonPower) || cardSource == null || giver != Owner.Creature || WasUsedThisCombat ? 0M : DynamicVars.Poison.BaseValue;
+        return power is not PoisonPower || cardSource == null || giver != Owner.Creature || WasUsedThisCombat ? 0M : DynamicVars.Poison.BaseValue;
     }
 
     public override async Task AfterModifyingPowerAmountGiven(PowerModel power)

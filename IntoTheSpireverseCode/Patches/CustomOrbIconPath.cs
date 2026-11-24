@@ -10,7 +10,7 @@ internal static class CustomOrbIconPath
     [HarmonyPrefix]
     internal static bool UseCustomIconPath(OrbModel __instance, ref string __result)
     {
-        if (!(__instance is CustomOrbModel customOrbModel))
+        if (__instance is not CustomOrbModel customOrbModel)
             return true;
 
         if (string.IsNullOrEmpty(customOrbModel.CustomIconPath))

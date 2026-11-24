@@ -15,7 +15,7 @@ internal static class CustomOrbCreateSprite
     [HarmonyPrefix]
     internal static bool UseCustomCreateSprite(OrbModel __instance, ref Node2D __result)
     {
-        if (!(__instance is CustomOrbModel customOrbModel))
+        if (__instance is not CustomOrbModel customOrbModel)
             return true;
 
         string spritePath = customOrbModel.CustomSpritePath ??

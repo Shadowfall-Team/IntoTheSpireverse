@@ -49,7 +49,7 @@ public class SistersCrown : ShadowSilentRelic, IOvercostListener, IBeforeEnergyS
 
     public override Task AfterRoomEntered(AbstractRoom room)
     {
-        if (!(room is CombatRoom))
+        if (room is not CombatRoom)
             return Task.CompletedTask;
         WasUsedThisCombat = false;
         EnergyBeforePlay = 0;

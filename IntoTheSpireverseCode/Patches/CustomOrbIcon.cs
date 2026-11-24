@@ -12,7 +12,7 @@ internal static class CustomOrbIcon
     [HarmonyPrefix]
     internal static bool UseCustomIcon(OrbModel __instance, ref CompressedTexture2D __result)
     {
-        if (!(__instance is CustomOrbModel customOrbModel))
+        if (__instance is not CustomOrbModel customOrbModel)
             return true;
 
         if (string.IsNullOrEmpty(customOrbModel.CustomIconPath))

@@ -10,7 +10,7 @@ internal static class CustomOrbSpritePath
     [HarmonyPrefix]
     internal static bool UseCustomSpritePath(OrbModel __instance, ref string __result)
     {
-        if (!(__instance is CustomOrbModel customOrbModel))
+        if (__instance is not CustomOrbModel customOrbModel)
             return true;
 
         if (string.IsNullOrEmpty(customOrbModel.CustomSpritePath))
