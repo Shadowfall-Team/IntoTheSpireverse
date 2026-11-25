@@ -97,6 +97,7 @@ public static class IntoTheSpireverseKeywords
         var cards = await CardSelectCmd.FromHandForDiscard(context, player,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1, Math.Max(maxDiscards,1)),
             null, source);
+        var slyDelaySession = DeviousSlyDelayManager.Begin(source as CardModel, context);
 
         foreach (CardModel card in cards)
         {
@@ -105,7 +106,10 @@ public static class IntoTheSpireverseKeywords
             repeats += Math.Max(0, card.EnergyCost.GetWithModifiers(CostModifiers.All));
             if (card.EnergyCost.CostsX && player.PlayerCombatState != null)
                 repeats += Math.Max(0, player.PlayerCombatState.Energy);
-            await CardCmd.Discard(context, card);
+
+            DeviousSlyDelayManager.BeginPromptDiscard(slyDelaySession, card);
+            try { await CardCmd.Discard(context, card); }
+            finally { DeviousSlyDelayManager.EndPromptDiscard(slyDelaySession, card); }
 
             foreach (var model in card.Owner.Creature.CombatState.IterateHookListeners().ToList())
             {
