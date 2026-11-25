@@ -1,184 +1,181 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
-    <Import Project=".\Sts2PathDiscovery.props"/>
+  <Import Project=".\Sts2PathDiscovery.props" />
 
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
+    <PathMap>$(AppOutputBase)=.\</PathMap>
+    <LangVersion>Latest</LangVersion>
+    <DefaultItemExcludes>packages/**</DefaultItemExcludes>
+    <Configurations>Debug;Release;Production</Configurations>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <!-- Used the Contains() check in case we ever do something like ReleaseProduction and DebugProduction -->
+  <!-- Can add "or $(InnerConfiguration.Contains('Production'))" to this (and the other check for this) as an
+       alternative to the IsInnerGodotExport check on the CopyAfterBuild target -->
+  <PropertyGroup Condition="$(Configuration.Contains('Production'))">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!-- You can add the base character names in ALL CAPS (eg: SILENT) in a ";" delimited list to test in the production
+         env -->
+    <DefineConstants>$(DefineConstants);PRODUCTION;IRONCLAD;REGENT;SILENT</DefineConstants>
+    <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
+    <PathMap>$(AppOutputBase)=.\</PathMap>
+    <InnerConfiguration>$(Configuration)</InnerConfiguration>
+  </PropertyGroup>
+
+  <ItemGroup Condition="Exists('$(Sts2DataDir)')">
+    <Reference Include="0Harmony">
+      <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="sts2">
+      <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
+    <PackageReference Include="Book.StS2.RefLib" Version="*-*" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Art Roller is a separate mod (github.com/mikemayhemdev/ArtRoller). Compile-time only: players get ArtRoller.dll
+       from the mod itself, so it must not ship in this build. -->
+  <ItemGroup>
+    <PackageReference Include="Shadowfall.Sts2.ArtRoller" Version="1.0.0" PrivateAssets="All" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
+  </PropertyGroup>
+
+  <ItemGroup Condition="Exists('$(Sts2DataDir)')">
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricsSerializerContext" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricUtilities.GetGameModeString" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners" />
+
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._localPlayer" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._bumpTween" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._ascensionPanel" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._infoPanel" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NCardPileScreen._bottomLabel" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnPressHandler" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnReleaseHandler" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._hpBarHitbox" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._creature" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._hpForeground" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._hpLabel" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar.MaxFgWidth" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NSubmenuStack._submenus" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NSubmenu._stack" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NMainMenuSubmenuStack._compendiumSubmenu" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._cardLibrarySubmenu" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._relicCollectionSubmenu" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._potionLabSubmenu" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NInspectCardScreen._card" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.InspectScreens.NInspectRelicScreen._relics" />
+    <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._model" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All" GeneratePathProperty="true" />
+    <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
+    <AdditionalFiles Include="IntoTheSpireverse/localization/**/*.json" />
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('$(Sts2DataDir)')">
+    <PackageReference Include="Krafs.Publicizer" Version="2.3.2" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="IntoTheSpireverse/**" />
+    <Compile Remove="materials/**" />
+    <Compile Remove="shaders/**" />
+    <Compile Remove="images/**" />
+    <EmbeddedResource Remove="IntoTheSpireverse/**" />
+    <EmbeddedResource Remove="materials/**" />
+    <EmbeddedResource Remove="shaders/**" />
+    <EmbeddedResource Remove="images/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="**/*.cs.uid" />
+    <None Remove="**/*.cs.uid" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props" />
+    <None Include=".gitignore" />
+    <None Include="IntoTheSpireverse.json" />
+    <None Include="project.godot" />
+    <None Include="IntoTheSpireverse/**" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(Configuration.Contains('Production'))">
+    <Compile Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**" />
+    <Compile Remove="IntoTheSpireverseCode\Character\ShadowDefect\**" />
+    <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**" />
+    <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowDefect\**" />
+  </ItemGroup>
+
+  <Target Name="CheckSts2DataDirForCopy" BeforeTargets="CopyToModsFolderOnBuild"
+          Condition="!Exists('$(Sts2DataDir)') And !Exists('$(ModsPath)')">
+    <Error Text="Cannot copy build output to mods folder: neither '$(Sts2DataDir)' nor '$(ModsPath)' exists. Install STS2 locally or pass /p:ModsPath=... in CI." />
+  </Target>
+
+  <Target Name="UpdateBaselibVersionInManifest" BeforeTargets="BeforeBuild" Condition="Exists('$(ProjectAssetsFile)')">
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>true</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-        <PathMap>$(AppOutputBase)=.\</PathMap>
-        <LangVersion>Latest</LangVersion>
-        <DefaultItemExcludes>packages/**</DefaultItemExcludes>
-        <Configurations>Debug;Release;Production</Configurations>
-        <Platforms>AnyCPU</Platforms>
+      <ManifestPath>$(MSBuildProjectDirectory)\$(MSBuildProjectName).json</ManifestPath>
     </PropertyGroup>
 
-    <!-- Used the Contains() check in case we ever do something like ReleaseProduction and DebugProduction -->
-    <!-- Can add "or $(InnerConfiguration.Contains('Production'))" to this (and the other check for this) as an alternative to the 
-         IsInnerGodotExport check on the CopyAfterBuild target -->
-    <PropertyGroup Condition="$(Configuration.Contains('Production'))">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <!-- You can add the base character names in ALL CAPS (eg: SILENT) in a ";" delimited list to test in the production env -->
-        <DefineConstants>$(DefineConstants);PRODUCTION;IRONCLAD;REGENT;SILENT</DefineConstants>
-        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-        <PathMap>$(AppOutputBase)=.\</PathMap>
-        <InnerConfiguration>$(Configuration)</InnerConfiguration>
+    <PropertyGroup Condition="Exists('$(ManifestPath)')">
+      <NuGetData>$([System.IO.File]::ReadAllText('$(ProjectAssetsFile)'))</NuGetData>
+      <ActiveBaseLibVersion>$([System.Text.RegularExpressions.Regex]::Match($(NuGetData),
+        '"Alchyr.Sts2.BaseLib\/([^"]*)').Result('$1'))</ActiveBaseLibVersion>
+      <OldContent>$([System.IO.File]::ReadAllText($(ManifestPath)))</OldContent>
+      <NewContent Condition="'$(ActiveBaseLibVersion)' != ''">$([System.Text.RegularExpressions.Regex]::Replace($(OldContent),
+        '("id"\s*:\s*"BaseLib",\s*"min_version"\s*:\s*")[^"]*', '${1}$(ActiveBaseLibVersion)'))</NewContent>
     </PropertyGroup>
 
-    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
-        <Reference Include="0Harmony">
-            <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="sts2">
-            <HintPath>$(Sts2DataDir)/sts2.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
-    </ItemGroup>
+    <WriteLinesToFile Condition="'$(ActiveBaseLibVersion)' != '' and '$(OldContent)' != '$(NewContent)'"
+                      File="$(ManifestPath)" Lines="$(NewContent)" Overwrite="true" Encoding="UTF-8" />
 
-    <ItemGroup Condition="!Exists('$(Sts2DataDir)')">
-        <PackageReference Include="Book.StS2.RefLib" Version="*-*" PrivateAssets="all"/>
-    </ItemGroup>
+    <Message Condition="'$(ActiveBaseLibVersion)' != '' and '$(OldContent)' != '$(NewContent)'"
+             Text="Updated BaseLib dependency in manifest to version $(ActiveBaseLibVersion)" Importance="high" />
+  </Target>
 
-    <!-- Art Roller is a separate mod (github.com/mikemayhemdev/ArtRoller). Compile-time only: players
-         get ArtRoller.dll from the mod itself, so it must not ship in this build. -->
-    <ItemGroup>
-        <PackageReference Include="Shadowfall.Sts2.ArtRoller" Version="1.0.0" PrivateAssets="All" ExcludeAssets="runtime" />
-    </ItemGroup>
+  <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent" Condition="'$(IsInnerGodotExport)' != 'true'">
+    <Message Text="Copying .dll .pdb and .json to mods folder." Importance="high" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+    <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+  </Target>
 
-    <PropertyGroup>
-        <PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>
-    </PropertyGroup>
+  <Target Name="NeedGodotForPublish" BeforeTargets="Publish">
+    <Error Text=" Godot path must be set up before publishing; Godot not found at path '$(GodotPath)'. Check Directory.Build.props file."
+           Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')" />
+  </Target>
 
-    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricsSerializerContext"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.Metrics.MetricUtilities.GetGameModeString"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Combat.History.CombatHistory.Add"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Hooks.Hook.IterateCombatHookListeners"/>
-
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Commands.Builders.AttackCommand._combatState"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._localPlayer"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._pile"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._currentCount"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._countLabel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._icon"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCombatCardPile._bumpTween"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._ascensionPanel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen._infoPanel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NCardPileScreen._bottomLabel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnPressHandler"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.GodotExtensions.NClickableControl.OnReleaseHandler"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Runs.RunManager.State"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreature._stateDisplay"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._healthBar"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NCreatureStateDisplay._hpBarHitbox"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._creature"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._hpForeground"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar._hpLabel"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Combat.NHealthBar.MaxFgWidth"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NSubmenuStack._submenus"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NSubmenu._stack"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.MainMenu.NMainMenuSubmenuStack._compendiumSubmenu"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._cardLibrarySubmenu"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._relicCollectionSubmenu"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NRunSubmenuStack._potionLabSubmenu"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.NInspectCardScreen._card"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Screens.InspectScreens.NInspectRelicScreen._relics"/>
-        <Publicize Include="sts2:MegaCrit.Sts2.Core.Nodes.Cards.NCard._model"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All" GeneratePathProperty="true" />
-        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*"/>
-        <AdditionalFiles Include="IntoTheSpireverse/localization/**/*.json"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.2" PrivateAssets="all">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Remove="IntoTheSpireverse/**"/>
-        <Compile Remove="materials/**"/>
-        <Compile Remove="shaders/**"/>
-        <Compile Remove="images/**"/>
-        <EmbeddedResource Remove="IntoTheSpireverse/**"/>
-        <EmbeddedResource Remove="materials/**"/>
-        <EmbeddedResource Remove="shaders/**"/>
-        <EmbeddedResource Remove="images/**"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Remove="**/*.cs.uid"/>
-        <None Remove="**/*.cs.uid"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
-        <None Include=".gitignore"/>
-        <None Include="IntoTheSpireverse.json"/>
-        <None Include="project.godot"/>
-        <None Include="IntoTheSpireverse/**"/>
-    </ItemGroup>
-
-    <ItemGroup Condition="$(Configuration.Contains('Production'))">
-        <Compile Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
-        <Compile Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
-        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowNecrobinder\**"/>
-        <EmbeddedResource Remove="IntoTheSpireverseCode\Character\ShadowDefect\**"/>
-    </ItemGroup>
-
-    <Target Name="CheckSts2DataDirForCopy" BeforeTargets="CopyToModsFolderOnBuild"
-            Condition="!Exists('$(Sts2DataDir)') And !Exists('$(ModsPath)')">
-        <Error Text="Cannot copy build output to mods folder: neither '$(Sts2DataDir)' nor '$(ModsPath)' exists. Install STS2 locally or pass /p:ModsPath=... in CI."/>
-    </Target>
-
-    <Target Name="UpdateBaselibVersionInManifest" BeforeTargets="BeforeBuild" Condition="Exists('$(ProjectAssetsFile)')">
-        <PropertyGroup>
-            <ManifestPath>$(MSBuildProjectDirectory)\$(MSBuildProjectName).json</ManifestPath>
-        </PropertyGroup>
-
-        <PropertyGroup Condition="Exists('$(ManifestPath)')">
-            <NuGetData>$([System.IO.File]::ReadAllText('$(ProjectAssetsFile)'))</NuGetData>
-            <ActiveBaseLibVersion>$([System.Text.RegularExpressions.Regex]::Match($(NuGetData), '"Alchyr.Sts2.BaseLib\/([^"]*)').Result('$1'))</ActiveBaseLibVersion>
-            <OldContent>$([System.IO.File]::ReadAllText($(ManifestPath)))</OldContent>
-            <NewContent Condition="'$(ActiveBaseLibVersion)' != ''">$([System.Text.RegularExpressions.Regex]::Replace($(OldContent), '("id"\s*:\s*"BaseLib",\s*"min_version"\s*:\s*")[^"]*', '${1}$(ActiveBaseLibVersion)'))</NewContent>
-        </PropertyGroup>
-
-        <WriteLinesToFile
-                Condition="'$(ActiveBaseLibVersion)' != '' and '$(OldContent)' != '$(NewContent)'"
-                File="$(ManifestPath)"
-                Lines="$(NewContent)"
-                Overwrite="true"
-                Encoding="UTF-8" />
-
-        <Message Condition="'$(ActiveBaseLibVersion)' != '' and '$(OldContent)' != '$(NewContent)'"
-                 Text="Updated BaseLib dependency in manifest to version $(ActiveBaseLibVersion)"
-                 Importance="high" />
-    </Target>
-
-    <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent"
-        Condition="'$(IsInnerGodotExport)' != 'true'">
-        <Message Text="Copying .dll .pdb and .json to mods folder." Importance="high" />
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-        <Copy SourceFiles="$(AssemblyName).json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-        <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-    </Target>
-
-    <Target Name="NeedGodotForPublish" BeforeTargets="Publish">
-        <Error Text=" Godot path must be set up before publishing; Godot not found at path '$(GodotPath)'. Check Directory.Build.props file."
-               Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')"/>
-    </Target>
-
-    <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(TargetDir)$(MSBuildProjectName).pck&quot;"
-            EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
-        ContinueOnError="WarnAndContinue"/>
-        <Message Text="IC = $(InnerConfiguration)" Importance="High"/>
-        <Copy SourceFiles="$(TargetDir)$(MSBuildProjectName).pck" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-    </Target>
+  <Target Name="GodotPublish" AfterTargets="Publish"
+          Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
+    <Message Text="Exporting Godot .pck to mods folder" Importance="high" />
+    <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(TargetDir)$(MSBuildProjectName).pck&quot;"
+          EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1" ContinueOnError="WarnAndContinue" />
+    <Message Text="IC = $(InnerConfiguration)" Importance="High" />
+    <Copy SourceFiles="$(TargetDir)$(MSBuildProjectName).pck" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
+  </Target>
 </Project>
