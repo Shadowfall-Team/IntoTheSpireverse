@@ -39,6 +39,7 @@ public static class TransformPayoutPatches
         [typeof(IEnumerable<CardTransformation>), typeof(Rng), typeof(CardPreviewStyle)])]
     public static class TransformPayoutPatch
     {
+        [HarmonyPriority(Priority.Last)]
         public static void Prefix(ref IEnumerable<CardTransformation> transformations,
             out List<ITransformPayout> __state)
         {
@@ -47,10 +48,12 @@ public static class TransformPayoutPatches
                 : [];
         }
 
-        public static void Postfix(ref Task<IEnumerable<CardPileAddResult>> __result,
-            List<ITransformPayout> __state)
+        [HarmonyPriority(Priority.Last)]
+        public static void Postfix(bool __runOriginal, ref Task<IEnumerable<CardPileAddResult>> __result,
+            List<ITransformPayout>? __state)
         {
-            __result = SettlePayouts(__result, __state);
+            if (!__runOriginal) return;
+            __result = SettlePayouts(__result, __state ?? []);
         }
     }
 
