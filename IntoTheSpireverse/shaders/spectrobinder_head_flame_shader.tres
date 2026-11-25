@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://ctecsdoywywo1"]
+
+[ext_resource type="Shader" uid="uid://citjsgmko2rak" path="res://shaders/vfx/vfx_stepped_shader_fire_dark.tres" id="1_1ydma"]
+[ext_resource type="Texture2D" uid="uid://c65hcljas0pyo" path="res://IntoTheSpireverse/images/vfx/fire/triangle_noise_tile.png" id="2_18i2o"]
+[ext_resource type="Texture2D" uid="uid://1epaordiol6u" path="res://IntoTheSpireverse/images/vfx/fire/zigzag_fire_distortion.png" id="3_jnnld"]
+[ext_resource type="Texture2D" uid="uid://cv34jqejd8qm4" path="res://images/vfx/characters/necro_fire_bottom_mask.png" id="4_2mpp2"]
+[ext_resource type="Texture2D" uid="uid://ihjpxxm3o87h" path="res://IntoTheSpireverse/images/vfx/fire/basic_fire_noise.png" id="5_6defr"]
+[ext_resource type="Texture2D" uid="uid://nabb7hx4fxat" path="res://IntoTheSpireverse/images/vfx/fire/fire_bottom_mask.png" id="6_d7ijg"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_1ydma")
+shader_parameter/GlobalOffset = Vector2(0, 0)
+shader_parameter/OuterColor = Color(0.17, 0.612667, 1, 1)
+shader_parameter/InnerColorStep = Vector2(0.52, 0.92)
+shader_parameter/Noise2Strength = 0.51
+shader_parameter/Noise2Scaling = Vector2(3, 3)
+shader_parameter/Noise2Panning = Vector2(-0.2, 1.4)
+shader_parameter/Noise2Texture = ExtResource("5_6defr")
+shader_parameter/Noise1Strength = 0.87
+shader_parameter/Noise1Scaling = Vector2(2.2, 2.2)
+shader_parameter/Noise1Panning = Vector2(0.8, 1.3)
+shader_parameter/Noise1Texture = ExtResource("2_18i2o")
+shader_parameter/InvertNoiseMask = true
+shader_parameter/NoiseMaskScale = Vector2(1, 0.91)
+shader_parameter/NoiseMaskOffset = Vector2(0, -0.015)
+shader_parameter/NoiseMask = ExtResource("6_d7ijg")
+shader_parameter/Distortion2Scale = Vector2(1, 0.8)
+shader_parameter/Distortion2Panning = Vector2(0, 0.5)
+shader_parameter/Distortion2Texture = ExtResource("3_jnnld")
+shader_parameter/Distortion2Strength = 0.15
+shader_parameter/Distortion1Scale = Vector2(1, 1)
+shader_parameter/Distortion1Panning = Vector2(0.03, 0.6)
+shader_parameter/Distortion1Texture = ExtResource("2_18i2o")
+shader_parameter/Distortion1Strength = 0.125
+shader_parameter/DistortionMaskScale = Vector2(1, 0.88)
+shader_parameter/DistortionMaskOffset = Vector2(0, 0.18)
+shader_parameter/DistortionMask = ExtResource("4_2mpp2")
+shader_parameter/InnerColor = Color(0, 0.0373333, 0.08, 1)
+shader_parameter/OuterStep = Vector2(0.025, 0.045)

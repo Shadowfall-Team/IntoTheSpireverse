@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://c3mq3pfvc7fh7"]
 
-[ext_resource type="PackedScene" path="res://scenes/screens/char_select/char_select_bg_necrobinder.tscn" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://crno8o3bdv4w6" path="res://scenes/screens/char_select/char_select_bg_necrobinder.tscn" id="1_base"]
+[ext_resource type="Texture2D" uid="uid://xkgk3bv1hsi" path="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/character_select_spectrobinder_bg.png" id="2_bg"]
+[ext_resource type="SpineAtlasResource" uid="uid://djong6uu11p0w" path="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/characterselect_spectrobinder.spatlas" id="3_atlas"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://bdj8preq6y3v0" path="res://animations/character_select/necrobinder/characterselect_necrobinder.skel" id="5_skel"]
+[ext_resource type="Texture2D" uid="uid://b55pkr3sh2vcy" path="res://IntoTheSpireverse/images/vfx/spectro_character_select_fire_shape.png" id="5_yx2dw"]
 [ext_resource type="Texture2D" uid="uid://bwl2khc7ydi50" path="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/eye_flame_mask_select.png" id="7_eyemask"]
-[ext_resource type="Texture2D" path="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/character_select_spectrobinder_bg.png" id="2_bg"]
-[ext_resource type="SpineAtlasResource" path="res://IntoTheSpireverse/images/characters/spectrobinder/char_select/characterselect_spectrobinder.spatlas" id="3_atlas"]
-[ext_resource type="SpineSkeletonFileResource" path="res://animations/character_select/necrobinder/characterselect_necrobinder.skel" id="5_skel"]
 
 [sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_body"]
 atlas_res = ExtResource("3_atlas")
@@ -12,18 +13,26 @@ skeleton_file_res = ExtResource("5_skel")
 
 [node name="SpectrobinderBg" instance=ExtResource("1_base")]
 
-[node name="TextureRect" parent="."]
+[node name="TextureRect" parent="." index="0"]
 texture = ExtResource("2_bg")
 
-[node name="SpineSprite" parent="."]
+[node name="SpineSprite" parent="." index="3"]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_body")
 
-[node name="OstyFireSlot" parent="SpineSprite"]
+[node name="OstyFireSlot" parent="SpineSprite" index="0"]
+visible = false
+position = Vector2(2662.5977, 1479.5167)
+
+[node name="HeadFireSlot" parent="SpineSprite" index="52"]
+position = Vector2(3654.2166, 964.0592)
+
+[node name="TextureRect" parent="SpineSprite/HeadFireSlot" index="0"]
+texture = ExtResource("5_yx2dw")
+
+[node name="FlameEyes" type="Node2D" parent="SpineSprite/HeadFireSlot" index="1"]
 visible = false
 
-[node name="FlameEyes" type="Node2D" parent="SpineSprite/HeadFireSlot"]
-
-[node name="FlameEye0" type="TextureRect" parent="SpineSprite/HeadFireSlot/FlameEyes"]
+[node name="FlameEye0" type="TextureRect" parent="SpineSprite/HeadFireSlot/FlameEyes" index="0"]
 offset_left = -224.5
 offset_top = -151.1
 offset_right = -96.5
@@ -35,7 +44,7 @@ texture = ExtResource("7_eyemask")
 expand_mode = 1
 metadata/keep_colors = true
 
-[node name="FlameEye1" type="TextureRect" parent="SpineSprite/HeadFireSlot/FlameEyes"]
+[node name="FlameEye1" type="TextureRect" parent="SpineSprite/HeadFireSlot/FlameEyes" index="1"]
 offset_left = -58.9
 offset_top = -186.2
 offset_right = 69.1
