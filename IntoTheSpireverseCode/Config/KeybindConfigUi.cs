@@ -20,6 +20,6 @@ internal static class KeybindConfigUi
     }
 
     public static void SetListening(NConfigButton button) =>
-        button.GetNodeOrNull<Label>("Label")!.Text =
+        button.GetNodeOrNull<Label>("Label").Text =
             new LocString("settings_ui", "INTOTHESPIREVERSE-PRESS_A_KEY").GetFormattedText();
 }

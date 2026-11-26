@@ -26,7 +26,7 @@ public class BlackIcePower : IntoTheSpireversePower
         if (Owner.Player == null) return;
 
         var darkOrbCount = Owner.Player.PlayerCombatState?.OrbQueue.Orbs.Count(x => x is DarkOrb) ?? 0;
-        
+
         for (int i = 0; i < darkOrbCount; i++)
             await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
     }

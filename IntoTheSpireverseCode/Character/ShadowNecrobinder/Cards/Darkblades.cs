@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Cards;
 
@@ -38,7 +37,7 @@ public sealed class Darkblades() : ShadowNecrobinderCard(1, CardType.Skill, Card
             if (creature.Player == null) continue;
             var soulStrikes = SoulStrike.Create(creature.Player, DynamicVars.Cards.IntValue, CombatState).ToList();
             var combat = await CardPileCmd.AddGeneratedCardsToCombat(
-                (IEnumerable<CardModel>)soulStrikes, PileType.Draw, Owner, CardPilePosition.Random);
+                soulStrikes, PileType.Draw, Owner, CardPilePosition.Random);
             if (LocalContext.IsMe(creature))
                 CardCmd.PreviewCardPileAdd(combat);
         }

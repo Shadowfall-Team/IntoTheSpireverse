@@ -1,19 +1,16 @@
 ﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Orbs;
-using MegaCrit.Sts2.Core.Helpers;
-using Godot;
 
 namespace IntoTheSpireverse.Patches;
 
 [HarmonyPatch(typeof(OrbModel), "SpritePath", MethodType.Getter)]
-public class OrbModelPatch
+internal static class OrbModelPatch
 {
     /// <summary>
     /// Postfix patch to modify the SpritePath property getter return value.
     /// Returns a custom path for EntropyOrb, otherwise uses the original default path.
     /// </summary>
-    static void Postfix(OrbModel __instance, ref string __result)
+    internal static void Postfix(OrbModel __instance, ref string __result)
     {
         if (__instance == null)
             return;

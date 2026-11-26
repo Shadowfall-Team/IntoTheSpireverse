@@ -25,7 +25,7 @@ public sealed class BedrockPower : ShadowPowerModel
                      .ToList())
         {
             await PowerCmd.Apply<SlatePower>(new ThrowingPlayerChoiceContext(),
-                creature, (decimal)Amount, creature, null);
+                creature, Amount, creature, null);
         }
     }
 }

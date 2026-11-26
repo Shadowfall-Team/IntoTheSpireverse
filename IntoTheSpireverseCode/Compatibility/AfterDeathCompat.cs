@@ -6,11 +6,11 @@ using MegaCrit.Sts2.Core.Models;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 [HarmonyPatch]
-public static class AfterDeathCompat
+internal static class AfterDeathCompat
 {
     [HarmonyPatch(typeof(AbstractModel), nameof(AbstractModel.AfterDeath))]
     [HarmonyPostfix]
-    public static Task AfterDeathPostfix(Task __result, AbstractModel __instance, object[] __args)
+    internal static Task AfterDeathPostfix(Task __result, AbstractModel __instance, object[] __args)
     {
         if (__instance is IAfterDeathCompat afterDeathCompat)
         {
@@ -31,7 +31,7 @@ public static class AfterDeathCompat
         return __result;
     }
 
-    public static async Task AfterDeath(Task original, IAfterDeathCompat instance,
+    private static async Task AfterDeath(Task original, IAfterDeathCompat instance,
         PlayerChoiceContext choiceContext, Creature creature, CardModel? source, bool wasRemovalPrevented, float deathAnimLength)
     {
         await original;

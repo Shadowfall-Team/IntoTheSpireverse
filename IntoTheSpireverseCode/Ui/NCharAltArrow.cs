@@ -27,7 +27,7 @@ public partial class NCharAltArrow : NGoldArrowButton
 
     public ICharacterSelectButtonDelegate? ClickDelegate;
 
-    public List<CharacterModel> Characters = new();
+    public List<CharacterModel> Characters = [];
 
     private int _currentAltIndex = -1;
     private Tween? _portraitTween;
@@ -49,7 +49,7 @@ public partial class NCharAltArrow : NGoldArrowButton
     public bool DoPress()
     {
         if (GetParent() is not NCharacterSelectButton parent) return true;
-        if (ClickDelegate is null) return true;  
+        if (ClickDelegate is null) return true;
         _currentAltIndex = (_currentAltIndex + 1) % Characters.Count;
         var character = Characters[_currentAltIndex];
 
@@ -68,9 +68,9 @@ public partial class NCharAltArrow : NGoldArrowButton
             {
                 v111SelectCharacter.Invoke(ClickDelegate, [parent, character]);
             }
-            else if (v113SelectCharacter is not null)
+            else
             {
-                v113SelectCharacter.Invoke(ClickDelegate, [parent]);
+                v113SelectCharacter?.Invoke(ClickDelegate, [parent]);
             }
         }
 

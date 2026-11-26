@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
-using GodotPlugins.Game;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Debug;
 using MegaCrit.Sts2.Core.Localization;
@@ -120,7 +118,7 @@ internal static class MetricsPayloadBuilder
         RunMetricsCompat.AddGameMode(metrics, run);
         return metrics;
     }
-    
+
     public static string BuildPayloadJson(RunMetrics metrics)
     {
         var runMetrics = JsonSerializer.Serialize(metrics, MetricsSerializerContext.Default.RunMetrics);

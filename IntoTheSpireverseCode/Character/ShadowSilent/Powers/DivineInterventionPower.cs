@@ -14,10 +14,10 @@ public class DivineInterventionPower : ShadowPowerModel, IModifyDamageMultiplica
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
-    public Decimal ModifyDamageMultiplicativeCompability(
+
+    public decimal ModifyDamageMultiplicativeCompability(
         Creature? target,
-        Decimal amount,
+        decimal amount,
         ValueProp props,
         Creature? dealer,
         CardModel? cardSource,
@@ -25,7 +25,7 @@ public class DivineInterventionPower : ShadowPowerModel, IModifyDamageMultiplica
     {
         return dealer != null && (dealer != Owner && !Owner.Pets.Contains(dealer) || !props.IsPoweredAttack() || cardSource == null) ? 1M : Amount;
     }
-    
+
     public override async Task AfterSideTurnEnd(
         PlayerChoiceContext choiceContext,
         CombatSide side,

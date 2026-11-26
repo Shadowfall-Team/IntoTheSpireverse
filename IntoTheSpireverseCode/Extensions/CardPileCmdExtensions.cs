@@ -1,16 +1,16 @@
+using System.Reflection;
+using BaseLib.Patches.Content;
+using HarmonyLib;
 using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Entities.Multiplayer;
-using System.Reflection;
-using HarmonyLib;
-using BaseLib.Patches.Content;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
@@ -142,7 +142,7 @@ public static class CardPileCmdExtensions
             if (drawsRequested == 0) { return result; }
 
             int freeHandSpaces = Math.Max(0, CardPile.MaxCardsInHand - hand.Cards.Count);
-            if (freeHandSpaces <= 0 )
+            if (freeHandSpaces <= 0)
             {
                 // TODO
                 // CheckIfDrawIsPossibleFromPileAndShowThoughtBubbleIfNot(pileType, player);

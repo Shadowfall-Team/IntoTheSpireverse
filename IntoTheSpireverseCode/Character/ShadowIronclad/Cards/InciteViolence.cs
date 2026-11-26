@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,7 +8,6 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
 

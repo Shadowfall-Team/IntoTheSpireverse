@@ -18,10 +18,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// two are harmless together: the preview pass just recomputes the same value.
 /// </summary>
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.UpdateDynamicVarPreview))]
-public static class CardModifierPreviewPatch
+internal static class CardModifierPreviewPatch
 {
     [HarmonyPostfix]
-    public static void Postfix(
+    internal static void Postfix(
         CardModel __instance,
         CardPreviewMode previewMode,
         Creature? target,

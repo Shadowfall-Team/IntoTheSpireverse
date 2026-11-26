@@ -7,7 +7,6 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Utils;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Runs;
 
@@ -81,7 +80,8 @@ public class ParallelStone : CustomRelicModel
 
         options = options.WithCardPools(options.CardPools.Union(mirrorPools));
 
-        if (bannedIds.Count > 0) {
+        if (bannedIds.Count > 0)
+        {
             var existingFilter = options.CardPoolFilter;
             options = options.WithFilter(c => !bannedIds.Contains(c.Id) && (existingFilter == null || existingFilter(c)));
         }

@@ -30,7 +30,7 @@ internal static class ModifyCardDestinationPatch_Beta
     private static MethodBase TargetMethod() =>
         AccessTools.Method(typeof(Hook), nameof(Hook.ModifyCardPlayResultLocation));
 
-    private static void Postfix(
+    internal static void Postfix(
         ICombatState combatState, CardModel card, bool isAutoPlay, ResourceInfo resources,
         ref CardLocation __result, ref IEnumerable<AbstractModel> modifiers)
     {
@@ -53,7 +53,7 @@ internal static class AfterCardDestinationModifiedPatch_Beta
 {
     private static bool Prepare() => GameVersion.HasCardLocation;
 
-    private static bool Prefix(AbstractModel __instance, CardModel card, CardLocation cardLocation, ref Task __result)
+    internal static bool Prefix(AbstractModel __instance, CardModel card, CardLocation cardLocation, ref Task __result)
     {
         if (__instance is not ICardDestinationListener listener) return true;
 
@@ -66,7 +66,7 @@ internal static class AfterCardDestinationModifiedPatch_Beta
 // ==================== Old branch (no CardLocation, PileType/CardPilePosition tuple) ====================
 
 [HarmonyPatch]
-internal static class ModifyCardDestinationPatch_Old
+internal class ModifyCardDestinationPatch_Old
 {
     private static bool Prepare() => !GameVersion.HasCardLocation;
 
@@ -92,7 +92,7 @@ internal static class ModifyCardDestinationPatch_Old
 }
 
 [HarmonyPatch(typeof(AbstractModel), "AfterModifyingCardPlayResultPileOrPosition")]
-internal static class AfterCardDestinationModifiedPatch_Old
+internal class AfterCardDestinationModifiedPatch_Old
 {
     private static bool Prepare() => !GameVersion.HasCardLocation;
 

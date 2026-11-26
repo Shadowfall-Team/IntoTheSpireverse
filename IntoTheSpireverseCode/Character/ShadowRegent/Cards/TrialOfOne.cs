@@ -1,5 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,7 +19,7 @@ public class TrialOfOne() : ShadowRegentCard(
     [
         new PowerVar<StrengthPower>(1)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<StrengthPower>(),
         HoverTipFactory.FromPower<IntangiblePower>()

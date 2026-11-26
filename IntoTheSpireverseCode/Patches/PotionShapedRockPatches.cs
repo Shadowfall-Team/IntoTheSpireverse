@@ -13,7 +13,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// Exists for Gabbro: "Rocks deal additional damage" includes Potion-Shaped Rock. Both patches read
 /// <see cref="GabbroPower.PotionRockBonus"/>, so the tooltip and the hit cannot drift apart.
 /// </summary>
-public static class PotionShapedRockPatches
+internal static class PotionShapedRockPatches
 {
     /// <summary>
     /// The rock's hit carries no cardSource, so a damage modifier cannot tell it apart from the
@@ -23,9 +23,9 @@ public static class PotionShapedRockPatches
     /// Mirrors the vanilla OnUse body, and only takes over while there is a bonus to add.
     /// </summary>
     [HarmonyPatch(typeof(PotionShapedRock), "OnUse")]
-    public static class DamagePatch
+    internal static class DamagePatch
     {
-        static bool Prefix(PotionShapedRock __instance, PlayerChoiceContext choiceContext, Creature? target,
+        internal static bool Prefix(PotionShapedRock __instance, PlayerChoiceContext choiceContext, Creature? target,
             ref Task __result)
         {
             var bonus = GabbroPower.PotionRockBonus(__instance);
@@ -47,9 +47,9 @@ public static class PotionShapedRockPatches
     /// tip, which is why Alkalize's preview keeps showing the base damage.
     /// </summary>
     [HarmonyPatch(typeof(PotionModel), nameof(PotionModel.DynamicDescription), MethodType.Getter)]
-    public static class TooltipPatch
+    internal static class TooltipPatch
     {
-        static void Postfix(PotionModel __instance, LocString __result)
+        internal static void Postfix(PotionModel __instance, LocString __result)
         {
             var bonus = GabbroPower.PotionRockBonus(__instance);
             if (bonus == 0m) return;

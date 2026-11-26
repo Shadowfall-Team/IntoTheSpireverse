@@ -9,8 +9,8 @@ public class ShadowSilentRelicPool : CustomRelicPoolModel
 {
     public override string EnergyColorName => ShadowSilent.CharacterId;
     public override Color LabOutlineColor => ShadowSilent.Color;
-    
-    
+
+
     protected override IEnumerable<RelicModel> GenerateAllRelics()
     {
         return new List<RelicModel>([

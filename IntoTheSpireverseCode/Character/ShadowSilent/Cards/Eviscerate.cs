@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
@@ -8,21 +9,20 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
 public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(7m, ValueProp.Move),
         new SpireverseHitCountVar(3),
         new EnergyVar(1),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         EnergyHoverTip,
@@ -48,15 +48,15 @@ public sealed class Eviscerate() : ShadowSilentCard(3, CardType.Attack, CardRari
             return;
         ReduceCostBy(DynamicVars.Energy.IntValue);
     }
-    
+
     public override Task AfterCardEnteredCombat(CardModel card)
     {
-        if (card != this || this.IsClone )
+        if (card != this || IsClone)
             return Task.CompletedTask;
         ReduceCostBy(CombatManager.Instance.History.Entries.OfType<CardDiscardedEntry>().Count(e => e.HappenedThisTurn(CombatState) && e.Card.Owner == Owner));
         return Task.CompletedTask;
     }
-    private void ReduceCostBy(int amount) => this.EnergyCost.AddThisTurn(-amount);
+    private void ReduceCostBy(int amount) => EnergyCost.AddThisTurn(-amount);
 
     protected override void OnUpgrade()
     {

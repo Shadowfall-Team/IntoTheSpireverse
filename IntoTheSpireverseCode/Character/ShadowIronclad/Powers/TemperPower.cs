@@ -1,11 +1,11 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Powers;
 
@@ -30,6 +30,6 @@ public sealed class TemperPower : ShadowPowerModel
         if (skillsThisTurn > 1) return;
 
         Flash();
-        await PowerCmd.Apply<TemperTemporaryStrengthPower>(choiceContext, Owner, (decimal)Amount, Owner, null);
+        await PowerCmd.Apply<TemperTemporaryStrengthPower>(choiceContext, Owner, Amount, Owner, null);
     }
 }

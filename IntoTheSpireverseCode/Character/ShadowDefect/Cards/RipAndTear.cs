@@ -12,15 +12,15 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRarity.Common, TargetType.None)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(6M, ValueProp.Move),
         new SpireverseHitCountVar(3)
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (CombatState ==  null) return;
+        if (CombatState == null) return;
         await DamageCmd
             .Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars.SpireverseHitCount.IntValue)
@@ -34,7 +34,7 @@ public sealed class RipAndTear() : ShadowDefectCard(2, CardType.Attack, CardRari
             Owner,
             new CardSelectorPrefs(CardSelectorPrefs.DiscardSelectionPrompt, 1),
             null,
-            (AbstractModel) this)).FirstOrDefault<CardModel>()!;
+            this)).FirstOrDefault()!;
 
         if (card == null)
             return;

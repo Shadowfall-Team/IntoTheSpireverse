@@ -1,13 +1,13 @@
-﻿using MegaCrit.Sts2.Core.Animation;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Enchantments;
+using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Enchantments;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Extensions;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -19,8 +19,8 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
     [
         new CardsVar(2),
     ];
-    
-    protected override IEnumerable<IHoverTip> ExtraHoverTips 
+
+    protected override IEnumerable<IHoverTip> ExtraHoverTips
     {
         get
         {
@@ -34,7 +34,7 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
             return tips;
         }
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -45,7 +45,7 @@ public sealed class Centurion() : ShadowSilentCard(3, CardType.Skill, CardRarity
                 var card = CombatState.CreateCard<Scale>(Owner);
                 CardCmd.Enchant<Armored>(card, 1);
                 return card;
-            }); 
+            });
         await CardPileCmd.AddGeneratedCardsToCombat(scales ?? [], PileType.Hand, Owner);
     }
 

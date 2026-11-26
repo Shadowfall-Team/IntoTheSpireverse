@@ -1,16 +1,16 @@
 using ArtRoller.Patches;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Models;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch]
-public static class VisualCardPoolPatches
+internal static class VisualCardPoolPatches
 {
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.VisualCardPool), MethodType.Getter)]
-    public static void get_VisualCardPool_Postfix(CardModel __instance, ref CardPoolModel __result)
+    internal static void get_VisualCardPool_Postfix(CardModel __instance, ref CardPoolModel __result)
     {
 
         // check that the type is either a vanilla or IntoTheSpireverse pool? just in case anyone is doing something goofy?

@@ -13,18 +13,18 @@ public class SpearheadPower : ShadowPowerModel, IntoTheSpireverseKeywords.IModif
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Devious)
-    ]; 
-    
+    ];
+
     public int ModifyDeviousValue(CardModel card, int originalValue)
     {
         return Owner != card.Owner.Creature ? originalValue : originalValue + Amount;
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext,CardPlay cardPlay)
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner.Creature != Owner || !cardPlay.Card.Tags.Contains(IntoTheSpireverseCardTags.Devious))
             return;

@@ -1,14 +1,12 @@
-﻿using MegaCrit.Sts2.Core.Audio.Debug;
-using BaseLib.Abstracts;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards;
@@ -25,7 +23,7 @@ public sealed class Bore() : ShadowIroncladCard(2, CardType.Attack, CardRarity.B
     [
         HoverTipFactory.FromCard<SmallRock>(false),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null || cardPlay.Target == null) return;

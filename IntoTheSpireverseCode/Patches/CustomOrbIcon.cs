@@ -1,18 +1,18 @@
-using HarmonyLib;
-using MegaCrit.Sts2.Core.Models;
 using Godot;
+using HarmonyLib;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.Patches;
 
 [HarmonyPatch(typeof(OrbModel), "Icon", MethodType.Getter)]
-internal class CustomOrbIcon
+internal static class CustomOrbIcon
 {
     [HarmonyPrefix]
-    private static bool UseCustomIcon(OrbModel __instance, ref CompressedTexture2D __result)
+    internal static bool UseCustomIcon(OrbModel __instance, ref CompressedTexture2D __result)
     {
-        if (!(__instance is CustomOrbModel customOrbModel))
+        if (__instance is not CustomOrbModel customOrbModel)
             return true;
 
         if (string.IsNullOrEmpty(customOrbModel.CustomIconPath))

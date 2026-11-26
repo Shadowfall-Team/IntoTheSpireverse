@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Enchantments;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Enchantments;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Relics;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowIronclad.Cards.Rocks;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
@@ -18,10 +18,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// on load (until the name/signiature changes again)
 /// </summary>
 [HarmonyPatch]
-public static class RockTransformPatches
+internal static class RockTransformPatches
 {
     [HarmonyPatch(typeof(CardModel))]
-    public static class RockTransformFromPatch
+    internal static class RockTransformFromPatch
     {
         [HarmonyTargetMethod]
         static MethodInfo TargetMethod()
@@ -42,7 +42,7 @@ public static class RockTransformPatches
     }
 
     [HarmonyPatch(typeof(CardModel))]
-    public static class RockTransformToPatch
+    internal static class RockTransformToPatch
     {
         [HarmonyTargetMethod]
         static MethodInfo TargetMethod()

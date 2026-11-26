@@ -1,5 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -19,7 +19,7 @@ public class IceBeam() : ShadowRegentCard(1,
         new PowerVar<WeakPower>(1),
         new("StrengthLoss", 2)
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.FromPower<WeakPower>(),
         HoverTipFactory.FromPower<StrengthPower>(),
@@ -34,11 +34,11 @@ public class IceBeam() : ShadowRegentCard(1,
         await CreatureCmd.TriggerAnim(Owner.Creature, CreatureAnimator.castTrigger, Owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<IceBeamPower>(
-            choiceContext,play.Target,
+            choiceContext, play.Target,
             DynamicVars["StrengthLoss"].BaseValue, Owner.Creature, this);
-        
+
         await PowerCmd.Apply<WeakPower>(
-            choiceContext,play.Target, DynamicVars.Weak.BaseValue,
+            choiceContext, play.Target, DynamicVars.Weak.BaseValue,
             Owner.Creature, this);
     }
 

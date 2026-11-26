@@ -19,7 +19,7 @@ public class PowerscalePower : ShadowPowerModel
 
     public override PowerStackType StackType =>
         DynamicVars[StrengthAppliedKey].IntValue != 0 ? PowerStackType.Counter : PowerStackType.None;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromPower<StrengthPower>()
@@ -30,32 +30,31 @@ public class PowerscalePower : ShadowPowerModel
         new PowerVar<StrengthPower>(1M),
         new DynamicVar(StrengthAppliedKey, 0M)
     ];
-    
+
 
     protected override object InitInternalData() => new Data();
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != this.Owner)
+        if (cardPlay.Card.Owner.Creature != Owner)
             return Task.CompletedTask;
-        this.GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, DynamicVars.Strength.IntValue);
+        GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, DynamicVars.Strength.IntValue);
         return Task.CompletedTask;
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int amount;
-        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
+        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out int amount) || amount <= 0)
             return;
         if (cardPlay.Card is not Scale)
             return;
         Flash();
-        
-        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, amount*Amount, Owner, null, true);
-        DynamicVars[StrengthAppliedKey].BaseValue += DynamicVars.Strength.IntValue*Amount;
+
+        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, amount * Amount, Owner, null, true);
+        DynamicVars[StrengthAppliedKey].BaseValue += DynamicVars.Strength.IntValue * Amount;
         InvokeDisplayAmountChanged();
     }
-    
+
     public override async Task AfterSideTurnEnd(
         PlayerChoiceContext choiceContext,
         CombatSide side,
@@ -66,9 +65,9 @@ public class PowerscalePower : ShadowPowerModel
         await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -DynamicVars["StrengthApplied"].BaseValue, Owner, null, true);
         DynamicVars[StrengthAppliedKey].BaseValue = 0;
     }
-    
+
     private class Data
     {
-        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = new Dictionary<CardModel, int>();
+        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = [];
     }
 }

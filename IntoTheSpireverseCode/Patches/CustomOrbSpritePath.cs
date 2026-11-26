@@ -1,17 +1,16 @@
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Models;
-using Godot;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using MegaCrit.Sts2.Core.Models;
 
 namespace IntoTheSpireverse.Patches;
 
 [HarmonyPatch(typeof(OrbModel), "SpritePath", MethodType.Getter)]
-internal class CustomOrbSpritePath
+internal static class CustomOrbSpritePath
 {
     [HarmonyPrefix]
-    private static bool UseCustomSpritePath(OrbModel __instance, ref string __result)
+    internal static bool UseCustomSpritePath(OrbModel __instance, ref string __result)
     {
-        if (!(__instance is CustomOrbModel customOrbModel))
+        if (__instance is not CustomOrbModel customOrbModel)
             return true;
 
         if (string.IsNullOrEmpty(customOrbModel.CustomSpritePath))

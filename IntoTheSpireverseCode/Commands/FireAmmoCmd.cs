@@ -1,4 +1,3 @@
-using BaseLib.Extensions;
 using IntoTheSpireverse.IntoTheSpireverseCode.Ammo;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowRegent.Powers;
@@ -18,7 +17,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Commands;
 ///
 /// This is a Command and not a GameAction on purpose. Per StS2's own GameAction docs, a
 /// GameAction wraps *player input* and the Commands it calls carry the game logic;
-/// <see cref="Ammo.FireAmmoAction"/> is that input wrapper for the FIRE button and nothing more.
+/// <see cref="FireAmmoAction"/> is that input wrapper for the FIRE button and nothing more.
 /// Anything already running inside a networked action - a card's OnPlay, a power's hook - calls
 /// this directly instead. Enqueueing a second GameAction from inside one can create a MP sync problem.
 /// </summary>
@@ -102,7 +101,7 @@ public static class FireAmmoCmd
                     await ShotHelper.CreateMissile(combatState, null, skipWait: true);
                     foreach (var t in combatState.HittableEnemies)
                         await CreatureCmdCompatibility.Damage(new ThrowingPlayerChoiceContext(),
-                            t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null); 
+                            t, halfDmg, ValueProp.Unpowered, player.Creature, phantomCard, null);
                     SfxCmd.Play("event:/sfx/characters/regent/regent_sovereign_blade");
                 }
                 else

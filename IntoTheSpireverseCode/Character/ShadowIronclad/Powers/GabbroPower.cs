@@ -13,7 +13,7 @@ public sealed class GabbroPower : ShadowPowerModel, IModifyDamageAdditive
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     /// <summary>
     /// The damage Gabbro adds to a Potion-Shaped Rock, for PotionShapedRockPatches.
     /// </summary>

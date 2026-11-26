@@ -1,11 +1,11 @@
 ﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
@@ -19,7 +19,7 @@ public sealed class Dazzle() : ShadowSilentCard(1, CardType.Skill, CardRarity.Co
         new BlockVar(7m, ValueProp.Move),
         new DynamicVar(MuddleCountKey, 1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Muddle)

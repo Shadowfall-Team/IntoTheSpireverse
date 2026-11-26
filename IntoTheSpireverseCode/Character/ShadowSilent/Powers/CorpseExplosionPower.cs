@@ -25,7 +25,7 @@ public class CorpseExplosionPower : ShadowPowerModel, IAfterDeathCompat
             return;
 
         Flash();
-        decimal damage = (creature.MaxHp * Amount);
+        decimal damage = creature.MaxHp * Amount;
         await CreatureCmd.Damage(
             choiceContext, CombatState.HittableEnemies,
             damage, ValueProp.Unpowered,

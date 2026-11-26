@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,7 +13,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class BlunderGuard() : ShadowSilentCard(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     private const string StrengthKey = "StrengthGain";
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block),
@@ -36,10 +35,9 @@ public sealed class BlunderGuard() : ShadowSilentCard(0, CardType.Power, CardRar
             DynamicVars.Power<BlunderGuardPower>().BaseValue,
             Owner.Creature, this);
 
-        if (power != null)
-            power.AddStrength(DynamicVars[StrengthKey].IntValue);
+        power?.AddStrength(DynamicVars[StrengthKey].IntValue);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Power<BlunderGuardPower>().UpgradeValueBy(2m);

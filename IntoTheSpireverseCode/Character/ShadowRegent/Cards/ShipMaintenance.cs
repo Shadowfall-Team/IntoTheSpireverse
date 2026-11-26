@@ -1,5 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Animation;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.Enchantments;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.Enchantments;
+using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -16,7 +16,7 @@ public class ShipMaintenance() : ShadowRegentCard(
     TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromCard<Automation>(),

@@ -20,11 +20,10 @@ public sealed class SinfulStrike() : ShadowNecrobinderCard(1, CardType.Attack, C
         new DamageVar(8m, ValueProp.Move),
         new BlockVar(8m, ValueProp.Move),
     ];
-    
-    protected override HashSet<CardTag> CanonicalTags
-    {
-        get => new HashSet<CardTag>() { CardTag.Strike };
-    }
+
+    protected override HashSet<CardTag> CanonicalTags => [
+        CardTag.Strike
+    ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [

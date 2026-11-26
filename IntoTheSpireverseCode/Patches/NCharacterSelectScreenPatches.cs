@@ -1,25 +1,24 @@
 ﻿using Godot;
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.Character;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character;
-using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
-using MegaCrit.Sts2.Core.Nodes.Screens.CustomRun;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
+using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using MegaCrit.Sts2.Core.Saves;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch(typeof(NCharacterSelectScreen))]
-public class NCharacterSelectScreenPatches
+internal static class NCharacterSelectScreenPatches
 {
     private const float yOffset = 40;
 
     [HarmonyPatch("_Ready")]
     [HarmonyPostfix]
-    public static void ReadyPostfix(NCharacterSelectScreen __instance)
+    internal static void ReadyPostfix(NCharacterSelectScreen __instance)
     {
         if (!ModelDb.AllCharacters.Any(c => c is IAltCharacter)) return;
 
@@ -31,13 +30,13 @@ public class NCharacterSelectScreenPatches
 }
 
 [HarmonyPatch(typeof(NCharacterSelectButton), nameof(NCharacterSelectButton.Init))]
-public class NCharacterSelectButtonPatches
+internal static class NCharacterSelectButtonPatches
 {
     private const string _scenePath = "res://IntoTheSpireverse/scenes/CharAltArrow.tscn";
     private const string _shaderMaterialPath = "res://materials/vfx/hsv.tres";
 
     [HarmonyPrefix]
-    public static void InitPrefix(NCharacterSelectButton __instance, ref CharacterModel character, out bool __state)
+    internal static void InitPrefix(NCharacterSelectButton __instance, ref CharacterModel character, out bool __state)
     {
         __state = false;
         if (__instance.GetAncestorOfType<NCharacterSelectScreen>() is null)
@@ -64,7 +63,7 @@ public class NCharacterSelectButtonPatches
     }
 
     [HarmonyPostfix]
-    public static void InitPostfix(NCharacterSelectButton __instance, CharacterModel character, ICharacterSelectButtonDelegate del, bool __state)
+    internal static void InitPostfix(NCharacterSelectButton __instance, CharacterModel character, ICharacterSelectButtonDelegate del, bool __state)
     {
         if (__state) return;
 

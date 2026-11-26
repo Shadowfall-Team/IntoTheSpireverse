@@ -9,16 +9,16 @@ public sealed class Collapse() : ShadowDefectCard(0, CardType.Skill, CardRarity.
 {
     protected override bool HasEnergyCostX => true;
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
-    {
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
         CardKeyword.Exhaust,
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        int numOfOrbs = this.ResolveEnergyXValue();
+        int numOfOrbs = ResolveEnergyXValue();
         if (IsUpgraded)
             ++numOfOrbs;
 

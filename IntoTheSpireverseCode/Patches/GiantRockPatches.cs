@@ -1,15 +1,15 @@
 ﻿using System.Runtime.CompilerServices;
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardTags;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 public static class GiantRockBuffTracker
 {
-    private static readonly ConditionalWeakTable<GiantRock, StrongBox<decimal>> ExtraDamage = new();
+    private static readonly ConditionalWeakTable<GiantRock, StrongBox<decimal>> ExtraDamage = [];
 
     public static decimal Get(GiantRock card) =>
         ExtraDamage.GetValue(card, _ => new StrongBox<decimal>(0m)).Value;
@@ -23,9 +23,9 @@ public static class GiantRockBuffTracker
 }
 
 [HarmonyPatch(typeof(CardModel), "CanonicalTags", MethodType.Getter)]
-public static class GiantRockPatches
+internal static class GiantRockPatches
 {
-    public static void Postfix(CardModel __instance, ref HashSet<CardTag> __result)
+    internal static void Postfix(CardModel __instance, ref HashSet<CardTag> __result)
     {
         if (__instance is GiantRock)
             __result.Add(IntoTheSpireverseCardTags.Rock);
@@ -33,9 +33,9 @@ public static class GiantRockPatches
 }
 
 [HarmonyPatch(typeof(CardModel), "AfterDowngraded")]
-public static class GiantRockDowngradePatch
+internal static class GiantRockDowngradePatch
 {
-    public static void Postfix(CardModel __instance)
+    internal static void Postfix(CardModel __instance)
     {
         if (__instance is GiantRock giant)
             giant.DynamicVars.Damage.BaseValue += GiantRockBuffTracker.Get(giant);

@@ -72,7 +72,7 @@ public sealed class BlindFuryPower : ShadowPowerModel
             hitLimit
                 ? new LocString("relics", "WHISPERING_EARRING.warning")
                 : new LocString("relics", "WHISPERING_EARRING.approval"),
-            Owner ,VfxColor.Purple);
+            Owner, VfxColor.Purple);
 
         BlindFuryPlayedSingleton.DidBlindFuryPlayCardsThisTurn.Set(Owner.Player?.PlayerCombatState, true);
         foreach (var relic in player.Relics.OfType<PaelsEye>())
@@ -98,11 +98,11 @@ public sealed class BlindFuryPower : ShadowPowerModel
 }
 
 [HarmonyPatch]
-static class PaelsEyeCardsPlayedPatch
+internal static class PaelsEyeCardsPlayedPatch
 {
     [HarmonyPatch(typeof(PaelsEye), "AnyCardsPlayedThisTurn")]
     [HarmonyPostfix]
-    static void AnyCardsPlayedThisTurn(PaelsEye __instance, ref bool __result)
+    internal static void AnyCardsPlayedThisTurn(PaelsEye __instance, ref bool __result)
     {
         if (BlindFuryPlayedSingleton.DidBlindFuryPlayCardsThisTurn.Get(__instance.Owner.PlayerCombatState))
         {

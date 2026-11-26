@@ -1,5 +1,4 @@
 ﻿using IntoTheSpireverse.IntoTheSpireverseCode.Commands;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -11,7 +10,7 @@ public class SnakeEyesPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     public override async Task AfterPlayerTurnStart(
         PlayerChoiceContext choiceContext, Player player)
     {

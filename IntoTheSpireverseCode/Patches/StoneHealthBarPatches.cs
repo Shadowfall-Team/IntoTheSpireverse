@@ -12,12 +12,12 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// BaseLib's colour postfix in either order.
 /// </summary>
 [HarmonyPatch]
-public static class StoneHealthBarPatches
+internal static class StoneHealthBarPatches
 {
     [HarmonyPatch(typeof(NHealthBar), "RefreshText")]
-    public static class Text
+    internal static class Text
     {
-        static void Postfix(NHealthBar __instance)
+        internal static void Postfix(NHealthBar __instance)
         {
             if (!IntoTheSpireverseConfig.ShowStoneHealthOnBar) return;
 

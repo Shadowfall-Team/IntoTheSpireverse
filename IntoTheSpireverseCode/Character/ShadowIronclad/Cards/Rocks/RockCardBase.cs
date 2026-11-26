@@ -35,7 +35,7 @@ public abstract class RockCardBase(int cost, CardType type, CardRarity rarity, T
         }
     }
 
-    protected override HashSet<CardTag> CanonicalTags => new() { IntoTheSpireverseCardTags.Rock };
+    protected override HashSet<CardTag> CanonicalTags => [IntoTheSpireverseCardTags.Rock];
 
     public virtual void BuffFromRockPlay(decimal extraDamage)
     {

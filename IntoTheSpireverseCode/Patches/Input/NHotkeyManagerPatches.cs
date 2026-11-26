@@ -8,13 +8,13 @@ using GodotInput = Godot.Input;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
 
 [HarmonyPatch(typeof(NHotkeyManager), nameof(NHotkeyManager._UnhandledInput))]
-public static class NHotkeyManagerPatches
+internal static class NHotkeyManagerPatches
 {
     private static bool _comboConsumedLeftTrigger;
     private static bool _comboConsumedRightTrigger;
 
     [HarmonyPrefix]
-    public static bool UnhandledInputPrefix(InputEvent inputEvent)
+    internal static bool UnhandledInputPrefix(InputEvent inputEvent)
     {
         if (_comboConsumedLeftTrigger && inputEvent.IsActionReleased(MegaInput.viewDrawPile, exactMatch: false))
         {

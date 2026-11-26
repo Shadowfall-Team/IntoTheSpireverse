@@ -1,4 +1,5 @@
 ﻿using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 using MegaCrit.Sts2.Core.Commands;
@@ -7,13 +8,12 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Cards;
 
 public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    private Decimal _additionalHits;
+    private decimal _additionalHits;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -31,7 +31,7 @@ public sealed class RestInPieces() : ShadowNecrobinderCard(1, CardType.Attack, C
         IntoTheSpireverseKeywords.Linger
     ];
 
-    private Decimal AdditionalHits
+    private decimal AdditionalHits
     {
         get => _additionalHits;
         set

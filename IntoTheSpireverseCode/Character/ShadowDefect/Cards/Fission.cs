@@ -6,10 +6,10 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
-public class Fission() : ShadowDefectCard (0, CardType.Skill,CardRarity.Ancient, TargetType.None)
+public class Fission() : ShadowDefectCard(0, CardType.Skill, CardRarity.Ancient, TargetType.None)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[] { CardKeyword.Exhaust };
- 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
     public override OrbEvokeType OrbEvokeType => OrbEvokeType.All;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(0)];
@@ -17,18 +17,18 @@ public class Fission() : ShadowDefectCard (0, CardType.Skill,CardRarity.Ancient,
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (Owner.PlayerCombatState == null) return;
-        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
- 
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+
         int orbCount = Owner.PlayerCombatState.OrbQueue.Orbs.Count;
         if (orbCount == 0)
             return;
- 
+
         if (IsUpgraded)
         {
             // Evoke all orbs (each EvokeNext with dequeue:true evokes and removes the front orb)
             for (int i = 0; i < orbCount; i++)
             {
-                await OrbCmd.EvokeNext(choiceContext, base.Owner, dequeue: true);
+                await OrbCmd.EvokeNext(choiceContext, Owner, dequeue: true);
                 await Cmd.CustomScaledWait(0.1f, 0.25f);
             }
         }
@@ -42,11 +42,11 @@ public class Fission() : ShadowDefectCard (0, CardType.Skill,CardRarity.Ancient,
                 orb.RemoveInternal();
             }
         }
- 
+
         for (int i = 0; i < orbCount; i++)
         {
-            await PlayerCmd.GainEnergy(1, base.Owner);
-            await CardPileCmd.Draw(choiceContext, 1m, base.Owner);
+            await PlayerCmd.GainEnergy(1, Owner);
+            await CardPileCmd.Draw(choiceContext, 1m, Owner);
         }
     }
 }

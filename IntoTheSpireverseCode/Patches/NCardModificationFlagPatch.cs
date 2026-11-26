@@ -16,7 +16,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 /// calls UpdateEnchantmentVisuals - so the flag stays correct in hand, deck views, and previews.
 /// </summary>
 [HarmonyPatch(typeof(NCard), nameof(NCard.UpdateVisuals))]
-public static class NCardModificationFlagPatch
+internal static class NCardModificationFlagPatch
 {
     private const string FlagName = "ModificationFlag";
 
@@ -41,7 +41,7 @@ public static class NCardModificationFlagPatch
     private const float EnabledValue = 0.6f;
 
     [HarmonyPostfix]
-    public static void Postfix(NCard __instance)
+    internal static void Postfix(NCard __instance)
     {
         if (!__instance.IsNodeReady() || __instance.Model == null) return;
 
@@ -53,7 +53,7 @@ public static class NCardModificationFlagPatch
 
         if (!Modification.IsModified(__instance.Model))
         {
-            if (flag != null) flag.Visible = false;
+            flag?.Visible = false;
             return;
         }
 

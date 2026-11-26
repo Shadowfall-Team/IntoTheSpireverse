@@ -1,10 +1,10 @@
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Models;
-using IntoTheSpireverse.IntoTheSpireverseCode.Keywords;
 
 #if NECROBINDER
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Powers;
@@ -13,10 +13,10 @@ using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Powers
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch(typeof(CardModel), nameof(CardModel.HasTurnEndInHandEffect), MethodType.Getter)]
-public class LingerHasTurnEndPatch
+internal static class LingerHasTurnEndPatch
 {
     [HarmonyPostfix]
-    static void Postfix(CardModel __instance, ref bool __result)
+    internal static void Postfix(CardModel __instance, ref bool __result)
     {
         if (__instance.Keywords.Contains(IntoTheSpireverseKeywords.Linger))
         {
@@ -27,11 +27,11 @@ public class LingerHasTurnEndPatch
 }
 
 [HarmonyPatch(typeof(CardPileCmd), nameof(CardPileCmd.Add),
-    new[] { typeof(CardModel), typeof(CardPile), typeof(CardPilePosition), typeof(AbstractModel), typeof(bool) })]
-public class LingerDiscardRedirectPatch
+    [typeof(CardModel), typeof(CardPile), typeof(CardPilePosition), typeof(AbstractModel), typeof(bool)])]
+internal static class LingerDiscardRedirectPatch
 {
     [HarmonyPrefix]
-    static void Prefix(CardModel card, ref CardPile newPile, ref CardPilePosition position)
+    internal static void Prefix(CardModel card, ref CardPile newPile, ref CardPilePosition position)
     {
         if (!card.Keywords.Contains(IntoTheSpireverseKeywords.Linger) || card.Owner.Creature.CombatState == null) return;
 
@@ -60,7 +60,7 @@ public class LingerDiscardRedirectPatch
 
 public static class LingerHelper
 {
-    internal static readonly HashSet<CardModel> PendingLingerRedirect = new();
+    internal static readonly HashSet<CardModel> PendingLingerRedirect = [];
     public static event Func<CardModel, PlayerChoiceContext, Task>? OnLingerTriggered;
     public static int GetTriggerCount(CardModel card)
     {

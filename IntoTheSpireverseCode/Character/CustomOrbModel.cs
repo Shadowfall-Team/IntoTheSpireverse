@@ -28,10 +28,10 @@ public abstract class CustomOrbModel : OrbModel, ICustomModel
     {
         get
         {
-            if (!string.IsNullOrEmpty(this.CustomSpritePath))
-                return this.CustomSpritePath;
-            
-            return SceneHelper.GetScenePath("orbs/orb_visuals/" + this.Id.Entry.ToLowerInvariant());
+            if (!string.IsNullOrEmpty(CustomSpritePath))
+                return CustomSpritePath;
+
+            return SceneHelper.GetScenePath("orbs/orb_visuals/" + Id.Entry.ToLowerInvariant());
         }
     }
 
@@ -42,10 +42,10 @@ public abstract class CustomOrbModel : OrbModel, ICustomModel
     {
         get
         {
-            if (!string.IsNullOrEmpty(this.CustomIconPath))
-                return this.CustomIconPath;
-            
-            return ImageHelper.GetImagePath($"orbs/{this.Id.Entry.ToLowerInvariant()}.png");
+            if (!string.IsNullOrEmpty(CustomIconPath))
+                return CustomIconPath;
+
+            return ImageHelper.GetImagePath($"orbs/{Id.Entry.ToLowerInvariant()}.png");
         }
     }
 
@@ -54,8 +54,8 @@ public abstract class CustomOrbModel : OrbModel, ICustomModel
     /// </summary>
     public new Node2D CreateSprite()
     {
-        Node2D sprite = PreloadManager.Cache.GetScene(this.SpritePath).Instantiate<Node2D>();
-        new MegaCrit.Sts2.Core.Bindings.MegaSpine.MegaSprite((Variant)(GodotObject)sprite.GetNode((NodePath)"SpineSkeleton"))
+        Node2D sprite = PreloadManager.Cache.GetScene(SpritePath).Instantiate<Node2D>();
+        new MegaCrit.Sts2.Core.Bindings.MegaSpine.MegaSprite((Variant)sprite.GetNode((NodePath)"SpineSkeleton"))
             .GetAnimationState()
             .SetAnimationCompat("idle_loop");
         return sprite;

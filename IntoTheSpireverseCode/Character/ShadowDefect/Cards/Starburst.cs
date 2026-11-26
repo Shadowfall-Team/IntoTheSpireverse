@@ -11,28 +11,28 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Starburst : ShadowDefectCard
 {
-	protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-	{
-		new CardsVar(2)
-	};
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new CardsVar(2)
+    ];
 
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-	{
-		HoverTipFactory.Static(StaticHoverTip.Evoke),
-		HoverTipFactory.FromOrb<EntropyOrb>(),
-		HoverTipFactory.FromCard<Shiv>()
-	};
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.Static(StaticHoverTip.Evoke),
+        HoverTipFactory.FromOrb<EntropyOrb>(),
+        HoverTipFactory.FromCard<Shiv>()
+    ];
 
-	public Starburst()
-		: base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
-	{
-	}
+    public Starburst()
+        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+    {
+    }
 
-	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-	{
-		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-		if (base.IsUpgraded)
-			await OrbCmd.Channel<EntropyOrb>(choiceContext, base.Owner);
-		await PowerCmd.Apply<StarburstPower>(choiceContext, base.Owner.Creature, base.DynamicVars.Cards.BaseValue, base.Owner.Creature, this);
-	}
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+        if (IsUpgraded)
+            await OrbCmd.Channel<EntropyOrb>(choiceContext, Owner);
+        await PowerCmd.Apply<StarburstPower>(choiceContext, Owner.Creature, DynamicVars.Cards.BaseValue, Owner.Creature, this);
+    }
 }

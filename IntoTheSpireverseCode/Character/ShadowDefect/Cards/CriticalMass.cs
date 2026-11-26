@@ -7,16 +7,16 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class CriticalMass() : ShadowDefectCard(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
-    {
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
         CardKeyword.Exhaust,
-    };
+    ];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new CardsVar(2),
         new EnergyVar(2),
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

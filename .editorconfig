@@ -1,0 +1,45 @@
+# top-most config file :)
+root = true
+
+# Unix line endings
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# C# project files
+[*.{csproj,sln,props,json}]
+indent_size = 2
+indent_style = space
+
+# C# configs yay
+[*.cs]
+indent_size = 4
+indent_style = space
+tab_width = 4
+
+trim_trailing_whitespace = true
+
+# Don't use unnecessssssary this./base. prefixes
+dotnet_style_qualification_for_field = false
+dotnet_style_qualification_for_property = false
+dotnet_style_qualification_for_method = false
+dotnet_style_qualification_for_event = false
+
+# Prefer pattern matching
+csharp_style_prefer_pattern_matching = true
+csharp_style_pattern_matching_over_as_with_null_check = true
+csharp_style_pattern_matching_over_is_with_cast_check = true
+
+csharp_style_inlined_variable_declaration = true
+
+dotnet_style_null_propagation = true
+
+dotnet_style_prefer_collection_expression = true
+
+### DotNet stuff
+dotnet_separate_import_directive_groups = false
+dotnet_sort_system_directives_first = true
+
+csharp_style_var_for_built_in_types = false
+csharp_style_var_when_type_is_apparent = true
+

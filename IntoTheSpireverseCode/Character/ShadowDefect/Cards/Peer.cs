@@ -8,10 +8,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Peer() : ShadowDefectCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new CardsVar(2),
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

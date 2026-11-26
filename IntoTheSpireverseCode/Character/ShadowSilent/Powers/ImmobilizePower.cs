@@ -11,7 +11,7 @@ public class ImmobilizePower : TemporaryStrengthPower, ICustomPower
 {
     public override AbstractModel OriginModel => ModelDb.Card<Immobilize>();
     protected override bool IsPositive => false;
-    
+
     string? ICustomPower.CustomPackedIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".PowerImagePath();
     string? ICustomPower.CustomBigIconPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigPowerImagePath();
 }

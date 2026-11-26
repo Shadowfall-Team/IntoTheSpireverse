@@ -11,13 +11,13 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 public sealed class MysticSlash() : ShadowSilentCard(3, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(16m, ValueProp.Move),
         new EnergyVar(1),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         EnergyHoverTip,
@@ -33,8 +33,8 @@ public sealed class MysticSlash() : ShadowSilentCard(3, CardType.Attack, CardRar
             .WithHitFx(VfxCmd.slashPath)
             .Execute(choiceContext);
 
-            await PlayerCmd.GainEnergy(
-                DynamicVars.Energy.IntValue, Owner);
+        await PlayerCmd.GainEnergy(
+            DynamicVars.Energy.IntValue, Owner);
     }
 
     protected override void OnUpgrade()

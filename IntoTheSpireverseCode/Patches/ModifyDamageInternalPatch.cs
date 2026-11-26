@@ -12,7 +12,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 [HarmonyPatch]
 internal static class ModifyDamageInternalPatch
 {
-    private static MethodBase TargetMethod()
+    internal static MethodBase TargetMethod()
     {
         var hook = AccessTools.TypeByName("MegaCrit.Sts2.Core.Hooks.Hook")
                    ?? throw new MissingMethodException("Hook not found");
@@ -39,7 +39,7 @@ internal static class ModifyDamageInternalPatch
         return vanillaNum;
     }
 
-    private static IEnumerable<CodeInstruction> Transpiler(
+    internal static IEnumerable<CodeInstruction> Transpiler(
         IEnumerable<CodeInstruction> instructions, MethodBase original)
     {
         var code = new List<CodeInstruction>(instructions);

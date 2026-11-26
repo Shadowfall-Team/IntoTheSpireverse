@@ -1,4 +1,3 @@
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,14 +21,14 @@ public sealed class Flechettes() : ShadowSilentCard(1, CardType.Attack, CardRari
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-	    if (cardPlay.Target == null) return;
+        if (cardPlay.Target == null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .WithHitCount((int) ((CalculatedVar) DynamicVars[_calculatedHitsKey]).Calculate(cardPlay.Target))
+            .WithHitCount((int)((CalculatedVar)DynamicVars[_calculatedHitsKey]).Calculate(cardPlay.Target))
             .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx(VfxCmd.slashPath, tmpSfx: "dagger_throw.mp3")
             .Execute(choiceContext);
-	}
+    }
 
     protected override void OnUpgrade()
     {

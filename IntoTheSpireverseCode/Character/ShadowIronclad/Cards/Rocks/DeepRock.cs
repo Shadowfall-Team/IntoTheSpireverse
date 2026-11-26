@@ -1,5 +1,5 @@
-﻿using MegaCrit.Sts2.Core.Audio.Debug;
-using BaseLib.Utils;
+﻿using BaseLib.Utils;
+using MegaCrit.Sts2.Core.Audio.Debug;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,11 +21,11 @@ public sealed class DeepRock() : RockCardBase(2, CardType.Attack, CardRarity.Tok
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [
         HoverTipFactory.Static(StaticHoverTip.Block),
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
         CardKeyword.Exhaust
     ];
-    
+
     public override bool GainsBlock => true;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

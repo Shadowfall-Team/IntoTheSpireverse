@@ -6,7 +6,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character;
 /// See MirrorMirror.GetParallelStoneMaxHpChange.
 /// Added to support both the production environment issues Mango called out, and also support the existence
 /// of Spireverse expansion mods (alt Defect farmer guy on the workshop)
-/// 
+///
 /// To use it from another mod, add the interface to your CharacterModel and return your value:
 /// <code>
 /// public class MyCharacter : CharacterModel, IParallelStoneCharacter

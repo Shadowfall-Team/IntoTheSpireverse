@@ -1,10 +1,10 @@
 ﻿using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Rooms;
 
@@ -16,7 +16,7 @@ public class VinoSerpento : ShadowSilentRelic
 
     private bool _wasUsedThisCombat;
     private bool _wasTriggered;
-    
+
     private bool WasUsedThisCombat
     {
         get => _wasUsedThisCombat;
@@ -26,7 +26,7 @@ public class VinoSerpento : ShadowSilentRelic
             _wasUsedThisCombat = value;
         }
     }
-    
+
     private bool WasTriggered
     {
         get => _wasTriggered;
@@ -47,7 +47,7 @@ public class VinoSerpento : ShadowSilentRelic
     ];
     public override Task AfterRoomEntered(AbstractRoom room)
     {
-        if (!(room is CombatRoom))
+        if (room is not CombatRoom)
             return Task.CompletedTask;
         WasUsedThisCombat = false;
         WasTriggered = false;
@@ -61,15 +61,15 @@ public class VinoSerpento : ShadowSilentRelic
         Status = RelicStatus.Normal;
         return Task.CompletedTask;
     }
-    
-    public override Decimal ModifyPowerAmountGivenAdditive(
+
+    public override decimal ModifyPowerAmountGivenAdditive(
         PowerModel power,
         Creature giver,
-        Decimal amount,
+        decimal amount,
         Creature? target,
         CardModel? cardSource)
     {
-        return !(power is PoisonPower) || cardSource == null || giver != Owner.Creature || WasUsedThisCombat ? 0M : DynamicVars.Poison.BaseValue;
+        return power is not PoisonPower || cardSource == null || giver != Owner.Creature || WasUsedThisCombat ? 0M : DynamicVars.Poison.BaseValue;
     }
 
     public override async Task AfterModifyingPowerAmountGiven(PowerModel power)
@@ -82,7 +82,7 @@ public class VinoSerpento : ShadowSilentRelic
     {
 
         // Currently a hack to account for the main branch not having `cardPlay.Player` yet
-        // will potentially break if a card like TheBall applies poison, 
+        // will potentially break if a card like TheBall applies poison,
         if (WasTriggered && cardPlay.Card.Owner == Owner && !WasUsedThisCombat)
         {
             WasUsedThisCombat = true;

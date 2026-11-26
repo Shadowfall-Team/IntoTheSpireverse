@@ -20,7 +20,7 @@ public static class IntoTheSpireverseHook
                 if (!model.ShouldDrawFromPile(pileType, player, startOfTurnDraw))
                 {
                     MainFile.Logger.Debug($"Model {((AbstractModel)model).Id.Entry} prevented "
-                        + $"{ player.Character.Id.Entry} from drawing from pile {CustomEnums.EnumName<PileType>((int)pileType)}");
+                        + $"{player.Character.Id.Entry} from drawing from pile {CustomEnums.EnumName<PileType>((int)pileType)}");
                     preventer = model as AbstractModel;
                     return false;
                 }

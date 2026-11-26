@@ -12,7 +12,7 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowNecrobinder.Ca
 public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const string _lingerBlockKey = "LingerBlock";
-    private Decimal _blockReduction;
+    private decimal _blockReduction;
 
     public override bool GainsBlock => true;
 
@@ -21,18 +21,18 @@ public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRa
         new BlockVar(9m, ValueProp.Move),
         new BlockVar(_lingerBlockKey, 5m, ValueProp.Move),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.FromKeyword(IntoTheSpireverseKeywords.Linger)
     ];
-    
+
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
     [
         IntoTheSpireverseKeywords.Linger
     ];
-    
-    private Decimal BlockReduction
+
+    private decimal BlockReduction
     {
         get => _blockReduction;
         set
@@ -41,26 +41,26 @@ public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRa
             _blockReduction = value;
         }
     }
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
-    
+
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(3m);
         DynamicVars[_lingerBlockKey].UpgradeValueBy(1m);
     }
-    
+
     protected override void AfterDowngraded()
     {
         base.AfterDowngraded();
         DynamicVars.Block.BaseValue -= BlockReduction;
         DynamicVars[_lingerBlockKey].BaseValue -= BlockReduction;
     }
-    
+
     protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         int triggers = LingerHelper.GetTriggerCount(this);
@@ -73,5 +73,5 @@ public sealed class Bonecage() : ShadowNecrobinderCard(1, CardType.Skill, CardRa
             await LingerHelper.NotifyLingerTriggered(this, choiceContext);
         }
     }
-    
+
 }

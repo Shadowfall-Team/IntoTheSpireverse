@@ -18,8 +18,8 @@ public class ShadowDefectCardPool : CustomCardPoolModel
 
     protected override CardModel[] GenerateAllCards()
     {
-        return new CardModel[]
-        {
+        return
+        [
             ModelDb.Card<StrikeDefect>(),
             ModelDb.Card<DefendDefect>(),
             ModelDb.Card<BeamCell>(),
@@ -50,6 +50,6 @@ public class ShadowDefectCardPool : CustomCardPoolModel
             ModelDb.Card<MachineLearning>(),
             ModelDb.Card<MegaCrit.Sts2.Core.Models.Cards.Buffer>(),
             ModelDb.Card<ConsumingShadow>(),
-        };
+        ];
     }
 }

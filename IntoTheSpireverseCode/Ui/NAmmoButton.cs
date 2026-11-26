@@ -119,8 +119,7 @@ public partial class NAmmoButton : NShipDisplay
             NControllerManager.Instance.ControllerTypeChanged += OnControllerChanged;
         }
 
-        if (NInputManager.Instance != null)
-            NInputManager.Instance.InputRebound += OnControllerChanged;
+        NInputManager.Instance?.InputRebound += OnControllerChanged;
     }
 
     public override void _ExitTree()
@@ -134,8 +133,7 @@ public partial class NAmmoButton : NShipDisplay
             NControllerManager.Instance.ControllerTypeChanged -= OnControllerChanged;
         }
 
-        if (NInputManager.Instance != null)
-            NInputManager.Instance.InputRebound -= OnControllerChanged;
+        NInputManager.Instance?.InputRebound -= OnControllerChanged;
         _playQueue.Clear();
     }
 

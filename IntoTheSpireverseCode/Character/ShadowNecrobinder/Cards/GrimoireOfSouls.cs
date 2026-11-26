@@ -22,7 +22,7 @@ public sealed class GrimoireOfSouls() : ShadowNecrobinderCard(2, CardType.Power,
         HoverTipFactory.FromCard<Clumsy>(),
         HoverTipFactory.FromCard<SoulStrike>(),
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState == null) return;
@@ -33,7 +33,7 @@ public sealed class GrimoireOfSouls() : ShadowNecrobinderCard(2, CardType.Power,
             clumsies.Add(CombatState.CreateCard<Clumsy>(Owner));
 
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardsToCombat(
-            (IEnumerable<CardModel>)clumsies, PileType.Draw, Owner, CardPilePosition.Random));
+            clumsies, PileType.Draw, Owner, CardPilePosition.Random));
 
         await PowerCmd.Apply<GrimoireOfSoulsPower>(choiceContext, Owner.Creature, 1, Owner.Creature, this);
     }

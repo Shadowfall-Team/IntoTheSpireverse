@@ -7,9 +7,9 @@ using OpCodes = System.Reflection.Emit.OpCodes;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches;
 
 [HarmonyPatch(typeof(CardFactory), "GetDefaultTransformationOptions")]
-public static class CardFactoryTransformPatch
+internal static class CardFactoryTransformPatch
 {
-    public static IEnumerable<CodeInstruction> Transpiler(
+    internal static IEnumerable<CodeInstruction> Transpiler(
         IEnumerable<CodeInstruction> instructions)
     {
         var poolGetter = AccessTools.PropertyGetter(typeof(CardModel), "Pool");

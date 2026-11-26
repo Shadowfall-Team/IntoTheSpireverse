@@ -14,31 +14,30 @@ public class IllusionPower : ShadowPowerModel
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         HoverTipFactory.Static(StaticHoverTip.Block)
     ];
-    
+
 
     protected override object InitInternalData() => new Data();
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != this.Owner)
+        if (cardPlay.Card.Owner.Creature != Owner)
             return Task.CompletedTask;
-        this.GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, this.Amount);
+        GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, Amount);
         return Task.CompletedTask;
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int amount;
-        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
+        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out int amount) || amount <= 0)
             return;
         await CreatureCmd.GainBlock(Owner, amount, ValueProp.Unpowered, null, true);
     }
-    
+
     public override async Task AfterSideTurnEnd(
         PlayerChoiceContext choiceContext,
         CombatSide side,
@@ -51,6 +50,6 @@ public class IllusionPower : ShadowPowerModel
 
     private class Data
     {
-        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = new Dictionary<CardModel, int>();
+        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = [];
     }
 }

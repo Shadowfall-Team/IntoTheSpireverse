@@ -4,15 +4,15 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 
 
 public sealed class Choke() : ShadowSilentCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(14m, ValueProp.Move),

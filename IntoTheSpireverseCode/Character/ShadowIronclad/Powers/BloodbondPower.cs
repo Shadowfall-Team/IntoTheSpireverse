@@ -1,6 +1,4 @@
-﻿using BaseLib.Hooks;
-using Godot;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;

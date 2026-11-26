@@ -17,17 +17,16 @@ public class ThousandCutsPower : ShadowPowerModel
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner.Creature != this.Owner)
+        if (cardPlay.Card.Owner.Creature != Owner)
             return Task.CompletedTask;
-        this.GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, this.Amount);
+        GetInternalData<Data>().AmountsForPlayedCards.Add(cardPlay.Card, Amount);
         return Task.CompletedTask;
     }
 
     public override async Task AfterCardPlayed(
         PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        int amount;
-        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out amount) || amount <= 0)
+        if (cardPlay.Card.Owner.Creature != Owner || !GetInternalData<Data>().AmountsForPlayedCards.Remove(cardPlay.Card, out int amount) || amount <= 0)
             return;
 
         VfxCmd.PlayOnCreatureCenters(CombatState.HittableEnemies, VfxCmd.slashPath);
@@ -39,6 +38,6 @@ public class ThousandCutsPower : ShadowPowerModel
 
     private class Data
     {
-        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = new Dictionary<CardModel, int>();
+        public readonly Dictionary<CardModel, int> AmountsForPlayedCards = [];
     }
 }

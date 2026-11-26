@@ -1,16 +1,16 @@
 using Godot;
 using HarmonyLib;
+using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Combat;
-using IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.CombatPiles;
 
 [HarmonyPatch(typeof(NCreature), "_Ready")]
-public static class NCreaturePatch
+internal static class NCreaturePatch
 {
     [HarmonyPostfix]
-    public static void Postfix(NCreature __instance)
+    internal static void Postfix(NCreature __instance)
     {
         if (!__instance.Entity.IsPlayer)
         {

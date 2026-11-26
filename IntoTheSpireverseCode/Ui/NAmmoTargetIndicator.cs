@@ -67,7 +67,7 @@ public partial class NAmmoTargetIndicator : TextureRect
         if (combatState == null) return false;
 
         // With a single target there's no ambiguity about where Ammo goes.
-        if (combatState.HittableEnemies.Count() <= 1) return false;
+        if (combatState.HittableEnemies.Count <= 1) return false;
 
         var player = LocalContext.GetMe(combatState);
         if (player == null) return false;

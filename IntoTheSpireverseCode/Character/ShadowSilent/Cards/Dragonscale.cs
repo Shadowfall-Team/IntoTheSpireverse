@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -23,7 +22,7 @@ public sealed class Dragonscale() : ShadowSilentCard(1, CardType.Power, CardRari
     [
         HoverTipFactory.FromCard<Scale>()
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
@@ -33,7 +32,7 @@ public sealed class Dragonscale() : ShadowSilentCard(1, CardType.Power, CardRari
         await CreatureCmd.TriggerAnim(cardPlay.Target, "PowerUp", cardPlay.Target.Player.Character.PowerUpAnimDelay);
         await PowerCmd.Apply<DragonscalePower>(choiceContext, cardPlay.Target, DynamicVars["DragonscalePower"].BaseValue, Owner.Creature, this);
     }
-    
+
     protected override void OnUpgrade()
     {
         AddKeyword(CardKeyword.Innate);

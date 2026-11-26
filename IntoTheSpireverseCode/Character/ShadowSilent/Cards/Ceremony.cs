@@ -1,5 +1,4 @@
-﻿using BaseLib.Utils;
-using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
+﻿using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards.Colorless;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,7 +20,7 @@ public sealed class Ceremony() : ShadowSilentCard(1, CardType.Skill, CardRarity.
     {
         if (CombatState == null) return;
         CardSelectorPrefs prefs = new CardSelectorPrefs(CardSelectorPrefs.TransformSelectionPrompt, 1);
-        var original = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs,  null, this)).FirstOrDefault();
+        var original = (await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, this)).FirstOrDefault();
         if (original == null)
             return;
         CardModel card = CombatState.CreateCard<Flicker>(Owner);

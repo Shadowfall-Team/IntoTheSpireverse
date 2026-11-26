@@ -16,7 +16,7 @@ public sealed class BoneStorm() : ShadowNecrobinderCard(3, CardType.Attack, Card
         new CalculationBaseVar(8m),
         new ExtraDamageVar(1m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((card, _) =>
-            (decimal)PileType.Exhaust.GetPile(card.Owner).Cards.Count),
+            PileType.Exhaust.GetPile(card.Owner).Cards.Count),
         new SpireverseHitCountVar(2)
     ];
 

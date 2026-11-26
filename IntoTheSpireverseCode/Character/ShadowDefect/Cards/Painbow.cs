@@ -8,10 +8,10 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Painbow() : ShadowDefectCard(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
-    {
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
         CardKeyword.Exhaust,
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

@@ -1,5 +1,4 @@
 ﻿using BaseLib.Extensions;
-using BaseLib.Utils;
 using IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,18 +13,18 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowSilent.Cards;
 public sealed class SquareUp() : ShadowSilentCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     public override bool GainsBlock => true;
-    
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(9m, ValueProp.Move),
         new PowerVar<ConserveEnergyPower>(1m),
     ];
-    
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
         EnergyHoverTip
     ];
-    
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);

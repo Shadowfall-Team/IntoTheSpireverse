@@ -1,9 +1,10 @@
 using BaseLib.Utils;
 using Godot;
+using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
+using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.ControllerInput;
-using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -12,9 +13,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
-using IntoTheSpireverse.IntoTheSpireverseCode.CardPiles;
-using IntoTheSpireverse.IntoTheSpireverseCode.Config;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Ui;
 
@@ -90,8 +90,7 @@ public partial class NCargoPile : NCombatCardPile
             NControllerManager.Instance.ControllerTypeChanged += OnControllerChanged;
         }
 
-        if (NInputManager.Instance != null)
-            NInputManager.Instance.InputRebound += OnControllerChanged;
+        NInputManager.Instance?.InputRebound += OnControllerChanged;
     }
 
     public override void _ExitTree()
@@ -104,8 +103,7 @@ public partial class NCargoPile : NCombatCardPile
             NControllerManager.Instance.ControllerTypeChanged -= OnControllerChanged;
         }
 
-        if (NInputManager.Instance != null)
-            NInputManager.Instance.InputRebound -= OnControllerChanged;
+        NInputManager.Instance?.InputRebound -= OnControllerChanged;
     }
 
     private void OnControllerChanged() => _comboIcons?.Refresh();
@@ -186,9 +184,9 @@ public partial class NCargoPile : NCombatCardPile
 
         AddChild(holder);
         MoveChild(holder, 0);
-        holder.MouseFilter = Control.MouseFilterEnum.Pass;
-        holder.FocusMode = Control.FocusModeEnum.None;
-        holder.Hitbox.MouseFilter = Control.MouseFilterEnum.Pass;
+        holder.MouseFilter = MouseFilterEnum.Pass;
+        holder.FocusMode = FocusModeEnum.None;
+        holder.Hitbox.MouseFilter = MouseFilterEnum.Pass;
 
         PositionPreviewCard(holder, xOffset, scale);
         cardNode.UpdateVisuals(CargoCardPile.CargoPileType, CardPreviewMode.Normal);

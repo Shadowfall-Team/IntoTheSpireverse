@@ -16,20 +16,20 @@ public sealed class CmbrPower : IntoTheSpireversePower
 
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<WhiteNoise>(),
         HoverTipFactory.FromKeyword(CardKeyword.Ethereal)
-    };
+    ];
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
-        if (player != base.Owner.Player)
+        if (player != Owner.Player)
         {
             return;
         }
-        List<CardModel> cards = new List<CardModel>();
-        for (int i = 0; i < base.Amount; i++)
+        List<CardModel> cards = [];
+        for (int i = 0; i < Amount; i++)
         {
             CardModel card = combatState.CreateCard<WhiteNoise>(player);
             CardCmd.ApplyKeyword(card, CardKeyword.Ethereal);

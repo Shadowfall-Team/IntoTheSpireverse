@@ -10,18 +10,18 @@ namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class WhiteHole() : ShadowDefectCard(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => new[]
-    {
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
         CardKeyword.Exhaust,
-    };
+    ];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => Enumerable.Empty<DynamicVar>();
+    protected override IEnumerable<DynamicVar> CanonicalVars => [];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromOrb<PlasmaOrb>(),
         HoverTipFactory.FromCard<Void>(),
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -37,6 +37,6 @@ public sealed class WhiteHole() : ShadowDefectCard(0, CardType.Skill, CardRarity
         await Cmd.Wait(0.5f);
     }
 
-    protected override void OnUpgrade() => this.RemoveKeyword(CardKeyword.Exhaust);
+    protected override void OnUpgrade() => RemoveKeyword(CardKeyword.Exhaust);
 }
 

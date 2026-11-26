@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Patches.Input;
 
 [HarmonyPatch(typeof(NInputManager), nameof(NInputManager._UnhandledKeyInput))]
-public static class NInputManagerPatches
+internal static class NInputManagerPatches
 {
     public enum CaptureTarget
     {
@@ -40,10 +40,9 @@ public static class NInputManagerPatches
     };
 
     [HarmonyPrefix]
-    public static bool UnhandledKeyInputPrefix(InputEvent inputEvent)
+    internal static bool UnhandledKeyInputPrefix(InputEvent inputEvent)
     {
-        var key = inputEvent as InputEventKey;
-        if (key == null || key.IsEcho() || !key.Pressed)
+        if (inputEvent is not InputEventKey key || key.IsEcho() || !key.Pressed)
         {
             return _currentlyCapturing == CaptureTarget.None;
         }
@@ -102,13 +101,13 @@ public static class NInputManagerPatches
         if (key.Keycode == Key.Escape)
         {
             var (modifier, k) = binding.Get();
-            _capturingButton?.GetNodeOrNull<Label>("Label")!.Text = KeybindConfigUi.BindingLabel(modifier, k);
+            _capturingButton?.GetNodeOrNull<Label>("Label").Text = KeybindConfigUi.BindingLabel(modifier, k);
         }
         else
         {
             var newModifier = ModifierFromEvent(key);
             binding.Set((newModifier, key.Keycode));
-            _capturingButton?.GetNodeOrNull<Label>("Label")!.Text = KeybindConfigUi.BindingLabel(newModifier, key.Keycode);
+            _capturingButton?.GetNodeOrNull<Label>("Label").Text = KeybindConfigUi.BindingLabel(newModifier, key.Keycode);
         }
 
         _currentlyCapturing = CaptureTarget.None;

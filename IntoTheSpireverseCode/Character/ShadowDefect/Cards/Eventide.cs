@@ -1,4 +1,5 @@
 using BaseLib.Utils;
+using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -6,22 +7,21 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using Void = MegaCrit.Sts2.Core.Models.Cards.Void;
-using IntoTheSpireverse.IntoTheSpireverseCode.Compatibility;
 
 namespace IntoTheSpireverse.IntoTheSpireverseCode.Character.ShadowDefect.Cards;
 
 public sealed class Eventide() : ShadowDefectCard(1, CardType.Attack, CardRarity.Common, TargetType.None)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
         new DamageVar(8M, ValueProp.Move),
         new SpireverseHitCountVar(2)
-    };
+    ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => new IHoverTip[]
-    {
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
         HoverTipFactory.FromCard<Void>()
-    };
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
